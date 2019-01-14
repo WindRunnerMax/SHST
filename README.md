@@ -3,7 +3,7 @@
 参考：<a href="https://github.com/TLingC/GDUF-QZAPI">https://github.com/TLingC/GDUF-QZAPI</a><br>
 可以手机自行抓包获取更多接口 （推荐软件Packet Capture)<br>
 <br>
-使用此有以下三处需要略作改动：<br>
+使用此脚本有以下三处需要作改动：<br>
 ##########################################################################<br>
 account = "" #账号 <br>
 password = "" #密码 <br>

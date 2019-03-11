@@ -1,0 +1,92 @@
+{extend name="./common/view"}
+
+{block name="title"}
+商品管理
+{/block}
+
+{block name="body"}
+<!-- <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a> -->
+<script type="text/html" id="bar">
+  
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script type="text/javascript" src="{$ctx}/public/static/js/admin.js"></script>
+<style type="text/css">
+    .myInput{
+        padding: 1px;
+        width: 100%;
+        border:1px solid #eee;
+    }
+</style>
+<div style="display: flex;margin-bottom: 10px;">
+    <div class="layui-btn layui-btn-normal" style="margin-left: 10px;" onclick="addGoods()">添加商品</div>
+</div>
+<div id="editFie" style="display: none;">
+<hr class="layui-bg-gray">
+    <fieldset  class="layui-elem-field" >
+      <legend>商品信息</legend>
+      <div class="layui-field-box">
+        <div style="display:flex;">
+            <div style="width: 80px;padding: 10px;"><img id="img" style="width: 60px;height: 60px;" /></div>
+            <div style="width: calc(100% - 70px);padding: 10px;">
+                <input class="myInput" type="text" id="name" placeholder="商品名称">
+                <input class="myInput" type="text" id="price" style="margin-top: 7px;" placeholder="商品价格">
+                <input type="hidden" id="typeIn"><input type="hidden" id="srcIn">
+            </div>
+        </div>
+        <center style="margin-top: 10px;">
+                <div id="upload" class="layui-btn layui-btn-sm layui-btn-normal">上传图片</div>
+                <div id="subEdit" class="layui-btn layui-btn-sm layui-btn-normal">提交信息</div>
+            </center>
+      </div>
+    </fieldset>
+</div>
+<hr class="layui-bg-gray">
+<div style="display: flex;">
+    <input type="text" id="searchTableNo" style="padding: 3px;width: 60%;border:1px solid #eee;" />
+    <div style="width: 20%;"><div class="layui-btn layui-btn-normal" style="margin-left: 10px;" onclick="loadTableGoods()">搜索商品</div></div>
+</div>
+<table class="layui-hide" id="tableManage" lay-filter="event"></table>
+
+<script type="text/javascript">
+
+window.onload=function(){
+    loadTableGoods();
+    initUploadImg();
+}
+
+function loadTableGoods() {
+    var param = $("#searchTableNo").val().toUpperCase();
+    layui.use(['table','layer'], function(){
+      var table = layui.table,layer=layui.layer;
+      table.render({
+        elem: '#tableManage'
+        ,url:ctx + '/backstage/operate/getGoods?search='+param
+        ,cols: [[
+          {field:'name' , title: '名字' , event:'edit' , style:'cursor: pointer;color:#187EEF;'}
+          // ,{field:'price', width:60 ,align:'center',title: '价格'}
+          ,{align:'center',width:60 ,field:"scount",title:'销售' }
+          ,{align:'center',width:60 ,field:"rcount",title:'库存' }
+          ,{align:'center',width:70 ,title:'操作' ,toolbar: '#bar'}
+        ]],
+        page:true
+      });
+
+        table.on('tool(event)', function(obj){
+        var data = obj.data 
+        ,layEvent = obj.event; 
+        if(layEvent === 'del'){
+          layer.confirm('真的删除'+data.name+'吗?', function(index){
+            obj.del();
+            layer.close(index);
+            delGoods(data.type,layer);
+          });
+        } else if(layEvent === 'edit'){
+          editGoods(data,layer);
+        }
+      });
+    });
+}
+
+</script>
+{/block}

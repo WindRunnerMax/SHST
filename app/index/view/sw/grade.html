@@ -1,0 +1,104 @@
+{extend name="./common/view"}
+
+{block name="title"}
+成绩
+{/block}
+
+{block name="body"}
+<center style="display: flex;justify-content:center;">
+    <form class="layui-form" action="">
+        <div class="layui-form-item" style="margin-right: 5px;border-radius: 3px;width: 150px;">
+            <select id="sele" class="layui-input layui-unselect" >
+                <option value="">全部学期</option>
+                <option value="2016-2017-1">2016-2017-1</option>
+                <option value="2016-2017-2">2016-2017-2</option>
+                <option value="2017-2018-1">2017-2018-2</option>
+                <option value="2017-2018-2">2017-2018-1</option>
+                <option value="2018-2019-1">2018-2019-1</option>
+                <option value="2018-2019-2">2018-2019-2</option>
+                <option value="2019-2020-1">2019-2020-1</option>
+                <option value="2019-2020-2">2019-2020-2</option>
+                <option value="2020-2021-1">2020-2021-1</option>
+                <option value="2020-2021-2">2020-2021-2</option>
+            </select>
+        </div>
+    </form>
+    <div class="layui-btn layui-btn-normal" onclick="loadGrade()">确定</div>
+</center>
+<hr class="layui-bg-gray">
+    <div id="app" style="display: none;">
+        <div id="point" style="text-align: center;"></div>
+        <div v-for="item in info">
+            <div style="padding: 6px;">{{item.zcj}} {{item.kcmc}} {{item.xf}}</div>
+            <hr class="layui-bg-gray">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function init() {
+        ve = new Vue({
+          el: '#app',
+          data: {
+              info:[]
+          }
+        });
+        layui.use('form', function(){
+          var form = layui.form;
+        });
+    }
+    
+    function vueLoad(info){
+        layer.closeAll();
+        if(info[0] === null) {alert("无成绩信息");return ;}
+        console.log(info);
+        pointHandle(info);
+        $("#app").css("display","block");
+        ve.$data.info = info;
+    }
+    function loadGrade() {
+        loadmsg();
+        var xn = $("#sele").val();
+        if (xn !== "") xn = "/" + xn;
+        $.ajax({                                      
+          type:"post",
+          url:ctx + "/funct/sw/grade" + xn,  
+          dataType:"json",                      
+          success:function(data)
+          {
+              if (data.MESSAGE=="Yes") vueLoad(data.data);
+              else errmsg('请求失败');
+          },
+          error:function()
+          {
+              layer.closeAll();
+              errmsg('请求失败');
+          }
+      });
+    }
+
+    function pointHandle(info){
+      try{
+        var n = info.length;
+        var point = 0;
+        var pointN = 0;
+        for (var i = 0; i < n; i++) {
+        	if (info[i].kclbmc === "公选" ) continue;
+        	pointN++;
+            if (info[i].zcj === "优") point+=4.5;
+            else if(info[i].zcj === "良") point+=3.5;
+            else if(info[i].zcj === "中") point+=2.5;
+            else if(info[i].zcj === "及格") point+=1.5;
+            else if(info[i].zcj === "不及格") point+=0;
+            else {
+                var s = parseInt(info[i].zcj);
+                if (s>=60) point += ((s-50) / 10);
+            }
+            $("#point").html("当前成绩绩点:"+ (point/pointN).toFixed(2) + "<hr class='layui-bg-gray'>");
+        }
+      }catch(err){}
+        
+    }
+    window.onload=function(){$("#sele  option[value='{$xnxqh}'] ").attr("selected",true);init();}
+</script>
+{/block}

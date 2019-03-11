@@ -2,16 +2,21 @@
 # 强智教务管理系统查询<br>
 参考：<a href="https://github.com/TLingC/GDUF-QZAPI">https://github.com/TLingC/GDUF-QZAPI</a><br>
 可以手机自行抓包获取更多接口 （推荐软件Packet Capture)<br>
-<br><br>
+<br><br><hr>
 # web项目
 # 基于ThinkPHP制作的WEB项目，提供课表查询，空教室查询，成绩查询（实测智校园APP出问题无法进入时，本项目正常使用）
 # 嵙同学部署到服务器即用，外校同学若使用需改动：
-######################################################################
-/app/index/controller
-######################################################################
-<br><br>
+##########################################################################<br>
+SW/app/index/controller/Sw.php<br>
+SW/app/funct/controller/Sw.php<br>
+中private $url = "http://jwgl.sdust.edu.cn/app.do"; 
+更改为private $url = "${学校教务管理系统网站}/app.do";<br>
+##########################################################################<br>
+![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/public/1.jpg)
+![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/public/2%5B)(2.jpg)
+<br><br><hr>
 # python脚本
-# /python目录下有python爬虫脚本，功能较全
+# SW/python目录下有python爬虫脚本，功能较全
 # 使用此脚本有以下几处需要作改动：<br>
 ##########################################################################<br>
 account = "" #账号 <br>

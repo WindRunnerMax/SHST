@@ -9,11 +9,11 @@
 ##########################################################################<br>
 SW/app/index/controller/Sw.php<br>
 SW/app/funct/controller/Sw.php<br>
-中private $url = "http://jwgl.sdust.edu.cn/app.do"; 
+中private $url = "http://jwgl.sdust.edu.cn/app.do"; <br>
 更改为private $url = "${学校教务管理系统网站}/app.do";<br>
 ##########################################################################<br>
-![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/public/1.jpg)
-![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/public/2%5B)(2.jpg)
+![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/public/show1.jpg)
+![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/public/show2.jpg)
 <br><br><hr>
 # python脚本
 # SW/python目录下有python爬虫脚本，功能较全

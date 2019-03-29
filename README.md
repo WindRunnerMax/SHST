@@ -1,11 +1,6 @@
-# SW
-# 强智教务管理系统查询<br>
-参考：<a href="https://github.com/TLingC/GDUF-QZAPI">https://github.com/TLingC/GDUF-QZAPI</a><br>
-可以手机自行抓包获取更多接口 （推荐软件Packet Capture)<br>
-<br><br><hr>
-# web项目
-# 基于ThinkPHP制作的WEB项目，提供课表查询，空教室查询，成绩查询（实测智校园APP出问题无法进入时，本项目正常使用）
-# 嵙同学部署到服务器即用，外校同学若使用需改动：
+# web
+**基于ThinkPHP制作的WEB项目，提供课表查询，空教室查询，成绩查询（实测智校园APP出问题无法进入时，本项目正常使用）**
+**嵙同学部署到服务器即用，外校同学若使用需改动：**
 ##########################################################################<br>
 SW/app/index/controller/Sw.php<br>
 SW/app/funct/controller/Sw.php<br>
@@ -32,3 +27,5 @@ Q.getKxJscx("0102") #空教室查询 "allday"：全天 "am"：上午 "pm"：下�
 Q.getCjcx("2018-2019-1") #成绩查询 #无参数查询全部成绩<br>
 Q.getKscx() #获取考试信息<br>
 ###########################################################################<br>
+   
+> 可以手机自行抓包获取更多接口 （推荐软件Packet Capture)<br>  

@@ -11,6 +11,7 @@ Log In
 <form id="formAct" action="{$ctx}/index/sw/login" method="post">
       <input id="user1" name="username" type="hidden" required>
       <input id="password1" name="password" type="hidden" required>
+      <input id="flag1" name="flag" type="hidden" required>
 </form>
 <script type="text/javascript">
   function setCookie(name, value) {
@@ -45,6 +46,7 @@ Log In
     if( "{$status}"!=="E" && getCookie("user")!=null && getCookie('password')!=null){
         document.getElementById('user1').value=getCookie("user");
         document.getElementById('password1').value=getCookie("password");
+        document.getElementById('flag1').value=getCookie("flag");
         login1();
     }
   })();
@@ -57,6 +59,7 @@ Log In
     <div class="form-group">
       <input class="form-control" placeholder="密码" id="password" name="password" type="password" required>
     </div>
+      <input id="flag" name="flag" type="hidden" required>
     <center>
       <button  class="btn btn-primary" onclick="subSave()" >保存并登录</button> 
     </center>
@@ -72,6 +75,7 @@ Log In
     if(getCookie("user")!=null && getCookie('password')!=null){
         document.getElementById('user').value=getCookie("user");
         document.getElementById('password').value=getCookie("password");
+        document.getElementById('flag').value=getCookie("flag");
     }
   })();
 
@@ -82,6 +86,7 @@ Log In
 function subSave(){
     setCookie("user",document.getElementById("user").value);
     setCookie("password",document.getElementById("password").value);
+    setCookie("flag","0");
     login();
 }
 

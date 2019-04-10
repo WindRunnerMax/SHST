@@ -27,9 +27,11 @@
   <div>
     <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
       <div class="login-panel panel panel-default">
-        <div class="panel-body">
-          用户：{$user} 
-          <div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;float: right;" onclick="location.href='{$ctx}/?status=E'">注销</div>
+        <div class="panel-body" style='position:relative;'>
+          用户：{$user}
+          <div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 120px;" onclick="location.href='{$ctx}/adapt/sw/overview'">标准</div>
+          <div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 65px;" onclick="location.href='{$ctx}/index/sw/overview'">菜单</div>
+          <div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 10px;" onclick="location.href='{$ctx}/?status=E'">注销</div>
         </div>
       </div>
     </div><!-- /.col-->

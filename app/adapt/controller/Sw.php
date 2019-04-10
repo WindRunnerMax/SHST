@@ -1,13 +1,13 @@
 <?php
-namespace app\index\controller;
+namespace app\adapt\controller;
 use think\Controller;
 use think\Db;
-use app\index\controller\Http;
+use app\adapt\controller\Http;
 
 class Sw extends Controller
 {
 
-    private $url = "http://jwgl.sdust.edu.cn/app.do";
+	private $url = "http://jwgl.sdust.edu.cn/app.do";
 
     private $header = array(
         'User-Agent' => 'Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
@@ -32,27 +32,6 @@ class Sw extends Controller
         return $ctx;
     }
 
-    public function login($value='')
-    {
-        if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['flag'])) {
-            $params=array(
-            "method" => "authUser",
-            "xh" => $_POST['username'],
-            "pwd" => $_POST['password']
-            );
-            $http = new Http();
-            $info = $http->httpRequest($this->url,$params,"GET");
-            $jsonInfo = json_decode($info,true);
-            if ($jsonInfo['flag'] === "1") {
-                session_start();
-                $_SESSION['TOKEN'] = $jsonInfo['token'];
-                $_SESSION['user'] = $jsonInfo['userrealname'];
-                $_SESSION['account'] = $_POST['username'];
-                if($_POST['flag'] === "0") return redirect('/index/sw/overview');
-                else return redirect('/adapt/sw/overview');
-            }else return $this->error($jsonInfo['msg'],"/?status=E",3);
-        }else return "";
-    }
 
     public function httpReq($params){
         array_push($this->header,"token:".$_SESSION['TOKEN']);
@@ -87,9 +66,18 @@ class Sw extends Controller
     {
         $user = $this->checkSession();
         $s = json_decode($this->getCurrentTime(),true);
+	$zc = $zc === -1 ? $s['zc'] : $zc;
+	$params=array(
+        "method" => "getKbcxAzc",
+        "xnxqid" => $s['xnxqh'],
+        "zc" => $zc ,
+        "xh" => $_SESSION['account']
+        );
+        $info = $this->httpReq($params);
         $this->assign(['ctx' => $this->getCtx(),
                        'user' => $user,
-                       'zc' => $s['zc']
+                       'zc' => $zc,
+			"info" => json_decode($info,true)
                    ]);
         return $this->fetch();
     }
@@ -116,10 +104,17 @@ class Sw extends Controller
     public function grade($sy="")
     {
         $user = $this->checkSession();
-        $s = json_decode($this->getCurrentTime(),true);
+	//$sy = $sy === "" ? json_decode($this->getCurrentTime(),true)['xnxqh'] : $sy ;
+	$params = array(
+            "method" => "getCjcx",
+            "xh" => $_SESSION['account'],
+            "xnxqid" => $sy
+        );
+        $info = $this->httpReq($params);
         $this->assign(['ctx' => $this->getCtx(),
                        'user' => $user,
-                       'xnxqh' => $s['xnxqh']
+                       'xnxqh' => $sy,
+		       'info' => json_decode($info,true)
                    ]);
         return $this->fetch();
     }

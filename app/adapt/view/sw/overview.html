@@ -22,13 +22,12 @@
     }
 </style>
 <div style="display: flex;flex-wrap: wrap;border-left:1px solid #eee;border-top:1px solid #eee;">
-<div class="funct" onclick="location.href='{$ctx}/index/sw/table'"><i class="layui-icon layui-icon-table size"></i>查课表</div>
-<div class="funct" onclick="location.href='{$ctx}/classroom'"><i class="layui-icon layui-icon-user size"></i>查教室</div>
-<div class="funct" onclick="location.href='{$ctx}/index/sw/grade'"><i class="layui-icon layui-icon-chart-screen size"></i>查成绩</div>
+<div class="funct" onclick="location.href='{$ctx}/adapt/sw/table'"><i class="layui-icon layui-icon-table size"></i>查课表</div>
+<div class="funct" onclick="location.href='{$ctx}/adapt/sw/classroom'"><i class="layui-icon layui-icon-user size"></i>查教室</div>
+<div class="funct" onclick="location.href='{$ctx}/adapt/sw/grade'"><i class="layui-icon layui-icon-chart-screen size"></i>查成绩</div>
 <div class="funct" onclick="location.href='https://github.com/WindrunnerMax/SW'"><i class="layui-icon layui-icon-fonts-code size"></i>源码</div>
 <div class="funct" onclick="location.href='https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md'"><i class="layui-icon layui-icon-log size"></i>更新日志</div>
-<div class="funct" onclick="location.href='{$ctx}/index/sw/info'"><i class="layui-icon layui-icon-about size"></i>公告</div>
-
+<div class="funct" onclick="location.href='{$ctx}/adapt/sw/info'"><i class="layui-icon layui-icon-about size"></i>公告</div>
 </div>
 <script type="text/javascript">
     function setCookie(name, value) {
@@ -38,7 +37,7 @@
         document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
       }
     (function() {
-        setCookie("flag","0");
+        setCookie("flag","1");
     }())
 </script>
 {/block}

@@ -35,20 +35,14 @@ Log In
       if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
   }
   function login1() {
-    // body...
     document.getElementById('formAct').submit();
   }
   (function() {
-    // Your code here...
-    //setCookie("user","");
-    //setCookie("password","");
-    // if(!document.querySelector('.main_logo')) return ;
-    // var aEle=document.querySelector('.main_logo').innerHTML='';
-    if(getCookie('flag') === null) setCookie("flag","0");
-    if( "{$status}"!=="E" && getCookie("user")!=null && getCookie('password')!=null){
-        document.getElementById('user1').value=getCookie("user");
-        document.getElementById('password1').value=getCookie("password");
-        document.getElementById('flag1').value=getCookie("flag");
+    if(localStorage.getItem('flag') === null) localStorage.setItem("flag","0");
+    if( "{$status}"!=="E" && localStorage.getItem("user")!=null && localStorage.getItem('password')!=null){
+        document.getElementById('user1').value=localStorage.getItem("user");
+        document.getElementById('password1').value=localStorage.getItem("password");
+        document.getElementById('flag1').value=localStorage.getItem("flag");
         login1();
     }
   })();
@@ -69,15 +63,10 @@ Log In
 </form>
 <script type="text/javascript">
   (function() {
-    // Your code here...
-    //setCookie("user","");
-    //setCookie("password","");
-    // if(!document.querySelector('.main_logo')) return ;
-    // var aEle=document.querySelector('.main_logo').innerHTML='';
-    if(getCookie('flag') !== null) document.getElementById('flag').value=getCookie("flag");
-    if(getCookie("user")!=null && getCookie('password')!=null){
-        document.getElementById('user').value=getCookie("user");
-        document.getElementById('password').value=getCookie("password");
+    if(getCookie('flag') !== null) document.getElementById('flag').value=localStorage.getItem("flag");
+    if(localStorage.getItem("user")!=null && localStorage.getItem('password')!=null){
+        document.getElementById('user').value=localStorage.getItem("user");
+        document.getElementById('password').value=localStorage.getItem("password");
     }
   })();
 
@@ -85,9 +74,10 @@ Log In
     document.getElementById('form').submit();
   }
 
+
 function subSave(){
-    setCookie("user",document.getElementById("user").value);
-    setCookie("password",document.getElementById("password").value);
+    localStorage.setItem("user",document.getElementById("user").value);
+    localStorage.setItem("password",document.getElementById("password").value);
     login();
 }
 

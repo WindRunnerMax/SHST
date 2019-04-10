@@ -31,15 +31,8 @@
 
 </div>
 <script type="text/javascript">
-    function setCookie(name, value) {
-        var Days = 180;
-        var exp = new Date();
-        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-        var cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + "; path=/";
-        document.cookie = cookie;
-      }
     (function() {
-        setCookie("flag","0");
+        localStorage.setItem("flag","0");
     }())
 </script>
 {/block}

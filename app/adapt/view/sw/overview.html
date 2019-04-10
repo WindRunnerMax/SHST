@@ -30,15 +30,8 @@
 <div class="funct" onclick="location.href='{$ctx}/adapt/sw/info'"><i class="layui-icon layui-icon-about size"></i>公告</div>
 </div>
 <script type="text/javascript">
-    function setCookie(name, value) {
-        var Days = 180;
-        var exp = new Date();
-        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-        var cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + "; path=/";
-        document.cookie = cookie;
-      }
     (function() {
-        setCookie("flag","1");
+        localStorage.setItem("flag","1");
     }())
 </script>
 {/block}

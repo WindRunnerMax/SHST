@@ -1,8 +1,8 @@
 # web
 ```
 基于ThinkPHP制作的WEB项目，提供课表查询，空教室查询，成绩查询(实测智校园APP出问题无法进入时，本项目正常使用)  
-更新日志：https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md
 ```
+更新日志：https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md
 > 嵙同学部署到服务器即用，外校同学若使用需改动:
 > SW/app/index/controller/Sw.php  
 > SW/app/funct/controller/Sw.php  
@@ -18,7 +18,7 @@
 ```
 SW/python目录下有python爬虫脚本，功能较全
 ```
-> 使用此脚本有以下几处需要作改动:**  
+> 使用此脚本有以下几处需要作改动:  
 > account = "" #账号  
 > password = "" #密码  
 > url = "http://jwgl.sdust.edu.cn/app.do" # ${学校教务管理系统网站}/app.do  

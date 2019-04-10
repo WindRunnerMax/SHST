@@ -54,7 +54,7 @@
 		height: <?php echo ( (int)substr($value['kcsj'],3,4) - (int)substr($value['kcsj'],1,2) ) * 130 ?>px;
 		top: <?php echo ((int)substr($value['kcsj'],1,2) - 1)  * 68 ?>px;
 		left: calc(100% / 7 * <?php echo ((int)$value['kcsj'][0] - 1); ?> + <?php echo ((int)$value['kcsj'][0]*3); ?>px);
-		width: calc(100% / 7);">{$value['kcmc']}{$value['jsmc']}
+		width: calc(100% / 7);"><center><div>{$value['kcmc']}</div><div>{$value['jsmc']}</div></center>
 	</div>
 <?php } } ?>
 </div>

@@ -32,6 +32,26 @@ class Sw extends Controller
         return $ctx;
     }
 
+    public function login($value='')
+    {
+        if (isset($_POST['username']) && isset($_POST['password'])) {
+            $params=array(
+	        "method" => "authUser",
+	        "xh" => $_POST['username'],
+	        "pwd" => $_POST['password']
+	        );
+	        $http = new Http();
+	        $info = $http->httpRequest($this->url,$params,"GET");
+	        $jsonInfo = json_decode($info,true);
+	        if ($jsonInfo['flag'] === "1") {
+	        	session_start();
+	        	$_SESSION['TOKEN'] = $jsonInfo['token'];
+                $_SESSION['user'] = $jsonInfo['userrealname'];
+	        	$_SESSION['account'] = $_POST['username'];
+	        	return redirect('/index/sw/overview');
+	        }else return $this->error($jsonInfo['msg'],"/?status=E",3);
+        }else return "";
+    }
 
     public function httpReq($params){
         array_push($this->header,"token:".$_SESSION['TOKEN']);

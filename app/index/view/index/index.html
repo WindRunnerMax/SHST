@@ -63,7 +63,7 @@ Log In
 </form>
 <script type="text/javascript">
   (function() {
-    if(getCookie('flag') !== null) document.getElementById('flag').value=localStorage.getItem("flag");
+    if(localStorage.getItem('flag') !== null) document.getElementById('flag').value=localStorage.getItem("flag");
     if(localStorage.getItem("user")!=null && localStorage.getItem('password')!=null){
         document.getElementById('user').value=localStorage.getItem("user");
         document.getElementById('password').value=localStorage.getItem("password");

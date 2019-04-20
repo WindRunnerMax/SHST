@@ -1,0 +1,11 @@
+---------------------------------------------------------------
+[ 2019-04-13T12:44:59+08:00 ] 119.167.70.19 POST /index/sw/login
+[ error ] [8]未定义变量: conn
+---------------------------------------------------------------
+[ 2019-04-13T12:45:25+08:00 ] 119.167.70.19 POST /index/sw/login
+[ info ] www.open.edu-bo.top/index/sw/login [运行时间：0.018580s][吞吐率：53.82req/s] [内存消耗：2,242.38kb] [文件加载：44]
+[ error ] [8]未定义变量: conn[/www/wwwroot/www.open.edu-bo.top/app/index/controller/Http.php:35]
+---------------------------------------------------------------
+[ 2019-04-13T13:13:00+08:00 ] 119.167.102.154 GET /index/index/test
+[ info ] www.open.edu-bo.top/index/index/test [运行时间：0.014451s][吞吐率：69.20req/s] [内存消耗：1,840.86kb] [文件加载：36]
+[ error ] [64]Cannot redeclare app\index\controller\Index::$header[/www/wwwroot/www.open.edu-bo.top/app/index/controller/Index.php:65]

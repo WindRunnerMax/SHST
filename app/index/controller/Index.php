@@ -4,79 +4,57 @@ use think\Controller;
 use think\Db;
 
 class Index extends Controller
-{
-    public function checkSession($value='')
-    {
-        # code...
-        session_start();
-        if(isset($_SESSION['user']) && $_SESSION['user']=="ADMIN") return $_SESSION['user'];
-        else $this->error("未登录","/",3);
-    }
-    public function getCtx()
-    {
-        $ctx="";
-        if($_SERVER['SERVER_NAME']=="localhost")
-            $ctx =  "/swarm" ;
-        return $ctx;
-    }
+{   
+    private $header = array(
+        'User-Agent:'.'Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
+        'Referer:'.'http://www.baidu.com',
+        'accept-encoding:'.'gzip, deflate, br',
+        'accept-language'.'zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
+        'cache-control:'.'max-age=0',
+        'X-FORWARDED-FOR:'.'51.36.15.76',
+        'CLIENT-IP:'.'51.36.15.76'
+    );
+
+	public function getCtx()
+	{
+		$ctx="";
+		if($_SERVER['SERVER_NAME']=="localhost")
+			$ctx =  "/snackbox" ;
+		return $ctx;
+	}
 
     public function index()
     {
+        $status = "";
+        if (isset($_GET['status'])) {
+            $status = $_GET['status'];
+        }
         session_start();
-        if(isset($_SESSION["user"])) unset($_SESSION["user"]);
-        $this->assign('ctx',$this->getCtx());
-        return $this->fetch();
+        if (isset($_SESSION['TOKEN'])) {
+            # code...
+            unset($_SESSION['TOKEN']);
+            unset($_SESSION['user']);
+            unset($_SESSION['account']);
+        }
+		$this->assign(['ctx' => $this->getCtx(),
+            'status' => $status
+    ]);
+		return $this->fetch();
     }
 
-    public function busininfo()
+	public function relogin()
     {
-        $ctx = $this->getCtx();
-        $this->assign(['ctx' => $ctx
-            ,"user" => $this->checkSession(),
-            "url" => "$ctx/index.php/backstage/shops/shopCheck"
-        ]);
-        return $this->fetch();
+        session_start();
+        if (isset($_SESSION['TOKEN'])) {
+            # code...
+            unset($_SESSION['TOKEN']);
+            unset($_SESSION['user']);
+            unset($_SESSION['account']);
+        }
+		$this->assign('ctx',$this->getCtx());
+		return $this->fetch();
     }
 
-    public function uploadImg()
-    {
-        $ctx = $this->getCtx();
-        $this->assign(['ctx' => $ctx
-            ,"user" => $this->checkSession()
-        ]);
-        return $this->fetch();
-    }
-
-    public function userShift()
-    {
-    	$status = -1;
-    	$data = "";
-    	$user = "";
-    	$shops_ower = "未成为商户";
-    	if (isset($_POST['account'])) {
-    		# code...
-    		$user = $_POST['account'];
-    		$data = Db::table("user_table")->where("account",$_POST['account'])->find();
-    		if ($data) {
-    			# code...
-    			$status = 1;
-    			if($data['type']===1) $shops_ower="该用户已为商户";
-    		} else {
-    			# code...
-    			$status = 0;
-    		}
-    		
-    	}
-        $ctx = $this->getCtx();
-        $this->assign(['ctx' => $ctx
-            ,"user" => $this->checkSession(),
-            "url" => "$ctx/index.php/backstage/shops/shopCheck",
-            "data" => $data,
-            "status" => $status,
-            "user_shop" => $user,
-            "shops_ower" => $shops_ower
-        ]);
-        return $this->fetch();
-    }
+    private $url = "http://jwgl.sdust.edu.cn/app.do";
 
 }

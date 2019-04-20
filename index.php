@@ -10,6 +10,7 @@
 // header("Location: ./public/"); 
 // 定义应用目录为apps
 define('APP_PATH', __DIR__ . '/app/');
+define('VENDOR_PATH', __DIR__ .'/vendor/');
 // 加载框架引导文件
 require __DIR__ . '/thinkphp/start.php';
 ?>

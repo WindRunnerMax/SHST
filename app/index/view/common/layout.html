@@ -1,98 +1,50 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
 <meta charset="utf-8">
-<title>蚁合</title>
-<script type="text/javascript" src="{$ctx}/public/static/js/jquery-1.11.1.min.js"></script>
-<link href="{$ctx}/public/static/js/layui/css/layui.css" rel="stylesheet">
-<script src="{$ctx}/public/static/js/layui/layui.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-    $(".div2").click(function(){ 
-      $(this).next("div").slideToggle(300)  
-      .siblings(".div3:visible").slideUp(300);
-    });
-  });
-</script>
-<style>  
-body{ margin:0;font-family:微软雅黑;background: #EFF4F7;overflow-y: scroll;}
-.left{ width:200px; height:calc(100% - 50px);top:50px; border-right:1px solid #CCCCCC ;#FFFFFF; color:#000000; font-size:14px; text-align:center;position: fixed;}
-.div1{text-align:center; width:200px;padding-top:3px; }
-.div2{height:40px; line-height:40px;cursor: pointer; font-size:13px; position:relative;border-bottom:#ccc 1px dotted;}
-.jbsz {position: absolute; height: 20px; width: 20px; left: 40px; top: 10px; background:url({$ctx}/public/static/images/1.png);}
-.xwzx {position: absolute; height: 20px; width: 20px; left: 40px; top: 10px; background:url({$ctx}/public/static/images/2.png);}
-.zxcp {position: absolute; height: 20px; width: 20px; left: 40px; top: 10px; background:url({$ctx}/public/static/images/4.png);}
-.lmtj {position: absolute; height: 20px; width: 20px; left: 40px; top: 10px; background:url({$ctx}/public/static/images/8.png);}
-.div3{display: none;cursor:pointer; font-size:13px;}
-.div3 ul{margin:0;padding:0;}
-.div3 li{ height:30px; line-height:30px; list-style:none; border-bottom:#ccc 1px dotted; text-align:center;}
-.btn{ 
-  display: block;
-  border-top: 1px solid #CCCCCC;
-  border-left: 1px solid #CCCCCC;
-  border-bottom: 1px solid #CCCCCC;
-  padding: 8px;
-} 
-.right{
-  min-height: 20px;
-  width: calc(100% - 260px);
-  position: absolute;
-  top:70px;
-  right:15px;
-  background:#fff;
-  border: 1px solid #eee;
-  padding: 10px;
-}
-</style>
-<script type="text/javascript">
-  function errmsg(msg,b={},width="100px"){
-    layui.use('layer', function(){
-          var layer=layui.layer;
-          b.icon = 5;
-          b.area = width;
-          layer.msg(msg,b);
-  })
-}
-function sucmsg(msg,b={},width="100px"){
-    layui.use('layer', function(){
-          var layer=layui.layer;
-          b.icon = 6;
-          b.area = width;
-          layer.msg(msg,b);
-  })
-}
-</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+<title>Query</title>
+
+<link href="{$ctx}/public/static/css/bootstrap.min.css" rel="stylesheet">
+<link href="{$ctx}/public/static/css/styles.css" rel="stylesheet">
 </head>
+<style type="text/css">
+  body{
+    margin-top: 50px;
+  }
+</style>
 <body>
-<div style="height: 50px;width:100%;position: fixed;border-bottom: 1px solid #eee;box-shadow:0px 0px  1px 0px #000040;background: #fff;z-index: 10086;">
-    <div style="padding: 10px;font-size: 23px;margin-left: 60px;">蚁合</div>
-    <div style="position: fixed;right: 10px;top:5px;display: flex;">
-        <div class="btn">{$user}</div>
-        <div class="btn" onclick="location.href='{$ctx}/'" style="cursor: pointer;border-right: 1px solid #CCCCCC;">注销</div>
-    </div>
-</div>
-<div class="left" style="background: #fff;">
-  <div class="div1">
-    <div class="div2"><div class="jbsz"> </div>商家管理</div>
-        <div class="div3">
-  <ul>
-      <li onclick="location.href='{$ctx}/index.php/busininfo'">信息审核</li>
-      <li onclick="location.href='{$ctx}/index.php/uploadimg'">图片上传</li>
-  </ul>
-    </div>
-      <div class="div2"><div class="xwzx"> </div>用户管理</div>
-        <div class="div3">
-        <ul>
-      <li onclick="location.href='{$ctx}/index.php/usershift'">商户转换</li>
-          </ul>
-    </div>
-  </div>
-</div>
-<div class="right">
- <h1 style="padding: 5px;"> {block name="title"}{/block}</h1>
-<hr class="layui-bg-gray">
-<div style="padding: 10px;">
-  {block name="content"}{/block}
-  </div>
-</div>
+  <div>
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+      <div class="login-panel panel panel-default">
+        <div class="panel-heading">{block name="title"}{/block}</div>
+        <div class="panel-body">
+          {block name="body"}{/block}
+        </div>
+      </div>
+    </div><!-- /.col-->
+  </div><!-- /.row -->  
+  
+    
+
+<script src="{$ctx}/public/static/js/jquery-1.11.1.min.js"></script>
+<script src="{$ctx}/public/static/js/bootstrap.min.js"></script>
+
+  <script>
+    !function ($) {
+      $(document).on("click","ul.nav li.parent > a > span.icon", function(){      
+        $(this).find('em:first').toggleClass("glyphicon-minus");    
+      }); 
+      $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+    }(window.jQuery);
+
+    $(window).on('resize', function () {
+      if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+    })
+    $(window).on('resize', function () {
+      if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+    })
+  </script> 
 </body>
 </html>
+

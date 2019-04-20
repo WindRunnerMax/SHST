@@ -150,7 +150,7 @@ class Database extends Connector
             ->update([
                 'reserved'    => 0,
                 'reserved_at' => null,
-                'attempts'    => ['inc', 1]
+                'attempts'    => ['exp', 'attempts + 1']
             ]);
     }
 

@@ -18,12 +18,14 @@ return [
 
     // 应用调试模式
     'app_debug'              => true,
-	//模板缓存
-	// 'TMPL_CACHE_ON' 		 => false,
     // 应用Trace
     'app_trace'              => false,
     // 应用模式状态
     'app_status'             => '',
+    //XSS
+    'DEFAULT_FILTER'         => 'htmlspecialchars',
+    //模板缓存
+    // 'TMPL_CACHE_ON'       => false,
     // 是否支持多模块
     'app_multi_module'       => true,
     // 入口自动绑定模块
@@ -214,8 +216,9 @@ return [
         'type'           => '',
         // 是否自动开启 SESSION
         'auto_start'     => true,
-        'expire' => 7200 ,
-        'var_session_id' => 'ses',
+        //SESSION有效期
+        'expire'         => 7200,
+        'var_session_id' => 'ses'
     ],
 
     // +----------------------------------------------------------------------

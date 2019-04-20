@@ -121,11 +121,6 @@ class Request
     protected $cache;
     // 缓存是否检查
     protected $isCheckCache;
-    /**
-     * 是否合并Param
-     * @var bool
-     */
-    protected $mergeParam = false;
 
     /**
      * 构造函数
@@ -185,18 +180,6 @@ class Request
             self::$instance = new static($options);
         }
         return self::$instance;
-    }
-
-    /**
-     * 销毁当前请求对象
-     * @access public
-     * @return void
-     */
-    public static function destroy()
-    {
-        if (!is_null(self::$instance)) {
-            self::$instance = null;
-        }
     }
 
     /**
@@ -519,7 +502,7 @@ class Request
     {
         if (true === $method) {
             // 获取原始请求类型
-            return $this->server('REQUEST_METHOD') ?: 'GET';
+            return IS_CLI ? 'GET' : (isset($this->server['REQUEST_METHOD']) ? $this->server['REQUEST_METHOD'] : $_SERVER['REQUEST_METHOD']);
         } elseif (!$this->method) {
             if (isset($_POST[Config::get('var_method')])) {
                 $this->method = strtoupper($_POST[Config::get('var_method')]);
@@ -527,7 +510,7 @@ class Request
             } elseif (isset($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'])) {
                 $this->method = strtoupper($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE']);
             } else {
-                $this->method = $this->server('REQUEST_METHOD') ?: 'GET';
+                $this->method = IS_CLI ? 'GET' : (isset($this->server['REQUEST_METHOD']) ? $this->server['REQUEST_METHOD'] : $_SERVER['REQUEST_METHOD']);
             }
         }
         return $this->method;
@@ -633,7 +616,7 @@ class Request
      */
     public function param($name = '', $default = null, $filter = '')
     {
-        if (empty($this->mergeParam)) {
+        if (empty($this->param)) {
             $method = $this->method(true);
             // 自动获取请求变量
             switch ($method) {
@@ -649,8 +632,7 @@ class Request
                     $vars = [];
             }
             // 当前请求参数和URL地址中的参数合并
-            $this->param      = array_merge($this->param, $this->get(false), $vars, $this->route(false));
-            $this->mergeParam = true;
+            $this->param = array_merge($this->get(false), $vars, $this->route(false));
         }
         if (true === $name) {
             // 获取包含文件上传信息的数组
@@ -1257,9 +1239,7 @@ class Request
         if (true === $ajax) {
             return $result;
         } else {
-            $result =  $this->param(Config::get('var_ajax')) ? true : $result;
-            $this->mergeParam = false;
-            return $result;
+            return $this->param(Config::get('var_ajax')) ? true : $result;
         }
     }
 
@@ -1275,9 +1255,7 @@ class Request
         if (true === $pjax) {
             return $result;
         } else {
-            $result = $this->param(Config::get('var_pjax')) ? true : $result;
-            $this->mergeParam = false;
-            return $result;
+            return $this->param(Config::get('var_pjax')) ? true : $result;
         }
     }
 

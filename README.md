@@ -3,11 +3,13 @@
 基于ThinkPHP制作的WEB项目，提供课表查询，空教室查询，成绩查询(实测智校园APP出问题无法进入时，本项目正常使用)  
 ```
 更新日志：https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md
-> 嵙同学部署到服务器即用，外校同学若使用需改动:
-> SW/app/index/controller/Sw.php  
-> SW/app/funct/controller/Sw.php  
-> 中private $url = "http://jwgl.sdust.edu.cn/app.do";  
-> 更改为private $url = "${学校教务管理系统网站}/app.do";
+```
+嵙同学部署到服务器即用，外校同学若使用需改动:
+SW/app/index/controller/Sw.php  
+SW/app/funct/controller/Sw.php  
+中private $url = "http://jwgl.sdust.edu.cn/app.do";  
+更改为private $url = "${学校教务管理系统网站}/app.do";
+```
 
 ![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/public/show1.jpg)
 ![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/public/show2.jpg)
@@ -18,10 +20,12 @@
 ```
 SW/python目录下有python爬虫脚本，功能较全
 ```
-> 使用此脚本有以下几处需要作改动:  
-> account = "" #账号  
-> password = "" #密码  
-> url = "http://jwgl.sdust.edu.cn/app.do" # ${学校教务管理系统网站}/app.do  
+```
+使用此脚本有以下几处需要作改动:  
+account = "" #账号  
+password = "" #密码  
+url = "http://jwgl.sdust.edu.cn/app.do" # ${学校教务管理系统网站}/app.do  
+```
 
 **源码末尾取消注释即可获取函数返回的值，json.loads()即可得到json格式数据**  
 * Q.getStudentIdInfo() #获取学号信息

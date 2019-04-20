@@ -1,0 +1,101 @@
+{extend name="./common/layout"}
+
+{block name="title"}
+图片上传
+{/block}
+
+{block name="content"}
+<script type="text/javascript">
+	var id = 0;
+    function search() {
+        // body...
+        var email = $("input[name='account']").val();
+        var Reg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+        if(!Reg.test(email)){
+            errmsg('邮箱格式不符');
+    　　　　return ;
+    　　}
+        $.ajax({                                                //ajax
+        type:"post",
+        url:"{$ctx}/index.php/backstage/user/pointerShop",
+        data:{account:email},                    //提交单独的属性(可以是数组)
+        dataType:"json",                            //返回类型
+        success:function(data)
+        {
+            if (data.Message==="Yes") {
+            	$("#idtemp").val(data.id);
+            	id = $("#idtemp").val();
+                sucmsg("指定: "+email+" & ID: "+data.id,{},'370px');
+                $("#upload").css("display","block");
+                $("#temp").val(email);
+                var obj = data.data;
+                for(var i in obj){  //遍历json数组时，这么写p为索引，0,1
+                  $("#imgGroup").append("<img src="+obj[i].src+" />");
+                }
+            }else if(data.Message==="Normal"){
+            	errmsg('该用户已成为商家',{},"230px");
+            }else{
+                errmsg('失败');
+            }
+        },
+        error:function()
+        {
+            errmsg('检查网络!');
+        }
+    });
+    }
+
+        
+</script>
+<form style="display: flex;">
+    <label style="display: block;padding: 9px;font-size: 15px;">搜索账号</label>
+    <input  style="width: 30%;" class="layui-input" name="account" required>
+    <input id="temp" type="hidden">
+    <input id="idtemp" type="hidden">
+    <div class="layui-btn layui-btn-normal"  style="margin-left: 5px;" onclick="search()">指定用户</div>
+    <div class="layui-btn layui-btn-normal" id="upload" style="margin-left: 5px;display: none;">上传图片</div>
+</form>
+<br>
+<hr class="layui-bg-gray">
+<div id="imgGroup"></div>
+<script type="text/javascript">
+	layui.use(['upload','layer'], function(){
+			  var $ = layui.jquery
+			  ,upload = layui.upload,layer=layui.layer;
+
+			  //普通图片上传
+			  var uploadInst = upload.render({
+			    elem: '#upload'
+			    ,accept:"images"
+			    ,data: {
+					  id: function(){
+					    return $('#idtemp').val();
+					  }
+					}
+			    ,url: '{$ctx}/index.php/backstage/shops/upload'
+			    ,before: function(obj){ 
+					layer.msg('上传中', {
+						  icon: 16
+						  ,shade: 0.01
+						});
+					}
+			    ,done: function(res){
+			      //如果上传失败
+			      layer.closeAll();
+			      if(res.status > 1){
+			        errmsg('上传失败');
+			      }else{
+			      	sucmsg("上传成功");
+			      	$("#imgGroup").append("<img src="+res.message+" />");
+			      }
+			      //上传成功
+			    }
+			    ,error: function(){
+			      //演示失败状态，并实现重传
+			      layer.closeAll();
+			      errmsg("上传失败")
+			    }
+			  });
+			})
+</script>
+{/block}

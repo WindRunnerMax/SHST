@@ -15,11 +15,11 @@ return [
     // 服务器地址
     'hostname'        => '127.0.0.1',
     // 数据库名
-    'database'        => '',
+    'database'        => 'swarm',
     // 用户名
-    'username'        => '',
+    'username'        => 'root',
     // 密码
-    'password'        => '',
+    'password'        => '20182018',
     // 端口
     'hostport'        => '',
     // 连接dsn
@@ -40,6 +40,8 @@ return [
     'master_num'      => 1,
     // 指定从服务器序号
     'slave_no'        => '',
+    // 自动读取主库数据
+    'read_master'     => false,
     // 是否严格检查字段是否存在
     'fields_strict'   => true,
     // 数据集返回类型

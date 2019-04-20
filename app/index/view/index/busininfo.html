@@ -1,0 +1,138 @@
+﻿{extend name="./common/layout"}
+
+{block name="title"}
+信息审核
+{/block}
+
+{block name="content"}
+<div id='list' lay-filter="demoEvent"></div>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">详细信息</a>
+  <a class="layui-btn layui-btn-xs" lay-event="pass">审核通过</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="rej">驳回</a>
+</script>
+<script>
+        var wi='40%';
+        var wid=$(window).width();
+        if(wid<=750) wi="100%";
+        else if(wid<=1100) wi="60%";
+        else wi="500px";
+        $(window).on('resize', function () {
+            wid=$(window).width();
+            if(wid<=750) wi="100%";
+            else if(wid<=1100) wi="60%";
+            else wi="500px";
+          if (wid <= 767) 
+            {
+                $('#sidebar-collapse').collapse('hide');
+            }
+        })
+
+
+    </script>   
+    <script>
+        layui.use(['table','layer'], function(){
+          var table = layui.table; 
+          var layer=layui.layer;
+            table.render({
+            elem: '#list'
+            ,url:'{$url}'
+            ,cols: [[
+              {field:'name',width:'20%', title: '商家',event: 'in', sort: true,style:'cursor: pointer;color:#187EEF;'}
+              ,{field:'city', title: '城市',sort: true}
+              ,{field:'region', title: '区',sort: true}
+             ,{field:'address', title: '位置',sort: true}
+              ,{ align:'center',width:210, toolbar: '#barDemo'}
+            ]]
+          ,page: true
+          });
+          //监听单元格事件
+
+
+          table.on('tool(demoEvent)', function(obj){
+            var data = obj.data,layEvent = obj.event;
+            if(obj.event === 'detail'){
+                    
+                    $.ajax({                                                //ajax
+                        type:"post",
+                        url:"{$ctx}/index.php/backstage/shops/info",
+                        data:{id:data.id},                    //提交单独的属性(可以是数组)
+                        dataType:"json",                            //返回类型
+                        success:function(data)
+                        {
+                            try{
+                                layer.open({
+                                  type: 1,
+                                  title:'商家信息',
+                                  area: wi, 
+                                  shadeClose:true,
+                                  offset:'t',
+                                  content: '<div class="layui-field-box"><div style="font-size:15px;margin-bottom:8px;display:flex;">绑定账号</div><blockquote style="font-size:10px;" class="layui-elem-quote" >'+data.data.account+'</blockquote><div style="font-size:15px;margin-bottom:8px;display:flex;">总房间数</div><blockquote style="font-size:10px;" class="layui-elem-quote" >'+data.data.room+'</blockquote><div style="font-size:15px;margin-bottom:8px;display:flex;">适合人数</div><blockquote style="font-size:10px;" class="layui-elem-quote" >'+data.data.people+'</blockquote><div style="font-size:15px;margin-bottom:8px;display:flex;">联系方式</div><blockquote style="font-size:10px;" class="layui-elem-quote" >'+data.data.connect+'</blockquote><div style="font-size:15px;margin-bottom:8px;display:flex;">时间</div><blockquote style="font-size:10px;" class="layui-elem-quote" >'+data.data.start_time+'-'+data.data.end_time+'</blockquote><div style="font-size:15px;margin-bottom:8px;display:flex;">坐标</div><blockquote style="font-size:10px;" class="layui-elem-quote" >经度：'+data.data.latitude+' 纬度：'+data.data.longitude+'</blockquote></div>'
+                                });
+                            }catch(e){
+                                layer.msg('网络错误');
+                            }
+                            
+                        },
+                        error:function()
+                        {
+                            layer.msg('检查网络!');
+                        }
+                    });
+
+                        
+            }else if(obj.event === 'pass'){
+                $.ajax({                                                //ajax
+                        type:"post",
+                        url:"{$ctx}/index.php/backstage/shops/pass",
+                        data:{id:data.id},                    //提交单独的属性(可以是数组)
+                        dataType:"json",                            //返回类型
+                        success:function(data)
+                        {
+                            if (data.Message==="Yes") {
+                                layer.msg('操作成功',{
+                                    time:1000,
+                                    end:function(){
+                                        location.reload();
+                                    }
+                                });
+                            }else{
+                                layer.msg('操作失败');
+                            }
+                        },
+                        error:function()
+                        {
+                            layer.msg('检查网络!');
+                        }
+                    });
+
+            }else if(obj.event === 'rej'){
+                $.ajax({                                                //ajax
+                        type:"post",
+                        url:"{$ctx}/index.php/backstage/shops/rej",
+                        data:{id:data.id},                    //提交单独的属性(可以是数组)
+                        dataType:"json",                            //返回类型
+                        success:function(data)
+                        {
+                            if (data.Message==="Yes") {
+                                layer.msg('操作成功',{
+                                    time:1000,
+                                    end:function(){
+                                        location.reload();
+                                    }
+                                });
+                            }else{
+                                layer.msg('操作失败');
+                            }
+                        },
+                        error:function()
+                        {
+                            layer.msg('检查网络!');
+                        }
+                    });
+            }
+                
+          });
+     })
+</script>
+{/block}

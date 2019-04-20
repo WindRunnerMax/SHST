@@ -1,0 +1,23 @@
+---------------------------------------------------------------
+[ 2018-09-19T21:22:01+08:00 ] 0.0.0.0 GET /swarm/index.php/funct/login/sessiontest
+[ error ] [4]语法错误: unexpected '}'
+---------------------------------------------------------------
+[ 2018-09-19T21:22:19+08:00 ] 0.0.0.0 GET /swarm/index.php/funct/login/sessiontest
+[ info ] localhost/swarm/index.php/funct/login/sessiontest [运行时间：0.107401s][吞吐率：9.31req/s] [内存消耗：2,499.41kb] [文件加载：40]
+[ error ] [4]语法错误: unexpected '}'[E:\wamp\www\swarm\app\funct\controller\Login.php:33]
+---------------------------------------------------------------
+[ 2018-09-19T21:58:37+08:00 ] 0.0.0.0 POST /swarm/index.php/funct/login/login
+[ info ] localhost/swarm/index.php/funct/login/login [运行时间：0.145739s][吞吐率：6.86req/s] [内存消耗：3,002.55kb] [文件加载：47]
+[ error ] [1]Class 'app\funct\controller\UserTable' not found[E:\wamp\www\swarm\app\funct\controller\Login.php:19]
+---------------------------------------------------------------
+[ 2018-09-19T22:05:28+08:00 ] 0.0.0.0 POST /swarm/index.php/funct/login/login
+[ info ] localhost/swarm/index.php/funct/login/login [运行时间：0.069343s][吞吐率：14.42req/s] [内存消耗：4,929.09kb] [文件加载：55]
+[ error ] [8]未定义数组索引: username[E:\wamp\www\swarm\app\funct\controller\Login.php:23]
+---------------------------------------------------------------
+[ 2018-09-19T22:07:17+08:00 ] 0.0.0.0 POST /swarm/index.php/funct/login/login
+[ info ] localhost/swarm/index.php/funct/login/login [运行时间：0.087313s][吞吐率：11.45req/s] [内存消耗：4,952.50kb] [文件加载：56]
+[ error ] [10501]SQLSTATE[3D000]: Invalid catalog name: 1046 No database selected[E:\wamp\www\swarm\thinkphp\library\think\db\Connection.php:390]
+---------------------------------------------------------------
+[ 2018-09-19T22:08:26+08:00 ] 0.0.0.0 POST /swarm/index.php/funct/login/login
+[ info ] localhost/swarm/index.php/funct/login/login [运行时间：0.108784s][吞吐率：9.19req/s] [内存消耗：4,958.77kb] [文件加载：56]
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'where clause'[E:\wamp\www\swarm\thinkphp\library\think\db\Connection.php:390]

@@ -8,8 +8,7 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-//use think/Route;
-// Route::get('h5','index/Index/index');
+
 return [
     '__pattern__' => [
         'name' => '\w+',
@@ -18,13 +17,7 @@ return [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
     ],
-    "classroom/[:idleTime]" => "index/sw/classroom",
-    "funct/sw/table/[:zc]" => "funct/sw/table",
-    "funct/sw/grade/[:sy]" => "funct/sw/grade",
-    "adapt/sw/classroom/[:idleTime]" => "adapt/sw/classroom",
-    "adapt/sw/table/[:zc]" => "adapt/sw/table",
-    "adapt/sw/grade/[:sy]" => "adapt/sw/grade"
+    "busininfo" => "index/index/busininfo",
+    "usershift" => "index/index/userShift",
+    "uploadimg" => "index/index/uploadImg"
 ];
-
-// use think/Route;
-// Route::rule('h5',/public/Index/index);

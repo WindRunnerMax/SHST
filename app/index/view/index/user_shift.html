@@ -1,0 +1,73 @@
+﻿{extend name="./common/layout"}
+
+{block name="title"}
+商户转换
+{/block}
+
+{block name="content"}
+<script type="text/javascript">
+	function search() {
+		// body...
+		var email = $("input[name='account']").val();
+		var Reg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+	　　if(Reg.test(email)){
+	　　　　return true;
+	　　}else{
+	　　　　alert("邮箱格式不符");
+	　　　　return false;
+		}
+}
+
+function swich(id) {
+	// body...
+	if("该用户已为商户" === "{$shops_ower}") {errmsg('该用户已成为商家',{},"230px");return;};
+	$.ajax({                                                //ajax
+        type:"post",
+        url:"{$ctx}/index.php/backstage/user/turn",
+        data:{id:id},                    //提交单独的属性(可以是数组)
+        dataType:"json",                            //返回类型
+        success:function(data)
+        {
+            if (data.Message==="Yes") {
+                sucmsg('操作成功',{
+                    time:1000,
+                    end:function(){
+                        location.href="{$ctx}/index.php/usershift";
+                    }
+                });
+            }else{
+                errmsg('操作失败');
+            }
+        },
+        error:function()
+        {
+            errmsg('检查网络!');
+        }
+    });
+}
+</script>
+<form style="display: flex;" method="post" action="{$ctx}/index.php/usershift">
+	<label style="display: block;padding: 9px;font-size: 15px;">搜索账号</label>
+	<input type="" style="width: 30%;" class="layui-input" name="account" required>
+	<input type="submit" class="layui-btn layui-btn-normal" name="" style="margin-left: 5px;" onclick="return search()" value="搜索">
+</form>
+<br>
+<hr class="layui-bg-gray">
+<div>
+<?php 
+if($status === 0) echo "user_shop 未查询到该用户信息";
+if($status === 1){ ?>
+	<div class="layui-field-box">
+		<div style="font-size:15px;margin-bottom:8px;display:flex;">账号</div>
+		<blockquote style="font-size:10px;" class="layui-elem-quote" >{$data['account']}</blockquote>
+		<div style="font-size:15px;margin-bottom:8px;display:flex;">注册时间</div>
+		<blockquote style="font-size:10px;" class="layui-elem-quote" >{$data['reg_time']}</blockquote><div style="font-size:15px;margin-bottom:8px">
+		<div style="font-size:15px;margin-bottom:8px;display:flex;">状态信息</div>
+		<blockquote style="font-size:10px;" class="layui-elem-quote" >{$shops_ower}</blockquote><div style="font-size:15px;margin-bottom:8px">
+		<hr class="layui-bg-gray">
+		<center>
+		<div class="layui-btn layui-btn-normal" onclick="swich({$data.id})">转换为商家</div>
+		</center>
+<?php } ?>
+</div>
+{/block}

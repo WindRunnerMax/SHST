@@ -11,8 +11,8 @@ SW/app/funct/controller/Sw.php
 更改为private $url = "${学校教务管理系统网站}/app.do";
 ```
 
-![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/public/show1.jpg)
-![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/public/show2.jpg)
+![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/Web/public/show1.jpg)
+![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/Web/public/show2.jpg)
 
 ----
   

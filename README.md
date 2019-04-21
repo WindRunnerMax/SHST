@@ -1,6 +1,6 @@
 # web
 ```
-SW/Web目录下基于ThinkPHP制作的WEB项目，提供课表查询，空教室查询，成绩查询(实测智校园APP出问题无法进入时，本项目正常使用)  
+SW/Web 目录下基于ThinkPHP制作的WEB项目，提供课表查询，空教室查询，成绩查询(实测智校园APP出问题无法进入时，本项目正常使用)  
 ```
 更新日志：https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md
 ```
@@ -18,7 +18,7 @@ SW/app/funct/controller/Sw.php
   
 # python脚本
 ```
-SW/Python目录下有python爬虫脚本，功能较全
+SW/Python 目录下有python爬虫脚本，功能较全
 ```
 ```
 使用此脚本有以下几处需要作改动:  
@@ -37,4 +37,6 @@ url = "http://jwgl.sdust.edu.cn/app.do" # ${学校教务管理系统网站}/app.
 * Q.getKscx() #获取考试信息
 ----
    
-> 可以手机自行抓包获取更多接口 (推荐软件Packet Capture)
+> 可以手机自行抓取强智APP获取更多接口 (推荐软件Packet Capture)  
+
+----

@@ -36,6 +36,7 @@ url = "http://jwgl.sdust.edu.cn/app.do" # ${学校教务管理系统网站}/app.
 * Q.getCjcx("2018-2019-1") #成绩查询 #无参数查询全部成绩
 * Q.getKscx() #获取考试信息
 ----  
-> 可以手机自行抓取强智APP获取更多接口  
-> 手机抓包:Packet Capture，电脑抓包推:Fiddler
-
+```
+可以手机自行抓取强智APP获取更多接口  
+手机抓包:Packet Capture，电脑抓包:Fiddler
+```

@@ -35,8 +35,7 @@ url = "http://jwgl.sdust.edu.cn/app.do" # ${学校教务管理系统网站}/app.
 * Q.getKxJscx("0102") #空教室查询 "allday"：全天 "am"：上午 "pm"：下午 "night"：晚上 "0102":1.2节空教室 "0304":3.4节空教室
 * Q.getCjcx("2018-2019-1") #成绩查询 #无参数查询全部成绩
 * Q.getKscx() #获取考试信息
-----
-   
-> 可以手机自行抓取强智APP获取更多接口 (推荐软件Packet Capture)  
+----  
+> 可以手机自行抓取强智APP获取更多接口  
+> 手机抓包:Packet Capture，电脑抓包推:Fiddler
 
-----

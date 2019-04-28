@@ -5,10 +5,9 @@ SW/Web 目录下基于ThinkPHP制作的WEB项目，提供课表查询，空教�
 更新日志：https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md
 ```
 嵙同学部署到服务器即用，外校同学若使用需改动:
-SW/app/index/controller/Sw.php  
-SW/app/funct/controller/Sw.php  
-中private $url = "http://jwgl.sdust.edu.cn/app.do";  
-更改为private $url = "${学校教务管理系统网站}/app.do";
+SW/app/index/controller/Conf.php   
+中public static $url = "http://jwgl.sdust.edu.cn/app.do";  
+更改为public static $url = "${学校教务管理系统网站}/app.do";
 ```
 
 ![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/Web/public/show1.jpg)

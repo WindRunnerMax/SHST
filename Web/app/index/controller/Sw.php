@@ -4,21 +4,10 @@ use think\Controller;
 use think\Db;
 use think\Log;
 use app\index\controller\Http;
+use app\index\controller\Conf;
 
 class Sw extends Controller
 {
-
-    private $url = "http://jwgl.sdust.edu.cn/app.do";
-
-    private $header = array(
-        'User-Agent:'.'Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
-        'Referer:'.'http://www.baidu.com',
-        'accept-encoding:'.'gzip, deflate, br',
-        'accept-language'.'zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
-        'cache-control:'.'max-age=0',
-        'X-FORWARDED-FOR:'.'51.36.15.76',
-        'CLIENT-IP:'.'51.36.15.76'
-    );
 
     private function checkSession($value='')
     {
@@ -44,26 +33,27 @@ class Sw extends Controller
             "pwd" => $_POST['password']
             );
             $http = new Http();
-            $info = $http->httpRequest($this->url,$params,"GET");
+            $info = $http->httpRequest(Conf::$url,$params,"GET");
             if (!$info) {
                 return "<br>啊哦，可能出了点问题";
             }
             $jsonInfo = json_decode($info,true);
-	    if($jsonInfo['flag'] === "1"){
+    	    if($jsonInfo['flag'] === "1"){
                 session_start();
                 $_SESSION['TOKEN'] = $jsonInfo['token'];
                 $_SESSION['user'] = $jsonInfo['userrealname'];
                 $_SESSION['account'] = $_POST['username'];
                 if($_POST['flag'] === "0") return redirect('/index/sw/overview');
                 else return redirect('/adapt/sw/overview');
-	     }else return $this->error($jsonInfo['msg'],"/?status=E",3);
+    	     }else return $this->error($jsonInfo['msg'],"/?status=E",3);
         }else return "";
     }
 
     public function httpReq($params){
-        array_push($this->header,"token:".$_SESSION['TOKEN']);
+        $header = Conf::$header;
+        array_push($header,"token:".$_SESSION['TOKEN']);
         $http = new Http();
-        $info = $http->httpRequest($this->url,$params,"GET",$this->header);
+        $info = $http->httpRequest(Conf::$url,$params,"GET",$header);
         return $info;
     }
 

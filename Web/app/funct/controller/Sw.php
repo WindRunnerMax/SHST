@@ -3,18 +3,10 @@ namespace app\funct\controller;
 use think\Controller;
 use think\Db;
 use app\index\controller\Http;
+use app\index\controller\Conf;
 
 class Sw extends Controller
 {
-    private $url = "http://jwgl.sdust.edu.cn/app.do";
-
-    private $header = array(
-        'User-Agent:'.'Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
-        'Referer:'.'http://www.baidu.com',
-        'accept-encoding:'.'gzip, deflate, br',
-        'accept-language:'.'zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
-        'cache-control:'.'max-age=0'
-    );
 
     private function checkSession($value='')
     {
@@ -25,9 +17,10 @@ class Sw extends Controller
     }
 
     public function httpReq($params){
-        array_push($this->header,"token:".$_SESSION['TOKEN']);
+        $header = Conf::$header;
+        array_push($header,"token:".$_SESSION['TOKEN']);
         $http = new Http();
-        $info = $http->httpRequest($this->url,$params,"GET",$this->header);
+        $info = $http->httpRequest(Conf::$url,$params,"GET",$header);
         return $info;
     }
 

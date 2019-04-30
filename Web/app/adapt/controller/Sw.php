@@ -2,8 +2,8 @@
 namespace app\adapt\controller;
 use think\Controller;
 use think\Db;
-use app\index\controller\Http;
-use app\index\controller\Conf;
+use app\auxiliary\Http;
+use app\auxiliary\Conf;
 
 class Sw extends Controller
 {
@@ -24,10 +24,10 @@ class Sw extends Controller
     }
 
     public function httpReq($params){
-        $header = Conf::$header;
+        $header = Conf::getHeader();
         array_push($header,"token:".$_SESSION['TOKEN']);
         $http = new Http();
-        $info = $http->httpRequest(Conf::$url,$params,"GET",$header);
+        $info = $http->httpRequest(Conf::getUrl(),$params,"GET",$header);
         return $info;
     }
 

@@ -3,8 +3,8 @@ namespace app\index\controller;
 use think\Controller;
 use think\Db;
 use think\Log;
-use app\index\controller\Http;
-use app\index\controller\Conf;
+use app\auxiliary\Http;
+use app\auxiliary\Conf;
 
 class Sw extends Controller
 {
@@ -20,7 +20,7 @@ class Sw extends Controller
     private function getCtx()
     {
         $ctx="";
-        if($_SERVER['SERVER_NAME']=="localhost") $ctx =  "/Sw" ;
+        if($_SERVER['SERVER_NAME']=="localhost") $ctx =  "/Swisdom/Web" ;
         return $ctx;
     }
 
@@ -33,7 +33,7 @@ class Sw extends Controller
             "pwd" => $_POST['password']
             );
             $http = new Http();
-            $info = $http->httpRequest(Conf::$url,$params,"GET");
+            $info = $http->httpRequest(Conf::getUrl(),$params,"GET");
             if (!$info) {
                 return "<br>啊哦，可能出了点问题";
             }
@@ -50,10 +50,10 @@ class Sw extends Controller
     }
 
     public function httpReq($params){
-        $header = Conf::$header;
+        $header = Conf::getHeader();
         array_push($header,"token:".$_SESSION['TOKEN']);
         $http = new Http();
-        $info = $http->httpRequest(Conf::$url,$params,"GET",$header);
+        $info = $http->httpRequest(Conf::getUrl(),$params,"GET",$header);
         return $info;
     }
 

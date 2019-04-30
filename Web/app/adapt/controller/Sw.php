@@ -49,7 +49,9 @@ class Sw extends Controller
     public function info()
     {
         $this->assign(['ctx' => $this->getCtx(),
-                       'user' => $this->checkSession() ]);
+                       'user' => $this->checkSession(),
+                       'tips' => Conf::getTips()
+                        ]);
         return $this->fetch();
     }
 
@@ -110,4 +112,85 @@ class Sw extends Controller
         return $this->fetch();
     }
     
+    public function libquery(){
+        $user = $this->checkSession();
+        $account = substr($_SESSION['account'],2);
+        $params = array(
+            "rdid" => $account,
+            "rdPasswd" => md5($account),
+            "returnUrl" => "/m/loan/renewList",
+            "view" => "action"
+        );
+        $header = Conf::getHeader();
+        $http = new Http();
+        $info = $http->httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"POST",$header);
+        preg_match_all("/<li>[\s\S]*?<\/li>/",$info,$match);
+        $infoArr = array();
+        foreach ($match[0] as $value) {
+            $infoArrInner = array();
+            preg_match("/<h3>.*?<\/h3>/",$value,$singalMatch);
+            $replace = array('<h3>','</h3>');
+            if (count($singalMatch) === 0) {
+                break;
+            }
+            array_push($infoArrInner,str_replace($replace,"",$singalMatch[0]));
+            preg_match_all("/<p.*?>[\s\S]*?<\/p>/",$value,$allMatch);
+            $replace = array('<p >','</p>','<p  >',"    ");
+            foreach ($allMatch[0] as $value2) {
+                array_push($infoArrInner,str_replace($replace,"",$value2));
+            }
+            array_push($infoArr,$infoArrInner);
+        }
+        $this->assign(['ctx' => $this->getCtx(),
+                       'user' => $user ,
+                       'libInfo' => $infoArr
+                        ]);
+        return $this->fetch();
+    }
+
+    public function bookquery(){
+        $infoArr = array();
+        $page = -1;
+        $q = "";
+        if (isset($_POST['q'])) {
+            $q = $_POST['q'];
+            $params = array(
+                "q" => $_POST['q'],
+                "searchType" => "standard",
+                "isFacet" => "true",
+                "view" => "standard",
+                "rows" => "10",
+                "displayCoverImg" => ""
+            );
+            if (isset($_POST['page'])) {
+                $params['page'] = $_POST['page'];
+                $page = $_POST['page'];
+            }else{
+                $page = 1;
+            } 
+            $header = Conf::getHeader();
+            $http = new Http();
+            $info = $http->httpRequest("http://interlib.sdust.edu.cn/opac/m/search",$params,"GET",$header);
+            preg_match_all("/<li onclick.*?>[\s\S]*?<\/li>/",$info,$match);
+            foreach ($match[0] as $value) {
+                $infoArrInner = array();
+                preg_match_all("/<em>.*<\/em>/",$value,$singalMatch);
+                $replace = array('<em>','</em>');
+                foreach ($singalMatch[0] as  $value2) {
+                    array_push($infoArrInner,str_replace($replace,"",$value2));
+                }
+                preg_match("/javascript:bookDetail(.)*;/",$value,$singalMatch);
+                $url = "http://interlib.sdust.edu.cn" . explode(";",explode("'",$singalMatch[0])[1])[0];
+                array_push($infoArrInner, $url);
+                array_push($infoArr,$infoArrInner);
+            }
+        }
+        $this->assign(['ctx' => $this->getCtx(),
+                       'user' => $this->checkSession() ,
+                       'libInfo' => $infoArr,
+                       'page' => $page,
+                       'q' => $q
+                    ]);
+        return $this->fetch();
+    }
 }

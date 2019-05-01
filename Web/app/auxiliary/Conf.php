@@ -4,11 +4,12 @@ namespace app\auxiliary;
 class Conf
 {
     public static function getUrl(){
-        return "http://192.168.113.130/app.do";
+        return "http://219.218.128.228/app.do";
     }
 
     public static function getHeader(){
         return array(
+        "Expect: ",
         'User-Agent: Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
         'Referer: http://www.baidu.com',
         'accept-encoding: gzip, deflate, br',
@@ -17,11 +18,18 @@ class Conf
         );
     }
 
+    public static function getCtx(){
+      $ctx="";
+      if($_SERVER['SERVER_NAME']=="localhost")
+        $ctx =  "/Swisdom/Web" ;
+      return $ctx;
+    }
+
     public static function getTips(){
         return '<fieldset class="layui-elem-field">
                   <legend>公告</legend>
                   <div class="layui-field-box">
-                   <div><span class="layui-badge-dot layui-bg-green"></span> 公网恢复访问 </div>
+                   <div><span class="layui-badge-dot layui-bg-green"></span> 增加图书馆功能，由于学校服务器的稳定性(咳)，会存在不稳定的情况，如果进不去了不能怪我啊 </div>
                 </fieldset>
                 <fieldset class="layui-elem-field">
                   <legend>标准模式与兼容模式</legend>

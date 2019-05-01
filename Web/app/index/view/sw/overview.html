@@ -1,4 +1,4 @@
-﻿{extend name="./common/view"}
+﻿{extend name="../../auxiliary/common/view"}
 
 {block name="title"}
 总览
@@ -27,10 +27,19 @@
         margin-bottom: 7px;
     }
 </style>
+<script type="text/javascript">
+    function adaptIndex(route) {
+        if (localStorage.getItem("flag") === "0") {
+            location.href=ctx + "/index/sw/" + route;
+          } else {
+            location.href=ctx + "/adapt/sw/" + route;
+          }
+    }
+</script>
 <div style="display: flex;flex-wrap: wrap;border-left:1px solid #eee;border-top:1px solid #eee;">
-<div class="funct" onclick="location.href='{$ctx}/index/sw/table'"><i class="layui-icon layui-icon-table size"></i>查课表</div>
+<div class="funct" onclick="adaptIndex('table')"><i class="layui-icon layui-icon-table size"></i>查课表</div>
 <div class="funct" onclick="location.href='{$ctx}/classroom'"><i class="layui-icon layui-icon-user size"></i>查教室</div>
-<div class="funct" onclick="location.href='{$ctx}/index/sw/grade'"><i class="layui-icon layui-icon-chart-screen size"></i>查成绩</div>
+<div class="funct" onclick="adaptIndex('grade')"><i class="layui-icon layui-icon-chart-screen size"></i>查成绩</div>
 <div class="funct" onclick="location.href='{$ctx}/index/sw/bookquery'"><i class="layui-icon layui-icon-search size2"></i>图书检索</div>
 <div class="funct" onclick="location.href='{$ctx}/index/sw/libquery'"><i class="layui-icon layui-icon-read size2"></i>借阅查询</div>
 <div class="funct" onclick="location.href='https://github.com/WindrunnerMax/SW'"><i class="layui-icon layui-icon-fonts-code size"></i>源码</div>
@@ -38,10 +47,5 @@
 <div class="funct" onclick="location.href='{$ctx}/index/sw/info'"><i class="layui-icon layui-icon-about size"></i>公告</div>
 
 </div>
-<script type="text/javascript">
-    (function() {
-        localStorage.setItem("flag","0");
-    }())
-</script>
 {/block}
 

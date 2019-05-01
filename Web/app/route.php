@@ -23,7 +23,8 @@ return [
     "funct/sw/grade/[:sy]" => "funct/sw/grade",
     "adapt/sw/classroom/[:idleTime]" => "adapt/sw/classroom",
     "adapt/sw/table/[:zc]" => "adapt/sw/table",
-    "adapt/sw/grade/[:sy]" => "adapt/sw/grade"
+    "adapt/sw/grade/[:sy]" => "adapt/sw/grade",
+    "bookdetail/:id" => "index/sw/bookdetail",
 ];
 
 // use think/Route;

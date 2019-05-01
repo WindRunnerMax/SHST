@@ -1,0 +1,77 @@
+{extend name="../../auxiliary/common/layout"}
+
+{block name="title"}
+图书馆藏书查询
+{/block}
+
+{block name="body"}
+<style type="text/css">
+    body{
+        margin-top: 10px;
+      }
+    .first{
+        display: flex;
+    }
+    .info{
+        display: block;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .info2{
+        display: block;
+        font-size: 14px;
+        line-height: 15px;
+    }
+    #imgLeft{
+        margin-right: 20px;
+        height: 30px;
+        width: 80px;
+        height: 110px;
+    }
+    .infoCon:first-line{ 
+      font-size: 21px;
+      line-height: 30px;
+    }
+</style>
+<div class="first" >
+    <div><img id="imgLeft" src="{$ctx}/public/static/img/book-default-small.gif"></div>
+    <div class="infoCon">
+        <?php foreach ($infoArr as $value) { ?>
+            <div class="info">{$value}</div>
+        <?php } ?>
+    </div>
+</div>
+<hr class="layui-bg-gray">
+<div class="second" >
+        <?php 
+            $n = 0;
+            foreach ($infoArrInner as $value) { 
+            $n++;
+        ?>
+            <div class="info2">{$value}</div>
+        <?php 
+            if($n % 4 === 0) echo "<br>";
+            } 
+        ?>
+</div>
+<script type="text/javascript">
+    function showCovers(info){
+        if (info.result.length === 0) {return "";}
+        $("#imgLeft").attr("src",info.result[0].coverlink);
+    }
+</script>
+<script type="text/javascript">
+    window.onload = function() {
+        var url = "https://api.interlib.com.cn/interlibopac/websearch/metares" 
+            + "?glc=U1SD0532017&cmdACT=getImages&type=0&isbns={$isbn}&callback=showCovers&jsoncallback=?";
+        $.ajax({
+            url: url, 
+            dataType: "jsonp",
+            success:function(data){
+
+            }
+        });
+    }
+</script>
+{/block}
+

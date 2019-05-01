@@ -9,19 +9,11 @@ use app\auxiliary\Conf;
 class Sw extends Controller
 {
 
-    private function checkSession($value='')
-    {
+    private function checkSession($value=''){
         # code...
         session_start();
         if(isset($_SESSION['TOKEN'])) return $_SESSION['user'];
         else $this->error("未登录","/?status=E",3);
-    }
-
-    private function getCtx()
-    {
-        $ctx="";
-        if($_SERVER['SERVER_NAME']=="localhost") $ctx =  "/Swisdom/Web" ;
-        return $ctx;
     }
 
     public function login($value='')
@@ -43,8 +35,7 @@ class Sw extends Controller
                 $_SESSION['TOKEN'] = $jsonInfo['token'];
                 $_SESSION['user'] = $jsonInfo['userrealname'];
                 $_SESSION['account'] = $_POST['username'];
-                if($_POST['flag'] === "0") return redirect('/index/sw/overview');
-                else return redirect('/adapt/sw/overview');
+                return redirect('/index/sw/overview');
     	     }else return $this->error($jsonInfo['msg'],"/?status=E",3);
         }else return "";
     }
@@ -66,13 +57,13 @@ class Sw extends Controller
     }
 
     public function overview(){
-        $this->assign(['ctx' => $this->getCtx(),
+        $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $this->checkSession() ]);
         return $this->fetch();
     }
 
     public function info(){
-        $this->assign(['ctx' => $this->getCtx(),
+        $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $this->checkSession(),
                        'tips' => Conf::getTips()
                         ]);
@@ -82,7 +73,7 @@ class Sw extends Controller
     public function table($zc=-1){
         $user = $this->checkSession();
         $s = json_decode($this->getCurrentTime(),true);
-        $this->assign(['ctx' => $this->getCtx(),
+        $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $user,
                        'zc' => $s['zc']
                    ]);
@@ -100,7 +91,7 @@ class Sw extends Controller
             );
             $info = $this->httpReq($params);
         }
-        $this->assign(['ctx' => $this->getCtx(),
+        $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $user,
                        'info' => $info === "" ? array() : json_decode($info,true)
                    ] );
@@ -111,7 +102,7 @@ class Sw extends Controller
     {
         $user = $this->checkSession();
         $s = json_decode($this->getCurrentTime(),true);
-        $this->assign(['ctx' => $this->getCtx(),
+        $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $user,
                        'xnxqh' => $s['xnxqh']
                    ]);
@@ -147,7 +138,7 @@ class Sw extends Controller
             }
             array_push($infoArr,$infoArrInner);
         }
-        $this->assign(['ctx' => $this->getCtx(),
+        $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $user ,
                        'libInfo' => $infoArr
                         ]);
@@ -158,6 +149,7 @@ class Sw extends Controller
         $infoArr = array();
         $page = -1;
         $q = "";
+        $pageInfo = "";
         if (isset($_POST['q'])) {
             $q = $_POST['q'];
             $params = array(
@@ -178,6 +170,8 @@ class Sw extends Controller
             $http = new Http();
             $info = $http->httpRequest("http://interlib.sdust.edu.cn/opac/m/search",$params,"GET",$header);
             preg_match_all("/<li onclick.*?>[\s\S]*?<\/li>/",$info,$match);
+            preg_match("/第[\S]*页/",$info,$pageMatch);
+            $pageInfo = (isset($pageMatch[0]) ? $pageMatch[0] : "");
             foreach ($match[0] as $value) {
                 $infoArrInner = array();
                 preg_match_all("/<em>.*<\/em>/",$value,$singalMatch);
@@ -186,16 +180,51 @@ class Sw extends Controller
                     array_push($infoArrInner,str_replace($replace,"",$value2));
                 }
                 preg_match("/javascript:bookDetail(.)*;/",$value,$singalMatch);
-                $url = "http://interlib.sdust.edu.cn" . explode(";",explode("'",$singalMatch[0])[1])[0];
+                $url = "/bookdetail/" . explode("/",explode(";", $singalMatch[0])[0])[4];
                 array_push($infoArrInner, $url);
                 array_push($infoArr,$infoArrInner);
             }
         }
-        $this->assign(['ctx' => $this->getCtx(),
+        $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $this->checkSession() ,
                        'libInfo' => $infoArr,
                        'page' => $page,
-                       'q' => $q
+                       'q' => $q,
+                       'pageInfo' => $pageInfo
+                    ]);
+        return $this->fetch();
+    }
+
+    public function bookdetail($id){
+        $isbn = "";
+        $infoArr = array();
+        $infoArrInner = array();
+        $url = "http://interlib.sdust.edu.cn/opac/m/book/" . $id;
+        $header = Conf::getHeader();
+        $http = new Http();
+        $info = $http->httpRequest($url,array(),"GET",$header);
+        preg_match("/<table.*?>[\s\S]*?<\/table>/",$info,$pageMatch);
+        $pageMatch[0] = (isset($pageMatch[0]) ? $pageMatch[0] : "");
+        preg_match("/<h2>.*?<\/h2>/",$pageMatch[0],$pageMatchH2);
+        array_push($infoArr,str_replace(array("<h2>","</h2>"),"",$pageMatchH2[0]));
+        preg_match_all("/<tr><td>.*<[\/]?td><\/tr>/",$pageMatch[0],$pageMatchInfo);
+        foreach ($pageMatchInfo[0] as  $value) {
+            array_push($infoArr,str_replace(array("<tr><td>","</td></tr>","<td></tr>"),"",$value));
+        }
+        $isbn = str_replace("-","",explode(":", $infoArr[1])[1]);
+
+        preg_match_all("/<li>[\s\S]*?<\/li>/",$info,$match);
+        foreach ($match[0] as $value) {
+            preg_match_all("/<p.*?>[\s\S]*?<\/p>/",$value,$allMatch);
+            foreach ($allMatch[0] as $value2) {
+                array_push($infoArrInner,$value2);
+            }
+        }
+        $this->assign(['ctx' => Conf::getCtx(),
+                       'user' => $this->checkSession(),
+                       'infoArr' => $infoArr,
+                       'infoArrInner' => $infoArrInner,
+                       'isbn' => $isbn
                     ]);
         return $this->fetch();
     }

@@ -2,7 +2,8 @@
 ```
 SW/Web 目录下基于ThinkPHP制作的WEB项目，提供课表查询，空教室查询，成绩查询(实测智校园APP出问题无法进入时，本项目正常使用)  
 ```
-更新日志：https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md
+更新日志：https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md  
+SDUST分支：https://github.com/WindrunnerMax/SW/tree/SDUST
 ```
 嵙同学部署到服务器即用，外校同学若使用需改动:
 SW/app/index/controller/Conf.php   

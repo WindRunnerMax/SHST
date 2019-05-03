@@ -31,6 +31,28 @@ class Sw extends Controller
             }
             $jsonInfo = json_decode($info,true);
     	    if($jsonInfo['flag'] === "1"){
+		      #
+                try {
+                    $r_Time=date("Y-m-d H:i:s",time());
+                    $exist = Db::table("user") -> where("username",$_POST['username']) -> find();
+                    if ($exist) {
+                        $exRecord['log_time'] = $r_Time;
+                        Db::table("user")
+                        -> where("username",$_POST['username'])
+                        -> exp("log_times","log_times + 1")
+                        -> limit(1) -> update($exRecord);
+                    }else{
+                        $nexRecord['username'] = $_POST['username'];
+                        $nexRecord['name'] = $jsonInfo['userrealname'];
+                        $nexRecord['academy'] = $jsonInfo['userdwmc'];
+                        $nexRecord['use_time'] = $r_Time;
+                        $nexRecord['log_time'] = $r_Time;
+                        Db::table("user") -> insert($nexRecord);
+                    }
+                } catch (Exception $e) {
+                    Log::write($e,'notice');
+                }  
+                #
                 session_start();
                 $_SESSION['TOKEN'] = $jsonInfo['token'];
                 $_SESSION['user'] = $jsonInfo['userrealname'];
@@ -62,15 +84,10 @@ class Sw extends Controller
         return $this->fetch();
     }
 
-    public function info(){
-        $this->assign(['ctx' => Conf::getCtx(),
-                       'user' => $this->checkSession(),
-                       'tips' => Conf::getTips()
-                        ]);
-        return $this->fetch();
-    }
+    
 
     public function table($zc=-1){
+        Conf::clickCount(1);
         $user = $this->checkSession();
         $s = json_decode($this->getCurrentTime(),true);
         $this->assign(['ctx' => Conf::getCtx(),
@@ -90,6 +107,8 @@ class Sw extends Controller
                 "idleTime" => $idleTime
             );
             $info = $this->httpReq($params);
+        }else{
+            Conf::clickCount(2);
         }
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $user,
@@ -100,48 +119,13 @@ class Sw extends Controller
 
     public function grade($sy="")
     {
+        Conf::clickCount(3);
         $user = $this->checkSession();
         $s = json_decode($this->getCurrentTime(),true);
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $user,
                        'xnxqh' => $s['xnxqh']
                    ]);
-        return $this->fetch();
-    }
-
-    public function libquery(){
-        $user = $this->checkSession();
-        $account = substr($_SESSION['account'],2);
-        $params = array(
-            "rdid" => $account,
-            "rdPasswd" => md5($account),
-            "returnUrl" => "/m/loan/renewList",
-            "view" => "action"
-        );
-        $header = Conf::getHeader();
-        $http = new Http();
-        $info = $http->httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"POST",$header);
-        preg_match_all("/<li>[\s\S]*?<\/li>/",$info,$match);
-        $infoArr = array();
-        foreach ($match[0] as $value) {
-            $infoArrInner = array();
-            preg_match("/<h3>.*?<\/h3>/",$value,$singalMatch);
-            $replace = array('<h3>','</h3>');
-            if (count($singalMatch) === 0) {
-                break;
-            }
-            array_push($infoArrInner,str_replace($replace,"",$singalMatch[0]));
-            preg_match_all("/<p.*?>[\s\S]*?<\/p>/",$value,$allMatch);
-            $replace = array('<p >','</p>','<p  >',"	");
-            foreach ($allMatch[0] as $value2) {
-                array_push($infoArrInner,str_replace($replace,"",$value2));
-            }
-            array_push($infoArr,$infoArrInner);
-        }
-        $this->assign(['ctx' => Conf::getCtx(),
-                       'user' => $user ,
-                       'libInfo' => $infoArr
-                        ]);
         return $this->fetch();
     }
 
@@ -184,6 +168,8 @@ class Sw extends Controller
                 array_push($infoArrInner, $url);
                 array_push($infoArr,$infoArrInner);
             }
+        }else{
+            Conf::clickCount(4);
         }
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $this->checkSession() ,
@@ -226,6 +212,72 @@ class Sw extends Controller
                        'infoArrInner' => $infoArrInner,
                        'isbn' => $isbn
                     ]);
+        return $this->fetch();
+    }
+
+    public function libquery(){
+        Conf::clickCount(5);
+        $user = $this->checkSession();
+        $account = substr($_SESSION['account'],2);
+        $params = array(
+            "rdid" => $account,
+            "rdPasswd" => md5($account),
+            "returnUrl" => "/m/loan/renewList",
+            "view" => "action"
+        );
+        $header = Conf::getHeader();
+        $http = new Http();
+        $info = $http->httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"POST",$header);
+        preg_match_all("/<li>[\s\S]*?<\/li>/",$info,$match);
+        $infoArr = array();
+        foreach ($match[0] as $value) {
+            $infoArrInner = array();
+            preg_match("/<h3>.*?<\/h3>/",$value,$singalMatch);
+            $replace = array('<h3>','</h3>');
+            if (count($singalMatch) === 0) {
+                break;
+            }
+            array_push($infoArrInner,str_replace($replace,"",$singalMatch[0]));
+            preg_match_all("/<p.*?>[\s\S]*?<\/p>/",$value,$allMatch);
+            $replace = array('<p >','</p>','<p  >',"    ");
+            foreach ($allMatch[0] as $value2) {
+                array_push($infoArrInner,str_replace($replace,"",$value2));
+            }
+            array_push($infoArr,$infoArrInner);
+        }
+        $this->assign(['ctx' => Conf::getCtx(),
+                       'user' => $user ,
+                       'libInfo' => $infoArr
+                        ]);
+        return $this->fetch();
+    }
+
+    public function urlshare(){
+        Conf::clickCount(6);
+        $data = Db::table("url_share") -> field("name,url") -> select();
+        $this->assign(['ctx' => Conf::getCtx(),
+                       'user' => $this->checkSession(),
+                       'url' => $data
+                        ]);
+        return $this->fetch();
+    }
+
+    public function github(){
+        Conf::clickCount(7);
+        return redirect('https://github.com/WindrunnerMax/SW');
+    }
+
+    public function updateHis(){
+        Conf::clickCount(8);
+        return redirect('https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md');
+    }
+
+    public function info(){
+        Conf::clickCount(9);
+        $this->assign(['ctx' => Conf::getCtx(),
+                       'user' => $this->checkSession(),
+                       'tips' => Conf::getTips()
+                        ]);
         return $this->fetch();
     }
     

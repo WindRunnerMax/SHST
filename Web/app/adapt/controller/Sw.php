@@ -33,6 +33,7 @@ class Sw extends Controller
     }
 
     public function table($zc=-1){
+        Conf::clickCount(1);
         $user = $this->checkSession();
         $s = json_decode($this->getCurrentTime(),true);
 	$zc = $zc === -1 ? $s['zc'] : $zc;
@@ -52,6 +53,7 @@ class Sw extends Controller
     }
 
     public function grade($sy=""){
+        Conf::clickCount(3);
         $user = $this->checkSession();
 	//$sy = $sy === "" ? json_decode($this->getCurrentTime(),true)['xnxqh'] : $sy ;
 	$params = array(

@@ -1,5 +1,7 @@
 <?php
 namespace app\auxiliary;
+use think\Db;
+use think\Log;
 
 class Conf
 {
@@ -29,7 +31,7 @@ class Conf
         return '<fieldset class="layui-elem-field">
                   <legend>公告</legend>
                   <div class="layui-field-box">
-                   <div><span class="layui-badge-dot layui-bg-green"></span> 增加图书馆功能，由于学校服务器的稳定性(咳)，会存在不稳定的情况，如果进不去了不能怪我啊 </div>
+                   <div><span class="layui-badge-dot layui-bg-green"></span> 终于凑够了九个小方块，强迫症晚期 </div>
                 </fieldset>
                 <fieldset class="layui-elem-field">
                   <legend>标准模式与兼容模式</legend>
@@ -48,5 +50,17 @@ class Conf
                   </div>
                 </fieldset>'
         ;
+    }
+
+    public static function clickCount($id){
+        try {
+            Db::table('click_count')
+            -> exp('count_click','count_click + 1')
+            -> where('id', $id)
+            -> limit(1)
+            -> update();
+        } catch (Exception $e) {
+            Log::write($e,'notice');
+        } 
     }
 }

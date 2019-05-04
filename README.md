@@ -4,7 +4,7 @@ SW/Web 目录下基于ThinkPHP制作的WEB项目，提供课表查询，空教�
 ```
 更新日志：https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md
 
-![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/Web/public/show1.jpg)
+![show](https://github.com/WindrunnerMax/SW/blob/SDUST/Web/public/show1.jpg)
 
 ----
   

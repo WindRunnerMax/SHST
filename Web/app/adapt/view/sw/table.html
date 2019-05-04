@@ -35,6 +35,21 @@
 	.nl{
 
 	}
+	.timetableHide{
+		width: calc(100% / 7);
+		min-height: 130px;
+		border-radius: 3px;
+		margin-left: 3px;
+		text-align: center;
+		word-break: break-all;
+		color: #fff;
+		padding: 1px;
+		background: #fff;
+		font-size: 13px;
+	}
+	.timetablehr{
+		margin-top:3px; 
+	}
 </style>
 <center style="display: flex;justify-content:center;">
 	<div class="layui-btn layui-btn-primary layui-btn-sm nl" onclick="descZC()"><</div>
@@ -43,20 +58,28 @@
 </center>
 <hr class="layui-bg-gray">
  <div style="position: relative;">
- 	<div class="hrTable"></div>
- 	<div class="hrTable2"></div>
- 	<div class="hrTable3"></div>
- 	<div class="hrTable4"></div>
-    <div class="hrTable5"></div>
     <div id="app"></div>
-<?php if($info){ foreach ($info as $value) { ?>
-	<div style="background: #eee;border-radius: 3px;position: absolute;
-		height: <?php echo ( (int)substr($value['kcsj'],3,4) - (int)substr($value['kcsj'],1,2) ) * 130 ?>px;
-		top: <?php echo ((int)substr($value['kcsj'],1,2) - 1)  * 68 ?>px;
-		left: calc(100% / 7 * <?php echo ((int)$value['kcsj'][0] - 1); ?> + <?php echo ((int)$value['kcsj'][0]*3); ?>px);
-		width: calc(100% / 7);"><center><div>{$value['kcmc']}</div><div>{$value['jsmc']}</div></center>
-	</div>
-<?php } } ?>
+	<?php
+		if($info){
+			for($i = 0;$i < 5;$i++){
+				echo '<div style="display: flex;">';
+				for($k = 0;$k < 7;$k++){
+					if(array_key_exists($k,$info) && array_key_exists($i,$info[$k])){
+	?>
+    		<div class="timetableHide" style="background: {$info[$k][$i][5]} ;">{$info[$k][$i][3]}<br>{$info[$k][$i][4]}</div>
+	<?php
+					}else{
+	?>
+    		<div class="timetableHide"></div>
+	<?php
+
+					}
+				}
+				echo '</div>';
+				echo '<hr class="layui-bg-gray timetablehr">';
+			}
+		}
+	?>
 </div>
 
 <script type="text/javascript">

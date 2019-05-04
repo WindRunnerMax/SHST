@@ -31,7 +31,7 @@ class Conf
         return '<fieldset class="layui-elem-field">
                   <legend>公告</legend>
                   <div class="layui-field-box">
-                   <div><span class="layui-badge-dot layui-bg-green"></span> 终于凑够了九个小方块，强迫症晚期 </div>
+                   <div><span class="layui-badge-dot layui-bg-green"></span> 亲爱的同学们大家好，我是写代码时长一年半的个人开发者轻风，喜欢唱、跳、Ctrl+C、Ctrl+V。目前已经强行凑够了九个小功能，其实还想做共享课表以及校园卡消费查询的，不过共享课表是小泰同学的创意，那肯定就留给他写了；由于校内的服务器还没整下来，校园卡消费查询暂时没法做，如果整下来了还可以解决图书馆在22:00-7:00关闭，导致爬虫响应超时的问题 </div>
                 </fieldset>
                 <fieldset class="layui-elem-field">
                   <legend>标准模式与兼容模式</legend>
@@ -45,7 +45,7 @@ class Conf
                   <div class="layui-field-box">
                    <div><span class="layui-badge-dot layui-bg-green"></span> 最早是因为智校园无法使用，我无法查询自习室，在J7爬了四层楼未找到自习室，遂回宿舍封装了此代码</div>
                    <div><span class="layui-badge-dot layui-bg-green"></span> 
-                   如果有同学有想法拓展功能的话，源码提交在Github，可直接pull request，也可以联系我 QQ 651525974</div>
+                   如果有同学有想法拓展功能的话，源码提交在Github，可直接pull request，也可以联系我 QQ 651525974(大白菜)</div>
                     <div><span class="layui-badge-dot layui-bg-green"></span> 欢迎 star fork</div>
                   </div>
                 </fieldset>'
@@ -62,5 +62,9 @@ class Conf
         } catch (Exception $e) {
             Log::write($e,'notice');
         } 
+    }
+
+    public static function getColorList(){
+        return ["#EAA78C","#F9CD82","#9ADEAD","#9CB6E9","#E49D9B","#97D7D7","#ABA0CA","#6495ED"];
     }
 }

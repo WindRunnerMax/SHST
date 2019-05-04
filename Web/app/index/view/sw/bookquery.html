@@ -20,7 +20,7 @@
     }
 </style>
 <center style="display: flex;justify-content:center;margin-bottom:20px; ">
-    <form class="layui-form" action="{$ctx}/index/sw/bookquery" method="post" style="display: flex;">
+    <form class="layui-form" action="{$ctx}/index/sw/bookquery" method="get" style="display: flex;">
          <input type="text" name="q" class="layui-input" value="{$q}">
          <button class="layui-btn layui-btn-normal" style="margin-left: 10px;">检索</button>
     </form>
@@ -55,7 +55,7 @@
             $("#pageform").submit();
         }
     </script>
-        <form id="pageform" class="layui-form" action="{$ctx}/index/sw/bookquery" method="post" style="display: flex;">
+        <form id="pageform" class="layui-form" action="{$ctx}/index/sw/bookquery" method="get" style="display: flex;">
             <input type="hidden" name="q"  value="{$q}">
             <input type="hidden" id="page" name="page" >
         </form>
@@ -69,7 +69,7 @@
     <div class="cardTips" style="margin-top:10px;" >
         <div class="info" >Tips:
             <br>1.说实话图书馆的服务器挺容易崩溃的，如果页面失去响应了，那一般是学校图书馆崩溃了 
-            <br>2.学校图书馆外网访问好像会定时关闭，正常使用时间大约是在 7:00-20:00
+            <br>2.学校图书馆外网访问好像会定时关闭，正常使用时间大约是在 7:00-22:00
         </div>
     </div>
     <script type="text/javascript">

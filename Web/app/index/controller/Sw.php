@@ -31,7 +31,7 @@ class Sw extends Controller
             }
             $jsonInfo = json_decode($info,true);
     	    if($jsonInfo['flag'] === "1"){
-		      #
+		#
                 try {
                     $r_Time=date("Y-m-d H:i:s",time());
                     $exist = Db::table("user") -> where("username",$_POST['username']) -> find();
@@ -134,19 +134,19 @@ class Sw extends Controller
         $page = -1;
         $q = "";
         $pageInfo = "";
-        if (isset($_POST['q'])) {
-            $q = $_POST['q'];
+        if (isset($_GET['q'])) {
+            $q = $_GET['q'];
             $params = array(
-                "q" => $_POST['q'],
+                "q" => $_GET['q'],
                 "searchType" => "standard",
                 "isFacet" => "true",
                 "view" => "standard",
                 "rows" => "10",
                 "displayCoverImg" => ""
             );
-            if (isset($_POST['page'])) {
-                $params['page'] = $_POST['page'];
-                $page = $_POST['page'];
+            if (isset($_GET['page'])) {
+                $params['page'] = $_GET['page'];
+                $page = $_GET['page'];
             }else{
                 $page = 1;
             } 

@@ -34,20 +34,45 @@ class Sw extends Controller
 
     public function table($zc=-1){
         Conf::clickCount(1);
+        $colorList = Conf::getColorList();
+        $colorN = count($colorList);
         $user = $this->checkSession();
         $s = json_decode($this->getCurrentTime(),true);
-	$zc = $zc === -1 ? $s['zc'] : $zc;
-	$params=array(
+        $zc = $zc === -1 ? $s['zc'] : $zc;
+        $params=array(
         "method" => "getKbcxAzc",
         "xnxqid" => $s['xnxqh'],
         "zc" => $zc ,
         "xh" => $_SESSION['account']
         );
-        $info = $this->httpReq($params);
+        $info = json_decode($this->httpReq($params),true);
+        if ($info) {
+            $tableArr = array();
+            foreach ($info as $value) {
+                $arrInner = array();
+                // $arrInner['day'] = (int)$value['kcsj'][0] - 1;
+                // $arrInner['knot'] =  (int)((int)substr($value['kcsj'],1,2)/2);
+                // $arrInner['teacher'] = $value['jsxm'];
+                // $arrInner['classname'] = $value['kcmc'];
+                // $arrInner['classroom'] = $value['jsmc'];
+
+                $day = (int)$value['kcsj'][0] - 1;
+                $knot = (int)((int)substr($value['kcsj'],1,2)/2);
+                $colorSignal = $colorList[(ord(md5($value['kcmc'])[0]) % $colorN)] ;
+                array_push($arrInner, $day);
+                array_push($arrInner, $knot);
+                array_push($arrInner, $value['jsxm']);
+                array_push($arrInner, explode("（", $value['kcmc'])[0]);
+                array_push($arrInner, $value['jsmc']);
+                array_push($arrInner, $colorSignal);
+                $tableArr[$day][$knot] = $arrInner;
+            }
+            $info = $tableArr;
+        }
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $user,
                        'zc' => $zc,
-			"info" => json_decode($info,true)
+                       "info" => $info
                    ]);
         return $this->fetch();
     }

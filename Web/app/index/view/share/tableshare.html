@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+<title>Query</title>
+
+<link href="{$ctx}/public/static/js/layui/css/layui.css" rel="stylesheet">
+<link href="{$ctx}/public/static/css/bootstrap.min.css" rel="stylesheet">
+<link href="{$ctx}/public/static/css/styles.css" rel="stylesheet">
+
+<script src="{$ctx}/public/static/js/jquery-1.11.1.min.js"></script>
+<script src="{$ctx}/public/static/js/bootstrap.min.js"></script>
+<script src="{$ctx}/public/static/js/layui/layui.js"></script>
+<script src="{$ctx}/public/static/js/vue.min.js"></script>
+</head>
+<style type="text/css">
+  fieldset{padding:.3em .30em .10em;margin:0 2px;border:1px solid silver}
+  legend{padding:10px;border:0;width:auto;margin-bottom:0px;}
+  body{margin:3px;}
+  input{
+  	padding: 7px;
+  	border:1px solid #eee;
+  	width: 100%;
+	border-radius: 3px;
+  	margin: 10px 0;
+  }
+  .card,.cardTips{
+		margin-bottom: 20px;
+		border:1px solid #eee;
+		width: calc(100% - 2px);
+		padding: 15px;
+		margin-top: 10px;
+	}
+</style>
+<style type="text/css">
+	.info{
+		margin-left:7px; 
+	}
+	.hrTable{
+		border-bottom: 1px solid #eee;
+		height: 133px; 
+	}
+	.hrTable2{
+		border-bottom: 1px solid #eee;
+		height: 136px; 
+	}
+	.hrTable3{
+		border-bottom: 1px solid #eee;
+		height: 137px; 
+	}
+	.hrTable4{
+		border-bottom: 1px solid #eee;
+		height: 136px; 
+	}
+	.hrTable5{
+                border-bottom: 1px solid #eee;
+                height: 136px;
+        }
+	.layui-bg-gray{
+		margin-bottom: 3px;
+	}
+	.nl{
+
+	}
+	.timetableHide{
+		width: calc(100% / 7);
+		min-height: 130px;
+		border-radius: 3px;
+		margin-left: 3px;
+		text-align: center;
+		word-break: break-all;
+		color: #fff;
+		padding: 1px;
+		background: #eee;
+		font-size: 13px;
+		display: flex;
+	}
+	.timetablehr{
+		margin-top:3px; 
+	}
+	.left{
+		width: calc(100% / 2);
+	}
+	.right{
+		width: calc(100% / 2);
+		border-left: 1px solid #eee; 
+	}
+</style>
+<body>
+<script type="text/javascript">
+	if ('{$msg}' !== "") {
+		layui.use('layer',function(){
+			var layer = layui.layer;
+			layer.msg('{$msg}',{area:['200px','50px']});
+		})
+	}
+</script>
+<div style="background: #fff;border-radius: 3px;border:1px solid #eee;padding: 10px;">
+	<div style="font-size: 18px;margin: 10px;">共享课表</div>
+	<hr>
+	<?php if($status === 1) { ?>
+		<form action="{$ctx}/index/share/startreq" method="post">
+			<input type="text" name="account" placeholder="对方学号" required="true">
+			<input type="text" name="user" placeholder="对方姓名" required="true">
+			<center>
+				<button class="btn btn-primary">发起请求</button>
+			</center>
+		</form>
+	<?php }else if($status === 2) { ?>
+		<center>
+			<div>{$pair_user[0]} {$pair_user[1]} 等待回应中 <a style="margin-top: -3px;" class="layui-btn layui-btn-normal layui-btn-xs" href="{$ctx}/index/share/cancelreq">撤销请求</a></div>
+		</center>
+	<?php }else if($status === 0) { ?>
+
+		 <div style="position: relative;">
+		    <div id="app"></div>
+			<?php
+				for($i = 0;$i < 5;$i++){
+					echo '<div style="display: flex;">';
+					for($k = 0;$k < 7;$k++){
+						echo '<div class="timetableHide">';
+						if((array_key_exists($k,$timetable2) && array_key_exists($i,$timetable2[$k])) | (array_key_exists($k,$timetable1) && array_key_exists($i,$timetable1[$k]))){
+							
+		?>
+		<?php if((array_key_exists($k,$timetable2) && array_key_exists($i,$timetable2[$k]))){ ?>
+			<div class="left" style="background: {$timetable2[$k][$i][5]} ;">{$timetable2[$k][$i][3]}<br>{$timetable2[$k][$i][4]}</div>
+		<?php }else{ echo '<div class="left"></div>';} ?>
+		<?php if((array_key_exists($k,$timetable1) && array_key_exists($i,$timetable1[$k]))){ ?>
+			<div class="right" style="background: {$timetable1[$k][$i][5]} ;">{$timetable1[$k][$i][3]}<br>{$timetable1[$k][$i][4]}</div>
+		<?php } ?>
+
+		<?php
+						}
+						echo '</div>';
+					}
+					echo '</div>';
+					echo '<hr class="layui-bg-gray timetablehr">';
+				}
+			?>
+		</div>
+
+	<?php } ?>
+	<?php 
+		if(count($data > 0) && $status != 0){
+		echo "<hr>";
+		foreach ($data as  $value) { 
+	?>
+		<center>
+			<div>{$value['account']} {$value['name']} <a style="margin-top: -3px;" class="layui-btn layui-btn-normal layui-btn-xs" href="{$ctx}/index/share/agreereq?id={$value['id']}">同意</a><a style="margin-top: -3px;" class="layui-btn layui-btn-normal layui-btn-xs" href="{$ctx}/index/share/refusereq?id={$value['id']}">拒绝</a></div>
+		</center>
+    <?php 	
+    	}
+	}
+	?>
+	<?php if($status != 0){ ?>
+		<div class="cardTips" >
+			<div class="info" >Tips:
+				<br>1.其实应该是叫做情侣课表的，但是身为单身狗的我总感觉有那么一丢丢被喂狗粮得感觉，所以就改为共享课表吧
+				<br>2.向对方发起请求(对方必须是正常登陆过本软件才可以)，对方通过后，你们将能够在此看到自己与对方的课表
+				<br>3.偏差问题：由于是以周次为单位，所以只有当你们双方在一周都打开此功能后，才会消除本周偏差
+			</div>
+		</div>
+	<?php } ?>
+	<div style="background: #fff;border-radius: 3px;border:1px solid #eee;padding: 10px;position: relative;">
+		{$user}
+		<?php if(isset($pair)) echo " - $pair <a style='margin-top: -3px;' class='layui-btn layui-btn-primary layui-btn-xs' href='$ctx/index/share/lifting?id=$id'>解除关系</a>"; ?>
+		<div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 65px;" onclick="location.href='{$ctx}/index/sw/overview'">菜单</div>
+          <div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 10px;" onclick="location.href='{$ctx}/?status=E'">注销</div>
+	</div>
+</div>
+</body>
+</html>
+

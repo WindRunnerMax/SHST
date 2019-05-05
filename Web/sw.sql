@@ -32,12 +32,14 @@ CREATE TABLE `click_count` (
 INSERT INTO `click_count` VALUES ('1', '查课表', '0');
 INSERT INTO `click_count` VALUES ('2', '查教室', '0');
 INSERT INTO `click_count` VALUES ('3', '查成绩', '0');
-INSERT INTO `click_count` VALUES ('4', '图书检索', '0');
-INSERT INTO `click_count` VALUES ('5', '借阅查询', '0');
+INSERT INTO `click_count` VALUES ('4', '共享课表', '0');
+INSERT INTO `click_count` VALUES ('5', '图书馆', '0');
 INSERT INTO `click_count` VALUES ('6', '分享链接', '0');
 INSERT INTO `click_count` VALUES ('7', '源码', '0');
 INSERT INTO `click_count` VALUES ('8', '更新日志', '0');
 INSERT INTO `click_count` VALUES ('9', '关于', '0');
+INSERT INTO `click_count` VALUES ('10', '书籍检索', '0');
+INSERT INTO `click_count` VALUES ('11', '借阅查询', '0');
 
 -- ----------------------------
 -- Table structure for url_share
@@ -58,6 +60,8 @@ INSERT INTO `url_share` VALUES ('2', '四六级成绩查询', 'http://cet.neea.e
 INSERT INTO `url_share` VALUES ('3', '计算机等级考试', 'http://www.sdzk.cn/floadup/ncrebm/ncrebm.htm');
 INSERT INTO `url_share` VALUES ('4', '计算机等级考试成绩查询', 'http://cjcx.neea.edu.cn/html1/folder/1508/206-1.htm?sid=300');
 INSERT INTO `url_share` VALUES ('5', 'CCF', 'http://cspro.org/');
+INSERT INTO `url_share` VALUES ('6', '超星学习通', 'http://i.mooc.chaoxing.com/space/index');
+INSERT INTO `url_share` VALUES ('7', '普通话考试成绩查询', 'http://www.cltt.org/studentscore');
 
 -- ----------------------------
 -- Table structure for user
@@ -71,5 +75,22 @@ CREATE TABLE `user` (
   `use_time` datetime DEFAULT NULL,
   `log_time` datetime DEFAULT NULL,
   `log_times` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for timetable_share
+-- ----------------------------
+DROP TABLE IF EXISTS `timetable_share`;
+CREATE TABLE `timetable_share` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account` varchar(30) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `week` int(11) NOT NULL,
+  `timetable` varchar(5000) NOT NULL,
+  `pair_status` int(5) NOT NULL DEFAULT '1',
+  `pair_account` varchar(30) DEFAULT NULL,
+  `pair_name` varchar(30) DEFAULT NULL,
+  `pair_point` int(5) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

@@ -117,8 +117,7 @@ class Sw extends Controller
         return $this->fetch();
     }
 
-    public function grade($sy="")
-    {
+    public function grade($sy=""){
         Conf::clickCount(3);
         $user = $this->checkSession();
         $s = json_decode($this->getCurrentTime(),true);
@@ -126,6 +125,14 @@ class Sw extends Controller
                        'user' => $user,
                        'xnxqh' => $s['xnxqh']
                    ]);
+        return $this->fetch();
+    }
+
+    public function library($value=''){
+    	Conf::clickCount(5);
+        $this->assign(['ctx' => Conf::getCtx(),
+                       'user' => $this->checkSession()
+                        ]);
         return $this->fetch();
     }
 
@@ -169,7 +176,7 @@ class Sw extends Controller
                 array_push($infoArr,$infoArrInner);
             }
         }else{
-            Conf::clickCount(4);
+            Conf::clickCount(10);
         }
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $this->checkSession() ,
@@ -216,7 +223,7 @@ class Sw extends Controller
     }
 
     public function libquery(){
-        Conf::clickCount(5);
+        Conf::clickCount(11);
         $user = $this->checkSession();
         $account = substr($_SESSION['account'],2);
         $params = array(

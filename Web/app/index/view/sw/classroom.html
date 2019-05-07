@@ -28,18 +28,39 @@
     margin-left:3px; 
   }
   .info2{
+    margin-top:10px;
     margin-left:7px; 
   }
+  .layui-colla-title{ 
+    margin-top:0;
+    margin-bottom:0;
+  }
+  .bot{
+    
+  }
 </style>
+ 
+
+
 
 <hr class="layui-bg-gray">
+<div class="layui-collapse">
 <?php foreach ($info as $value) { ?>
-  <center class="info">{$value['jxl']}</center>
-  <hr class="layui-bg-gray">
+  <div class="layui-colla-item">
+    <h2 class="layui-colla-title">{$value['jxl']}</h2>
+    <div class="layui-colla-content">
   <?php foreach ($value['jsList'] as $value2) { ?>
-    <div class="info2">{$value2['jsmc']}({$value2['zws']}座)</div>
-    <hr class="layui-bg-gray">
+      <div class="info2">{$value2['jsmc']}({$value2['zws']}座)</div>
+      <hr class="layui-bg-gray bot">
   <?php } ?>
+    </div>
+  </div>
 <?php } ?>
-
+</div>
+ 
+<script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
 {/block}

@@ -97,7 +97,9 @@ class Share extends Controller
 								'timetable1' => $this -> tableDealWith(json_decode($timeTable1['timetable'],true)),
 		                       'timetable2' => $this -> tableDealWith($tableInfo[1]),
                                'pair' => $exist['pair_name'],
-                               'id' => $timeTable1['id']
+                               'id' => $timeTable1['id'],
+                               'pair_week' => $timeTable1['week'],
+                               'my_week' => $exist['week']
                         ]);
             }
     		$updateRecord['week'] = $tableInfo[0];

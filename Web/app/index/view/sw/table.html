@@ -5,6 +5,12 @@
 {/block}
 
 {block name="body"}
+<center style="display: flex;justify-content:center;">
+        <div class="layui-btn layui-btn-primary layui-btn-sm nl" onclick="descZC()"><</div>
+        <div style="margin-top: 6px;margin-left: 20px;margin-right: 20px;">第<label id="zcS">{$zc}</label>周</div><input type="hidden" id="zc" value="{$zc}">
+        <div class="layui-btn layui-btn-primary layui-btn-sm nl" onclick="addZC()">></div>
+</center>
+<!--start-->
 <style type="text/css">
 	.info{
 		margin-left:7px; 
@@ -51,11 +57,6 @@
 		font-size: 13px;
 	}
 </style>
-<center style="display: flex;justify-content:center;">
-	<div class="layui-btn layui-btn-primary layui-btn-sm nl" onclick="descZC()"><</div>
-	<div style="margin-top: 6px;margin-left: 20px;margin-right: 20px;">第<label id="zcS">{$zc}</label>周</div><input type="hidden" id="zc" value="{$zc}">
-	<div class="layui-btn layui-btn-primary layui-btn-sm nl" onclick="addZC()">></div>
-</center>
 <hr class="layui-bg-gray">
  <div style="position: relative;">
     <div id="app">
@@ -110,7 +111,7 @@
     	</div>
 		<hr class="layui-bg-gray timetablehr">
     </div>
-</div>
+</div><!--end-->
 
 <script type="text/javascript">
 	function tableStart(info){

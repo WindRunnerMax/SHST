@@ -80,7 +80,9 @@ class Sw extends Controller
 
     public function overview(){
         $this->assign(['ctx' => Conf::getCtx(),
-                       'user' => $this->checkSession() ]);
+                       'user' => $this->checkSession(), 
+                       'tipsFlag' => Conf::getNewTips()
+                      ]);
         return $this->fetch();
     }
 
@@ -283,7 +285,8 @@ class Sw extends Controller
         Conf::clickCount(9);
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $this->checkSession(),
-                       'tips' => Conf::getTips()
+                       'tips' => Conf::getTips(), 
+                       'tipsFlag' => Conf::getNewTips()
                         ]);
         return $this->fetch();
     }

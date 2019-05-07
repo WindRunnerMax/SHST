@@ -7,5 +7,9 @@
 {block name="body"}
 
 {$tips}
-
+<script type="text/javascript">
+    if(!localStorage.getItem("tips") | localStorage.getItem("tips") < {$tipsFlag}){
+        localStorage.setItem("tips",{$tipsFlag});
+    }
+</script>
 {/block}

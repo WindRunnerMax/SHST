@@ -45,8 +45,13 @@
 <div class="funct" onclick="location.href='{$ctx}/index/sw/urlshare'"><i class="layui-icon layui-icon-unlink size2"></i>链接</div>
 <div class="funct" onclick="location.href='{$ctx}/index/sw/github'"><i class="layui-icon layui-icon-fonts-code size"></i>源码</div>
 <div class="funct" onclick="location.href='{$ctx}/index/sw/updateHis'"><i class="layui-icon layui-icon-log size"></i>更新日志</div>
-<div class="funct" onclick="location.href='{$ctx}/index/sw/info'"><i class="layui-icon layui-icon-about size"></i>公告</div>
+<div class="funct" onclick="location.href='{$ctx}/index/sw/info'"><i class="layui-icon layui-icon-about size"></i><span id="tips">公告</span></div>
 
 </div>
+<script type="text/javascript">
+    if(!localStorage.getItem("tips") | localStorage.getItem("tips") < {$tipsFlag}){
+        $("#tips").html('<span class="layui-badge-dot"></span> 公告');
+    }
+</script>
 {/block}
 

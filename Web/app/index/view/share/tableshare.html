@@ -159,12 +159,13 @@
 				<br>1.其实应该是叫做情侣课表的，但是身为单身狗的我总感觉有那么一丢丢被喂狗粮得感觉，所以就改为共享课表吧
 				<br>2.向对方发起请求(对方必须是正常登陆过本软件才可以)，对方通过后，你们将能够在此看到自己与对方的课表
 				<br>3.偏差问题：由于是以周次为单位，所以只有当你们双方在一周都打开此功能后，才会消除本周偏差
+				<br>4.欢迎加入反馈群: 522567369 <a href="https://jq.qq.com/?_wv=1027&k=5sUmb1j">点我直接加群</a></div>
 			</div>
 		</div>
 	<?php } ?>
-	<div style="background: #fff;border-radius: 3px;border:1px solid #eee;padding: 10px;position: relative;">
+	<div style="background: #fff;border-radius: 3px;border:1px solid #eee;padding: 10px;position: relative;margin-top: 10px;">
 		{$user}
-		<?php if(isset($pair)) echo " - $pair <a style='margin-top: -3px;' class='layui-btn layui-btn-primary layui-btn-xs' href='$ctx/index/share/lifting?id=$id'>解除关系</a>"; ?>
+		<?php if(isset($pair)) echo "($my_week) - $pair($pair_week) <a style='margin-top: -3px;' class='layui-btn layui-btn-primary layui-btn-xs' href='$ctx/index/share/lifting?id=$id'>解除关系</a>"; ?>
 		<div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 65px;" onclick="location.href='{$ctx}/index/sw/overview'">菜单</div>
           <div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 10px;" onclick="location.href='{$ctx}/?status=E'">注销</div>
 	</div>

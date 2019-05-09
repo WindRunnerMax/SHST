@@ -13,7 +13,7 @@ class Share extends Controller
         # code...
         session_start();
         if(isset($_SESSION['TOKEN'])) return $_SESSION['user'];
-        else $this->error("未登录","/?status=E",3);
+        else $this->error("未登录",Conf::getCtx()."/?status=E",3);
     }
 
     public function httpReq($params){
@@ -140,7 +140,7 @@ class Share extends Controller
     			$message = "用户不存在";
     		}
     	}
-    	return redirect('/index/share/tableshare?msg='.$message);
+    	return redirect(Conf::getCtx().'/index.php/index/share/tableshare?msg='.$message);
     }
 
     public function cancelReq($value=''){
@@ -156,7 +156,7 @@ class Share extends Controller
 		$updateRecord['pair_account'] = "";
 		$updateRecord['pair_name'] = "";
 		Db::table("timetable_share") -> where("account",$_SESSION['account']) -> update($updateRecord);
-    	return redirect('/index/share/tableshare?msg='.$message);
+    	return redirect(Conf::getCtx().'/index.php/index/share/tableshare?msg='.$message);
     }
 
     public function agreereq($value=''){
@@ -179,7 +179,7 @@ class Share extends Controller
                 Db::table("timetable_share") -> where("id",$_GET['id']) -> update($updateRecord);
             }
     	}
-    	return redirect('/index/share/tableshare?msg='.$message);
+    	return redirect(Conf::getCtx().'/index.php/index/share/tableshare?msg='.$message);
     }
 
     public function refusereq($value=''){
@@ -195,7 +195,7 @@ class Share extends Controller
     			Db::table("timetable_share") -> where("id",$_GET['id']) -> update($updateRecord);
             }
     	}
-    	return redirect('/index/share/tableshare?msg='.$message);
+    	return redirect(Conf::getCtx().'/index.php/index/share/tableshare?msg='.$message);
     }
 
     public function lifting($value=''){
@@ -213,7 +213,7 @@ class Share extends Controller
                 Db::table("timetable_share") -> where("account",$_SESSION['account']) -> update($updateRecord);
             }
         }
-        return redirect('/index/share/tableshare?msg='.$message);
+        return redirect(Conf::getCtx().'/index.php/index/share/tableshare?msg='.$message);
     }
     
 }

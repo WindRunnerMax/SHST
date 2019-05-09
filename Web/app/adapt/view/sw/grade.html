@@ -38,7 +38,7 @@
     function loadGrade() {
         var xn = $("#sele").val();
         if (xn !== "") xn = "/" + xn;
-	location.href='{$ctx}/adapt/sw/grade'+xn;
+	location.href='{$ctx}/index.php/adapt/sw/grade'+xn;
     }
 
     function pointHandle(info){
@@ -67,7 +67,7 @@
 	layui.use('form', function(){
           var form = layui.form;
         });
-	$("#point").html("兼容模式下暂不支持绩点计算<hr class='layui-bg-gray'>");
+	// $("#point").html("兼容模式下暂不支持绩点计算<hr class='layui-bg-gray'>");
     }
     window.onload=function(){$("#sele  option[value='{$xnxqh}'] ").attr("selected",true);init();}
 </script>

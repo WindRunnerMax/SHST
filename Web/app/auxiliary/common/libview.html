@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -29,15 +29,7 @@
       <div class="login-panel panel panel-default">
         <div class="panel-body" style='position:relative;'>
           用户：{$user}
-          <div class="layui-btn layui-btn-primary layui-btn-xs" id="statusFlag" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 120px;" onclick="switchStatus()"></div>
-            <script type="text/javascript">
-                if (localStorage.getItem("flag") === "0") {
-                  $("#statusFlag").html("标准");
-                } else {
-                  $("#statusFlag").html("兼容");
-                }
-            </script>
-          <div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 65px;" onclick="location.href='{$ctx}/index.php/index/sw/overview'">菜单</div>
+          <div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 65px;" onclick="location.href='{$ctx}/index.php/index/sw/library'">菜单</div>
           <div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 10px;" onclick="location.href='{$ctx}/?status=E'">注销</div>
         </div>
       </div>
@@ -56,13 +48,12 @@
   </div><!-- /.row -->  
   <script type="text/javascript">
     function switchStatus(){
-      return "";
       if (localStorage.getItem("flag") === "0") {
         localStorage.setItem("flag","1");
       } else {
         localStorage.setItem("flag","0");
       }
-      location.href='{$ctx}/index.php/index/overview/swview';
+      location.href='{$ctx}/index.php/index/sw/overview';
     }
   </script>
   <script>
@@ -94,7 +85,7 @@
   function loadmsg() {
     layui.use('layer', function(){
           var layer = layui.layer;
-          layer.msg('请稍后', {
+          layer.msg('ÇëÉÔºó', {
                   icon: 16
                   ,shade: 0.01
                   ,area: ['160px', '70px']

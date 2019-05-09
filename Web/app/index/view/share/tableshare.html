@@ -65,7 +65,7 @@
 	}
 	.timetableHide{
 		width: calc(100% / 7);
-		min-height: 130px;
+		min-height: 221px;
 		border-radius: 3px;
 		margin-left: 3px;
 		text-align: center;
@@ -75,16 +75,17 @@
 		background: #eee;
 		font-size: 13px;
 		display: flex;
+	        flex-wrap:wrap;
 	}
 	.timetablehr{
 		margin-top:3px; 
 	}
-	.left{
-		width: calc(100% / 2);
+	.top{
+		min-height: 110px;
 	}
-	.right{
-		width: calc(100% / 2);
-		border-left: 1px solid #eee; 
+	.bottom{
+		min-height: 110px;
+		border-top: 1px solid #eee; 
 	}
 </style>
 <body>
@@ -100,7 +101,7 @@
 	<div style="font-size: 18px;margin: 10px;">共享课表</div>
 	<hr>
 	<?php if($status === 1) { ?>
-		<form action="{$ctx}/index/share/startreq" method="post">
+		<form action="{$ctx}/index.php/index/share/startreq" method="post">
 			<input type="text" name="account" placeholder="对方学号" required="true">
 			<input type="text" name="user" placeholder="对方姓名" required="true">
 			<center>
@@ -109,7 +110,7 @@
 		</form>
 	<?php }else if($status === 2) { ?>
 		<center>
-			<div>{$pair_user[0]} {$pair_user[1]} 等待回应中 <a style="margin-top: -3px;" class="layui-btn layui-btn-normal layui-btn-xs" href="{$ctx}/index/share/cancelreq">撤销请求</a></div>
+			<div>{$pair_user[0]} {$pair_user[1]} 等待回应中 <a style="margin-top: -3px;" class="layui-btn layui-btn-normal layui-btn-xs" href="{$ctx}/index.php/index/share/cancelreq">撤销请求</a></div>
 		</center>
 	<?php }else if($status === 0) { ?>
 
@@ -124,11 +125,11 @@
 							
 		?>
 		<?php if((array_key_exists($k,$timetable2) && array_key_exists($i,$timetable2[$k]))){ ?>
-			<div class="left" style="background: {$timetable2[$k][$i][5]} ;">{$timetable2[$k][$i][3]}<br>{$timetable2[$k][$i][4]}</div>
-		<?php }else{ echo '<div class="left"></div>';} ?>
+			<div class="top" style="background: rgb(100, 149, 237);">{$timetable2[$k][$i][3]}<br>{$timetable2[$k][$i][4]}</div>
+		<?php }else{ echo '<div class="top"></div>';} ?>
 		<?php if((array_key_exists($k,$timetable1) && array_key_exists($i,$timetable1[$k]))){ ?>
-			<div class="right" style="background: {$timetable1[$k][$i][5]} ;">{$timetable1[$k][$i][3]}<br>{$timetable1[$k][$i][4]}</div>
-		<?php } ?>
+			<div class="bottom" style="background: rgb(234, 167, 140);">{$timetable1[$k][$i][3]}<br>{$timetable1[$k][$i][4]}</div>
+		<?php }else{ echo '<div class="bottom"></div>';} ?>
 
 		<?php
 						}
@@ -147,7 +148,7 @@
 		foreach ($data as  $value) { 
 	?>
 		<center>
-			<div>{$value['account']} {$value['name']} <a style="margin-top: -3px;" class="layui-btn layui-btn-normal layui-btn-xs" href="{$ctx}/index/share/agreereq?id={$value['id']}">同意</a><a style="margin-top: -3px;" class="layui-btn layui-btn-normal layui-btn-xs" href="{$ctx}/index/share/refusereq?id={$value['id']}">拒绝</a></div>
+			<div>{$value['account']} {$value['name']} <a style="margin-top: -3px;" class="layui-btn layui-btn-normal layui-btn-xs" href="{$ctx}/index.php/index/share/agreereq?id={$value['id']}">同意</a><a style="margin-top: -3px;" class="layui-btn layui-btn-normal layui-btn-xs" href="{$ctx}/index.php/index/share/refusereq?id={$value['id']}">拒绝</a></div>
 		</center>
     <?php 	
     	}
@@ -159,14 +160,13 @@
 				<br>1.其实应该是叫做情侣课表的，但是身为单身狗的我总感觉有那么一丢丢被喂狗粮得感觉，所以就改为共享课表吧
 				<br>2.向对方发起请求(对方必须是正常登陆过本软件才可以)，对方通过后，你们将能够在此看到自己与对方的课表
 				<br>3.偏差问题：由于是以周次为单位，所以只有当你们双方在一周都打开此功能后，才会消除本周偏差
-				<br>4.欢迎加入反馈群: 522567369 <a href="https://jq.qq.com/?_wv=1027&k=5sUmb1j">点我直接加群</a></div>
 			</div>
 		</div>
 	<?php } ?>
 	<div style="background: #fff;border-radius: 3px;border:1px solid #eee;padding: 10px;position: relative;margin-top: 10px;">
 		{$user}
-		<?php if(isset($pair)) echo "($my_week) - $pair($pair_week) <a style='margin-top: -3px;' class='layui-btn layui-btn-primary layui-btn-xs' href='$ctx/index/share/lifting?id=$id'>解除关系</a>"; ?>
-		<div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 65px;" onclick="location.href='{$ctx}/index/sw/overview'">菜单</div>
+		<?php if(isset($pair)) echo "($my_week) - $pair($pair_week) <a style='margin-top: -3px;' class='layui-btn layui-btn-primary layui-btn-xs' href='$ctx/index.php/index/share/lifting?id=$id'>解除关系</a>"; ?>
+          <div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 65px;" onclick="location.href='{$ctx}/index.php/index/sw/overview'">菜单</div>
           <div class="layui-btn layui-btn-primary layui-btn-xs" style="padding: 0 11px;font-size: 12px;margin-top: -1px;position: absolute;right: 10px;" onclick="location.href='{$ctx}/?status=E'">注销</div>
 	</div>
 </div>

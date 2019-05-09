@@ -8,7 +8,7 @@ Log In
 <script type="text/javascript">
   
 </script>
-<form id="formAct" action="{$ctx}/index/sw/login" method="post">
+<form id="formAct" action="{$ctx}/index.php/index/sw/login" method="post">
       <input id="user1" name="username" type="hidden" required>
       <input id="password1" name="password" type="hidden" required>
       <input id="flag1" name="flag" type="hidden" required>
@@ -38,7 +38,7 @@ Log In
     document.getElementById('formAct').submit();
   }
   (function() {
-    if(localStorage.getItem('flag') === null) localStorage.setItem("flag","0");
+    if(localStorage.getItem('flag') === null) localStorage.setItem("flag","1");
     if( "{$status}"!=="E" && localStorage.getItem("user")!=null && localStorage.getItem('password')!=null){
         document.getElementById('user1').value=localStorage.getItem("user");
         document.getElementById('password1').value=localStorage.getItem("password");
@@ -47,7 +47,7 @@ Log In
     }
   })();
 </script>
-<form role="form" action="{$ctx}/index/sw/login" id="form" method="post">
+<form role="form" action="{$ctx}/index.php/index/sw/login" id="form" method="post">
   <fieldset>
     <div class="form-group">
       <input class="form-control" placeholder="账号" id="user" name="username" type="text" required>

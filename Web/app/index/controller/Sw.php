@@ -13,7 +13,7 @@ class Sw extends Controller
         # code...
         session_start();
         if(isset($_SESSION['TOKEN'])) return $_SESSION['user'];
-        else $this->error("未登录","/?status=E",3);
+        else $this->error("未登录",Conf::getCtx()."/?status=E",3);
     }
 
     public function login($value='')
@@ -57,8 +57,8 @@ class Sw extends Controller
                 $_SESSION['TOKEN'] = $jsonInfo['token'];
                 $_SESSION['user'] = $jsonInfo['userrealname'];
                 $_SESSION['account'] = $_POST['username'];
-                return redirect('/index/sw/overview');
-    	     }else return $this->error($jsonInfo['msg'],"/?status=E",3);
+                return redirect(Conf::getCtx().'/index.php/index/sw/overview');
+    	     }else return $this->error($jsonInfo['msg'],Conf::getCtx()."/?status=E",3);
         }else return "";
     }
 
@@ -81,8 +81,7 @@ class Sw extends Controller
     public function overview(){
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $this->checkSession(), 
-                       'tipsFlag' => Conf::getNewTips()
-                      ]);
+                       'tipsFlag' => Conf::getNewTips() ]);
         return $this->fetch();
     }
 
@@ -114,7 +113,8 @@ class Sw extends Controller
         }
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $user,
-                       'info' => $info === "" ? array() : json_decode($info,true)
+                       'info' => $info === "" ? array() : json_decode($info,true), 
+                       'tipsFlag' => Conf::getNewTips()
                    ] );
         return $this->fetch();
     }
@@ -173,7 +173,7 @@ class Sw extends Controller
                     array_push($infoArrInner,str_replace($replace,"",$value2));
                 }
                 preg_match("/javascript:bookDetail(.)*;/",$value,$singalMatch);
-                $url = "/bookdetail/" . explode("/",explode(";", $singalMatch[0])[0])[4];
+                $url = Conf::getCtx()."/index.php/bookdetail/" . explode("/",explode(";", $singalMatch[0])[0])[4];
                 array_push($infoArrInner, $url);
                 array_push($infoArr,$infoArrInner);
             }

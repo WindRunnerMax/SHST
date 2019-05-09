@@ -12,7 +12,7 @@ class Sw extends Controller
         # code...
         session_start();
         if(isset($_SESSION['TOKEN'])) return $_SESSION['user'];
-        else $this->error("未登录","/?status=E",3);
+        else $this->error("未登录",Conf::getCtx()."/?status=E",3);
     }
 
 
@@ -72,7 +72,8 @@ class Sw extends Controller
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $user,
                        'zc' => $zc,
-                       "info" => $info
+                       "info" => $info, 
+                       'tipsFlag' => Conf::getNewTips()
                    ]);
         return $this->fetch();
     }
@@ -90,7 +91,8 @@ class Sw extends Controller
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $user,
                        'xnxqh' => $sy,
-		       'info' => json_decode($info,true)
+		               'info' => json_decode($info,true), 
+                       'tipsFlag' => Conf::getNewTips()
                    ]);
         return $this->fetch();
     }

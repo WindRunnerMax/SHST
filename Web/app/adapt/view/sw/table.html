@@ -5,13 +5,11 @@
 {/block}
 
 {block name="body"}
-
 <center style="display: flex;justify-content:center;">
-        <div class="layui-btn layui-btn-primary layui-btn-sm nl" onclick="descZC()"><</div>
-        <div style="margin-top: 6px;margin-left: 20px;margin-right: 20px;">第<label id="zcS">{$zc}
-</label>周</div><input type="hidden" id="zc" value="{$zc}">
-		<div class="layui-btn layui-btn-primary layui-btn-sm nl" onclick="addZC()">></div>        
-	</center>
+	<div class="layui-btn layui-btn-primary layui-btn-sm nl" onclick="descZC()"><</div>
+	<div style="margin-top: 6px;margin-left: 20px;margin-right: 20px;">第<label id="zcS">{$zc}</label>周</div><input type="hidden" id="zc" value="{$zc}">
+	<div class="layui-btn layui-btn-primary layui-btn-sm nl" onclick="addZC()">></div>
+</center>
 <!--start-->
 <style type="text/css">
 	.info{
@@ -37,7 +35,7 @@
                 border-bottom: 1px solid #eee;
                 height: 136px;
         }
-	.layui-bg-gray{
+	.asse-hr{
 		margin-bottom: 3px;
 	}
 	.nl{
@@ -58,8 +56,13 @@
 	.timetablehr{
 		margin-top:3px; 
 	}
+	.asse-hr{
+        background-color: #eee !important;
+        height: 1px;
+        border: none;
+    }
 </style>
-<hr class="layui-bg-gray">
+<hr class="asse-hr">
  <div style="position: relative;">
     <div id="app"></div>
 	<?php
@@ -79,7 +82,7 @@
 					}
 				}
 				echo '</div>';
-				echo '<hr class="layui-bg-gray timetablehr">';
+				echo '<hr class="asse-hr timetablehr">';
 			}
 		}
 	?>
@@ -88,12 +91,12 @@
 <script type="text/javascript">
 	function addZC() {
 		var zc = parseInt($("#zc").val()) + 1;
-		location.href = '{$ctx}/adapt/sw/table/'+zc;
+		location.href = '{$ctx}/index.php/adapt/sw/table/'+zc;
 	}
 	function descZC() {
 		var zc = parseInt($("#zc").val()) - 1;
 		if (zc<0) {return ;}
-		location.href = '{$ctx}/adapt/sw/table/'+zc;
+		location.href = '{$ctx}/index.php/adapt/sw/table/'+zc;
 	}
 	//window.onload=function(){loadTable();}
 </script>

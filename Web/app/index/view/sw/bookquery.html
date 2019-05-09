@@ -20,7 +20,7 @@
     }
 </style>
 <center style="display: flex;justify-content:center;margin-bottom:20px; ">
-    <form class="layui-form" action="{$ctx}/index/sw/bookquery" method="get" style="display: flex;">
+    <form class="layui-form" action="{$ctx}/index.php/index/sw/bookquery" method="get" style="display: flex;">
          <input type="text" name="q" class="layui-input" value="{$q}">
          <button class="layui-btn layui-btn-normal" style="margin-left: 10px;">检索</button>
     </form>
@@ -55,7 +55,7 @@
             $("#pageform").submit();
         }
     </script>
-        <form id="pageform" class="layui-form" action="{$ctx}/index/sw/bookquery" method="get" style="display: flex;">
+        <form id="pageform" class="layui-form" action="{$ctx}/index.php/index/sw/bookquery" method="get" style="display: flex;">
             <input type="hidden" name="q"  value="{$q}">
             <input type="hidden" id="page" name="page" >
         </form>

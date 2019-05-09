@@ -1,4 +1,4 @@
-﻿{extend name="../../auxiliary/common/view"}
+{extend name="../../auxiliary/common/infoview"}
 
 {block name="title"}
 总览
@@ -29,8 +29,6 @@
 </style>
 <script type="text/javascript">
     function adaptIndex(route) {
-        location.href=ctx + "/index.php/adapt/sw/" + route;
-        return "";
         if (localStorage.getItem("flag") === "0") {
             location.href=ctx + "/index.php/index/sw/" + route;
           } else {
@@ -39,12 +37,6 @@
     }
 </script>
 <div style="display: flex;flex-wrap: wrap;border-left:1px solid #eee;border-top:1px solid #eee;">
-<div class="funct" onclick="adaptIndex('table')"><i class="layui-icon layui-icon-table size"></i>查课表</div>
-<div class="funct" onclick="location.href='{$ctx}/index.php/classroom'"><i class="layui-icon layui-icon-user size"></i>查教室</div>
-<div class="funct" onclick="adaptIndex('grade')"><i class="layui-icon layui-icon-chart-screen size"></i>查成绩</div>
-<div class="funct" onclick="location.href='{$ctx}/index.php/index/share/tableshare'"><i class="layui-icon layui-icon-release size2"></i>共享课表</div>
-<div class="funct" onclick="location.href='{$ctx}/index.php/index/sw/library'"><i class="layui-icon layui-icon-read size2"></i>图书馆</div>
-<div class="funct" onclick="location.href='{$ctx}/index.php/index/sw/urlshare'"><i class="layui-icon layui-icon-unlink size2"></i>链接</div>
 <div class="funct" onclick="location.href='{$ctx}/index.php/index/sw/github'"><i class="layui-icon layui-icon-fonts-code size"></i>源码</div>
 <div class="funct" onclick="location.href='{$ctx}/index.php/index/sw/updateHis'"><i class="layui-icon layui-icon-log size"></i>更新日志</div>
 <div class="funct" onclick="location.href='{$ctx}/index.php/index/sw/info'"><i class="layui-icon layui-icon-about size"></i><span id="tips">公告</span></div>

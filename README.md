@@ -1,6 +1,6 @@
 # web
 ```
-SW/Web 目录下基于ThinkPHP制作的WEB项目[SDUST]，提供课表查询，空教室查询，成绩查询，图书馆书籍检索，图书馆借阅查询，常用链接分享 
+SW/Web 目录下基于ThinkPHP制作的WEB项目[山东科技大学]，提供课表查询，空教室查询，成绩查询，图书馆书籍检索，图书馆借阅查询，常用链接分享 
 ```
 更新日志：https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md  
 通用版本：https://github.com/WindrunnerMax/SW/tree/master

@@ -69,7 +69,6 @@ class Share extends Controller
     }
 
     public function tableshare($value=''){
-    	Conf::clickCount(4);
     	$user = $this->checkSession();
     	$status = 1;
     	$tableInfo = $this -> getTimeTable();

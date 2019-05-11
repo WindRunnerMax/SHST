@@ -33,7 +33,6 @@ class Sw extends Controller
     }
 
     public function table($zc=-1){
-        Conf::clickCount(1);
         $colorList = Conf::getColorList();
         $colorN = count($colorList);
         $user = $this->checkSession();
@@ -79,7 +78,6 @@ class Sw extends Controller
     }
 
     public function grade($sy=""){
-        Conf::clickCount(3);
         $user = $this->checkSession();
 	//$sy = $sy === "" ? json_decode($this->getCurrentTime(),true)['xnxqh'] : $sy ;
 	$params = array(

@@ -88,7 +88,6 @@ class Sw extends Controller
     
 
     public function table($zc=-1){
-        Conf::clickCount(1);
         $user = $this->checkSession();
         $s = json_decode($this->getCurrentTime(),true);
         $this->assign(['ctx' => Conf::getCtx(),
@@ -108,8 +107,6 @@ class Sw extends Controller
                 "idleTime" => $idleTime
             );
             $info = $this->httpReq($params);
-        }else{
-            Conf::clickCount(2);
         }
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $user,
@@ -120,7 +117,6 @@ class Sw extends Controller
     }
 
     public function grade($sy=""){
-        Conf::clickCount(3);
         $user = $this->checkSession();
         $s = json_decode($this->getCurrentTime(),true);
         $this->assign(['ctx' => Conf::getCtx(),
@@ -131,7 +127,6 @@ class Sw extends Controller
     }
 
     public function library($value=''){
-    	Conf::clickCount(5);
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $this->checkSession()
                         ]);
@@ -177,8 +172,6 @@ class Sw extends Controller
                 array_push($infoArrInner, $url);
                 array_push($infoArr,$infoArrInner);
             }
-        }else{
-            Conf::clickCount(10);
         }
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $this->checkSession() ,
@@ -225,7 +218,6 @@ class Sw extends Controller
     }
 
     public function libquery(){
-        Conf::clickCount(11);
         $user = $this->checkSession();
         $account = substr($_SESSION['account'],2);
         $params = array(
@@ -262,7 +254,6 @@ class Sw extends Controller
     }
 
     public function urlshare(){
-        Conf::clickCount(6);
         $data = Db::table("url_share") -> field("name,url") -> select();
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $this->checkSession(),
@@ -272,21 +263,20 @@ class Sw extends Controller
     }
 
     public function github(){
-        Conf::clickCount(7);
         return redirect('https://github.com/WindrunnerMax/SW');
     }
 
     public function updateHis(){
-        Conf::clickCount(8);
         return redirect('https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md');
     }
 
     public function info(){
-        Conf::clickCount(9);
+        $userCount = Db::table("user") -> count();
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $this->checkSession(),
                        'tips' => Conf::getTips(), 
-                       'tipsFlag' => Conf::getNewTips()
+                       'tipsFlag' => Conf::getNewTips(),
+                       'userCount' => $userCount
                         ]);
         return $this->fetch();
     }

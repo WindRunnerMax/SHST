@@ -1,4 +1,4 @@
-{extend name="../../auxiliary/common/view"}
+ {extend name="../../auxiliary/common/view"}
 
 {block name="title"}
 查课表
@@ -50,7 +50,7 @@
 		word-break: break-all;
 		color: #fff;
 		padding: 1px;
-		background: #fff;
+		background: #eee;
 		font-size: 13px;
 	}
 	.timetablehr{
@@ -71,9 +71,14 @@
 				echo '<div style="display: flex;">';
 				for($k = 0;$k < 7;$k++){
 					if(array_key_exists($k,$info) && array_key_exists($i,$info[$k])){
+						$n = count($info[$k][$i]) / 3;
+						echo "<div class='timetableHide' style='background:".$info[$k][$i][2].";'>";
+						for($j = 0;$j < $n ; ++$j){
 	?>
-    		<div class="timetableHide" style="background: {$info[$k][$i][5]} ;">{$info[$k][$i][3]}<br>{$info[$k][$i][4]}</div>
+    						{$info[$k][$i][$j * 3]}<br>{$info[$k][$i][($j*3)+1]}<br>
 	<?php
+						}
+					echo '</div>';
 					}else{
 	?>
     		<div class="timetableHide"></div>

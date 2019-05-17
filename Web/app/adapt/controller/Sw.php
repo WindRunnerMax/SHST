@@ -57,14 +57,19 @@ class Sw extends Controller
 
                 $day = (int)$value['kcsj'][0] - 1;
                 $knot = (int)((int)substr($value['kcsj'],1,2)/2);
-                $colorSignal = $colorList[(ord(md5($value['kcmc'])[0]) % $colorN)] ;
-                array_push($arrInner, $day);
-                array_push($arrInner, $knot);
-                array_push($arrInner, $value['jsxm']);
+                $md5Str = md5($value['kcmc']);
+                $colorSignal = $colorList[abs((ord($md5Str[0]) - (ord($md5Str[3]))) % $colorN)] ;
+                // array_push($arrInner, $day);
+                // array_push($arrInner, $knot);
+                // array_push($arrInner, $value['jsxm']);
                 array_push($arrInner, explode("（", $value['kcmc'])[0]);
                 array_push($arrInner, $value['jsmc']);
                 array_push($arrInner, $colorSignal);
-                $tableArr[$day][$knot] = $arrInner;
+                if(array_key_exists($day,$tableArr) && array_key_exists($knot,$tableArr[$day])){
+                     $tableArr[$day][$knot] = array_merge($tableArr[$day][$knot],$arrInner);
+                }else{
+                     $tableArr[$day][$knot] = $arrInner;
+                }
             }
             $info = $tableArr;
         }

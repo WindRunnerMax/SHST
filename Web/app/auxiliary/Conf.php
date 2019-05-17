@@ -29,7 +29,8 @@ class Conf
                   <legend>公告</legend>
                   <div class="layui-field-box">
                     <div><span class="layui-badge-dot layui-bg-green"></span> 由于离线课表功能只有在兼容模式下才能正常使用，最终考虑取消了标准模式</a></div>
-                </fieldset>'
+                </fieldset>
+                '
         ;
     }
 

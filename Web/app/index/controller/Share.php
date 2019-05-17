@@ -33,7 +33,8 @@ class Share extends Controller
                 $arrInner = array();
                 $day = (int)$value['kcsj'][0] - 1;
                 $knot = (int)((int)substr($value['kcsj'],1,2)/2);
-                $colorSignal = $colorList[(ord(md5($value['kcmc'])[0]) % $colorN)] ;
+                // $colorSignal = $colorList[(ord(md5($value['kcmc'])[0]) % $colorN)] ;
+                $colorSignal = "#9CB6E9";
                 array_push($arrInner, $day);
                 array_push($arrInner, $knot);
                 array_push($arrInner, $value['jsxm']);
@@ -71,14 +72,11 @@ class Share extends Controller
     public function tableshare($value=''){
     	$user = $this->checkSession();
     	$status = 1;
-    	$tableInfo = $this -> getTimeTable();
     	$msg = "";
     	$exist = Db::table("timetable_share") -> where("account",$_SESSION['account']) -> find();
     	if (!$exist) {
     		$insertRecord['account'] = $_SESSION['account'];
     		$insertRecord['name'] = $user;
-    		$insertRecord['week'] = $tableInfo[0];
-    		$insertRecord['timetable'] = json_encode($tableInfo[1]);
     		Db::table("timetable_share")  -> insert($insertRecord);
     	}else{
     		$status = $exist['pair_status'];
@@ -91,6 +89,10 @@ class Share extends Controller
 				$refuseUpdateRecord['pair_name'] = "";
 				Db::table("timetable_share") -> where("account",$_SESSION['account']) -> update($refuseUpdateRecord);
     		}else if ($exist['pair_status'] === 0) {
+                $tableInfo = $this -> getTimeTable();
+                $updateRecord['week'] = $tableInfo[0];
+                $updateRecord['timetable'] = json_encode($tableInfo[1]);
+                Db::table("timetable_share") -> where("id",$exist['id']) -> update($updateRecord);
 				$timeTable1 = Db::table("timetable_share") -> where("id",$exist['pair_point']) -> find();
 				$this->assign([
 								'timetable1' => $this -> tableDealWith(json_decode($timeTable1['timetable'],true)),
@@ -101,9 +103,7 @@ class Share extends Controller
                                'my_week' => $exist['week']
                         ]);
             }
-    		$updateRecord['week'] = $tableInfo[0];
-    		$updateRecord['timetable'] = json_encode($tableInfo[1]);
-    		Db::table("timetable_share") -> where("id",$exist['id']) -> update($updateRecord);
+
     	}
         $data = Db::table("timetable_share") -> where("pair_account",$_SESSION['account']) -> select();
         $this->assign('data' ,$data);

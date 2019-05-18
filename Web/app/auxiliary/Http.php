@@ -3,21 +3,14 @@ namespace app\auxiliary;
 
 class Http
 {
-    public $header = array(
-            'User-Agent: Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
-            'Referer: http://www.baidu.com',
-            'accept-encoding: gzip, deflate, br',
-            'accept-language: zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
-            'cache-control: max-age=0'
-    );
 
-    public function httpRequest($url, $data='', $method='GET',
+    public static function httpRequest($url, $data='', $method='GET',
         $headers = array('User-Agent: Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )') ) {
 
         $curl = curl_init();  // 启动一个CURL会话
         if (count($headers) >= 1) curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         if($method=='GET'){
-            $url = $url."?".$this->arrstr($data);
+            $url = $url."?".Http::arrstr($data);
         }
         curl_setopt($curl, CURLOPT_URL, $url);  // 要访问的地址
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);  // 对认证证书来源的检查
@@ -38,8 +31,7 @@ class Http
         return $result;
       }
 
-      // 需要完善一下才能支持多维数组
-      private function arrstr($arr)
+      private static function arrstr($arr)
       {
           $ret = "";
           reset($arr);

@@ -62,11 +62,10 @@ class Sw extends Controller
         }else return "";
     }
 
-    public function httpReq($params){
+    public function httpReq($params = array()){
         $header = Conf::getHeader();
         array_push($header,"token:".$_SESSION['TOKEN']);
-        $http = new Http();
-        $info = $http->httpRequest(Conf::getUrl(),$params,"GET",$header);
+        $info = Http::httpRequest(Conf::getUrl(),$params,"GET",$header);
         return $info;
     }
 
@@ -79,9 +78,14 @@ class Sw extends Controller
     }
 
     public function overview(){
+        $ran = rand(1000000000,1000000000000);
+        $url = "http://api.caiyunapp.com/v2/Y2FpeXVuIGFuZHJpb2QgYXBp/120.127164,36.000129/weather?lang=zh_CN&device_id=$ran";
+        $weatherInfo = Http::httpRequest($url,array(),"GET",Conf::getHeader());
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $this->checkSession(), 
-                       'tipsFlag' => Conf::getNewTips() ]);
+                       'tipsFlag' => Conf::getNewTips(),
+                       'weather' => json_decode($weatherInfo,true)
+                        ]);
         return $this->fetch();
     }
 
@@ -267,7 +271,7 @@ class Sw extends Controller
     }
 
     public function updateHis(){
-        return redirect('https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md');
+        return redirect('https://github.com/WindrunnerMax/SW/blob/SDUST/ChangeLog.md');
     }
 
     public function info(){

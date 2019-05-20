@@ -31,8 +31,7 @@ class Http
         return $result;
       }
 
-      private static function arrstr($arr)
-      {
+      private static function arrstr($arr){
           $ret = "";
           reset($arr);
           while (list($k, $v) = each($arr)){

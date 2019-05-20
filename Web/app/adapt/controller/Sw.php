@@ -19,8 +19,7 @@ class Sw extends Controller
     public function httpReq($params){
         $header = Conf::getHeader();
         array_push($header,"token:".$_SESSION['TOKEN']);
-        $http = new Http();
-        $info = $http->httpRequest(Conf::getUrl(),$params,"GET",$header);
+        $info = Http::httpRequest(Conf::getUrl(),$params,"GET",$header);
         return $info;
     }
 

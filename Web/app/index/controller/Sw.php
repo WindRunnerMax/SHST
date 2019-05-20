@@ -24,8 +24,7 @@ class Sw extends Controller
             "xh" => $_POST['username'],
             "pwd" => $_POST['password']
             );
-            $http = new Http();
-            $info = $http->httpRequest(Conf::getUrl(),$params,"GET");
+            $info = Http::httpRequest(Conf::getUrl(),$params,"GET");
             if (!$info) {
                 return "<br>啊哦，可能出了点问题";
             }

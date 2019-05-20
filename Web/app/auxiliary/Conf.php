@@ -29,6 +29,7 @@ class Conf
                   <legend>公告</legend>
                   <div class="layui-field-box">
 		    <div><span class="layui-badge-dot layui-bg-green"></span> 修复因课重复而导致课表被覆盖的问题 </div>
+		    <div><span class="layui-badge-dot layui-bg-green"></span> 增加近三天天气功能，点击图标查看今天天气状态 </div>
                     <div><span class="layui-badge-dot layui-bg-green"></span> 由于离线课表功能只有在兼容模式下才能正常使用，最终考虑取消了标准模式 </div>
 		  </div>
                 </fieldset>
@@ -41,6 +42,6 @@ class Conf
     }
 
     public static function getNewTips(){
-        return 6;
+        return 7;
     }
 }

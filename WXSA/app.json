@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/tips/tips",
+    "pages/funct/funct",
+    "pages/user/user"
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "iconPath":"/vector/img/index.png",
+         "selectedIconPath":"/vector/img/index1.png",
+        "pagePath": "pages/tips/tips",
+        "text": "首页"
+      },
+      {
+        "iconPath": "/vector/img/fun.png",
+        "selectedIconPath": "/vector/img/fun1.png",
+        "pagePath": "pages/funct/funct",
+        "text": "功能"
+      },
+      {
+        "iconPath": "/vector/img/user.png",
+        "selectedIconPath": "/vector/img/user1.png",
+        "pagePath": "pages/user/user",
+        "text": "用户"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "科大",
+    "navigationBarTextStyle": "black"
+  }
+}

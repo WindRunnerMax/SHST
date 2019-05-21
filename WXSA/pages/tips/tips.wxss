@@ -1,0 +1,78 @@
+/* pages/tips/tips.wxss */
+page{
+  padding: 10px;
+  width: calc(100% - 20px);
+  font-size: 15px;
+}
+
+.weather{
+  display: flex;
+  border-top: 1px solid #eee; 
+}
+
+.weaLeft{
+  width: calc(50% - 20px);
+  padding:10px;
+  border-bottom:  1px solid #eee;
+  border-left:  1px solid #eee;
+  border-right:  1px solid #eee;
+}
+
+.todayImg{
+  width:50px;
+  height:50px;
+  margin-left:calc(50% - 25px);
+}
+
+.dayImg{
+  width:40px;
+  height:40px;
+  margin:0 0 0 15px;
+  align-self: center;
+}
+
+.weaRight{
+  width: 50%;
+  border-bottom:  1px solid #eee;
+  border-right:  1px solid #eee;  
+}
+.weaRightBot , .weaRightTop{
+  display: flex;
+  height: 50%;
+  text-align: center;
+}
+
+.weaRightBot{
+  border-top: 1px solid #eee; 
+}
+
+.weatherCon{
+  align-self: center;
+  margin: 0 auto;
+}
+
+.lineBlock{
+  font-size: 18px; 
+  padding-bottom: 6px; 
+  border-bottom: 1px solid #eee;
+  width: 100%; 
+  margin-bottom: 6px; 
+}
+
+
+.unitTable{
+  padding: 3px;
+  width: calc(100% - 6px);
+  display: flex;
+  flex-wrap: wrap;
+  color: #fff;
+  font-size: 15px; 
+  margin: 5px 0;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 3px;
+}
+
+.unitTable view{
+  margin-left:5px; 
+}

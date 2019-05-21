@@ -49,31 +49,36 @@ class Sw extends Controller
             $tableArr = array();
             foreach ($info as $value) {
                 $arrInner = array();
-                // $arrInner['day'] = (int)$value['kcsj'][0] - 1;
-                // $arrInner['knot'] =  (int)((int)substr($value['kcsj'],1,2)/2);
-                // $arrInner['teacher'] = $value['jsxm'];
-                // $arrInner['classname'] = $value['kcmc'];
-                // $arrInner['classroom'] = $value['jsmc'];
-
                 $day = (int)$value['kcsj'][0] - 1;
                 $knot = (int)((int)substr($value['kcsj'],1,2)/2);
-                $colorSignal = $colorList[(ord(md5($value['kcmc'])[0]) % $colorN)] ;
+                $md5Str = md5($value['kcmc']);
+                $colorSignal = $colorList[abs((ord($md5Str[0]) - (ord($md5Str[3]))) % $colorN)] ;
                 array_push($arrInner, $day);
                 array_push($arrInner, $knot);
-                array_push($arrInner, $value['jsxm']);
                 array_push($arrInner, explode("（", $value['kcmc'])[0]);
+                array_push($arrInner, $value['jsxm']);
                 array_push($arrInner, $value['jsmc']);
                 array_push($arrInner, $colorSignal);
-                $tableArr[$day][$knot] = $arrInner;
+                // if(array_key_exists($day,$tableArr) && array_key_exists($knot,$tableArr[$day])){
+                //      $tableArr[$day][$knot] = array_merge($tableArr[$day][$knot],$arrInner);
+                // }else{
+                     $tableArr[$day][$knot] = $arrInner;
+                // }
             }
             $info = $tableArr;
         }
         
-        return ["MESSAGE" => "Yes" , "data" => $info];
+        return ["Message" => "Yes" , "data" => $info];
     }
 
-    public function classroom($idleTime="")
-    {
+    public function weather(){
+        $ran = rand(1000000000,1000000000000);
+        $url = "http://api.caiyunapp.com/v2/Y2FpeXVuIGFuZHJpb2QgYXBp/120.127164,36.000129/weather?lang=zh_CN&device_id=$ran";
+        $weatherInfo = Http::httpRequest($url,array(),"GET",Conf::getHeader());
+        return  ["data" => json_decode($info,true)];
+    }
+
+    public function classroom($idleTime=""){
         $user = $this->checkSession();
         $info = [];
         if ($idleTime!=="") {
@@ -87,8 +92,7 @@ class Sw extends Controller
         return ["MESSAGE" => "Yes" , "data" => json_decode($info,true)];
     }
 
-    public function grade($sy="")
-    {
+    public function grade($sy=""){
         $user = $this->checkSession();
         $params = array(
             "method" => "getCjcx",

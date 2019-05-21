@@ -4,7 +4,7 @@ namespace app\auxiliary;
 class Http
 {
 
-    public static function httpRequest($url, $data='', $method='GET',
+    public static function httpRequest($url, $data=array(), $method='GET',
         $headers = array('User-Agent: Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )') ) {
 
         $curl = curl_init();  // 启动一个CURL会话

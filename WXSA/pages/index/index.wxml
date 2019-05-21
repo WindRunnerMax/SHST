@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<image class='imgSdust' src='/vector/img/sdust.jpg'></image>
+
+<view class='inputCon'>
+  <view class='inputView'>
+    <image src='/vector/img/account.svg' class='svgLog'></image>
+    <input class='asse-input' placeholder='账号' bindinput="accountInput"></input>
+  </view>
+  <view class='inputView'>
+    <image src='/vector/img/password.svg' class='svgLog'></image>  
+    <input class='asse-input' placeholder='密码' password='true' bindinput="passwordInput"></input>
+  </view>
+</view>
+<view class='asse-btn asse-btn-blue loginBtn' bindtap='enter'>Log In</view>

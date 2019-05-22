@@ -1,18 +1,33 @@
-// pages/user/user.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    academy : "",
+    name: "",
+    username: "",
+    flag : 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    app.ajax({
+      url: app.globalData.url + 'funct/user/getuserinfo',
+      fun : res => {
+        that.setData({
+          academy: res.data.info.academy,
+          name: res.data.info.name,
+          username: res.data.info.username,
+          flag : 1
+        })
+      }
+    })
   },
 
   /**

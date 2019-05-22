@@ -10,7 +10,7 @@ class User extends Controller
 
 	private $appid = "wx387c0e87230e4cc9"; 
 
-    private $appSecret =  "";
+    private $appSecret =  "a340a4e9519f4d85f93b707872de2e8f";
 
     private function checkSession($value=''){
         # code...

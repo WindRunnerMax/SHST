@@ -1,0 +1,84 @@
+page{
+  width: 100%;
+  line-height: 18px;
+  font-size: 18px;
+}
+
+.tableTop{
+  display: flex;
+  padding: 5px 10px;
+  justify-content: space-between;
+}
+
+.week{
+  align-self: center;
+}
+
+
+
+.pre,.next{
+  margin-left: 10px;
+  padding: 5px 20px;
+  align-self: center;
+}
+
+
+.line {
+  display: flex;
+}
+
+.info {
+  margin-left: 7px;
+}
+
+.hrTable {
+  border-bottom: 1px solid #eee;
+  height: 133px;
+}
+
+.hrTable2 {
+  border-bottom: 1px solid #eee;
+  height: 136px;
+}
+
+.hrTable3 {
+  border-bottom: 1px solid #eee;
+  height: 137px;
+}
+
+.hrTable4 {
+  border-bottom: 1px solid #eee;
+  height: 136px;
+}
+
+.hrTable5 {
+  border-bottom: 1px solid #eee;
+  height: 136px;
+}
+
+.asse-hr {
+  margin-bottom: 3px;
+}
+
+
+.timetableHide {
+  min-height: 130px;
+  border-radius: 3px;
+  margin-left: 3px;
+  text-align: center;
+  word-break: break-all;
+  color: #fff;
+  padding: 1px;
+  background: #fff;
+  font-size: 13px;
+}
+
+.timetablehr {
+  margin-top: 3px;
+}
+
+.asse-hr {
+  background-color: #eee !important;
+  height: 1px;
+  border: none;
+}

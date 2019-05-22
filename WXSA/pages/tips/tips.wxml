@@ -1,21 +1,21 @@
 <!--pages/tips/tips.wxml-->
 <view class='weather'>
   <view class='weaLeft'>
-    <image class='todayImg' src='https://www.liyanzuisha.cn/sdust/public/static/weather/{{todayWeather[1]}}.png'></image>
+    <image class='todayImg' mode="widthFix" src='https://www.liyanzuisha.cn/sdust/public/static/weather/{{todayWeather[1]}}.png'></image>
     <view style='text-align:center;margin-top:3px;'>{{todayWeather[0]}}</view>
     <view style='text-align:center;'>{{todayWeather[2]}}℃ - {{todayWeather[3]}}℃</view>
     <view style='text-align:center;'>{{todayWeather[4]}}</view>
   </view>
   <view class='weaRight'>
     <view class='weaRightTop'>
-      <image class='dayImg' src='https://www.liyanzuisha.cn/sdust/public/static/weather/{{tomorrowWeather[1]}}.png'></image>
+      <image class='dayImg' mode="widthFix" src='https://www.liyanzuisha.cn/sdust/public/static/weather/{{tomorrowWeather[1]}}.png'></image>
       <view class='weatherCon'>
         <view style='text-align:center;margin-top:3px;'>{{tomorrowWeather[0]}}</view>
         <view style='text-align:center;'>{{tomorrowWeather[2]}}℃ - {{tomorrowWeather[3]}}℃</view>
       </view>
     </view>
     <view class='weaRightBot' >
-      <image class='dayImg' src='https://www.liyanzuisha.cn/sdust/public/static/weather/{{tdatomoWeather[1]}}.png'></image>
+      <image class='dayImg' mode="widthFix" src='https://www.liyanzuisha.cn/sdust/public/static/weather/{{tdatomoWeather[1]}}.png'></image>
       <view class='weatherCon'>
         <view style='text-align:center;margin-top:3px;'>{{tdatomoWeather[0]}}</view>
         <view style='text-align:center;'>{{tdatomoWeather[2]}}℃ - {{tdatomoWeather[3]}}℃</view>
@@ -24,15 +24,15 @@
   </view>
 </view>
 
-<view class='lineBlock' style='margin-top:20px; '>今日课程</view>
+<view class='lineBlock' style='margin-top:20px;display:flex;'><view class='rowBlue'></view>今日课程</view>
 <view wx:for="{{table}}" wx:key="{{index}}">
   <!-- <view wx:for="{{item}}" wx:key="{{index}}" wx:for-item="inner" wx:for-index="innerIndex">
     <view wx:if="{{innerIndex === 2}}">{{inner}}</view>
   </view> -->
   <view class='unitTable' style='background:{{item[5]}};'>
     <view>第{{2*(item[1] + 1) - 1}}{{2*(item[1] + 1)}}节</view>
-    <view>{{item[3]}}</view>
     <view>{{item[2]}}</view>
     <view>{{item[4]}}</view>
+    <view>{{item[3]}}</view>
   </view>
 </view>

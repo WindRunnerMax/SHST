@@ -1,2 +1,11 @@
 <!--pages/funct/funct.wxml-->
-<text>pages/funct/funct.wxml</text>
+<view class='blockCon'>
+  <view class='lineCon'>
+    <view class='rowBlue'></view>学习</view>
+  <view>
+    <view class='fun' data-jumpurl="/pages/timeTable/timeTable" bindtap='jump'>
+      <image src='/vector/img/table.svg'  style='width:30px;height:30px;padding:7px;border:1px solid #79B2F9;border-radius:30px;'></image>
+      <view style='margin:8px 0;' >查课表</view>
+    </view>
+  </view>
+</view>

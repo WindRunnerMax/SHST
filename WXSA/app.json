@@ -4,13 +4,14 @@
     "pages/logs/logs",
     "pages/tips/tips",
     "pages/funct/funct",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/timeTable/timeTable"
   ],
   "tabBar": {
     "list": [
       {
-        "iconPath":"/vector/img/index.png",
-         "selectedIconPath":"/vector/img/index1.png",
+        "iconPath": "/vector/img/index.png",
+        "selectedIconPath": "/vector/img/index1.png",
         "pagePath": "pages/tips/tips",
         "text": "首页"
       },
@@ -31,7 +32,8 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "科大",
+    "navigationBarTitleText": "山科小站",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

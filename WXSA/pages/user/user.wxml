@@ -1,2 +1,6 @@
-<!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<image class='imgSdust' src='/vector/img/sdust.jpg'></image>
+<view class="user">{{username}}</view>
+<view class='name'>{{name}}</view>
+<view class='aca'>{{academy}}</view>
+<view class='about'>关于</view>
+<view class='logout'>注销</view>

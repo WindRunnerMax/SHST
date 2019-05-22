@@ -1,1 +1,79 @@
-/* pages/user/user.wxss */
+page{
+  font-size: 14px;
+}
+.imgSdust{
+  width: 230px;
+  height: 80px;
+  margin-left: calc(50% - 125px);
+  margin-top:20px;
+}
+
+@keyframes extendAm1{
+from {width: 1px;}
+to {width: 110px;}
+}
+@keyframes extendAm2{
+from {width: 1px;}
+to {width: 50px;}
+}
+@keyframes extendAm3{
+from {width: 1px;}
+to {width: 160px;}
+}
+@keyframes extendAm4{
+from {width: 1px;}
+to {width: 40px;}
+}
+
+
+.user,.name,.aca,.about,.logout{
+  overflow: hidden;
+  border-radius:90px; 
+  padding: 15px;
+  background: rgb(121, 179, 250);
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  word-break: keep-all;
+  height: 19px;
+  line-height: 19px;
+}
+
+.user{
+  top: 150px;
+  left: 20px;
+  width: 110px;
+  background: rgb(143, 133, 240);
+  animation: extendAm1 .9s;
+}
+
+.name{
+  top: 220px;
+  right: 20px;
+  width: 50px;
+  background: rgb(249, 172, 121);
+  animation: extendAm2 .9s;
+}
+
+.aca{
+  top: 320px;
+  right: 20px;
+  width: 160px;
+  animation: extendAm3 .9s;
+}
+
+.about{
+  left:20px;
+  top: 410px; 
+  width: 40px;
+  background: rgb(199, 133, 230);
+  animation: extendAm4 .9s;
+}
+
+.logout{
+  top: 470px;
+  right: 20px;
+  width: 40px;
+  background: rgb(249, 161, 121);
+  animation: extendAm4 .9s;
+}

@@ -1,0 +1,26 @@
+/* pages/grade/grade.wxss */
+page{
+  font-size: 15px; 
+  padding: 10px;
+  width: calc(100% - 20px); 
+}
+.section{
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #eee;
+  border-radius: 3px;  
+}
+
+.card{
+  font-size: 13px;
+  display: flex;
+  border-bottom:1px solid #eee;
+  padding: 5px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.card view{
+  margin: 5px;
+}

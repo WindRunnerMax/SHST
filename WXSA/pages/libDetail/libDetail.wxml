@@ -1,0 +1,15 @@
+<view class='lineCon'>
+  <view class='rowBlue'></view> 馆藏信息 </view>
+<view class='card'>
+    <view>{{data.infoArr[0]}}</view>
+    <view>{{data.infoArr[1]}}</view>
+    <view>{{data.infoArr[2]}}</view>
+    <view>{{data.infoArr[3]}}</view>
+</view>
+
+<view class='cardTips'>
+    <view wx:for="{{data.infoArrInner}}" wx:key="{{index}}">
+      <view wx:if="{{index % 4 === 0 && index !== 0}}" style='width:100%;height:20px;'></view>    
+      <view>{{item}}</view>
+    </view>
+</view>

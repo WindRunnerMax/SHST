@@ -6,14 +6,14 @@ Page({
   data: {
     next : '>',
     pre : '<',
-    week: 1
+    week: 0
   },
   onLoad: function (e) {
-    wx.showNavigationBarLoading();
     var urlTemp = "";
     if (typeof (e) === "number") urlTemp += ("/" + e);
     var that = this;
     app.ajax({
+      load: 1,
       url: app.globalData.url + 'funct/sw/table' + urlTemp,
       fun: function (res) {
         console.log(res.data)
@@ -25,7 +25,6 @@ Page({
         } else {
           app.toast("ERROR");
         }
-        wx.hideNavigationBarLoading();
       }
     })
   },

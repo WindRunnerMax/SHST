@@ -1,0 +1,35 @@
+/* pages/classroom/classroom.wxss */
+page{
+  font-size: 15px; 
+  padding: 10px;
+  width: calc(100% - 20px); 
+}
+.top{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:  center ;  
+  margin-top: 20px;
+}
+
+.optCon{
+  display: flex;
+  flex-direction: column;
+  justify-content:  center ;
+}
+.optShow{
+  border: 1px solid #eee;
+  padding: 0 10px;
+  font-size: 14px;
+  line-height: 35px;
+  height: 35px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.unit{
+  display: flex;
+  border-bottom: 1px solid #eee;
+  border-top: none;
+  padding: 10px 0;
+  font-size: 13px;
+}

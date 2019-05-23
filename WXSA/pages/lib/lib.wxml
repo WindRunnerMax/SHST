@@ -1,0 +1,24 @@
+<view class='lineCon'>
+  <view class='rowBlue'></view> 图书检索 </view>
+<view class='top'>
+  <view style='display:flex;'>
+    <input class='asse-input' bindinput="bookInput" value="{{book}}"></input>
+    <view class='asse-btn asse-btn-blue' bindtap='query'>检索</view>
+  </view>
+</view>
+<view wx:for="{{info}}" wx:key="{{index}}">
+  <view class='card'>
+    <view>{{item[0]}}</view>
+    <view>{{item[1]}}</view>
+    <view>{{item[2]}}</view>
+    <view>{{item[3]}}</view>
+    <view bindtap='jump' data-id="{{item[4]}}" class='asse-btn asse-btn-blue  asse-btn-small'>详细信息</view>
+  </view>
+</view>
+<view class='operat' wx:if="{{show === 1}}">
+  <view style='display:flex;'>
+    <view bindtap='pre' class='asse-btn asse-btn-blue'>上一页</view>
+    <view bindtap='next' class='asse-btn asse-btn-blue'>下一页</view>
+  </view>
+  <view>{{pageInfo}}</view>
+</view>

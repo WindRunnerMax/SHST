@@ -6,7 +6,8 @@ Page({
   data: {
     account: "",
     password: "",
-    openid: ""
+    openid: "",
+    status:""
   },
   accountInput: function(e) {
     this.setData({
@@ -21,9 +22,10 @@ Page({
   enter: function(e) {
     var that = this;
     if (this.data.account.length == 0 || this.data.password.length == 0) {
-      toast("用户名和密码不能为空");
+      app.toast("用户名和密码不能为空");
     } else {
       app.ajax({
+        load: 2,
         url: app.globalData.url + 'funct/user/login',
         method: 'POST',
         data: {
@@ -34,7 +36,10 @@ Page({
         fun: function(res) {
           console.log(res.data)
           if (res.data.Message == "No") {
-            toast(res.data.info);
+            that.setData({
+              status: res.data.info
+            })
+            app.toast(res.data.info);
           } else if (res.data.Message == "Yes") {
             wx.setStorage({
               key: 'flag',
@@ -46,6 +51,9 @@ Page({
               }
             })
           } else {
+            that.setData({
+              status: "ERROR"
+            })
             app.toast("请求错误");
           }
         }
@@ -58,7 +66,7 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function() {
+  onLoad: function(e) {
     wx.getStorage({
       key: 'flag',
       success(res) {
@@ -71,6 +79,7 @@ Page({
     wx.login({
       success: res => {
         app.ajax({
+          load: 1,
           url: app.globalData.url + 'funct/user/getOpenid',
           method: 'POST',
           data: {
@@ -89,15 +98,18 @@ Page({
                 openid: openid
               })
               app.globalData.header.Cookie = 'PHPSESSID=' + data.data.PHPSESSID;
-              wx.setStorage({
-                key: 'flag',
-                data: '1',
-                success: function() {
-                  wx.switchTab({
-                    url: '/pages/tips/tips'
-                  })
-                }
-              })
+              if (!e.status) {
+                wx.setStorage({
+                  key: 'flag',
+                  data: '1',
+                  success: function() {
+                    wx.switchTab({
+                      url: '/pages/tips/tips'
+                    })
+                  }
+                })
+              }
+
             } else if (data.data.Message === "Non") {
               app.toast(data.data.info);
             } else {

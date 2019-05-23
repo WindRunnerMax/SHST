@@ -38,10 +38,11 @@ class Sw extends Controller
         $colorN = count($colorList);
         $user = $this->checkSession();
         $s = json_decode($this->getCurrentTime(),true);
+        $zc = $zc === -1 ? $s['zc'] : $zc;
         $params=array(
         "method" => "getKbcxAzc",
         "xnxqid" => $s['xnxqh'],
-        "zc" => $zc === -1 ? $s['zc'] : $zc ,
+        "zc" => $zc ,
         "xh" => $_SESSION['account']
         );
         $info = json_decode($this->httpReq($params),true);
@@ -68,7 +69,7 @@ class Sw extends Controller
             $info = $tableArr;
         }
         
-        return ["Message" => "Yes" , "data" => $info];
+        return ["Message" => "Yes" , "year" => $s['xnxqh'] , "week" => $zc , "data" => $info];
     }
 
     public function weather(){
@@ -78,14 +79,14 @@ class Sw extends Controller
         return  ["data" => json_decode($info,true)];
     }
 
-    public function classroom($idleTime=""){
+    public function classroom(){
         $user = $this->checkSession();
-        $info = [];
-        if ($idleTime!=="") {
+        $info = null;
+        if (isset($_GET['query'])) {
             $params = array(
                 "method" => "getKxJscx",
                 "time" => date("Y-m-d",time()),
-                "idleTime" => $idleTime
+                "idleTime" => $_GET['query']
             );
             $info = $this->httpReq($params);
         }

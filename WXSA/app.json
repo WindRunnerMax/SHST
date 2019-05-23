@@ -5,7 +5,16 @@
     "pages/tips/tips",
     "pages/funct/funct",
     "pages/user/user",
-    "pages/timeTable/timeTable"
+    "pages/timeTable/timeTable",
+    "pages/tableShare/tableShare",
+    "pages/about/about",
+    "pages/classroom/classroom",
+    "pages/grade/grade",
+    "pages/lib/lib",
+    "pages/libDetail/libDetail",
+    "pages/borrow/borrow",
+    "pages/canlendar/calendar",
+    "pages/link/link"
   ],
   "tabBar": {
     "list": [

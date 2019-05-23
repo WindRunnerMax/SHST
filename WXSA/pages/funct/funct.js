@@ -12,6 +12,13 @@ Page({
       url: e.currentTarget.dataset.jumpurl
     })
   },
+  viewImg(e){
+      var current = e.currentTarget.dataset.viewimgurl;
+      wx.previewImage({
+        current: current,
+        urls: [current]
+      })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

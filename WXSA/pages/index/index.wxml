@@ -12,3 +12,4 @@
   </view>
 </view>
 <view class='asse-btn asse-btn-blue loginBtn' bindtap='enter'>Log In</view>
+<view style='margin:10px 0 0 10px;font-size:13px;color:red;'>{{status}}</view>

@@ -94,9 +94,10 @@
 
 .asse-hr {
   display: block;
+  margin: 10px 0;
   padding: 0 10px;
   height: 1px;
-  background: #e3e3e3;
+  background: #eee;
   border: none;
 }
 

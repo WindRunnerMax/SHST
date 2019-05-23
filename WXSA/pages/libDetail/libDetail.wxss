@@ -1,0 +1,45 @@
+page{
+  font-size: 15px; 
+  padding: 10px;
+  width: calc(100% - 20px); 
+}
+
+.first {
+  display: flex;
+}
+
+.info {
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.info2 {
+  display: block;
+  font-size: 14px;
+  line-height: 15px;
+}
+
+#imgLeft {
+  margin-right: 20px;
+  width: 80px;
+  height: 110px;
+}
+
+.infoCon:first-line {
+  font-size: 21px;
+  line-height: 30px;
+}
+
+.card, .cardTips {
+  margin-top: 20px;
+  border: 1px solid #eee;
+  width: calc(100% - 22px);
+  padding: 10px;
+  line-height: 27px;
+}
+
+.card:first-line {
+  font-size: 23px;
+  line-height: 30px;  
+}

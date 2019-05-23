@@ -1,0 +1,34 @@
+<!--pages/classroom/classroom.wxml-->
+<view class='lineCon'><view class='rowBlue'></view>空教室</view>
+<view class='top'>
+  <view class='optCon'>
+    <view class='asse-btn asse-btn-blue' data-indexcurr='0102' data-show='12节' bindtap='loadClassroom'>12节</view>
+    <view class='asse-btn asse-btn-blue' data-indexcurr='0910' data-show='9X节'  bindtap='loadClassroom'>9X节</view>
+  </view>
+  <view class='optCon'>
+    <view class='asse-btn asse-btn-blue' data-indexcurr='0304' data-show='34节'  bindtap='loadClassroom'>34节</view>
+    <view class='asse-btn asse-btn-blue' data-indexcurr='am' data-show='上午'  bindtap='loadClassroom'>上午</view>
+  </view>
+  <view class='optCon'>
+    <view class='asse-btn asse-btn-blue' data-indexcurr='0506' data-show='56节'  bindtap='loadClassroom'>56节</view>
+    <view class='asse-btn asse-btn-blue' data-indexcurr='pm' data-show='下午'  bindtap='loadClassroom'>下午</view>
+  </view>
+  <view class='optCon'>
+    <view class='asse-btn asse-btn-blue' data-indexcurr='0708' data-show='78节'  bindtap='loadClassroom'>78节</view>
+    <view class='asse-btn asse-btn-blue' data-indexcurr='allday' data-show='全天'  bindtap='loadClassroom'>全天</view>
+  </view>
+</view>
+<view wx:if='{{show === 1}}'>
+  <view class='lineCon'><view class='rowBlue'></view>{{qShow}}</view>
+  <view wx:for='{{room}}' wx:key="{{index}}">
+    <view data-index='{{index}}' bindtap='flagChange' class='optShow'>{{item.jxl}}</view>
+    <view style='display:{{flag[index]}};'>
+      <view wx:for="{{item.jsList}}" wx:for-item="inner" wx:for-index='innerIndex' wx:key="{{innerIndex}}" >
+        <view class='unit'>
+          <view style='margin-left:10px;'>{{inner.jsmc}}</view>
+          <view style='margin-left:10px;'>{{inner.zws}}座</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

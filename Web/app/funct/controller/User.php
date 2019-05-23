@@ -10,10 +10,9 @@ class User extends Controller
 
 	private $appid = "wx387c0e87230e4cc9"; 
 
-    private $appSecret =  "a340a4e9519f4d85f93b707872de2e8f";
+    private $appSecret =  "";
 
     private function checkSession($value=''){
-        # code...
         session_start();
         if(isset($_SESSION['TOKEN'])) return $_SESSION['user'];
         else $this->error("未登录","/?status=E",3);
@@ -49,7 +48,7 @@ class User extends Controller
         }else{
     		$info = $this -> checkLogin($exist['account'],$exist['password']);
         	if ($info['status'] === "Yes") {
-                return ["Message" => "Ex","PHPSESSID" => session_id()];
+                return ["Message" => "Ex","PHPSESSID" => session_id(),"openid" => $openid];
     		}else{
     			return ["Message" => "NoN","info" => $info["info"]];
     		}
@@ -102,18 +101,27 @@ class User extends Controller
     		session_start();
     		$info = $this -> checkLogin($_POST['account'],$_POST['password']);
     		if ($info['status'] === "Yes") {
-                $exist = Db::table("wx_user") -> where("account",$_POST['account']) -> find();
-                if(!$exist){
+                    $exist = Db::table("wx_user") -> where("account",$_POST['account']) -> find();
+                    if(!$exist){
                 	$wxUserRecord['account'] = $_POST['account'];
-                    $wxUserRecord['password'] = $_POST['password'];
-                    $wxUserRecord['openid'] = $_POST['openid'];
-                    Db::table("wx_user") -> insert($wxUserRecord);
-                }
-    			return ["Message" => "Yes"];
+                        $wxUserRecord['password'] = $_POST['password'];
+                        $wxUserRecord['openid'] = $_POST['openid'];
+                        Db::table("wx_user") -> insert($wxUserRecord);
+                    }else{
+    		        $wxUserRecord['openid'] = $_POST['openid'];
+    		        $wxUserRecord['password'] = $_POST['password'];
+	                Db::table("wx_user") -> where("account",$_POST['account']) -> update($wxUserRecord);
+		    }
+    		    return ["Message" => "Yes"];
     		}else{
-    			return ["Message" => "No","info" => $info["info"]];
+    		    return ["Message" => "No","info" => $info["info"]];
     		}
     	}else return ["Message" => "No" , "info" => "数据有误"];
+    }
+
+    public function getUserInfo($value=''){
+    	$this->checkSession();
+    	return ["info" => Db::table("user") -> field('academy,name,username') -> where("username",$_SESSION['account']) -> find()];
     }
 
 }

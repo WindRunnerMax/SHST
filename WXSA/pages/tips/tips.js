@@ -12,14 +12,10 @@ Page({
     tomorrowWeather: ["", "CLEAR_DAY", 0, 0],
     tdatomoWeather: ["", "CLEAR_DAY", 0, 0]
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    wx.showNavigationBarLoading();
+  onReady: function(options) {
     var that = this;
     app.ajax({
+      load: 1,
       url: app.globalData.url + 'funct/sw/table',
       fun: function(res) {
         console.log(res.data)
@@ -30,10 +26,9 @@ Page({
         } else {
           app.toast("ERROR");
         }
-        wx.hideNavigationBarLoading();
       }
     })
-    var ran = Math.random() * 100000000000;
+    var ran = parseInt(Math.random() * 100000000000);
     app.ajax({
       url: "https://api.caiyunapp.com/v2/Y2FpeXVuIGFuZHJpb2QgYXBp/120.127164,36.000129/weather?lang=zh_CN&device_id=" + ran,
       fun: function(res) {
@@ -54,7 +49,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onLoad: function() {
 
   },
 

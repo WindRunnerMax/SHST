@@ -6,6 +6,8 @@ SW/Web 目录下基于ThinkPHP制作的WEB项目[山东科技大学]，提供课
 通用版本：https://github.com/WindrunnerMax/SW/tree/master
 
 ![show](https://github.com/WindrunnerMax/SW/blob/SDUST/Web/public/show1.jpg)
+![show](https://github.com/WindrunnerMax/SW/blob/SDUST/Web/public/show2.jpg)
+
 
 ----
   

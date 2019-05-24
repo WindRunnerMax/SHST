@@ -1,8 +1,9 @@
-page{
-  font-size: 15px; 
+page {
+  font-size: 15px;
   padding: 10px;
-  width: calc(100% - 20px); 
+  width: calc(100% - 20px);
 }
+
 .top {
   display: flex;
   flex-wrap: wrap;
@@ -13,10 +14,15 @@ page{
 .asse-input {
   align-self: center;
   border: 1px solid #eee;
+  margin: 0;
+  display: block;
+  height: 26px;
+  width: 150px;
+  margin-right: 10px;
 }
 
 .card, .cardTips {
-  margin-top: 20px;
+  margin-top: 30px;
   border: 1px solid #eee;
   width: calc(100% - 22px);
   padding: 10px;
@@ -24,15 +30,15 @@ page{
 }
 
 .card:first-line {
-  font-size: 23px;
-  line-height: 30px;  
+  font-size: 20px;
+  line-height: 30px;
 }
 
 .info {
   margin-top: 3px;
 }
 
-.operat{
+.operat {
   display: flex;
   padding: 20px;
   align-items: center;

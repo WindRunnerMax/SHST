@@ -68,7 +68,7 @@ Page({
         id: e.currentTarget.dataset.id
       },
       fun: res => {
-        app.toast(res.data.message);
+        app.toast("成功");
         that.onLoad();
       }
     })

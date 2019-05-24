@@ -17,9 +17,14 @@ Page({
     app.ajax({
       url: app.globalData.url + "funct/lib/libquery",
       fun: res => {
-        that.setData({
-          data: res.data.libInfo
-        })
+        if (res.data.libInfo){
+          that.setData({
+            data: res.data.libInfo
+          })
+        }else{
+          app.toast("响应超时");
+        }
+        
       }
     })
   },

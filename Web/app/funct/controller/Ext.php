@@ -13,7 +13,7 @@ class Ext extends Controller
         # code...
         session_start();
         if(isset($_SESSION['TOKEN'])) return $_SESSION['user'];
-        else $this->error("δ��¼",Conf::getCtx()."/?status=E",3);
+        else $this->error("未登录",Conf::getCtx()."/?status=E",3);
     }
 
     public function urlshare(){

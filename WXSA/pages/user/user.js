@@ -28,22 +28,27 @@ Page({
     })
 
   },
-  onReady: function(options) {
+  onLoad: function(options) {
     var that = this;
     app.ajax({
       load: 1,
       url: app.globalData.url + 'funct/user/getuserinfo',
       fun: res => {
-        that.setData({
-          academy: res.data.info.academy,
-          name: res.data.info.name,
-          username: res.data.info.username,
-          flag: 1
-        })
+        if (res.data.info) {
+          that.setData({
+            academy: res.data.info.academy,
+            name: res.data.info.name,
+            username: res.data.info.username,
+            flag: 1
+          })
+        } else {
+          app.toast("服务器错误");
+        }
+
       }
     })
   },
-  onLoad: function() {
+  onReady: function() {
 
   },
 

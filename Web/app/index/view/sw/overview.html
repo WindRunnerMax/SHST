@@ -44,6 +44,12 @@
         font-size: 40px; 
         margin-bottom: 7px;
     }
+    .ad{
+        width: 100%;
+        border-top:none;
+        display: flex;
+        justify-content: space-between;
+    }
 </style>
 <script type="text/javascript">
     function adaptIndex(route) {
@@ -66,7 +72,6 @@
 <div class="funct" onclick="location.href='{$ctx}/index.php/index/sw/github'"><i class="layui-icon layui-icon-fonts-code size"></i>源码</div>
 <div class="funct" onclick="location.href='{$ctx}/index.php/index/sw/updateHis'"><i class="layui-icon layui-icon-log size"></i>更新日志</div>
 <div class="funct" onclick="location.href='{$ctx}/index.php/index/sw/info'"><i class="layui-icon layui-icon-about size"></i><span id="tips">公告</span></div>
-
 </div>
 <script type="text/javascript">
     if(!localStorage.getItem("tips") | localStorage.getItem("tips") < {$tipsFlag}){
@@ -75,3 +80,17 @@
 </script>
 {/block}
 
+{block name="ext"}
+  <div>
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+      <div class="login-panel panel panel-default">
+        <div class="panel-body" style='position:relative;'>
+         <div class="ad">
+            <div><span class="layui-badge-dot layui-bg-green"></span> 微信小程序 山科小站</div>
+            <div><a href="https://www.liyanzuisha.cn/sdust/index.php/index/index/info">点我查看详情</a></div>
+        </div>
+        </div>
+      </div>
+    </div><!-- /.col-->
+  </div><!-- /.row --> 
+{/block}

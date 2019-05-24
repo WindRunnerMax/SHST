@@ -8,8 +8,7 @@ class Index extends Controller
 {  
 
 
-    public function index()
-    {
+    public function index(){
         // if (!isset($_GET['p'])) {
         //     # code...
         //     return "维护调试图书馆功能，暂时关闭，明天应该能维护好";
@@ -31,8 +30,7 @@ class Index extends Controller
 		return $this->fetch();
     }
 
-	public function relogin()
-    {
+	public function relogin(){
         session_start();
         if (isset($_SESSION['TOKEN'])) {
             # code...
@@ -44,6 +42,8 @@ class Index extends Controller
 		return $this->fetch();
     }
 
-    private $url = "http://jwgl.sdust.edu.cn/app.do";
+    public function info(){
+        return $this->fetch();
+    }
 
 }

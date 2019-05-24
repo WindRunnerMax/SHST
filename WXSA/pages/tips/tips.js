@@ -12,7 +12,7 @@ Page({
     tomorrowWeather: ["", "CLEAR_DAY", 0, 0],
     tdatomoWeather: ["", "CLEAR_DAY", 0, 0]
   },
-  onReady: function(options) {
+  onLoad: function(options) {
     var that = this;
     app.ajax({
       load: 1,
@@ -49,7 +49,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onLoad: function() {
+  onReady: function() {
 
   },
 

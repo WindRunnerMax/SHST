@@ -146,3 +146,19 @@ page{
   font-size: 13px;
 }
 
+.card, .cardTips {
+  margin-top: 30px;
+  border: 1px solid #eee;
+  width: calc(100% - 22px);
+  padding: 10px;
+  line-height: 23px;
+}
+
+.card:first-line {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.info1 {
+  margin-top: 3px;
+}

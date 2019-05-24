@@ -3,8 +3,15 @@
 <view class='top' wx:if="{{data.status === 1}}">
   <view style=''>
     <input class='asse-input' bindinput="accountInput" placeholder='对方学号' value="{{account}}"></input>
-    <input class='asse-input' bindinput="nameInput" placeholder='对方姓名' value="{{name}}"></input>
+    <input class='asse-input' bindinput="nameInput" style='margin-top:5px;' placeholder='对方姓名' value="{{name}}"></input>
     <view class='asse-btn asse-btn-blue' style='margin-left:calc(50% - 50px);' bindtap='req'>发起请求</view>
+  </view>
+  <view class="cardTips">
+    <view class="info1">
+      <view>Tips:</view>
+      <view>1.向对方发起请求(对方必须是正常登陆过软件或者小程序才可以)，对方通过后，你们将能够在此看到自己与对方的课表</view>
+      <view>2.偏差问题：由于是以周次为单位，所以只有当你们双方在一周都打开此功能后，才会消除本周偏差</view>
+    </view>
   </view>
 </view>
 

@@ -25,12 +25,17 @@ Page({
       load:1,
       url:app.globalData.url + "funct/lib/bookquery" + param,
       fun:res =>{
-        that.setData({
-          info : res.data.libInfo,
-          page:res.data.page,
-          pageInfo:res.data.pageInfo,
-          show:1
-        })
+        if (res.data.libInfo){
+          that.setData({
+            info: res.data.libInfo,
+            page: res.data.page,
+            pageInfo: res.data.pageInfo,
+            show: 1
+          })
+        }else{
+          app.toast("响应超时");          
+        }
+        
       }
     })
   },

@@ -30,6 +30,15 @@ Page({
   },
   onLoad: function(options) {
     var that = this;
+    if(!app.globalData.userFlag){
+      that.setData({
+        academy: "游客",
+        name: "游客",
+        username: "游客",
+        flag: 1
+      })
+      return ;
+    }
     app.ajax({
       load: 1,
       url: app.globalData.url + 'funct/user/getuserinfo',

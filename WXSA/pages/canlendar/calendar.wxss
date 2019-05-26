@@ -1,1 +1,17 @@
-/* pages/canlendar/calendar.wxss */
+@import "../../vector/wxParse/wxParse.wxss";
+/* CSS Document */
+page{
+  padding: 10px;
+  width: calc(100% - 20px);
+  font-size: 15px;
+  background: #fff;
+}
+
+.m2{
+  background: #eee;
+}
+
+.weekCount{
+  text-align: center;
+  color: #79B2F9;
+}

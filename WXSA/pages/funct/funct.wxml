@@ -2,20 +2,20 @@
 <view class='blockCon'>
   <view class='lineCon'><view class='rowBlue'></view>学习</view>
   <view style='display:flex;'>
-    <view class='fun' data-jumpurl="/pages/timeTable/timeTable" bindtap='jump'>
-      <image src='/vector/img/table.svg' style='width:30px;height:30px;padding:7px;border:1px solid #79B2F9;border-radius:30px;'></image>
+    <view class='fun' data-jumpurl="/pages/timeTable/timeTable" data-checkuser="0" bindtap='jump'>
+      <image src='/vector/img/table.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>查课表</view>
     </view>
-    <view class='fun' data-jumpurl="/pages/classroom/classroom" bindtap='jump'>
-      <image src='/vector/img/classroom.svg' style='width:37px;height:37px;padding:3px;border:1px solid #79B2F9;border-radius:30px;'></image>
+    <view class='fun' data-jumpurl="/pages/classroom/classroom" data-checkuser="0" bindtap='jump'>
+      <image src='/vector/img/classroom.svg' class='imgIcon' style='width:37px;height:37px;padding:3px;'></image>
       <view style='margin:8px 0;'>查教室</view>
     </view>
-    <view class='fun' data-jumpurl="/pages/grade/grade" bindtap='jump'>
-      <image src='/vector/img/grade.svg' style='width:30px;height:30px;padding:7px;border:1px solid #79B2F9;border-radius:30px;'></image>
+    <view class='fun' data-jumpurl="/pages/grade/grade" data-checkuser="0" bindtap='jump'>
+      <image src='/vector/img/grade.svg' class='imgIcon' ></image>
       <view style='margin:8px 0;'>查成绩</view>
     </view>
-    <view class='fun' data-jumpurl="/pages/tableShare/tableShare" bindtap='jump'>
-      <image src='/vector/img/fly.svg' style='width:25px;height:25px;padding:9px;border:1px solid #79B2F9;border-radius:30px;'></image>
+    <view class='fun' data-jumpurl="/pages/tableShare/tableShare" data-checkuser="0" bindtap='jump'>
+      <image src='/vector/img/fly.svg' class='imgIcon' style='width:25px;height:25px;padding:9px;'></image>
       <view style='margin:8px 0;'>共享课表</view>
     </view>
   </view>
@@ -24,12 +24,12 @@
 <view class='blockCon'>
   <view class='lineCon'><view class='rowBlue'></view>图书馆(7:00-22:00)</view>
   <view style='display:flex;'>
-    <view class='fun' data-jumpurl="/pages/lib/lib" bindtap='jump'>
-      <image src='/vector/img/lib.svg' style='width:30px;height:30px;padding:7px;border:1px solid #79B2F9;border-radius:30px;'></image>
+    <view class='fun' data-jumpurl="/pages/lib/lib" data-checkuser="1" bindtap='jump'>
+      <image src='/vector/img/lib.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>图书检索</view>
     </view>
-    <view class='fun' data-jumpurl="/pages/borrow/borrow" bindtap='jump'>
-      <image src='/vector/img/borrow.svg' style='width:30px;height:30px;padding:7px;border:1px solid #79B2F9;border-radius:30px;'></image>
+    <view class='fun' data-jumpurl="/pages/borrow/borrow" data-checkuser="0" bindtap='jump'>
+      <image src='/vector/img/borrow.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>借阅查询</view>
     </view>
   </view>
@@ -38,12 +38,12 @@
 <view class='blockCon'>
   <view class='lineCon'><view class='rowBlue'></view>科大</view>
   <view style='display:flex;'>
-    <view class='fun' data-viewImgUrl="https://www.liyanzuisha.cn/public//static/img/map.jpg" bindtap='viewImg'>
-      <image src='/vector/img/map.svg' style='width:30px;height:30px;padding:7px;border:1px solid #79B2F9;border-radius:30px;'></image>
+    <view class='fun' data-jumpurl="/pages/map/map" data-checkuser="1" bindtap='jump'>
+      <image src='/vector/img/map.svg' class='imgIcon' ></image>
       <view style='margin:8px 0;'>嵙地图</view>
     </view>
-    <view class='fun' data-viewImgUrl="https://www.liyanzuisha.cn/public//static/img/calendar.png" bindtap='viewImg'>
-      <image src='/vector/img/calendar.svg' style='width:30px;height:30px;padding:7px;border:1px solid #79B2F9;border-radius:30px;'></image>
+    <view class='fun' data-jumpurl="/pages/canlendar/calendar" data-checkuser="1" bindtap='jump'>
+      <image src='/vector/img/calendar.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>校历</view>
     </view>
   </view>
@@ -52,8 +52,8 @@
 <view class='blockCon'>
   <view class='lineCon'><view class='rowBlue'></view>拓展</view>
   <view style='display:flex;'>
-    <view class='fun' data-jumpurl="/pages/link/link" bindtap='jump'>
-      <image src='/vector/img/link.svg' style='width:30px;height:30px;padding:7px;border:1px solid #79B2F9;border-radius:30px;'></image>
+    <view class='fun' data-jumpurl="/pages/link/link" data-checkuser="1" bindtap='jump'>
+      <image src='/vector/img/link.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>分享链接</view>
     </view>
   </view>

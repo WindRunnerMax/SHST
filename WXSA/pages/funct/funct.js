@@ -1,4 +1,5 @@
 // pages/funct/funct.js
+const app = getApp();
 Page({
 
   /**
@@ -8,6 +9,10 @@ Page({
 
   },
   jump(e){
+    if (!app.globalData.userFlag && e.currentTarget.dataset.checkuser === "0"){
+      app.toast("游客模式下无法提供此功能");
+      return ;
+    }
     wx.navigateTo({
       url: e.currentTarget.dataset.jumpurl
     })

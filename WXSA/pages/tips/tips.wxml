@@ -14,7 +14,7 @@
         <view style='text-align:center;'>{{tomorrowWeather[2]}}℃ - {{tomorrowWeather[3]}}℃</view>
       </view>
     </view>
-    <view class='weaRightBot' >
+    <view class='weaRightBot'>
       <image class='dayImg' mode="widthFix" src='https://www.liyanzuisha.cn/sdust/public/static/weather/{{tdatomoWeather[1]}}.png'></image>
       <view class='weatherCon'>
         <view style='text-align:center;margin-top:3px;'>{{tdatomoWeather[0]}}</view>
@@ -35,4 +35,7 @@
     <view>{{item[4]}}</view>
     <view>{{item[3]}}</view>
   </view>
+</view>
+<view class='unitTableNo' style='background:#eee;' wx:if="{{table.length === 0}}">
+  <view>{{tips}}</view>
 </view>

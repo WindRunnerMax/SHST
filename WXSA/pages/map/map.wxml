@@ -1,0 +1,18 @@
+<view class='lineCon'><view class='rowBlue'></view>嵙地图(点击查看大图)</view>
+<image src="https://www.liyanzuisha.cn/public//static/img/map.jpg" data-viewImgUrl="https://www.liyanzuisha.cn/public/static/img/map.jpg" bindtap='viewImg' class='sdustMap' mode="widthFix"></image>
+
+<view class='lineCon' style='margin-top:15px;'><view class='rowBlue'></view>在线地图</view>
+<map class='sdustMap' longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" covers="{{covers}}" show-location>
+  <cover-view>
+    经度:{{longitude}}
+  </cover-view>
+  <cover-view>
+    纬度:{{latitude}}
+  </cover-view>
+  <cover-view>
+    速度:{{speed}}
+  </cover-view>
+  <cover-view>
+    精度:{{accuracy}}
+  </cover-view>
+</map>

@@ -1,6 +1,7 @@
 /**index.wxss**/
 page{
   padding: 10px;
+  width: calc(100% - 25px);
 }
 
 .imgSdust{
@@ -16,7 +17,7 @@ page{
 
 .inputView{
   display: flex;
-  width: calc(100% - 20px);
+  width: 100%;
   border-bottom: 1px solid #eee;
   margin-top: 15px;
 }
@@ -29,6 +30,14 @@ page{
 }
 
 .loginBtn{
-  width: calc(100% - 65px);
-  margin-top: 30px;
+  width: calc(100% - 40px);
+  margin-top: 20px;
+}
+
+.tips{
+  margin:10px 0 0 3px;
+  font-size:13px;
+  color:#79B2F9;
+  display: flex;
+  justify-content: space-between;
 }

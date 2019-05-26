@@ -1,7 +1,7 @@
 //app.js
 App({
   globalData: {
-    userInfo: null,
+    userFlag: 0,
     url: 'https://www.liyanzuisha.cn/sdust/index.php/',
     header: {
       'Cookie': '', //PHPSESSID
@@ -24,6 +24,7 @@ App({
       fun: function(res) {}
     };
     this.extend(option, requestInfo);
+
     if (option.load === 1) {
       wx.showNavigationBarLoading();
     } else if (option.load === 2) {
@@ -31,13 +32,23 @@ App({
         title: '请求中',
       })
     }
+
     var that = this;
+    var suc = function(res){
+      try {
+        option.fun(res);
+      } catch (e) {
+        getApp().toast("ERROR");
+        console.log(e);
+      }
+    }
+    
     wx.request({
       url: option.url,
       data: option.data,
       method: option.method,
       header: that.globalData.header,
-      success: option.fun,
+      success: suc,
       fail: res => {
         that.toast("服务器错误");
       },

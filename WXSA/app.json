@@ -14,7 +14,8 @@
     "pages/libDetail/libDetail",
     "pages/borrow/borrow",
     "pages/canlendar/calendar",
-    "pages/link/link"
+    "pages/link/link",
+    "pages/map/map"
   ],
   "tabBar": {
     "list": [
@@ -43,6 +44,11 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "山科小站",
     "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于嵙地图的定位功能"
+    }
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -7,27 +7,35 @@ Page({
    * 页面的初始数据
    */
   data: {
-    table: [],
     todayWeather: ["", "CLEAR_DAY", 0, 0, "数据获取中"],
     tomorrowWeather: ["", "CLEAR_DAY", 0, 0],
-    tdatomoWeather: ["", "CLEAR_DAY", 0, 0]
+    tdatomoWeather: ["", "CLEAR_DAY", 0, 0],
+    tips:""
   },
   onLoad: function(options) {
     var that = this;
-    app.ajax({
-      load: 1,
-      url: app.globalData.url + 'funct/sw/table',
-      fun: function(res) {
-        console.log(res.data)
-        if (res.data.Message === "Yes") {
-          that.setData({
-            table: res.data.data[new Date().getDay() - 1]
-          })
-        } else {
-          app.toast("ERROR");
+    if (app.globalData.userFlag === 0){
+      that.setData({
+        table: [],
+        tips: "游客模式"
+      })
+    }else{
+      app.ajax({
+        load: 1,
+        url: app.globalData.url + 'funct/sw/table',
+        fun: function(res) {
+          console.log(res.data)
+          if (res.data.Message === "Yes") {
+            that.setData({
+              table: res.data.data[new Date().getDay() - 1] ? res.data.data[new Date().getDay() - 1] : [],
+              tips:"No class today"
+            })
+          } else {
+            app.toast("ERROR");
+          }
         }
-      }
-    })
+      })
+    }
     var ran = parseInt(Math.random() * 100000000000);
     app.ajax({
       url: "https://api.caiyunapp.com/v2/Y2FpeXVuIGFuZHJpb2QgYXBp/120.127164,36.000129/weather?lang=zh_CN&device_id=" + ran,

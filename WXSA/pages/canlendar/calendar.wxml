@@ -1,2 +1,3 @@
-<!--pages/canlendar/calendar.wxml-->
-<text>pages/canlendar/calendar.wxml</text>
+<import src="../../vector/wxParse/wxParse.wxml"/>
+<view class='lineCon'><view class='rowBlue'></view>校历</view>
+<template is="wxParse" data="{{wxParseData:calendar.nodes}}"/>

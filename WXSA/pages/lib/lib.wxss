@@ -22,7 +22,7 @@ page {
 }
 
 .card, .cardTips {
-  margin-top: 30px;
+  margin-top: 10px;
   border: 1px solid #eee;
   width: calc(100% - 22px);
   padding: 10px;

@@ -45,6 +45,7 @@ Page({
               key: 'flag',
               data: '1',
               success: function() {
+                app.globalData.userFlag = 1;
                 wx.switchTab({
                   url: '/pages/tips/tips'
                 })
@@ -89,7 +90,8 @@ Page({
             if (data.data.Message === "Yes") {
               var openid = data.data.openid;
               that.setData({
-                openid: openid
+                openid: openid,
+                tips:1
               })
               app.globalData.header.Cookie = 'PHPSESSID=' + data.data.PHPSESSID;
             } else if (data.data.Message === "Ex") {
@@ -103,6 +105,7 @@ Page({
                   key: 'flag',
                   data: '1',
                   success: function() {
+                    app.globalData.userFlag = 1;
                     wx.switchTab({
                       url: '/pages/tips/tips'
                     })
@@ -118,6 +121,11 @@ Page({
           }
         })
       }
+    })
+  },
+  viewInfo(){
+    wx.switchTab({
+      url: '/pages/tips/tips'
     })
   },
   getUserInfo: function(e) {

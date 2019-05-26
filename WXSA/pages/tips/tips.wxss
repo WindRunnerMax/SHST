@@ -83,3 +83,21 @@ page{
 .unitTable view{
   margin-left:5px; 
 }
+
+.unitTableNo{
+  padding: 3px;
+  width: calc(100% - 6px);
+  display: flex;
+  flex-wrap: wrap;
+  color: #666;
+  font-size: 15px; 
+  margin: 5px 0;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 3px;
+  justify-content: center;
+}
+
+.unitTableNo view{
+  margin-left:5px; 
+}

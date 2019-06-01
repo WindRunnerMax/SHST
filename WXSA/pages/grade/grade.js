@@ -6,35 +6,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    show : 0,
-    defaultOpt:"请选择学期",
-    array:[
-      { show: '全部学期', value: "" },
-      { show: '2016-2017-1', value: "2016-2017-1" },
-      { show: '2016-2017-2', value: "2016-2017-2" },
-      { show: '2017-2018-1', value: "2017-2018-1" },
-      { show: '2017-2018-2', value: "2017-2018-2" },
-      { show: '2018-2019-1', value: "2018-2019-1" },
-      { show: '2018-2019-2', value: "2018-2019-2" },
-      { show: '2019-2020-1', value: "2019-2020-1" },
-      { show: '2019-2020-2', value: "2019-2020-2" },
-      { show: '2020-2021-1', value: "2020-2021-1" },
-    ]
+    show: 0,
+    defaultOpt: "请选择学期"
   },
-  bindPickerChange(e){
+  bindPickerChange(e) {
     var that = this;
     console.log(this.data.array[e.detail.value].value);
-    this.setData({ defaultOpt: this.data.array[e.detail.value].show})
+    this.setData({
+      defaultOpt: this.data.array[e.detail.value].show
+    })
     var stuYear = this.data.array[e.detail.value].value;
     var query = (stuYear === "" ? "" : "/" + stuYear);
     app.ajax({
-      load:1,
-      url:app.globalData.url + 'funct/sw/grade' + query,
+      load: 1,
+      url: app.globalData.url + 'funct/sw/grade' + query,
       fun: res => {
-        if(res.data.MESSAGE !== "Yes"){
+        if (res.data.MESSAGE !== "Yes") {
           app.toast("ERROR");
-          return ;
-        }          
+          return;
+        }
         that.setData({
           show: 1,
           grade: !res.data.data[0] ? [] : res.data.data
@@ -46,56 +36,75 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    // 处理学期
+    var date = new Date();
+    var year = date.getFullYear();
+    var yearArr = [{
+      show: '全部学期',
+      value: ""
+    }];
+    for (var i = 1; i <= 4; ++i) {
+      yearArr.push({
+        show: (year - i) + "-" + (year - i + 1) + "-1",
+        value: (year - i) + "-" + (year - i + 1) + "-1"
+      })
+      yearArr.push({
+        show: (year - i) + "-" + (year - i + 1) + "-2",
+        value: (year - i) + "-" + (year - i + 1) + "-2"
+      })
+    }
+    this.setData({
+      array:yearArr
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

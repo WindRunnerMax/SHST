@@ -1,5 +1,7 @@
 <view class='lineCon'>
-  <view class='rowBlue'></view> 图书检索 </view>
+  <view class='rowBlue'></view>
+  <view> 图书检索</view>
+</view>
 <view class='top'>
   <view style='display:flex;justify-content: center;'>
     <input class='asse-input' bindinput="bookInput" value="{{book}}"></input>

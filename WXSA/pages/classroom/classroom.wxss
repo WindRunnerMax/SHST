@@ -28,8 +28,18 @@ page{
 
 .unit{
   display: flex;
-  border-bottom: 1px solid #eee;
-  border-top: none;
-  padding: 10px 0;
+  padding: 10px;
   font-size: 13px;
+  background: #eee;
+  border-radius: 3px;
+  margin: 3px;
+}
+
+.roomCon{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
 }

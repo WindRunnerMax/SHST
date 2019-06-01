@@ -22,13 +22,13 @@ Page({
     }else{
       app.ajax({
         load: 1,
-        url: app.globalData.url + 'funct/sw/table',
+        url: app.globalData.url + 'funct/sw/tableToday',
         fun: function(res) {
           console.log(res.data)
           if (res.data.Message === "Yes") {
             that.setData({
-              table: res.data.data[new Date().getDay() - 1] ? res.data.data[new Date().getDay() - 1] : [],
-              tips:"No class today"
+              table: res.data.data ? res.data.data : [],
+              tips:"No Class Today"
             })
           } else {
             app.toast("ERROR");
@@ -52,8 +52,11 @@ Page({
         }
       }
     })
-  },
-
+  }, 
+  // onPullDownRefresh() {
+  //   this.onLoad();
+  //   wx.stopPullDownRefresh();
+  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

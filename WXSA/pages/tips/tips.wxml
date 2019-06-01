@@ -24,7 +24,10 @@
   </view>
 </view>
 
-<view class='lineBlock' style='margin-top:20px;display:flex;'><view class='rowBlue'></view>今日课程</view>
+<view class='lineBlock' style='margin-top:20px;display:flex;'>
+  <view class='rowBlue'></view>
+  <view>今日课程</view>
+</view>
 <view wx:for="{{table}}" wx:key="{{index}}">
   <!-- <view wx:for="{{item}}" wx:key="{{index}}" wx:for-item="inner" wx:for-index="innerIndex">
     <view wx:if="{{innerIndex === 2}}">{{inner}}</view>

@@ -1,6 +1,9 @@
 <!--pages/funct/funct.wxml-->
 <view class='blockCon'>
-  <view class='lineCon'><view class='rowBlue'></view>学习</view>
+  <view class='lineCon'>
+    <view class='rowBlue'></view>
+    <view>学习</view>
+  </view>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/timeTable/timeTable" data-checkuser="0" bindtap='jump'>
       <image src='/vector/img/table.svg' class='imgIcon'></image>
@@ -11,7 +14,7 @@
       <view style='margin:8px 0;'>查教室</view>
     </view>
     <view class='fun' data-jumpurl="/pages/grade/grade" data-checkuser="0" bindtap='jump'>
-      <image src='/vector/img/grade.svg' class='imgIcon' ></image>
+      <image src='/vector/img/grade.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>查成绩</view>
     </view>
     <view class='fun' data-jumpurl="/pages/tableShare/tableShare" data-checkuser="0" bindtap='jump'>
@@ -22,7 +25,10 @@
 </view>
 
 <view class='blockCon'>
-  <view class='lineCon'><view class='rowBlue'></view>图书馆(7:00-22:00)</view>
+  <view class='lineCon'>
+    <view class='rowBlue'></view>
+    <view>图书馆(7:00-22:00)</view>
+  </view>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/lib/lib" data-checkuser="1" bindtap='jump'>
       <image src='/vector/img/lib.svg' class='imgIcon'></image>
@@ -36,10 +42,13 @@
 </view>
 
 <view class='blockCon'>
-  <view class='lineCon'><view class='rowBlue'></view>科大</view>
+  <view class='lineCon'>
+    <view class='rowBlue'></view>
+    <view>科大</view>
+  </view>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/map/map" data-checkuser="1" bindtap='jump'>
-      <image src='/vector/img/map.svg' class='imgIcon' ></image>
+      <image src='/vector/img/map.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>嵙地图</view>
     </view>
     <view class='fun' data-jumpurl="/pages/canlendar/calendar" data-checkuser="1" bindtap='jump'>
@@ -50,7 +59,10 @@
 </view>
 
 <view class='blockCon'>
-  <view class='lineCon'><view class='rowBlue'></view>拓展</view>
+  <view class='lineCon'>
+    <view class='rowBlue'></view>
+    <view>拓展</view>
+  </view>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/link/link" data-checkuser="1" bindtap='jump'>
       <image src='/vector/img/link.svg' class='imgIcon'></image>

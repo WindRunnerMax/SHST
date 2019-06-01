@@ -32,6 +32,7 @@ page{
   overflow: hidden;
   padding: 10px 0px;
   border-bottom: 1px solid #eee;
+  width: 100%;
 }
 
 .copy{

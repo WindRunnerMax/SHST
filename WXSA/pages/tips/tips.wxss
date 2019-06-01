@@ -68,15 +68,14 @@ page{
 }
 
 .unitTable{
-  padding: 3px;
   width: calc(100% - 6px);
   display: flex;
   flex-wrap: wrap;
   color: #fff;
   font-size: 15px; 
   margin: 5px 0;
-  height: 50px;
-  line-height: 50px;
+  padding: 17px 3px;
+  line-height: 23px;
   border-radius: 3px;
 }
 

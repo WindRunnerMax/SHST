@@ -10,7 +10,7 @@ Page({
   },
   flagChange(e){
     var flagIndex = parseInt(e.currentTarget.dataset.index);
-    this.data.flag[flagIndex] = this.data.flag[flagIndex] === 'none' ? "block" : "none";
+    this.data.flag[flagIndex] = this.data.flag[flagIndex] === 'none' ? "flex" : "none";
     this.setData({
       flag: this.data.flag
     })

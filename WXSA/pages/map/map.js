@@ -5,10 +5,14 @@ Page({
    * Page initial data
    */
   data: {
-    longitude: 116.4965075,
-    latitude: 40.006103,
+    longitude: 120.12487,
+    latitude: 35.99940,
     speed: 0,
-    accuracy: 0
+    accuracy: 0,
+    info:"定位中",
+    point: "#FFB800",
+    showLongitude: 120.124870,
+    showLatitude: 35.999400
   },
   //事件处理函数
   bindViewTap: function() {
@@ -16,9 +20,6 @@ Page({
   },
   onLoad: function() {
       var that = this
-      wx.showLoading({
-        title: "定位中"
-      })
       wx.getLocation({
         type: 'gcj02',
         // altitude: true, //高精度定位
@@ -33,21 +34,20 @@ Page({
             longitude: longitude,
             latitude: latitude,
             speed: speed,
-            accuracy: accuracy
+            accuracy: accuracy, 
+            info: "定位成功",
+            point: "#009688",
+            showLongitude: longitude.toFixed(6),
+            showLatitude: latitude.toFixed(6)
           })
         },
         //定位失败回调
         fail: function() {
-          wx.showToast({
-            title: "定位失败",
-            icon: "none"
+          that.setData({
+            info: "定位失败",
+            point: "#FF5722"
           })
-        },
-
-        complete: function() {
-          //隐藏定位中信息进度
-          wx.hideLoading();
-        },
+        }
       })
     }
 

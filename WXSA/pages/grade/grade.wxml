@@ -1,12 +1,15 @@
 <view class='lineCon'>
-  <view class='rowBlue'></view>查成绩</view>
+  <view class='rowBlue'></view>
+  <view>查成绩</view>
+</view>
 <view class="section">
   <picker bindchange="bindPickerChange" range="{{array}}" range-key="show">
     <view class="picker">{{defaultOpt}}</view>
   </picker>
 </view>
 <view wx:if="{{show === 1}}">
-  <view class='lineCon'><view class='rowBlue'></view>{{defaultOpt}}</view>
+  <view class='lineCon'>
+    <view class='rowBlue'></view>{{defaultOpt}}</view>
   <view wx:for="{{grade}}" wx:key="{{index}}">
     <view class='card'>
       <view>{{item.kcmc}}</view>

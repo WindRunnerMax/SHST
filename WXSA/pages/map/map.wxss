@@ -19,3 +19,29 @@ cover-view{
   color: #666;
   border-radius: 3px;
 }
+
+.tips{
+  border:1px solid #eee;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+  background: #eee;
+  color: #666;
+  font-size: 15px;
+  border-radius: 3px;
+}
+
+.tips view{
+  margin-left: 5px;
+  align-self: center;
+}
+
+.point{
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+}
+
+.loc{
+  line-height: 20px;
+}

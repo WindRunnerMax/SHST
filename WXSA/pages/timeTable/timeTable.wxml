@@ -1,4 +1,7 @@
-<view class='lineCon'><view class='rowBlue'></view>课表</view>
+<view class='lineCon'>
+  <view class='rowBlue'></view>
+  <view>课表</view>
+</view>
 <view class='tableTop'>
   <view class='week'>第{{week}}周</view>
   <view style='display:flex;'>

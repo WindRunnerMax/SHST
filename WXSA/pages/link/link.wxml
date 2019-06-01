@@ -1,9 +1,12 @@
 <!--pages/about/about.wxml-->
-<view>
-  <view class='lineCon'><view class='rowBlue'></view>链接分享(点击复制)</view>
+<view style='width:100%;'>
+  <view class='lineCon'>
+    <view class='rowBlue'></view>
+    <view>链接分享(点击复制)</view>
+  </view>
   <view wx:for="{{data}}" wx:key="{{index}}">
     <view class='infoCon'>
-      <view data-copy='{{item.url}}' bindtap='copy' >{{item.name}}:{{item.url}}</view>
+      <view data-copy='{{item.url}}' bindtap='copy'>{{item.name}}:{{item.url}}</view>
     </view>
   </view>
 </view>

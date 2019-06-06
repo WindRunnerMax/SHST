@@ -15,3 +15,7 @@ page{
   text-align: center;
   color: #79B2F9;
 }
+
+.vocation{
+  color: red;
+}

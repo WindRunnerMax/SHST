@@ -37,6 +37,8 @@ page{
   width: calc(100% - 22px);
   padding: 10px;
   line-height: 27px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.123);
+  margin-bottom: 5px;
 }
 
 .card:first-line {

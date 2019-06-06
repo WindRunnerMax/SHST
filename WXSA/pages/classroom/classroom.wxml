@@ -23,7 +23,9 @@
 </view>
 <view wx:if='{{show === 1}}'>
   <view class='lineCon'>
-    <view class='rowBlue'></view>{{qShow}}</view>
+    <view class='rowBlue'></view>
+    <view>{{qShow}}</view>
+  </view>
   <view wx:for='{{room}}' wx:key="{{index}}">
     <view data-index='{{index}}' bindtap='flagChange' class='optShow'>{{item.jxl}}</view>
     <view style='display:{{flag[index]}};' class="roomCon">

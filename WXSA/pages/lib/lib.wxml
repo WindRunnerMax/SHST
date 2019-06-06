@@ -9,12 +9,17 @@
   </view>
 </view>
 <view wx:for="{{info}}" wx:key="{{index}}">
-  <view class='card'>
-    <view>{{item[0]}}</view>
-    <view>{{item[1]}}</view>
-    <view>{{item[2]}}</view>
-    <view>{{item[3]}}</view>
-    <view bindtap='jump' data-id="{{item[4]}}" class='asse-btn asse-btn-blue  asse-btn-small'>详细信息</view>
+  <view class='card' style='display:flex;justify-content: space-between;' bindtap='jump' data-id="{{item[4]}}">
+    <view class='leftInfo'>
+      <view>{{item[0]}}</view>
+      <view>{{item[1]}}</view>
+      <view>{{item[2]}}</view>
+      <view>{{item[3]}}</view>
+    </view>
+    <view class='rightJump'>
+      <view> > </view>
+    </view>
+
   </view>
 </view>
 <view class='operat' wx:if="{{show === 1}}">

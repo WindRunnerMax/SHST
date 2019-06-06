@@ -20,4 +20,9 @@
     <view data-copy='https://github.com/WindrunnerMax/SW' bindtap='copy'>项目开源地址:https://github.com/WindrunnerMax/SW</view>
   </view>
 
+  <view class='infoCon'>
+    <view> 大佬们点下广告呗 ～(￣▽￣～)~ </view>
+    <ad unit-id="adunit-31c347091893cf0c"></ad>
+  </view>
+
 </view>

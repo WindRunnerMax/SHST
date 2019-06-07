@@ -1,12 +1,12 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var openid = "";
 
 Page({
   data: {
     account: "",
     password: "",
-    openid: "",
     status:""
   },
   accountInput: function(e) {
@@ -30,10 +30,11 @@ Page({
         method: 'POST',
         data: {
           "account": that.data.account,
-          "password": that.data.password,
-          "openid": that.data.openid
+          "password": encodeURIComponent(that.data.password),
+          "openid": openid
         },
         fun: function(res) {
+          wx.hideLoading();
           console.log(res.data)
           if (res.data.Message == "No") {
             that.setData({
@@ -87,18 +88,19 @@ Page({
             "code": res.code
           },
           fun: function(data) {
+            wx.hideToast();
             if (data.data.Message === "Yes") {
-              var openid = data.data.openid;
+              openid = data.data.openid;
               that.setData({
-                openid: openid,
                 tips:1
+              })
+              wx.setStorage({
+                key: 'flag',
+                data: '0'
               })
               app.globalData.header.Cookie = 'PHPSESSID=' + data.data.PHPSESSID;
             } else if (data.data.Message === "Ex") {
-              var openid = data.data.openid;
-              that.setData({
-                openid: openid
-              })
+              openid = data.data.openid;
               app.globalData.header.Cookie = 'PHPSESSID=' + data.data.PHPSESSID;
               if (!e.status) {
                 wx.setStorage({
@@ -112,9 +114,14 @@ Page({
                   }
                 })
               }
-
-            } else if (data.data.Message === "Non") {
+            } else if (data.data.Message === "NoN") {
               app.toast(data.data.info);
+              openid = data.data.openid;
+              app.globalData.header.Cookie = 'PHPSESSID=' + data.data.PHPSESSID;
+              that.setData({
+                tips: 1,
+                status: data.data.info
+              })
             } else {
               app.toast("获取用户信息失败");
             }

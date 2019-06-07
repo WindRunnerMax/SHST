@@ -17,7 +17,7 @@ page{
   justify-content:  center ;
 }
 .optShow{
-  border: 1px solid #eee;
+  border-bottom: 1px solid #eee;
   padding: 0 10px;
   font-size: 14px;
   line-height: 35px;

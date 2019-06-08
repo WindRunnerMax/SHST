@@ -15,7 +15,9 @@
     "pages/borrow/borrow",
     "pages/canlendar/calendar",
     "pages/link/link",
-    "pages/map/map"
+    "pages/map/map",
+    "pages/event/event",
+    "pages/vacation/vacation"
   ],
   "tabBar": {
     "list": [

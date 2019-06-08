@@ -1,7 +1,6 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var openid = "";
 
 Page({
   data: {
@@ -31,7 +30,7 @@ Page({
         data: {
           "account": that.data.account,
           "password": encodeURIComponent(that.data.password),
-          "openid": openid
+          "openid": app.globalData.openid
         },
         fun: function(res) {
           wx.hideLoading();
@@ -88,9 +87,12 @@ Page({
             "code": res.code
           },
           fun: function(data) {
-            wx.hideToast();
+            if (data.data.openid && data.data.PHPSESSID){
+              console.log(data.data.openid);
+              app.globalData.openid = data.data.openid;
+              app.globalData.header.Cookie = 'PHPSESSID=' + data.data.PHPSESSID;
+            }
             if (data.data.Message === "Yes") {
-              openid = data.data.openid;
               that.setData({
                 tips:1
               })
@@ -98,10 +100,7 @@ Page({
                 key: 'flag',
                 data: '0'
               })
-              app.globalData.header.Cookie = 'PHPSESSID=' + data.data.PHPSESSID;
             } else if (data.data.Message === "Ex") {
-              openid = data.data.openid;
-              app.globalData.header.Cookie = 'PHPSESSID=' + data.data.PHPSESSID;
               if (!e.status) {
                 wx.setStorage({
                   key: 'flag',
@@ -116,8 +115,6 @@ Page({
               }
             } else if (data.data.Message === "NoN") {
               app.toast(data.data.info);
-              openid = data.data.openid;
-              app.globalData.header.Cookie = 'PHPSESSID=' + data.data.PHPSESSID;
               that.setData({
                 tips: 1,
                 status: data.data.info
@@ -127,6 +124,28 @@ Page({
             }
           }
         })
+      },
+      fail: () => {
+        wx.showModal({
+          title: '用户未授权',
+          content: '用户未授权，无法正常使用小程序的功能，点击确定重新设置授权',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              wx.openSetting({
+                success: function (res) {
+                  if (!res.authSetting["scope.userInfo"] || !res.authSetting["scope.userLocation"]) {
+                    // that.onLoad();
+                    console.log("SUCCESS");
+                  }
+                }
+              })
+            }
+          }
+        })
+      },
+      complete : () => {
+        wx.hideToast();
       }
     })
   },

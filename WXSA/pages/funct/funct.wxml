@@ -55,6 +55,10 @@
       <image src='/vector/img/calendar.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>校历</view>
     </view>
+    <view class='fun' data-jumpurl="/pages/vacation/vacation" data-checkuser="1" bindtap='jump'>
+      <image src='/vector/img/vacation.svg' class='imgIcon'></image>
+      <view style='margin:8px 0;'>放假安排</view>
+    </view>
   </view>
 </view>
 

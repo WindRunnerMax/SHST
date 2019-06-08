@@ -38,7 +38,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 15,
 			"list": [
 				{
 					"id": -1,
@@ -128,6 +128,21 @@
 					"id": -1,
 					"name": "map",
 					"pathName": "pages/map/map",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "vacation",
+					"pathName": "pages/vacation/vacation",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 15,
+					"name": "event",
+					"pathName": "pages/event/event",
+					"query": "",
 					"scene": null
 				}
 			]

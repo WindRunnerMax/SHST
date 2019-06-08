@@ -7,6 +7,7 @@ App({
       'Cookie': '', //PHPSESSID
       'content-type': 'application/x-www-form-urlencoded'
     },
+    openid:""
   },
   extend: function() {
     var aLength = arguments.length;

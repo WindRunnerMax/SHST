@@ -17,6 +17,7 @@
     "pages/link/link",
     "pages/map/map",
     "pages/event/event",
+    "pages/finEvent/finEvent",
     "pages/vacation/vacation"
   ],
   "tabBar": {

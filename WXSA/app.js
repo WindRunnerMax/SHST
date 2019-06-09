@@ -70,7 +70,9 @@ app.extend({
       url: "",
       method: "GET",
       data: {},
-      fun: function (res) { }
+      fun: function (res) {},
+      fail: function (res) {app.toast("服务器错误");},
+      complete : function(res) {}
     };
     this.extend(option, requestInfo);
 
@@ -97,14 +99,13 @@ app.extend({
       method: option.method,
       header: app.globalData.header,
       success: suc,
-      fail: res => {
-        app.toast("服务器错误");
-      },
+      fail: option.fail,
       complete: function () {
         if (option.load === 1) wx.hideNavigationBarLoading();
         else if (option.load === 2) {
           wx.hideLoading();
         }
+        option.complete();
       }
     })
   }

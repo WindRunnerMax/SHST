@@ -24,7 +24,7 @@
   </view>
 </view>
 
-<view class='lineBlock' style='margin-top:20px;display:flex;'>
+<view class='lineBlock' style='margin-top:15px;display:flex;'>
   <view class='rowBlue'></view>
   <view>今日课程</view>
 </view>
@@ -41,4 +41,27 @@
 </view>
 <view class='unitTableNo' style='background:#eee;' wx:if="{{table.length === 0}}">
   <view>{{tips}}</view>
+</view>
+
+<view class='lineBlock' style='margin-top:15px;display:flex;'>
+  <view class='rowBlue'></view>
+  <view>待办事项</view>
+</view>
+<view wx:for="{{todoList}}" wx:key="{{index}}">
+  <view class='unitTodo' style='background:{{item.color}};'>
+    <view class='mainLeft'>
+      <view class='content'>{{item.event_content}}</view>
+      <view style='display:flex; align-items: center;'>
+        <view class='date'>{{item.todo_time}}</view>
+        <view class='diff'>{{item.diff}}天</view>
+      </view>
+    </view>
+    <view class='mainRight'>
+      <image src='/vector/img/banner.svg' class='img' bindtap='setStatus' data-id="{{item.id}}" data-index="{{index}}"></image>
+    </view>
+  </view>
+</view>
+
+<view class='unitTodoNo' style='background:#eee;' wx:if="{{tips2 !== ''}}">
+  <view>{{tips2}}</view>
 </view>

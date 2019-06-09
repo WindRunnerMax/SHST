@@ -52,11 +52,11 @@ page{
 }
 
 .lineBlock{
-  font-size: 18px; 
-  padding-bottom: 6px; 
+  font-size: 16px; 
+  padding-bottom: 5px; 
   border-bottom: 1px solid #eee;
   width: 100%; 
-  margin-bottom: 6px; 
+  margin-bottom: 5px; 
   transition: all 0.3s;
 }
 
@@ -99,4 +99,78 @@ page{
 
 .unitTableNo view{
   margin-left:5px; 
+}
+
+.unitTodo{
+  width: calc(100% - 16px);
+  display: flex;
+  color: #fff;
+  font-size: 15px; 
+  margin: 5px 0;
+  padding: 15px 8px;
+  line-height: 20px;
+  border-radius: 3px;
+  background:#ACA4D5;
+  justify-content: space-between;
+}
+
+.unitMain{
+  display: flex;
+  justify-content: space-between;
+}
+
+.content{
+  font-size: 16px;
+  word-break: break-all;
+}
+
+.date{
+  margin-top: 3px;
+  font-size: 12px;
+}
+
+.mainRight{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.diff{
+  margin-top: 3px;
+  margin-left: 15px;
+  font-size: 12px;
+  align-self: center;
+}
+
+.img{
+  padding: 4px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 1px solid #fff;
+  border-radius: 20px;  
+}
+
+.unitTodoNo{
+  padding: 3px;
+  width: calc(100% - 6px);
+  display: flex;
+  flex-wrap: wrap;
+  color: #666;
+  font-size: 15px; 
+  margin: 5px 0;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 3px;
+  justify-content: center;
+}
+
+.unitTodoNo view{
+  margin-left:5px; 
+}
+
+.overUnit{
+  padding: 7px 10px;
+  border-radius: 3px;
+  margin-left: 20px;
 }

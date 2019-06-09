@@ -26,76 +26,50 @@ function dateDiff(startDateString, endDateString, content) {
   var color = colorList[md5.hexMD5(content)[0].charCodeAt() % colorN]
   var diff = parseInt((endDate - startDate) / 1000 / 60 / 60 / 24); //把相差的毫秒数转换为天数
   if (diff === 0) diff = "今";
-  else if (diff < 0) diff = "超期" + Math.abs(diff);
+  else if (diff < 0) diff = "已过" + Math.abs(diff);
   else diff = "距今" + Math.abs(diff);
   return [diff, color];
 }
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    todayWeather: ["", "CLEAR_DAY", 0, 0, "数据获取中"],
-    tomorrowWeather: ["", "CLEAR_DAY", 0, 0],
-    tdatomoWeather: ["", "CLEAR_DAY", 0, 0],
-    tips:"",
+    addContent: "",
+    dataDo: getNowFormatDate(1), //默认起始时间  
+    dataEnd: getNowFormatDate(2), //默认结束时间 
     todoList: [],
-    tips2: ""
+    clickFlag: 1,
+    tips: "",
+    count: 0
   },
-  onLoad: function(options) {
-    var that = this;
-    if (app.globalData.userFlag === 0){
-      that.setData({
-        table: [],
-        tips: "游客模式"
-      })
-    }else{
-      app.ajax({
-        load: 1,
-        url: app.globalData.url + 'funct/sw/tableToday',
-        fun: function(res) {
-          console.log(res.data)
-          if (res.data.Message === "Yes") {
-            that.setData({
-              table: res.data.data ? res.data.data : [],
-              tips:"No Class Today"
-            })
-          } else {
-            app.toast("ERROR");
-          }
-        }
-      })
-    }
-    var ran = parseInt(Math.random() * 100000000000);
-    app.ajax({
-      url: "https://api.caiyunapp.com/v2/Y2FpeXVuIGFuZHJpb2QgYXBp/120.127164,36.000129/weather?lang=zh_CN&device_id=" + ran,
-      fun: function(res) {
-        if (res.data.status === "ok") {
-          var weatherData = res.data.result.daily;
-          that.setData({
-            todayWeather: [weatherData.skycon[0].date, weatherData.skycon[0].value, weatherData.temperature[0].min, weatherData.temperature[0].max, res.data.result.hourly.description],
-            tomorrowWeather: [weatherData.skycon[1].date, weatherData.skycon[1].value, weatherData.temperature[1].min, weatherData.temperature[1].max, ],
-            tdatomoWeather: [weatherData.skycon[2].date, weatherData.skycon[2].value, weatherData.temperature[2].min, weatherData.temperature[2].max, ]
-          })
-        } else {
-          app.toast("WEATHER ERROR");
-        }
-      }
+  addInput: function (e) {
+    this.data.addContent = e.detail.value;
+  },
+  dateChange(e) {
+    this.setData({
+      dataDo: e.detail.value
     })
-
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
     if (app.globalData.openid === "") {
       this.setData({
-        tips2: "未正常获取用户信息"
+        tips: "未正常获取用户信息"
       })
     } else {
       app.ajax({
-        url: app.globalData.url + "funct/todo/getevent",
+        url: app.globalData.url + "funct/todo/getFinEvent",
         fun: res => {
           if (res.data.data) {
             if (res.data.data.length === 0) {
               this.setData({
-                tips2: "暂没有待办事项"
+                tips: "暂没有已完成事项"
               })
               return;
             }
@@ -115,18 +89,18 @@ Page({
         }
       })
     }
-  }, 
+  },
   setStatus(e) {
     var that = this;
     wx.showModal({
       title: '提示',
-      content: '确定标记为已完成吗',
+      content: '确定标记为未完成吗',
       success: function (choice) {
         if (choice.confirm) {
           var index = e.currentTarget.dataset.index;
           var id = e.currentTarget.dataset.id;
           app.ajax({
-            url: app.globalData.url + "funct/todo/setStatus",
+            url: app.globalData.url + "funct/todo/setNoFinStatus",
             method: "POST",
             data: {
               id: id
@@ -136,7 +110,7 @@ Page({
               that.data.todoList.splice(index, 1);
               that.setData({
                 todoList: that.data.todoList,
-                tips2: that.data.todoList.length === 0 ? "暂没有待办事项" : "",
+                tips: that.data.todoList.length === 0 ? "暂没有已完成事项" : "",
                 count: that.data.count - 1
               })
             }
@@ -145,56 +119,86 @@ Page({
       }
     })
   },
-  // onPullDownRefresh() {
-  //   this.onLoad();
-  //   wx.stopPullDownRefresh();
-  // },
+  deleteUnit(e) {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定删除吗',
+      success: function (choice) {
+        if (choice.confirm) {
+          var index = e.currentTarget.dataset.index;
+          var id = e.currentTarget.dataset.id;
+          app.ajax({
+            url: app.globalData.url + "funct/todo/deleteUnit",
+            method: "POST",
+            data: {
+              id: id
+            },
+            fun: res => {
+              app.toast("删除成功");
+              that.data.todoList.splice(index, 1);
+              that.setData({
+                todoList: that.data.todoList,
+                tips: that.data.todoList.length === 0 ? "暂没有已完成事项" : "",
+                count: that.data.count - 1
+              })
+            }
+          })
+        }
+      }
+    })
+  },
+  jump() {
+    wx.navigateTo({
+      url: "/pages/finEvent/finEvent"
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

@@ -59,8 +59,6 @@
             <view class='timetableHideTop'></view>
           </view>
 
-
-
         </view>
         <view wx:else>
           <view class='timetableHide'></view>

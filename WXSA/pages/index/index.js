@@ -9,14 +9,16 @@ Page({
     status:""
   },
   accountInput: function(e) {
-    this.setData({
-      account: e.detail.value
-    })
+    this.data.account = e.detail.value;
+    // this.setData({
+    //   account: e.detail.value
+    // })
   },
   passwordInput: function(e) {
-    this.setData({
-      password: e.detail.value
-    })
+    this.data.password = e.detail.value;
+    // this.setData({
+    //   password: e.detail.value
+    // })
   },
   enter: function(e) {
     var that = this;

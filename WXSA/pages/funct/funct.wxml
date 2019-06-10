@@ -78,4 +78,9 @@
     </view>
   </view>
 </view>
-<!-- <ad unit-id="adunit-31c347091893cf0c"></ad> -->
+
+<view class='blockCon' wx:if="{{adShow === 1}}">
+  <view class='lineCon'></view>
+  <ad unit-id="adunit-ce81890e6ff0b2a7" binderror="adError"></ad>
+</view>
+

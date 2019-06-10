@@ -6,7 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    adShow : 1
+  },
+  adError(){
+    this.setData({
+      adShow : 0
+    })
   },
   jump(e){
     if (!app.globalData.userFlag && e.currentTarget.dataset.checkuser === "0"){

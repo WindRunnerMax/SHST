@@ -106,6 +106,7 @@ Page({
               value.color = diff_color[1];
               return value;
             })
+            res.data.data.sort((a, b) => { return a.todo_time > b.todo_time ? 1 : -1 ;});
             console.log(res.data.data);
             that.setData({
               todoList: res.data.data,

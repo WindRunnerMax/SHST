@@ -74,6 +74,7 @@ Page({
       key: 'flag',
       success(res) {
         if (res.data === '1') {
+          console.log("LOAD");
           app.toast("登录中", 5000, 'loading');
         }
       }
@@ -95,6 +96,7 @@ Page({
               app.globalData.header.Cookie = 'PHPSESSID=' + data.data.PHPSESSID;
             }
             if (data.data.Message === "Yes") {
+              wx.hideToast();
               that.setData({
                 tips:1
               })
@@ -116,18 +118,21 @@ Page({
                 })
               }
             } else if (data.data.Message === "NoN") {
+              wx.hideToast();
               app.toast(data.data.info);
               that.setData({
                 tips: 1,
                 status: data.data.info
               })
             } else {
+              wx.hideToast();
               app.toast("获取用户信息失败");
             }
           }
         })
       },
       fail: () => {
+        wx.hideToast();
         wx.showModal({
           title: '用户未授权',
           content: '用户未授权，无法正常使用小程序的功能，点击确定重新设置授权',
@@ -145,9 +150,6 @@ Page({
             }
           }
         })
-      },
-      complete : () => {
-        wx.hideToast();
       }
     })
   },

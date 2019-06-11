@@ -32,7 +32,7 @@
   <!-- <view wx:for="{{item}}" wx:key="{{index}}" wx:for-item="inner" wx:for-index="innerIndex">
     <view wx:if="{{innerIndex === 2}}">{{inner}}</view>
   </view> -->
-  <view class='unitTable' style='background:{{item[5]}};'>
+  <view class='unitTable' style='background:{{item[5]}};' wx:if="{{item}}">
     <view>第{{2*(item[1] + 1) - 1}}{{2*(item[1] + 1)}}节</view>
     <view>{{item[2]}}</view>
     <view>{{item[4]}}</view>

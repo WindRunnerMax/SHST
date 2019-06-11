@@ -8,7 +8,6 @@
       <view class='content'>{{item.event_content}}</view>
       <view style='display:flex; align-items: center;'>
         <view class='date'>{{item.todo_time}}</view>
-        <view class='diff'>{{item.diff}}天</view>
       </view>
     </view>
     <view class='mainRight'>

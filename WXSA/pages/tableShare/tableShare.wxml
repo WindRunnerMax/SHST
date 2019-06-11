@@ -43,7 +43,7 @@
         <view class='tableUnitCon' wx:if="{{(data.succ.timetable1[inner] && data.succ.timetable1[inner][item]) || (data.succ.timetable2[inner] && data.succ.timetable2[inner][item])}}">
 
           <view wx:if="{{(data.succ.timetable2[inner] && data.succ.timetable2[inner][item])}}" class='timetableHideBot' style='background:rgb(100, 149, 237);'>
-            <view>{{data.succ.timetable2[inner][item][3]}}</view>
+            <view>{{data.succ.timetable2[inner][item][2]}}</view>
             <view>{{data.succ.timetable2[inner][item][4]}}</view>
           </view>
           <view wx:else>
@@ -52,7 +52,7 @@
 
 
           <view wx:if="{{(data.succ.timetable1[inner] && data.succ.timetable1[inner][item])}}" class='timetableHideTop' style='background:rgb(234, 167, 140);}}'>
-            <view>{{data.succ.timetable1[inner][item][3]}}</view>
+            <view>{{data.succ.timetable1[inner][item][2]}}</view>
             <view>{{data.succ.timetable1[inner][item][4]}}</view>
           </view>
           <view wx:else>

@@ -14,9 +14,9 @@ Page({
     var that = this;
     app.ajax({
       load: 1,
-      url: app.globalData.url + 'funct/sw/table' + urlTemp,
+      url: app.globalData.url + 'funct/sw/signalTable' + urlTemp,
       fun: function (res) {
-        console.log(res.data)
+        res.data.data = app.tableDispose(res.data.data);
         if (res.data.Message === "Yes") {
           that.setData({
             table: res.data.data,

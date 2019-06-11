@@ -7,7 +7,8 @@ App({
       'Cookie': '', //PHPSESSID
       'content-type': 'application/x-www-form-urlencoded'
     },
-    openid:""
+    openid:"",
+    colorList: ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"],
   },
   extend: function() {
     var aLength = arguments.length;
@@ -50,11 +51,15 @@ App({
 })
 
 const app = getApp();
+const md5 = require('/vector/md5.js');
+app.globalData.colorN = app.globalData.colorList.length;
 
 //拓展app功能
 app.extend({
 
-  //弹窗
+  /**
+   * 弹窗
+   */
   toast: function (e, time = 2000, icon = 'none') {
     wx.showToast({
       title: e,
@@ -63,7 +68,9 @@ app.extend({
     })
   },
 
-  //封装请求
+  /**
+   * 封装请求
+   */
   ajax: function (requestInfo) {
     var option = {
       load: 1,
@@ -75,7 +82,6 @@ app.extend({
       complete : function(res) {}
     };
     this.extend(option, requestInfo);
-
     if (option.load === 1) {
       wx.showNavigationBarLoading();
     } else if (option.load === 2) {
@@ -83,7 +89,6 @@ app.extend({
         title: '请求中',
       })
     }
-
     var suc = function (res) {
       try {
         option.fun(res);
@@ -92,7 +97,6 @@ app.extend({
         console.log(e);
       }
     }
-
     wx.request({
       url: option.url,
       data: option.data,
@@ -108,6 +112,34 @@ app.extend({
         option.complete();
       }
     })
+  },
+
+  /**
+   * 统一处理课表功能
+   */
+  tableDispose:function(info ,flag = 0){
+    var tableArr = [];
+    const week = new Date().getDay() - 1;
+    info.forEach(value => {
+      if(!value) return ;
+      var arrInner = [];
+      var day = parseInt(value.kcsj[0]) - 1;
+      if(flag === 1 && day !== week) return ;
+      var knot = parseInt(parseInt(value.kcsj.substr(1,2)) / 2);
+      var md5Str = md5.hexMD5(value.kcmc);
+      var colorSignal = app.globalData.colorList[Math.abs((md5Str[0].charCodeAt() - md5Str[3].charCodeAt())) % app.globalData.colorN];
+      arrInner.push(day);
+      arrInner.push(knot);
+      arrInner.push(value.kcmc.split("（")[0]);
+      arrInner.push(value.jsxm);
+      arrInner.push(value.jsmc);
+      arrInner.push(colorSignal);
+      if(!tableArr[day]) tableArr[day] = [];
+      tableArr[day][knot] = arrInner;
+    })
+    console.log(week)
+    if (flag === 1) return tableArr[week];
+    else return tableArr;
   }
 
 });

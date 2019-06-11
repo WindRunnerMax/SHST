@@ -1,8 +1,8 @@
 // pages/event/event.js
 const app = getApp()
 const md5 = require('../../vector/md5.js');
-const colorList = ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"];
-const colorN = colorList.length;
+const colorList = app.globalData.colorList;
+const colorN = app.globalData.colorN;
 
 function getNowFormatDate(id) {
   var date = new Date();

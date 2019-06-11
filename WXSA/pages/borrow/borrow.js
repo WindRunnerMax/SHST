@@ -30,11 +30,21 @@ Page({
     }
     var that = this;
     app.ajax({
-      url: app.globalData.url + "funct/lib/libquery",
+      url: app.globalData.url + "funct/lib/signalLibquery",
       fun: res => {
-        if (res.data.libInfo){
+        if (res.data.Message === "Yes"){
+          var infoArr = [];
+          res.data.info.match(/<li>[\s\S]*?<\/li>/g).forEach(value => {
+            var infoArrInner = [];
+            infoArrInner.push(value.match(/<h3>.*?<\/h3>/)[0].replace(/[<h3>]|[<\/h3>]/g,""));
+            value.match(/<p.*?>[\s\S]*?<\/p>/g).forEach(value2 => {
+              infoArrInner.push(value2.replace(/[<.*?p.*?>]|[<\/p.*?>]/g,""));
+            })
+            infoArr.push(infoArrInner);
+          })
+          console.log(infoArr);
           that.setData({
-            data: res.data.libInfo
+            data: infoArr
           })
         }else{
           app.toast("响应超时");

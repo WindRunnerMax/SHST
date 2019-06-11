@@ -9,12 +9,12 @@
   </view>
 </view>
 <view wx:for="{{info}}" wx:key="{{index}}">
-  <view class='card' style='display:flex;justify-content: space-between;' bindtap='jump' data-id="{{item[4]}}">
+  <view class='card' style='display:flex;justify-content: space-between;' bindtap='jump' data-id="{{item.id}}">
     <view class='leftInfo'>
-      <view>{{item[0]}}</view>
-      <view>{{item[1]}}</view>
-      <view>{{item[2]}}</view>
-      <view>{{item[3]}}</view>
+      <view>{{item.infoList[0]}}</view>
+      <view>{{item.infoList[1]}}</view>
+      <view>{{item.infoList[2]}}</view>
+      <view>{{item.infoList[3]}}</view>
     </view>
     <view class='rightJump'>
       <view> > </view>

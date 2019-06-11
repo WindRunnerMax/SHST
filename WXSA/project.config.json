@@ -38,7 +38,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 16,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -96,7 +96,8 @@
 					"id": 8,
 					"name": "libDetail",
 					"pathName": "pages/libDetail/libDetail",
-					"query": "id=1900993175"
+					"query": "id=1000002536",
+					"scene": null
 				},
 				{
 					"id": -1,

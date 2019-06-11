@@ -8,7 +8,8 @@ Page({
   data: {
     adShow : 1
   },
-  adError(){
+  adError(e){
+    console.log(e);
     this.setData({
       adShow : 0
     })

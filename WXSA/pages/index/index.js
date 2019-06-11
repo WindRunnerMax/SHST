@@ -6,7 +6,7 @@ Page({
   data: {
     account: "",
     password: "",
-    status:""
+    status: ""
   },
   accountInput: function(e) {
     this.data.account = e.detail.value;
@@ -90,15 +90,27 @@ Page({
             "code": res.code
           },
           fun: function(data) {
-            if (data.data.openid && data.data.PHPSESSID){
+            if (data.data.openid && data.data.PHPSESSID) {
               console.log(data.data.openid);
               app.globalData.openid = data.data.openid;
               app.globalData.header.Cookie = 'PHPSESSID=' + data.data.PHPSESSID;
+              wx.setStorage({
+                key: 'openid',
+                data: data.data.openid
+              })
+            }
+            if (!data.data.openid) {
+              wx.getStorage({
+                key: 'openid',
+                success: res => {
+                  app.globalData.openid = res.data;
+                }
+              })
             }
             if (data.data.Message === "Yes") {
               wx.hideToast();
               that.setData({
-                tips:1
+                tips: 1
               })
               wx.setStorage({
                 key: 'flag',
@@ -137,10 +149,10 @@ Page({
           title: '用户未授权',
           content: '用户未授权，无法正常使用小程序的功能，点击确定重新设置授权',
           showCancel: false,
-          success: function (res) {
+          success: function(res) {
             if (res.confirm) {
               wx.openSetting({
-                success: function (res) {
+                success: function(res) {
                   if (!res.authSetting["scope.userInfo"] || !res.authSetting["scope.userLocation"]) {
                     // that.onLoad();
                     console.log("SUCCESS");
@@ -153,7 +165,7 @@ Page({
       }
     })
   },
-  viewInfo(){
+  viewInfo() {
     wx.switchTab({
       url: '/pages/tips/tips'
     })

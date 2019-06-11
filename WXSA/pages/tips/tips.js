@@ -39,9 +39,9 @@ Page({
     todayWeather: ["", "CLEAR_DAY", 0, 0, "数据获取中"],
     tomorrowWeather: ["", "CLEAR_DAY", 0, 0],
     tdatomoWeather: ["", "CLEAR_DAY", 0, 0],
-    tips:"",
+    tips:"数据加载中",
     todoList: [],
-    tips2: ""
+    tips2: "数据加载中"
   },
   onLoad: function(options) {
     var that = this;
@@ -59,10 +59,13 @@ Page({
           if (res.data.Message === "Yes") {
             that.setData({
               table: res.data.data ? res.data.data : [],
-              tips:"No Class Today"
+              tips: res.data.data ? "" : "No Class Today"
             })
           } else {
             app.toast("ERROR");
+            that.setData({
+              tips: "加载失败"
+            })
           }
         }
       })
@@ -85,7 +88,7 @@ Page({
     })
 
     if (app.globalData.openid === "") {
-      this.setData({
+      that.setData({
         tips2: "未正常获取用户信息"
       })
     } else {
@@ -94,10 +97,14 @@ Page({
         fun: res => {
           if (res.data.data) {
             if (res.data.data.length === 0) {
-              this.setData({
+              that.setData({
                 tips2: "暂没有待办事项"
               })
               return;
+            }else{
+              that.setData({
+                tips2: ""
+              })
             }
             var curData = getNowFormatDate(1);
             res.data.data.map(function (value) {
@@ -111,6 +118,10 @@ Page({
             that.setData({
               todoList: res.data.data,
               count: res.data.data.length
+            })
+          }else{
+            that.setData({
+              tips2: "加载失败"
             })
           }
         }

@@ -39,7 +39,7 @@
     <view>{{item[3]}}</view>
   </view>
 </view>
-<view class='unitTableNo' style='background:#eee;' wx:if="{{table.length === 0}}">
+<view class='unitTableNo' style='background:#eee;' wx:if="{{tips !== ''}}">
   <view>{{tips}}</view>
 </view>
 

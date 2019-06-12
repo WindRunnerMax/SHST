@@ -35,6 +35,8 @@ page{
   width: 100%;
 }
 
+
+
 .copy{
   margin-left: 10px;
   color:  #79B2F9;

@@ -79,7 +79,7 @@ Page({
       return ;
     }
     wx.navigateTo({
-      url: "/pages/libDetail/libDetail?id=" + e.currentTarget.dataset.id
+      url: "/pages/lib/libDetail/libDetail?id=" + e.currentTarget.dataset.id
     })
   },
 

@@ -1,6 +1,6 @@
 // pages/event/event.js
 const app = getApp()
-const md5 = require('../../vector/md5.js');
+const md5 = require('../../../vector/md5.js');
 const colorList = app.globalData.colorList;
 const colorN = app.globalData.colorN;
 
@@ -26,7 +26,7 @@ function dateDiff(startDateString, endDateString, content) {
   var color = colorList[md5.hexMD5(content)[0].charCodeAt() % colorN]
   var diff = parseInt((endDate - startDate) / 1000 / 60 / 60 / 24); //把相差的毫秒数转换为天数
   if (diff === 0) diff = "今";
-  else if (diff < 0) diff = "已过" + Math.abs(diff);
+  else if (diff < 0) diff = "超期" + Math.abs(diff);
   else diff = "距今" + Math.abs(diff);
   return [diff, color];
 }
@@ -45,7 +45,7 @@ Page({
     tips: "",
     count: 0
   },
-  addInput: function (e) {
+  addInput: function(e) {
     this.data.addContent = e.detail.value;
   },
   dateChange(e) {
@@ -56,7 +56,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
     if (app.globalData.openid === "") {
       this.setData({
@@ -64,17 +64,17 @@ Page({
       })
     } else {
       app.ajax({
-        url: app.globalData.url + "funct/todo/getFinEvent",
+        url: app.globalData.url + "funct/todo/getevent",
         fun: res => {
           if (res.data.data) {
             if (res.data.data.length === 0) {
               this.setData({
-                tips: "暂没有已完成事项"
+                tips: "暂没有待办事项"
               })
               return;
             }
             var curData = getNowFormatDate(1);
-            res.data.data.map(function (value) {
+            res.data.data.map(function(value) {
               var diff_color = dateDiff(curData, value.todo_time, value.event_content);
               value.diff = diff_color[0];
               value.color = diff_color[1];
@@ -90,17 +90,60 @@ Page({
       })
     }
   },
+  add() {
+    var that = this;
+    if (this.data.addContent === "") {
+      app.toast("事件内容不能为空");
+      return;
+    }
+    console.log(this.data.clickFlag);
+    if (this.data.clickFlag === 0) return;
+    this.data.clickFlag = 0;
+    app.ajax({
+      url: app.globalData.url + "funct/todo/addevent",
+      method: "POST",
+      data: {
+        content: that.data.addContent,
+        date: that.data.dataDo
+      },
+      fun: res => {
+        if (res.data.Message === "Yes") {
+          app.toast("添加成功");
+          var todoArr = that.data.todoList;
+          var curData = getNowFormatDate(1);
+          var diff_color = dateDiff(curData, that.data.dataDo, that.data.addContent);
+          todoArr.push({
+            event_content: that.data.addContent,
+            todo_time: that.data.dataDo,
+            diff: diff_color[0],
+            color: diff_color[1]
+          });
+          that.setData({
+            addContent: "",
+            todoList: todoArr,
+            tips: "",
+            count: that.data.count + 1
+          })
+        } else {
+          app.toast("ERROR");
+        }
+      },
+      complete() {
+        that.data.clickFlag = 1;
+      }
+    })
+  },
   setStatus(e) {
     var that = this;
     wx.showModal({
       title: '提示',
-      content: '确定标记为未完成吗',
-      success: function (choice) {
+      content: '确定标记为已完成吗',
+      success: function(choice) {
         if (choice.confirm) {
           var index = e.currentTarget.dataset.index;
           var id = e.currentTarget.dataset.id;
           app.ajax({
-            url: app.globalData.url + "funct/todo/setNoFinStatus",
+            url: app.globalData.url + "funct/todo/setStatus",
             method: "POST",
             data: {
               id: id
@@ -110,7 +153,7 @@ Page({
               that.data.todoList.splice(index, 1);
               that.setData({
                 todoList: that.data.todoList,
-                tips: that.data.todoList.length === 0 ? "暂没有已完成事项" : "",
+                tips: that.data.todoList.length === 0 ? "暂没有待办事项" : "",
                 count: that.data.count - 1
               })
             }
@@ -124,7 +167,7 @@ Page({
     wx.showModal({
       title: '提示',
       content: '确定删除吗',
-      success: function (choice) {
+      success: function(choice) {
         if (choice.confirm) {
           var index = e.currentTarget.dataset.index;
           var id = e.currentTarget.dataset.id;
@@ -139,7 +182,7 @@ Page({
               that.data.todoList.splice(index, 1);
               that.setData({
                 todoList: that.data.todoList,
-                tips: that.data.todoList.length === 0 ? "暂没有已完成事项" : "",
+                tips: that.data.todoList.length === 0 ? "暂没有待办事项" : "",
                 count: that.data.count - 1
               })
             }
@@ -148,57 +191,57 @@ Page({
       }
     })
   },
-  jump() {
+  jump(){
     wx.navigateTo({
-      url: "/pages/finEvent/finEvent"
+      url: "/pages/ext/finEvent/finEvent"
     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

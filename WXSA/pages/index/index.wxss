@@ -30,8 +30,10 @@ page{
 }
 
 .loginBtn{
-  width: calc(100% - 40px);
+  width:100%;
   margin-top: 20px;
+  border: none;
+  /* box-sizing:unset; */
 }
 
 .tips{

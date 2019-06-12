@@ -1,4 +1,4 @@
-<import src="../../vector/wxParse/wxParse.wxml" />
+<import src="../../../vector/wxParse/wxParse.wxml" />
 <view class='lineCon'>
   <view class='rowBlue'></view>
   <view>校历</view>

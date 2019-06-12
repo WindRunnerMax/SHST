@@ -1,24 +1,24 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
     "pages/tips/tips",
     "pages/funct/funct",
-    "pages/user/user",
-    "pages/timeTable/timeTable",
-    "pages/tableShare/tableShare",
-    "pages/about/about",
-    "pages/classroom/classroom",
-    "pages/grade/grade",
-    "pages/lib/lib",
-    "pages/libDetail/libDetail",
-    "pages/borrow/borrow",
-    "pages/canlendar/calendar",
-    "pages/link/link",
-    "pages/map/map",
-    "pages/event/event",
-    "pages/finEvent/finEvent",
-    "pages/vacation/vacation"
+    "pages/study/timeTable/timeTable",
+    "pages/study/tableShare/tableShare",
+    "pages/study/classroom/classroom",
+    "pages/study/grade/grade",
+    "pages/lib/lib/lib",
+    "pages/lib/libDetail/libDetail",
+    "pages/lib/borrow/borrow",
+    "pages/sdust/canlendar/calendar",
+    "pages/sdust/vacation/vacation",
+    "pages/sdust/map/map",
+    "pages/ext/link/link",
+    "pages/ext/event/event",
+    "pages/ext/finEvent/finEvent",
+    "pages/user/user/user",
+    "pages/user/about/about",
+    "pages/user/update/update"
   ],
   "tabBar": {
     "list": [
@@ -37,7 +37,7 @@
       {
         "iconPath": "/vector/img/user.png",
         "selectedIconPath": "/vector/img/user1.png",
-        "pagePath": "pages/user/user",
+        "pagePath": "pages/user/user/user",
         "text": "用户"
       }
     ]

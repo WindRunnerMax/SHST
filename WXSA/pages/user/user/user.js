@@ -9,9 +9,23 @@ Page({
     academy: " ",
     name: " ",
     username: " ",
-    flag: 0
+    flag: 0,
+    point:"block"
+  },
+  copy(e) {
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.copy
+    })
   },
   jump(e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.jumpurl
+    })
+  },
+  jumpUpdate(e){
+    this.setData({
+      point: "none"
+    })
     wx.navigateTo({
       url: e.currentTarget.dataset.jumpurl
     })
@@ -30,6 +44,16 @@ Page({
   },
   onLoad: function(options) {
     var that = this;
+    wx.getStorage({
+      key: 'point',
+      success(res) {
+        if (res.data >= app.globalData.version) {
+          that.setData({
+            point:"none"
+          })
+        }
+      }
+    })
     if(!app.globalData.userFlag){
       that.setData({
         academy: "游客",

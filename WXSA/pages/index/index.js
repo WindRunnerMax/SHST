@@ -21,6 +21,8 @@ Page({
     // })
   },
   enter: function(e) {
+    this.data.account = e.detail.value.account;
+    this.data.password = e.detail.value.password;
     var that = this;
     if (this.data.account.length == 0 || this.data.password.length == 0) {
       app.toast("用户名和密码不能为空");
@@ -44,15 +46,26 @@ Page({
             app.toast(res.data.info);
           } else if (res.data.Message == "Yes") {
             wx.setStorage({
-              key: 'flag',
-              data: '1',
+              key: 'user',
+              data: {
+                "account": that.data.account,
+                "password": encodeURIComponent(that.data.password),
+                "openid": app.globalData.openid
+              },
               success: function() {
-                app.globalData.userFlag = 1;
-                wx.switchTab({
-                  url: '/pages/tips/tips'
+                wx.setStorage({
+                  key: 'flag',
+                  data: '1',
+                  success: function() {
+                    app.globalData.userFlag = 1;
+                    wx.switchTab({
+                      url: '/pages/tips/tips'
+                    })
+                  }
                 })
               }
             })
+
           } else {
             that.setData({
               status: "ERROR"
@@ -79,6 +92,22 @@ Page({
         }
       }
     })
+    wx.getStorage({
+      key: 'user',
+      success: res => {
+        if (res.data.account !== "" && res.data.password !== "") {
+          this.setData({
+            account: res.data.account,
+            password: res.data.password
+          })
+          app.globalData.openid = res.data.openid
+        }
+
+      }
+    })
+    this.getOpenid(e);
+  },
+  getOpenid(e) {
     var that = this;
     wx.login({
       success: res => {
@@ -90,16 +119,14 @@ Page({
             "code": res.code
           },
           fun: function(data) {
-            if (data.data.openid && data.data.PHPSESSID) {
+            if (data.data.openid) {
               console.log(data.data.openid);
               app.globalData.openid = data.data.openid;
-              app.globalData.header.Cookie = 'PHPSESSID=' + data.data.PHPSESSID;
               wx.setStorage({
                 key: 'openid',
                 data: data.data.openid
               })
-            }
-            if (!data.data.openid) {
+            }else{
               wx.getStorage({
                 key: 'openid',
                 success: res => {
@@ -134,7 +161,9 @@ Page({
               app.toast(data.data.info);
               that.setData({
                 tips: 1,
-                status: data.data.info
+                status: data.data.info,
+                account: data.data.account,
+                password: data.data.password
               })
             } else {
               wx.hideToast();

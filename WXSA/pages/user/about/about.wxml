@@ -5,7 +5,7 @@
     <view>关于(点击复制)</view>
   </view>
   <view class='infoCon'>
-    <view data-copy='https://jq.qq.com/?_wv=1027&k=5eXiOlr' bindtap='copy'>反馈QQ群:https://jq.qq.com/?_wv=1027&k=5eXiOlr</view>
+    <view data-copy='722942376' bindtap='copy'>反馈QQ群:722942376</view>
   </view>
 
   <view class='infoCon'>

@@ -1,4 +1,4 @@
-@import "../../vector/wxParse/wxParse.wxss";
+@import "../../../vector/wxParse/wxParse.wxss";
 /* CSS Document */
 page{
   padding: 10px;

@@ -9,6 +9,7 @@ App({
     },
     openid:"",
     colorList: ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"],
+    version: 2.6
   },
   extend: function() {
     var aLength = arguments.length;
@@ -81,7 +82,7 @@ app.extend({
       fail: function (res) {app.toast("服务器错误");},
       complete : function(res) {}
     };
-    this.extend(option, requestInfo);
+    app.extend(option, requestInfo);
     if (option.load === 1) {
       wx.showNavigationBarLoading();
     } else if (option.load === 2) {
@@ -104,11 +105,10 @@ app.extend({
       header: app.globalData.header,
       success: suc,
       fail: option.fail,
-      complete: function () {
+      complete: function (res) {
+        if (res.header['Set-Cookie']) app.globalData.header.Cookie = res.header['Set-Cookie'].split(";")[0];
         if (option.load === 1) wx.hideNavigationBarLoading();
-        else if (option.load === 2) {
-          wx.hideLoading();
-        }
+        else if (option.load === 2) wx.hideLoading();
         option.complete();
       }
     })
@@ -137,7 +137,6 @@ app.extend({
       if(!tableArr[day]) tableArr[day] = [];
       tableArr[day][knot] = arrInner;
     })
-    console.log(week)
     if (flag === 1) return tableArr[week];
     else return tableArr;
   }

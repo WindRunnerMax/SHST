@@ -32,7 +32,6 @@ class Lib extends Controller
     }
 
     public function bookquery(){
-    	$this->checkSession();
         $infoArr = array();
         $page = -1;
         $q = "";
@@ -74,9 +73,35 @@ class Lib extends Controller
         return ['libInfo' => $infoArr,'page' => $page,'q' => $q,'pageInfo' => $pageInfo ];
     }
 
+    public function signalBookquery(){
+        $page = -1;
+        $q = "";
+        $info = "";
+        if (isset($_GET['q'])) {
+            $q = $_GET['q'];
+            $params = array(
+                "q" => $_GET['q'],
+                "searchType" => "standard",
+                "isFacet" => "true",
+                "view" => "standard",
+                "rows" => "10",
+                "displayCoverImg" => ""
+            );
+            if (isset($_GET['page'])) {
+                $params['page'] = $_GET['page'];
+                $page = $_GET['page'];
+            }else{
+                $page = 1;
+            } 
+            $header = Conf::getHeader();
+            $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/search",$params,"GET",$header);          
+        }
+        return ["Message" => "Yes" , 'page' => $page,'q' => $q,'info' => $info ];
+    }
+
     public function bookdetail(){
         $id = $_GET['id'];
-    	$this->checkSession();
+        if ($id === "undefined") return ['infoArr' => ["出错了","请将此错误提交开发者","QQ:651525974",""],'infoArrInner' => ["ERROR"],'isbn' => "0"];
         $isbn = "";
         $infoArr = array();
         $infoArrInner = array();
@@ -92,7 +117,6 @@ class Lib extends Controller
             array_push($infoArr,str_replace(array("<tr><td>","</td></tr>","<td></tr>"),"",$value));
         }
         $isbn = str_replace("-","",explode(":", $infoArr[1])[1]);
-
         preg_match_all("/<li>[\s\S]*?<\/li>/",$info,$match);
         foreach ($match[0] as $value) {
             preg_match_all("/<p.*?>[\s\S]*?<\/p>/",$value,$allMatch);
@@ -101,6 +125,17 @@ class Lib extends Controller
             }
         }
         return ['infoArr' => $infoArr,'infoArrInner' => $infoArrInner,'isbn' => $isbn];
+    }
+
+    public function signalBookdetail(){
+        $id = $_GET['id'];
+        $isbn = "";
+        $infoArr = array();
+        $infoArrInner = array();
+        $url = "http://interlib.sdust.edu.cn/opac/m/book/" . $id;
+        $header = Conf::getHeader();
+        $info = Http::httpRequest($url,array(),"GET",$header);
+        return ["Message" => "Yes" , 'info' => $info];
     }
 
     public function libquery(){
@@ -125,13 +160,27 @@ class Lib extends Controller
             }
             array_push($infoArrInner,str_replace($replace,"",$singalMatch[0]));
             preg_match_all("/<p.*?>[\s\S]*?<\/p>/",$value,$allMatch);
-            $replace = array('<p >','</p>','<p  >',"    ");
+            $replace = array('<p >','</p>','<p  >',"    ",'<p class="remind">');
             foreach ($allMatch[0] as $value2) {
                 array_push($infoArrInner,str_replace($replace,"",$value2));
             }
             array_push($infoArr,$infoArrInner);
         }
         return ['libInfo' => $infoArr];
+    }
+
+    public function signalLibquery(){
+        $user = $this->checkSession();
+        $account = substr($_SESSION['account'],2);
+        $params = array(
+            "rdid" => $account,
+            "rdPasswd" => md5($account),
+            "returnUrl" => "/m/loan/renewList",
+            "view" => "action"
+        );
+        $header = Conf::getHeader();
+        $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"POST",$header);
+        return ["Message" => "Yes" , 'info' => $info];
     }
     
 }

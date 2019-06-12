@@ -10,7 +10,7 @@ class User extends Controller
 
 	private $appid = "wx387c0e87230e4cc9"; 
 
-    private $appSecret =  " ";
+    private $appSecret =  "";
 
     private function checkSession($value=''){
         session_start();
@@ -44,13 +44,15 @@ class User extends Controller
         $exist = Db::table("wx_user") -> where("openid",$openid) -> find();
         session_start();
         if(!$exist){
+            $_SESSION['openid'] = $openid;
         	return ["Message" => "Yes" , "openid" => $openid , "PHPSESSID" => session_id()];
         }else{
     		$info = $this -> checkLogin($exist['account'],$exist['password']);
+            $_SESSION['openid'] = $openid;
         	if ($info['status'] === "Yes") {
                 return ["Message" => "Ex","PHPSESSID" => session_id(),"openid" => $openid];
     		}else{
-    			return ["Message" => "NoN","info" => $info["info"]];
+    			return ["Message" => "NoN","info" => $info["info"], "openid" => $openid , "PHPSESSID" => session_id()];
     		}
         }
     }
@@ -72,6 +74,7 @@ class User extends Controller
                     $exist = Db::table("user") -> where("username",$account) -> find();
                     if ($exist) {
                         $exRecord['log_time'] = $r_Time;
+                        $exRecord['access_type'] = 1;
                         Db::table("user")
                         -> where("username",$account)
                         -> exp("log_times","log_times + 1")
@@ -82,6 +85,7 @@ class User extends Controller
                         $nexRecord['academy'] = $jsonInfo['userdwmc'];
                         $nexRecord['use_time'] = $r_Time;
                         $nexRecord['log_time'] = $r_Time;
+                        $nexRecord['access_type'] = 1;
                         Db::table("user") -> insert($nexRecord);
                     }
                 } catch (Exception $e) {

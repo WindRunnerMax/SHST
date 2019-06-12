@@ -36,6 +36,7 @@ class Sw extends Controller
                     $exist = Db::table("user") -> where("username",$_POST['username']) -> find();
                     if ($exist) {
                         $exRecord['log_time'] = $r_Time;
+                        $exRecord['access_type'] = 0;
                         Db::table("user")
                         -> where("username",$_POST['username'])
                         -> exp("log_times","log_times + 1")
@@ -46,6 +47,7 @@ class Sw extends Controller
                         $nexRecord['academy'] = $jsonInfo['userdwmc'];
                         $nexRecord['use_time'] = $r_Time;
                         $nexRecord['log_time'] = $r_Time;
+                        $nexRecord['access_type'] = 0;
                         Db::table("user") -> insert($nexRecord);
                     }
                 } catch (Exception $e) {

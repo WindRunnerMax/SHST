@@ -112,6 +112,49 @@ class Share extends Controller
         return ["info" => $record];
     }
 
+    public function signalTableshare($value=''){
+        $record["status"] = 1;
+        $user = $this->checkSession();
+        $status = 1;
+        $msg = "";
+        $exist = Db::table("timetable_share") -> where("account",$_SESSION['account']) -> find();
+        if (!$exist) {
+            $insertRecord['account'] = $_SESSION['account'];
+            $insertRecord['name'] = $user;
+            Db::table("timetable_share")  -> insert($insertRecord);
+        }else{
+            $status = $exist['pair_status'];
+            $record["status"] = $status;
+            if ($exist['pair_status'] === 2) {
+                $record['pair_user'] = [$exist['pair_account'],$exist['pair_name']];
+            }else if ($exist['pair_status'] === 3) {
+                $refuseUpdateRecord['pair_status'] = 1;
+                $refuseUpdateRecord['pair_account'] = "";
+                $refuseUpdateRecord['pair_name'] = "";
+                Db::table("timetable_share") -> where("account",$_SESSION['account']) -> update($refuseUpdateRecord);
+                $record["status"] = 1;
+            }else if ($exist['pair_status'] === 0) {
+                $tableInfo = $this -> getTimeTable();
+                $updateRecord['week'] = $tableInfo[0];
+                $updateRecord['timetable'] = json_encode($tableInfo[1]);
+                Db::table("timetable_share") -> where("id",$exist['id']) -> update($updateRecord);
+                $timeTable1 = Db::table("timetable_share") -> where("id",$exist['pair_point']) -> find();
+                $record['succ'] = [
+                                'timetable1' => json_decode($timeTable1['timetable'],true),
+                               'timetable2' => $tableInfo[1],
+                               'pair' => $exist['pair_name'],
+                               'id' => $timeTable1['id'],
+                               'pair_week' => $timeTable1['week'],
+                               'my_week' => $exist['week']
+                        ];
+            }
+        }
+        $data = Db::table("timetable_share") -> field("id,account,name") -> where("pair_account",$_SESSION['account']) -> select();
+        $record['data'] = $data;
+        $record['user'] = $user;
+        return ["info" => $record];
+    }
+
     public function startReq($value=''){
     	$user = $this->checkSession();
     	$message = "数据有误";

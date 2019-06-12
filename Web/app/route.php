@@ -20,6 +20,7 @@ return [
     ],
     "classroom/[:idleTime]" => "index/sw/classroom",
     "funct/sw/table/[:zc]" => "funct/sw/table",
+    "funct/sw/signalTable/[:zc]" => "funct/sw/signalTable",
     "funct/sw/grade/[:sy]" => "funct/sw/grade",
     "adapt/sw/classroom/[:idleTime]" => "adapt/sw/classroom",
     "adapt/sw/table/[:zc]" => "adapt/sw/table",

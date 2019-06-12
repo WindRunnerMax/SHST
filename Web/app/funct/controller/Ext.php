@@ -17,7 +17,6 @@ class Ext extends Controller
     }
 
     public function urlshare(){
-        $this->checkSession();
         $data = Db::table("url_share") -> field("name,url") -> select();
         return ['url' => $data];
     }

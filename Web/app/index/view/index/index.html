@@ -77,7 +77,7 @@ Log In
 
 function subSave(){
     localStorage.setItem("user",document.getElementById("user").value);
-    localStorage.setItem("password",document.getElementById("password").value);
+    localStorage.setItem("password",encodeURIComponent(document.getElementById("password").value));
     login();
 }
 

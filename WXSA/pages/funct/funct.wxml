@@ -5,19 +5,19 @@
     <view>学习</view>
   </view>
   <view style='display:flex;'>
-    <view class='fun' data-jumpurl="/pages/study/timeTable/timeTable" data-checkuser="0" bindtap='jump'>
+    <view class='fun' data-jumpurl="/pages/Study/timeTable/timeTable" data-checkuser="0" bindtap='jump'>
       <image src='/vector/img/table.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>查课表</view>
     </view>
-    <view class='fun' data-jumpurl="/pages/study/classroom/classroom" data-checkuser="0" bindtap='jump'>
+    <view class='fun' data-jumpurl="/pages/Study/classroom/classroom" data-checkuser="0" bindtap='jump'>
       <image src='/vector/img/classroom.svg' class='imgIcon' style='width:37px;height:37px;padding:3px;'></image>
       <view style='margin:8px 0;'>查教室</view>
     </view>
-    <view class='fun' data-jumpurl="/pages/study/grade/grade" data-checkuser="0" bindtap='jump'>
+    <view class='fun' data-jumpurl="/pages/Study/grade/grade" data-checkuser="0" bindtap='jump'>
       <image src='/vector/img/grade.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>查成绩</view>
     </view>
-    <view class='fun' data-jumpurl="/pages/study/tableShare/tableShare" data-checkuser="0" bindtap='jump'>
+    <view class='fun' data-jumpurl="/pages/Study/tableShare/tableShare" data-checkuser="0" bindtap='jump'>
       <image src='/vector/img/fly.svg' class='imgIcon' style='width:25px;height:25px;padding:9px;'></image>
       <view style='margin:8px 0;'>共享课表</view>
     </view>
@@ -30,11 +30,11 @@
     <view>图书馆(7:00-22:00)</view>
   </view>
   <view style='display:flex;'>
-    <view class='fun' data-jumpurl="/pages/lib/lib/lib" data-checkuser="1" bindtap='jump'>
+    <view class='fun' data-jumpurl="/pages/Lib/lib/lib" data-checkuser="1" bindtap='jump'>
       <image src='/vector/img/lib.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>图书检索</view>
     </view>
-    <view class='fun' data-jumpurl="/pages/lib/borrow/borrow" data-checkuser="0" bindtap='jump'>
+    <view class='fun' data-jumpurl="/pages/Lib/borrow/borrow" data-checkuser="0" bindtap='jump'>
       <image src='/vector/img/borrow.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>借阅查询</view>
     </view>
@@ -47,15 +47,15 @@
     <view>科大</view>
   </view>
   <view style='display:flex;'>
-    <view class='fun' data-jumpurl="/pages/sdust/map/map" data-checkuser="1" bindtap='jump'>
+    <view class='fun' data-jumpurl="/pages/Sdust/map/map" data-checkuser="1" bindtap='jump'>
       <image src='/vector/img/map.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>嵙地图</view>
     </view>
-    <view class='fun' data-jumpurl="/pages/sdust/canlendar/calendar" data-checkuser="1" bindtap='jump'>
+    <view class='fun' data-jumpurl="/pages/Sdust/canlendar/calendar" data-checkuser="1" bindtap='jump'>
       <image src='/vector/img/calendar.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>校历</view>
     </view>
-    <view class='fun' data-jumpurl="/pages/sdust/vacation/vacation" data-checkuser="1" bindtap='jump'>
+    <view class='fun' data-jumpurl="/pages/Sdust/vacation/vacation" data-checkuser="1" bindtap='jump'>
       <image src='/vector/img/vacation.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>放假安排</view>
     </view>
@@ -68,11 +68,11 @@
     <view>拓展</view>
   </view>
   <view style='display:flex;'>
-    <view class='fun' data-jumpurl="/pages/ext/link/link" data-checkuser="1" bindtap='jump'>
+    <view class='fun' data-jumpurl="/pages/Ext/link/link" data-checkuser="1" bindtap='jump'>
       <image src='/vector/img/link.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>分享链接</view>
     </view>
-    <view class='fun' data-jumpurl="/pages/ext/event/event" data-checkuser="1" bindtap='jump'>
+    <view class='fun' data-jumpurl="/pages/Ext/event/event" data-checkuser="1" bindtap='jump'>
       <image src='/vector/img/schedule.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>待办管理</view>
     </view>

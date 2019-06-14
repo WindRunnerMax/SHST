@@ -96,7 +96,7 @@ Page({
       app.ajax({
         url: app.globalData.url + "funct/todo/getevent",
         fun: res => {
-          if (res.data.data) {
+          if (res.data.data && res.data.data != 3) {
             if (res.data.data.length === 0) {
               that.setData({
                 tips2: "暂没有待办事项"

@@ -52,7 +52,7 @@ class User extends Controller
         	if ($info['status'] === "Yes") {
                 return ["Message" => "Ex","PHPSESSID" => session_id(),"openid" => $openid];
     		}else{
-    			return ["Message" => "NoN","info" => $info["info"], "openid" => $openid , "PHPSESSID" => session_id()];
+    			return ["Message" => "NoN","info" => $info["info"],"account" => $exist['account'],"password" => $exist['password'], "openid" => $openid , "PHPSESSID" => session_id()];
     		}
         }
     }
@@ -65,7 +65,7 @@ class User extends Controller
             );
             $info = Http::httpRequest(Conf::getUrl(),$params,"GET");
             if (!$info) {
-                return ["status" => "No","info" => "啊哦，可能出了点问题"];
+                return ['status' => 'No' , "info" => "响应超时"];
             }
             $jsonInfo = json_decode($info,true);
     	    if($jsonInfo['flag'] === "1"){

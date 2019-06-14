@@ -112,6 +112,7 @@ class Sw extends Controller
     public function signalTable($zc=-1){
         $user = $this->checkSession();
         $s = json_decode($this->getCurrentTime(),true);
+        if(!$s) return ["Message" => "No" , "year" => "" , "week" => $zc , "data" => []];
         $zc = $zc === -1 ? $s['zc'] : $zc;
         $params=array(
         "method" => "getKbcxAzc",
@@ -120,6 +121,7 @@ class Sw extends Controller
         "xh" => $_SESSION['account']
         );
         $info = json_decode($this->httpReq($params),true);
+        if(!$info) return ["Message" => "No" , "year" => $s['xnxqh'] , "week" => $zc , "data" => []];
         return ["Message" => "Yes" , "year" => $s['xnxqh'] , "week" => $zc , "data" => $info];
     }
 

@@ -1,1 +1,3 @@
 Web/app/funct/controller/User.php
+Web/app/database.php
+Web/app/auxiliary/Conf.php

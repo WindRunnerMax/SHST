@@ -2,6 +2,7 @@
 App({
   globalData: {
     userFlag: 0,
+    // url: 'http://localhost/Swisdom/Web/index.php/',
     url: 'https://www.liyanzuisha.cn/sdust/index.php/',
     header: {
       'Cookie': '', //PHPSESSID
@@ -94,7 +95,7 @@ app.extend({
       try {
         option.fun(res);
       } catch (e) {
-        app.toast("ERROR");
+        app.toast("PARSE ERROR");
         console.log(e);
       }
     }

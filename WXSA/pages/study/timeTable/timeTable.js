@@ -22,7 +22,7 @@ Page({
             week:res.data.week
           })
         } else {
-          app.toast("ERROR");
+          app.toast("数据拉取失败");
         }
       }
     })

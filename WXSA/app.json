@@ -3,22 +3,22 @@
     "pages/index/index",
     "pages/tips/tips",
     "pages/funct/funct",
-    "pages/study/timeTable/timeTable",
-    "pages/study/tableShare/tableShare",
-    "pages/study/classroom/classroom",
-    "pages/study/grade/grade",
-    "pages/lib/lib/lib",
-    "pages/lib/libDetail/libDetail",
-    "pages/lib/borrow/borrow",
-    "pages/sdust/canlendar/calendar",
-    "pages/sdust/vacation/vacation",
-    "pages/sdust/map/map",
-    "pages/ext/link/link",
-    "pages/ext/event/event",
-    "pages/ext/finEvent/finEvent",
-    "pages/user/user/user",
-    "pages/user/about/about",
-    "pages/user/update/update"
+    "pages/Study/timeTable/timeTable",
+    "pages/Study/tableShare/tableShare",
+    "pages/Study/classroom/classroom",
+    "pages/Study/grade/grade",
+    "pages/Lib/lib/lib",
+    "pages/Lib/libDetail/libDetail",
+    "pages/Lib/borrow/borrow",
+    "pages/Sdust/canlendar/calendar",
+    "pages/Sdust/vacation/vacation",
+    "pages/Sdust/map/map",
+    "pages/Ext/link/link",
+    "pages/Ext/event/event",
+    "pages/Ext/finEvent/finEvent",
+    "pages/User/user/user",
+    "pages/User/about/about",
+    "pages/User/update/update"
   ],
   "tabBar": {
     "list": [
@@ -37,7 +37,7 @@
       {
         "iconPath": "/vector/img/user.png",
         "selectedIconPath": "/vector/img/user1.png",
-        "pagePath": "pages/user/user/user",
+        "pagePath": "pages/User/user/user",
         "text": "用户"
       }
     ]

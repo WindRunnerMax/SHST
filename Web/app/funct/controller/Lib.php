@@ -17,18 +17,9 @@ class Lib extends Controller
     }
 
     public function httpReq($params = array()){
-        $header = Conf::getHeader();
-        array_push($header,"token:".$_SESSION['TOKEN']);
+        $header = Conf::libGetHeader();
         $info = Http::httpRequest(Conf::getUrl(),$params,"GET",$header);
         return $info;
-    }
-
-    public function getCurrentTime(){
-        $params = array(
-        "method" => "getCurrentTime",
-        "currDate" => date("Y-m-d",time())
-        );
-        return $this->httpReq($params);
     }
 
     public function bookquery(){
@@ -52,7 +43,7 @@ class Lib extends Controller
             }else{
                 $page = 1;
             } 
-            $header = Conf::getHeader();
+            $header = Conf::libGetHeader();
             $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/search",$params,"GET",$header);
             preg_match_all("/<li onclick.*?>[\s\S]*?<\/li>/",$info,$match);
             preg_match("/第[\S]*页/",$info,$pageMatch);
@@ -93,7 +84,7 @@ class Lib extends Controller
             }else{
                 $page = 1;
             } 
-            $header = Conf::getHeader();
+            $header = Conf::libGetHeader();
             $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/search",$params,"GET",$header);          
         }
         return ["Message" => "Yes" , 'page' => $page,'q' => $q,'info' => $info ];
@@ -106,7 +97,7 @@ class Lib extends Controller
         $infoArr = array();
         $infoArrInner = array();
         $url = "http://interlib.sdust.edu.cn/opac/m/book/" . $id;
-        $header = Conf::getHeader();
+        $header = Conf::libGetHeader();
         $info = Http::httpRequest($url,array(),"GET",$header);
         preg_match("/<table.*?>[\s\S]*?<\/table>/",$info,$pageMatch);
         $pageMatch[0] = (isset($pageMatch[0]) ? $pageMatch[0] : "");
@@ -133,7 +124,7 @@ class Lib extends Controller
         $infoArr = array();
         $infoArrInner = array();
         $url = "http://interlib.sdust.edu.cn/opac/m/book/" . $id;
-        $header = Conf::getHeader();
+        $header = Conf::libGetHeader();
         $info = Http::httpRequest($url,array(),"GET",$header);
         return ["Message" => "Yes" , 'info' => $info];
     }
@@ -147,7 +138,7 @@ class Lib extends Controller
             "returnUrl" => "/m/loan/renewList",
             "view" => "action"
         );
-        $header = Conf::getHeader();
+        $header = Conf::libGetHeader();
         $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"POST",$header);
         preg_match_all("/<li>[\s\S]*?<\/li>/",$info,$match);
         $infoArr = array();
@@ -178,7 +169,7 @@ class Lib extends Controller
             "returnUrl" => "/m/loan/renewList",
             "view" => "action"
         );
-        $header = Conf::getHeader();
+        $header = Conf::libGetHeader();
         $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"POST",$header);
         return ["Message" => "Yes" , 'info' => $info];
     }

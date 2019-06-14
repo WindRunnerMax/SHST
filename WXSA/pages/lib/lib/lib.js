@@ -35,21 +35,23 @@ Page({
           var bookList = [];
           var repx = /<li onclick.*?>[\s\S]*?<\/li>/g;
           var pageInfo = res.data.info.match(/第[\S]*页/);
-          res.data.info.match(repx).forEach(function(value, index, array) {
-            var listObject = {};
-            var infoBookFour = [];
-            repx = /<em>.*<\/em>/g;
-            value.match(repx).map(function(valueBook, indexBook, arrayBook) {
-              valueBook = valueBook.replace("<em>", "");
-              valueBook = valueBook.replace("</em>", "");
-              infoBookFour.push(valueBook);
-              return value;
+          try{
+            res.data.info.match(repx).forEach(function (value, index, array) {
+              var listObject = {};
+              var infoBookFour = [];
+              repx = /<em>.*<\/em>/g;
+              value.match(repx).map(function (valueBook, indexBook, arrayBook) {
+                valueBook = valueBook.replace("<em>", "");
+                valueBook = valueBook.replace("</em>", "");
+                infoBookFour.push(valueBook);
+                return value;
+              })
+              listObject.infoList = infoBookFour;
+              repx = /javascript:bookDetail(.)*;/g;
+              listObject.id = value.match(repx)[0].match(/[0-9]+/)[0];
+              bookList.push(listObject);
             })
-            listObject.infoList = infoBookFour;
-            repx = /javascript:bookDetail(.)*;/g;
-            listObject.id = value.match(repx)[0].match(/[0-9]+/)[0];
-            bookList.push(listObject);
-          })
+          }catch(e){}
           console.log(bookList)
           that.setData({
             info: bookList,
@@ -79,7 +81,7 @@ Page({
       return ;
     }
     wx.navigateTo({
-      url: "/pages/lib/libDetail/libDetail?id=" + e.currentTarget.dataset.id
+      url: "/pages/Lib/libDetail/libDetail?id=" + e.currentTarget.dataset.id
     })
   },
 

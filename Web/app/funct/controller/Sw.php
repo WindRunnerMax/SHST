@@ -11,15 +11,14 @@ class Sw extends Controller
     private function checkSession($value=''){
         # code...
         session_start();
-        if(isset($_SESSION['TOKEN'])) return $_SESSION['user'];
+        if(isset($_SESSION['TOKEN'])) return true;
         else $this->error("未登录","/?status=E",3);
     }
 
     public function httpReq($params){
         $header = Conf::getHeader();
         array_push($header,"token:".$_SESSION['TOKEN']);
-        $http = new Http();
-        $info = $http->httpRequest(Conf::getUrl(),$params,"GET",$header);
+        $info = Http::httpRequest(Conf::getUrl(),$params,"GET",$header);
         return $info;
     }
 
@@ -156,5 +155,15 @@ class Sw extends Controller
         // print_r($params);
         $info = $this->httpReq($params);
         return ["MESSAGE" => "Yes" , "data" => json_decode($info,true)];
+    }
+
+    public function signalGgetCurrentTime(){
+        $params = array(
+        "method" => "getCurrentTime",
+        "currDate" => date("Y-m-d",time())
+        );
+        $info = $this->httpReq($params);
+        if($info) return ["Message" => true , "info" => $info];
+        else return ["Message" => false];
     }
 }

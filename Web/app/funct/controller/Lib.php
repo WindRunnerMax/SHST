@@ -23,6 +23,7 @@ class Lib extends Controller
     }
 
     public function bookquery(){
+        session_start();
         $infoArr = array();
         $page = -1;
         $q = "";
@@ -65,6 +66,7 @@ class Lib extends Controller
     }
 
     public function signalBookquery(){
+        session_start();
         $page = -1;
         $q = "";
         $info = "";
@@ -91,6 +93,7 @@ class Lib extends Controller
     }
 
     public function bookdetail(){
+        session_start();
         $id = $_GET['id'];
         if ($id === "undefined") return ['infoArr' => ["出错了","请将此错误提交开发者","QQ:651525974",""],'infoArrInner' => ["ERROR"],'isbn' => "0"];
         $isbn = "";
@@ -119,6 +122,7 @@ class Lib extends Controller
     }
 
     public function signalBookdetail(){
+        session_start();
         $id = $_GET['id'];
         $isbn = "";
         $infoArr = array();

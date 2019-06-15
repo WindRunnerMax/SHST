@@ -1,6 +1,5 @@
-// pages/update/update.js
+// pages/User/announcement/announcement.js
 const app = getApp()
-
 Page({
 
   /**
@@ -8,18 +7,20 @@ Page({
    */
   data: {
 
-  }, 
+  },
   copy(e) {
     wx.setClipboardData({
       data: e.currentTarget.dataset.copy
     })
   },
-
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-   
+    wx.setStorage({
+      key: 'point',
+      data: app.globalData.version
+    })
   },
 
   /**

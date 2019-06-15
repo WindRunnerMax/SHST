@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/tips/tips",
-    "pages/funct/funct",
+    "pages/Home/tips/tips",
+    "pages/Home/funct/funct",
+	"pages/Home/user/user",
     "pages/Study/timeTable/timeTable",
     "pages/Study/tableShare/tableShare",
     "pages/Study/classroom/classroom",
@@ -16,28 +17,28 @@
     "pages/Ext/link/link",
     "pages/Ext/event/event",
     "pages/Ext/finEvent/finEvent",
-    "pages/User/user/user",
     "pages/User/about/about",
-    "pages/User/update/update"
+    "pages/User/update/update",
+    "pages/User/announcement/announcement"
   ],
   "tabBar": {
     "list": [
       {
         "iconPath": "/vector/img/index.png",
         "selectedIconPath": "/vector/img/index1.png",
-        "pagePath": "pages/tips/tips",
+        "pagePath": "pages/Home/tips/tips",
         "text": "首页"
       },
       {
         "iconPath": "/vector/img/fun.png",
         "selectedIconPath": "/vector/img/fun1.png",
-        "pagePath": "pages/funct/funct",
+        "pagePath": "pages/Home/funct/funct",
         "text": "功能"
       },
       {
         "iconPath": "/vector/img/user.png",
         "selectedIconPath": "/vector/img/user1.png",
-        "pagePath": "pages/User/user/user",
+        "pagePath": "pages/Home/user/user",
         "text": "用户"
       }
     ]

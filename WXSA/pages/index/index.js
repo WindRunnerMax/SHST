@@ -59,7 +59,7 @@ Page({
                   success: function() {
                     app.globalData.userFlag = 1;
                     wx.switchTab({
-                      url: '/pages/tips/tips'
+                      url: '/pages/Home/tips/tips'
                     })
                   }
                 })
@@ -113,7 +113,7 @@ Page({
       success: res => {
         app.ajax({
           load: 1,
-          url: app.globalData.url + 'funct/user/getOpenid',
+          url: app.globalData.url + 'funct/user/signalGetOpenid',
           method: 'POST',
           data: {
             "code": res.code
@@ -151,7 +151,7 @@ Page({
                   success: function() {
                     app.globalData.userFlag = 1;
                     wx.switchTab({
-                      url: '/pages/tips/tips'
+                      url: '/pages/Home/tips/tips'
                     })
                   }
                 })
@@ -196,7 +196,7 @@ Page({
   },
   viewInfo() {
     wx.switchTab({
-      url: '/pages/tips/tips'
+      url: '/pages/Home/tips/tips'
     })
   },
   getUserInfo: function(e) {

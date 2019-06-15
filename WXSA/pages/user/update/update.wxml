@@ -5,6 +5,12 @@
   <view data-copy='https://github.com/WindrunnerMax/SW' class='url' bindtap='copy'>https://github.com/WindrunnerMax/SW</view>
 
   <view class='unitChange'>
+    <view class='title'>1.6.2 (2019-6-15) [ed5f91b]</view>
+    <view>1. 重构前后端逻辑</view>
+    <view>2. 减少对强智请求，使用Storage存储部分数据</view>
+  </view>
+
+  <view class='unitChange'>
     <view class='title'>1.6.1 (2019-6-11) [ed5f91b]</view>
     <view>1. 减少服务器负载，本地处理数据</view>
     <view>2. 修复登录问题，强烈建议注销重新登录一次</view>

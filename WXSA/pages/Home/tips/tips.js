@@ -1,6 +1,6 @@
 // pages/event/event.js
 const app = getApp()
-const md5 = require('../../vector/md5.js');
+const md5 = require('../../../vector/md5.js');
 const colorList = app.globalData.colorList;
 const colorN = app.globalData.colorN;
 

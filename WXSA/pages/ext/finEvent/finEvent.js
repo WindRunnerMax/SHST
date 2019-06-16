@@ -1,8 +1,7 @@
 // pages/event/event.js
 const app = getApp()
 const md5 = require('../../../vector/md5.js');
-const colorList = app.globalData.colorList;
-const colorN = app.globalData.colorN;
+const time = require('../../../vector/time.js');
 
 function getNowFormatDate(id) {
   var date = new Date();
@@ -17,19 +16,6 @@ function getNowFormatDate(id) {
   return year + "-" + month + "-" + day;
 }
 
-function dateDiff(startDateString, endDateString, content) {
-  var separator = "-"; //日期分隔符
-  var startDates = startDateString.split(separator);
-  var endDates = endDateString.split(separator);
-  var startDate = new Date(startDates[0], startDates[1] - 1, startDates[2]);
-  var endDate = new Date(endDates[0], endDates[1] - 1, endDates[2]);
-  var color = colorList[md5.hexMD5(content)[0].charCodeAt() % colorN]
-  var diff = parseInt((endDate - startDate) / 1000 / 60 / 60 / 24); //把相差的毫秒数转换为天数
-  if (diff === 0) diff = "今";
-  else if (diff < 0) diff = "已过" + Math.abs(diff);
-  else diff = "距今" + Math.abs(diff);
-  return [diff, color];
-}
 
 Page({
 
@@ -38,8 +24,8 @@ Page({
    */
   data: {
     addContent: "",
-    dataDo: getNowFormatDate(1), //默认起始时间  
-    dataEnd: getNowFormatDate(2), //默认结束时间 
+    dataDo: time.getNowFormatDate(1), //默认起始时间  
+    dataEnd: time.getNowFormatDate(2), //默认结束时间 
     todoList: [],
     clickFlag: 1,
     tips: "",
@@ -73,9 +59,9 @@ Page({
               })
               return;
             }
-            var curData = getNowFormatDate(1);
+            var curData = time.getNowFormatDate(1);
             res.data.data.map(function (value) {
-              var diff_color = dateDiff(curData, value.todo_time, value.event_content);
+              var diff_color = time.dateDiff(curData, value.todo_time, value.event_content);
               value.diff = diff_color[0];
               value.color = diff_color[1];
               return value;

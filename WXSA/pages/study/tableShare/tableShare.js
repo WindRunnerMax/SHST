@@ -92,7 +92,11 @@ Page({
   onLoad: function(options) {
     var that = this;
     app.ajax({
-      url: app.globalData.url + "funct/share/signalTableshare",
+      url: app.globalData.url + "funct/share/signalTableshare2",
+      data: {
+        week: app.globalData.curWeek,
+        term: app.globalData.curTerm
+      },
       fun: res => {
         if (res.data.info.succ){
           res.data.info.succ.timetable1 = app.tableDispose(res.data.info.succ.timetable1);

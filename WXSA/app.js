@@ -10,7 +10,9 @@ App({
     },
     openid:"",
     colorList: ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"],
-    version: 2.7
+    version: 2.7,
+    curTerm : "2018-2019-2",
+    curTermStart : "2019-2-25"
   },
   extend: function() {
     var aLength = arguments.length;
@@ -54,7 +56,9 @@ App({
 
 const app = getApp();
 const md5 = require('/vector/md5.js');
+const time = require('/vector/time.js');
 app.globalData.colorN = app.globalData.colorList.length;
+app.globalData.curWeek = time.getCurWeek(app.globalData.curTermStart);
 
 //拓展app功能
 app.extend({

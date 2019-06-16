@@ -13,8 +13,22 @@ Page({
     var that = this;
     app.ajax({
       load: 1,
-      url: app.globalData.url + 'funct/sw/signalTable' + urlTemp,
+      url: app.globalData.url + 'funct/sw/signalTable2' + urlTemp,
+      data: {
+        week: app.globalData.curWeek,
+        term: app.globalData.curTerm
+      },
       fun: function (res) {
+        if (res.data.Message === "Yes" && app.globalData.curWeek === parseInt(res.data.week)) {
+          console.log("Storage");
+          wx.setStorage({
+            key: 'table',
+            data: {
+              week: app.globalData.curWeek,
+              table: res.data.data
+            }
+          })
+        }
         res.data.data = app.tableDispose(res.data.data);
         if (res.data.Message === "Yes") {
           that.setData({

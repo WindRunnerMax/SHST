@@ -12,7 +12,7 @@ class Lib extends Controller
     private function checkSession($value=''){
         # code...
         session_start();
-        if(isset($_SESSION['TOKEN'])) return $_SESSION['user'];
+        if(isset($_SESSION['TOKEN'])) return $_SESSION['TOKEN'];
         else $this->error("未登录",Conf::getCtx()."/?status=E",3);
     }
 

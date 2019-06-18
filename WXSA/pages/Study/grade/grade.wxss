@@ -1,0 +1,60 @@
+/* pages/grade/grade.wxss */
+page{
+  font-size: 15px; 
+  padding: 10px;
+  width: calc(100% - 20px); 
+}
+.section{
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #eee;
+  border-radius: 3px;  
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.123);
+  margin-bottom: 10px;
+}
+
+.overview{
+  margin: 10px;
+  display:flex;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.overUnit{
+  padding: 7px 10px;
+  border-radius: 3px;
+}
+
+.card{
+  font-size: 13px;
+  display: flex;
+  border-bottom:1px solid #eee;
+  padding: 5px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.123);
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.cName{
+  font-size: 17px;
+}
+
+.infoRight,infoLeft{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.infoLeft{
+  line-height: 20px;
+}
+
+.cgrade{
+  font-size: 20px;
+  color:  #569FD1;
+}
+
+.card view{
+  margin: 5px;
+}

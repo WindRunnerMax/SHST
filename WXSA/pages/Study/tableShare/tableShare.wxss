@@ -1,0 +1,164 @@
+page{
+  font-size: 15px; 
+  padding: 10px;
+  width: calc(100% - 20px); 
+}
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.asse-input {
+  align-self: center;
+  border: 1px solid #eee;
+  width: 200px;
+  border-radius: 3px;
+}
+
+
+.hrTable {
+  border-bottom: 1px solid #eee;
+  height: 133px;
+}
+
+.hrTable2 {
+  border-bottom: 1px solid #eee;
+  height: 136px;
+}
+
+.hrTable3 {
+  border-bottom: 1px solid #eee;
+  height: 137px;
+}
+
+.hrTable4 {
+  border-bottom: 1px solid #eee;
+  height: 136px;
+}
+
+.hrTable5 {
+  border-bottom: 1px solid #eee;
+  height: 136px;
+}
+
+.asse-hr {
+  margin-bottom: 3px;
+}
+
+.tableTop{
+  display: flex;
+  padding: 5px 10px;
+  justify-content: space-between;
+}
+
+.week{
+  align-self: center;
+  margin-left: 10px;
+}
+
+
+
+.line {
+  display: flex;
+}
+
+.info {
+  margin-left: 7px;
+}
+
+.hrTable {
+  border-bottom: 1px solid #eee;
+  height: 133px;
+}
+
+.hrTable2 {
+  border-bottom: 1px solid #eee;
+  height: 136px;
+}
+
+.hrTable3 {
+  border-bottom: 1px solid #eee;
+  height: 137px;
+}
+
+.hrTable4 {
+  border-bottom: 1px solid #eee;
+  height: 136px;
+}
+
+.hrTable5 {
+  border-bottom: 1px solid #eee;
+  height: 136px;
+}
+
+.asse-hr {
+  margin-bottom: 3px;
+}
+
+
+.timetableHide {
+  min-height: 230px;
+  border-radius: 3px;
+  margin-left: 3px;
+  text-align: center;
+  word-break: break-all;
+  color: #fff;
+  padding: 1px;
+  background: #eee;
+  font-size: 13px;
+}
+
+.timetablehr {
+  margin-top: 3px;
+}
+
+.asse-hr {
+  background-color: #eee !important;
+  height: 1px;
+  border: none;
+}
+
+.tableUnitCon{
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.timetableHideTop{
+  min-height: 115px;
+  text-align: center;
+  word-break: break-all;
+  color: #fff;
+  padding: 1px;
+  background: #eee;
+  font-size: 13px;
+  border-bottom: 1px solid #eee; 
+}
+.timetableHideBot{
+  min-height: 115px;
+  text-align: center;
+  word-break: break-all;
+  color: #fff;
+  padding: 1px;
+  background: #eee;
+  font-size: 13px;
+}
+
+.card, .cardTips {
+  margin-top: 30px;
+  border: 1px solid #eee;
+  width: calc(100% - 22px);
+  padding: 10px;
+  line-height: 23px;
+}
+
+.card:first-line {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.info1 {
+  margin-top: 3px;
+}

@@ -1,0 +1,52 @@
+<image class='imgSdust' src='/vector/img/sdust.jpg'></image>
+
+<!-- <view style='width:100%;height:59px;'><view class="muser">我的学号</view></view>
+<view style='width:100%;height:59px;'><view class="suser">{{username}}</view></view>
+<view style='width:100%;height:59px;'><view class="mname">What is my name?</view></view>
+<view style='width:100%;height:59px;'><view class="sname">{{name}}</view></view>
+<view style='width:100%;height:59px;'><view class="maca">学院</view></view>
+<view style='width:100%;height:59px;'><view class="saca">{{academy}}</view></view>
+<view style='width:100%;height:59px;'><view class="others">Others?</view></view>
+<view style='width:100%;height:59px;'><view class='about'   data-jumpurl="/pages/about/about" bindtap='jump'>关于</view></view>
+<view style='width:100%;height:59px;'><view class='logout' bindtap='logout'>注销</view></view> -->
+
+
+<view class='userInfoCon'>
+  <view class='unitInfo' style=' border-top: 1px solid #eee; '>
+    <view>学号</view>
+    <view>{{username}}</view>
+  </view>
+  <view class='unitInfo'>
+    <view>姓名</view>
+    <view>{{name}}</view>
+  </view>
+  <view class='unitInfo'>
+    <view>学院</view>
+    <view>{{academy}}</view>
+  </view>
+  <view class='unitInfo' data-copy='722942376' bindtap='copy'>
+    <view>QQ群</view>
+    <view>722942376</view>
+  </view>
+  <view class='unitInfo' data-jumpurl="/pages/User/announcement/announcement" bindtap='jumpUpdate'>
+    <view style='display:flex;'>
+      <view>公告</view>
+      <view style='background:green;display:{{point}};' class='point'></view>
+    </view>
+    <view>></view>
+  </view>
+  <view class='unitInfo' data-jumpurl="/pages/User/update/update" bindtap='jump'>
+    <view style='display:flex;'>
+      <view>更新日志</view>
+    </view>
+    <view>></view>
+  </view>
+  <view class='unitInfo' data-jumpurl="/pages/User/about/about" bindtap='jump'>
+    <view>关于</view>
+    <view>></view>
+  </view>
+  <view class='unitInfo' bindtap='logout'>
+    <view>注销</view>
+    <view>></view>
+  </view>
+</view>

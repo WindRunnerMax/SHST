@@ -1,0 +1,23 @@
+/* pages/funct/funct.wxss */
+
+page{
+  padding: 10px;
+  width: calc(100% - 20px);
+  font-size: 15px;
+  background: #fff;
+}
+
+.fun{
+  width: 25%;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.imgIcon{
+  width:30px;
+  height:30px;
+  padding:7px;
+  border:1px solid #79B2F9;
+  border-radius:30px;
+}

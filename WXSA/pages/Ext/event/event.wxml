@@ -1,0 +1,40 @@
+<view class='lineCon'>
+  <view class='rowBlue'></view>
+  <view>添加事项</view>
+</view>
+<view class='card'>
+  <input class='asse-input' placeholder='描述' bindinput="addInput" value='{{addContent}}'></input>
+  <view class='carBot'>
+    <picker class='dataPicker' mode="date" value="{{dataDo}}" end="{{dataEnd}}" bindchange="dateChange">
+      <view class="picker">执行时间：{{dataDo}}</view>
+    </picker>
+    <view class='btn' bindtap='add'>确定</view>
+  </view>
+</view>
+<view class='lineCon'>
+  <view class='rowBlue'></view>
+  <view>待办事项</view>
+</view>
+<view class='overview'>
+    <view class='overUnit' style="background:#6495ED;">待办数量：{{count}}</view>
+    <view class='overUnit' style="background:#ACA4D5;" bindtap='jump'>查看已完成</view>
+  </view>
+<view wx:for="{{todoList}}" wx:key="{{index}}">
+  <view class='unitTodo' style='background:{{item.color}};'>
+    <view class='mainLeft'>
+      <view class='content'>{{item.event_content}}</view>
+      <view style='display:flex; align-items: center;'>
+        <view class='date'>{{item.todo_time}}</view>
+        <view class='diff'>{{item.diff}}天</view>
+      </view>
+    </view>
+    <view class='mainRight'>
+      <image src='/vector/img/banner.svg' class='img' bindtap='setStatus' data-id="{{item.id}}" data-index="{{index}}"></image>
+      <image src='/vector/img/x.svg' class='img' bindtap='deleteUnit' data-id="{{item.id}}" data-index="{{index}}"></image>
+    </view>
+  </view>
+</view>
+
+<view class='unitTodoNo' style='background:#eee;' wx:if="{{tips !== ''}}">
+  <view>{{tips}}</view>
+</view>

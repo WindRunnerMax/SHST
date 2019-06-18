@@ -1,0 +1,19 @@
+<!--pages/about/about.wxml-->
+<view style='width:100%;'>
+  <view class='lineCon'>
+    <view class='rowBlue'></view>
+    <view>公告</view>
+  </view>
+  <view class='infoCon' data-copy='722942376' bindtap='copy'>
+    <view style='background:green;' class='point'></view>
+    <view>加个群呗：722942376</view>
+  </view>
+  <view class='infoCon'>
+    <view style='background:green;' class='point'></view>
+    <view>在 2019-6-11 之前的用户强烈建议注销后重新登录一次</view>
+  </view>
+  <view class='infoCon'>
+    <view style='background:green;' class='point'></view>
+    <view>如果您在教务系统更改了密码，请务必注销后重新登录，否则将影响所有关于强智的功能使用</view>
+  </view>
+</view>

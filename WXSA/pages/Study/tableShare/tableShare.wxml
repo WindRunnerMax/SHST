@@ -1,0 +1,76 @@
+<view class='lineCon'>
+  <view class='rowBlue'></view>
+  <view> 共享课表</view>
+</view>
+<view class='top' wx:if="{{data.status === 1}}">
+  <view style=''>
+    <input class='asse-input' bindinput="accountInput" placeholder='对方学号' value="{{account}}"></input>
+    <input class='asse-input' bindinput="nameInput" style='margin-top:5px;' placeholder='对方姓名' value="{{name}}"></input>
+    <view class='asse-btn asse-btn-blue' style='margin-left:calc(50% - 50px);' bindtap='req'>发起请求</view>
+  </view>
+  <view class="cardTips">
+    <view class="info1">
+      <view>Tips:</view>
+      <view>1.向对方发起请求(对方必须是正常登陆过软件或者小程序才可以)，对方通过后，你们将能够在此看到自己与对方的课表</view>
+      <view>2.偏差问题：由于是以周次为单位，所以只有当你们双方在一周都打开此功能后，才会消除本周偏差</view>
+    </view>
+  </view>
+</view>
+
+<view class='top' wx:if="{{data.status === 2}}">
+  <view style='display:flex;align-items: center;'>
+    <view>{{data.pair_user[0]}}</view>
+    <view style='margin-left:5px;'>{{data.pair_user[1]}}</view>
+    <view class='asse-btn asse-btn-blue asse-btn-mini' bindtap='cancelreq'>撤销请求</view>
+  </view>
+</view>
+
+<view class='asse-hr' wx:if="{{data.status !== 0}}"></view>
+
+<view class='top' wx:if="{{data.status !== 0}}">
+  <view wx:for="{{data.data}}" style='display:flex;align-items: center;' wx:key="{{index}}">
+    <view>{{item.account}}</view>
+    <view style='margin-left:5px;'>{{item.name}}</view>
+    <view class='asse-btn asse-btn-blue asse-btn-mini' data-id="{{item.id}}" bindtap='agree'>同意</view>
+    <view class='asse-btn asse-btn-blue asse-btn-mini' data-id="{{item.id}}" bindtap='refuse'>拒绝</view>
+  </view>
+</view>
+
+<view wx:if="{{data.status === 0}}">
+  <view wx:for="{{[0,1,2,3,4]}}" wx:key="{{index}}">
+    <view class='line'>
+      <view wx:for="{{[0,1,2,3,4,5,6]}}" wx-index='innerIndex' wx:for-item="inner" wx:for-index="innerIndex" wx:key="{{innerIndex}}" style='width:calc(100% / 7);margin-left:3px;background:#eee;'>
+        <view class='tableUnitCon' wx:if="{{(data.succ.timetable1[inner] && data.succ.timetable1[inner][item]) || (data.succ.timetable2[inner] && data.succ.timetable2[inner][item])}}">
+
+          <view wx:if="{{(data.succ.timetable2[inner] && data.succ.timetable2[inner][item])}}" class='timetableHideBot' style='background:rgb(100, 149, 237);'>
+            <view>{{data.succ.timetable2[inner][item][2]}}</view>
+            <view>{{data.succ.timetable2[inner][item][4]}}</view>
+          </view>
+          <view wx:else>
+            <view class='timetableHideBot'></view>
+          </view>
+
+
+          <view wx:if="{{(data.succ.timetable1[inner] && data.succ.timetable1[inner][item])}}" class='timetableHideTop' style='background:rgb(234, 167, 140);}}'>
+            <view>{{data.succ.timetable1[inner][item][2]}}</view>
+            <view>{{data.succ.timetable1[inner][item][4]}}</view>
+          </view>
+          <view wx:else>
+            <view class='timetableHideTop'></view>
+          </view>
+
+        </view>
+        <view wx:else>
+          <view class='timetableHide'></view>
+        </view>
+      </view>
+    </view>
+    <view class="asse-hr timetablehr"></view>
+  </view>
+  <view class='asse-hr'></view>
+  <view style='display:flex;align-items: center;'>
+    <view>我({{data.succ.my_week}})-</view>
+    <view>{{data.succ.pair}}({{data.succ.pair_week}})</view>
+    <view class='asse-btn asse-btn-blue asse-btn-mini' data-id="{{data.succ.id}}" bindtap='lifting'>解除关系</view>
+  </view>
+</view>

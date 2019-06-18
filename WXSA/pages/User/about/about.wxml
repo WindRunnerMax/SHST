@@ -1,0 +1,27 @@
+<!--pages/about/about.wxml-->
+<view style='width:100%;'>
+  <view class='lineCon'>
+    <view class='rowBlue'></view>
+    <view>关于(点击复制)</view>
+  </view>
+  <view class='infoCon'>
+    <view data-copy='722942376' bindtap='copy'>反馈QQ群:722942376</view>
+  </view>
+
+  <view class='infoCon'>
+    <view data-copy='651525974' bindtap='copy'>联系开发者:651525974(大白菜)</view>
+  </view>
+
+  <view class='infoCon'>
+    <view data-copy='https://www.liyanzuisha.cn/public/base.apk' bindtap='copy'>安卓APK下载:https://www.liyanzuisha.cn/public/base.apk</view>
+  </view>
+
+  <view class='infoCon'>
+    <view data-copy='https://github.com/WindrunnerMax/SW' bindtap='copy'>项目开源地址:https://github.com/WindrunnerMax/SW</view>
+  </view>
+
+  <view class='infoCon'>
+    <ad unit-id="adunit-31c347091893cf0c"></ad>
+  </view>
+
+</view>

@@ -1,0 +1,33 @@
+<view class='lineCon'>
+  <view class='rowBlue'></view>
+  <view>查成绩</view>
+</view>
+<view class="section">
+  <picker bindchange="bindPickerChange" range="{{array}}" range-key="show">
+    <view class="picker">{{defaultOpt}}</view>
+  </picker>
+</view>
+<view wx:if="{{show === 1}}">
+  <view class='lineCon'>
+    <view class='rowBlue'></view>
+    <view>{{defaultOpt}}</view>
+  </view>
+  <view class='overview'>
+    <view class='overUnit' style="background:#6495ED;">学分:{{point}}</view>
+    <view class='overUnit' style="background:#ACA4D5;">绩点:{{pointN}}</view>
+    <view class='overUnit' style="background:#EAA78C;">加权:{{pointW}}</view>
+  </view>
+  <view wx:for="{{grade}}" wx:key="{{index}}">
+    <view class='card'>
+      <view class='infoLeft'>
+        <view class='cName'>{{item.kcmc}}</view>
+        <view style='color:#aaa;'>{{item.kclbmc}}</view>
+        <view style='color:#aaa;'>{{item.ksxzmc}}</view>
+      </view>
+      <view class='infoRight'>
+        <view class='cgrade'>{{item.zcj}}</view>
+        <view style='color:#aaa;'>{{item.xf}}学分</view>
+      </view>
+    </view>
+  </view>
+</view>

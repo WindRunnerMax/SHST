@@ -1,0 +1,35 @@
+/* pages/update/update.wxss */
+page{
+  padding: 10px;
+  width: calc(100% - 20px);
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.Changelog{
+  line-height: 23px;
+  word-break: break-all;  
+  overflow: hidden;
+  padding: 10px 0px;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+}
+
+.unitChange{
+  margin: 20px 0;
+}
+
+.unitChange view{
+  margin: 5px 0;
+  margin-left: 5px; 
+}
+
+.url{
+  margin: 10px 0;
+  color: #aaa;
+}
+
+.title{
+  font-size: 16px;
+  margin-left: 0 !important; 
+}

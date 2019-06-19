@@ -1,11 +1,19 @@
 <?php
 namespace app\auxiliary;
+use think\Db;
+use app\auxiliary\Conf;
+use think\Log;
 
 class Http
 {
 
-    public static function httpRequest($url, $data=array(), $method='GET',
-        $headers = array('User-Agent: Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )') , $cookieFlag = false) {
+    public static function httpRequest(
+      $url, 
+      $data=array(), 
+      $method='GET',
+      $headers = array('User-Agent: Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )') , 
+      $cookieFlag = false , 
+      $stopNext = false) {
         $curl = curl_init();  // 启动一个CURL会话
         if (count($headers) >= 1) curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         if($method=='GET'){
@@ -26,7 +34,17 @@ class Http
         else curl_setopt($curl, CURLOPT_HEADER, 0);  // 显示返回的Header区域内容
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);   // 获取的信息以文件流的形式返回
         $result = curl_exec($curl);    //执行操作
-        // if (curl_errno($curl)) echo 'Errno:'.curl_error($curl);//捕抓异常
+        //if (curl_errno($curl)) {
+        //  Log::write("HTTP异常:".curl_error($curl),'error');
+        //}
+        if($result && !$stopNext){ //更新token
+          $jsonResult = json_decode($result,true);
+          if (isset($jsonResult['token']) && $jsonResult['token'] === "-1") {
+            // Log::write("TOKEN INVALID",'notice');
+            $result = Http::reGetToken($url,$data,$method,$headers,$cookieFlag);
+          }
+        }
+
         if(!$cookieFlag){
             curl_close($curl); 
             return $result;
@@ -54,6 +72,31 @@ class Http
               $ret = $ret."&".$tmp;
           }
           return $ret;
+      }
+
+
+      private static function reGetToken($url,$data,$method,$headers,$cookieFlag){
+	     try{
+            $exist = Db::table("wx_user") -> where("account",$_SESSION['account']) -> find();
+            $params=array(
+            "method" => "authUser",
+            "xh" => $exist['account'],
+            "pwd" => $exist['password']
+            );
+            $info = Http::httpRequest(Conf::getUrl(),$params,"GET",Conf::getHeader(),false,true);
+            $jsonInfo = json_decode($info,true);
+            if($jsonInfo['flag'] === "1") {
+                $_SESSION['TOKEN'] = $jsonInfo['token'];
+                $header = Conf::getHeader();
+                array_push($header,"token:".$jsonInfo['token']);
+                $record['token'] = $jsonInfo['token'];
+                Db::table("wx_user") -> where("id",$exist['id']) -> update($record);
+                return Http::httpRequest($url,$data,$method,$header,$cookieFlag,true);
+            }else return false;
+         } catch (Exception $e) {
+            Log::write("REGETTOKEN ERROR",'error');
+            return false;
+         }
       }
 
 

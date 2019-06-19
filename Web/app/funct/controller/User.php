@@ -4,6 +4,7 @@ use think\Controller;
 use think\Db;
 use app\auxiliary\Http;
 use app\auxiliary\Conf;
+use think\Log;
 
 class User extends Controller
 {
@@ -74,8 +75,12 @@ class User extends Controller
             $_SESSION['openid'] = $openid;
             if ($exist['token'] === "") {
                 $info = $this -> checkLogin($exist['account'],$exist['password']);
-                $record['token'] = $info['token'];
-                Db::table("wx_user") -> where("id",$exist['id']) -> update($record);
+                if ($info['status'] === "Yes") {
+                   $record['token'] = $info['token'];
+                   Db::table("wx_user") -> where("id",$exist['id']) -> update($record);
+                }else{
+                   return ["Message" => "NoN","info" => $info["info"],"account" => $exist['account'],"password" => $exist['password'], "openid" => $openid , "PHPSESSID" => session_id()];
+                }
             }else{
                 $_SESSION['TOKEN'] = $exist['token'];
                 $_SESSION['account'] = $exist['account'];
@@ -97,7 +102,7 @@ class User extends Controller
             "xh" => $account,
             "pwd" => $password
             );
-            $info = Http::httpRequest(Conf::getUrl(),$params,"GET");
+            $info = Http::httpRequest(Conf::getUrl(),$params,"GET",Conf::getHeader(),false,true);
             if (!$info) {
                 return ['status' => 'No' , "info" => "响应超时"];
             }

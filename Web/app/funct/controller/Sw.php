@@ -183,4 +183,18 @@ class Sw extends Controller
         }else return ["Message" => false , "year" => "2020-2021-1" , "week" => 0 , "data" => []];
         
     }
+
+    public function classroomExt(){
+        $user = $this->checkSession();
+        $info = null;
+        if (isset($_GET['searchData']) && isset($_GET['searchTime'])) {
+            $params = array(
+                "method" => "getKxJscx",
+                "time" => $_GET['searchData'],
+                "idleTime" => $_GET['searchTime']
+            );
+            $info = $this->httpReq($params);
+        }
+        return ["MESSAGE" => "Yes" , "data" => json_decode($info,true)];
+    }
 }

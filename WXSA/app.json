@@ -3,7 +3,7 @@
     "pages/index/index",
     "pages/Home/tips/tips",
     "pages/Home/funct/funct",
-	"pages/Home/user/user",
+	  "pages/Home/user/user",
     "pages/Study/timeTable/timeTable",
     "pages/Study/tableShare/tableShare",
     "pages/Study/classroom/classroom",

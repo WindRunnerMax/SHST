@@ -7,8 +7,9 @@ page{
 .top{
   display: flex;
   flex-wrap: wrap;
-  justify-content:  center ;  
+  justify-content: space-between;
   margin-top: 20px;
+  text-align: center;
 }
 
 .optCon{
@@ -44,4 +45,13 @@ page{
   align-items: center;
   justify-content: center;
   justify-items: center;
+}
+
+.buttonCon{
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+   box-sizing:content-box;
 }

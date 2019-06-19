@@ -9,14 +9,11 @@ module.exports = {
   getCurWeek: getCurWeek
 }
 
-function getNowFormatDate(id) {
+function getNowFormatDate(yearAdd = 0 , monthAdd = 0 , dayAdd = 0) {
   var date = new Date();
-  var hour = date.getHours();
-  var minutes = date.getMinutes();
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
-  var day = date.getDate();
-  if (id == 2) year++;
+  var year = date.getFullYear() + yearAdd;
+  var month = date.getMonth() + 1 + monthAdd;
+  var day = date.getDate() + dayAdd;
   if (month < 10) month = "0" + month;
   if (day < 10) day = "0" + day;
   return year + "-" + month + "-" + day;
@@ -24,7 +21,6 @@ function getNowFormatDate(id) {
 
 function datacalc(startDateString, endDateString, content) {
   var color = colorList[md5.hexMD5(content)[0].charCodeAt() % colorN];
-  console.log(colorN);
   var diff = dataDiff(startDateString, endDateString);
   if (diff === 0) diff = "今";
   else if (diff < 0) diff = "超期" + Math.abs(diff);
@@ -43,5 +39,5 @@ function dataDiff(startDateString, endDateString){
 }
 
 function getCurWeek(startTime){
-  return (parseInt(dataDiff(startTime, getNowFormatDate(1))/7) + 1);
+  return (parseInt(dataDiff(startTime, getNowFormatDate())/7) + 1);
 }

@@ -4,7 +4,34 @@
   <view>空教室</view>
 </view>
 <view class='top'>
-  <view class='optCon'>
+  <picker-view indicator-style="height: 40px;" style="width: 70%; height: 100px;"  bindchange="bindPickerChange">
+    <picker-view-column>
+      <view wx:for="{{queryData}}" wx:key="{{index}}" style="line-height: 40px">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{queryTime}}" wx:key="{{index}}" style="line-height: 40px">{{item[0]}}</view>
+    </picker-view-column>
+  </picker-view>
+  <view class='buttonCon'>
+    <view class='asse-btn asse-btn-blue' bindtap='loadClassroom'>搜索</view>
+  </view>
+</view>
+<view wx:if='{{show === 1}}' style='margin-top:20px;'>
+  <view class='lineCon'>
+    <view class='rowBlue'></view>
+    <view>{{qShow}}[{{searchData}}]</view>
+  </view>
+  <view wx:for='{{room}}' wx:key="{{index}}">
+    <view data-index='{{index}}' bindtap='flagChange' class='optShow'>{{item.jxl}}</view>
+    <view style='display:{{flag[index]}};' class="roomCon">
+      <view wx:for="{{item.jsList}}" wx:for-item="inner" wx:for-index='innerIndex' wx:key="{{innerIndex}}">
+        <view class='unit'>{{inner.jsmc}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- <view class='optCon'>
     <view class='asse-btn asse-btn-blue' data-indexcurr='0102' data-show='12节(8:00-9:50)' bindtap='loadClassroom'>12节</view>
     <view class='asse-btn asse-btn-blue' data-indexcurr='0910' data-show='9X节(19:00-20:50)' bindtap='loadClassroom'>9X节</view>
   </view>
@@ -19,19 +46,4 @@
   <view class='optCon'>
     <view class='asse-btn asse-btn-blue' data-indexcurr='0708' data-show='78节(16:00-17:50)' bindtap='loadClassroom'>78节</view>
     <view class='asse-btn asse-btn-blue' data-indexcurr='allday' data-show='全天(8:00-20:50)' bindtap='loadClassroom'>全天</view>
-  </view>
-</view>
-<view wx:if='{{show === 1}}'>
-  <view class='lineCon'>
-    <view class='rowBlue'></view>
-    <view>{{qShow}}</view>
-  </view>
-  <view wx:for='{{room}}' wx:key="{{index}}">
-    <view data-index='{{index}}' bindtap='flagChange' class='optShow'>{{item.jxl}}</view>
-    <view style='display:{{flag[index]}};' class="roomCon">
-      <view wx:for="{{item.jsList}}" wx:for-item="inner" wx:for-index='innerIndex' wx:key="{{innerIndex}}">
-        <view class='unit'>{{inner.jsmc}}</view>
-      </view>
-    </view>
-  </view>
-</view>
+  </view> -->

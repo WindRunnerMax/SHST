@@ -8,9 +8,9 @@ App({
       'Cookie': '', //PHPSESSID
       'content-type': 'application/x-www-form-urlencoded'
     },
-    openid:"",
+    openid : "",
     colorList: ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"],
-    version: 2.7,
+    version: 2.8,
     curTerm : "2018-2019-2",
     curTermStart : "2019-2-25"
   },
@@ -51,6 +51,11 @@ App({
       }
     }
     return target;
+  },
+  onPageNotFound(res) { //处理404
+    wx.redirectTo({
+      url: '/pages/index/index?status=E'
+    })
   }
 })
 
@@ -111,7 +116,7 @@ app.extend({
       success: suc,
       fail: option.fail,
       complete: function (res) {
-        if (res.header['Set-Cookie']) app.globalData.header.Cookie = res.header['Set-Cookie'].split(";")[0];
+        if (res && res.header && res.header['Set-Cookie']) app.globalData.header.Cookie = res.header['Set-Cookie'].split(";")[0];
         if (option.load === 1) wx.hideNavigationBarLoading();
         else if (option.load === 2) wx.hideLoading();
         option.complete();

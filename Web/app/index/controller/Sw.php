@@ -24,7 +24,7 @@ class Sw extends Controller
             "xh" => $_POST['username'],
             "pwd" => $_POST['password']
             );
-            $info = Http::httpRequest(Conf::getUrl(),$params,"GET");
+            $info = Http::httpRequest(Conf::getUrl(),$params,"GET",Conf::getHeader(),false,true);
             if (!$info) {
                 return "<br>啊哦，可能出了点问题";
             }
@@ -159,7 +159,7 @@ class Sw extends Controller
             }else{
                 $page = 1;
             } 
-            $header = Conf::getHeader();
+            $header = Conf::libGetHeader();
             $http = new Http();
             $info = $http->httpRequest("http://interlib.sdust.edu.cn/opac/m/search",$params,"GET",$header);
             preg_match_all("/<li onclick.*?>[\s\S]*?<\/li>/",$info,$match);
@@ -193,7 +193,7 @@ class Sw extends Controller
         $infoArr = array();
         $infoArrInner = array();
         $url = "http://interlib.sdust.edu.cn/opac/m/book/" . $id;
-        $header = Conf::getHeader();
+        $header = Conf::libGetHeader();
         $http = new Http();
         $info = $http->httpRequest($url,array(),"GET",$header);
         preg_match("/<table.*?>[\s\S]*?<\/table>/",$info,$pageMatch);
@@ -231,7 +231,7 @@ class Sw extends Controller
             "returnUrl" => "/m/loan/renewList",
             "view" => "action"
         );
-        $header = Conf::getHeader();
+        $header = Conf::libGetHeader();
         $http = new Http();
         $info = $http->httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"POST",$header);
         preg_match_all("/<li>[\s\S]*?<\/li>/",$info,$match);

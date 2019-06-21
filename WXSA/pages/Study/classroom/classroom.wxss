@@ -6,10 +6,9 @@ page{
 }
 .top{
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   margin-top: 20px;
   text-align: center;
+  justify-content: space-between;
 }
 
 .optCon{
@@ -48,10 +47,20 @@ page{
 }
 
 .buttonCon{
+  margin: 0;
+  width: 20%;
+  max-width: 78px;
   display: flex;
-  padding: 10px;
   flex-direction: column;
   justify-content: center;
   justify-items: center;
-   box-sizing:content-box;
+  box-sizing:content-box;
+}
+.search{
+  height: auto;
+  padding:10px 15px;
+  background:#1e9fff;
+  color: #fff;
+  border-radius: 3px; 
+  word-break: break-all; 
 }

@@ -10,7 +10,8 @@ Page({
     show: 0,
     searchData: time.getNowFormatDate(),
     searchTime: '0102',
-    index : [0,0]
+    searchFloor : 1 ,
+    index : [0,0,0]
   },
   flagChange(e) {
     var flagIndex = parseInt(e.currentTarget.dataset.index);
@@ -25,9 +26,10 @@ Page({
       load: 1,
       data: {
         searchData: that.data.searchData,
-        searchTime: that.data.searchTime
+        searchTime: that.data.searchTime,
+        searchFloor: that.data.searchFloor,
       },
-      url: app.globalData.url + 'funct/sw/classroomExt',
+      url: app.globalData.url + 'funct/sw/classroomExt2',
       fun: res => {
         if (res.data.MESSAGE !== "Yes") {
           app.toast("ERROR");
@@ -42,10 +44,11 @@ Page({
         console.log(data)
         that.setData({
           room: data,
-          flag: flagExp,
+          // flag: flagExp,
           show: 1,
           qShow: that.data.queryTime[that.data.index[1]][2],
           searchData: that.data.searchData
+          // searchFloor: that.data.searchFloor[that.data.index[2]][0],
         })
       }
     })
@@ -66,31 +69,46 @@ Page({
       ['下午', 'pm', '下午(14:00-17:50)'],
       ['全天', 'allday', '全天(8:00-20:50)']
     ];
+    var queryFloor = [
+      ["J1", "1"],
+      ["J3", "3"],
+      ["J5", "5"],
+      ["J7", "7"],
+      ["J14", "14"],
+      ["S1", "S1"]
+    ];
     this.setData({
       queryData: queryData,
-      queryTime: queryTime
+      queryTime: queryTime,
+      queryFloor: queryFloor
     })
   },
   getTimeArr() {
+    var weekShow = ["周日","周一", "周二", "周三", "周四", "周五", "周六"];
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
     var day = date.getDate();
     var queryDataArr = [];
+    var week = new Date().getDay();
+    console.log(week);
     for (var i = 0; i < 7; ++i) {
       let monthTemp = month;
       let dayTemp = day + i;
+      let weekTemp = week + i;
       if (monthTemp < 10) monthTemp = "0" + monthTemp;
       if (dayTemp < 10) dayTemp = "0" + dayTemp;
-      queryDataArr.push(year + "-" + monthTemp + "-" + dayTemp);
+      queryDataArr.push([year + "-" + monthTemp + "-" + dayTemp, weekShow[weekTemp % 7]]);
     }
     return queryDataArr;
   },
   bindPickerChange(e) {
     var that = this;
+    console.log(e);
     this.data.index = e.detail.value;
-    this.data.searchData = that.data.queryData[e.detail.value[0]];
+    this.data.searchData = that.data.queryData[e.detail.value[0]][0];
     this.data.searchTime = that.data.queryTime[e.detail.value[1]][1]
+    this.data.searchFloor = that.data.queryFloor[e.detail.value[2]][1]
   },
   resetInfo(){
     this.setData({

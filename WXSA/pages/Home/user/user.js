@@ -47,7 +47,7 @@ Page({
     wx.getStorage({
       key: 'point',
       success(res) {
-        if (res.data >= app.globalData.version) {
+        if (res.data === app.globalData.version) {
           that.setData({
             point:"none"
           })

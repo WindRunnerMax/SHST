@@ -197,4 +197,21 @@ class Sw extends Controller
         }
         return ["MESSAGE" => "Yes" , "data" => json_decode($info,true)];
     }
+
+    public function classroomExt2(){
+        $user = $this->checkSession();
+        if (isset($_GET['searchData']) && isset($_GET['searchTime']) && isset($_GET['searchFloor'])) {
+            $params = array(
+                "method" => "getKxJscx",
+                "time" => $_GET['searchData'],
+                "idleTime" => $_GET['searchTime'],
+                "xqid" => 1,
+                "jxlid" => $_GET['searchFloor'],
+                "classroomNumber" => "%2B50"
+            );
+            $info = $this->httpReq($params);
+            return ["MESSAGE" => "Yes" , "data" => json_decode($info,true)];
+        }
+        return ["MESSAGE" => "No"];
+    }
 }

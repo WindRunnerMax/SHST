@@ -28,7 +28,7 @@ Page({
     }
     var that = this;
     app.ajax({
-      load: 1,
+      load: 2,
       url: app.globalData.url + "funct/lib/signalBookquery" + param,
       fun: res => {
         if (res.data.Message === "Yes") {

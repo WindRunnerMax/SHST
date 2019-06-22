@@ -46,7 +46,7 @@
     <view>></view>
   </view>
   <view class='unitInfo' bindtap='logout'>
-    <view>注销</view>
+    <view>{{userFlag === 1 ? "注销" : "前去绑定教务系统"}}</view>
     <view>></view>
   </view>
 </view>

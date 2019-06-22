@@ -13,8 +13,7 @@
   </view>
   <button class='asse-btn asse-btn-blue loginBtn' form-type="submit">Log In</button>
 </form>
-<view class='tips' wx:if="{{tips === 1}}">
+<view class='tips'>
   <view>请输入强智系统账号密码</view>
-  <view bindtap='viewInfo'>游客登录</view>
 </view>
 <view style='margin:10px 0 0 3px;font-size:13px;color:red;'>{{status}}</view>

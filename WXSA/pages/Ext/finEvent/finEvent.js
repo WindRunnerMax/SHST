@@ -50,6 +50,7 @@ Page({
       })
     } else {
       app.ajax({
+        load: 2,
         url: app.globalData.url + "funct/todo/getFinEvent",
         fun: res => {
           if (res.data.data) {

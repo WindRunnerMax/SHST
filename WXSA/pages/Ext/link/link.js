@@ -18,6 +18,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     app.ajax({
+      load: 2,
       url: app.globalData.url + "funct/ext/urlshare",
       fun: res => {
         that.setData({

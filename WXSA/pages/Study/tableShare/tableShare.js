@@ -50,6 +50,7 @@ Page({
   agree(e) {
     var that = this;
     app.ajax({
+      load: 2,
       url: app.globalData.url + "funct/share/agreereq",
       data: {
         id: e.currentTarget.dataset.id
@@ -63,6 +64,7 @@ Page({
   lifting(e){
     var that = this;
     app.ajax({
+      load: 2,
       url: app.globalData.url + "funct/share/lifting",
       data: {
         id: e.currentTarget.dataset.id
@@ -76,6 +78,7 @@ Page({
   refuse(e) {
     var that = this;
     app.ajax({
+      load: 2,
       url: app.globalData.url + "funct/share/refusereq",
       data: {
         id: e.currentTarget.dataset.id
@@ -92,6 +95,7 @@ Page({
   onLoad: function(options) {
     var that = this;
     app.ajax({
+      load: 2,
       url: app.globalData.url + "funct/share/signalTableshare2",
       data: {
         week: app.globalData.curWeek,

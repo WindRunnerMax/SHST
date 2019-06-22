@@ -3,7 +3,7 @@ page{
   padding: 10px;
   width: calc(100% - 20px);
   font-size: 14px;
-  line-height: 21px;
+  line-height: 15px;
 }
 
 .title{

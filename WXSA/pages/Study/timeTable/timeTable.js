@@ -12,7 +12,7 @@ Page({
     if (typeof (e) === "number") urlTemp += ("/" + e);
     var that = this;
     app.ajax({
-      load: 1,
+      load: 2,
       url: app.globalData.url + 'funct/sw/signalTable2' + urlTemp,
       data: {
         week: app.globalData.curWeek,
@@ -42,7 +42,6 @@ Page({
     })
   },
   pre(e){
-    console.log(e.target.dataset.week)
     if (e.target.dataset.week <= 1) return ;
     var week = parseInt(e.currentTarget.dataset.week) - 1;
     this.onLoad(week);

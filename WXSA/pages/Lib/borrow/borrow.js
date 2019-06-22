@@ -30,6 +30,7 @@ Page({
     }
     var that = this;
     app.ajax({
+      load: 2,
       url: app.globalData.url + "funct/lib/signalLibquery",
       fun: res => {
         if (res.data.Message === "Yes"){

@@ -36,6 +36,7 @@ Page({
       })
     } else {
       app.ajax({
+        load: 2,
         url: app.globalData.url + "funct/todo/getevent",
         fun: res => {
           if (res.data.data) {

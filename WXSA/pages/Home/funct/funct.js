@@ -16,7 +16,17 @@ Page({
   },
   jump(e){
     if (!app.globalData.userFlag && e.currentTarget.dataset.checkuser === "0"){
-      app.toast("游客模式下无法提供此功能");
+      wx.showModal({
+        title: '提示',
+        content: '该功能需要绑定强智教务系统，是否前去绑定',
+        success: function (choice) {
+          if (choice.confirm) {
+            wx.redirectTo({
+              url: '/pages/index/index?status=E'
+            })
+          }
+        }
+      })
       return ;
     }
     wx.navigateTo({

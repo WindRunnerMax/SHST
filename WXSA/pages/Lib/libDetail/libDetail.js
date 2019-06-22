@@ -15,7 +15,7 @@ Page({
   onLoad: function (e) {
     var that = this;
     app.ajax({
-      load:1,
+      load: 2,
       url: app.globalData.url + "funct/lib/signalBookdetail",
       data:{
         id:e.id

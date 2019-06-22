@@ -11,8 +11,8 @@ App({
     openid: "",
     colorList: ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"],
     version: "2.8.2",
-    curTerm : "2018-2019-2",
-    curTermStart : "2019-2-25"
+    curTerm: "2018-2019-2",
+    curTermStart: "2019-2-25"
   },
   extend: function() {
     var aLength = arguments.length;
@@ -71,7 +71,7 @@ app.extend({
   /**
    * 弹窗
    */
-  toast: function (e, time = 2000, icon = 'none') {
+  toast: function(e, time = 2000, icon = 'none') {
     wx.showToast({
       title: e,
       icon: icon,
@@ -82,30 +82,43 @@ app.extend({
   /**
    * 封装请求
    */
-  ajax: function (requestInfo) {
+  ajax: function(requestInfo) {
     var option = {
       load: 1,
+      cookie: 1 ,
       url: "",
       method: "GET",
       data: {},
-      fun: function (res) {},
-      fail: function (res) {app.toast("服务器错误");},
-      complete : function(res) {}
+      fun: (res) => {},
+      success: (res) => {},
+      fail: (res) => {app.toast("服务器错误");},
+      complete: (res) => {}
     };
     app.extend(option, requestInfo);
-    if (option.load === 1) {
-      wx.showNavigationBarLoading();
-    } else if (option.load === 2) {
-      wx.showLoading({
-        title: '请求中',
-      })
+    switch (option.load) { //开启LOADING
+      case 1:
+        wx.showNavigationBarLoading();
+        break;
+      case 2:
+        wx.showNavigationBarLoading();
+        wx.setNavigationBarTitle({ title: '加载中...' })
+        break;
+      case 3:
+        wx.showLoading({ title: '请求中', mask: true })
+        break;
     }
-    var suc = function (res) {
-      try {
-        option.fun(res);
-      } catch (e) {
-        app.toast("PARSE ERROR");
-        console.log(e);
+    var hideLoad = () => { //关闭LOADING
+      switch (option.load) {
+        case 1:
+          wx.hideNavigationBarLoading();
+          break;
+        case 2:
+          wx.hideNavigationBarLoading();
+          wx.setNavigationBarTitle({title: '山科小站'})
+          break;
+        case 3:
+          wx.hideLoading();
+          break;
       }
     }
     wx.request({
@@ -113,12 +126,53 @@ app.extend({
       data: option.data,
       method: option.method,
       header: app.globalData.header,
-      success: suc,
-      fail: option.fail,
-      complete: function (res) {
-        if (res && res.header && res.header['Set-Cookie']) app.globalData.header.Cookie = res.header['Set-Cookie'].split(";")[0];
-        if (option.load === 1) wx.hideNavigationBarLoading();
-        else if (option.load === 2) wx.hideLoading();
+      success: (res) => {
+        try {
+          option.fun(res);
+          option.success(res);
+        } catch (e) {
+          app.toast("PARSE ERROR");
+          console.log(e);
+        }
+        hideLoad();
+      },
+      fail: (res) => {
+        option.fail(res);
+        hideLoad();
+      },
+      complete: function(res) {
+        if (app.globalData.header.Cookie === "" && option.cookie === 1 ){
+          if (res && res.header && res.header['Set-Cookie']) {
+            app.globalData.header.Cookie = res.header['Set-Cookie'].split(";")[0];
+            wx.setStorage({
+              key: 'phpsessid',
+              data: app.globalData.header.Cookie
+            })
+          } else {
+              wx.getStorage({
+                key: 'phpsessid',
+                success: res => {
+                  app.globalData.header.Cookie = res.data;
+                }
+              })
+          }
+        }
+        if (res && res.header && res.header['Set-Cookie']) {
+          app.globalData.header.Cookie = res.header['Set-Cookie'].split(";")[0];
+          wx.setStorage({
+            key: 'phpsessid',
+            data: app.globalData.header.Cookie
+          })
+        }else{
+          if (app.globalData.header.Cookie === "") {
+            wx.getStorage({
+              key: 'phpsessid',
+              success: res => {
+                app.globalData.header.Cookie = res.data;
+              }
+            })
+          }
+        }
         option.complete();
       }
     })
@@ -127,15 +181,15 @@ app.extend({
   /**
    * 统一处理课表功能
    */
-  tableDispose:function(info ,flag = 0){
+  tableDispose: function(info, flag = 0) {
     var tableArr = [];
     const week = new Date().getDay() - 1;
     info.forEach(value => {
-      if(!value) return ;
+      if (!value) return;
       var arrInner = [];
       var day = parseInt(value.kcsj[0]) - 1;
-      if(flag === 1 && day !== week) return ;
-      var knot = parseInt(parseInt(value.kcsj.substr(1,2)) / 2);
+      if (flag === 1 && day !== week) return;
+      var knot = parseInt(parseInt(value.kcsj.substr(1, 2)) / 2);
       var md5Str = md5.hexMD5(value.kcmc);
       var colorSignal = app.globalData.colorList[Math.abs((md5Str[0].charCodeAt() - md5Str[3].charCodeAt())) % app.globalData.colorN];
       arrInner.push(day);
@@ -144,7 +198,7 @@ app.extend({
       arrInner.push(value.jsxm);
       arrInner.push(value.jsmc);
       arrInner.push(colorSignal);
-      if(!tableArr[day]) tableArr[day] = [];
+      if (!tableArr[day]) tableArr[day] = [];
       tableArr[day][knot] = arrInner;
     })
     if (flag === 1) return tableArr[week];

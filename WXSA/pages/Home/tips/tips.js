@@ -12,14 +12,73 @@ Page({
     todayWeather: ["", "CLEAR_DAY", 0, 0, "数据获取中"],
     tomorrowWeather: ["", "CLEAR_DAY", 0, 0],
     tdatomoWeather: ["", "CLEAR_DAY", 0, 0],
-    tips: "数据加载中",
+    tips: "获取用户信息中",
     todoList: [],
-    tips2: "数据加载中"
+    tips2: "获取用户信息中"
   },
   onLoad: function(options) {
-    this.getTable();
-    this.getWeather();
-    this.getEvent();
+    if (app.globalData.openid === "") {
+      this.getOpenid();
+      this.getWeather();
+    }else{
+      this.getWeather();
+      this.getTable();
+      this.getEvent();
+    }
+  },
+  getOpenid() {
+    var that = this;
+    wx.login({
+      success: res => {
+        app.ajax({
+          load: 1,
+          url: app.globalData.url + 'funct/user/signalGetOpenid',
+          method: 'POST',
+          data: {
+            "code": res.code
+          },
+          fun: function (data) {
+            if (data.data.PHPSESSID){
+              app.globalData.header.Cookie = "PHPSESSID=" + data.data.PHPSESSID;
+            }else{
+              wx.getStorage({
+                key: 'phpsessid',
+                success: res => {
+                  app.globalData.header.Cookie = res.data;
+                }
+              })
+            }
+            if (data.data.openid) {
+              console.log(data.data.openid);
+              app.globalData.openid = data.data.openid;
+              wx.setStorage({
+                key: 'openid',
+                data: data.data.openid
+              })
+            } else {
+              wx.getStorage({
+                key: 'openid',
+                success: res => {
+                  app.globalData.openid = res.data;
+                }
+              })
+            }
+            if (data.data.Message === "Ex") {
+              app.globalData.userFlag = 1;
+              that.getEvent();
+              that.getTable();
+            }else{
+              wx.hideToast();
+              that.setData({
+                tips: "点我前去绑定教务系统账号"
+              })
+              if (data.data.info) app.toast(data.data.info);
+              that.getEvent();
+            }
+          }
+        })
+      }
+    })
   },
   getTable() {
     var that = this;
@@ -56,6 +115,7 @@ Page({
     var that = this;
     app.ajax({
       load: 1,
+      cookie : 0,
       url: app.globalData.url + 'funct/sw/signalTable2',
       data:{
         week : app.globalData.curWeek,
@@ -179,6 +239,16 @@ Page({
         }
       }
     })
+  },
+  bindSW(){
+    if(app.globalData.userFlag === 0){
+      wx.redirectTo({
+        url: '/pages/index/index?status=E'
+      })
+    }else return 0;
+  },
+  onRefresh(){
+    this.getTable();
   },
   // onPullDownRefresh() {
   //   this.onLoad();

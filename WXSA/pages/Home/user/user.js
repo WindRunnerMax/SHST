@@ -10,7 +10,8 @@ Page({
     name: " ",
     username: " ",
     flag: 0,
-    point:"block"
+    point: "block",
+    userFlag: app.globalData.userFlag 
   },
   copy(e) {
     wx.setClipboardData({
@@ -22,7 +23,7 @@ Page({
       url: e.currentTarget.dataset.jumpurl
     })
   },
-  jumpUpdate(e){
+  jumpUpdate(e) {
     this.setData({
       point: "none"
     })
@@ -31,16 +32,9 @@ Page({
     })
   },
   logout(e) {
-    wx.setStorage({
-      key: 'flag',
-      data: '0',
-      success: () => {
-        wx.redirectTo({
-          url: '/pages/index/index?status=E'
-        })
-      }
+    wx.redirectTo({
+      url: '/pages/index/index?status=E'
     })
-
   },
   onLoad: function(options) {
     var that = this;
@@ -49,19 +43,19 @@ Page({
       success(res) {
         if (res.data === app.globalData.version) {
           that.setData({
-            point:"none"
+            point: "none"
           })
         }
       }
     })
-    if(!app.globalData.userFlag){
+    if (!app.globalData.userFlag) {
       that.setData({
         academy: "游客",
         name: "游客",
         username: "游客",
         flag: 1
       })
-      return ;
+      return;
     }
     app.ajax({
       load: 1,
@@ -89,7 +83,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.setData({
+      userFlag: app.globalData.userFlag
+    })
   },
 
   /**

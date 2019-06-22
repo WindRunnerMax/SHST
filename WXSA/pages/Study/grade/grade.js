@@ -21,7 +21,7 @@ Page({
     var stuYear = this.data.array[e.detail.value].value;
     var query = (stuYear === "" ? "" : "/" + stuYear);
     app.ajax({
-      load: 1,
+      load: 2,
       url: app.globalData.url + 'funct/sw/grade' + query,
       fun: res => {
         if (res.data.MESSAGE !== "Yes") {
@@ -110,7 +110,7 @@ Page({
     var stuYear = app.globalData.curTerm;
     var query = (stuYear === "" ? "" : "/" + stuYear);
     app.ajax({
-      load: 1,
+      load: 2,
       url: app.globalData.url + 'funct/sw/grade' + query,
       fun: res => {
         if (res.data.MESSAGE !== "Yes") {

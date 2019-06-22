@@ -10,8 +10,8 @@ Page({
     show: 0,
     searchData: time.getNowFormatDate(),
     searchTime: '0102',
-    searchFloor : 1 ,
-    index : [0,0,0]
+    searchFloor: 1,
+    index: [0, 0, 0]
   },
   flagChange(e) {
     var flagIndex = parseInt(e.currentTarget.dataset.index);
@@ -22,8 +22,12 @@ Page({
   },
   loadClassroom(e) {
     var that = this;
+    setTimeout(() => that.loadClassroomSetTime(e),300);
+  },
+  loadClassroomSetTime(e) {
+    var that = this;
     app.ajax({
-      load: 1,
+      load: 2,
       data: {
         searchData: that.data.searchData,
         searchTime: that.data.searchTime,
@@ -36,15 +40,9 @@ Page({
           return;
         }
         var data = res.data.data;
-        var flagExp = [];
-        data.map((index, value) => {
-          flagExp.push("none");
-          return value;
-        })
         console.log(data)
         that.setData({
           room: data,
-          // flag: flagExp,
           show: 1,
           qShow: that.data.queryTime[that.data.index[1]][2],
           searchData: that.data.searchData
@@ -84,7 +82,7 @@ Page({
     })
   },
   getTimeArr() {
-    var weekShow = ["周日","周一", "周二", "周三", "周四", "周五", "周六"];
+    var weekShow = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -104,13 +102,12 @@ Page({
   },
   bindPickerChange(e) {
     var that = this;
-    console.log(e);
     this.data.index = e.detail.value;
     this.data.searchData = that.data.queryData[e.detail.value[0]][0];
     this.data.searchTime = that.data.queryTime[e.detail.value[1]][1]
     this.data.searchFloor = that.data.queryFloor[e.detail.value[2]][1]
   },
-  resetInfo(){
+  resetInfo() {
     this.setData({
       searchData: time.getNowFormatDate(),
       searchTime: '0102',

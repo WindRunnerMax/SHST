@@ -4,7 +4,25 @@ use think\Db;
 use think\Log;
 
 class Conf
-{
+{   
+    public static function getCtx(){
+      return "/sdust";
+    }
+
+    public static function getCurTerm(){
+        return "2018-2019-2";
+    }
+
+    private static function getCurTermStart(){
+        return "2019-02-25";
+    }
+
+    public static function getCurWeek(){
+        $d1 = strtotime("2019-2-25");
+        $d2 = ceil((time()-$d1)/60/60/24) - 1;
+        return (int)($d2/7)+1;
+    }
+
     public static function getUrl(){
         return "http://219.218.128.228/app.do";
     }
@@ -32,8 +50,15 @@ class Conf
         );
     }
 
-    public static function getCtx(){
-      return "/sdust";
+    public static function getNormalHeader(){ //图书馆用到了Cookie特殊对待
+        return array(
+        "Expect: ",
+        'User-Agent: Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
+        'Referer: http://www.baidu.com',
+        'accept-encoding: deflate, br',
+        'accept-language: zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
+        'cache-control: max-age=0'
+        );
     }
 
     public static function getTips(){

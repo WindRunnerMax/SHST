@@ -22,7 +22,7 @@ Page({
         success: function (choice) {
           if (choice.confirm) {
             wx.redirectTo({
-              url: '/pages/index/index?status=E'
+              url: '/pages/Login/login?status=E'
             })
           }
         }

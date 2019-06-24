@@ -11,7 +11,7 @@ Page({
     username: " ",
     flag: 0,
     point: "block",
-    userFlag: app.globalData.userFlag 
+    userFlag: app.globalData.userFlag
   },
   copy(e) {
     wx.setClipboardData({
@@ -33,7 +33,7 @@ Page({
   },
   logout(e) {
     wx.redirectTo({
-      url: '/pages/index/index?status=E'
+      url: '/pages/Login/login?status=E'
     })
   },
   onLoad: function(options) {
@@ -83,9 +83,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.setData({
-      userFlag: app.globalData.userFlag
-    })
+    if (app.globalData.userFlag !== this.data.userFlag) {
+      this.setData({
+        userFlag: app.globalData.userFlag
+      })
+    }
   },
 
   /**

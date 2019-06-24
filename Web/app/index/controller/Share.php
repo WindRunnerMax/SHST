@@ -47,12 +47,10 @@ class Share extends Controller
     }
 
     private function getTimeTable(){
-    	
-        $s = json_decode($this->getCurrentTime(),true);
-        $zc = $s['zc'];
+        $zc = Conf::getCurWeek();
         $params=array(
         "method" => "getKbcxAzc",
-        "xnxqid" => $s['xnxqh'],
+        "xnxqid" => Conf::getCurTerm(),
         "zc" => $zc ,
         "xh" => $_SESSION['account']
         );

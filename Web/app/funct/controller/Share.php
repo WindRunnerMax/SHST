@@ -189,7 +189,7 @@ class Share extends Controller
                 Db::table("timetable_share") -> where("account",$_SESSION['account']) -> update($refuseUpdateRecord);
                 $record["status"] = 1;
             }else if ($exist['pair_status'] === 0) {
-                $tableInfo = $this -> getTimeTable2($_GET['week'],$_GET['term']);
+                $tableInfo = $this -> getTimeTable2(Conf::getCurWeek(),Conf::getCurTerm());
                 $updateRecord['week'] = $tableInfo[0];
                 $updateRecord['timetable'] = json_encode($tableInfo[1]);
                 Db::table("timetable_share") -> where("id",$exist['id']) -> update($updateRecord);

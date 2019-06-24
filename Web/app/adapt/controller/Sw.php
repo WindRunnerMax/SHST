@@ -35,11 +35,10 @@ class Sw extends Controller
         $colorList = Conf::getColorList();
         $colorN = count($colorList);
         $user = $this->checkSession();
-        $s = json_decode($this->getCurrentTime(),true);
-        $zc = $zc === -1 ? $s['zc'] : $zc;
+        $zc = $zc === -1 ? Conf::getCurWeek() : $zc;
         $params=array(
         "method" => "getKbcxAzc",
-        "xnxqid" => $s['xnxqh'],
+        "xnxqid" => Conf::getCurTerm(),
         "zc" => $zc ,
         "xh" => $_SESSION['account']
         );
@@ -83,8 +82,7 @@ class Sw extends Controller
 
     public function grade($sy=""){
         $user = $this->checkSession();
-	//$sy = $sy === "" ? json_decode($this->getCurrentTime(),true)['xnxqh'] : $sy ;
-	$params = array(
+	   $params = array(
             "method" => "getCjcx",
             "xh" => $_SESSION['account'],
             "xnxqid" => $sy

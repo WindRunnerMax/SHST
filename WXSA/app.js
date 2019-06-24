@@ -12,7 +12,7 @@ App({
     colorList: ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"],
     version: "2.8.2",
     curTerm: "2018-2019-2",
-    curTermStart: "2019-2-25"
+    curTermStart: "2019-02-25"
   },
   extend: function() {
     var aLength = arguments.length;
@@ -54,7 +54,7 @@ App({
   },
   onPageNotFound(res) { //处理404
     wx.redirectTo({
-      url: '/pages/index/index?status=E'
+      url: '/pages/Login/login?status=E'
     })
   }
 })

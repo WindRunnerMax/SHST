@@ -170,16 +170,16 @@ class Sw extends Controller
     public function signalTable2($zc=-1){
         $user = $this->checkSession();
         if(isset($_GET['week']) && isset($_GET['term'])){
-            $zc = $zc === -1 ? $_GET['week'] : $zc;
+            $zc = $zc === -1 ? Conf::getCurWeek() : $zc;
             $params=array(
             "method" => "getKbcxAzc",
-            "xnxqid" => $_GET['term'],
+            "xnxqid" => Conf::getCurTerm(),
             "zc" => $zc ,
             "xh" => $_SESSION['account']
             );
             $info = json_decode($this->httpReq($params),true);
-            if(!$info) return ["Message" => "No" , "year" => $_GET['term'] , "week" => $zc , "data" => []];
-            return ["Message" => "Yes" , "year" => $_GET['term'] , "week" => $zc , "data" => $info];
+            if(!$info) return ["Message" => "No" , "year" => Conf::getCurTerm() , "week" => $zc , "data" => []];
+            return ["Message" => "Yes" , "year" => Conf::getCurTerm() , "week" => $zc , "data" => $info];
         }else return ["Message" => false , "year" => "2020-2021-1" , "week" => 0 , "data" => []];
         
     }

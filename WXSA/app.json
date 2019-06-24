@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/Home/tips/tips",
+    "pages/Login/login",
     "pages/Home/funct/funct",
 	  "pages/Home/user/user",
     "pages/Study/timeTable/timeTable",
@@ -26,7 +26,7 @@
       {
         "iconPath": "/vector/img/index.png",
         "selectedIconPath": "/vector/img/index1.png",
-        "pagePath": "pages/Home/tips/tips",
+        "pagePath": "pages/index/index",
         "text": "首页"
       },
       {

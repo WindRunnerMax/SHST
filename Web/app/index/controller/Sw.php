@@ -94,10 +94,9 @@ class Sw extends Controller
 
     public function table($zc=-1){
         $user = $this->checkSession();
-        $s = json_decode($this->getCurrentTime(),true);
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $user,
-                       'zc' => $s['zc']
+                       'zc' => Conf::getCurWeek()
                    ]);
         return $this->fetch();
     }
@@ -123,10 +122,9 @@ class Sw extends Controller
 
     public function grade($sy=""){
         $user = $this->checkSession();
-        $s = json_decode($this->getCurrentTime(),true);
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $user,
-                       'xnxqh' => $s['xnxqh']
+                       'xnxqh' => Conf::getCurTerm()
                    ]);
         return $this->fetch();
     }

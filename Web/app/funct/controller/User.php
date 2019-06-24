@@ -65,12 +65,12 @@ class User extends Controller
         $APPID = $this->appid; 
         $APPSECRET =  $this->appSecret; 
         $url = "https://api.weixin.qq.com/sns/jscode2session?appid=$APPID&secret=$APPSECRET&js_code=$value&grant_type=authorization_code";
-        $openid =json_decode(Http::httpRequest($url),true)['openid'];
+        $openid =json_decode(Http::httpRequest($url,[],"GET",Conf::getNormalHeader(),false,true),true)['openid'];
         $exist = Db::table("wx_user") -> where("openid",$openid) -> find();
         session_start();
         if(!$exist){
             $_SESSION['openid'] = $openid;
-            return ["Message" => "Yes" , "openid" => $openid , "PHPSESSID" => session_id()];
+            return ["Message" => "Yes" , "openid" => $openid , "PHPSESSID" => session_id() , "curWeek" => Conf::getCurWeek() , "curTerm" => Conf::getCurTerm()];
         }else{
             $_SESSION['openid'] = $openid;
             if ($exist['token'] === "") {
@@ -79,7 +79,7 @@ class User extends Controller
                    $record['token'] = $info['token'];
                    Db::table("wx_user") -> where("id",$exist['id']) -> update($record);
                 }else{
-                   return ["Message" => "NoN","info" => $info["info"],"account" => $exist['account'],"password" => $exist['password'], "openid" => $openid , "PHPSESSID" => session_id()];
+                   return ["Message" => "NoN","info" => $info["info"],"account" => $exist['account'],"password" => $exist['password'], "openid" => $openid , "PHPSESSID" => session_id() , "curWeek" => Conf::getCurWeek() , "curTerm" => Conf::getCurTerm()];
                 }
             }else{
                 $_SESSION['TOKEN'] = $exist['token'];
@@ -92,7 +92,7 @@ class User extends Controller
                 -> exp("log_times","log_times + 1")
                 -> limit(1) -> update($exRecord);
             }
-            return ["Message" => "Ex","PHPSESSID" => session_id(),"openid" => $openid];
+            return ["Message" => "Ex","PHPSESSID" => session_id(),"openid" => $openid , "curWeek" => Conf::getCurWeek() , "curTerm" => Conf::getCurTerm()];
         }
     }
 

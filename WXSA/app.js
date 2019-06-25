@@ -53,8 +53,8 @@ App({
     return target;
   },
   onPageNotFound(res) { //处理404
-    wx.redirectTo({
-      url: '/pages/Login/login?status=E'
+    wx.reLaunch({
+      url: '/pages/index/index'
     })
   }
 })
@@ -85,7 +85,7 @@ app.extend({
   ajax: function(requestInfo) {
     var option = {
       load: 1,
-      cookie: 1 ,
+      cookie: true ,
       url: "",
       method: "GET",
       data: {},
@@ -107,15 +107,8 @@ app.extend({
         wx.showLoading({ title: '请求中', mask: true })
         break;
     }
-    var hideLoad = () => { //关闭LOADING
+    var hideLoad = () => { //关闭弹窗LOADING
       switch (option.load) {
-        case 1:
-          wx.hideNavigationBarLoading();
-          break;
-        case 2:
-          wx.hideNavigationBarLoading();
-          wx.setNavigationBarTitle({title: '山科小站'})
-          break;
         case 3:
           wx.hideLoading();
           break;
@@ -141,7 +134,7 @@ app.extend({
         hideLoad();
       },
       complete: function(res) {
-        if (app.globalData.header.Cookie === "" && option.cookie === 1 ){
+        if (app.globalData.header.Cookie === "" && option.cookie){
           if (res && res.header && res.header['Set-Cookie']) {
             app.globalData.header.Cookie = res.header['Set-Cookie'].split(";")[0];
             wx.setStorage({
@@ -157,23 +150,16 @@ app.extend({
               })
           }
         }
-        if (res && res.header && res.header['Set-Cookie']) {
-          app.globalData.header.Cookie = res.header['Set-Cookie'].split(";")[0];
-          wx.setStorage({
-            key: 'phpsessid',
-            data: app.globalData.header.Cookie
-          })
-        }else{
-          if (app.globalData.header.Cookie === "") {
-            wx.getStorage({
-              key: 'phpsessid',
-              success: res => {
-                app.globalData.header.Cookie = res.data;
-              }
-            })
-          }
-        }
         option.complete();
+        switch (option.load) {
+          case 1:
+            wx.hideNavigationBarLoading();
+            break;
+          case 2:
+            wx.hideNavigationBarLoading();
+            wx.setNavigationBarTitle({ title: '山科小站' })
+            break;
+        }
       }
     })
   },

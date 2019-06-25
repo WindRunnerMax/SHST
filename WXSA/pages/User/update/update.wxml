@@ -3,6 +3,18 @@
   <view style='font-size:20px;'>Changelog</view>
   <view data-copy='https://github.com/WindrunnerMax/SW' class='url' bindtap='copy'>https://github.com/WindrunnerMax/SW</view>
 
+<view class='unitChange'>
+    <view class='title'>1.8.2 (2019-6-24) [d813066]</view>
+    <view>1. 优化APP请求逻辑</view>
+    <view>2. 修复版本号问题</view>
+  </view>
+  
+  <view class='unitChange'>
+    <view class='title'>1.8.1 (2019-6-22) [85a5d31]</view>
+    <view>1. 登录逻辑更改</view>
+    <view>2. 优化封装网络请求</view>
+  </view>
+
   <view class='unitChange'>
     <view class='title'>1.7.2 (2019-6-21) [59cecbd]</view>
     <view>1. 查询教室功能优化</view>

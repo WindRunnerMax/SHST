@@ -32,7 +32,7 @@ Page({
     })
   },
   logout(e) {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/Login/login?status=E'
     })
   },

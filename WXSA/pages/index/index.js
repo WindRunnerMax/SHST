@@ -120,7 +120,6 @@ Page({
     var that = this;
     app.ajax({
       load: 1,
-      cookie : 0,
       url: app.globalData.url + 'funct/sw/signalTable2',
       data:{
         week : app.globalData.curWeek,
@@ -156,6 +155,7 @@ Page({
     var that = this;
     var ran = parseInt(Math.random() * 100000000000);
     app.ajax({
+      cookie : false ,
       url: "https://api.caiyunapp.com/v2/Y2FpeXVuIGFuZHJpb2QgYXBp/120.127164,36.000129/weather?lang=zh_CN&device_id=" + ran,
       fun: function(res) {
         if (res.data.status === "ok") {
@@ -247,7 +247,7 @@ Page({
   },
   bindSW(){
     if(app.globalData.userFlag === 0){
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/pages/Login/login?status=E'
       })
     }else return 0;

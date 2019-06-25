@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -67,6 +67,12 @@
 					"name": "classroom",
 					"pathName": "pages/Study/classroom/classroom",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "login",
+					"pathName": "pages/Login/login",
 					"scene": null
 				}
 			]

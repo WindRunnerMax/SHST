@@ -43,3 +43,7 @@ page{
   display: flex;
   justify-content: space-between;
 }
+
+.wx-switch-input {
+    zoom: .8;
+}

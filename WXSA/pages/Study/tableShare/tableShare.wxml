@@ -69,8 +69,8 @@
   </view>
   <view class='asse-hr'></view>
   <view style='display:flex;align-items: center;'>
-    <view>我({{data.succ.my_week}})-</view>
-    <view>{{data.succ.pair}}({{data.succ.pair_week}})</view>
+    <view>{{data.succ.my_week}} -</view>
+    <view> {{data.succ.pair_week}}</view>
     <view class='asse-btn asse-btn-blue asse-btn-mini' data-id="{{data.succ.id}}" bindtap='lifting'>解除关系</view>
   </view>
 </view>

@@ -21,7 +21,7 @@ Page({
         content: '该功能需要绑定强智教务系统，是否前去绑定',
         success: function (choice) {
           if (choice.confirm) {
-            wx.redirectTo({
+            wx.navigateTo({
               url: '/pages/Login/login?status=E'
             })
           }

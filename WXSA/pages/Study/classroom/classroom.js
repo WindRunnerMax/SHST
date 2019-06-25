@@ -22,6 +22,7 @@ Page({
   },
   loadClassroom(e) {
     var that = this;
+    wx.setNavigationBarTitle({ title: '加载中...' })
     setTimeout(() => that.loadClassroomSetTime(e),300);
   },
   loadClassroomSetTime(e) {
@@ -41,6 +42,9 @@ Page({
         }
         var data = res.data.data;
         console.log(data)
+        data[0].jsList.sort((a, b) => {
+          return a.jsmc > b.jsmc ? 1 : -1;
+        });
         that.setData({
           room: data,
           show: 1,

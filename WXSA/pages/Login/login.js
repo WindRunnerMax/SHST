@@ -6,7 +6,8 @@ Page({
   data: {
     account: "",
     password: "",
-    status: ""
+    status: "",
+    hidePassword : true
   },
   accountInput: function(e) {
     this.data.account = e.detail.value;
@@ -48,7 +49,7 @@ Page({
               key: 'user',
               data: {
                 "account": that.data.account,
-                "password": encodeURIComponent(that.data.password),
+                "password": that.data.password,
                 "openid": app.globalData.openid
               },
               success: function() {
@@ -81,12 +82,17 @@ Page({
         if (res.data.account !== "" && res.data.password !== "") {
           this.setData({
             account: res.data.account,
-            password: res.data.password
+            password: decodeURIComponent(res.data.password)
           })
           app.globalData.openid = res.data.openid
         }
 
       }
+    })
+  },
+  switchChange(e) {
+    this.setData({
+      hidePassword: !e.detail.value
     })
   },
   viewInfo() {

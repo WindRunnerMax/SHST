@@ -1,4 +1,5 @@
 //app.js
+"use strict";
 App({
   globalData: {
     userFlag: 0,
@@ -10,7 +11,7 @@ App({
     },
     openid: "",
     colorList: ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"],
-    version: "2.8.2",
+    version: "2.8.6",
     curTerm: "2018-2019-2",
     curTermStart: "2019-02-25"
   },
@@ -89,10 +90,11 @@ app.extend({
       url: "",
       method: "GET",
       data: {},
-      fun: (res) => {},
-      success: (res) => {},
-      fail: (res) => {app.toast("服务器错误");},
-      complete: (res) => {}
+      fun: () => {},
+      success: () => {},
+      fail: function () { this.completeLoad = () => { app.toast("服务器错误"); };},
+      complete: () => {},
+      completeLoad: () => {}
     };
     app.extend(option, requestInfo);
     switch (option.load) { //开启LOADING
@@ -107,8 +109,15 @@ app.extend({
         wx.showLoading({ title: '请求中', mask: true })
         break;
     }
-    var hideLoad = () => { //关闭弹窗LOADING
+    var hideLoad = () => { //关闭LOADING
       switch (option.load) {
+        case 1:
+          wx.hideNavigationBarLoading();
+          break;
+        case 2:
+          wx.hideNavigationBarLoading();
+          wx.setNavigationBarTitle({ title: '山科小站' })
+          break;
         case 3:
           wx.hideLoading();
           break;
@@ -124,16 +133,15 @@ app.extend({
           option.fun(res);
           option.success(res);
         } catch (e) {
-          app.toast("PARSE ERROR");
+          option.completeLoad = () => { app.toast("PARSE ERROR"); }          
           console.log(e);
         }
-        hideLoad();
       },
       fail: (res) => {
         option.fail(res);
-        hideLoad();
       },
       complete: function(res) {
+        hideLoad();
         if (app.globalData.header.Cookie === "" && option.cookie){
           if (res && res.header && res.header['Set-Cookie']) {
             app.globalData.header.Cookie = res.header['Set-Cookie'].split(";")[0];
@@ -150,16 +158,8 @@ app.extend({
               })
           }
         }
-        option.complete();
-        switch (option.load) {
-          case 1:
-            wx.hideNavigationBarLoading();
-            break;
-          case 2:
-            wx.hideNavigationBarLoading();
-            wx.setNavigationBarTitle({ title: '山科小站' })
-            break;
-        }
+        option.complete(res);
+        option.completeLoad(res);
       }
     })
   },

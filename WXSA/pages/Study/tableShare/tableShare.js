@@ -1,4 +1,5 @@
 // pages/link/link.js
+"use strict";
 const app = getApp();
 Page({
 

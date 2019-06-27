@@ -1,4 +1,5 @@
 // pages/classroom/classroom.js
+"use strict";
 const app = getApp();
 const time = require('../../../vector/time.js');
 Page({

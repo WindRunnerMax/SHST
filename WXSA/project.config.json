@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -73,6 +73,21 @@
 					"id": -1,
 					"name": "login",
 					"pathName": "pages/Login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "exam",
+					"pathName": "pages/Ext/examArrange/examArrange",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "funct",
+					"pathName": "pages/Home/funct/funct",
+					"query": "",
 					"scene": null
 				}
 			]

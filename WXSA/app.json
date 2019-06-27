@@ -17,6 +17,7 @@
     "pages/Ext/link/link",
     "pages/Ext/event/event",
     "pages/Ext/finEvent/finEvent",
+    "pages/Ext/examArrange/examArrange",
     "pages/User/about/about",
     "pages/User/update/update",
     "pages/User/announcement/announcement"

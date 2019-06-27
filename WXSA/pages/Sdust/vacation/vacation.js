@@ -1,4 +1,5 @@
 // pages/vacation/vacation.js
+"use strict";
 Page({
 
   /**

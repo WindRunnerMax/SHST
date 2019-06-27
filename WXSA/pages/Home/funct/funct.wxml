@@ -76,6 +76,10 @@
       <image src='/vector/img/schedule.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>待办管理</view>
     </view>
+    <view class='fun' data-jumpurl="/pages/Ext/examArrange/examArrange" data-checkuser="0" bindtap='jump'>
+      <image src='/vector/img/exam.svg' class='imgIcon' style='width:25px;height:25px;padding:9px;'></image>
+      <view style='margin:8px 0;'>考试安排</view>
+    </view>
   </view>
 </view>
 

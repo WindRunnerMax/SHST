@@ -1,4 +1,5 @@
 // pages/map/map.js
+"use strict";
 Page({
 
   /**

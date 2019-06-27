@@ -1,4 +1,5 @@
 // pages/event/event.js
+"use strict";
 const app = getApp()
 const md5 = require('../../vector/md5.js');
 const time = require('../../vector/time.js');

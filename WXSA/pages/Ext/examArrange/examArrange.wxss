@@ -1,28 +1,21 @@
-/* pages/grade/grade.wxss */
 page{
   font-size: 15px; 
   padding: 10px;
   width: calc(100% - 20px); 
 }
-.section{
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #eee;
-  border-radius: 3px;  
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.123);
-  margin-bottom: 10px;
-}
 
-.overview{
-  margin: 10px;
-  display:flex;
-  justify-content: space-between;
-  color: #fff;
-}
-
-.overUnit{
-  padding: 7px 10px;
+.tips{
+  padding: 3px;
+  width: calc(100% - 6px);
+  display: flex;
+  flex-wrap: wrap;
+  color: #666;
+  font-size: 15px; 
+  margin: 5px 0;
+  height: 50px;
+  line-height: 50px;
   border-radius: 3px;
+  justify-content: center;
 }
 
 .card{
@@ -39,21 +32,23 @@ page{
   font-size: 17px;
 }
 
-.infoRight{
+.infoRight,.infoLeft{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.infoLeft{
-  line-height: 20px;
-}
 
 .cgrade{
-  font-size: 20px;
+  font-size: 18px;
   color:  #569FD1;
 }
+
+.time{
+  align-self: flex-end;
+}
+
 
 .card view{
   margin: 5px;

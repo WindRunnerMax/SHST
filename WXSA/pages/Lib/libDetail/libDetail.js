@@ -1,4 +1,5 @@
 // pages/libDeatil/libDetail.js
+"use strict";
 const app = getApp()
 Page({
 

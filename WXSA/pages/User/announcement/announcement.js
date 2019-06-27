@@ -1,4 +1,5 @@
 // pages/User/announcement/announcement.js
+"use strict";
 const app = getApp()
 Page({
 

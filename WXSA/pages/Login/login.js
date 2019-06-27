@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+"use strict";
 const app = getApp()
 
 Page({
@@ -43,7 +44,7 @@ Page({
             that.setData({
               status: res.data.info
             })
-            app.toast(res.data.info);
+            this.completeLoad = (res) => { app.toast(res.data.info);}
           } else if (res.data.Message == "Yes") {
             wx.setStorage({
               key: 'user',
@@ -63,7 +64,7 @@ Page({
             that.setData({
               status: "ERROR"
             })
-            app.toast("请求错误");
+            this.completeLoad = (res) => { app.toast("请求错误"); }
           }
         }
       });

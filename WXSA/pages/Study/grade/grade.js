@@ -1,4 +1,5 @@
 // pages/grade/grade.js
+"use strict";
 const app = getApp();
 Page({
 

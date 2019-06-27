@@ -1,4 +1,5 @@
 // pages/borrow/borrow.js
+"use strict";
 const app = getApp();
 const compareTimeInSameDay = (t1, t2) => {
   let d = new Date()

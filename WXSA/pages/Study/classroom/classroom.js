@@ -90,19 +90,19 @@ Page({
     var weekShow = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
     var date = new Date();
     var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
     var queryDataArr = [];
     var week = new Date().getDay();
     console.log(week);
     for (var i = 0; i < 7; ++i) {
-      let monthTemp = month;
-      let dayTemp = day + i;
+      let monthTemp = date.getMonth() + 1;;
+      let dayTemp = date.getDate();
       let weekTemp = week + i;
       if (monthTemp < 10) monthTemp = "0" + monthTemp;
       if (dayTemp < 10) dayTemp = "0" + dayTemp;
       queryDataArr.push([year + "-" + monthTemp + "-" + dayTemp, weekShow[weekTemp % 7]]);
+      date.addDate(0, 0, 1);
     }
+    console.log(queryDataArr);
     return queryDataArr;
   },
   bindPickerChange(e) {

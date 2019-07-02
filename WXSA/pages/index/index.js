@@ -3,6 +3,8 @@
 const app = getApp()
 const md5 = require('../../vector/md5.js');
 const time = require('../../vector/time.js');
+const dispose = require('../../vector/dispose.js');
+
 
 Page({
 
@@ -41,16 +43,6 @@ Page({
             "code": res.code
           },
           fun: function (data) {
-            if (data.data.PHPSESSID){
-              app.globalData.header.Cookie = "PHPSESSID=" + data.data.PHPSESSID;
-            }else{
-              wx.getStorage({
-                key: 'phpsessid',
-                success: res => {
-                  app.globalData.header.Cookie = res.data;
-                }
-              })
-            }
             if (data.data.openid) {
               console.log(data.data.openid);
               app.globalData.openid = data.data.openid;
@@ -89,7 +81,7 @@ Page({
       success(res) {
         if (app.globalData.curWeek === res.data.week) {
           console.log(res.data)
-          res.data.table = app.tableDispose(res.data.table, 1);
+          res.data.table = dispose.tableDispose(res.data.table, 1);
           that.setData({
             table: res.data.table ? res.data.table : [],
             tips: res.data.table ? "" : "No Class Today"
@@ -136,7 +128,7 @@ Page({
               }
           })
         }
-        res.data.data = app.tableDispose(res.data.data, 1);
+        res.data.data = dispose.tableDispose(res.data.data, 1);
         console.log(res.data)
         if (res.data.Message === "Yes") {
           that.setData({

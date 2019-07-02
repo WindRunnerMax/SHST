@@ -36,7 +36,7 @@ Page({
             tips: res.data.data.length !== 0 ? "" : "暂无考试信息"
           })
         }else{
-          app.toast("请求错误");
+          app.toast("数据拉取失败");
         }
       }
     });

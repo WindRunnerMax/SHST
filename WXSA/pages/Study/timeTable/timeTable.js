@@ -1,6 +1,8 @@
 //logs.js
 "use strict";
 const app = getApp()
+const dispose = require('../../../vector/dispose.js');
+
 
 Page({
   data: {
@@ -30,7 +32,7 @@ Page({
             }
           })
         }
-        res.data.data = app.tableDispose(res.data.data);
+        res.data.data = dispose.tableDispose(res.data.data);
         if (res.data.Message === "Yes") {
           that.setData({
             table: res.data.data,

@@ -4,97 +4,104 @@
   <view data-copy='https://github.com/WindrunnerMax/SW' class='url' bindtap='copy'>https://github.com/WindrunnerMax/SW</view>
 
   <view class='unitChange'>
-    <view class='title'>1.8.3 (2019-6-25) [a64d565]</view>
+    <view class='title'>2.4.4 (2019-6-27) [0f65966]</view>
+    <view>1. 因后台逻辑问题共享课表只显示周次</view>
+    <view>2. 处理Toast执行顺序问题</view>
+    <view>3. 考试安排功能</view>
+  </view>
+
+  <view class='unitChange'>
+    <view class='title'>2.4.3 (2019-6-25) [a64d565]</view>
     <view>1. 部分加载提示载入封装网络请求的Complete中</view>
     <view>2. 空教室排序</view>
     <view>3. 登陆时显示密码开关</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.8.2 (2019-6-24) [d813066]</view>
+    <view class='title'>2.4.2 (2019-6-24) [d813066]</view>
     <view>1. 优化APP请求逻辑</view>
     <view>2. 修复版本号问题</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.8.1 (2019-6-22) [85a5d31]</view>
+    <view class='title'>2.4.1 (2019-6-22) [85a5d31]</view>
     <view>1. 登录逻辑更改</view>
     <view>2. 优化封装网络请求</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.7.2 (2019-6-21) [59cecbd]</view>
+    <view class='title'>2.3.2 (2019-6-21) [59cecbd]</view>
     <view>1. 查询教室功能优化</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.7.1 (2019-6-19) [a0b96cf]</view>
+    <view class='title'>2.3.1 (2019-6-19) [a0b96cf]</view>
     <view>1. 近7天空教室查询功能</view>
     <view>2. 修复部分冗余</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.6.5 (2019-6-18) [e38c011]</view>
+    <view class='title'>2.2.5 (2019-6-18) [e38c011]</view>
     <view>1. 目录结构整理</view>
     <view>2. 修复时间与登录BUG</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.6.4 (2019-6-16) [3f97a7b]</view>
+    <view class='title'>2.2.4 (2019-6-16) [3f97a7b]</view>
     <view>1. 使用Storage存储部分数据</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.6.3 (2019-6-15) [3c09247]</view>
+    <view class='title'>2.2.3 (2019-6-15) [3c09247]</view>
     <view>1. 更新前后端逻辑，减少对强智的请求</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.6.2 (2019-6-13) [74ec7d2]</view>
+    <view class='title'>2.2.2 (2019-6-13) [74ec7d2]</view>
     <view>1. 代码目录结构</view>
     <view>2. user界面重构</view>
     <view>3. 修复一些登录的问题</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.6.1 (2019-6-11) [ed5f91b]</view>
+    <view class='title'>2.2.1 (2019-6-11) [ed5f91b]</view>
     <view>1. 减少服务器负载，本地处理数据</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.5.2 (2019-6-9) [1b33ddf]</view>
+    <view class='title'>2.1.2 (2019-6-9) [1b33ddf]</view>
     <view>1. 待办安排功能</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.5.1 (2019-6-8) [f141520]</view>
+    <view class='title'>2.1.1 (2019-6-8) [f141520]</view>
     <view>1. 图标颜色问题</view>
     <view>2. 修复主页用户未授权的问题</view>
     <view>3. 增加放假安排功能</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.4.5 (2019-6-7) [c59e024]</view>
+    <view class='title'>2.0.5 (2019-6-7) [c59e024]</view>
     <view>1. 修复GET请求编码问题(小程序+APP)</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.4.4 (2019-5-26) [d00a5b0]</view>
+    <view class='title'>2.0.4 (2019-5-26) [d00a5b0]</view>
     <view>1. 微信小程序提供游客模式，完善校历和嵙地图功能</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.4.3 (2019-5-23)[ace5f30]</view>
+    <view class='title'>2.0.3 (2019-5-23)[ace5f30]</view>
     <view>1. 微信小程序完成教室，成绩，共享课表，图书馆，借阅，地图，校历，链接</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.4.2 (2019-5-22)[3353a8a]</view>
+    <view class='title'>2.0.2 (2019-5-22)[3353a8a]</view>
     <view>1. 微信小程序完成课表、用户</view>
   </view>
 
   <view class='unitChange'>
-    <view class='title'>1.4.1 (2019-5-21) [3f51c42]</view>
+    <view class='title'>2.0.1 (2019-5-21) [3f51c42]</view>
     <view>1. 微信小程序开发(WXSA)</view>
     <view>2. 完成微信小程序登录、今日课程、天气</view>
   </view>

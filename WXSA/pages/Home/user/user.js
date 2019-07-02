@@ -11,8 +11,7 @@ Page({
     name: " ",
     username: " ",
     flag: 0,
-    point: "block",
-    userFlag: app.globalData.userFlag
+    point: "none"
   },
   copy(e) {
     wx.setClipboardData({
@@ -42,9 +41,9 @@ Page({
     wx.getStorage({
       key: 'point',
       success(res) {
-        if (res.data === app.globalData.version) {
+        if (res.data !== app.globalData.version) {
           that.setData({
-            point: "none"
+            point: "block"
           })
         }
       }
@@ -58,23 +57,43 @@ Page({
       })
       return;
     }
-    app.ajax({
-      load: 1,
-      url: app.globalData.url + 'funct/user/getuserinfo',
-      fun: res => {
-        if (res.data.info) {
-          that.setData({
-            academy: res.data.info.academy,
-            name: res.data.info.name,
-            username: res.data.info.username,
-            flag: 1
-          })
-        } else {
-          app.toast("服务器错误");
-        }
+    wx.getStorage({
+      key: 'userInfo',
+      success: res => {
+        console.log("GET USERINFO FROM CACHE");
+        that.setData({
+          academy: res.data.academy,
+          name: res.data.name,
+          username: res.data.username,
+          flag: 1
+        })
+      },
+      fail : res => {
+        console.log("GET USERINFO FROM REMOTE");
+        app.ajax({
+          load: 1,
+          url: app.globalData.url + 'funct/user/getuserinfo',
+          fun: res => {
+            if (res.data.info) {
+              wx.setStorage({
+                key: 'userInfo',
+                data: res.data.info
+              })
+              that.setData({
+                academy: res.data.info.academy,
+                name: res.data.info.name,
+                username: res.data.info.username,
+                flag: 1
+              })
+            } else {
+              app.toast("服务器错误");
+            }
 
+          }
+        })
       }
     })
+    
   },
   onReady: function() {
 
@@ -84,11 +103,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (app.globalData.userFlag !== this.data.userFlag) {
-      this.setData({
-        userFlag: app.globalData.userFlag
-      })
-    }
   },
 
   /**

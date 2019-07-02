@@ -9,7 +9,7 @@
     <view class='card'>
       <view class='infoLeft'>
         <view class='cName'>{{item.kcmc}}</view>
-        <view style='color:#aaa;' class='time' >{{item.startTime}}-{{item.endTimeSplit}}</view>
+        <view style='color:#aaa;' >{{item.startTime}}-{{item.endTimeSplit}}</view>
       </view>
       <view class='infoRight'>
         <view class='cgrade'>{{item.jsmc}}</view>

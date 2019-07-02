@@ -61,8 +61,8 @@ App({
 })
 
 const app = getApp();
-const md5 = require('/vector/md5.js');
 const time = require('/vector/time.js');
+time.extDate(); //拓展Date原型
 app.globalData.colorN = app.globalData.colorList.length;
 app.globalData.curWeek = time.getCurWeek(app.globalData.curTermStart);
 
@@ -130,6 +130,24 @@ app.extend({
       header: app.globalData.header,
       success: (res) => {
         try {
+          if (app.globalData.header.Cookie === "" && option.cookie) {
+            if (res && res.header && res.header['Set-Cookie']) {
+              console.log("SetCookie");
+              app.globalData.header.Cookie = res.header['Set-Cookie'].split(";")[0];
+              wx.setStorage({
+                key: 'phpsessid',
+                data: app.globalData.header.Cookie
+              })
+            } else {
+              console.log("Get Cookie From Cache");
+              wx.getStorage({
+                key: 'phpsessid',
+                success: res => {
+                  app.globalData.header.Cookie = res.data;
+                }
+              })
+            }
+          }
           option.fun(res);
           option.success(res);
         } catch (e) {
@@ -142,53 +160,12 @@ app.extend({
       },
       complete: function(res) {
         hideLoad();
-        if (app.globalData.header.Cookie === "" && option.cookie){
-          if (res && res.header && res.header['Set-Cookie']) {
-            app.globalData.header.Cookie = res.header['Set-Cookie'].split(";")[0];
-            wx.setStorage({
-              key: 'phpsessid',
-              data: app.globalData.header.Cookie
-            })
-          } else {
-              wx.getStorage({
-                key: 'phpsessid',
-                success: res => {
-                  app.globalData.header.Cookie = res.data;
-                }
-              })
-          }
-        }
         option.complete(res);
         option.completeLoad(res);
       }
     })
-  },
-
-  /**
-   * 统一处理课表功能
-   */
-  tableDispose: function(info, flag = 0) {
-    var tableArr = [];
-    const week = new Date().getDay() - 1;
-    info.forEach(value => {
-      if (!value) return;
-      var arrInner = [];
-      var day = parseInt(value.kcsj[0]) - 1;
-      if (flag === 1 && day !== week) return;
-      var knot = parseInt(parseInt(value.kcsj.substr(1, 2)) / 2);
-      var md5Str = md5.hexMD5(value.kcmc);
-      var colorSignal = app.globalData.colorList[Math.abs((md5Str[0].charCodeAt() - md5Str[3].charCodeAt())) % app.globalData.colorN];
-      arrInner.push(day);
-      arrInner.push(knot);
-      arrInner.push(value.kcmc.split("（")[0]);
-      arrInner.push(value.jsxm);
-      arrInner.push(value.jsmc);
-      arrInner.push(colorSignal);
-      if (!tableArr[day]) tableArr[day] = [];
-      tableArr[day][knot] = arrInner;
-    })
-    if (flag === 1) return tableArr[week];
-    else return tableArr;
   }
 
 });
+
+

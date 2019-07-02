@@ -22,10 +22,6 @@
   </view>
   <view class='infoCon'>
     <view style='background:green;' class='point'></view>
-    <view>更新 空教室排序，考试安排 功能</view>
-  </view>
-  <view class='infoCon'>
-    <view style='background:green;' class='point'></view>
     <view>临近期末学校关闭了图书馆服务器外网访问，小站的图书馆功能受影响暂停</view>
   </view>
 </view>

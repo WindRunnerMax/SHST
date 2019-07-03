@@ -44,7 +44,7 @@ SW/Python 目录下为Python版本的API，提供的API较全
   
 ## Python
 
-**配置信息 SW/Python/SW.py**
+**配置文件 SW/Python/SW.py**
 * account 账号
 * password 密码
 * url {$强智系统URL}/app.do

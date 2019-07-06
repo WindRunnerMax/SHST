@@ -4,20 +4,6 @@ const app = getApp()
 const md5 = require('../../../vector/md5.js');
 const time = require('../../../vector/time.js');
 
-function getNowFormatDate(id) {
-  var date = new Date();
-  var hour = date.getHours();
-  var minutes = date.getMinutes();
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
-  var day = date.getDate();
-  if (id == 2) year++;
-  if (month < 10) month = "0" + month;
-  if (day < 10) day = "0" + day;
-  return year + "-" + month + "-" + day;
-}
-
-
 Page({
 
   /**

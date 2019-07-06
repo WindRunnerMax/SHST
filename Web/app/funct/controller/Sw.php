@@ -214,4 +214,15 @@ class Sw extends Controller
         }
         return ["MESSAGE" => "No"];
     }
+
+    public function ExamArrange(){
+        $user = $this->checkSession();
+        $params = array(
+            "method" => "getKscx",
+            "xh" => $_SESSION['account']
+        );
+        $info = $this->httpReq($params);
+        if($info) return ["MESSAGE" => "Yes" , "data" => json_decode($info,true)];
+        else return ["MESSAGE" => "No"];
+    }
 }

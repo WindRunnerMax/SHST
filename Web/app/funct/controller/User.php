@@ -43,12 +43,11 @@ class User extends Controller
         $openid =json_decode(Http::httpRequest($url),true)['openid'];
         $exist = Db::table("wx_user") -> where("openid",$openid) -> find();
         session_start();
+        $_SESSION['openid'] = $openid;
         if(!$exist){
-            $_SESSION['openid'] = $openid;
         	return ["Message" => "Yes" , "openid" => $openid , "PHPSESSID" => session_id()];
         }else{
     		$info = $this -> checkLogin($exist['account'],$exist['password']);
-            $_SESSION['openid'] = $openid;
         	if ($info['status'] === "Yes") {
                 $record['token'] = $info['token'];
                 Db::table("wx_user") -> where("id",$exist['id']) -> update($record);
@@ -66,33 +65,18 @@ class User extends Controller
         $APPSECRET =  $this->appSecret; 
         $url = "https://api.weixin.qq.com/sns/jscode2session?appid=$APPID&secret=$APPSECRET&js_code=$value&grant_type=authorization_code";
         $openid =json_decode(Http::httpRequest($url,[],"GET",Conf::getNormalHeader(),false,true),true)['openid'];
+        if($openid === "") Log::write("OPENID EMPTY" ,'error');
         $exist = Db::table("wx_user") -> where("openid",$openid) -> find();
         session_start();
+        $_SESSION['openid'] = $openid;
         if(!$exist){
-            $_SESSION['openid'] = $openid;
-            return ["Message" => "Yes" , "openid" => $openid , "PHPSESSID" => session_id() , "curWeek" => Conf::getCurWeek() , "curTerm" => Conf::getCurTerm()];
+            return ["Message" => "Yes" , "openid" => $openid , "PHPSESSID" => session_id() , "checkUpdate" => Conf::getWechatAppUpdate()];
         }else{
-            $_SESSION['openid'] = $openid;
-            if ($exist['token'] === "") {
-                $info = $this -> checkLogin($exist['account'],$exist['password']);
-                if ($info['status'] === "Yes") {
-                   $record['token'] = $info['token'];
-                   Db::table("wx_user") -> where("id",$exist['id']) -> update($record);
-                }else{
-                   return ["Message" => "NoN","info" => $info["info"],"account" => $exist['account'],"password" => $exist['password'], "openid" => $openid , "PHPSESSID" => session_id() , "curWeek" => Conf::getCurWeek() , "curTerm" => Conf::getCurTerm()];
-                }
-            }else{
-                $_SESSION['TOKEN'] = $exist['token'];
-                $_SESSION['account'] = $exist['account'];
-                $r_Time=date("Y-m-d H:i:s",time());
-                $exRecord['log_time'] = $r_Time;
-                $exRecord['access_type'] = 1;
-                Db::table("user")
-                -> where("username",$exist['account'])
-                -> exp("log_times","log_times + 1")
-                -> limit(1) -> update($exRecord);
-            }
-            return ["Message" => "Ex","PHPSESSID" => session_id(),"openid" => $openid , "curWeek" => Conf::getCurWeek() , "curTerm" => Conf::getCurTerm()];
+            $application = Db::table("application_info") -> where("id",1) -> find();
+            $_SESSION['TOKEN'] = $application['info'];
+            $_SESSION['account'] = $exist['account'];
+            $this -> updateUserInfo($exist['account']);
+            return ["Message" => "Ex","PHPSESSID" => session_id(),"openid" => $openid , "checkUpdate" => Conf::getWechatAppUpdate()];
         }
     }
 
@@ -103,33 +87,22 @@ class User extends Controller
             "pwd" => $password
             );
             $info = Http::httpRequest(Conf::getUrl(),$params,"GET",Conf::getHeader(),false,true);
-            if (!$info) {
-                return ['status' => 'No' , "info" => "响应超时"];
-            }
+            if (!$info) return ['status' => 'No' , "info" => "响应超时"];
             $jsonInfo = json_decode($info,true);
     	    if($jsonInfo['flag'] === "1"){
-                try {
-                    $r_Time=date("Y-m-d H:i:s",time());
-                    $exist = Db::table("user") -> where("username",$account) -> find();
-                    if ($exist) {
-                        $exRecord['log_time'] = $r_Time;
-                        $exRecord['access_type'] = 1;
-                        Db::table("user")
-                        -> where("username",$account)
-                        -> exp("log_times","log_times + 1")
-                        -> limit(1) -> update($exRecord);
-                    }else{
-                        $nexRecord['username'] = $account;
-                        $nexRecord['name'] = $jsonInfo['userrealname'];
-                        $nexRecord['academy'] = $jsonInfo['userdwmc'];
-                        $nexRecord['use_time'] = $r_Time;
-                        $nexRecord['log_time'] = $r_Time;
-                        $nexRecord['access_type'] = 1;
-                        Db::table("user") -> insert($nexRecord);
-                    }
-                } catch (Exception $e) {
-                    Log::write($e,'notice');
-                }  
+                $r_Time=date("Y-m-d H:i:s",time());
+                $exist = Db::table("user") -> where("username",$account) -> find();
+                if ($exist) {
+                    $this -> updateUserInfo($account);
+                }else{
+                    $nexRecord['username'] = $account;
+                    $nexRecord['name'] = $jsonInfo['userrealname'];
+                    $nexRecord['academy'] = $jsonInfo['userdwmc'];
+                    $nexRecord['use_time'] = $r_Time;
+                    $nexRecord['log_time'] = $r_Time;
+                    $nexRecord['access_type'] = 1;
+                    Db::table("user") -> insert($nexRecord);
+                } 
                 $_SESSION['TOKEN'] = $jsonInfo['token'];
                 $_SESSION['user'] = $jsonInfo['userrealname'];
                 $_SESSION['account'] = $account;
@@ -140,33 +113,34 @@ class User extends Controller
     }
 
     public function login(){
-    	if (isset($_POST['account']) && isset($_POST['password']) && isset($_POST['openid'])) {
-    		session_start();
-    		$info = $this -> checkLogin($_POST['account'],$_POST['password']);
-    		if ($info['status'] === "Yes") {
-                    $exist = Db::table("wx_user") -> where("account",$_POST['account']) -> find();
-                    if(!$exist){
-                	    $wxUserRecord['account'] = $_POST['account'];
-                        $wxUserRecord['password'] = $_POST['password'];
-                        $wxUserRecord['openid'] = $_POST['openid'];
-                        $wxUserRecord['token'] = $info['token'];
-                        Db::table("wx_user") -> insert($wxUserRecord);
-                    }else{
-        		        $wxUserRecord['openid'] = $_POST['openid'];
-        		        $wxUserRecord['password'] = $_POST['password'];
-                        $wxUserRecord['token'] = $info['token'];
-    	                Db::table("wx_user") -> where("account",$_POST['account']) -> update($wxUserRecord);
-		            }
-    		        return ["Message" => "Yes"];
-    		}else{
-    		    return ["Message" => "No","info" => $info["info"]];
-    		}
-    	}else return ["Message" => "No" , "info" => "数据有误"];
+    	if (!isset($_POST['account']) || !isset($_POST['password']) )  return ["Message" => "No" , "info" => "数据有误"];
+		session_start();
+		$info = $this -> checkLogin($_POST['account'],$_POST['password']);
+		if ($info['status'] === "Yes") {
+            $exist = Db::table("wx_user") -> where("account",$_POST['account']) -> find();
+            $wxUserRecord['password'] = $_POST['password'];
+            $wxUserRecord['openid'] = $_SESSION['openid'];
+            $wxUserRecord['token'] = $info['token'];
+            if(!$exist){
+        	    $wxUserRecord['account'] = $_POST['account'];
+                Db::table("wx_user") -> insert($wxUserRecord);
+            }else{
+                Db::table("wx_user") -> where("account",$_POST['account']) -> update($wxUserRecord);
+            }
+	        return ["Message" => "Yes"];
+		}else return ["Message" => "No","info" => $info["info"]];
     }
 
     public function getUserInfo($value=''){
     	$this->checkSession();
     	return ["info" => Db::table("user") -> field('academy,name,username') -> where("username",$_SESSION['account']) -> find()];
+    }
+
+    private function updateUserInfo($account){
+        $r_Time=date("Y-m-d H:i:s",time());
+        $exRecord['log_time'] = $r_Time;
+        $exRecord['access_type'] = 1;
+        Db::table("user") -> where("username",$account) -> exp("log_times","log_times + 1") -> limit(1) -> update($exRecord);
     }
 
     private function testToken(){

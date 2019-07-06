@@ -3,6 +3,13 @@
   <view style='font-size:20px;'>Changelog</view>
   <view data-copy='https://github.com/WindrunnerMax/SW' class='url' bindtap='copy'>https://github.com/WindrunnerMax/SW</view>
 
+<view class='unitChange'>
+    <view class='title'>2.4.5 (2019-7-2) [c0d33f6]</view>
+    <view>1. 缓存用户信息</view>
+    <view>2. 封装的时间日期修复，拓展Date原型addDate方法</view>
+    <view>3. 更改结构，加入dispose.js公共数据处理方法</view>
+  </view>
+
   <view class='unitChange'>
     <view class='title'>2.4.4 (2019-6-27) [0f65966]</view>
     <view>1. 因后台逻辑问题共享课表只显示周次</view>

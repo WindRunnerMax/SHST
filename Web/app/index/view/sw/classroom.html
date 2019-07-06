@@ -42,7 +42,7 @@
 
 <hr class="layui-bg-gray">
 <div class="layui-collapse">
-<?php foreach ($info as $value) { ?>
+<?php if($info) { foreach ($info as $value) { ?>
   <div class="layui-colla-item">
     <h2 class="layui-colla-title">{$value['jxl']}</h2>
     <div class="layui-colla-content">
@@ -52,7 +52,7 @@
   <?php } ?>
     </div>
   </div>
-<?php } ?>
+<?php } } ?>
 </div>
  
 <script>

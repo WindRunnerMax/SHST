@@ -3,6 +3,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Db;
 use app\auxiliary\Conf;
+use app\auxiliary\Http;
 
 class Index extends Controller
 {  
@@ -45,5 +46,18 @@ class Index extends Controller
     public function info(){
         return $this->fetch();
     }
+
+    // public function test(){
+    //     echo Http::httpRequest("https://www.google.com",array(),"GET",Conf::getHeader(),false,true);
+    //     var_dump($_GET);
+    //     var_dump($_POST);
+    // }
+
+    // public function testHTTP2(){
+    //     foreach ($_SERVER as $key => $value) {
+    //         echo $key."=>".$value."<br>";
+    //     }
+    //     echo getenv('HTTP_X_FORWARDED_FOR')."1";
+    // }
 
 }

@@ -83,3 +83,14 @@ page{
   height: 1px;
   border: none;
 }
+
+.weekGroup{
+  display: flex;
+}
+
+.weekUnit{
+  text-align: center;
+  padding: 5px 0;
+  font-size: 10px;
+  width:calc(100% / 7);
+}

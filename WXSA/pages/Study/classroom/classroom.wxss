@@ -58,9 +58,11 @@ page{
 }
 .search{
   height: auto;
+  line-height: unset;
   padding:10px 15px;
   background:#1e9fff;
   color: #fff;
   border-radius: 3px; 
   word-break: break-all; 
+  transition: all 0.3s;
 }

@@ -5,7 +5,6 @@ const md5 = require('../../vector/md5.js');
 const time = require('../../vector/time.js');
 const dispose = require('../../vector/dispose.js');
 
-
 Page({
 
   /**
@@ -24,9 +23,9 @@ Page({
       this.getOpenid();
       this.getWeather();
       this.getTempTable();
-    }else{
+    } else {
       this.getWeather();
-	    this.getTempTable();
+      this.getTempTable();
       this.getTable();
       this.getEvent();
     }
@@ -42,7 +41,7 @@ Page({
           data: {
             "code": res.code
           },
-          fun: function (data) {
+          fun: function(data) {
             if (data.data.openid) {
               console.log(data.data.openid);
               app.globalData.openid = data.data.openid;
@@ -61,7 +60,7 @@ Page({
             if (data.data.Message === "Ex") {
               app.globalData.userFlag = 1;
               that.getTable();
-            }else{
+            } else {
               wx.hideToast();
               that.setData({
                 tips: "点我前去绑定教务系统账号"
@@ -69,12 +68,19 @@ Page({
               if (data.data.info) app.toast(data.data.info);
             }
             that.getEvent();
+          },
+          complete: (data) => {
+            if (data.data.openid){
+              if (data.data.checkUpdate) dispose.checkUpdate();
+            }else{
+              dispose.checkUpdate();
+            }
           }
         })
       }
     })
   },
-  getTempTable(){
+  getTempTable() {
     var that = this;
     wx.getStorage({
       key: 'table',
@@ -96,36 +102,36 @@ Page({
       wx.getStorage({
         key: 'table',
         success(res) {
-          if (app.globalData.curWeek !== res.data.week){
+          if (app.globalData.curWeek !== res.data.week) {
             console.log("WEEK DIFF GET FROM REMOTE");
             that.getRemoteTable();
           }
         },
-        fail(){
+        fail() {
           console.log("FAIL GET FROM REMOTE");
           that.getRemoteTable();
         }
       })
-      
+
     }
   },
-  getRemoteTable(){
+  getRemoteTable() {
     var that = this;
     app.ajax({
       load: 1,
       url: app.globalData.url + 'funct/sw/signalTable2',
-      data:{
-        week : app.globalData.curWeek,
+      data: {
+        week: app.globalData.curWeek,
         term: app.globalData.curTerm
       },
-      fun: function (res) {
+      fun: function(res) {
         if (res.data.Message === "Yes") {
           wx.setStorage({
             key: 'table',
             data: {
               week: app.globalData.curWeek,
               table: res.data.data
-              }
+            }
           })
         }
         res.data.data = dispose.tableDispose(res.data.data, 1);
@@ -148,7 +154,7 @@ Page({
     var that = this;
     var ran = parseInt(Math.random() * 100000000000);
     app.ajax({
-      cookie : false ,
+      cookie: false,
       url: "https://api.caiyunapp.com/v2/Y2FpeXVuIGFuZHJpb2QgYXBp/120.127164,36.000129/weather?lang=zh_CN&device_id=" + ran,
       fun: function(res) {
         if (res.data.status === "ok") {
@@ -238,14 +244,14 @@ Page({
       }
     })
   },
-  bindSW(){
-    if(app.globalData.userFlag === 0){
+  bindSW() {
+    if (app.globalData.userFlag === 0) {
       wx.navigateTo({
         url: '/pages/Login/login?status=E'
       })
-    }else return 0;
+    } else return 0;
   },
-  onRefresh(){
+  onRefresh() {
     this.getTable();
   },
   // onPullDownRefresh() {

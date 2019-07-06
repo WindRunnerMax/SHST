@@ -24,40 +24,41 @@ class Conf
     }
 
     public static function getUrl(){
-        return "http://219.218.128.228/app.do";
+       // return "http://219.218.128.228/app.do";
+       return "http://jwgl.sdust.edu.cn/app.do";
     }
 
     public static function getHeader(){  //固定一个Cookie请求
         return array(
         "Expect: ",
-        'User-Agent: Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
-        'Referer: http://www.baidu.com',
-        'accept-encoding: deflate, br',
-        'accept-language: zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
-        'cache-control: max-age=0',
-        'Cookie: JSESSIONID=4045B439B3104A7A9CB2DF01D20324DF'
+        'User-Agent:Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
+        'Referer:http://www.baidu.com',
+        'accept-encoding:deflate, br',
+        'accept-language:zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
+        'cache-control:max-age=0',
+        'Cookie:JSESSIONID=4045B439B3104A7A9CB2DF01D20324DF'
         );
     }
 
     public static function libGetHeader(){ //图书馆用到了Cookie特殊对待
         return array(
         "Expect: ",
-        'User-Agent: Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
-        'Referer: http://www.baidu.com',
-        'accept-encoding: deflate, br',
-        'accept-language: zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
-        'cache-control: max-age=0'
+        'User-Agent:Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
+        'Referer:http://www.baidu.com',
+        'accept-encoding:deflate, br',
+        'accept-language:zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
+        'cache-control:max-age=0'
         );
     }
 
-    public static function getNormalHeader(){ //图书馆用到了Cookie特殊对待
+    public static function getNormalHeader(){
         return array(
         "Expect: ",
-        'User-Agent: Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
-        'Referer: http://www.baidu.com',
-        'accept-encoding: deflate, br',
-        'accept-language: zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
-        'cache-control: max-age=0'
+        'User-Agent:Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
+        'Referer:http://www.baidu.com',
+        'accept-encoding:deflate, br',
+        'accept-language:zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
+        'cache-control:max-age=0'
         );
     }
 
@@ -81,5 +82,9 @@ class Conf
 
     public static function getNewTips(){
         return 9;
+    }
+
+    public static function getWechatAppUpdate(){
+        return true;
     }
 }

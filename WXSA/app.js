@@ -4,14 +4,15 @@ App({
   globalData: {
     userFlag: 0,
     // url: 'http://localhost/Swisdom/Web/index.php/',
-    url: 'https://www.liyanzuisha.cn/sdust/index.php/',
+    // url: 'https://www.liyanzuisha.cn/sdust/index.php/',
+    url: 'https://www.michalingshi.cn/sdust/index.php/',
     header: {
       'Cookie': '', //PHPSESSID
       'content-type': 'application/x-www-form-urlencoded'
     },
     openid: "",
     colorList: ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"],
-    version: "2.8.6",
+    version: "2.4.6",
     curTerm: "2018-2019-2",
     curTermStart: "2019-02-25"
   },

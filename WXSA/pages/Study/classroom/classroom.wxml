@@ -16,7 +16,7 @@
     </picker-view-column>
   </picker-view>
   <view class='buttonCon'>
-    <view class='search' bindtap='loadClassroom'>搜索</view>
+    <view class='asse-btn search' bindtap='loadClassroom'>搜索</view>
   </view>
 </view>
 <view wx:if='{{show === 1}}' style='margin-top:20px;'>

@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 8,
 			"list": [
 				{
 					"id": 0,
@@ -87,6 +87,20 @@
 					"id": -1,
 					"name": "funct",
 					"pathName": "pages/Home/funct/funct",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "table",
+					"pathName": "pages/Study/timeTable/timeTable",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "index",
+					"pathName": "pages/index/index",
 					"query": "",
 					"scene": null
 				}

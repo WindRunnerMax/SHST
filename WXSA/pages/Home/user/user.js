@@ -38,15 +38,16 @@ Page({
   },
   onLoad: function(options) {
     var that = this;
+    var pointOp = (res) => {
+      if (res.data !== app.globalData.version) {
+        that.setData({
+          point: "block"
+        })
+      }
+    }
     wx.getStorage({
       key: 'point',
-      success(res) {
-        if (res.data !== app.globalData.version) {
-          that.setData({
-            point: "block"
-          })
-        }
-      }
+      complete: (res) => pointOp(res)
     })
     if (!app.globalData.userFlag) {
       that.setData({

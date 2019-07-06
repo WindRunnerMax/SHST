@@ -10,6 +10,16 @@
   </view>
 </view>
 <view class="asse-hr timetablehr"></view>
+<view class='weekGroup'>
+  <view class='weekUnit'>Mon</view>
+  <view class='weekUnit'>Tue</view>
+  <view class='weekUnit'>Wed</view>
+  <view class='weekUnit'>Thur</view>
+  <view class='weekUnit'>Fri</view>
+  <view class='weekUnit'>Sat</view>
+  <view class='weekUnit'>Sun</view>
+</view>
+<view class="asse-hr timetablehr"></view>
 <view wx:for="{{[0,1,2,3,4]}}" wx:key="{{index}}">
   <view class='line'>
     <view wx:for="{{[0,1,2,3,4,5,6]}}" wx-index='innerIndex' wx:for-item="inner" wx:for-index="innerIndex" wx:key="{{innerIndex}}" style='width:calc(100% / 7);'>

@@ -9,16 +9,18 @@ import json
 import datetime
 
 # 强智教务管理系统
-#################################
+########################################
 account = ""
 password = ""
-################################
+url = "http://jwgl.sdust.edu.cn/app.do" 
+########################################
 
 
 class SW(object):
     """docstring for SW"""
-    def __init__(self, account, password):
+    def __init__(self, account, password,url):
         super(SW, self).__init__()
+        self.url = url
         self.account = account
         self.password = password
         self.session = self.login()
@@ -30,10 +32,6 @@ class SW(object):
     'accept-language': 'zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
     'cache-control': 'max-age=0'
     }
-
-###############################################
-    url = "http://jwgl.sdust.edu.cn/app.do" 
-###############################################
 
     def login(self):
         params={
@@ -144,7 +142,7 @@ class SW(object):
 
 
 if __name__ == '__main__':
-    Q = SW(account,password)
+    Q = SW(account,password,url)
     # Q.getStudentIdInfo() #获取学号信息
     # Q.getCurrentTime() #获取学年信息
     # Q.getKbcxAzc() #当前周次课表

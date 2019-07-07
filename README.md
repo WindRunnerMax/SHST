@@ -1,4 +1,10 @@
 # SW
+
+[![tips](https://img.shields.io/badge/-更新日志-%234C98F7.svg?style=for-the-badge&logo=azure-pipelines&logoColor=White)](https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md) 
+[![tips2](https://img.shields.io/badge/-通用版本-%234C98F7.svg?style=for-the-badge&logo=monogram&logoColor=White)](https://github.com/WindrunnerMax/SW/tree/master) 
+[![tips3](https://img.shields.io/badge/-科大-%234C98F7.svg?style=for-the-badge&logo=sitepoint&logoColor=White)](https://github.com/WindrunnerMax/SW/blob/SDUST/Web/public/show1.jpg) 
+[![tips4](https://img.shields.io/badge/-山科小站-%234C98F7.svg?style=for-the-badge&logo=marketo&logoColor=White)](https://github.com/WindrunnerMax/SW/blob/SDUST/Web/public/show2.jpg) 
+
 ```
 SW/Python 目录下为Python版本的API
 SW/PHP 目录下为PHP版本的API
@@ -6,11 +12,6 @@ SW/Java 目录下为Java版本的API
 SW/Web 目录下基于ThinkPHP制作的WEB项目[科大]，提供课表查询，空教室查询，成绩查询，图书馆书籍检索，图书馆借阅查询，常用链接分享等功能  
 SW/WXSA 目录下为微信小程序项目[山科小站]，提供课表查询，空教室查询，成绩查询，图书馆书籍检索，图书馆借阅查询，常用链接分享，校历，地图等功能  
 ```
-
-[![tips](https://img.shields.io/badge/-更新日志-%234C98F7.svg?style=for-the-badge&logo=azure-pipelines&logoColor=White)](https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md) 
-[![tips2](https://img.shields.io/badge/-通用版本-%234C98F7.svg?style=for-the-badge&logo=monogram&logoColor=White)](https://github.com/WindrunnerMax/SW/tree/master) 
-[![tips3](https://img.shields.io/badge/-科大-%234C98F7.svg?style=for-the-badge&logo=sitepoint&logoColor=White)](https://github.com/WindrunnerMax/SW/blob/SDUST/Web/public/show1.jpg) 
-[![tips4](https://img.shields.io/badge/-山科小站-%234C98F7.svg?style=for-the-badge&logo=marketo&logoColor=White)](https://github.com/WindrunnerMax/SW/blob/SDUST/Web/public/show2.jpg) 
 
 ----
   

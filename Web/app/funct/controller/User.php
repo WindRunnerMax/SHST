@@ -65,18 +65,17 @@ class User extends Controller
         $APPSECRET =  $this->appSecret; 
         $url = "https://api.weixin.qq.com/sns/jscode2session?appid=$APPID&secret=$APPSECRET&js_code=$value&grant_type=authorization_code";
         $openid =json_decode(Http::httpRequest($url,[],"GET",Conf::getNormalHeader(),false,true),true)['openid'];
-        if($openid === "") Log::write("OPENID EMPTY" ,'error');
         $exist = Db::table("wx_user") -> where("openid",$openid) -> find();
         session_start();
         $_SESSION['openid'] = $openid;
         if(!$exist){
-            return ["Message" => "Yes" , "openid" => $openid , "PHPSESSID" => session_id() , "checkUpdate" => Conf::getWechatAppUpdate()];
+            return ["Message" => "Yes" , "openid" => $openid , "PHPSESSID" => session_id() , "checkUpdate" => true];
         }else{
             $application = Db::table("application_info") -> where("id",1) -> find();
             $_SESSION['TOKEN'] = $application['info'];
             $_SESSION['account'] = $exist['account'];
             $this -> updateUserInfo($exist['account']);
-            return ["Message" => "Ex","PHPSESSID" => session_id(),"openid" => $openid , "checkUpdate" => Conf::getWechatAppUpdate()];
+            return ["Message" => "Ex","PHPSESSID" => session_id(),"openid" => $openid , "checkUpdate" => true];
         }
     }
 
@@ -113,11 +112,15 @@ class User extends Controller
     }
 
     public function login(){
-    	if (!isset($_POST['account']) || !isset($_POST['password']) )  return ["Message" => "No" , "info" => "数据有误"];
+    	if (!isset($_POST['account']) || !isset($_POST['password']) || !isset($_POST['openid']))  return ["Message" => "No" , "info" => "数据有误"];
 		session_start();
 		$info = $this -> checkLogin($_POST['account'],$_POST['password']);
 		if ($info['status'] === "Yes") {
             $exist = Db::table("wx_user") -> where("account",$_POST['account']) -> find();
+            if(!isset($_SESSION['openid'])){
+                Log::write($_SERVER,'error');
+                $_SESSION['openid'] = $_POST['openid'];
+            } 
             $wxUserRecord['password'] = $_POST['password'];
             $wxUserRecord['openid'] = $_SESSION['openid'];
             $wxUserRecord['token'] = $info['token'];

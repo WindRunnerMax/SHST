@@ -24,8 +24,8 @@ class Conf
     }
 
     public static function getUrl(){
-       // return "http://219.218.128.228/app.do";
-       return "http://jwgl.sdust.edu.cn/app.do";
+       return "http://219.218.128.228/app.do";
+       //return "http://jwgl.sdust.edu.cn/app.do";
     }
 
     public static function getHeader(){  //固定一个Cookie请求

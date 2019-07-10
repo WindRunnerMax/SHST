@@ -60,7 +60,7 @@ class Http
                 array_push($header,"token:".$jsonInfo['token']);
                 $record['info'] = $jsonInfo['token'];
                 Db::table("application_info") -> where("id",1) -> update($record);
-                Log::write("TOKEN INVALID REGET FROM ".(string)$_SESSION['account'],'NOTICE');
+                // Log::write("TOKEN INVALID REGET FROM ".(string)$_SESSION['account'],'NOTICE');
                 return self::httpRequest($url,$data,$method,$header,$cookieFlag,true);
             }else return false;
       }

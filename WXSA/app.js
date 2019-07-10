@@ -12,7 +12,7 @@ App({
     },
     openid: "",
     colorList: ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"],
-    version: "2.4.6",
+    version: "2.4.7",
     curTerm: "2018-2019-2",
     curTermStart: "2019-02-25"
   },
@@ -63,7 +63,10 @@ App({
 
 const app = getApp();
 const time = require('/vector/time.js');
+const dispose = require('/vector/dispose.js');
 time.extDate(); //拓展Date原型
+dispose.userDot(); //UserDot
+dispose.checkUpdate(); //更新
 app.globalData.colorN = app.globalData.colorList.length;
 app.globalData.curWeek = time.getCurWeek(app.globalData.curTermStart);
 
@@ -87,7 +90,7 @@ app.extend({
   ajax: function(requestInfo) {
     var option = {
       load: 1,
-      cookie: true ,
+      autoCookie: true ,
       url: "",
       method: "GET",
       data: {},
@@ -98,57 +101,15 @@ app.extend({
       completeLoad: () => {}
     };
     app.extend(option, requestInfo);
-    switch (option.load) { //开启LOADING
-      case 1:
-        wx.showNavigationBarLoading();
-        break;
-      case 2:
-        wx.showNavigationBarLoading();
-        wx.setNavigationBarTitle({ title: '加载中...' })
-        break;
-      case 3:
-        wx.showLoading({ title: '请求中', mask: true })
-        break;
-    }
-    var hideLoad = () => { //关闭LOADING
-      switch (option.load) {
-        case 1:
-          wx.hideNavigationBarLoading();
-          break;
-        case 2:
-          wx.hideNavigationBarLoading();
-          wx.setNavigationBarTitle({ title: '山科小站' })
-          break;
-        case 3:
-          wx.hideLoading();
-          break;
-      }
-    }
+    dispose.startLoading(option);
     wx.request({
       url: option.url,
       data: option.data,
       method: option.method,
       header: app.globalData.header,
       success: (res) => {
+        dispose.setCookie(res, option);
         try {
-          if (app.globalData.header.Cookie === "" && option.cookie) {
-            if (res && res.header && res.header['Set-Cookie']) {
-              console.log("SetCookie");
-              app.globalData.header.Cookie = res.header['Set-Cookie'].split(";")[0];
-              wx.setStorage({
-                key: 'phpsessid',
-                data: app.globalData.header.Cookie
-              })
-            } else {
-              console.log("Get Cookie From Cache");
-              wx.getStorage({
-                key: 'phpsessid',
-                success: res => {
-                  app.globalData.header.Cookie = res.data;
-                }
-              })
-            }
-          }
           option.fun(res);
           option.success(res);
         } catch (e) {
@@ -160,7 +121,7 @@ app.extend({
         option.fail(res);
       },
       complete: function(res) {
-        hideLoad();
+        dispose.endLoading(option);
         option.complete(res);
         option.completeLoad(res);
       }

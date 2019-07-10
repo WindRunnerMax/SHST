@@ -5,11 +5,52 @@
 {/block}
 
 {block name="body"}
+<style>
+    .card{
+      font-size: 13px;
+      display: flex;
+      border-bottom:1px solid #eee;
+      padding: 5px;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.123);
+      margin-bottom: 10px;
+      justify-content: space-between;
+    }
+
+    .cName{
+      font-size: 17px;
+    }
+
+    .infoRight{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .infoLeft{
+      display: flex;
+      flex-direction: column;
+      line-height: 17px;
+    }
+
+    .cgrade{
+      font-size: 20px;
+      color:  #569FD1;
+    }
+
+    .card view{
+      margin: 5px;
+    }
+    .layui-bg-gray{
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+</style>
 <center style="display: flex;justify-content:center;">
     <form class="layui-form" action="">
         <div class="layui-form-item" style="margin-right: 5px;border-radius: 3px;width: 150px;">
             <select id="sele" class="layui-input layui-unselect" >
-                <option value="">全部学期</option>
+                <option value="All">全部学期</option>
                 <option value="2016-2017-1">2016-2017-1</option>
                 <option value="2016-2017-2">2016-2017-2</option>
                 <option value="2017-2018-1">2017-2018-2</option>
@@ -27,9 +68,18 @@
 </center>
 <hr class="layui-bg-gray">
     <div id="point" style="text-align: center;"></div>
-    <?php if($info){ foreach ($info as $value) { ?>
-            <div style="padding: 6px;">{$value['zcj']} {$value['kcmc']} {$value['xf']}</div>
-            <hr class="layui-bg-gray">
+    <?php if($info && $info[0]){ foreach ($info as $value) { ?>
+        <view class='card'>
+          <view class='infoLeft'>
+            <view class='cName'>{$value['kcmc']}</view>
+            <view style='color:#aaa;'>{$value['kclbmc']}</view>
+            <view style='color:#aaa;'>{$value['ksxzmc']}</view>
+          </view>
+          <view class='infoRight'>
+            <view class='cgrade'>{$value['zcj']}</view>
+            <view style='color:#aaa;'>{$value['xf']}学分</view>
+          </view>
+        </view>
     <?php } } ?>
 </div>
 
@@ -37,8 +87,8 @@
 
     function loadGrade() {
         var xn = $("#sele").val();
-        if (xn !== "") xn = "/" + xn;
-	location.href='{$ctx}/index.php/adapt/sw/grade'+xn;
+        xn = "/" + xn;
+	    location.href='{$ctx}/index.php/adapt/sw/grade'+xn;
     }
 
     function pointHandle(info){

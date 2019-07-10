@@ -81,7 +81,9 @@ class Sw extends Controller
     }
 
     public function grade($sy=""){
-        $user = $this->checkSession();
+       if($sy === "") $sy = Conf::getCurTerm();
+       if($sy === "All") $sy = "";
+       $user = $this->checkSession();
 	   $params = array(
             "method" => "getCjcx",
             "xh" => $_SESSION['account'],

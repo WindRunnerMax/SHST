@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.3",
+	"libVersion": "2.0.1",
 	"appid": "wx387c0e87230e4cc9",
 	"projectname": "SDUST",
 	"debugOptions": {
@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 9,
 			"list": [
 				{
 					"id": 0,
@@ -101,6 +101,13 @@
 					"id": 8,
 					"name": "index",
 					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 9,
+					"name": "calendar",
+					"pathName": "pages/Sdust/canlendar/calendar",
 					"query": "",
 					"scene": null
 				}

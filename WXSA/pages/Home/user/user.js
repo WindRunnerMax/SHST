@@ -27,6 +27,9 @@ Page({
     this.setData({
       point: "none"
     })
+    wx.hideTabBarRedDot({
+      index:2
+    })
     wx.navigateTo({
       url: e.currentTarget.dataset.jumpurl
     })
@@ -38,16 +41,15 @@ Page({
   },
   onLoad: function(options) {
     var that = this;
-    var pointOp = (res) => {
-      if (res.data !== app.globalData.version) {
-        that.setData({
-          point: "block"
-        })
-      }
-    }
     wx.getStorage({
       key: 'point',
-      complete: (res) => pointOp(res)
+      complete: (res) => {
+        if (res.data !== app.globalData.version) {
+          that.setData({
+            point: "block"
+          })
+        }
+      }
     })
     if (!app.globalData.userFlag) {
       that.setData({

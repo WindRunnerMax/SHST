@@ -1,9 +1,7 @@
 // pages/event/event.js
-"use strict";
 const app = getApp()
-const md5 = require('../../vector/md5.js');
-const time = require('../../vector/time.js');
-const dispose = require('../../vector/dispose.js');
+const md5 = require('../../../vector/md5.js');
+const time = require('../../../vector/time.js');
 
 Page({
 
@@ -14,18 +12,16 @@ Page({
     todayWeather: ["", "CLEAR_DAY", 0, 0, "数据获取中"],
     tomorrowWeather: ["", "CLEAR_DAY", 0, 0],
     tdatomoWeather: ["", "CLEAR_DAY", 0, 0],
-    tips: "数据加载中",
+    tips: "获取用户信息中",
     todoList: [],
-    tips2: "数据加载中"
+    tips2: "获取用户信息中"
   },
   onLoad: function(options) {
     if (app.globalData.openid === "") {
       this.getOpenid();
       this.getWeather();
-      this.getTempTable();
-    } else {
+    }else{
       this.getWeather();
-      this.getTempTable();
       this.getTable();
       this.getEvent();
     }
@@ -41,90 +37,101 @@ Page({
           data: {
             "code": res.code
           },
-          fun: function(data) {
+          fun: function (data) {
+            if (data.data.PHPSESSID){
+              app.globalData.header.Cookie = "PHPSESSID=" + data.data.PHPSESSID;
+            }else{
+              wx.getStorage({
+                key: 'phpsessid',
+                success: res => {
+                  app.globalData.header.Cookie = res.data;
+                }
+              })
+            }
             if (data.data.openid) {
-              console.log("SetOpenid:" + data.data.openid);
-              if (app.globalData.header.Cookie === "") {
-                var cookies = "PHPSESSID=" + data.data.PHPSESSID + ";";
-                console.log("SetCookieSure:" + cookies);
-                app.globalData.header.Cookie = cookies;
-              }
+              console.log(data.data.openid);
               app.globalData.openid = data.data.openid;
-              wx.setStorageSync('openid', data.data.openid);
+              wx.setStorage({
+                key: 'openid',
+                data: data.data.openid
+              })
             } else {
-              app.globalData.openid = wx.getStorageSync("openid") || "";
+              wx.getStorage({
+                key: 'openid',
+                success: res => {
+                  app.globalData.openid = res.data;
+                }
+              })
             }
             if (data.data.Message === "Ex") {
               app.globalData.userFlag = 1;
+              that.getEvent();
               that.getTable();
-            } else {
+            }else{
               wx.hideToast();
               that.setData({
                 tips: "点我前去绑定教务系统账号"
               })
               if (data.data.info) app.toast(data.data.info);
+              that.getEvent();
             }
-            that.getEvent();
           }
         })
       }
     })
   },
-  getTempTable() {
-    var that = this;
-    wx.getStorage({
-      key: 'table',
-      success(res) {
-        if (app.globalData.curWeek === res.data.week) {
-          console.log(res.data)
-          res.data.table = dispose.tableDispose(res.data.table, 1);
-          that.setData({
-            table: res.data.table ? res.data.table : [],
-            tips: res.data.table ? "" : "No Class Today"
-          })
-        }
-      }
-    })
-  },
   getTable() {
     var that = this;
-    if (app.globalData.userFlag !== 0) {
+    if (app.globalData.userFlag === 0) {
+      that.setData({
+        table: [],
+        tips: "游客模式"
+      })
+    } else {
       wx.getStorage({
         key: 'table',
         success(res) {
-          if (app.globalData.curWeek !== res.data.week) {
+          console.log(res.data)
+          if (app.globalData.curWeek === res.data.week){
+            res.data.table = app.tableDispose(res.data.table, 1);
+            that.setData({
+              table: res.data.table ? res.data.table : [],
+              tips: res.data.table ? "" : "No Class Today"
+            })
+          }else{
             console.log("WEEK DIFF GET FROM REMOTE");
             that.getRemoteTable();
           }
         },
-        fail() {
+        fail(){
           console.log("FAIL GET FROM REMOTE");
           that.getRemoteTable();
         }
       })
-
+      
     }
   },
-  getRemoteTable() {
+  getRemoteTable(){
     var that = this;
     app.ajax({
       load: 1,
+      cookie : 0,
       url: app.globalData.url + 'funct/sw/signalTable2',
-      data: {
-        week: app.globalData.curWeek,
+      data:{
+        week : app.globalData.curWeek,
         term: app.globalData.curTerm
       },
-      fun: function(res) {
+      fun: function (res) {
         if (res.data.Message === "Yes") {
           wx.setStorage({
             key: 'table',
             data: {
               week: app.globalData.curWeek,
               table: res.data.data
-            }
+              }
           })
         }
-        res.data.data = dispose.tableDispose(res.data.data, 1);
+        res.data.data = app.tableDispose(res.data.data, 1);
         console.log(res.data)
         if (res.data.Message === "Yes") {
           that.setData({
@@ -144,7 +151,6 @@ Page({
     var that = this;
     var ran = parseInt(Math.random() * 100000000000);
     app.ajax({
-      autoCookie: false,
       url: "https://api.caiyunapp.com/v2/Y2FpeXVuIGFuZHJpb2QgYXBp/120.127164,36.000129/weather?lang=zh_CN&device_id=" + ran,
       fun: function(res) {
         if (res.data.status === "ok") {
@@ -234,14 +240,14 @@ Page({
       }
     })
   },
-  bindSW() {
-    if (app.globalData.userFlag === 0) {
-      wx.navigateTo({
-        url: '/pages/Login/login?status=E'
+  bindSW(){
+    if(app.globalData.userFlag === 0){
+      wx.redirectTo({
+        url: '/pages/index/index?status=E'
       })
-    } else return 0;
+    }else return 0;
   },
-  onRefresh() {
+  onRefresh(){
     this.getTable();
   },
   // onPullDownRefresh() {

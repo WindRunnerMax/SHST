@@ -3,7 +3,54 @@ const md5 = require('md5.js');
 var app = getApp();
 module.exports = {
   tableDispose: tableDispose,
-  checkUpdate: checkUpdate
+  checkUpdate: checkUpdate,
+  userDot: userDot,
+  setCookie: setCookie,
+  startLoading: startLoading,
+  endLoading: endLoading
+}
+
+/**
+ * startLoading
+ */
+function startLoading(option) {
+  switch (option.load) {
+    case 1:
+      wx.showNavigationBarLoading();
+      break;
+    case 2:
+      wx.showNavigationBarLoading();
+      wx.setNavigationBarTitle({
+        title: '加载中...'
+      })
+      break;
+    case 3:
+      wx.showLoading({
+        title: '请求中',
+        mask: true
+      })
+      break;
+  }
+}
+
+/**
+ * endLoading
+ */
+function endLoading(option) {
+  switch (option.load) {
+    case 1:
+      wx.hideNavigationBarLoading();
+      break;
+    case 2:
+      wx.hideNavigationBarLoading();
+      wx.setNavigationBarTitle({
+        title: '山科小站'
+      })
+      break;
+    case 3:
+      wx.hideLoading();
+      break;
+  }
 }
 
 /**
@@ -37,6 +84,7 @@ function tableDispose(info, flag = 0) {
  * 小程序更新
  */
 function checkUpdate() {
+  if (!wx.getUpdateManager) return false;
   wx.getUpdateManager().onCheckForUpdate((res) => {
     console.log("Update:" + res.hasUpdate);
     if (res.hasUpdate) { //如果有新版本
@@ -58,4 +106,38 @@ function checkUpdate() {
       })
     }
   })
+}
+
+/**
+ * User显示Dot
+ */
+function userDot() {
+  if (!wx.showTabBarRedDot) return false;
+  wx.getStorage({
+    key: 'point',
+    complete: (res) => {
+      if (res.data !== app.globalData.version) {
+        wx.showTabBarRedDot({
+          index: 2
+        })
+      }
+    }
+  })
+}
+
+/**
+ * SetCookie
+ */
+function setCookie(res, option) {
+  if (app.globalData.header.Cookie === "" && option.autoCookie) {
+    if (res && res.header && res.header['Set-Cookie']) {
+      var cookies = res.header['Set-Cookie'].split(";")[0] + ";";
+      console.log("SetCookie:" + cookies);
+      app.globalData.header.Cookie = cookies;
+      wx.setStorageSync('cookies', app.globalData.header.Cookie);
+    } else {
+      console.log("Get Cookie From Cache");
+      app.globalData.header.Cookie = wx.getStorageSync("cookies") || "";
+    }
+  }
 }

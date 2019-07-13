@@ -36,24 +36,26 @@ Page({
       success: res => {
         app.ajax({
           load: 1,
+          autoCookie: false,
           url: app.globalData.url + 'funct/user/signalGetOpenid',
           method: 'POST',
           data: {
             "code": res.code
           },
           fun: function(data) {
-            if (data.data.openid) {
-              console.log("SetOpenid:" + data.data.openid);
-              if (app.globalData.header.Cookie === "") {
-                var cookies = "PHPSESSID=" + data.data.PHPSESSID + ";";
-                console.log("SetCookieSure:" + cookies);
-                app.globalData.header.Cookie = cookies;
-              }
-              app.globalData.openid = data.data.openid;
-              wx.setStorageSync('openid', data.data.openid);
-            } else {
+            var cookies = "PHPSESSID=" + data.data.PHPSESSID + ";";
+            app.globalData.openid = data.data.openid;
+            app.globalData.header.Cookie = cookies;
+            console.log("REMOTE OPENID-" + app.globalData.openid + " COOKIE-" + app.globalData.header.Cookie);
+            if (!data.data.openid || data.data.openid === "" || !data.data.PHPSESSID  || data.data.PHPSESSID === ""){
               app.globalData.openid = wx.getStorageSync("openid") || "";
+              app.globalData.header.Cookie = wx.getStorageSync("cookies") || "";
+              console.log("CACHE OPENID-" + app.globalData.openid + " COOKIE-" + app.globalData.header.Cookie);    
+            }else{
+              wx.setStorageSync('openid', data.data.openid);
+              wx.setStorageSync('cookies', cookies);
             }
+
             if (data.data.Message === "Ex") {
               app.globalData.userFlag = 1;
               that.getTable();

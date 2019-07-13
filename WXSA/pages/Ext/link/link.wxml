@@ -6,7 +6,8 @@
   </view>
   <view wx:for="{{data}}" wx:key="{{index}}">
     <view class='infoCon'>
-      <view data-copy='{{item.url}}' bindtap='copy'>{{item.name}}:{{item.url}}</view>
+      <view>{{item.name}}：</view>
+      <view data-copy='{{item.url}}' bindtap='copy' class='link'>{{item.url}}</view>
     </view>
   </view>
 </view>

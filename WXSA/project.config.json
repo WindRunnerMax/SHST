@@ -21,6 +21,7 @@
 	"isGameTourist": false,
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"qqappid": "1108100302",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -39,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": 0,
@@ -108,6 +109,13 @@
 					"id": 9,
 					"name": "calendar",
 					"pathName": "pages/Sdust/canlendar/calendar",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "about",
+					"pathName": "pages/User/about/about",
 					"query": "",
 					"scene": null
 				}

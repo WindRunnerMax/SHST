@@ -24,7 +24,7 @@ page{
 .right{
   padding: 5px 0;
   line-height: 30px;
-  width: calc(100% - 130px);
+  width: calc(100% - 101px);
   text-align: center;
   border-left: 1px solid #eee; 
 }

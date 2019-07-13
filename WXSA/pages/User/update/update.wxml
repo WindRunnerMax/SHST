@@ -3,7 +3,31 @@
   <view style='font-size:20px;'>Changelog</view>
   <view data-copy='https://github.com/WindrunnerMax/SW' class='url' bindtap='copy'>https://github.com/WindrunnerMax/SW</view>
 
-<view class='unitChange'>
+  <view class='unitChange'>
+    <view class='title'>2.5.3 (2019-7-10) [d25a95e]</view>
+    <view>1. 添加公告红点</view>
+    <view>2. 重构日历功能</view>
+    <view>3. API兼容处理(暂)</view>
+  </view>
+
+  <view class='unitChange'>
+    <view class='title'>2.5.2 (2019-7-7) [34c257c]</view>
+    <view>1. 更新Python版本API</view>
+    <view>2. 添加PHP版本API</view>
+    <view>3. 添加Java版本API</view>
+  </view>
+
+  <view class='unitChange'>
+    <view class='title'>2.5.1 (2019-7-6) [36fcf0f]</view>
+    <view>1. 统一版本号</view>
+    <view>2. 启用备用域名</view>
+    <view>3. 版本更新功能</view>
+    <view>4. Application层</view>
+    <view>5. 优化Http请求类结构</view>
+    <view>6. 修复App的foreach问题</view>
+  </view>
+
+  <view class='unitChange'>
     <view class='title'>2.4.5 (2019-7-2) [c0d33f6]</view>
     <view>1. 缓存用户信息</view>
     <view>2. 封装的时间日期修复，拓展Date原型addDate方法</view>

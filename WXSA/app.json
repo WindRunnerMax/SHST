@@ -23,6 +23,9 @@
     "pages/User/announcement/announcement"
   ],
   "tabBar": {
+    "color": "#aaa",
+    "selectedColor": "#8A8A8A",
+    "backgroundColor": "#F7F7FA",
     "list": [
       {
         "iconPath": "/vector/img/index.png",
@@ -54,6 +57,5 @@
     "scope.userLocation": {
       "desc": "您的位置信息将用于嵙地图的定位功能"
     }
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }

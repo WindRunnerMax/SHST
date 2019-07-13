@@ -27,9 +27,11 @@ Page({
     this.setData({
       point: "none"
     })
-    wx.hideTabBarRedDot({
-      index:2
-    })
+	if(wx.hideTabBarRedDot){
+		wx.hideTabBarRedDot({
+		  index:2
+		})
+	}
     wx.navigateTo({
       url: e.currentTarget.dataset.jumpurl
     })

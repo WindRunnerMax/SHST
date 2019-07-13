@@ -24,3 +24,7 @@
   margin:0 5px;
   background: #79B2F9;
 }
+
+.link{
+  color: #4C98F7;
+}

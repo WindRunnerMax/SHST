@@ -1,5 +1,5 @@
 <?php
-namespace app\funct\controller;
+namespace app\qfunct\controller;
 use think\Controller;
 use think\Db;
 use app\auxiliary\Http;
@@ -9,7 +9,7 @@ use think\Log;
 class User extends Controller
 {
 
-	private $appid = "wx387c0e87230e4cc9"; 
+	private $appid = "1109636712"; 
 
     private $appSecret =  "";
 
@@ -26,44 +26,13 @@ class User extends Controller
         return $info;
     }
 
-    public function getCurrentTime(){
-        $params = array(
-        "method" => "getCurrentTime",
-        "currDate" => date("Y-m-d",time())
-        );
-        return $this->httpReq($params);
-    }
-
-    public function getOpenid($value=''){
-        # code...
-        $value = $_POST['code'];
-        $APPID = $this->appid; 
-        $APPSECRET =  $this->appSecret; 
-        $url = "https://api.weixin.qq.com/sns/jscode2session?appid=$APPID&secret=$APPSECRET&js_code=$value&grant_type=authorization_code";
-        $openid =json_decode(Http::httpRequest($url),true)['openid'];
-        $exist = Db::table("wx_user") -> where("openid",$openid) -> find();
-        session_start();
-        $_SESSION['openid'] = $openid;
-        if(!$exist){
-        	return ["Message" => "Yes" , "openid" => $openid , "PHPSESSID" => session_id()];
-        }else{
-    		$info = $this -> checkLogin($exist['account'],$exist['password']);
-        	if ($info['status'] === "Yes") {
-                $record['token'] = $info['token'];
-                Db::table("wx_user") -> where("id",$exist['id']) -> update($record);
-                return ["Message" => "Ex","PHPSESSID" => session_id(),"openid" => $openid];
-    		}else{
-    			return ["Message" => "NoN","info" => $info["info"],"account" => $exist['account'],"password" => $exist['password'], "openid" => $openid , "PHPSESSID" => session_id()];
-    		}
-        }
-    }
 
     public function signalGetOpenid($value=''){
         # code...
         $value = $_POST['code'];
         $APPID = $this->appid; 
         $APPSECRET =  $this->appSecret; 
-        $url = "https://api.weixin.qq.com/sns/jscode2session?appid=$APPID&secret=$APPSECRET&js_code=$value&grant_type=authorization_code";
+        $url = "https://api.q.qq.com/sns/jscode2session?appid=$APPID&secret=$APPSECRET&js_code=$value&grant_type=authorization_code";
         $openid =json_decode(Http::httpRequest($url,[],"GET",Conf::getNormalHeader(),false,true),true)['openid'];
         $exist = Db::table("wx_user") -> where("openid",$openid) -> find();
         session_start();
@@ -100,7 +69,7 @@ class User extends Controller
                     $nexRecord['academy'] = $jsonInfo['userdwmc'];
                     $nexRecord['use_time'] = $r_Time;
                     $nexRecord['log_time'] = $r_Time;
-                    $nexRecord['access_type'] = 1;
+                    $nexRecord['access_type'] = 2;
                     Db::table("user") -> insert($nexRecord);
                 } 
                 $_SESSION['TOKEN'] = $jsonInfo['token'];
@@ -135,21 +104,12 @@ class User extends Controller
 		}else return ["Message" => "No","info" => $info["info"]];
     }
 
-    public function getUserInfo($value=''){
-    	$this->checkSession();
-    	return ["info" => Db::table("user") -> field('academy,name,username') -> where("username",$_SESSION['account']) -> find()];
-    }
-
     private function updateUserInfo($account){
         $r_Time=date("Y-m-d H:i:s",time());
         $exRecord['log_time'] = $r_Time;
-        $exRecord['access_type'] = 1;
+        $exRecord['access_type'] = 2;
         Db::table("user") -> where("username",$account) -> exp("log_times","log_times + 1") -> limit(1) -> update($exRecord);
     }
 
-    private function testToken(){
-        session_start();
-        $_SESSION['TOKEN'] = "1111";
-    }
 
 }

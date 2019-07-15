@@ -1,8 +1,5 @@
 <!--pages/classroom/classroom.wxml-->
-<view class='lineCon'>
-  <view class='rowBlue'></view>
-  <view>空教室</view>
-</view>
+<title innerText="空教室"></title>
 <view class='top'>
   <picker-view indicator-style="height: 40px;" style="width: 77%; height: 100px;" bindchange="bindPickerChange">
     <picker-view-column>
@@ -20,10 +17,7 @@
   </view>
 </view>
 <view wx:if='{{show === 1}}' style='margin-top:20px;'>
-  <view class='lineCon'>
-    <view class='rowBlue'></view>
-    <view>{{qShow}}[{{searchData}}]</view>
-  </view>
+  <title innerText="{{qShow}}[{{searchData}}]"></title>
   <view wx:if="{{room.length === 0}}" class="roomCon">
     <view class='unit'>暂无空教室</view>
   </view>

@@ -4,6 +4,7 @@
     "pages/Login/login",
     "pages/Home/funct/funct",
 	  "pages/Home/user/user",
+    "pages/Home/tips/tips",
     "pages/Study/timeTable/timeTable",
     "pages/Study/tableShare/tableShare",
     "pages/Study/classroom/classroom",
@@ -57,5 +58,8 @@
     "scope.userLocation": {
       "desc": "您的位置信息将用于嵙地图的定位功能"
     }
+  },
+  "usingComponents": {
+    "title": "/Components/title/title"
   }
 }

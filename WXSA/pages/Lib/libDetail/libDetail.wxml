@@ -1,7 +1,4 @@
-<view class='lineCon'>
-  <view class='rowBlue'></view>
-  <view> 馆藏信息</view>
-</view>
+<title innerText="馆藏信息"></title>
 <view class='card'>
   <view>{{data.name}}</view>
   <view>{{data.bookInfoArray[0]}}</view>

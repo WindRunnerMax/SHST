@@ -1,7 +1,4 @@
-<view class='lineCon'>
-  <view class='rowBlue'></view>
-  <view>已完成事项</view>
-</view>
+<title innerText="已完成事项"></title>
 <view wx:for="{{todoList}}" wx:key="{{index}}">
   <view class='unitTodo' style='background:{{item.color}};'>
     <view class='mainLeft'>

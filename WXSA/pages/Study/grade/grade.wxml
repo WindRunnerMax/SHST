@@ -1,7 +1,4 @@
-<view class='lineCon'>
-  <view class='rowBlue'></view>
-  <view>查成绩</view>
-</view>
+<title innerText="查成绩"></title>
 <view class="section">
   <picker bindchange="bindPickerChange" range="{{array}}" range-key="show">
     <view class="picker">{{defaultOpt}}</view>

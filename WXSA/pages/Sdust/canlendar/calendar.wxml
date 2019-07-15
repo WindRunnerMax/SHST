@@ -1,7 +1,4 @@
-<view class='lineCon'>
-  <view class='rowBlue'></view>
-  <view>校历</view>
-</view>
+<title innerText="校历"></title>
 <!-- <rich-text nodes="{{html}}"></rich-text> -->
 <view class='weekGroup'>
   <view class='weekUnit'>Week</view>

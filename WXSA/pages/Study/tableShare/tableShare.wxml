@@ -1,7 +1,4 @@
-<view class='lineCon'>
-  <view class='rowBlue'></view>
-  <view> 共享课表</view>
-</view>
+<title innerText="共享课表"></title>
 <view class='top' wx:if="{{data.status === 1}}">
   <view style=''>
     <input class='asse-input' bindinput="accountInput" placeholder='对方学号' value="{{account}}"></input>

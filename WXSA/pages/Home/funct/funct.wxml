@@ -1,9 +1,6 @@
 <!--pages/funct/funct.wxml-->
 <view class='blockCon'>
-  <view class='lineCon'>
-    <view class='rowBlue'></view>
-    <view>学习</view>
-  </view>
+  <title innerText="学习"></title>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/Study/timeTable/timeTable" data-checkuser="0" bindtap='jump'>
       <image src='/vector/img/table.svg' class='imgIcon'></image>
@@ -25,10 +22,7 @@
 </view>
 
 <view class='blockCon'>
-  <view class='lineCon'>
-    <view class='rowBlue'></view>
-    <view>图书馆(7:00-22:00)</view>
-  </view>
+  <title innerText="图书馆(7:00-22:00)"></title>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/Lib/lib/lib" data-checkuser="1" bindtap='jump'>
       <image src='/vector/img/lib.svg' class='imgIcon'></image>
@@ -42,10 +36,7 @@
 </view>
 
 <view class='blockCon'>
-  <view class='lineCon'>
-    <view class='rowBlue'></view>
-    <view>科大</view>
-  </view>
+  <title innerText="科大"></title>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/Sdust/map/map" data-checkuser="1" bindtap='jump'>
       <image src='/vector/img/map.svg' class='imgIcon'></image>
@@ -63,10 +54,7 @@
 </view>
 
 <view class='blockCon'>
-  <view class='lineCon'>
-    <view class='rowBlue'></view>
-    <view>拓展</view>
-  </view>
+  <title innerText="拓展"></title>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/Ext/link/link" data-checkuser="1" bindtap='jump'>
       <image src='/vector/img/link.svg' class='imgIcon'></image>

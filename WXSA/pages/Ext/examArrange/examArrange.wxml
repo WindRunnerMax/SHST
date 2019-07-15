@@ -1,7 +1,4 @@
-<view class='lineCon'>
-  <view class='rowBlue'></view>
-  <view>考试安排</view>
-</view>
+<title innerText="考试安排"></title>
 <view class='tips' style='background:#eee;' wx:if="{{tips !== ''}}">
   <view>{{tips}}</view>
 </view>

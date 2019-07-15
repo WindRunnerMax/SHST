@@ -1,7 +1,5 @@
-<view class='lineCon' style='margin-bottom:10px;'>
-  <view class='rowBlue'></view>
-  <view>节假日安排</view>
-</view>
+
+<title innerText="节假日安排"></title>
 
 <view class='card'>
   <view class='left'>元旦</view>

@@ -1,27 +1,36 @@
-<!--pages/about/about.wxml-->
-<view style='width:100%;'>
-  <view class='lineCon'>
-    <view class='rowBlue'></view>
-    <view>关于(点击复制)</view>
-  </view>
-  <view class='infoCon'>
-    <view data-copy='722942376' bindtap='copy'>反馈QQ群:722942376</view>
-  </view>
+<image mode="widthFix" src="https://7364-sdust-9daa7f-1259631977.tcb.qcloud.la/SHST.jpg?sign=c38bc6f5b12bb4f5044c0f0d01d82c4b&t=1563073720"></image>
 
-  <view class='infoCon'>
-    <view data-copy='651525974' bindtap='copy'>联系开发者:651525974(大白菜)</view>
+<view class='userInfoCon'>
+  <view class='unitInfo' style='border-top: 1px solid #eee;'>
+
+    <view style='display:flex;'>
+      <view>版本号</view>
+    </view>
+    <view>{{version}}</view>
   </view>
 
-  <view class='infoCon'>
-    <view data-copy='https://www.liyanzuisha.cn/public/base.apk' bindtap='copy'>安卓APK下载:https://www.liyanzuisha.cn/public/base.apk</view>
+  <view class='unitInfo'>
+    <view style='display:flex;'>
+      <view>反馈QQ群</view>
+    </view>
+    <view class='link' data-copy='722942376' bindtap='copy'>722942376</view>
   </view>
 
-  <view class='infoCon'>
-    <view data-copy='https://github.com/WindrunnerMax/SW' bindtap='copy'>项目开源地址:https://github.com/WindrunnerMax/SW</view>
+  <view class='unitInfo'>
+    <view style='display:flex;'>
+      <view>联系开发者</view>
+    </view>
+    <view class='link' data-copy='651525974' bindtap='copy'>651525974</view>
   </view>
 
-  <!-- <view class='infoCon'>
-    <ad unit-id="adunit-31c347091893cf0c"></ad>
-  </view> -->
+  <view class='unitInfo'>
+    <view style='display:flex;'>
+      <view>项目开源地址</view>
+    </view>
+    <view data-copy='https://github.com/WindrunnerMax/SW' bindtap='copy' class='link github'>点我复制链接</view>
+  </view>
+</view>
 
+<view class="footer">
+  <view class="text">Copyright © 2019 WindrunnerMax</view>
 </view>

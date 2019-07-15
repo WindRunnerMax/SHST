@@ -1,0 +1,14 @@
+.lineCon{
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  padding: 5px 0; 
+  margin: 5px 0 5px 0;
+  font-size: 16px;
+}
+.rowBlue{
+  width: 10px;
+  border-radius: 10px;
+  margin:0 5px;
+  background: #79B2F9;
+}

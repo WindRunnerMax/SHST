@@ -1,9 +1,6 @@
 <!--pages/about/about.wxml-->
 <view style='width:100%;'>
-  <view class='lineCon'>
-    <view class='rowBlue'></view>
-    <view>链接分享(点击复制)</view>
-  </view>
+  <title innerText="链接分享(点击复制)"></title>
   <view wx:for="{{data}}" wx:key="{{index}}">
     <view class='infoCon'>
       <view>{{item.name}}：</view>

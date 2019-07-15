@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 12,
 			"list": [
 				{
 					"id": 0,
@@ -117,6 +117,19 @@
 					"name": "about",
 					"pathName": "pages/User/about/about",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "table",
+					"pathName": "pages/Study/timeTable/timeTable",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "user",
+					"pathName": "pages/Home/user/user",
 					"scene": null
 				}
 			]

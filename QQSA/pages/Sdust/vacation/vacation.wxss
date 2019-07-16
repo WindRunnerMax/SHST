@@ -1,0 +1,38 @@
+page{
+  padding: 10px;
+  width: calc(100% - 20px);
+  transition: all 0.3s;
+  font-size: 15px;
+}
+
+.card{
+  font-size: 13px;
+  display: flex;
+  border-bottom:1px solid #eee;
+  padding: 5px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.123);
+  margin-bottom: 10px;
+}
+
+.left{
+  align-self: center;
+  font-size: 18px;
+  width: 100px;
+  text-align: center;
+}
+
+.right{
+  padding: 5px 0;
+  line-height: 30px;
+  width: calc(100% - 101px);
+  text-align: center;
+  border-left: 1px solid #eee; 
+}
+
+.assis{
+  font-size: 16px;
+}
+
+.supple{
+  color: #aaa;
+}

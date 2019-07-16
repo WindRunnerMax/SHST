@@ -1,0 +1,30 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/User/about/about",
+    "pages/Sdust/canlendar/calendar",
+    "pages/Sdust/vacation/vacation",
+    "pages/Sdust/map/map",
+    "pages/Life/power/power",
+    "pages/Life/computer/computer",
+    "pages/Life/living/living",
+    "pages/Study/major/major",
+    "pages/Study/link/link",
+    "pages/Study/pe/pe"
+  ],
+  "window":{
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "山科小站",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#fff"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于嵙地图的定位功能"
+    }
+  },
+  "usingComponents": {
+    "title": "/Components/title/title",
+    "info":"/Components/info/info"
+  }
+}

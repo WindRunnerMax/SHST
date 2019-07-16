@@ -1,0 +1,78 @@
+<title innerText="体育选课" style='margin-bottom:10px;'></title>
+
+<view class='card'>
+  <view class='left'>羽毛球</view>
+  <view class='right'>
+    <view class='supple'>沈圳</view>
+  </view>
+</view>
+
+<view class='card'>
+  <view class='left'>篮球</view>
+  <view class='right'>
+    <view class='supple'>刘衍勇 吴雪瑜</view>
+  </view>
+</view>
+
+<view class='card'>
+  <view class='left'>网球</view>
+  <view class='right'>
+    <view class='supple'>两个老师都很好，首选张传来</view>
+  </view>
+</view>
+
+<view class='card'>
+  <view class='left'>足球</view>
+  <view class='right'>
+    <view class='supple'>都可以，推荐 赵鹏 张效江</view>
+  </view>
+</view>
+
+<view class='card'>
+  <view class='left'>排球</view>
+  <view class='right'>
+    <view class='supple'>首选禚宝海，不要选李梅月</view>
+  </view>
+</view>
+
+<view class='card'>
+  <view class='left'>乒乓球</view>
+  <view class='right'>
+    <view class='supple'>李世军</view>
+  </view>
+</view>
+
+<view class='card'>
+  <view class='left'>体育舞蹈</view>
+  <view class='right'>
+    <view class='supple'>都好过，孙玉芹教的好，刘淑梅比较松</view>
+  </view>
+</view>
+
+<view class='card'>
+  <view class='left'>健美操</view>
+  <view class='right'>
+    <view class='supple'>尽量不要选杨惠婷</view>
+  </view>
+</view>
+
+<view class='card'>
+  <view class='left'>跆拳道</view>
+  <view class='right'>
+    <view class='supple'>都OK</view>
+  </view>
+</view>
+
+<view class='card'>
+  <view class='left'>毽球</view>
+  <view class='right'>
+    <view class='supple'>都OK</view>
+  </view>
+</view>
+
+<view class='card'>
+  <view class='left'>瑜伽</view>
+  <view class='right'>
+    <view class='supple'>都OK</view>
+  </view>
+</view>

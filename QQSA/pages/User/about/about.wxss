@@ -1,0 +1,58 @@
+page {
+  width: 100%;
+  font-size: 14px;
+}
+
+image {
+  width: 320px;
+  height: 109px;
+  margin-left: calc(50% - 160px);
+  margin-top: 15px;
+}
+
+.userInfoCon {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.unitInfo {
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+
+.github {
+  overflow: hidden;
+  max-width: 30%;
+  text-overflow: ellipsis;
+}
+
+.footer {
+  display: flex;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.footer .text {
+  color: #aaa;
+}
+
+button:after {
+  border: none;
+}
+
+button{
+  background: #fff;
+  border: none;
+  font-size: 14px;
+  box-sizing: unset;
+}
+
+button:hover{
+  opacity: 1;
+  background: #fff;
+  color: #000;
+}

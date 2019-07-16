@@ -1,0 +1,6 @@
+<title innerText="宿舍相关"></title>
+<info innerArray="{{date}}"></info>
+<title innerText="上床下桌"></title>
+<image mode="widthFix" style='width:100%;' src='https://7364-sdust-9daa7f-1259631977.tcb.qcloud.la/QSHST/MMRoom.png?sign=6f07fd23a6d2b01e16c2e933e5ed2438&t=1562985058' ></image>
+<title innerText="普通上下铺"></title>
+<image mode="widthFix" style='width:100%;' src='https://7364-sdust-9daa7f-1259631977.tcb.qcloud.la/QSHST/GGRoom.png?sign=83270cb109faa56020660ef145ddb4d4&t=1562985346' ></image>

@@ -1,0 +1,14 @@
+.card{
+  font-size: 14px;
+  display: flex;
+  border-bottom:1px solid #eee;
+  padding: 15px 10px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.123);
+  margin-bottom: 10px;
+}
+
+
+.supple{
+  box-sizing: border-box;
+  color: rgb(134, 134, 134);
+}

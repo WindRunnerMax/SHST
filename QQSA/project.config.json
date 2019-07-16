@@ -1,0 +1,101 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.1.0",
+	"appid": "wxd1934040928afd9f",
+	"projectname": "QSDUST",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 7,
+			"list": [
+				{
+					"id": -1,
+					"name": "canlendar",
+					"pathName": "pages/Sdust/canlendar/calendar",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "pe",
+					"pathName": "pages/Study/pe/pe",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "shat",
+					"pathName": "pages/Spread/shst/shst",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "power",
+					"pathName": "pages/Life/power/power",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "computer",
+					"pathName": "pages/Life/computer/computer",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "living",
+					"pathName": "pages/Life/living/living",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "title",
+					"pathName": "pages/components/title/title",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "about",
+					"pathName": "pages/User/about/about",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

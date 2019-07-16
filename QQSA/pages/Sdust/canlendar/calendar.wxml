@@ -1,0 +1,23 @@
+<view class='lineCon'>
+  <view class='rowBlue'></view>
+  <view>校历</view>
+</view>
+<!-- <rich-text nodes="{{html}}"></rich-text> -->
+<view class='weekGroup'>
+  <view class='weekUnit'>Week</view>
+  <view class='weekUnit'>Mon</view>
+  <view class='weekUnit'>Tue</view>
+  <view class='weekUnit'>Wed</view>
+  <view class='weekUnit'>Thur</view>
+  <view class='weekUnit'>Fri</view>
+  <view class='weekUnit'>Sat</view>
+  <view class='weekUnit'>Sun</view>
+</view>
+<view class="asse-hr timetablehr"></view>
+<view wx:for="{{calendarObj}}" wx:key="{{index}}" class='con'>
+  <view class='line'>
+    <view wx:for="{{item}}" wx-index='innerIndex' wx:for-item="inner" wx:for-index="innerIndex" wx:key="{{innerIndex}}" style='width:100%;' >
+      <view class='{{inner.className}}' >{{inner.day}}</view>
+    </view>
+  </view>
+</view>

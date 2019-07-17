@@ -24,7 +24,7 @@ SW/QQSA 目录下为QQ小程序项目[山科小站--迎新专版]，提供校内
 * url {$强智系统URL}/app.do
 
 **源码末尾取消注释即可获取相应方法返回的值，json.loads()即可得到json格式数据**  
-* Q.getStudentIdInfo() #获取学号信息
+* Q.getStudentInfo() #获取学号信息
 * Q.getCurrentTime() #获取学年信息
 * Q.getKbcxAzc() #当前周次课表
 * Q.getKbcxAzc(3) #指定周次课表

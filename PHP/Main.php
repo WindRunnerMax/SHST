@@ -45,10 +45,10 @@ class Main
         return json_decode(Http::httpRequest($this->url,$params,"GET",$this->headers),true);
     }
 
-    public function GetStudentIdInfo($value=''){
+    public function GetStudentInfo($value=''){
         # code...
         $params = array(
-            "method" => "getStudentIdInfo",
+            "method" => "getUserInfo",
             "xh" => $this->account
         );
         $req = $this->GetHandle($params);
@@ -114,7 +114,7 @@ class Main
 }
 
 $Q = new Main($accountSW,$passwordSW,$urlSW);
-// $Q -> GetStudentIdInfo(); #获取学号信息
+// $Q -> GetStudentInfo(); #获取学号信息
 // $Q -> GetCurrentTime(); #获取学年信息
 // $Q -> GetTable(); #当前周次课表
 // $Q -> GetTable(3); #指定周次课表

@@ -59,9 +59,9 @@ public class MainSw {
 		return Http.httpRequest(this.url, param, "GET", this.headers);
 	}
 	
-	public String GetStudentIdInfo() {
+	public String GetStudentInfo() {
 		Map<String, String> param = GetHashMap();
-		param.put("method", "getStudentIdInfo");
+		param.put("method", "getUserInfo");
 		param.put("xh", this.account);
 		String req = this.GetHandle(param);
 		System.out.println(req);
@@ -146,7 +146,7 @@ public class MainSw {
 	 */
 	public static void main(String[] args) {
 		MainSw Q = new MainSw();
-//		Q.GetStudentIdInfo(); //获取学号信息
+//		Q.GetStudentInfo(); //获取学号信息
 //		Q.GetCurrentTime(); //获取学年信息
 //		Q.GetTable(); //当前周次课表
 //		Q.GetTable("3"); //指定周次课表

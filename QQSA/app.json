@@ -8,9 +8,14 @@
     "pages/Life/power/power",
     "pages/Life/computer/computer",
     "pages/Life/living/living",
+    "pages/Life/network/network",
+    "pages/Life/canteen/canteen",
+    "pages/Life/shower/shower",
+    "pages/Life/medical/medical",
+    "pages/Life/traffic/traffic",
     "pages/Study/major/major",
     "pages/Study/link/link",
-    "pages/Study/pe/pe"
+    "pages/Study/league/league"
   ],
   "window":{
     "navigationBarTextStyle": "black",

@@ -60,6 +60,7 @@ const app = getApp();
 const time = require('/vector/time.js');
 const dispose = require('/vector/dispose.js');
 time.extDate(); //拓展Date原型
+dispose.checkUpdate(); //获取更新
 
 //拓展app功能
 app.extend({

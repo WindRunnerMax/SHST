@@ -143,7 +143,7 @@ class SW(object):
 
 if __name__ == '__main__':
     Q = SW(account,password,url)
-    # Q.getStudentInfo() #获取学号信息
+    # Q.getStudentInfo() #获取学生信息
     # Q.getCurrentTime() #获取学年信息
     # Q.getKbcxAzc() #当前周次课表
     # Q.getKbcxAzc(3) #指定周次课表

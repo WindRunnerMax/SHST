@@ -1,16 +1,20 @@
+
+
+<!-- 入口关闭，代码保留 -->
+
 <title innerText="体育选课" style='margin-bottom:10px;'></title>
 
 <view class='card'>
   <view class='left'>羽毛球</view>
   <view class='right'>
-    <view class='supple'>沈圳</view>
+    <view class='supple'>抢就完事了</view>
   </view>
 </view>
 
 <view class='card'>
   <view class='left'>篮球</view>
   <view class='right'>
-    <view class='supple'>刘衍勇 吴雪瑜</view>
+    <view class='supple'>刘衍勇 吴雪瑜 鹿鹏</view>
   </view>
 </view>
 
@@ -31,7 +35,7 @@
 <view class='card'>
   <view class='left'>排球</view>
   <view class='right'>
-    <view class='supple'>首选禚宝海，不要选李梅月</view>
+    <view class='supple'>禚宝海</view>
   </view>
 </view>
 
@@ -45,14 +49,16 @@
 <view class='card'>
   <view class='left'>体育舞蹈</view>
   <view class='right'>
-    <view class='supple'>都好过，孙玉芹教的好，刘淑梅比较松</view>
+    <view class='supple'>
+      <view>都好过，孙玉芹教的好,刘淑梅比较松</view>
+    </view>
   </view>
 </view>
 
 <view class='card'>
   <view class='left'>健美操</view>
   <view class='right'>
-    <view class='supple'>尽量不要选杨惠婷</view>
+    <view class='supple'>丁红娜</view>
   </view>
 </view>
 
@@ -74,5 +80,15 @@
   <view class='left'>瑜伽</view>
   <view class='right'>
     <view class='supple'>都OK</view>
+  </view>
+</view>
+
+<view class='card'>
+  <view class='left'>注</view>
+  <view class='right'>
+    <view class='supple'>
+      <view>以上信息来自学长学姐推荐</view>
+      <view>信息准确性请自行甄别</view>
+    </view>
   </view>
 </view>

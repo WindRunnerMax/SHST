@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -93,6 +93,12 @@
 					"name": "about",
 					"pathName": "pages/User/about/about",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "league",
+					"pathName": "pages/Study/league/league",
 					"scene": null
 				}
 			]

@@ -33,9 +33,9 @@
 </view>
 <view class="weui-footer">
   <view class="weui-footer__text flexFooter" >
-    <view>版本:{{version}}</view>
+    <button open-type='share'>分享</button>
     <view style='margin:0 5px;'>|</view>
-    <navigator url="/pages/User/about/about" open-type="navigate">关于</navigator>
+    <button bindtap='toAbout'>关于</button>
   </view>
   <view class="weui-footer__text">Copyright © 2019 WindrunnerMax</view>
 </view>

@@ -12,15 +12,15 @@ Page({
         id: 'widget',
         name: '学习',
         open: false,
-        pages: ['体育选课', '常用链接', '转专业相关'],
-        url: ['/pages/Study/pe/pe',  '/pages/Study/link/link','/pages/Study/major/major']
+        pages: ['常用链接', '转专业相关','社团一览表'],
+        url: ['/pages/Study/link/link', '/pages/Study/major/major','/pages/Study/league/league']
       },
       {
         id: 'nav',
         name: '生活',
         open: false,
-        pages: ['用电相关','机房相关','宿舍相关'],
-        url: ['/pages/Life/power/power', '/pages/Life/computer/computer', '/pages/Life/living/living']
+        pages: ['用电相关','机房相关','宿舍相关','网络相关','餐厅相关','洗浴相关','医疗相关','来校路线'],
+        url: ['/pages/Life/power/power', '/pages/Life/computer/computer', '/pages/Life/living/living', '/pages/Life/network/network', '/pages/Life/canteen/canteen', '/pages/Life/shower/shower', '/pages/Life/medical/medical', '/pages/Life/traffic/traffic']
       }
     ],
     version: getApp().globalData.version
@@ -69,6 +69,8 @@ Page({
     })
   },
   toAbout(){
-    
+    wx.navigateTo({
+      url: "/pages/User/about/about"
+    })
   }
 });

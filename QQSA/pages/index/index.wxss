@@ -40,3 +40,24 @@ page{
   justify-content: center;
   align-items: center;
 }
+
+button:after {
+  border: none;
+}
+
+button{
+  background: #fff;
+  border: none;
+  box-sizing: unset;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  background: #F8F8F8;
+  color: #888888;
+  line-height: unset;
+}
+
+.about{
+  font-size: 23rpx;
+  color: #888888;
+}

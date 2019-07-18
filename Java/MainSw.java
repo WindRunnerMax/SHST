@@ -146,7 +146,7 @@ public class MainSw {
 	 */
 	public static void main(String[] args) {
 		MainSw Q = new MainSw();
-//		Q.GetStudentInfo(); //获取学号信息
+//		Q.GetStudentInfo(); //获取学生信息
 //		Q.GetCurrentTime(); //获取学年信息
 //		Q.GetTable(); //当前周次课表
 //		Q.GetTable("3"); //指定周次课表

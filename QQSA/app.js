@@ -9,7 +9,7 @@ App({
       'content-type': 'application/x-www-form-urlencoded'
     },
     openid: "",
-    version: "1.0.0"
+    version: "1.0.1"
   },
   extend: function() {
     var aLength = arguments.length;

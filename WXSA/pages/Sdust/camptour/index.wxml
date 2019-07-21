@@ -1,0 +1,42 @@
+<!--pages/map/map.wxml-->
+<view style="width: 100%;">
+  <scroll-view scroll-x="true" >
+    <view class="top-swich" style="text-align:center;"  wx:if="{{!fullscreen}}">
+      <label wx:for="{{buildlData}}" wx:key="id" id="{{index}}" bindtap="changePage" class="top-swich-btn {{isSelectedBuildType == index ? 'active' : ''}} widthLim">{{item.name}}
+      </label>
+    </view>
+  </scroll-view>
+  <map longitude="{{longitude}}" latitude="{{latitude}}" scale="{{buildlData[isSelectedBuildType].scale}}" markers="{{buildlData[isSelectedBuildType].data}}" bindmarkertap="markertap" bindregionchange="regionchange" include-points="{{buildlData[isSelectedBuildType].data}}"
+    show-location="{{islocation? 'true': 'false'}}" enable-overlooking="true" enable-3D="true" style="width: auto; height:{{fullscreen ? 94 : 48}}vh;">
+    <cover-view class="controls {{fullscreen ? 'full' : ''}}">
+      <cover-view bindtap="navigateSearch">
+        <cover-image class="img" src="/vector/camptour/img/search.png" />
+      </cover-view>
+      <cover-view bindtap="location">
+        <cover-image class="img" src="/vector/camptour/img/location.png" />
+      </cover-view>
+    </cover-view>
+  </map>
+  <button bindtap="clickButton">
+    共有{{buildlData[isSelectedBuildType].data.length}}个景观 ◕‿◕
+  </button>
+  <scroll-view scroll-y="true" style="height:{{fullscreen ? 0 : 40}}vh" scroll-top="{{(isSelectedBuild -1 ) * 70}}">
+    <view wx:for="{{buildlData[isSelectedBuildType].data}}" wx:key="id" class="building-item" style="{{isSelectedBuild -1 == index ? 'background-color: #d5d5d5;' : ''}}">
+      <view class="img-view">
+        <navigator class="img" url='details?tid={{isSelectedBuildType}}&bid={{index}}'>
+          <view class="item">
+            <view class="itemName">
+              {{item.name}}
+            </view>
+            <view class="itemFloor" wx:if="{{item.floor}}">
+              位置：{{item.floor}}
+            </view>
+          </view>
+        </navigator>
+        <navigator class="text" url='polyline?latitude={{item.latitude}}&longitude={{item.longitude}}'>
+          <image src="/vector/camptour/img/location.svg"> </image>
+        </navigator>
+      </view>
+    </view>
+  </scroll-view>
+</view>

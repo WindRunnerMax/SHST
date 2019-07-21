@@ -50,6 +50,10 @@
       <image src='/vector/img/vacation.svg' class='imgIcon'></image>
       <view style='margin:8px 0;'>放假安排</view>
     </view>
+    <view class='fun' data-jumpurl="/pages/Sdust/camptour/index" data-checkuser="1" bindtap='jump'>
+      <image src='/vector/img/nav.svg' class='imgIcon' style='padding: 8px 8px 5px 5px;'></image>
+      <view style='margin:8px 0;'>校园导览</view>
+    </view>
   </view>
 </view>
 

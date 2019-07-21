@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 12,
+			"current": 14,
 			"list": [
 				{
 					"id": 0,
@@ -130,6 +130,20 @@
 					"id": -1,
 					"name": "user",
 					"pathName": "pages/Home/user/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "map",
+					"pathName": "pages/Sdust/map/map",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "camptour",
+					"pathName": "pages/Sdust/camptour/index",
 					"scene": null
 				}
 			]

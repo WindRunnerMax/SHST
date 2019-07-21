@@ -1,0 +1,50 @@
+/* pages/map/details.wxss */
+
+.description {
+  padding: 40rpx 40rpx;
+  line-height: 30px;
+  font-size: 30rpx;
+}
+
+.swiper {
+  height: 40vh;
+}
+
+.swiper-image {
+  width: 100%;
+  height:100%;
+}
+
+.building {
+  height: 10vh;
+  display: flex;
+  margin: auto 20rpx;
+}
+
+.buildingName {
+  margin: auto 15rpx;
+  width: 80%;
+  color: #079df2;
+  font-size: 50rpx;
+  white-space:nowrap;
+}
+
+.nav_map {
+  margin: auto 10rpx;
+}
+
+.nav_map image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.descript {
+  background: #f8f8f8;
+  width: 100%;
+  min-height: 49vh;
+}
+
+.descript rich-text {
+  font-size: 30rpx;
+  color: #000;
+}

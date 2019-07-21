@@ -4,6 +4,22 @@
   <view data-copy='https://github.com/WindrunnerMax/SW' class='url' bindtap='copy'>https://github.com/WindrunnerMax/SW</view>
 
   <view class='unitChange'>
+    <view class='title'>2.5.6 (2019-7-17) [316818d]</view>
+    <view>1. API更新</view>
+  </view>
+
+  <view class='unitChange'>
+    <view class='title'>2.5.5 (2019-7-16) [0c6cd5d]</view>
+    <view>1. QQ小程序 山科小站--迎新专版</view>
+  </view>
+
+  <view class='unitChange'>
+    <view class='title'>2.5.4 (2019-7-15) [f22f000]</view>
+    <view>1. 添加自定义组件</view>
+    <view>2. About界面重构</view>
+  </view>
+
+  <view class='unitChange'>
     <view class='title'>2.5.3 (2019-7-10) [d25a95e]</view>
     <view>1. 添加公告红点</view>
     <view>2. 重构日历功能</view>

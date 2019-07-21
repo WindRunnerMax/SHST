@@ -9,7 +9,7 @@
 
   <view class='infoCon'>
     <view style='background:green;' class='point'></view>
-    <view>暂时API兼容处理，兼容低版本微信，后期考虑升级最低版本库</view>
+    <view>7.18更新 解决分享引起的问题</view>
   </view>
 
   <view class='infoCon'>

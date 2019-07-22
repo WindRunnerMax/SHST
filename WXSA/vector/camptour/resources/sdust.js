@@ -24,9 +24,8 @@ module.exports.map = [
         "width": "30",
         "height": "30",
         "img": [
-          "http://www.sdust.edu.cn/__local/3/B3/6E/DFEE8FD1D8DE50CEE3D4C14FD02_7F54EF17_1C6C2B9.jpg",
           "http://www.sdust.edu.cn/__local/B/F3/E4/693AB931C9FFB84646970D53BFE_C506394A_4282CA.jpg",
-          ""
+          "http://www.sdust.edu.cn/__local/3/B3/6E/DFEE8FD1D8DE50CEE3D4C14FD02_7F54EF17_1C6C2B9.jpg"
         ],
         "description": "若水园位于B区，是一个很大的荷花池"
       },
@@ -234,7 +233,7 @@ module.exports.map = [
         "name": "J1教学楼",
         "latitude": "36.0021087129",
         "longitude": "120.1241737604",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -247,7 +246,7 @@ module.exports.map = [
         "name": "J2材料学院、化工学院",
         "latitude": "36.0009890393",
         "longitude": "120.1236695051",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -259,7 +258,7 @@ module.exports.map = [
         "name": "J3外国语学院",
         "latitude": "36.0012400000",
         "longitude": "120.1255000000",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -271,7 +270,7 @@ module.exports.map = [
         "name": "J4矿业学院",
         "latitude": "35.9992140203",
         "longitude": "120.1220709085",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -283,7 +282,7 @@ module.exports.map = [
         "name": "J5教学楼",
         "latitude": "36.0012090000",
         "longitude": "120.1274370000",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -295,7 +294,7 @@ module.exports.map = [
         "name": "J6经管学院、地质学院、测绘学院",
         "latitude": "36.0006700000",
         "longitude": "120.1222300000",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -308,7 +307,7 @@ module.exports.map = [
         "name": "J7教学楼",
         "latitude": "36.0017528494",
         "longitude": "120.1272636652",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -320,7 +319,7 @@ module.exports.map = [
         "name": "J8机电学院楼",
         "latitude": "35.9991923206",
         "longitude": "120.1209443808",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -332,7 +331,7 @@ module.exports.map = [
         "name": "J9艺术学院、数学学院...",
         "latitude": "36.0013360000",
         "longitude": "120.1284020000",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -344,7 +343,7 @@ module.exports.map = [
         "name": "J11自动化学院、文法学院",
         "latitude": "36.0022085280",
         "longitude": "120.1285403967",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -356,7 +355,7 @@ module.exports.map = [
         "name": "J13计算机学院",
         "latitude": "36.0013709453",
         "longitude": "120.1294845343",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -368,7 +367,7 @@ module.exports.map = [
         "name": "J14教学楼",
         "latitude": "36.0016877523",
         "longitude": "120.1220548153",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -380,7 +379,7 @@ module.exports.map = [
         "name": "J15土建学院、体育学院",
         "latitude": "36.0024341965",
         "longitude": "120.1294952631",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -392,7 +391,7 @@ module.exports.map = [
         "name": "S1实验楼",
         "latitude": "36.0035581892",
         "longitude": "120.1286637783",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -404,7 +403,7 @@ module.exports.map = [
         "name": "S2地质与科学工程学院水文地质实验室",
         "latitude": "35.9998693499",
         "longitude": "120.1222103834",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -416,7 +415,7 @@ module.exports.map = [
         "name": "S3实验楼",
         "latitude": "35.9994179977",
         "longitude": "120.1209121943",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/jxl.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -434,7 +433,7 @@ module.exports.map = [
         "name": "南门",
         "latitude": "35.9994400000",
         "longitude": "120.1248500000",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/xm.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -446,7 +445,7 @@ module.exports.map = [
         "name": "北门",
         "latitude": "36.0078000000",
         "longitude": "120.1231300000",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/xm.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -464,7 +463,7 @@ module.exports.map = [
         "name": "B区学海餐厅",
         "latitude": "36.0056151847",
         "longitude": "120.1292538643",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/st.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -476,7 +475,7 @@ module.exports.map = [
         "name": "A区学苑餐厅",
         "latitude": "36.0047776382",
         "longitude": "120.1237553358",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/st.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -488,7 +487,7 @@ module.exports.map = [
         "name": "C区学者餐厅",
         "latitude": "36.0038966859",
         "longitude": "120.1189273596",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/st.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -500,7 +499,7 @@ module.exports.map = [
         "name": "C区维客购物广场",
         "latitude": "36.0044912213",
         "longitude": "120.1197910309",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/st.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -512,7 +511,7 @@ module.exports.map = [
         "name": "A区科大超市",
         "latitude": "36.0049382048",
         "longitude": "120.1233637333",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/st.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -530,7 +529,7 @@ module.exports.map = [
         "name": "B1-3",
         "latitude": "36.0058408434",
         "longitude": "120.1300799847",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -542,7 +541,7 @@ module.exports.map = [
         "name": "B2-4",
         "latitude": "36.0055240532",
         "longitude": "120.1283580065",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -554,7 +553,7 @@ module.exports.map = [
         "name": "B6(女生)",
         "latitude": "36.0060578223",
         "longitude": "120.1274245977",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -566,7 +565,7 @@ module.exports.map = [
         "name": "B8-10",
         "latitude": "36.0068562995",
         "longitude": "120.1272529364",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -578,7 +577,7 @@ module.exports.map = [
         "name": "B12-14",
         "latitude": "36.0076243922",
         "longitude": "120.1270866394",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -591,7 +590,7 @@ module.exports.map = [
         "name": "A1",
         "latitude": "36.0051768843",
         "longitude": "120.1247799397",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -603,7 +602,7 @@ module.exports.map = [
         "name": "A8",
         "latitude": "36.0055934867",
         "longitude": "120.1224088669",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -615,7 +614,7 @@ module.exports.map = [
         "name": "A2",
         "latitude": "36.0048123553",
         "longitude": "120.1226073503",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -627,7 +626,7 @@ module.exports.map = [
         "name": "A9",
         "latitude": "36.0057670705",
         "longitude": "120.1243400574",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -639,7 +638,7 @@ module.exports.map = [
         "name": "A11",
         "latitude": "36.0061098972",
         "longitude": "120.1242434978",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -651,7 +650,7 @@ module.exports.map = [
         "name": "A13-15",
         "latitude": "36.0067434717",
         "longitude": "120.1244151592",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -663,7 +662,7 @@ module.exports.map = [
         "name": "A17",
         "latitude": "36.0074638311",
         "longitude": "120.1247155666",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -675,7 +674,7 @@ module.exports.map = [
         "name": "A19",
         "latitude": "36.0067478112",
         "longitude": "120.1240396500",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -687,7 +686,7 @@ module.exports.map = [
         "name": "A18",
         "latitude": "36.0064917783",
         "longitude": "120.1225644350",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -699,7 +698,7 @@ module.exports.map = [
         "name": "A12",
         "latitude": "36.0058929184",
         "longitude": "120.1227092743",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -711,7 +710,7 @@ module.exports.map = [
         "name": "A16",
         "latitude": "36.0064180060",
         "longitude": "120.1222372055",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -723,7 +722,7 @@ module.exports.map = [
         "name": "C1-3",
         "latitude": "36.0050163182",
         "longitude": "120.1193726063",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -735,7 +734,7 @@ module.exports.map = [
         "name": "C2-4",
         "latitude": "36.0038532889",
         "longitude": "120.1178598404",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -747,7 +746,7 @@ module.exports.map = [
         "name": "C6-8",
         "latitude": "36.0048514121",
         "longitude": "120.1175057888",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -759,7 +758,7 @@ module.exports.map = [
         "name": "C10",
         "latitude": "36.0054763175",
         "longitude": "120.1175594330",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -771,7 +770,7 @@ module.exports.map = [
         "name": "C12",
         "latitude": "36.0059232955",
         "longitude": "120.1176452637",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -783,7 +782,7 @@ module.exports.map = [
         "name": "C14",
         "latitude": "36.0063789500",
         "longitude": "120.1175969839",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -795,7 +794,7 @@ module.exports.map = [
         "name": "C11",
         "latitude": "36.0052636766",
         "longitude": "120.1189273596",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -807,7 +806,7 @@ module.exports.map = [
         "name": "C16",
         "latitude": "36.0050640541",
         "longitude": "120.1179671288",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [
@@ -819,7 +818,7 @@ module.exports.map = [
         "name": "C5-7-9",
         "latitude": "36.0061619720",
         "longitude": "120.1188737154",
-        "iconPath": "/vector/camptour/img/ico/jd.png",
+        "iconPath": "/vector/camptour/img/ico/boy_ss.png",
         "width": "30",
         "height": "30",
         "img": [

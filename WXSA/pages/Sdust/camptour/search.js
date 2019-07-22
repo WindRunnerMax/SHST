@@ -15,6 +15,7 @@ Page({
   },
 
   bindSearchInput: function(e) {
+    this.data.buildlData = app.globalData.map
     let showData = new Array();
     let searchdata = this.data.buildlData;
     if (e.detail.cursor >= this.data.cursor) {
@@ -50,7 +51,6 @@ Page({
               var temp = showData[j];
               showData[j] = showData[j + 1];
               showData[j + 1] = temp;
-              console.log('交换' + showData[j].index + ':' + showData[j + 1].index)
             }
           }
         }
@@ -65,7 +65,6 @@ Page({
       }
     } else {
       //删除文字
-      console.log('删除文字')
       this.setData({
         showData: null
       });

@@ -121,7 +121,17 @@ Page({
           buildlData: app.globalData.map
         })
       }, fail: () => {
-        app.toast("您已禁止山科小站获取您的位置信息，无法使用此功能");
+        wx.showModal({
+          title: '提示',
+          content: '本功能需要您的位置信息，点击确定进入授权页设置',
+          success(res) {
+            if (res.confirm) {
+              wx.openSetting();
+            } else if (res.cancel) {
+              wx.navigateBack();
+            }
+          }
+        })
       }
     })
 

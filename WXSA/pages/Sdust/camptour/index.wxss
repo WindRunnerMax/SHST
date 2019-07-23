@@ -37,10 +37,6 @@
   display: inline-block;
 }
 
-button {
-  font-size: 26rpx;
-  height: 6vh;
-}
 
 .img-view {
   height: 100%;
@@ -105,4 +101,19 @@ button {
 
 .widthLim{
   width: 100%;
+}
+
+button:after {
+  border: none;
+}
+
+button{
+  background: #fff;
+  border: none;
+  box-sizing: unset;
+  margin: 0;
+  font-size: 15px;
+  background: #F8F8F8;
+  line-height: unset;
+  padding: 5px 0;
 }

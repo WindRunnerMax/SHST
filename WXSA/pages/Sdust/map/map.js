@@ -22,7 +22,7 @@ Page({
   onLoad: function() {
       var that = this
       wx.getLocation({
-        type: 'gcj02',
+        type: 'wgs84',
         // altitude: true, //高精度定位
         //定位成功，更新定位结果
         success: function(res) {

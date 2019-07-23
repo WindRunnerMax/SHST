@@ -1,17 +1,17 @@
 //获取应用实例
 var app = getApp();
-let config = require('../../../vector/camptour/config.js')
+let config = require('../../../vector/camptour/config.js');
+let schoolConfig = require('../../../vector/camptour/resources/sdust');
 Page({
   data: {
     fullscreen: false,
     latitude: 35.99940,
     longitude: 120.12487,
-    buildlData: app.globalData.map,
+    buildlData: {},
     windowHeight: "",
     windowWidth: "",
     isSelectedBuild: 0,
     isSelectedBuildType: 0,
-    imgCDN: app.imgCDN,
     islocation: true
   },
   loadNetWorkScoolConf: function () {
@@ -38,16 +38,6 @@ Page({
               //刷新数据
               _this.globalData.map = res.data.map;
               _this.globalData.introduce = res.data.introduce;
-
-              // 存储学校位置数据于缓存中
-              wx.setStorage({
-                key: "map",
-                data: res.data.map
-              })
-              wx.setStorage({
-                key: "introduce",
-                data: res.data.introduce
-              })
             }
           },
           complete: function (info) {
@@ -73,8 +63,7 @@ Page({
 
   },
   debug: config.debug, //开启后只调用本地数据
-  imgCDN: config.imgCDN,
-  school: require('../../../vector/camptour/resources/' + config.school),
+  school: schoolConfig,
   globalData: {
     userInfo: null,
     map: null,
@@ -83,6 +72,7 @@ Page({
     longitude: null
   },
   onLoad: function () {
+    var that = this;
     wx.setNavigationBarColor({
       frontColor: '#ffffff',
       backgroundColor: '#079DF2',
@@ -91,68 +81,23 @@ Page({
         timingFunc: 'easeIn'
       }
     })
-
-    var that = this;
-    //载入学校位置数据
-    this.loadSchoolConf()
-    //如果已经授权，提前获取定位信息
-    wx.getLocation({
-      type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标  
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+    wx.getSystemInfo({
       success: function (res) {
-        app.globalData.latitude = res.latitude;
-        app.globalData.longitude = res.longitude;
-        app.globalData.islocation = true
-        wx.showShareMenu({
-          withShareTicket: true
-        })
-        wx.getSystemInfo({
-          success: function (res) {
-            //获取当前设备宽度与高度，用于定位控键的位置
-            that.setData({
-              windowHeight: res.windowHeight,
-              windowWidth: res.windowWidth,
-            })
-            console.log(res.windowWidth)
-          }
-        })
-        //载入更新后的数据
-        console.log(app.globalData.map)
+        //获取当前设备宽度与高度，用于定位控键的位置
         that.setData({
-          buildlData: app.globalData.map
-        })
-      }, fail: () => {
-        wx.showModal({
-          title: '提示',
-          content: '本功能需要您的位置信息，点击确定进入授权页设置',
-          success(res) {
-            if (res.confirm) {
-              wx.openSetting();
-            } else if (res.cancel) {
-              wx.navigateBack();
-            }
-          }
+          windowHeight: res.windowHeight,
+          windowWidth: res.windowWidth,
         })
       }
     })
-
-
-   
-  },
-  onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
-    return {
-      title: app.globalData.introduce.name + ' - 校园导览',
-      path: '/pages/map/index',
-      success: function (res) {
-        // 转发成功
-      },
-      fail: function (res) {
-        // 转发失败
-      }
-    }
+    this.loadSchoolConf();
+    that.setData({
+      buildlData: app.globalData.map
+    })
+    this.location();
   },
   regionchange(e) {
     // 视野变化
@@ -170,23 +115,24 @@ Page({
       url: 'search'
     })
   },
-  location: function () {
+  location: function (e) {
     var _this = this
     wx.getLocation({
       type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标  
       success: function (res) {
         app.globalData.latitude = res.latitude;
         app.globalData.longitude = res.longitude;
-        _this.setData({
-          longitude: res.longitude,
-          latitude: res.latitude
-        })
+        app.globalData.islocation = true;
+        if(e){
+          _this.setData({
+            longitude: res.longitude,
+            latitude: res.latitude
+          })
+        }
       }
     })
   },
   clickButton: function (e) {
-    //console.log(this.data.fullscreen)
-    //打印所有关于点击对象的信息
     this.setData({ fullscreen: !this.data.fullscreen })
   },
   changePage: function (event) {
@@ -194,5 +140,5 @@ Page({
       isSelectedBuildType: event.currentTarget.id,
       isSelectedBuild: 0
     });
-  }
+  },
 })

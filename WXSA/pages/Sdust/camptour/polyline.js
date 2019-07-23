@@ -9,6 +9,35 @@ Page({
     polyline: []
   },
   onLoad: function (options) {
+    if (!app.globalData.islocation){
+      wx.showModal({
+        title: '提示',
+        content: '本功能需要您的位置信息，点击确定进入授权页设置',
+        success(res) {
+          if (res.confirm) {
+            wx.openSetting({
+              success: function (data) {
+                if (data.authSetting["scope.userLocation"] === true) {
+                  wx.getLocation({
+                    type: 'wgs84',
+                    success: function (res) {
+                      app.globalData.latitude = res.latitude;
+                      app.globalData.longitude = res.longitude;
+                      app.globalData.islocation = true;
+                    }
+                  })
+                }
+              }
+            });
+
+          } 
+        },
+        complete:()=>{
+          wx.navigateBack();
+        }
+      })
+      return false;
+    }
     wx.setNavigationBarColor({
       frontColor: '#ffffff',
       backgroundColor: '#079DF2',
@@ -23,32 +52,6 @@ Page({
       latitude: app.globalData.latitude
     })
     _this.routing(options);
-    wx.getLocation({
-      type: 'gcj02',
-      success: function (res) {
-        app.globalData.latitude = res.latitude;
-        app.globalData.longitude = res.longitude;
-        _this.setData({
-          latitude: res.latitude,
-          longitude: res.longitude
-        });
-        _this.routing(options);
-      },
-      fail: function () {
-        console.log("定位失败")
-        wx.showModal({
-          title: '无法使用该功能',
-          content: '请点击右上角在“关于校园导览”设置中给予定位权限',
-          showCancel: false,
-          success: function (res) {
-            wx.navigateBack({
-              delta: 1
-            })
-            return;
-          }
-        })
-      }
-    })
   },
   routing: function (options){
     var _this = this;

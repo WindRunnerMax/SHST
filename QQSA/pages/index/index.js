@@ -19,8 +19,8 @@ Page({
         id: 'nav',
         name: '生活',
         open: false,
-        pages: ['用电相关','机房相关','宿舍相关','网络相关','餐厅相关','洗浴相关','医疗相关','来校路线','早起相关'],
-        url: ['/pages/Life/power/power', '/pages/Life/computer/computer', '/pages/Life/living/living', '/pages/Life/network/network', '/pages/Life/canteen/canteen', '/pages/Life/shower/shower', '/pages/Life/medical/medical', '/pages/Life/traffic/traffic','/pages/Life/getup/getup']
+        pages: ['用电相关','机房相关','宿舍相关','网络相关','餐厅相关','洗浴相关','医疗相关','来校路线','早起相关','快递相关'],
+        url: ['/pages/Life/power/power', '/pages/Life/computer/computer', '/pages/Life/living/living', '/pages/Life/network/network', '/pages/Life/canteen/canteen', '/pages/Life/shower/shower', '/pages/Life/medical/medical', '/pages/Life/traffic/traffic', '/pages/Life/getup/getup','/pages/Life/express/express']
       }
     ],
     version: getApp().globalData.version

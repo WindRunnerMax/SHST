@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 15,
 			"list": [
 				{
 					"id": 0,
@@ -144,6 +144,14 @@
 					"id": -1,
 					"name": "camptour",
 					"pathName": "pages/Sdust/camptour/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 15,
+					"name": "404",
+					"pathName": "pages/Home/NotFound/notfoundqwe",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -141,4 +141,7 @@ Page({
       isSelectedBuild: 0
     });
   },
+  onShareAppMessage: function () {
+
+  }
 })

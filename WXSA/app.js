@@ -12,7 +12,7 @@ App({
     },
     openid: "",
     colorList: ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"],
-    version: "2.6.1",
+    version: "2.6.2",
     curTerm: "2018-2019-2",
     curTermStart: "2019-02-25"
   },
@@ -56,7 +56,7 @@ App({
   },
   onPageNotFound(res) { //处理404
     wx.reLaunch({
-      url: '/pages/index/index'
+      url: 'pages/Home/NotFound/notfound'
     })
   }
 })

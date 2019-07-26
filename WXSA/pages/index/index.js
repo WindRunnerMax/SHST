@@ -4,6 +4,7 @@ const app = getApp()
 const md5 = require('../../vector/md5.js');
 const time = require('../../vector/time.js');
 const dispose = require('../../vector/dispose.js');
+var todoListCount = 0;
 
 Page({
 
@@ -195,9 +196,9 @@ Page({
             });
             console.log(res.data.data);
             that.setData({
-              todoList: res.data.data,
-              count: res.data.data.length
+              todoList: res.data.data
             })
+            todoListCount = res.data.data.length;
           } else {
             that.setData({
               tips2: "加载失败"
@@ -228,8 +229,8 @@ Page({
               that.setData({
                 todoList: that.data.todoList,
                 tips2: that.data.todoList.length === 0 ? "暂没有待办事项" : "",
-                count: that.data.count - 1
               })
+              todoListCount = todoListCount - 1;
             }
           })
         }

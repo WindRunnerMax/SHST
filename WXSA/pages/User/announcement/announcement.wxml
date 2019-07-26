@@ -1,15 +1,10 @@
 <!--pages/about/about.wxml-->
 <view style='width:100%;'>
   <title innerText="公告"></title>
-  
-  <view class='infoCon' data-copy='722942376' bindtap='copy'>
-    <view style='background:green;' class='point'></view>
-    <view>加个群呗：722942376</view>
-  </view>
 
   <view class='infoCon'>
     <view style='background:green;' class='point'></view>
-    <view>7.21更新 校园导览功能</view>
+    <view>7.23更新 优化校园导览 解决切换用户问题</view>
   </view>
 
   <view class='infoCon'>

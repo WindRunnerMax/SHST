@@ -47,11 +47,16 @@ Page({
       }
     })
     var _this = this;
-    _this.setData({
-      longitude: app.globalData.longitude,
-      latitude: app.globalData.latitude
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        _this.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        });
+        _this.routing(options);
+      }
     })
-    _this.routing(options);
   },
   routing: function (options){
     var _this = this;

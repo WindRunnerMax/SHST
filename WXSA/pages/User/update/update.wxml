@@ -2,6 +2,13 @@
 
   <view style='font-size:20px;'>Changelog</view>
   <view data-copy='https://github.com/WindrunnerMax/SW' class='url' bindtap='copy'>https://github.com/WindrunnerMax/SW</view>
+  
+<view class='unitChange'>
+    <view class='title'>2.6.2 (2019-7-23) [f429f44]</view>
+    <view>1. 校园导览优化定位逻辑</view>
+    <view>2. 解决注销切换用户问题</view>
+  </view>
+
 
  <view class='unitChange'>
     <view class='title'>2.6.1 (2019-7-21) [d69a6f6]</view>

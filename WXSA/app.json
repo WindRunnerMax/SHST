@@ -25,7 +25,8 @@
     "pages/Ext/examArrange/examArrange",
     "pages/User/about/about",
     "pages/User/update/update",
-    "pages/User/announcement/announcement"
+    "pages/User/announcement/announcement",
+    "pages/Home/NotFound/notfound"
   ],
   "tabBar": {
     "color": "#aaa",

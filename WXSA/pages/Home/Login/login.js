@@ -8,21 +8,21 @@ Page({
     account: "",
     password: "",
     status: "",
-    hidePassword : true
+    hidePassword: true
   },
-  accountInput: function(e) {
+  accountInput: function (e) {
     this.data.account = e.detail.value;
     // this.setData({
     //   account: e.detail.value
     // })
   },
-  passwordInput: function(e) {
+  passwordInput: function (e) {
     this.data.password = e.detail.value;
     // this.setData({
     //   password: e.detail.value
     // })
   },
-  enter: function(e) {
+  enter: function (e) {
     this.data.account = e.detail.value.account;
     this.data.password = e.detail.value.password;
     var that = this;
@@ -38,13 +38,13 @@ Page({
           "password": encodeURIComponent(that.data.password),
           "openid": app.globalData.openid
         },
-        fun: function(res) {
+        fun: function (res) {
           console.log(res.data)
           if (res.data.Message == "No") {
             that.setData({
               status: res.data.info
             })
-            this.completeLoad = (res) => { app.toast(res.data.info);}
+            this.completeLoad = (res) => { app.toast(res.data.info); }
           } else if (res.data.Message == "Yes") {
             wx.setStorage({
               key: 'user',
@@ -53,10 +53,10 @@ Page({
                 "password": that.data.password,
                 "openid": app.globalData.openid
               },
-              success: function() {
+              success: function () {
                 app.globalData.userFlag = 1;
                 wx.reLaunch({
-                  url: '/pages/index/index'
+                  url: '/pages/Home/Tips/tips'
                 })
               }
             })
@@ -71,12 +71,12 @@ Page({
     }
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
-  onLoad: function(e) {
+  onLoad: function (e) {
     wx.getStorage({
       key: 'user',
       success: res => {
@@ -96,12 +96,7 @@ Page({
       hidePassword: !e.detail.value
     })
   },
-  viewInfo() {
-    wx.switchTab({
-      url: '/pages/index/index'
-    })
-  },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({

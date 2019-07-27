@@ -11,7 +11,7 @@ class Http
       $url, 
       $data=array(), 
       $method='GET',
-      $headers = array() , 
+      $headers = [] , 
       $cookieFlag = false , 
       $stopNext = false) {
         $headers = self::headerDispose($headers);
@@ -36,14 +36,15 @@ class Http
         } 
     }
 
-      private static function arrstr($arr){
+      private static function urlDispose($url,$arr){
           $ret = "";
           reset($arr);
           while (list($k, $v) = each($arr)){
               $tmp = "$k"."="."$v";
               $ret = $ret."&".$tmp;
           }
-          return $ret;
+          if($ret !== "") $url = $url."?".$ret;
+          return $url;
       }
 
 
@@ -68,7 +69,7 @@ class Http
       private static function getCurl($url, $data, $method,$headers,$cookieFlag){
         $curl = curl_init();  // 启动一个CURL会话
         if (count($headers) >= 1) curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        if($method=='GET') $url = $url."?".self::arrstr($data);
+        if($method=='GET') $url = self::urlDispose($url,$data);
         curl_setopt($curl, CURLOPT_URL, $url);  // 要访问的地址
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);  // 对认证证书来源的检查
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);  // 从证书中检查SSL加密算法是否存在
@@ -92,23 +93,31 @@ class Http
         }else{
           if (curl_getinfo($curl, CURLINFO_HTTP_CODE) == '200') {
               $responseHeader_size  = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
-              $responseHeaders  = substr($result, 0, $responseHeader_size);
+              $responseHeadersString  = substr($result, 0, $responseHeader_size);
               $responseBody   = substr($result, $responseHeader_size);
-              // var_dump($responseHeaders);
-              // var_dump($responseBody);
-              return [$responseBody,$responseHeaders];
+              $responseHeadersArr = explode("\n", $responseHeadersString);
+              $responseHeaders = [];
+              foreach ($responseHeadersArr as $value) {
+                $info = explode(": ", $value);
+                if (count($info) >= 2)  $responseHeaders[$info[0]] = $info[1];
+              }
+              return [$responseHeaders,$responseBody];
           }else {
-              return [false,""];
+              return [[],false];
           }
         }
       }
 
       private static function headerDispose($headers){
-        if (count($headers) === 0) array_push($header,"User-Agent: Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )");
+        $headerDisposeCurl = [];
+        if (count($headers) === 0) $headers['User-Agent']="Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )";
         $ipArr = [mt_rand(1, 255),mt_rand(1, 255),mt_rand(1, 255),mt_rand(1, 255)];
-        array_push($headers,"X-FORWARDED-FOR:".$ipArr[0].".".$ipArr[1].".".$ipArr[2].".".$ipArr[3]);
-        array_push($headers,"CLIENT-IP:".$ipArr[0].".".$ipArr[1].".".$ipArr[2].".".$ipArr[3]);
-        return $headers;
+        $headers["X-FORWARDED-FOR"] = $ipArr[0].".".$ipArr[1].".".$ipArr[2].".".$ipArr[3];
+        $headers["CLIENT-IP"] = $ipArr[0].".".$ipArr[1].".".$ipArr[2].".".$ipArr[3];
+        foreach ($headers as $key => $value) {
+          array_push($headerDisposeCurl, $key.':'.$value);
+        }
+        return $headerDisposeCurl;
       }
 
 }

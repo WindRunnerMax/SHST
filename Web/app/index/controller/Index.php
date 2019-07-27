@@ -48,16 +48,13 @@ class Index extends Controller
     }
 
     // public function test(){
-    //     echo Http::httpRequest("https://www.google.com",array(),"GET",Conf::getHeader(),false,true);
-    //     var_dump($_GET);
-    //     var_dump($_POST);
+    //     print_r(Http::httpRequest("http://jwgl.sdust.edu.cn/app.do?method=authUser&xh=201601160202&pwd=Czy123...",[],"GET",Conf::getHeader(),true,true)); 
     // }
 
-    // public function testHTTP2(){
-    //     foreach ($_SERVER as $key => $value) {
-    //         echo $key."=>".$value."<br>";
-    //     }
-    //     echo getenv('HTTP_X_FORWARDED_FOR')."1";
-    // }
+    public function testHTTP2(){
+        foreach ($_SERVER as $key => $value) {
+            echo $key."=>".$value."<br>";
+        }
+    }
 
 }

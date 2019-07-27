@@ -35,7 +35,7 @@ Page({
         searchTime: that.data.searchTime,
         searchFloor: that.data.searchFloor,
       },
-      url: app.globalData.url + 'funct/sw/classroomExt2',
+      url: app.globalData.url + 'funct/sw/classroomExt',
       fun: res => {
         if (res.data.MESSAGE !== "Yes") {
           app.toast("ERROR");

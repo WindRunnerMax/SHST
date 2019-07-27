@@ -23,7 +23,7 @@ Page({
         success: function (choice) {
           if (choice.confirm) {
             wx.navigateTo({
-              url: '/pages/Login/login?status=E'
+              url: '/pages/Home/Login/login?status=E'
             })
           }
         }

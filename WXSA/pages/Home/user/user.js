@@ -40,7 +40,7 @@ Page({
     wx.removeStorageSync('userInfo');
     wx.removeStorageSync('table');
     wx.navigateTo({
-      url: '/pages/Login/login?status=E'
+      url: '/pages/Home/Login/login?status=E'
     })
   },
   onLoad: function(options) {
@@ -48,7 +48,7 @@ Page({
     wx.getStorage({
       key: 'point',
       complete: (res) => {
-        if (res.data !== app.globalData.version) {
+        if (res.data !== app.globalData.tips) {
           that.setData({
             point: "block"
           })

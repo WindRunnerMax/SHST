@@ -60,5 +60,7 @@ function dataDiff(startDateString, endDateString) {
 }
 
 function getCurWeek(startTime) {
-  return (parseInt(dataDiff(startTime, getNowFormatDate()) / 7) + 1);
+  if (getNowFormatDate() < startTime) return 0;
+  var week = (parseInt(dataDiff(startTime, getNowFormatDate()) / 7) + 1);
+  return week;
 }

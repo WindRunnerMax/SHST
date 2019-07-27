@@ -16,17 +16,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    term: app.globalData.curTerm
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var weekCount = 26;
+    var weekCount = 24;
     // var startDate = app.globalData.curTermStart;
-    var startDate = "2019-02-25";
-    var vacationWeekStart = 22;
+    var startDate = "2019-08-26";
+    var vacationWeekStart = 19;
     var startDateObj = new Date(startDate);
     var curDateObj = time.getNowFormatDate();
     console.log(startDateObj.getDay());
@@ -44,7 +44,7 @@ Page({
           unitCalen.className += " strong";
           monthFlag = calcMonth;
         } else unitCalen.day = startDateObj.getDate().toString();
-        if(k === 6 || k ===7 || i >= 22) unitCalen.className += " vacation";
+        if (k === 6 || k === 7 || i >= vacationWeekStart) unitCalen.className += " vacation";
         if (curDateObj === getFormateDateAcceptDate(startDateObj)) unitCalen.className += " today";
         lineCalen.push(unitCalen);
         startDateObj.addDate(0,0,1);

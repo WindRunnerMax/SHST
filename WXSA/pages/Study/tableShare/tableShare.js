@@ -98,7 +98,7 @@ Page({
     var that = this;
     app.ajax({
       load: 2,
-      url: app.globalData.url + "funct/share/signalTableshare2",
+      url: app.globalData.url + "funct/share/signalTableshare",
       data: {
         week: app.globalData.curWeek,
         term: app.globalData.curTerm

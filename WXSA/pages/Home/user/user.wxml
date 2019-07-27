@@ -28,20 +28,20 @@
     <view>QQ群</view>
     <view>722942376</view>
   </view>
-  <view class='unitInfo' data-jumpurl="/pages/User/announcement/announcement" bindtap='jumpUpdate'>
+  <view class='unitInfo' data-jumpurl="/pages/User/Announcement/announcement" bindtap='jumpUpdate'>
     <view style='display:flex;'>
       <view>公告</view>
       <view style='background:green;display:{{point}};' class='point'></view>
     </view>
     <view>></view>
   </view>
-  <view class='unitInfo' data-jumpurl="/pages/User/update/update" bindtap='jump'>
+  <view class='unitInfo' data-jumpurl="/pages/User/Update/update" bindtap='jump'>
     <view style='display:flex;'>
       <view>更新日志</view>
     </view>
     <view>></view>
   </view>
-  <view class='unitInfo' data-jumpurl="/pages/User/about/about" bindtap='jump'>
+  <view class='unitInfo' data-jumpurl="/pages/User/About/about" bindtap='jump'>
     <view>关于</view>
     <view>></view>
   </view>

@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 15,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
@@ -52,7 +52,7 @@
 				{
 					"id": 1,
 					"name": "announcement",
-					"pathName": "pages/User/announcement/announcement",
+					"pathName": "pages/User/Announcement/announcement",
 					"query": "",
 					"scene": null
 				},
@@ -79,13 +79,6 @@
 				},
 				{
 					"id": -1,
-					"name": "exam",
-					"pathName": "pages/Ext/examArrange/examArrange",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "funct",
 					"pathName": "pages/Home/funct/funct",
 					"query": "",
@@ -106,9 +99,9 @@
 					"scene": null
 				},
 				{
-					"id": 9,
+					"id": 8,
 					"name": "calendar",
-					"pathName": "pages/Sdust/canlendar/calendar",
+					"pathName": "pages/Sdust/Canlendar/calendar",
 					"query": "",
 					"scene": null
 				},

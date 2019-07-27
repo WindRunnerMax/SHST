@@ -18,17 +18,9 @@ class Sw extends Controller
 
     public function httpReq($params){
         $header = Conf::getHeader();
-        array_push($header,"token:".$_SESSION['TOKEN']);
+        $header['token'] = $_SESSION['TOKEN'];
         $info = Http::httpRequest(Conf::getUrl(),$params,"GET",$header);
         return $info;
-    }
-
-    public function getCurrentTime(){
-        $params = array(
-        "method" => "getCurrentTime",
-        "currDate" => date("Y-m-d",time())
-        );
-        return $this->httpReq($params);
     }
 
     public function table($zc=-1){

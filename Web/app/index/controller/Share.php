@@ -18,7 +18,7 @@ class Share extends Controller
 
     public function httpReq($params){
         $header = Conf::getHeader();
-        array_push($header,"token:".$_SESSION['TOKEN']);
+        $header['token'] = $_SESSION['TOKEN'];
         $info = Http::httpRequest(Conf::getUrl(),$params,"GET",$header);
         return $info;
     }

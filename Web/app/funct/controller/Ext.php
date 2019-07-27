@@ -21,5 +21,8 @@ class Ext extends Controller
         return ['url' => $data];
     }
 
-    
+    public function announce(){
+        $data = Db::table("announce_info") -> field("announce") -> select();
+        return ['info' => $data];
+    }
 }

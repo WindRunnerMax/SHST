@@ -1,4 +1,4 @@
-<title innerText="校历"></title>
+<title innerText="校历 {{term}}"></title>
 <!-- <rich-text nodes="{{html}}"></rich-text> -->
 <view class='weekGroup'>
   <view class='weekUnit'>Week</view>

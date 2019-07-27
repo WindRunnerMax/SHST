@@ -116,7 +116,7 @@ function userDot() {
   wx.getStorage({
     key: 'point',
     complete: (res) => {
-      if (res.data !== app.globalData.version) {
+      if (res.data !== app.globalData.tips) {
         wx.showTabBarRedDot({
           index: 2
         })

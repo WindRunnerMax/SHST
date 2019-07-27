@@ -65,7 +65,7 @@ class Sw extends Controller
 
     public function httpReq($params = array()){
         $header = Conf::getHeader();
-        array_push($header,"token:".$_SESSION['TOKEN']);
+        $header['token'] = $_SESSION['TOKEN'];
         $info = Http::httpRequest(Conf::getUrl(),$params,"GET",$header);
         return $info;
     }
@@ -157,7 +157,7 @@ class Sw extends Controller
             }else{
                 $page = 1;
             } 
-            $header = Conf::libGetHeader();
+            $header = Conf::getNormalHeader();
             $http = new Http();
             $info = $http->httpRequest("http://interlib.sdust.edu.cn/opac/m/search",$params,"GET",$header);
             preg_match_all("/<li onclick.*?>[\s\S]*?<\/li>/",$info,$match);
@@ -191,7 +191,7 @@ class Sw extends Controller
         $infoArr = array();
         $infoArrInner = array();
         $url = "http://interlib.sdust.edu.cn/opac/m/book/" . $id;
-        $header = Conf::libGetHeader();
+        $header = Conf::getNormalHeader();
         $http = new Http();
         $info = $http->httpRequest($url,array(),"GET",$header);
         preg_match("/<table.*?>[\s\S]*?<\/table>/",$info,$pageMatch);
@@ -229,7 +229,7 @@ class Sw extends Controller
             "returnUrl" => "/m/loan/renewList",
             "view" => "action"
         );
-        $header = Conf::libGetHeader();
+        $header = Conf::getNormalHeader();
         $http = new Http();
         $info = $http->httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"POST",$header);
         preg_match_all("/<li>[\s\S]*?<\/li>/",$info,$match);

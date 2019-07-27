@@ -2,24 +2,10 @@
 <view style='width:100%;'>
   <title innerText="公告"></title>
 
-  <view class='infoCon'>
-    <view style='background:green;' class='point'></view>
-    <view>7.23更新 优化校园导览 解决切换用户问题</view>
+  <view wx:for="{{data}}" wx:key="{{index}}">
+    <view class='infoCon'>
+      <view style='background:green;' class='point'></view>
+      <view>{{item.announce}}</view>
+    </view>
   </view>
-
-  <view class='infoCon'>
-    <view style='background:green;' class='point'></view>
-    <view>临近期末学校关闭了图书馆服务器外网访问，小站的图书馆功能受影响暂停</view>
-  </view>
-
-  <view class='infoCon'>
-    <view style='background:green;' class='point'></view>
-    <view>如果您在教务系统更改了密码，请务必注销后重新登录，否则将影响所有关于强智的功能使用</view>
-  </view>
-
-  <view class='infoCon'>
-    <view style='background:green;' class='point'></view>
-    <view>有同学问我为什么有时候会加载失败，我在这说一下吧：功能页的学习与图书馆栏目提供的查询功能都是爬取的学校的数据，学校的服务器承载并发的能力不是很强，导致爬取数据的时候会有超时的问题，也就是拉取不到数据，其余的功能都是直接由我的服务器提供的数据，如果出问题的话可以直接反馈给我</view>
-  </view>
-
 </view>

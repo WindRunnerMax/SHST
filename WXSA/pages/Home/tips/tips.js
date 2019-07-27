@@ -1,7 +1,10 @@
 // pages/event/event.js
+"use strict";
 const app = getApp()
 const md5 = require('../../../vector/md5.js');
 const time = require('../../../vector/time.js');
+const dispose = require('../../../vector/dispose.js');
+var todoListCount = 0;
 
 Page({
 
@@ -12,16 +15,18 @@ Page({
     todayWeather: ["", "CLEAR_DAY", 0, 0, "数据获取中"],
     tomorrowWeather: ["", "CLEAR_DAY", 0, 0],
     tdatomoWeather: ["", "CLEAR_DAY", 0, 0],
-    tips: "获取用户信息中",
+    tips: "数据加载中",
     todoList: [],
-    tips2: "获取用户信息中"
+    tips2: "数据加载中"
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     if (app.globalData.openid === "") {
       this.getOpenid();
       this.getWeather();
-    }else{
+      this.getTempTable();
+    } else {
       this.getWeather();
+      this.getTempTable();
       this.getTable();
       this.getEvent();
     }
@@ -38,87 +43,77 @@ Page({
             "code": res.code
           },
           fun: function (data) {
-            if (data.data.PHPSESSID){
-              app.globalData.header.Cookie = "PHPSESSID=" + data.data.PHPSESSID;
-            }else{
-              wx.getStorage({
-                key: 'phpsessid',
-                success: res => {
-                  app.globalData.header.Cookie = res.data;
-                }
-              })
-            }
             if (data.data.openid) {
-              console.log(data.data.openid);
+              console.log("SetOpenid:" + data.data.openid);
               app.globalData.openid = data.data.openid;
-              wx.setStorage({
-                key: 'openid',
-                data: data.data.openid
-              })
-            } else {
-              wx.getStorage({
-                key: 'openid',
-                success: res => {
-                  app.globalData.openid = res.data;
-                }
-              })
+              wx.setStorageSync('openid', data.data.openid);
+              if (wx.showTabBarRedDot) {
+                app.globalData.tips = data.data.notify;
+                dispose.userDot();
+              }
+            }else{
+              console.log("Get Openid From Cache");
+              app.globalData.openid = wx.getStorageSync("openid") || "";
             }
+
             if (data.data.Message === "Ex") {
               app.globalData.userFlag = 1;
-              that.getEvent();
               that.getTable();
-            }else{
+            } else {
               wx.hideToast();
               that.setData({
                 tips: "点我前去绑定教务系统账号"
               })
               if (data.data.info) app.toast(data.data.info);
-              that.getEvent();
             }
+            that.getEvent();
           }
         })
       }
     })
   },
+  getTempTable() {
+    var that = this;
+    wx.getStorage({
+      key: 'table',
+      success(res) {
+        if (app.globalData.curWeek === res.data.week) {
+          console.log(res.data)
+          res.data.table = dispose.tableDispose(res.data.table, 1);
+          that.setData({
+            table: res.data.table ? res.data.table : [],
+            tips: res.data.table ? "" : "No Class Today"
+          })
+        }
+      }
+    })
+  },
   getTable() {
     var that = this;
-    if (app.globalData.userFlag === 0) {
-      that.setData({
-        table: [],
-        tips: "游客模式"
-      })
-    } else {
+    if (app.globalData.userFlag !== 0) {
       wx.getStorage({
         key: 'table',
         success(res) {
-          console.log(res.data)
-          if (app.globalData.curWeek === res.data.week){
-            res.data.table = app.tableDispose(res.data.table, 1);
-            that.setData({
-              table: res.data.table ? res.data.table : [],
-              tips: res.data.table ? "" : "No Class Today"
-            })
-          }else{
+          if (app.globalData.curWeek !== res.data.week) {
             console.log("WEEK DIFF GET FROM REMOTE");
             that.getRemoteTable();
           }
         },
-        fail(){
+        fail() {
           console.log("FAIL GET FROM REMOTE");
           that.getRemoteTable();
         }
       })
-      
+
     }
   },
-  getRemoteTable(){
+  getRemoteTable() {
     var that = this;
     app.ajax({
       load: 1,
-      cookie : 0,
-      url: app.globalData.url + 'funct/sw/signalTable2',
-      data:{
-        week : app.globalData.curWeek,
+      url: app.globalData.url + 'funct/sw/signalTable',
+      data: {
+        week: app.globalData.curWeek,
         term: app.globalData.curTerm
       },
       fun: function (res) {
@@ -128,10 +123,10 @@ Page({
             data: {
               week: app.globalData.curWeek,
               table: res.data.data
-              }
+            }
           })
         }
-        res.data.data = app.tableDispose(res.data.data, 1);
+        res.data.data = dispose.tableDispose(res.data.data, 1);
         console.log(res.data)
         if (res.data.Message === "Yes") {
           that.setData({
@@ -151,8 +146,9 @@ Page({
     var that = this;
     var ran = parseInt(Math.random() * 100000000000);
     app.ajax({
+      autoCookie: false,
       url: "https://api.caiyunapp.com/v2/Y2FpeXVuIGFuZHJpb2QgYXBp/120.127164,36.000129/weather?lang=zh_CN&device_id=" + ran,
-      fun: function(res) {
+      fun: function (res) {
         if (res.data.status === "ok") {
           var weatherData = res.data.result.daily;
           that.setData({
@@ -188,7 +184,7 @@ Page({
               })
             }
             var curData = time.getNowFormatDate();
-            res.data.data.map(function(value) {
+            res.data.data.map(function (value) {
               var diff_color = time.dateDiff(curData, value.todo_time, value.event_content);
               value.diff = diff_color[0];
               value.color = diff_color[1];
@@ -199,9 +195,9 @@ Page({
             });
             console.log(res.data.data);
             that.setData({
-              todoList: res.data.data,
-              count: res.data.data.length
+              todoList: res.data.data
             })
+            todoListCount = res.data.data.length;
           } else {
             that.setData({
               tips2: "加载失败"
@@ -216,7 +212,7 @@ Page({
     wx.showModal({
       title: '提示',
       content: '确定标记为已完成吗',
-      success: function(choice) {
+      success: function (choice) {
         if (choice.confirm) {
           var index = e.currentTarget.dataset.index;
           var id = e.currentTarget.dataset.id;
@@ -232,74 +228,28 @@ Page({
               that.setData({
                 todoList: that.data.todoList,
                 tips2: that.data.todoList.length === 0 ? "暂没有待办事项" : "",
-                count: that.data.count - 1
               })
+              todoListCount = todoListCount - 1;
             }
           })
         }
       }
     })
   },
-  bindSW(){
-    if(app.globalData.userFlag === 0){
-      wx.redirectTo({
-        url: '/pages/index/index?status=E'
+  bindSW() {
+    if (app.globalData.userFlag === 0) {
+      wx.navigateTo({
+        url: '/pages/Home/Login/login?status=E'
       })
-    }else return 0;
+    } else return 0;
   },
-  onRefresh(){
+  onRefresh() {
     this.getTable();
   },
-  // onPullDownRefresh() {
-  //   this.onLoad();
-  //   wx.stopPullDownRefresh();
-  // },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

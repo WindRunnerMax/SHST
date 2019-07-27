@@ -1,20 +1,18 @@
-//app.js
 "use strict";
 App({
   globalData: {
     userFlag: 0,
-    // url: 'http://localhost/Swisdom/Web/index.php/',
-    // url: 'https://www.liyanzuisha.cn/sdust/index.php/',
-    url: 'https://www.michalingshi.cn/sdust/index.php/',
+    url: 'https://www.liyanzuishuai.top/sdust/index.php/',
     header: {
-      'Cookie': '', //PHPSESSID
+      'Cookie': '',
       'content-type': 'application/x-www-form-urlencoded'
     },
     openid: "",
     colorList: ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"],
-    version: "2.6.2",
-    curTerm: "2018-2019-2",
-    curTermStart: "2019-02-25"
+    version: "2.7.1",
+    tips: "1",
+    curTerm: "2019-2020-1",
+    curTermStart: "2019-08-26"
   },
   extend: function() {
     var aLength = arguments.length;
@@ -65,7 +63,6 @@ const app = getApp();
 const time = require('/vector/time.js');
 const dispose = require('/vector/dispose.js');
 time.extDate(); //拓展Date原型
-dispose.userDot(); //UserDot
 dispose.checkUpdate(); //更新
 app.globalData.colorN = app.globalData.colorList.length;
 app.globalData.curWeek = time.getCurWeek(app.globalData.curTermStart);

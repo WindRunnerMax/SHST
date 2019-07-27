@@ -82,8 +82,7 @@ Page({
    */
   onLoad: function(options) {
     // 处理学期
-    var date = new Date();
-    var year = date.getFullYear();
+    var year = parseInt(app.globalData.curTerm.split("-")[1]);
     var yearArr = [{
       show: '全部学期',
       value: ""

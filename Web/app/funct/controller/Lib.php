@@ -44,7 +44,7 @@ class Lib extends Controller
                 $page = 1;
             } 
             $header = Conf::getNormalHeader();
-            $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/search",$params,"GET",$header);          
+            $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/search",$params,"GET",$header,false,true);          
         }
         return ["Message" => "Yes" , 'page' => $page,'q' => $q,'info' => $info ];
     }
@@ -57,7 +57,7 @@ class Lib extends Controller
         $infoArrInner = array();
         $url = "http://interlib.sdust.edu.cn/opac/m/book/" . $id;
         $header = Conf::getNormalHeader();
-        $info = Http::httpRequest($url,array(),"GET",$header);
+        $info = Http::httpRequest($url,array(),"GET",$header,false,true);
         return ["Message" => "Yes" , 'info' => $info];
     }
 
@@ -66,12 +66,13 @@ class Lib extends Controller
         $account = substr($_SESSION['account'],2);
         $params = array(
             "rdid" => $account,
-            "rdPasswd" => md5($account),
-            "returnUrl" => "/m/loan/renewList",
-            "view" => "action"
+            "rdPasswd" => md5($account)
         );
         $header = Conf::getNormalHeader();
-        $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"POST",$header);
+        $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"GET",$header,true,true);
+        $cookie = explode(";", $info[0]['Set-Cookie'])[0];
+        $header['Cookie'] = $cookie.'; libraryReaderRdid='.$account;
+        $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/loan/renewList",[],"GET",$header,false,true);
         return ["Message" => "Yes" , 'info' => $info];
     }
     

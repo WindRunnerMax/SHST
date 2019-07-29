@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 15,
 			"list": [
 				{
 					"id": 0,
@@ -144,6 +144,13 @@
 					"id": 15,
 					"name": "404",
 					"pathName": "pages/Home/NotFound/notfoundqwe",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "announcement",
+					"pathName": "pages/Home/Login/login",
 					"query": "",
 					"scene": null
 				}

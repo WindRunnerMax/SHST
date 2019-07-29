@@ -1,4 +1,6 @@
 Web/app/funct/controller/User.php
+Web/app/qfunct/controller/User.php
 Web/app/database.php
-Web/app/auxiliary/Conf.php
 WXSA/vector/camptour/config.js
+Web/app/auxiliary/Http.php
+Web/app/funct/controller/Card.php

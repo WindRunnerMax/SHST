@@ -2,7 +2,7 @@
   "pages": [
     "pages/Home/Tips/tips",
     "pages/Home/Funct/funct",
-	"pages/Home/User/user",
+    "pages/Home/User/user",
     "pages/Home/Login/login",
     "pages/Home/NotFound/notfound",
     "pages/Study/TimeTable/timeTable",

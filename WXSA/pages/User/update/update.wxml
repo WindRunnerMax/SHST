@@ -3,14 +3,22 @@
   <view style='font-size:20px;'>Changelog</view>
   <view data-copy='https://github.com/WindrunnerMax/SW' class='url' bindtap='copy'>https://github.com/WindrunnerMax/SW</view>
   
-<view class='unitChange'>
+  <view class='unitChange'>
+    <view class='title'>2.7.1 (2019-7-27) [9618313]</view>
+    <view>1. 校园导览功能完成</view>
+    <view>2. 动态公告功能</view>
+    <view>3. HTTP请求类请求头处理，响应头处理</view>
+    <view>4. 小程序目录结构处理</view>
+    <view>5. 后端冗余处理</view>
+  </view>
+
+  <view class='unitChange'>
     <view class='title'>2.6.2 (2019-7-23) [f429f44]</view>
     <view>1. 校园导览优化定位逻辑</view>
     <view>2. 解决注销切换用户问题</view>
   </view>
 
-
- <view class='unitChange'>
+  <view class='unitChange'>
     <view class='title'>2.6.1 (2019-7-21) [d69a6f6]</view>
     <view>1. 校园导览功能上线</view>
   </view>

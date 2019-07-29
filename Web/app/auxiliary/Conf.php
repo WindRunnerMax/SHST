@@ -5,6 +5,9 @@ use think\Log;
 
 class Conf
 {   
+    
+    public static $penetrateFlag = 1; 
+
     public static function getCtx(){
       return "/sdust";
     }

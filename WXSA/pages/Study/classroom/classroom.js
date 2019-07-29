@@ -41,6 +41,10 @@ Page({
           app.toast("ERROR");
           return;
         }
+        if (res.data.data.flag){
+          app.toast("未生成教学周历");
+          return;
+        }
         var data = res.data.data;
         console.log(data)
         data[0].jsList.sort((a, b) => {

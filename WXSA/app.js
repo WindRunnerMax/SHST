@@ -3,6 +3,7 @@ App({
   globalData: {
     userFlag: 0,
     url: 'https://www.liyanzuishuai.top/sdust/index.php/',
+    // url: 'https://www.michalingshi.cn/sdust/index.php/',
     header: {
       'Cookie': '',
       'content-type': 'application/x-www-form-urlencoded'

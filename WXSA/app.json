@@ -23,9 +23,10 @@
     "pages/Ext/Event/event",
     "pages/Ext/FinEvent/finEvent",
     "pages/Ext/ExamArrange/examArrange",
+    "pages/Ext/Card/card",
     "pages/User/About/about",
     "pages/User/Update/update",
-    "pages/User/Announcement/announcement"
+    "pages/User/Announce/announce"
   ],
   "tabBar": {
     "color": "#aaa",

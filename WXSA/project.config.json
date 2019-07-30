@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 15,
+			"current": 14,
 			"list": [
 				{
 					"id": 0,
@@ -78,9 +78,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 5,
 					"name": "funct",
-					"pathName": "pages/Home/funct/funct",
+					"pathName": "pages/Home/Funct/funct",
 					"query": "",
 					"scene": null
 				},
@@ -141,9 +141,9 @@
 					"scene": null
 				},
 				{
-					"id": 15,
+					"id": 14,
 					"name": "404",
-					"pathName": "pages/Home/NotFound/notfoundqwe",
+					"pathName": "pages/Home/NotFound/notfound",
 					"query": "",
 					"scene": null
 				},
@@ -151,6 +151,13 @@
 					"id": -1,
 					"name": "announcement",
 					"pathName": "pages/Home/Login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "Card",
+					"pathName": "pages/Ext/Card/card",
 					"query": "",
 					"scene": null
 				}

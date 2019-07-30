@@ -72,6 +72,10 @@
       <image src='/vector/img/exam.svg' class='imgIcon' style='width:25px;height:25px;padding:9px;'></image>
       <view style='margin:8px 0;'>考试安排</view>
     </view>
+    <view class='fun' data-jumpurl="/pages/Ext/Card/card" data-checkuser="0" bindtap='jump'>
+      <image src='/vector/img/card.svg' class='imgIcon' style='width:26px;height:26px;padding:8.5px;'></image>
+      <view style='margin:8px 0;'>校园卡</view>
+    </view>
   </view>
 </view>
 

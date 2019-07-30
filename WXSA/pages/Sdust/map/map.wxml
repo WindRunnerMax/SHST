@@ -1,6 +1,6 @@
 <title innerText="嵙地图(点击查看大图)"></title>
 <view style='position: relative;'>
-  <image src="https://7364-sdust-9daa7f-1259631977.tcb.qcloud.la/Map.jpg?sign=f5640d70a41c1a1b40b5502b58c0c6d1&t=1564236706" data-viewImgUrl="https://7364-sdust-9daa7f-1259631977.tcb.qcloud.la/Map.jpg?sign=f5640d70a41c1a1b40b5502b58c0c6d1&t=1564236706"
+  <image src="http://wx4.sinaimg.cn/large/007U8ryUly1g5h4dl25bvj318g0u0b29.jpg" data-viewImgUrl="http://wx4.sinaimg.cn/large/007U8ryUly1g5h4dl25bvj318g0u0b29.jpg"
     bindtap='viewImg' class='sdustMap' mode="widthFix"></image>
   <view class='ImgFrom'>山东科技大学新闻媒体部制</view>
 </view>

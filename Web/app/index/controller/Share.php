@@ -116,7 +116,7 @@ class Share extends Controller
     	$user = $this->checkSession();
     	$message = "数据有误";
     	if (isset($_POST['account']) && isset($_POST['user'])) {
-    		$exist = Db::table('user') 
+    		$exist = Db::table("user_info") 
     		-> where('username',$_POST['account']) 
     		-> where('name',$_POST['user'])
     		-> find();

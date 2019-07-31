@@ -22,7 +22,7 @@ class Ext extends Controller
     }
 
     public function announce(){
-        $data = Db::table("announce_info") -> field("announce") -> select();
+        $data = Db::table("announce_info") -> field("announce") -> where("is_show",1) -> select();
         return ['info' => $data];
     }
 }

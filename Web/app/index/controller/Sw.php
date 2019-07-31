@@ -33,11 +33,11 @@ class Sw extends Controller
 		#
                 try {
                     $r_Time=date("Y-m-d H:i:s",time());
-                    $exist = Db::table("user") -> where("username",$_POST['username']) -> find();
+                    $exist = Db::table("user_info") -> where("username",$_POST['username']) -> find();
                     if ($exist) {
                         $exRecord['log_time'] = $r_Time;
                         $exRecord['access_type'] = 0;
-                        Db::table("user")
+                        Db::table("user_info")
                         -> where("username",$_POST['username'])
                         -> exp("log_times","log_times + 1")
                         -> limit(1) -> update($exRecord);
@@ -48,7 +48,7 @@ class Sw extends Controller
                         $nexRecord['use_time'] = $r_Time;
                         $nexRecord['log_time'] = $r_Time;
                         $nexRecord['access_type'] = 0;
-                        Db::table("user") -> insert($nexRecord);
+                        Db::table("user_info") -> insert($nexRecord);
                     }
                 } catch (Exception $e) {
                     Log::write($e,'notice');
@@ -230,8 +230,10 @@ class Sw extends Controller
             "view" => "action"
         );
         $header = Conf::getNormalHeader();
-        $http = new Http();
-        $info = $http->httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"POST",$header);
+        $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"GET",$header,true,true);
+        $cookie = explode(";", $info[0]['Set-Cookie'])[0];
+        $header['Cookie'] = $cookie.'; libraryReaderRdid='.$account;
+        $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/loan/renewList",[],"GET",$header,false,true);
         preg_match_all("/<li>[\s\S]*?<\/li>/",$info,$match);
         $infoArr = array();
         foreach ($match[0] as $value) {
@@ -274,7 +276,7 @@ class Sw extends Controller
     }
 
     public function info(){
-        $userCount = Db::table("user") -> count();
+        $userCount = Db::table("user_info") -> count();
         $this->assign(['ctx' => Conf::getCtx(),
                        'user' => $this->checkSession(),
                        'tips' => Conf::getTips(), 

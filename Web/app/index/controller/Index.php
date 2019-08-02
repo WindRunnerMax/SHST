@@ -4,6 +4,7 @@ use think\Controller;
 use think\Db;
 use app\auxiliary\Conf;
 use app\auxiliary\Http;
+use copy\Copy;
 
 class Index extends Controller
 {  
@@ -55,6 +56,22 @@ class Index extends Controller
         foreach ($_SERVER as $key => $value) {
             echo $key."=>".$value."<br>";
         }
+    }
+
+    public  function copyTest(){
+        $t1['host'] = "123";
+        $t2['qw'] = "456";
+        $t2['host'] = "789";
+        $t3['wer'] = "789";
+        print_r(Copy::sCopy($t1,$t2,$t3));
+    }
+
+    public function socketTest($ip = '127.0.0.1',$port='21'){
+        echo Http::socketTest($ip,$port) ? 1 : 0;
+    }
+
+    public function getPenetrate(){
+        echo Http::getPenetrate() ? 1 : 0;
     }
 
 }

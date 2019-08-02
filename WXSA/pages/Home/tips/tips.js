@@ -43,14 +43,16 @@ Page({
             "code": res.code
           },
           fun: function (data) {
+
+            if (wx.showTabBarRedDot) {
+              app.globalData.tips = data.data.notify;
+              dispose.userDot();
+            }
+            
             if (data.data.openid) {
               console.log("SetOpenid:" + data.data.openid);
               app.globalData.openid = data.data.openid;
               wx.setStorageSync('openid', data.data.openid);
-              if (wx.showTabBarRedDot) {
-                app.globalData.tips = data.data.notify;
-                dispose.userDot();
-              }
             }else{
               console.log("Get Openid From Cache");
               app.globalData.openid = wx.getStorageSync("openid") || "";

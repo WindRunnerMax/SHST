@@ -3,8 +3,8 @@
   <title innerText="公告"></title>
 
   <view wx:for="{{data}}" wx:key="{{index}}">
-    <view class='infoCon'>
-      <view style='background:green;' class='point'></view>
+    <view class='card'>
+      <!-- <view style='background:green;' class='point'></view> -->
       <view>{{item.announce}}</view>
     </view>
   </view>

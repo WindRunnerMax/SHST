@@ -54,6 +54,6 @@
 
 <view class='card' wx:if="{{show}}" style='display:block;'>
   <view>Tips</view>
-  <view>1. 历史消费记录只显示前17条记录</view>
+  <view>1. 历史消费记录只显示一个月内消费的前17条记录</view>
   <view>2. 仅作参考，具体数据请于行政楼查阅</view>
 </view>

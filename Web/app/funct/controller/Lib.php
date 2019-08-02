@@ -70,10 +70,15 @@ class Lib extends Controller
         );
         $header = Conf::getNormalHeader();
         $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"GET",$header,true,true);
-        $cookie = explode(";", $info[0]['Set-Cookie'])[0];
-        $header['Cookie'] = $cookie.'; libraryReaderRdid='.$account;
-        $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/loan/renewList",[],"GET",$header,false,true);
-        return ["Message" => "Yes" , 'info' => $info];
+        if (isset($info[0]['Set-Cookie'])) {
+            $cookie = explode(";", $info[0]['Set-Cookie'])[0];
+            $header['Cookie'] = $cookie.'; libraryReaderRdid='.$account;
+            $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/loan/renewList",[],"GET",$header,false,true);
+            return ["Message" => "Yes" , 'info' => $info];
+        }else{
+            return ["Message" => "No" , 'info' => "响应超时"];
+        }
+        
     }
     
 }

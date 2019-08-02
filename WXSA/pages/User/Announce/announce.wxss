@@ -3,7 +3,7 @@ page{
   padding: 10px;
   width: calc(100% - 20px);
   font-size: 14px;
-  line-height: 15px;
+  line-height: 20px;
 }
 
 .title{
@@ -57,4 +57,14 @@ page{
   border-radius: 8px;
   align-self: center;
   margin:0 8px;
+}
+
+.card{
+  font-size: 14px;
+  display: flex;
+  border-bottom:1px solid #eee;
+  padding: 15px 10px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.123);
+  margin-top: 10px;
+  color: rgb(68, 67, 67);
 }

@@ -26,7 +26,8 @@
     "pages/Ext/Card/card",
     "pages/User/About/about",
     "pages/User/Update/update",
-    "pages/User/Announce/announce"
+    "pages/User/Announce/announce",
+    "pages/User/Reward/reward"
   ],
   "tabBar": {
     "color": "#aaa",

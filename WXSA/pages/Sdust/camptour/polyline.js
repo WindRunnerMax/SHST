@@ -12,7 +12,7 @@ Page({
     if (!app.globalData.islocation){
       wx.showModal({
         title: '提示',
-        content: '本功能需要您的位置信息，点击确定进入授权页设置',
+        content: '本功能需要您的位置信息，请检查是否给予微信以及小程序定位权限，点击确定进入小程序授权页设置',
         success(res) {
           if (res.confirm) {
             wx.openSetting({

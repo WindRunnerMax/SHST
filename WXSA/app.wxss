@@ -28,3 +28,7 @@
 .link{
   color: #4C98F7;
 }
+
+i{
+  display: block;
+}

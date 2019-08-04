@@ -29,7 +29,24 @@
     </view>
     <view data-copy='https://github.com/WindrunnerMax/SW' bindtap='copy' class='link github'>点我复制链接</view>
   </view>
+
+  <view class='unitInfo' data-jumpurl="/pages/User/Update/update" bindtap='jump'>
+    <view style='display:flex;'>
+      <view>项目更新日志</view>
+    </view>
+    <view>></view>
+  </view>
+
+  <button class='unitInfo' open-type='share'>
+    <view style='display:flex;'>
+      <view>分享山科小站</view>
+    </view>
+    <view>></view>
+  </button>
+
 </view>
+
+
 
 <view class="footer">
   <view class="text">Copyright © 2019 WindrunnerMax</view>

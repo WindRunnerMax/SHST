@@ -50,9 +50,7 @@ Page({
           })
         }
       })
-    }
-
-    ,
+    },
   viewImg(e) {
     var current = e.currentTarget.dataset.viewimgurl;
     wx.previewImage({

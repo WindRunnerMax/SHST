@@ -39,3 +39,20 @@ image{
 .footer .text{
   color: #aaa;
 }
+
+button:after {
+  border: none;
+}
+
+button{
+  background: #fff;
+  border: none;
+  font-size: 14px;
+  box-sizing: unset;
+}
+
+button:hover{
+  opacity: 1;
+  background: #fff;
+  color: #000;
+}

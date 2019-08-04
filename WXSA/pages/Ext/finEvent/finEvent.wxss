@@ -1,3 +1,4 @@
+@import "../../../vector/icon/iconfont.wxss";
 /* pages/event/event.wxss */
 
 page {
@@ -87,6 +88,7 @@ page {
   margin-left: 10px;
   border: 1px solid #fff;
   border-radius: 20px;  
+  font-size: 20px;
 }
 
 .unitTodoNo{

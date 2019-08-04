@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.1",
+	"libVersion": "1.7.1",
 	"appid": "wx387c0e87230e4cc9",
 	"projectname": "SDUST",
 	"debugOptions": {
@@ -40,9 +40,49 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 15,
+			"current": 5,
 			"list": [
-			
+				{
+					"id": -1,
+					"name": "User",
+					"pathName": "pages/Home/User/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "About",
+					"pathName": "pages/User/About/about",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "赞赏",
+					"pathName": "pages/User/Reward/reward",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "功能",
+					"pathName": "pages/Home/Funct/funct",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "登录",
+					"pathName": "pages/Home/Login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "事件",
+					"pathName": "pages/Ext/Event/event",
+					"scene": null
+				}
 			]
 		}
 	}

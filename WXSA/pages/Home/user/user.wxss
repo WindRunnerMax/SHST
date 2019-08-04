@@ -1,3 +1,6 @@
+@import '../sdust.wxss';
+@import "../../../vector/icon/iconfont.wxss";
+
 page{
   font-size: 14px;
   background: #fff;
@@ -5,7 +8,7 @@ page{
 .imgSdust{
   width: 230px;
   height: 80px;
-  margin-left: calc(50% - 125px);
+  margin-left: calc(50% - 115px);
   margin-top:20px;
   margin-bottom: 30px;
 }

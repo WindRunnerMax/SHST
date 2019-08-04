@@ -1,13 +1,15 @@
-<!--index.wxml-->
-<image class='imgSdust' src='/vector/img/sdust.jpg'></image>
+<view class='imgSdust'>
+  <view class='sdust'></view>
+</view>
+
 <form bindsubmit="enter" report-submit="false">
   <view class='inputCon'>
     <view class='inputView'>
-      <image src='/vector/img/account.svg' class='svgLog'></image>
+      <i class='iconfont icon-account'></i>
       <input class='asse-input' name="account" style='width:100%;' placeholder='账号'  value='{{account}}'></input>
     </view>
     <view class='inputView'>
-      <image src='/vector/img/password.svg' class='svgLog'></image>
+      <i class='iconfont icon-password'></i>      
       <input class='asse-input'name="password" style='width:100%;' placeholder='密码' password='{{hidePassword}}'  value='{{password}}'></input>
       <switch bindchange="switchChange"></switch>
     </view>

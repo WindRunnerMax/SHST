@@ -1,13 +1,18 @@
 /**index.wxss**/
+@import '../User/user.wxss';
+@import "../../../vector/icon/iconfont.wxss";
+
+
 page{
   padding: 10px;
   width: calc(100% - 25px);
+  font-size: 15px;
 }
 
 .imgSdust{
   width: 230px;
   height: 80px;
-  margin-left: calc(50% - 125px);
+  margin-left: calc(50% - 115px);
   margin-top:5%;
 }
 
@@ -20,6 +25,7 @@ page{
   width: 100%;
   border-bottom: 1px solid #eee;
   margin-top: 15px;
+  align-items: center;
 }
 
 .svgLog{
@@ -46,4 +52,10 @@ page{
 
 .wx-switch-input {
     zoom: .8;
+}
+
+.inputView i{
+  color: #aaa;
+  margin:0 4px 0 8px;
+  align-self: center;
 }

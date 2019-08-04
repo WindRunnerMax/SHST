@@ -3,19 +3,19 @@
   <title innerText="学习"></title>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/Study/TimeTable/timeTable" data-checkuser="0" bindtap='jump'>
-      <image src='/vector/img/table.svg' class='imgIcon'></image>
+      <view class='imgIcon' style='padding:9px;width:28px;height: 28px;'><i class='table'></i></view>
       <view style='margin:8px 0;'>查课表</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Study/Classroom/classroom" data-checkuser="0" bindtap='jump'>
-      <image src='/vector/img/classroom.svg' class='imgIcon' style='width:37px;height:37px;padding:3px;'></image>
+      <view class='imgIcon' style='padding:6px;width:31px;height:31px;'><i class='classroom'></i></view>
       <view style='margin:8px 0;'>查教室</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Study/Grade/grade" data-checkuser="0" bindtap='jump'>
-      <image src='/vector/img/grade.svg' class='imgIcon'></image>
+      <view class='imgIcon' ><i class='grade'></i></view>      
       <view style='margin:8px 0;'>查成绩</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Study/TableShare/tableShare" data-checkuser="0" bindtap='jump'>
-      <image src='/vector/img/fly.svg' class='imgIcon' style='width:25px;height:25px;padding:9px;'></image>
+      <i class='iconfont icon-fly icon' style='font-size: 27px;padding-left:5px;width: 32px;'></i>
       <view style='margin:8px 0;'>共享课表</view>
     </view>
   </view>
@@ -25,11 +25,11 @@
   <title innerText="图书馆(7:00-22:00)"></title>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/Lib/Lib/lib" data-checkuser="1" bindtap='jump'>
-      <image src='/vector/img/lib.svg' class='imgIcon'></image>
+      <i class='iconfont icon-lib icon'></i>
       <view style='margin:8px 0;'>图书检索</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Lib/Borrow/borrow" data-checkuser="0" bindtap='jump'>
-      <image src='/vector/img/borrow.svg' class='imgIcon'></image>
+      <i class='iconfont icon-borrow icon' style='font-size: 29px;'></i>
       <view style='margin:8px 0;'>借阅查询</view>
     </view>
   </view>
@@ -39,19 +39,19 @@
   <title innerText="科大"></title>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/Sdust/Map/map" data-checkuser="1" bindtap='jump'>
-      <image src='/vector/img/map.svg' class='imgIcon'></image>
+      <i class='iconfont icon-map icon' style='font-size: 29px;'></i>
       <view style='margin:8px 0;'>嵙地图</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Sdust/Canlendar/calendar" data-checkuser="1" bindtap='jump'>
-      <image src='/vector/img/calendar.svg' class='imgIcon'></image>
+      <i class='iconfont icon-calendar icon' style='font-size: 29px;'></i>
       <view style='margin:8px 0;'>校历</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Sdust/Vacation/vacation" data-checkuser="1" bindtap='jump'>
-      <image src='/vector/img/vacation.svg' class='imgIcon'></image>
+      <i class='iconfont icon-vacation icon' style='font-size: 29px;'></i>
       <view style='margin:8px 0;'>放假安排</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Sdust/Camptour/index" data-checkuser="1" bindtap='jump'>
-      <image src='/vector/img/nav.svg' class='imgIcon' style='padding: 8px 8px 5px 5px;'></image>
+      <i class='iconfont icon-nav icon' style='font-size: 32px;padding-left:5px;width:32px;'></i>
       <view style='margin:8px 0;'>校园导览</view>
     </view>
   </view>
@@ -61,19 +61,19 @@
   <title innerText="拓展"></title>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/Ext/Link/link" data-checkuser="1" bindtap='jump'>
-      <image src='/vector/img/link.svg' class='imgIcon'></image>
+      <i class='iconfont icon-link icon' style='padding-left:7.5px;width:29.5px;'></i>
       <view style='margin:8px 0;'>分享链接</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Ext/Event/event" data-checkuser="1" bindtap='jump'>
-      <image src='/vector/img/schedule.svg' class='imgIcon'></image>
+      <i class='iconfont icon-schedule icon' style='padding-left:7.5px;width:29.5px;'></i>
       <view style='margin:8px 0;'>待办管理</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Ext/ExamArrange/examArrange" data-checkuser="0" bindtap='jump'>
-      <image src='/vector/img/exam.svg' class='imgIcon' style='width:25px;height:25px;padding:9px;'></image>
+      <i class='iconfont icon-exam icon' style='font-size: 26px;padding-top: 8px;height: 29px;'></i>
       <view style='margin:8px 0;'>考试安排</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Ext/Card/card" data-checkuser="0" bindtap='jump'>
-      <image src='/vector/img/card.svg' class='imgIcon' style='width:26px;height:26px;padding:8.5px;'></image>
+      <i class='iconfont icon-card icon' style='font-size: 29px;'></i>
       <view style='margin:8px 0;'>校园卡</view>
     </view>
   </view>
@@ -83,4 +83,3 @@
   <view class='lineCon'></view>
   <ad unit-id="adunit-ce81890e6ff0b2a7" binderror="adError"></ad>
 </view>
-

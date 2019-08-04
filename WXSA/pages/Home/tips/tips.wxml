@@ -1,21 +1,21 @@
 <!--pages/tips/tips.wxml-->
 <view class='weather'>
   <view class='weaLeft'>
-    <image class='todayImg' mode="widthFix" src='https://www.liyanzuishuai.top/sdust/public/static/weather/{{todayWeather[1]}}.png'></image>
+    <image class='todayImg' mode="widthFix" src='{{host}}/sdust/public/static/weather/{{todayWeather[1]}}.png'></image>
     <view style='text-align:center;margin-top:3px;'>{{todayWeather[0]}}</view>
     <view style='text-align:center;'>{{todayWeather[2]}}℃ - {{todayWeather[3]}}℃</view>
     <view style='text-align:center;'>{{todayWeather[4]}}</view>
   </view>
   <view class='weaRight'>
     <view class='weaRightTop'>
-      <image class='dayImg' mode="widthFix" src='https://www.liyanzuishuai.top/sdust/public/static/weather/{{tomorrowWeather[1]}}.png'></image>
+      <image class='dayImg' mode="widthFix" src='{{host}}/sdust/public/static/weather/{{tomorrowWeather[1]}}.png'></image>
       <view class='weatherCon'>
         <view style='text-align:center;margin-top:3px;'>{{tomorrowWeather[0]}}</view>
         <view style='text-align:center;'>{{tomorrowWeather[2]}}℃ - {{tomorrowWeather[3]}}℃</view>
       </view>
     </view>
     <view class='weaRightBot'>
-      <image class='dayImg' mode="widthFix" src='https://www.liyanzuishuai.top/sdust/public/static/weather/{{tdatomoWeather[1]}}.png'></image>
+      <image class='dayImg' mode="widthFix" src='{{host}}/sdust/public/static/weather/{{tdatomoWeather[1]}}.png'></image>
       <view class='weatherCon'>
         <view style='text-align:center;margin-top:3px;'>{{tdatomoWeather[0]}}</view>
         <view style='text-align:center;'>{{tdatomoWeather[2]}}℃ - {{tdatomoWeather[3]}}℃</view>
@@ -57,7 +57,8 @@
       </view>
     </view>
     <view class='mainRight'>
-      <image src='/vector/img/banner.svg' class='img' bindtap='setStatus' data-id="{{item.id}}" data-index="{{index}}"></image>
+      <i class='iconfont icon-banner img' bindtap='setStatus' data-id="{{item.id}}" data-index="{{index}}">
+      </i>
     </view>
   </view>
 </view>

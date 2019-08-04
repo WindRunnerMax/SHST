@@ -8,8 +8,8 @@
       </view>
     </view>
     <view class='mainRight'>
-      <image src='/vector/img/banner.svg' class='img' bindtap='setStatus' data-id="{{item.id}}" data-index="{{index}}"></image>
-      <image src='/vector/img/x.svg' class='img' bindtap='deleteUnit' data-id="{{item.id}}" data-index="{{index}}"></image>
+      <i class='iconfont icon-banner img' bindtap='setStatus' data-id="{{item.id}}" data-index="{{index}}"></i>
+      <i class='iconfont icon-x img' bindtap='deleteUnit' data-id="{{item.id}}" data-index="{{index}}"></i>
     </view>
   </view>
 </view>

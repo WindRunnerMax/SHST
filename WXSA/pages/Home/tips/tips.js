@@ -17,7 +17,8 @@ Page({
     tdatomoWeather: ["", "CLEAR_DAY", 0, 0],
     tips: "数据加载中",
     todoList: [],
-    tips2: "数据加载中"
+    tips2: "数据加载中",
+    host: app.globalData.host
   },
   onLoad: function (options) {
     if (app.globalData.openid === "") {

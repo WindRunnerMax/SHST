@@ -167,7 +167,7 @@ Page({
   },
   jump(){
     wx.navigateTo({
-      url: "/pages/Ext/finEvent/finEvent"
+      url: "/pages/Ext/FinEvent/finEvent"
     })
   }
 })

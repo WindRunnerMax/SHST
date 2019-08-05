@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.7.1",
+	"libVersion": "2.1.0",
 	"appid": "wx387c0e87230e4cc9",
 	"projectname": "SDUST",
 	"debugOptions": {

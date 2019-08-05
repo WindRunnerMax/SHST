@@ -39,11 +39,12 @@ Page({
   logout(e) {
     wx.removeStorageSync('userInfo');
     wx.removeStorageSync('table');
+    wx.removeStorageSync('event');
     wx.navigateTo({
       url: '/pages/Home/Login/login?status=E'
     })
   },
-  onLoad: function(options) {
+  onReady: function(options) {
     var that = this;
     wx.getStorage({
       key: 'point',

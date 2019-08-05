@@ -3,6 +3,19 @@
   <view style='font-size:20px;'>Changelog</view>
   <view data-copy='https://github.com/WindrunnerMax/SW' class='url' bindtap='copy'>https://github.com/WindrunnerMax/SW</view>
 
+<view class='unitChange'>
+    <view class='title'>2.7.4 (2019-08-03) [1404bc3]</view>
+    <view>1. 字体图标iconfont</view>
+    <view>2. 增加赞赏功能</view>
+  </view>
+
+  <view class='unitChange'>
+    <view class='title'>2.7.3 (2019-08-02) [1f8eae3]</view>
+    <view>1. Redis存储</view>
+    <view>2. 增加后台管理功能</view>
+    <view>3. 修复校园卡与图书馆问题</view>
+  </view>
+
   <view class='unitChange'>
     <view class='title'>2.7.2 (2019-07-30) [0167719]</view>
     <view>1. 校园卡查询功能</view>

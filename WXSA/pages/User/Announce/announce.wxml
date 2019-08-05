@@ -5,7 +5,7 @@
   <view wx:for="{{data}}" wx:key="{{index}}">
     <view class='card'>
       <!-- <view style='background:green;' class='point'></view> -->
-      <rich-text>{{item.announce}}</rich-text>
+      <rich-text nodes="{{item.announce}}"></rich-text>
     </view>
   </view>
 </view>

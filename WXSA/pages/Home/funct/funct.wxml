@@ -61,7 +61,7 @@
   <title innerText="拓展"></title>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/Ext/Link/link" data-checkuser="1" bindtap='jump'>
-      <i class='iconfont icon-link icon' style='padding-left:7.5px;width:29.5px;'></i>
+      <i class='iconfont icon-link icon' style='padding-top:6px;height:29px;'></i>
       <view style='margin:8px 0;'>分享链接</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Ext/Event/event" data-checkuser="1" bindtap='jump'>

@@ -33,73 +33,24 @@
 			"list": []
 		},
 		"game": {
-			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": -1,
 			"list": [
 				{
-					"id": -1,
-					"name": "canlendar",
-					"pathName": "pages/Sdust/canlendar/calendar",
+					"id": 0,
+					"name": "时间",
+					"pathName": "pages/Study/Time/time",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 1,
-					"name": "pe",
-					"pathName": "pages/Study/pe/pe",
+					"name": "INDEX",
+					"pathName": "pages/Index/index",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "shat",
-					"pathName": "pages/Spread/shst/shst",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "power",
-					"pathName": "pages/Life/power/power",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "computer",
-					"pathName": "pages/Life/computer/computer",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 5,
-					"name": "living",
-					"pathName": "pages/Life/living/living",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 6,
-					"name": "title",
-					"pathName": "pages/components/title/title",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "about",
-					"pathName": "pages/User/about/about",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "league",
-					"pathName": "pages/Study/league/league",
-					"scene": null
+					"scene": ""
 				}
 			]
 		}

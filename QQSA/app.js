@@ -3,13 +3,13 @@
 App({
   globalData: {
     userFlag: 0,
-    url: 'https://www.michalingshi.cn/sdust/index.php/',
+    url: 'https://www.liyanzuishuai.top/sdust/index.php/',
     header: {
       'Cookie': '', //PHPSESSID
       'content-type': 'application/x-www-form-urlencoded'
     },
     openid: "",
-    version: "1.0.1"
+    version: "1.0.3"
   },
   extend: function() {
     var aLength = arguments.length;

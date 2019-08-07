@@ -6,21 +6,21 @@ Page({
         name: '科大',
         open: true,
         pages: ['嵙地图','校历','放假安排'],
-        url: ['/pages/Sdust/map/map', '/pages/Sdust/canlendar/calendar', '/pages/Sdust/vacation/vacation']
+        url: ['/pages/Sdust/Map/map', '/pages/Sdust/Canlendar/calendar', '/pages/Sdust/Vacation/vacation']
       },
       {
         id: 'widget',
         name: '学习',
         open: false,
-        pages: ['常用链接', '转专业相关','社团一览表'],
-        url: ['/pages/Study/link/link', '/pages/Study/major/major','/pages/Study/league/league']
+        pages: ['时间','常用链接', '转专业相关','社团一览表'],
+        url: ['/pages/Study/Time/time', '/pages/Study/Link/link', '/pages/Study/Major/major','/pages/Study/League/league']
       },
       {
         id: 'nav',
         name: '生活',
         open: false,
         pages: ['用电相关','机房相关','宿舍相关','网络相关','餐厅相关','洗浴相关','医疗相关','来校路线','早起相关','快递相关'],
-        url: ['/pages/Life/power/power', '/pages/Life/computer/computer', '/pages/Life/living/living', '/pages/Life/network/network', '/pages/Life/canteen/canteen', '/pages/Life/shower/shower', '/pages/Life/medical/medical', '/pages/Life/traffic/traffic', '/pages/Life/getup/getup','/pages/Life/express/express']
+        url: ['/pages/Life/Power/power', '/pages/Life/Computer/computer', '/pages/Life/Living/living', '/pages/Life/Network/network', '/pages/Life/Canteen/canteen', '/pages/Life/Shower/shower', '/pages/Life/Medical/medical', '/pages/Life/Traffic/traffic', '/pages/Life/Getup/getup','/pages/Life/Express/express']
       }
     ],
     version: getApp().globalData.version
@@ -70,7 +70,7 @@ Page({
   },
   toAbout(){
     wx.navigateTo({
-      url: "/pages/User/about/about"
+      url: "/pages/User/About/about"
     })
   }
 });

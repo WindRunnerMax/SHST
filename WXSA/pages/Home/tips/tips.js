@@ -1,9 +1,10 @@
 // pages/event/event.js
 "use strict";
 const app = getApp()
-const md5 = require('../../../vector/md5.js');
+const md5 = require('../../../utils/md5.js');
 const time = require('../../../vector/time.js');
 const dispose = require('../../../vector/dispose.js');
+const publicMethod = require('../../../vector/publicMethod.js');
 var tableLoadFlag = true;
 var eventLoadFlag = true;
 
@@ -22,61 +23,27 @@ Page({
     host: app.globalData.host
   },
   onLoad: function(options) {
-    if (app.globalData.openid === "") {
-      this.getCacheTable();
-      this.getCacheEvent();
-      this.getOpenid();
-      this.getWeather();
-    } else {
-      this.getCacheTable();
+    this.getWeather();
+    this.getCacheTable();
+    this.getCacheEvent();
+    app.eventBus.on('OpenidBus', this.openidEvent);
+    if (app.globalData.openid !== ""){
       this.getRemoteTable();
-      this.getCacheEvent();
       this.getRemoteEvent();
-      this.getWeather();
     }
   },
-  getOpenid() {
-    var that = this;
-    wx.login({
-      success: res => {
-        app.ajax({
-          load: 1,
-          url: app.globalData.url + 'funct/user/signalGetOpenid',
-          method: 'POST',
-          data: {
-            "code": res.code
-          },
-          fun: function(data) {
-            if (wx.showTabBarRedDot) {
-              app.globalData.tips = data.data.notify;
-              dispose.userDot();
-            }
-            if (data.data.openid) {
-              console.log("SetOpenid:" + data.data.openid);
-              app.globalData.openid = data.data.openid;
-              wx.setStorageSync('openid', data.data.openid);
-            } else {
-              console.log("Get Openid From Cache");
-              app.globalData.openid = wx.getStorageSync("openid") || "";
-            }
-
-            if (data.data.Message === "Ex") {
-              app.globalData.userFlag = 1;
-            } else {
-              wx.hideToast();
-              that.setData({
-                tips: "点我前去绑定教务系统账号"
-              })
-              if (data.data.info) app.toast(data.data.info);
-            }
-          },
-          complete: () => {
-            that.getRemoteTable();
-            that.getRemoteEvent();
-          }
-        })
-      }
-    })
+  openidEvent: function(data) {
+    console.log("Openid BusEvent Commit");
+    if (data.data.Message === "Ex") {
+      app.globalData.userFlag = 1;
+    } else {
+      this.setData({
+        tips: "点我前去绑定教务系统账号"
+      })
+      if (data.data.info) toast(data.data.info);
+    }
+    this.getRemoteTable();
+    this.getRemoteEvent();
   },
   /**
    * 课表处理
@@ -89,7 +56,7 @@ Page({
       if (app.globalData.curWeek === cacheTable.week) {
         console.log("GET TABLE FROM CACHE");
         tableLoadFlag = false;
-        cacheTable.table = dispose.tableDispose(cacheTable.table, 1);
+        cacheTable.table = publicMethod.tableDispose(cacheTable.table, 1);
         that.setData({
           table: cacheTable.table ? cacheTable.table : [],
           tips: cacheTable.table ? "" : "No Class Today"
@@ -118,7 +85,7 @@ Page({
               }
             })
           }
-          res.data.data = dispose.tableDispose(res.data.data, 1);
+          res.data.data = publicMethod.tableDispose(res.data.data, 1);
           if (res.data.Message === "Yes") {
             that.setData({
               table: res.data.data ? res.data.data : [],

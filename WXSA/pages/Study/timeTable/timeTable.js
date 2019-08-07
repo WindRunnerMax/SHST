@@ -1,7 +1,7 @@
 //logs.js
 "use strict";
 const app = getApp()
-const dispose = require('../../../vector/dispose.js');
+const publicMethod = require('../../../vector/publicMethod.js');
 
 
 Page({
@@ -32,7 +32,7 @@ Page({
             }
           })
         }
-        res.data.data = dispose.tableDispose(res.data.data);
+        res.data.data = publicMethod.tableDispose(res.data.data);
         if (res.data.Message === "Yes") {
           that.setData({
             table: res.data.data,

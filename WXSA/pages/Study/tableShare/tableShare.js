@@ -1,6 +1,6 @@
 // pages/link/link.js
 "use strict";
-const dispose = require('../../../vector/dispose.js');
+const publicMethod = require('../../../vector/publicMethod.js');
 const app = getApp();
 Page({
 
@@ -105,8 +105,8 @@ Page({
       },
       fun: res => {
         if (res.data.info.succ){
-          res.data.info.succ.timetable1 = dispose.tableDispose(res.data.info.succ.timetable1);
-          res.data.info.succ.timetable2 = dispose.tableDispose(res.data.info.succ.timetable2);
+          res.data.info.succ.timetable1 = publicMethod.tableDispose(res.data.info.succ.timetable1);
+          res.data.info.succ.timetable2 = publicMethod.tableDispose(res.data.info.succ.timetable2);
         }
         console.log(res.data.info);
         that.setData({

@@ -1,6 +1,6 @@
 "use strict";
 const app = getApp()
-const md5 = require('md5.js');
+const md5 = require('../utils/md5.js');
 const colorList = app.globalData.colorList;
 const colorN = colorList.length;
 

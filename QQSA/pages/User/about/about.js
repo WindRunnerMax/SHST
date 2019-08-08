@@ -71,6 +71,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    var that = this;
+    var shareObj = {
+      title: "山科小站迎新专版",
+      path: '/pages/Index/index'
+    }
+    return shareObj;
   }
 })

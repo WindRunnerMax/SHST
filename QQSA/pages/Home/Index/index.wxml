@@ -1,0 +1,44 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">
+      <view class="welcome">
+        <view class='welcomeLeft'>山科小站</view>
+        <view class='welcomeRight'> -- 迎新专版</view>
+      </view>
+    </view>
+    <view class="page__desc"></view>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <view class="kind-list">
+      <block wx:for="{{list}}" wx:key="id">
+        <view class="kind-list__item">
+          <form bindsubmit="kindToggle" report-submit="{{true}}">
+          <input hidden='{{true}}' value='{{item.id}}' name='id'></input>
+            <button class="weui-flex kind-list__item-hd listBtn {{item.open ? 'kind-list__item-hd_show' : ''}}" form-type="submit" >
+              <view class="weui-flex__item">{{item.name}}</view>
+              <image class="kind-list__img" src="/vector/img/icon_nav_{{item.id}}.png"></image>
+            </button>
+          </form>
+          <view class="kind-list__item-bd {{item.open ? 'kind-list__item-bd_show' : ''}}">
+            <view class="weui-cells {{item.open ? 'weui-cells_show' : ''}}">
+              <block wx:for="{{item.pages}}" wx:for-item="page" wx:key="{{index}}">
+                <navigator url="{{item.url[index]}}" open-type="navigate" class="navto">
+                  <view class="weui-cell__bd fontSet">{{page}}</view>
+                  <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </navigator>
+              </block>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view class="weui-footer">
+  <view class="weui-footer__text flexFooter">
+    <button open-type='share'>分享</button>
+    <view style='margin:0 5px;'>|</view>
+    <button bindtap='toAbout'>关于</button>
+  </view>
+  <view class="weui-footer__text">Copyright © 2019 WindrunnerMax</view>
+</view>

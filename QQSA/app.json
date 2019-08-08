@@ -1,6 +1,8 @@
 {
   "pages":[
-    "pages/Index/index",
+    "pages/Home/Index/index",
+	  "pages/Home/NotFound/notfound",
+    "pages/Home/InterWork/interwork",
     "pages/User/About/about",
     "pages/Sdust/Canlendar/calendar",
     "pages/Sdust/Vacation/vacation",

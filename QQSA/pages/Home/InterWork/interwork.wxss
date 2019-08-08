@@ -1,0 +1,14 @@
+page{
+  padding: 10px;
+  width: calc(100% - 20px);
+  transition: all 0.3s;
+  font-size: 15px;
+}
+
+image{
+  width: 100%;
+}
+
+info{
+  margin-top: 5px;
+}

@@ -1,0 +1,9 @@
+<title innerText="山科小二服务号"></title>
+<image mode="widthFix"  src='https://7364-sdust-ed0614-1259797180.tcb.qcloud.la/SHSO.png?sign=d23472ce9f804a6321a535d7dd7ed62a&t=1565239945&TEST=3' ></image>
+<info innerArray="{{['山科小二服务号']}}" style='display:block;margin-bottom:20px;margin-top:0;'></info>
+
+
+<title innerText="山科小站"></title>
+<image mode="widthFix"  src='https://7364-sdust-ed0614-1259797180.tcb.qcloud.la/SHST.png?sign=079b79462c337875f9541e41afb7264a&t=1565240096&TEST=3' ></image>
+
+<info innerArray="{{['山科小站官方微信公众号']}}"></info>

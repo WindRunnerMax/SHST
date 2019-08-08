@@ -1,9 +1,10 @@
 "use strict";
 const app = getApp()
-const md5 = require('md5.js');
+const md5 = require('../utils/md5.js');
 
 module.exports = {
   getNowFormatDate: getNowFormatDate,
+  getCurWeek: getCurWeek,
   extDate: extDate
 }
 
@@ -36,7 +37,6 @@ function getNowFormatDate(yearAdd = 0, monthAdd = 0, dayAdd = 0) {
   return year + "-" + month + "-" + day;
 }
 
-
 function dataDiff(startDateString, endDateString) {
   var separator = "-"; //日期分隔符
   var startDates = startDateString.split(separator);
@@ -45,4 +45,10 @@ function dataDiff(startDateString, endDateString) {
   var endDate = new Date(endDates[0], endDates[1] - 1, endDates[2]);
   var diff = parseInt((endDate - startDate) / 1000 / 60 / 60 / 24); //把相差的毫秒数转换为天数
   return diff;
+}
+
+function getCurWeek(startTime) {
+  if (getNowFormatDate() < startTime) return 0;
+  var week = (parseInt(dataDiff(startTime, getNowFormatDate()) / 7) + 1);
+  return week;
 }

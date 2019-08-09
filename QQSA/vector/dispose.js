@@ -232,7 +232,7 @@ function onLunch(){
   wx.login({
     success: res => {
       app.ajax({
-        load: 1,
+        load: 0,
         url: app.globalData.url + 'qfunct/user/signalGetOpenid',
         method: 'POST',
         data: {
@@ -251,7 +251,7 @@ function onLunch(){
           data.data.Message === "Yes" ? app.globalData.canSend = "true" : app.globalData.canSend = "false";
           console.log("CANSEND:" + app.globalData.canSend);
           wx.setStorageSync("cansend", app.globalData.canSend);
-        },
+        },fail: () => {},
         complete: (data) => {
 
         }

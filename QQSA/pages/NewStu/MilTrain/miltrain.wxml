@@ -1,0 +1,4 @@
+<title innerText="军训注意事项"></title>
+<info innerArray="{{data}}"></info>
+<title innerText="军训温馨提示"></title>
+<info innerArray="{{data2}}"></info>

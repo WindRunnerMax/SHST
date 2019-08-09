@@ -4,25 +4,32 @@ Page({
   data: {
     list: [
       {
-        id: 'form',
-        name: '科大',
+        id: 'feedback',
+        name: '新生指南',
         open: true,
+        pages: ['来校路线','防偷防骗','常用缴费','新生军训'],
+        url: ['/pages/Life/Traffic/traffic', '/pages/NewStu/AntiFraud/antifraud', '/pages/NewStu/Payment/payment','/pages/NewStu/MilTrain/miltrain']
+      },
+      {
+        id: 'form',
+        name: '科大生活',
+        open: false,
         pages: ['嵙地图','校历','放假安排'],
         url: ['/pages/Sdust/Map/map', '/pages/Sdust/Canlendar/calendar', '/pages/Sdust/Vacation/vacation']
       },
       {
         id: 'widget',
-        name: '学习',
+        name: '学习相关',
         open: false,
         pages: ['时间','常用链接', '转专业相关','社团一览表'],
         url: ['/pages/Study/Time/time', '/pages/Study/Link/link', '/pages/Study/Major/major','/pages/Study/League/league']
       },
       {
         id: 'nav',
-        name: '生活',
+        name: '生活指南',
         open: false,
-        pages: ['用电相关','机房相关','宿舍相关','网络相关','餐厅相关','洗浴相关','医疗相关','来校路线','早起相关','快递相关'],
-        url: ['/pages/Life/Power/power', '/pages/Life/Computer/computer', '/pages/Life/Living/living', '/pages/Life/Network/network', '/pages/Life/Canteen/canteen', '/pages/Life/Shower/shower', '/pages/Life/Medical/medical', '/pages/Life/Traffic/traffic', '/pages/Life/Getup/getup','/pages/Life/Express/express']
+        pages: ['用电相关','机房相关','宿舍相关','网络相关','餐厅相关','洗浴相关','医疗相关','早起相关','快递相关'],
+        url: ['/pages/Life/Power/power', '/pages/Life/Computer/computer', '/pages/Life/Living/living', '/pages/Life/Network/network', '/pages/Life/Canteen/canteen', '/pages/Life/Shower/shower', '/pages/Life/Medical/medical', '/pages/Life/Getup/getup','/pages/Life/Express/express']
       }
     ],
     version: getApp().globalData.version

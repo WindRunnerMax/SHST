@@ -11,7 +11,7 @@ App({
       'content-type': 'application/x-www-form-urlencoded'
     },
     openid: "",
-    version: "1.0.4",
+    version: "1.1.0",
     canSend : "false" 
   },
   extend: dispose.extend,
@@ -23,6 +23,8 @@ App({
 })
 
 const app = getApp();
+const time = require('/vector/time.js');
+time.extDate(); //拓展Date原型
 dispose.onLunch(); //启动加载事件
 dispose.checkUpdate(); //小程序更新
 

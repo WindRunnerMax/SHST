@@ -1,11 +1,11 @@
 <?php
-namespace app\adapt\controller;
+namespace app\index\controller;
 use think\Controller;
 use think\Db;
 use app\auxiliary\Http;
 use app\auxiliary\Conf;
 
-class Sw extends Controller
+class Asw extends Controller
 {
 
     private function checkSession($value=''){

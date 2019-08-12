@@ -23,9 +23,8 @@ return [
     "funct/sw/signalTable/[:zc]" => "funct/sw/signalTable",
     "funct/sw/signalTable2/[:zc]" => "funct/sw/signalTable2",
     "funct/sw/grade/[:sy]" => "funct/sw/grade",
-    "adapt/sw/classroom/[:idleTime]" => "adapt/sw/classroom",
-    "adapt/sw/table/[:zc]" => "adapt/sw/table",
-    "adapt/sw/grade/[:sy]" => "adapt/sw/grade",
+    "index/asw/table/[:zc]" => "index/asw/table",
+    "index/asw/grade/[:sy]" => "index/asw/grade",
     "bookdetail/:id" => "index/sw/bookdetail",
 ];
 

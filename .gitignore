@@ -6,6 +6,7 @@ WXSA/vector/camptour/config.js
 QQSA/vector/camptour/config.js
 Web/app/funct/controller/Card.php
 Web/app/funct/controller/User.php
-Web/app/funct/controller/Quser.php
+Web/app/qfunct/controller/User.php
+Web/app/qfunct/controller/Message.php
 WXSA/vector/camptour/resources/sdust.js
 QQSA/vector/camptour/resources/sdust.js

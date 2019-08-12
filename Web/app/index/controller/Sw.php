@@ -231,6 +231,7 @@ class Sw extends Controller
         );
         $header = Conf::getNormalHeader();
         $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/reader/doLogin",$params,"GET",$header,true,true);
+        if(!isset($info[0]['Set-Cookie'])) return "解析失败";
         $cookie = explode(";", $info[0]['Set-Cookie'])[0];
         $header['Cookie'] = $cookie.'; libraryReaderRdid='.$account;
         $info = Http::httpRequest("http://interlib.sdust.edu.cn/opac/m/loan/renewList",[],"GET",$header,false,true);

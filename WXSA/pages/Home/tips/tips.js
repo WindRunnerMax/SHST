@@ -26,24 +26,29 @@ Page({
     this.getWeather();
     this.getCacheTable();
     this.getCacheEvent();
-    app.eventBus.on('OpenidBus', this.openidEvent);
+    app.eventBus.on('LoginEvent', this.openidEvent);
     if (app.globalData.openid !== ""){
+      this.loginSatatus(app.globalData.loginStatus);
       this.getRemoteTable();
       this.getRemoteEvent();
     }
   },
   openidEvent: function(data) {
-    console.log("Openid BusEvent Commit");
-    if (data.data.Message === "Ex") {
+    console.log("Login EventBus Execute");
+    this.loginSatatus(data.data.Message);
+    this.getRemoteTable();
+    this.getRemoteEvent();
+  },
+  loginSatatus: function(status){
+    if (app.globalData.userFlag !== 2) return "DONE";
+    if (status === "Ex") {
       app.globalData.userFlag = 1;
     } else {
+      app.globalData.userFlag = 0;
       this.setData({
         tips: "点我前去绑定教务系统账号"
       })
-      if (data.data.info) toast(data.data.info);
     }
-    this.getRemoteTable();
-    this.getRemoteEvent();
   },
   /**
    * 课表处理
@@ -66,7 +71,7 @@ Page({
   },
   getRemoteTable() {
     var that = this;
-    if (app.globalData.userFlag !== 0 && tableLoadFlag) {
+    if (app.globalData.userFlag === 1 && tableLoadFlag) {
       console.log("GET TABLE FROM REMOTE");
       app.ajax({
         load: 1,

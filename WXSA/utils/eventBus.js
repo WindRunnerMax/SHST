@@ -35,11 +35,13 @@ PubSub.prototype={
   // 触发
   commit : function(key) {
     // 取出参数并转化为数组
+    if (!this.handlers[key]) return false;
     const args = Array.prototype.slice.call(arguments, 1)
     this.handlers[key].forEach(handler => {
       // 防止this指向乱掉
       handler.apply(this, args);
     });
+    return true;
   }
 }
 

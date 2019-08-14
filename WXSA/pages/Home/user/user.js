@@ -10,7 +10,6 @@ Page({
     academy: " ",
     name: " ",
     username: " ",
-    flag: 0,
     point: "none"
   },
   copy(e) {
@@ -56,13 +55,14 @@ Page({
         }
       }
     })
-    if (!app.globalData.userFlag) {
+    if (app.globalData.userFlag === 0 || app.globalData.userFlag === 2) {
+      var tipsInfo = "游客";
+      if (app.globalData.userFlag === 2) tipsInfo = "请稍后";
       that.setData({
-        academy: "游客",
-        name: "游客",
-        username: "游客",
-        flag: 1
-      })
+        academy: tipsInfo,
+        name: tipsInfo,
+        username: tipsInfo
+        })
       return;
     }
     wx.getStorage({
@@ -73,7 +73,6 @@ Page({
           academy: res.data.academy,
           name: res.data.name,
           username: res.data.username,
-          flag: 1
         })
       },
       fail : res => {
@@ -91,7 +90,6 @@ Page({
                 academy: res.data.info.academy,
                 name: res.data.info.name,
                 username: res.data.info.username,
-                flag: 1
               })
             } else {
               app.toast("服务器错误");

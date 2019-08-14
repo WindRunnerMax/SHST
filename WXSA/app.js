@@ -2,7 +2,7 @@
 const dispose = require('/vector/dispose.js');
 App({
   globalData: {
-    userFlag: 0,
+    userFlag: 2, // 0 未登录 1 已登陆 2 加载中
     host: 'https://www.liyanzuishuai.top',
     url: 'https://www.liyanzuishuai.top/sdust/index.php/',
     // url: 'https://www.michalingshi.cn/sdust/index.php/',
@@ -12,7 +12,7 @@ App({
     },
     openid: "",
     colorList: dispose.colorList,
-    version: "2.7.5",
+    version: "2.8.1",
     tips: "1",
     curTerm: "2019-2020-1",
     curTermStart: "2019-08-26"
@@ -22,13 +22,16 @@ App({
     wx.reLaunch({
       url: 'pages/Home/NotFound/notfound'
     })
+  },
+  onLaunch(){
+    console.log("APP INIT");
+    dispose.onLunch.apply(this); //启动加载事件
   }
 })
 
 const app = getApp();
 const time = require('/vector/time.js');
 time.extDate(); //拓展Date原型
-dispose.onLunch(); //启动加载事件
 dispose.checkUpdate(); //小程序更新
 app.globalData.colorN = app.globalData.colorList.length;
 app.globalData.curWeek = time.getCurWeek(app.globalData.curTermStart);

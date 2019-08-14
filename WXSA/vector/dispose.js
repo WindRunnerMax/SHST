@@ -135,7 +135,9 @@ function checkUpdate() {
 /**
  * User显示Dot
  */
-function userDot() {
+function userDot(notify,obj) {
+  if (obj) obj.globalData.tips = notify;
+  else getApp().globalData.tips = notify;
   if (!wx.showTabBarRedDot) return false;
   wx.getStorage({
     key: 'point',
@@ -225,33 +227,29 @@ function ajax(requestInfo) {
  * APP启动事件
  */
 function onLunch(){
-  const app = getApp();
-  app.eventBus = eventBus.getEventBus;
+  var that = this;
+  this.eventBus = eventBus.getEventBus;
   wx.login({
     success: res => {
-      app.ajax({
+      ajax({
         load: 1,
-        url: app.globalData.url + 'funct/user/signalGetOpenid',
+        url: that.globalData.url + 'funct/user/signalGetOpenid',
         method: 'POST',
         data: {
           "code": res.code
         },
-        fun: function (data) {
-          if (wx.showTabBarRedDot) {
-            app.globalData.tips = data.data.notify;
-            userDot();
-          }
+        complete: (data) => {
+          that.globalData.loginStatus = data.data.Message;
           if (data.data.openid) {
+            userDot(data.data.notify, that);
             console.log("SetOpenid:" + data.data.openid);
-            app.globalData.openid = data.data.openid;
+            that.globalData.openid = data.data.openid;
             wx.setStorageSync('openid', data.data.openid);
           } else {
             console.log("Get Openid From Cache");
-            app.globalData.openid = wx.getStorageSync("openid") || "";
+            that.globalData.openid = wx.getStorageSync("openid") || "";
           }
-        },
-        complete: (data) => {
-          app.eventBus.commit('OpenidBus',data);
+          that.eventBus.commit('LoginEvent',data);
         }
       })
     }

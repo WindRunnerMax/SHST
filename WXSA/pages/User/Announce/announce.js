@@ -35,5 +35,8 @@ Page({
         }
       }
     })
+  },
+  officialStatus: function(e){
+    console.log(e);
   }
 })

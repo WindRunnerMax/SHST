@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -81,7 +81,22 @@
 					"id": -1,
 					"name": "事件",
 					"pathName": "pages/Ext/Event/event",
+					"query": "",
 					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "Tips",
+					"pathName": "pages/Home/Tips/tips",
+					"query": "",
+					"scene": 1047
+				},
+				{
+					"id": 7,
+					"name": "公告",
+					"pathName": "pages/User/Announce/announce",
+					"query": "",
+					"scene": 1047
 				}
 			]
 		}

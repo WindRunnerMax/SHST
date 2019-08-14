@@ -9,3 +9,5 @@
     </view>
   </view>
 </view>
+
+<official-account binderror="officialStatus" style='margin-top: 20px;display: block;'></official-account>

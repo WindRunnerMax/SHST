@@ -67,5 +67,8 @@
   },
   "usingComponents": {
     "title": "/Components/title/title"
-  }
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wxa53da62a53aaddea"
+  ]
 }

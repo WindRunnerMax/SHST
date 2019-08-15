@@ -57,7 +57,6 @@ Page({
     })
     if (app.globalData.userFlag === 0 || app.globalData.userFlag === 2) {
       var tipsInfo = "游客";
-      if (app.globalData.userFlag === 2) tipsInfo = "请稍后";
       that.setData({
         academy: tipsInfo,
         name: tipsInfo,

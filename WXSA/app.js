@@ -5,14 +5,13 @@ App({
     userFlag: 2, // 0 未登录 1 已登陆 2 加载中
     host: 'https://www.liyanzuishuai.top',
     url: 'https://www.liyanzuishuai.top/sdust/index.php/',
-    // url: 'https://www.michalingshi.cn/sdust/index.php/',
     header: {
       'Cookie': '',
       'content-type': 'application/x-www-form-urlencoded'
     },
     openid: "",
     colorList: dispose.colorList,
-    version: "2.8.1",
+    version: "2.8.3",
     tips: "1",
     curTerm: "2019-2020-1",
     curTermStart: "2019-08-26"

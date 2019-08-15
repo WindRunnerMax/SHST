@@ -1,17 +1,18 @@
+
 page{
   width: 100%;
   font-size: 14px;
 }
 
-image{
-  width: 320px;
-  height: 109px;
-  margin-left: calc(50% - 160px);
-  margin-top:15px;
+.img{
+  width: 270px;
+  height: 90px;
+  margin-left: calc(50% - 135px);
+  margin-top:20px;
 }
 
 .userInfoCon{
-  margin-top: 20px;
+  margin-top: 27px;
   padding: 10px;
 }
 

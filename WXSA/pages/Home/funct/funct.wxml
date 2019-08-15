@@ -3,15 +3,15 @@
   <title innerText="学习"></title>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/Study/TimeTable/timeTable" data-checkuser="0" bindtap='jump'>
-      <view class='imgIcon' style='padding:9px;width:28px;height: 28px;'><i class='table'></i></view>
+      <view class='imgIcon' style='padding:7px 5px 7px 11px;width:28px;'><i class='table'></i></view>
       <view style='margin:8px 0;'>查课表</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Study/Classroom/classroom" data-checkuser="0" bindtap='jump'>
-      <view class='imgIcon' style='padding:6px;width:31px;height:31px;'><i class='classroom'></i></view>
+      <view class='imgIcon' style='padding:3px;width:38px;height:38px;'><i class='classroom'></i></view>
       <view style='margin:8px 0;'>查教室</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Study/Grade/grade" data-checkuser="0" bindtap='jump'>
-      <view class='imgIcon' ><i class='grade'></i></view>      
+      <view class='imgIcon' style='padding:7px 6px 7px 8px;' ><i class='grade'></i></view>      
       <view style='margin:8px 0;'>查成绩</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Study/TableShare/tableShare" data-checkuser="0" bindtap='jump'>
@@ -22,7 +22,7 @@
 </view>
 
 <view class='blockCon'>
-  <title innerText="图书馆(7:00-22:00)"></title>
+  <title innerText="信息"></title>
   <view style='display:flex;'>
     <view class='fun' data-jumpurl="/pages/Lib/Lib/lib" data-checkuser="1" bindtap='jump'>
       <i class='iconfont icon-lib icon'></i>
@@ -32,6 +32,10 @@
       <i class='iconfont icon-borrow icon' style='font-size: 29px;'></i>
       <view style='margin:8px 0;'>借阅查询</view>
     </view>
+    <navigator class='fun' target="miniProgram" app-id="wxa53da62a53aaddea" hover-class="none"  version="release">
+      <view class='imgIcon' ><i class='test'></i></view>
+      <view style='margin:8px 0;'>迎新专版</view>
+    </navigator>
   </view>
 </view>
 
@@ -73,7 +77,7 @@
       <view style='margin:8px 0;'>考试安排</view>
     </view>
     <view class='fun' data-jumpurl="/pages/Ext/Card/card" data-checkuser="0" bindtap='jump'>
-      <i class='iconfont icon-card icon' style='font-size: 29px;'></i>
+      <i class='iconfont icon-xuehao icon' style='font-size: 26px;padding-top: 8.5px;height: 28.5px;'></i>
       <view style='margin:8px 0;'>校园卡</view>
     </view>
   </view>

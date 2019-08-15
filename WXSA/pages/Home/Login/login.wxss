@@ -1,7 +1,6 @@
 /**index.wxss**/
-@import '../User/user.wxss';
 @import "../../../vector/icon/iconfont.wxss";
-
+@import "../../../vector/icon/img.wxss";
 
 page{
   padding: 10px;

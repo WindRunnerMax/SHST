@@ -209,7 +209,7 @@ function ajax(requestInfo) {
         option.success(res);
       } catch (e) {
         option.completeLoad = () => { toast("PARSE ERROR"); }
-        console.log(e);
+        console.warn(e);
       }
     },
     fail: (res) => {
@@ -227,29 +227,32 @@ function ajax(requestInfo) {
  * APP启动事件
  */
 function onLunch(){
-  var that = this;
-  this.eventBus = eventBus.getEventBus;
+  var app = this;
+  app.eventBus = eventBus.getEventBus;
   wx.login({
     success: res => {
       ajax({
         load: 1,
-        url: that.globalData.url + 'funct/user/signalGetOpenid',
+        url: app.globalData.url + 'funct/user/signalGetOpenid',
         method: 'POST',
         data: {
           "code": res.code
         },
         complete: (data) => {
-          that.globalData.loginStatus = data.data.Message;
+          app.globalData.loginStatus = data.data.Message;
+          if (data.data.Message === "Ex") app.globalData.userFlag = 1;
+          else app.globalData.userFlag = 0;
+          console.log("Status:" + (app.globalData.userFlag === 1 ? "User Login" : "New User"));
           if (data.data.openid) {
-            userDot(data.data.notify, that);
+            userDot(data.data.notify, app);
             console.log("SetOpenid:" + data.data.openid);
-            that.globalData.openid = data.data.openid;
+            app.globalData.openid = data.data.openid;
             wx.setStorageSync('openid', data.data.openid);
           } else {
             console.log("Get Openid From Cache");
-            that.globalData.openid = wx.getStorageSync("openid") || "";
+            app.globalData.openid = wx.getStorageSync("openid") || "";
           }
-          that.eventBus.commit('LoginEvent',data);
+          app.eventBus.commit('LoginEvent',data);
         }
       })
     }

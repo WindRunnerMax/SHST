@@ -1,5 +1,5 @@
-@import '../sdust.wxss';
-@import "../../../vector/icon/iconfont.wxss";
+@import "../../../vector/icon/img.wxss";
+
 
 page{
   font-size: 14px;

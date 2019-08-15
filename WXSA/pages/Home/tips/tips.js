@@ -7,6 +7,7 @@ const dispose = require('../../../vector/dispose.js');
 const publicMethod = require('../../../vector/publicMethod.js');
 var tableLoadFlag = true;
 var eventLoadFlag = true;
+var bindSWLoadFlag = true;
 
 Page({
 
@@ -40,11 +41,9 @@ Page({
     this.getRemoteEvent();
   },
   loginSatatus: function(status){
-    if (app.globalData.userFlag !== 2) return "DONE";
-    if (status === "Ex") {
-      app.globalData.userFlag = 1;
-    } else {
-      app.globalData.userFlag = 0;
+    if (!bindSWLoadFlag) return "DONE";
+    bindSWLoadFlag = false;
+    if (status === "Yes") {
       this.setData({
         tips: "点我前去绑定教务系统账号"
       })

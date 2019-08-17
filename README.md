@@ -1,42 +1,48 @@
-# web
-```
-SW/Web 目录下基于ThinkPHP制作的WEB项目，提供课表查询，空教室查询，成绩查询(实测智校园APP出问题无法进入时，本项目正常使用)  
-```
-更新日志：https://github.com/WindrunnerMax/SW/blob/master/ChangeLog.md  
-SDUST分支：https://github.com/WindrunnerMax/SW/tree/SDUST
-```
-嵙同学部署到服务器即用，外校同学若使用需改动:
-SW/app/index/controller/Conf.php   
-中public static $url = "http://jwgl.sdust.edu.cn/app.do";  
-更改为public static $url = "${学校教务管理系统网站}/app.do";
-```
+# SW
 
-![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/Web/public/show1.jpg)
-![show](https://raw.githubusercontent.com/WindrunnerMax/SW/master/Web/public/show2.jpg)
+```
+SW/Python 目录下为Python版本的API
+SW/PHP 目录下为PHP版本的API
+SW/Java 目录下为Java版本的API
+```
 
 ----
   
-# python脚本
-```
-SW/Python 目录下有python爬虫脚本，功能较全
-```
-```
-使用此脚本有以下几处需要作改动:  
-account = "" #账号  
-password = "" #密码  
-url = "http://jwgl.sdust.edu.cn/app.do" # ${学校教务管理系统网站}/app.do  
-```
+## Python
 
-**源码末尾取消注释即可获取函数返回的值，json.loads()即可得到json格式数据**  
-* Q.getStudentIdInfo() #获取学号信息
+**配置文件 SW/Python/SW.py**
+* account 账号
+* password 密码
+* url {$强智系统URL}/app.do
+
+**源码末尾取消注释即可获取相应方法返回的值，json.loads()即可得到json格式数据**  
+* Q.getStudentInfo() #获取学号信息
 * Q.getCurrentTime() #获取学年信息
 * Q.getKbcxAzc() #当前周次课表
 * Q.getKbcxAzc(3) #指定周次课表
 * Q.getKxJscx("0102") #空教室查询 "allday"：全天 "am"：上午 "pm"：下午 "night"：晚上 "0102":1.2节空教室 "0304":3.4节空教室
 * Q.getCjcx("2018-2019-1") #成绩查询 #无参数查询全部成绩
 * Q.getKscx() #获取考试信息
-----  
-```
-可以手机自行抓取强智APP获取更多接口  
-手机抓包:Packet Capture，电脑抓包:Fiddler
-```
+
+----
+  
+## PHP
+
+**配置文件 SW/PHP/Main.php**
+* accountSW 账号
+* passwordSW 密码
+* urlSW {$强智系统URL}/app.do
+* 源码末尾取消注释即可获取相应方法返回的值
+----
+  
+## Java
+
+**配置文件 SW/Java/MainSw.java**
+* account 账号
+* password 密码
+* url {$强智系统URL}/app.do
+* 注意导入工程时更改包名
+* 源码末尾取消注释即可获取相应方法返回的值
+
+----
+

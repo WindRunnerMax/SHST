@@ -8,6 +8,8 @@ QQSA/vector/camptour/config.js
 Web/app/funct/controller/Card.php
 Web/app/funct/controller/User.php
 Web/app/qfunct/controller/User.php
+Web/app/pubfun/controller/Token.php
 Web/app/qfunct/controller/Message.php
+Web/app/pubfun/controller/Message.php
 WXSA/vector/camptour/resources/sdust.js
 QQSA/vector/camptour/resources/sdust.js

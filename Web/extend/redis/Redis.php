@@ -109,8 +109,11 @@ class Redis
             //如果不序列化，set()方法只能保存字符串和数字类型,
             //如果不序列化，浮点型数字会有失误，如13.6保存，获取时是13.59999999999
             $value = is_int($value) ? $value : serialize($value);
-            $expire = (int)$expire ? $expire : self::$expire;
-            if(self::$redis->set($key, $value) && self::$redis->expire($key, $expire)){
+            if(self::$redis->set($key, $value)){
+                if($expire !== ''){
+                    $expire = (int)$expire ? $expire : self::$expire;
+                    if(self::$redis->expire($key, $expire)) return true;
+                }
                 return true;
             }
             return false;

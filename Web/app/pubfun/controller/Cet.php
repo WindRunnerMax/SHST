@@ -94,7 +94,7 @@ class Cet
             'penetrate' => false
         ]);
         $info = json_decode($info,true);
-        Log::write($info);
+        // Log::write($info);
         if($info['status'] === '0'){
             $record['history'] = 0;
             Db::table("wx_pub") -> where("openid",$msg->FromUserName) -> update($record);

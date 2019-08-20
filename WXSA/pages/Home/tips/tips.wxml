@@ -23,10 +23,21 @@
     </view>
   </view>
 </view>
+<view class='articalCon' bindtap='articalJump'>
+  <view class='left iconfont icon-gonggao icon'></view>
+  <view class='right'>{{artical}}</view>
+</view>
 
-<view class='lineBlock' style='margin-top:15px;display:flex;'>
-  <view class='rowBlue'></view>
-  <view>今日课程</view>
+
+<view class='lineBlock' style='margin-top:15px;display:flex;justify-content: space-between;'>
+  <view style='display: flex;'>
+    <view class='rowBlue'></view>
+    <view>今日课程</view>
+  </view>
+  <view style='display: flex;'>
+    <navigator url="/pages/User/Announce/announce" open-type="navigate" class='iconfont icon-gonggao icon'></navigator>
+    <button open-type='share' class='iconfont icon-fenxiang icon btn'></button>
+  </view>
 </view>
 <view wx:for="{{table}}" wx:key="{{index}}">
   <!-- <view wx:for="{{item}}" wx:key="{{index}}" wx:for-item="inner" wx:for-index="innerIndex">

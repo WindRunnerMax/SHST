@@ -5,6 +5,7 @@
     "pages/Home/User/user",
     "pages/Home/Login/login",
     "pages/Home/NotFound/notfound",
+    "pages/Home/Webview/webview",
     "pages/Study/TimeTable/timeTable",
     "pages/Study/TableShare/tableShare",
     "pages/Study/Classroom/classroom",

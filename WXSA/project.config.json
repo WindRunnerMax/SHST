@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -97,6 +97,12 @@
 					"pathName": "pages/User/Announce/announce",
 					"query": "",
 					"scene": 1047
+				},
+				{
+					"id": -1,
+					"name": "WebView",
+					"pathName": "pages/Home/Webview/webview",
+					"scene": null
 				}
 			]
 		}

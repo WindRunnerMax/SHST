@@ -239,7 +239,9 @@ function onLunch(){
           "code": res.code
         },
         complete: (data) => {
+          if (!data) data = { data: "", initData: ""};
           app.globalData.loginStatus = data.data.Message;
+          app.globalData.initData = data.data.initData;
           if (data.data.Message === "Ex") app.globalData.userFlag = 1;
           else app.globalData.userFlag = 0;
           console.log("Status:" + (app.globalData.userFlag === 1 ? "User Login" : "New User"));

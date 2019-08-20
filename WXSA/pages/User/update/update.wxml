@@ -3,6 +3,25 @@
   <view style='font-size:20px;'>Changelog</view>
   <view data-copy='https://github.com/WindrunnerMax/SW' class='url' bindtap='copy'>https://github.com/WindrunnerMax/SW</view>
 
+
+  <view class='unitChange'>
+    <view class='title'>2.9.1 (2019-08-16) [166793e]</view>
+    <view>1. 公众号消息功能</view>
+  </view>
+
+
+  <view class='unitChange'>
+    <view class='title'>2.8.3 (2019-08-15) [b83401a]</view>
+    <view>1. 跳转迎新版</view>
+    <view>2. 图标数据修正</view>
+  </view>
+
+  <view class='unitChange'>
+    <view class='title'>2.8.2 (2019-08-13) [b1a81b4]</view>
+    <view>1. 公众号组件</view>
+    <view>2. Onlunch Event</view>
+  </view>
+
   <view class='unitChange'>
     <view class='title'>2.8.1 (2019-08-07) [cb8dbac]</view>
     <view>1. 订阅发布模式</view>

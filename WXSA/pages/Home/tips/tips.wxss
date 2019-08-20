@@ -1,96 +1,99 @@
 @import "../../../vector/icon/iconfont.wxss";
 
-page{
+page {
   padding: 10px;
   width: calc(100% - 20px);
   transition: all 0.3s;
   font-size: 15px;
 }
 
-.weather{
+.weather {
   display: flex;
-  border: 1px solid #eee; 
+  border: 1px solid #eee;
   transition: all 0.8s;
   font-size: 13px;
   border-radius: 3px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
-.weaLeft{
+.weaLeft {
   width: calc(50% - 20px);
-  padding:10px;
-  border-right:  1px solid #eee;
+  padding: 10px;
+  border-right: 1px solid #eee;
 }
 
-.todayImg{
-  width:50px;
-  height:50px;
-  margin-left:calc(50% - 25px);
+.todayImg {
+  width: 50px;
+  height: 50px;
+  margin-left: calc(50% - 25px);
 }
 
-.dayImg{
-  width:40px;
-  height:40px;
-  margin:0 0 0 15px;
+.dayImg {
+  width: 40px;
+  height: 40px;
+  margin: 0 0 0 15px;
   align-self: center;
 }
 
-.weaRight{
+.weaRight {
   width: 50%;
 }
-.weaRightBot , .weaRightTop{
+
+.weaRightBot, .weaRightTop {
   display: flex;
   height: 50%;
   text-align: center;
 }
 
-.weaRightBot{
-  border-top: 1px solid #eee; 
+.weaRightBot {
+  border-top: 1px solid #eee;
 }
 
-.weatherCon{
+.weatherCon {
   align-self: center;
   margin: 0 auto;
 }
 
-.lineBlock{
-  font-size: 16px; 
-  padding-bottom: 5px; 
+.lineBlock {
+  font-size: 16px;
+  padding-bottom: 5px;
   border-bottom: 1px solid #eee;
-  width: 100%; 
-  margin-bottom: 5px; 
+  width: 100%;
+  margin-bottom: 5px;
   transition: all 0.3s;
 }
 
-.rowBlue{
+.rowBlue {
   width: 10px;
   border-radius: 10px;
-  margin:0 5px;
-  background: #79B2F9;
+  margin: 0 5px;
+  background: #79b2f9;
 }
 
-.unitTable{
+.unitTable {
   width: calc(100% - 6px);
   display: flex;
   flex-wrap: wrap;
   color: #fff;
-  font-size: 15px; 
+  font-size: 15px;
   margin: 5px 0;
   padding: 17px 3px;
   line-height: 23px;
   border-radius: 3px;
 }
 
-.unitTable view{
-  margin-left:5px; 
+.unitTable view {
+  margin-left: 5px;
 }
 
-.unitTableNo{
+.unitTableNo {
   padding: 3px;
   width: calc(100% - 6px);
   display: flex;
   flex-wrap: wrap;
   color: #666;
-  font-size: 15px; 
+  font-size: 15px;
   margin: 5px 0;
   height: 50px;
   line-height: 50px;
@@ -98,68 +101,68 @@ page{
   justify-content: center;
 }
 
-.unitTableNo view{
-  margin-left:5px; 
+.unitTableNo view {
+  margin-left: 5px;
 }
 
-.unitTodo{
+.unitTodo {
   width: calc(100% - 16px);
   display: flex;
   color: #fff;
-  font-size: 15px; 
+  font-size: 15px;
   margin: 5px 0;
   padding: 15px 8px;
   line-height: 20px;
   border-radius: 3px;
-  background:#ACA4D5;
+  background: #aca4d5;
   justify-content: space-between;
 }
 
-.unitMain{
+.unitMain {
   display: flex;
   justify-content: space-between;
 }
 
-.content{
+.content {
   font-size: 16px;
   word-break: break-all;
 }
 
-.date{
+.date {
   margin-top: 3px;
   font-size: 12px;
 }
 
-.mainRight{
+.mainRight {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.diff{
+.diff {
   margin-top: 3px;
   margin-left: 15px;
   font-size: 12px;
   align-self: center;
 }
 
-.img{
+.img {
   padding: 4px;
   width: 20px;
   height: 20px;
   margin-right: 10px;
   border: 1px solid #fff;
-  border-radius: 20px;  
+  border-radius: 20px;
   font-size: 20px;
 }
 
-.unitTodoNo{
+.unitTodoNo {
   padding: 3px;
   width: calc(100% - 6px);
   display: flex;
   flex-wrap: wrap;
   color: #666;
-  font-size: 15px; 
+  font-size: 15px;
   margin: 5px 0;
   height: 50px;
   line-height: 50px;
@@ -167,13 +170,55 @@ page{
   justify-content: center;
 }
 
-.unitTodoNo view{
-  margin-left:5px; 
+.unitTodoNo view {
+  margin-left: 5px;
 }
 
-.overUnit{
+.overUnit {
   padding: 7px 10px;
   border-radius: 3px;
   margin-left: 20px;
 }
 
+.articalCon {
+  border: 1px solid #eee;
+  border-top: none;
+  padding: 5px 0;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  display: flex;
+  font-size: 14px;
+}
+
+.articalCon .right,.articalCon .left{
+  margin-left: 10px;
+  align-self: center;
+}
+
+.articalCon .right{
+  margin-left: 5px;
+  text-decoration:underline;
+  color: #4C98F7;
+}
+
+.icon {
+  margin: 0 5px;
+  align-self: flex-end;
+  color: #aaa;
+}
+
+button:after {
+  border: none;
+}
+
+button {
+  background: #fff;
+  border: none;
+  box-sizing: unset;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  background: #f8f8f8;
+  color: #888;
+  line-height: unset;
+}

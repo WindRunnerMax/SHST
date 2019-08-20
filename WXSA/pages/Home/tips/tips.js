@@ -8,6 +8,7 @@ const publicMethod = require('../../../vector/publicMethod.js');
 var tableLoadFlag = true;
 var eventLoadFlag = true;
 var bindSWLoadFlag = true;
+var articalLoadFlag = true;
 
 Page({
 
@@ -21,6 +22,7 @@ Page({
     tips: "数据加载中",
     todoList: [],
     tips2: "数据加载中",
+    artical : "数据加载中",
     host: app.globalData.host
   },
   onLoad: function(options) {
@@ -30,6 +32,7 @@ Page({
     app.eventBus.on('LoginEvent', this.openidEvent);
     if (app.globalData.openid !== ""){
       this.loginSatatus(app.globalData.loginStatus);
+      this.getArtical();
       this.getRemoteTable();
       this.getRemoteEvent();
     }
@@ -37,6 +40,7 @@ Page({
   openidEvent: function(data) {
     console.log("Login EventBus Execute");
     this.loginSatatus(data.data.Message);
+    this.getArtical();
     this.getRemoteTable();
     this.getRemoteEvent();
   },
@@ -46,6 +50,15 @@ Page({
     if (status === "Yes") {
       this.setData({
         tips: "点我前去绑定教务系统账号"
+      })
+    }
+  },
+  getArtical(){
+    if (articalLoadFlag){
+      articalLoadFlag = false;
+      if (app.globalData.initData.articalName)
+      this.setData({
+        artical: app.globalData.initData.articalName
       })
     }
   },
@@ -228,6 +241,14 @@ Page({
         url: '/pages/Home/Login/login?status=E'
       })
     } else return 0;
+  },
+  articalJump(){
+    if (app.globalData.initData.articalUrl){
+      var url = encodeURIComponent(app.globalData.initData.articalUrl);
+      wx.navigateTo({
+        url: '/pages/Home/Webview/webview?url=' + url
+      })
+    }
   },
   /**
    * 用户点击右上角分享

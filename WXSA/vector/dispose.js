@@ -5,12 +5,8 @@ module.exports = {
   ajax: ajax,
   toast: toast,
   extend: extend,
-  userDot: userDot,
   onLunch: onLunch,
-  setCookie: setCookie,
-  endLoading: endLoading,
   checkUpdate: checkUpdate,
-  startLoading: startLoading
 }
 
 /**
@@ -22,7 +18,7 @@ module.exports.colorList = ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B
  * 拓展对象
  * 浅拷贝与深拷贝
  */
-function extend(){
+function extend() {
   var aLength = arguments.length;
   var options = arguments[0];
   var target = {};
@@ -135,14 +131,13 @@ function checkUpdate() {
 /**
  * User显示Dot
  */
-function userDot(notify,obj) {
-  if (obj) obj.globalData.tips = notify;
-  else getApp().globalData.tips = notify;
+function userDot(notify, app = getApp()) {
+  app.globalData.tips = notify;
   if (!wx.showTabBarRedDot) return false;
   wx.getStorage({
     key: 'point',
     complete: (res) => {
-      if (res.data !== getApp().globalData.tips) {
+      if (res.data !== app.globalData.tips) {
         wx.showTabBarRedDot({
           index: 2
         })
@@ -154,16 +149,16 @@ function userDot(notify,obj) {
 /**
  * SetCookie
  */
-function setCookie(res, option) {
-  if (getApp().globalData.header.Cookie === "" && option.autoCookie) {
+function setCookie(res, app = getApp()) {
+  if (app.globalData.header.Cookie === "") {
     if (res && res.header && res.header['Set-Cookie']) {
       var cookies = res.header['Set-Cookie'].split(";")[0] + ";";
       console.log("SetCookie:" + cookies);
-      getApp().globalData.header.Cookie = cookies;
-      wx.setStorageSync('cookies', getApp().globalData.header.Cookie);
+      app.globalData.header.Cookie = cookies;
+      wx.setStorageSync('cookies', app.globalData.header.Cookie);
     } else {
       console.log("Get Cookie From Cache");
-      getApp().globalData.header.Cookie = wx.getStorageSync("cookies") || "";
+      app.globalData.header.Cookie = wx.getStorageSync("cookies") || "";
     }
   }
 }
@@ -171,7 +166,7 @@ function setCookie(res, option) {
 /**
  * 弹窗提示
  */
-function toast(e, time = 2000, icon = 'none'){
+function toast(e, time = 2000, icon = 'none') {
   wx.showToast({
     title: e,
     icon: icon,
@@ -182,18 +177,22 @@ function toast(e, time = 2000, icon = 'none'){
 /**
  * XHR请求
  */
-function ajax(requestInfo) {
+function ajax(requestInfo , app = getApp()) {
   var option = {
     load: 1,
     autoCookie: true,
     url: "",
     method: "GET",
     data: {},
-    fun: () => { },
-    success: () => { },
-    fail: function () { this.completeLoad = () => { toast("服务器错误"); }; },
-    complete: () => { },
-    completeLoad: () => { }
+    fun: () => {},
+    success: () => {},
+    fail: function() {
+      this.completeLoad = () => {
+        toast("服务器错误");
+      };
+    },
+    complete: () => {},
+    completeLoad: () => {}
   };
   extend(option, requestInfo);
   startLoading(option);
@@ -201,21 +200,23 @@ function ajax(requestInfo) {
     url: option.url,
     data: option.data,
     method: option.method,
-    header: getApp().globalData.header,
+    header: app.globalData.header,
     success: (res) => {
-      setCookie(res, option);
+      if (option.autoCookie) setCookie(res);
       try {
         option.fun(res);
         option.success(res);
       } catch (e) {
-        option.completeLoad = () => { toast("PARSE ERROR"); }
+        option.completeLoad = () => {
+          toast("PARSE ERROR");
+        }
         console.warn(e);
       }
     },
     fail: (res) => {
       option.fail(res);
     },
-    complete: function (res) {
+    complete: function(res) {
       endLoading(option);
       option.complete(res);
       option.completeLoad(res);
@@ -226,7 +227,7 @@ function ajax(requestInfo) {
 /**
  * APP启动事件
  */
-function onLunch(){
+function onLunch() {
   var app = this;
   app.eventBus = eventBus.getEventBus;
   wx.login({
@@ -235,11 +236,15 @@ function onLunch(){
         load: 1,
         url: app.globalData.url + 'funct/user/signalGetOpenid',
         method: 'POST',
+        autoCookie: false,
         data: {
           "code": res.code
         },
+        success: (data) => {
+          setCookie(data, app);
+        },
         complete: (data) => {
-          if (!data) data = { data: "", initData: ""};
+          if (!data || !data.data || data.statusCode !== 200) data = {data: {Message: "Yes",initData: {articalName: "山科小站全功能介绍",articalUrl: "https://mp.weixin.qq.com/s/5pGARwuOvEFby16pw5UvJw"}}};
           app.globalData.loginStatus = data.data.Message;
           app.globalData.initData = data.data.initData;
           if (data.data.Message === "Ex") app.globalData.userFlag = 1;
@@ -254,9 +259,9 @@ function onLunch(){
             console.log("Get Openid From Cache");
             app.globalData.openid = wx.getStorageSync("openid") || "";
           }
-          app.eventBus.commit('LoginEvent',data);
+          app.eventBus.commit('LoginEvent', data);
         }
       })
     }
-  })
+  },app)
 }

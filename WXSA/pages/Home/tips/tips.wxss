@@ -187,7 +187,7 @@ page {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   display: flex;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .articalCon .right,.articalCon .left{
@@ -196,6 +196,7 @@ page {
 }
 
 .articalCon .right{
+  font-size: 14px;
   margin-left: 5px;
   text-decoration:underline;
   color: #4C98F7;
@@ -218,7 +219,6 @@ button {
   padding: 0;
   margin: 0;
   font-size: 13px;
-  background: #f8f8f8;
   color: #888;
   line-height: unset;
 }

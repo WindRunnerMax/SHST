@@ -155,7 +155,7 @@ function setCookie(res, app = getApp()) {
       var cookies = res.header['Set-Cookie'].split(";")[0] + ";";
       console.log("SetCookie:" + cookies);
       app.globalData.header.Cookie = cookies;
-      wx.setStorageSync('cookies', app.globalData.header.Cookie);
+      wx.setStorage({key: "cookies", data: app.globalData.header.Cookie});
     } else {
       console.log("Get Cookie From Cache");
       app.globalData.header.Cookie = wx.getStorageSync("cookies") || "";
@@ -186,11 +186,7 @@ function ajax(requestInfo , app = getApp()) {
     data: {},
     fun: () => {},
     success: () => {},
-    fail: function() {
-      this.completeLoad = () => {
-        toast("服务器错误");
-      };
-    },
+    fail: function() { this.completeLoad = () => { toast("服务器错误"); }},
     complete: () => {},
     completeLoad: () => {}
   };
@@ -202,14 +198,12 @@ function ajax(requestInfo , app = getApp()) {
     method: option.method,
     header: app.globalData.header,
     success: (res) => {
-      if (option.autoCookie) setCookie(res);
-      try {
+      if(option.autoCookie) setCookie(res);
+      try{
         option.fun(res);
         option.success(res);
-      } catch (e) {
-        option.completeLoad = () => {
-          toast("PARSE ERROR");
-        }
+      }catch(e){
+        option.completeLoad = () => { toast("PARSE ERROR"); }
         console.warn(e);
       }
     },
@@ -218,7 +212,7 @@ function ajax(requestInfo , app = getApp()) {
     },
     complete: function(res) {
       endLoading(option);
-      option.complete(res);
+      try{ option.complete(res); }catch(e){ console.warn(e); }
       option.completeLoad(res);
     }
   })
@@ -242,9 +236,12 @@ function onLunch() {
         },
         success: (data) => {
           setCookie(data, app);
-        },
-        complete: (data) => {
-          if (!data || !data.data || data.statusCode !== 200) data = {data: {Message: "Yes",initData: {articalName: "山科小站全功能介绍",articalUrl: "https://mp.weixin.qq.com/s/5pGARwuOvEFby16pw5UvJw"}}};
+          if (!data || !data.data || data.statusCode !== 200) data = { 
+            data: { 
+              Message: "Yes", 
+              initData: { articalName: "山科小站全功能介绍", articalUrl: "https://mp.weixin.qq.com/s/5pGARwuOvEFby16pw5UvJw" } 
+            } 
+          };
           app.globalData.loginStatus = data.data.Message;
           app.globalData.initData = data.data.initData;
           if (data.data.Message === "Ex") app.globalData.userFlag = 1;
@@ -259,9 +256,11 @@ function onLunch() {
             console.log("Get Openid From Cache");
             app.globalData.openid = wx.getStorageSync("openid") || "";
           }
+        },
+        complete: (data) => {
           app.eventBus.commit('LoginEvent', data);
         }
-      })
+      }, app)
     }
-  },app)
+  })
 }

@@ -8,7 +8,6 @@ const publicMethod = require('../../../vector/publicMethod.js');
 var tableLoadFlag = true;
 var eventLoadFlag = true;
 var bindSWLoadFlag = true;
-var articalLoadFlag = true;
 
 Page({
 
@@ -54,13 +53,10 @@ Page({
     }
   },
   getArtical(){
-    if (articalLoadFlag){
-      articalLoadFlag = false;
-      if (app.globalData.initData.articalName)
-      this.setData({
-        artical: app.globalData.initData.articalName
-      })
-    }
+    if (app.globalData.initData.articalName)
+    this.setData({
+      artical: app.globalData.initData.articalName
+    })
   },
   /**
    * 课表处理

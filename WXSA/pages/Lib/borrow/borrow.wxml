@@ -1,14 +1,14 @@
 <title innerText="借阅信息"></title>
 <view wx:for="{{data}}" wx:key="{{index}}">
   <view class="card">
-    <view class="info">{{item[0]}}</view>
-    <view class="info">{{item[1]}}</view>
-    <view class="info">{{item[2]}}</view>
-    <view class="info">{{item[3]}}</view>
-    <view class="info">{{item[4]}}</view>
-    <view class="info">{{item[5]}}</view>
-    <view class="info">{{item[6]}}</view>
-    <view class="info">{{item[7]}}</view>
+    <rich-text nodes="{{item[0]}}" class="info strong"></rich-text>
+    <rich-text nodes="{{item[1]}}" class="info"></rich-text>
+    <rich-text nodes="{{item[2]}}" class="info"></rich-text>
+    <rich-text nodes="{{item[3]}}" class="info"></rich-text>
+    <rich-text nodes="{{item[4]}}" class="info"></rich-text>
+    <rich-text nodes="{{item[5]}}" class="info"></rich-text>
+    <rich-text nodes="{{item[6]}}" class="info"></rich-text>
+    <rich-text nodes="{{item[7]}}" class="info"></rich-text>
   </view>
 </view>
 

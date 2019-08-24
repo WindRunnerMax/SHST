@@ -40,7 +40,7 @@ Page({
             var infoArrInner = [];
             infoArrInner.push(value.match(/<h3>.*?<\/h3>/)[0].replace(/[<h3>]|[<\/h3>]/g,""));
             value.match(/<p.*?>[\s\S]*?<\/p>/g).forEach(value2 => {
-              infoArrInner.push(value2.replace(/[<.*?p.*?>]|[<\/p.*?>]/g,""));
+              infoArrInner.push(value2);
             })
             infoArr.push(infoArrInner);
           })

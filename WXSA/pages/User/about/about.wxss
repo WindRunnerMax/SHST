@@ -57,3 +57,11 @@ button:hover{
   background: #fff;
   color: #000;
 }
+
+.Avatar{
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  align-self: center;
+  margin-right: 3px;
+}

@@ -22,7 +22,9 @@
     <view style='display:flex;'>
       <view>联系开发者</view>
     </view>
-    <view class='link' data-copy='651525974' bindtap='copy'>651525974</view>
+    <view class='link' data-copy='651525974' bindtap='copy' style='display: flex;'>
+      <view>651525974</view>
+    </view>
   </view>
 
   <view class='unitInfo'>

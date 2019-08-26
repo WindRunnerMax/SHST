@@ -94,3 +94,8 @@ page{
   font-size: 10px;
   width:calc(100% / 7);
 }
+
+.adAdapt{
+  box-sizing: border-box;
+  padding: 5px;
+}

@@ -8,7 +8,8 @@ Page({
   data: {
     next : '>',
     pre : '<',
-    week: app.globalData.curWeek
+    week: app.globalData.curWeek,
+    ad: 1
   },
   onLoad: function (e) {
     var urlTemp = "";
@@ -52,5 +53,10 @@ Page({
   next(e){
     var week = parseInt(e.currentTarget.dataset.week) + 1;
     this.onLoad(week);
-  }
+  },
+  adError(e) {
+    this.setData({
+      ad: 0
+    })
+  },
 })

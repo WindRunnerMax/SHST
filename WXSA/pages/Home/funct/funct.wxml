@@ -85,5 +85,5 @@
 
 <view class='blockCon' wx:if="{{adShow === 1}}">
   <view class='lineCon'></view>
-  <ad unit-id="adunit-ce81890e6ff0b2a7" binderror="adError"></ad>
+  <ad unit-id="adunit-b82100ae7bddf4ad" binderror="adError"></ad>
 </view>

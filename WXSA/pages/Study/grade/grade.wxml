@@ -27,4 +27,5 @@
       </view>
     </view>
   </view>
+  <ad unit-id="adunit-31c347091893cf0c" class='adAdapt' wx:if="{{ad}}" binderror="adError"></ad>
 </view>

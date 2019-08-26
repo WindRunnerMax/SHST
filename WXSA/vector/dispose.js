@@ -224,6 +224,12 @@ function ajax(requestInfo , app = getApp()) {
 function onLunch() {
   var app = this;
   app.eventBus = eventBus.getEventBus;
+  var defaultData = {
+    data: {
+      Message: "Yes",
+      initData: { articalName: "山科小站全功能介绍", articalUrl: "https://mp.weixin.qq.com/s/5pGARwuOvEFby16pw5UvJw" }
+    }
+  };
   wx.login({
     success: res => {
       ajax({
@@ -236,12 +242,7 @@ function onLunch() {
         },
         success: (data) => {
           setCookie(data, app);
-          if (!data || !data.data || data.statusCode !== 200) data = { 
-            data: { 
-              Message: "Yes", 
-              initData: { articalName: "山科小站全功能介绍", articalUrl: "https://mp.weixin.qq.com/s/5pGARwuOvEFby16pw5UvJw" } 
-            } 
-          };
+          if (!data || !data.data || data.statusCode !== 200) data = defaultData;
           app.globalData.loginStatus = data.data.Message;
           app.globalData.initData = data.data.initData;
           if (data.data.Message === "Ex") app.globalData.userFlag = 1;
@@ -258,6 +259,7 @@ function onLunch() {
           }
         },
         complete: (data) => {
+          if (!data || !data.data || data.statusCode !== 200) data = defaultData;
           app.eventBus.commit('LoginEvent', data);
         }
       }, app)

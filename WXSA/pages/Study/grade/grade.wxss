@@ -60,3 +60,8 @@ page{
 .card view{
   margin: 5px;
 }
+
+.adAdapt{
+  box-sizing: border-box;
+  margin-top: 10px;
+}

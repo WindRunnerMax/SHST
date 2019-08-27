@@ -3,6 +3,15 @@
   <view style='font-size:20px;'>Changelog</view>
   <view data-copy='https://github.com/WindrunnerMax/SW' class='url' bindtap='copy'>https://github.com/WindrunnerMax/SW</view>
 
+  <view class='unitChange'>
+    <view class='title'>2.9.3 (2019-08-26) [d7c93b0]</view>
+    <view>1. 修复图书馆借阅超期显示问题</view>
+  </view>
+
+  <view class='unitChange'>
+    <view class='title'>2.9.2 (2019-08-20) [808fc0f]</view>
+    <view>1. 小程序接入公众号</view>
+  </view>
 
   <view class='unitChange'>
     <view class='title'>2.9.1 (2019-08-16) [166793e]</view>

@@ -22,3 +22,8 @@ page{
 .tipsCon view{
   margin: 10px 0;
 }
+
+.rewardList{
+  margin-top: 30px;
+  font-size: 17px;
+}

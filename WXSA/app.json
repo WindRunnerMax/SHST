@@ -28,7 +28,8 @@
     "pages/User/About/about",
     "pages/User/Update/update",
     "pages/User/Announce/announce",
-    "pages/User/Reward/reward"
+    "pages/User/Reward/reward",
+    "pages/User/Reward/rewardList"
   ],
   "tabBar": {
     "color": "#aaa",

@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -102,6 +102,14 @@
 					"id": -1,
 					"name": "WebView",
 					"pathName": "pages/Home/Webview/webview",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 9,
+					"name": "赞赏记录",
+					"pathName": "pages/User/Reward/rewardList",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -110,6 +110,12 @@
 					"name": "赞赏记录",
 					"pathName": "pages/User/Reward/rewardList",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "课表",
+					"pathName": "pages/Study/TimeTable/timeTable",
 					"scene": null
 				}
 			]

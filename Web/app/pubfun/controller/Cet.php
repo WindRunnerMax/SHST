@@ -11,7 +11,7 @@ class Cet
         $record['history'] = 11;
         $record['update_time'] = date("Y-m-d H:i:s",time());
         Db::table("wx_pub") -> where("openid",$msg->FromUserName) -> update($record);
-        return ReturnMessage::text($msg,"四六级准考证号找回功能\n小站将向您发送一个验证码，请按照以下格式向我发送您的信息\n姓名\n身份证号\n验证码\n===================\n例如：\n风\n311111111111111111\nabcd\n===================\n发送‘我知道了’获取验证码\n若验证码不清晰请发送‘刷新’\n退出查询回复‘退出’\n本次会话有效期30分钟\n\n<a href='https://mp.weixin.qq.com/s/NqflEYYDtUiXEvuDa7axmg'>点我查看详细教程</a>\n\n");
+        return ReturnMessage::text($msg,"四六级准考证号找回功能(山东省)\n小站将向您发送一个验证码，请按照以下格式向我发送您的信息\n姓名\n身份证号\n验证码\n===================\n例如：\n风\n311111111111111111\nabcd\n===================\n发送‘我知道了’获取验证码\n若验证码不清晰请发送‘刷新’\n退出查询回复‘退出’\n本次会话有效期30分钟\n\n<a href='https://mp.weixin.qq.com/s/NqflEYYDtUiXEvuDa7axmg'>点我查看详细教程</a>\n\n");
     }
 
     public static function msgDispose($msg,$status){
@@ -26,7 +26,7 @@ class Cet
     public static function getImg($msg){
         $headers = Conf::getNormalHeader();
         $getCookie = Http::curlHTTP([
-            'url' => 'http://cet.etest.net.cn/Home/QuickPrintTestTicket',
+            'url' => 'http://cet-bm.neea.edu.cn/Home/QuickPrintTestTicket',
             'headers' => $headers,
             'cookieFlag' => true,
             'stopNext' => true,
@@ -34,7 +34,7 @@ class Cet
         ]);
         $headers['Cookie'] = $getCookie[0]['Set-Cookie'];
         $imgInfo = Http::curlHTTP([
-            'url' => 'http://cet.etest.net.cn/Home/VerifyCodeImg',
+            'url' => 'http://cet-bm.neea.edu.cn/Home/VerifyCodeImg',
             'headers' => $headers,
             'cookieFlag' => true,
             'stopNext' => true,
@@ -64,12 +64,12 @@ class Cet
 
     public static function getCetInfo($msg){
         $data =  explode("\n", $msg->Content);
-        if(count($data) !== 3) return ReturnMessage::text($msg,"数据有误");
+        if(count($data) !== 3) return ReturnMessage::text($msg,"数据格式有误\n===============\n请检查数据格式 :\n姓名\n身份证号\n验证码");
         $headers = Conf::getNormalHeader();
         $exist = Db::table("wx_pub") -> where("openid",$msg->FromUserName) -> find();
         $headers['Cookie'] = str_replace("\r", "", $exist['cookies']);
         $userInfo = Http::curlHTTP([
-            'url' => 'http://cet.etest.net.cn/Home/ToQuickPrintTestTicket',
+            'url' => 'http://cet-bm.neea.edu.cn/Home/ToQuickPrintTestTicket',
             'method' => 'POST',
             'data' => ['provinceCode' => "37" ,
             "IDTypeCode" => "1",
@@ -82,7 +82,7 @@ class Cet
             'penetrate' => false
         ]);
         $userInfo = json_decode($userInfo,true);
-        if($userInfo['ExceuteResultType'] !== 1) return ReturnMessage::text($msg,$userInfo['Message']);
+        if($userInfo['ExceuteResultType'] !== 1) return ReturnMessage::text($msg,$userInfo['Message']."\n==================\n1.请检查验证码\n2.请检查姓名与身份证号(18位)是否正确\n3.请确定您是山东地区考生");
         $userInfo = json_decode($userInfo['Message'],true);
         $info = Http::curlHTTP([
             'url' => 'http://106.12.90.18:8765/api/pdf/',

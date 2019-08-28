@@ -27,10 +27,10 @@ class Lib extends Controller
         $page = -1;
         $q = "";
         $info = "";
-        if (isset($_GET['q'])) {
+        if (isset($_GET['q'])) { 
             $q = $_GET['q'];
             $params = array(
-                "q" => $_GET['q'],
+                "q" => str_replace(" ", "", $_GET['q']),
                 "searchType" => "standard",
                 "isFacet" => "true",
                 "view" => "standard",

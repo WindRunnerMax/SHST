@@ -1,3 +1,5 @@
+@import "../../../vector/icon/iconfont.wxss";
+
 page{
   width: 100%;
   line-height: 18px;
@@ -8,6 +10,7 @@ page{
   display: flex;
   padding: 5px 10px;
   justify-content: space-between;
+  height: 35px;
 }
 
 .week{
@@ -17,10 +20,14 @@ page{
 
 
 
-.pre,.next{
+.pre,.next,.refresh{
+  height: 100%;
   margin-left: 10px;
-  padding: 5px 20px;
   align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 37px;
 }
 
 
@@ -98,4 +105,8 @@ page{
 .adAdapt{
   box-sizing: border-box;
   padding: 5px;
+}
+
+.operate{
+  align-self: center;
 }

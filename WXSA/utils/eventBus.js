@@ -39,7 +39,7 @@ PubSub.prototype={
     const args = Array.prototype.slice.call(arguments, 1)
     this.handlers[key].forEach(handler => {
       // 防止this指向乱掉
-      handler.apply(this, args);
+      try{ handler.apply(this, args); } catch(e){console.warn(e);}
     });
     return true;
   }

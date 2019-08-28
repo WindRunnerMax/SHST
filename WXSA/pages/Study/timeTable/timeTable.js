@@ -3,7 +3,6 @@
 const app = getApp()
 const publicMethod = require('../../../vector/publicMethod.js');
 
-
 Page({
   data: {
     next : '>',
@@ -11,7 +10,30 @@ Page({
     week: app.globalData.curWeek,
     ad: 1
   },
-  onLoad: function (e) {
+  onLoad(e){
+    this.getCache(app.globalData.curWeek);
+  },
+  getCache: function(e){
+    var that = this;
+    var tableCache = wx.getStorageSync('table') || { classTable: [] };
+    if (tableCache.term !== app.globalData.curTerm) {
+      wx.setStorage({ key: "table", data: {term: app.globalData.curTerm, classTable: []}});
+      this.getRemote(e);
+    } else {
+      if (tableCache.classTable && tableCache.classTable[e]) {
+        console.log("GET TABLE FROM CACHE WEEK " + e);
+        var tableCache = publicMethod.tableDispose(tableCache.classTable[e]);
+        that.setData({
+          table: tableCache,
+          week: e
+        })
+      }else{
+        this.getRemote(e);
+      }
+    }
+  },
+  getRemote: function (e) {
+    var that = this;
     var urlTemp = "";
     if (typeof (e) === "number") urlTemp += ("/" + e);
     var that = this;
@@ -23,22 +45,16 @@ Page({
         term: app.globalData.curTerm
       },
       fun: function (res) {
-        if (res.data.Message === "Yes" && app.globalData.curWeek === parseInt(res.data.week)) {
-          console.log("Storage");
-          wx.setStorage({
-            key: 'table',
-            data: {
-              week: app.globalData.curWeek,
-              table: res.data.data
-            }
-          })
-        }
-        res.data.data = publicMethod.tableDispose(res.data.data);
         if (res.data.Message === "Yes") {
+          console.log("GET TABLE FROM REMOTE WEEK " + e);
+          var showTableArr = publicMethod.tableDispose(res.data.data);
           that.setData({
-            table: res.data.data,
+            table: showTableArr,
             week:res.data.week
           })
+          var tableCache = wx.getStorageSync('table') || {term: app.globalData.curTerm, classTable: []};
+          tableCache.classTable[e] = res.data.data;
+          wx.setStorage({ key: 'table', data: tableCache })
         } else {
           app.toast("数据拉取失败");
         }
@@ -48,15 +64,19 @@ Page({
   pre(e){
     if (e.target.dataset.week <= 1) return ;
     var week = parseInt(e.currentTarget.dataset.week) - 1;
-    this.onLoad(week);
+    this.getCache(week);
   },
   next(e){
     var week = parseInt(e.currentTarget.dataset.week) + 1;
-    this.onLoad(week);
+    this.getCache(week);
   },
   adError(e) {
     this.setData({
       ad: 0
     })
   },
+  refresh(e){
+    var week = parseInt(e.currentTarget.dataset.week);
+    this.getRemote(week);    
+  }
 })

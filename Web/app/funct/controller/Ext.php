@@ -25,4 +25,9 @@ class Ext extends Controller
         $data = Db::table("announce_info") -> field("announce") -> where("is_show",1) -> select();
         return ['info' => $data];
     }
+
+    public function rewardList(){
+        $data = Db::table("reward_info") -> field("name,amount,reward_time") -> select();
+        return ['info' => $data];
+    }
 }

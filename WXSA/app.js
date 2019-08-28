@@ -11,7 +11,7 @@ App({
     },
     openid: "",
     colorList: dispose.colorList,
-    version: "2.9.6",
+    version: "3.0.0",
     tips: "1",
     curTerm: "2019-2020-1",
     curTermStart: "2019-08-26"

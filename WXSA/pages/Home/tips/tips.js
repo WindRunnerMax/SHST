@@ -65,15 +65,17 @@ Page({
   getCacheTable() {
     var that = this;
     tableLoadFlag = true;
-    var cacheTable = wx.getStorageSync('table') || "";
-    if (cacheTable !== "") {
-      if (app.globalData.curWeek === cacheTable.week) {
-        console.log("GET TABLE FROM CACHE");
+    var tableCache = wx.getStorageSync('table') || { classTable: [] };
+    if (tableCache.term !== app.globalData.curTerm) {
+      wx.setStorage({ key: "table", data: {term: app.globalData.curTerm, classTable: []}});
+    } else {
+      if (tableCache.classTable && tableCache.classTable[app.globalData.curWeek]) {
         tableLoadFlag = false;
-        cacheTable.table = publicMethod.tableDispose(cacheTable.table, 1);
+        console.log("GET TABLE FROM CACHE");
+        var cacheTable = publicMethod.tableDispose(tableCache.classTable[app.globalData.curWeek], 1);
         that.setData({
-          table: cacheTable.table ? cacheTable.table : [],
-          tips: cacheTable.table ? "" : "No Class Today"
+          table: cacheTable ? cacheTable : [],
+          tips: cacheTable ? "" : "No Class Today"
         })
       }
     }
@@ -91,20 +93,14 @@ Page({
         },
         fun: function (res) {
           if (res.data.Message === "Yes") {
-            wx.setStorage({
-              key: 'table',
-              data: {
-                week: app.globalData.curWeek,
-                table: res.data.data
-              }
-            })
-          }
-          res.data.data = publicMethod.tableDispose(res.data.data, 1);
-          if (res.data.Message === "Yes") {
+            var showTableArr = publicMethod.tableDispose(res.data.data, 1);
             that.setData({
-              table: res.data.data ? res.data.data : [],
-              tips: res.data.data ? "" : "No Class Today"
+              table: showTableArr ? showTableArr : [],
+              tips: showTableArr ? "" : "No Class Today"
             })
+            var tableCache = wx.getStorageSync('table') || { term: app.globalData.curTerm, classTable: [] };
+            tableCache.classTable[app.globalData.curWeek] = res.data.data;
+            wx.setStorage({ key: 'table', data: tableCache })
           } else {
             app.toast("ERROR");
             that.setData({

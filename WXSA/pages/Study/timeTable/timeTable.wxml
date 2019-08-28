@@ -2,8 +2,15 @@
 <view class='tableTop'>
   <view class='week'>第{{week}}周</view>
   <view style='display:flex;'>
-    <view class='asse-btn asse-btn-white asse-btn-mini pre' data-week='{{week}}' bindtap='pre'>{{pre}}</view>
-    <view class='asse-btn asse-btn-white asse-btn-mini next' data-week='{{week}}' bindtap='next'>{{next}}</view>
+    <view class='asse-btn asse-btn-white asse-btn-mini refresh' data-week='{{week}}' bindtap='refresh'>
+      <view class='operate iconfont icon-shuaxin'></view>
+    </view>
+    <view class='asse-btn asse-btn-white asse-btn-mini pre' style='font-size: 14px;' data-week='{{week}}' bindtap='pre'>
+      <view class='operate'>{{pre}}</view>
+    </view>
+    <view class='asse-btn asse-btn-white asse-btn-mini next' style='font-size: 14px;' data-week='{{week}}' bindtap='next'>
+      <view class='operate'>{{next}}</view>
+    </view>
   </view>
 </view>
 <view class="asse-hr timetablehr"></view>

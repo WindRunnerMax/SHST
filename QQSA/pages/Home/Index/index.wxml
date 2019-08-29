@@ -34,7 +34,7 @@
     </view>
   </view>
 </view>
-<view class="weui-footer">
+<view class="weui-footer" style='margin-bottom: 10px;'>
   <view class="weui-footer__text flexFooter">
     <button open-type='share'>分享</button>
     <view style='margin:0 5px;'>|</view>

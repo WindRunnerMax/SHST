@@ -53,7 +53,7 @@ Page({
     }
   },
   getArtical(){
-    if (app.globalData.initData.articalName){
+    if (app.globalData.initData && app.globalData.initData.articalName){
       this.setData({
         artical: app.globalData.initData.articalName
       })
@@ -236,7 +236,7 @@ Page({
     } else return 0;
   },
   articalJump(){
-    if (app.globalData.initData.articalUrl){
+    if (app.globalData.initData && app.globalData.initData.articalUrl){
       var url = encodeURIComponent(app.globalData.initData.articalUrl);
       wx.navigateTo({
         url: '/pages/Home/Webview/webview?url=' + url

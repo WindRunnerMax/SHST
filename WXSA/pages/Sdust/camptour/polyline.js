@@ -1,5 +1,6 @@
 var app = getApp();
 var amapFile = require('../../../utils/amap-wx.js');
+let config = require('../../../vector/camptour/config.js');
 Page({
   data: {
     latitude: null,
@@ -62,7 +63,7 @@ Page({
     var _this = this;
     let distance = Math.abs(_this.data.longitude - options.longitude) + Math.abs(_this.data.latitude - options.latitude)
     console.log(distance);
-    var myAmapFun = new amapFile.AMapWX({ key: require('../../../vector/camptour/config.js').key });
+    var myAmapFun = new amapFile.AMapWX({ key: config.key });
     let routeData = {
       origin: options.longitude + ',' + options.latitude,
       destination: _this.data.longitude + ',' + _this.data.latitude,

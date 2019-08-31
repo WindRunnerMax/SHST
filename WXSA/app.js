@@ -2,19 +2,17 @@
 const dispose = require('/vector/dispose.js');
 App({
   globalData: {
+    tips: "1",
+    openid: "",
     userFlag: 2, // 0 未登录 1 已登陆 2 加载中
+    initData: {},
+    version: "3.0.1",
+    curTerm: "2019-2020-1",
+    curTermStart: "2019-08-26",
+    colorList: dispose.colorList,
     host: 'https://www.liyanzuishuai.top',
     url: 'https://www.liyanzuishuai.top/sdust/index.php/',
-    header: {
-      'Cookie': '',
-      'content-type': 'application/x-www-form-urlencoded'
-    },
-    openid: "",
-    colorList: dispose.colorList,
-    version: "3.0.0",
-    tips: "1",
-    curTerm: "2019-2020-1",
-    curTermStart: "2019-08-26"
+    header: {'Cookie': '','content-type': 'application/x-www-form-urlencoded'}
   },
   extend: dispose.extend,
   onPageNotFound(res) { //处理404

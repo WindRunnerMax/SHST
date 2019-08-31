@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.0",
+	"libVersion": "2.8.1",
 	"appid": "wx387c0e87230e4cc9",
 	"projectname": "SDUST",
 	"debugOptions": {
@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 11,
 			"list": [
 				{
 					"id": -1,
@@ -116,6 +116,13 @@
 					"id": -1,
 					"name": "课表",
 					"pathName": "pages/Study/TimeTable/timeTable",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "校园导览",
+					"pathName": "pages/Sdust/Camptour/index",
 					"scene": null
 				}
 			]

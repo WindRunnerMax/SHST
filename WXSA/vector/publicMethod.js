@@ -10,7 +10,8 @@ module.exports = {
  */
 function tableDispose(info, flag = 0) {
   var tableArr = [];
-  const week = new Date().getDay() - 1;
+  var week = new Date().getDay() - 1;
+  if(week === -1) week = 6;
   info.forEach(value => {
     if (!value) return;
     var arrInner = [];

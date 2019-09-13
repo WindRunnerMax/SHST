@@ -11,7 +11,7 @@ App({
       'content-type': 'application/x-www-form-urlencoded'
     },
     openid: "",
-    version: "1.1.1",
+    version: "1.1.2",
     canSend : "false" 
   },
   extend: dispose.extend,

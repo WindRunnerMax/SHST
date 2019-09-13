@@ -16,7 +16,7 @@
     "pages/Sdust/Canlendar/calendar",
     "pages/Sdust/Vacation/vacation",
     "pages/Sdust/Map/map",
-	  "pages/Sdust/Camptour/index",
+    "pages/Sdust/Camptour/index",
     "pages/Sdust/Camptour/details",
     "pages/Sdust/Camptour/polyline",
     "pages/Sdust/Camptour/search",
@@ -72,5 +72,6 @@
   },
   "navigateToMiniProgramAppIdList": [
     "wxa53da62a53aaddea"
-  ]
+  ],
+  "sitemapLocation": "sitemap.json"
 }

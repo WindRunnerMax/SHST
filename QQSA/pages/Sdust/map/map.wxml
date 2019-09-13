@@ -4,7 +4,7 @@
 </view>
 
 <view style='position: relative;'>
-  <image src="https://7364-sdust-9daa7f-1259631977.tcb.qcloud.la/Map.jpg?sign=7d11ec06625de7b79146b9623930daaa&t=1564501530" data-viewImgUrl="http://wx4.sinaimg.cn/large/007U8ryUly1g5h4dl25bvj318g0u0b29.jpg"
+  <image src="https://windrunner_max.gitee.io/imgpath/SDUST/VVDT5q.jpg" data-viewImgUrl="http://wx4.sinaimg.cn/large/007U8ryUly1g5h4dl25bvj318g0u0b29.jpg"
     bindtap='viewImg' class='sdustMap' mode="widthFix"></image>
   <view class='ImgFrom'>山东科技大学新闻媒体部制</view>
 </view>

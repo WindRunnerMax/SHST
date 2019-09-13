@@ -1,7 +1,7 @@
 {
-  "pages":[
+  "pages": [
     "pages/Home/Index/index",
-	  "pages/Home/NotFound/notfound",
+    "pages/Home/NotFound/notfound",
     "pages/Home/InterWork/interwork",
     "pages/User/About/about",
     "pages/NewStu/AntiFraud/antifraud",
@@ -24,9 +24,8 @@
     "pages/Life/Traffic/traffic",
     "pages/Life/Getup/getup",
     "pages/Life/Express/express"
-
   ],
-  "window":{
+  "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "山科小站",
     "navigationBarBackgroundColor": "#fff",
@@ -39,6 +38,7 @@
   },
   "usingComponents": {
     "title": "/Components/title/title",
-    "info":"/Components/info/info"
-  }
+    "info": "/Components/info/info"
+  },
+  "sitemapLocation": "sitemap.json"
 }

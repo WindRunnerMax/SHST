@@ -2,6 +2,7 @@
 namespace app\funct\controller;
 use think\Controller;
 use think\Db;
+use think\Log;
 use app\auxiliary\Http;
 use app\auxiliary\Conf;
 

@@ -36,9 +36,6 @@ Page({
     })
   },
   logout(e) {
-    wx.removeStorageSync('userInfo');
-    wx.removeStorageSync('table');
-    wx.removeStorageSync('event');
     wx.navigateTo({
       url: '/pages/Home/Login/login?status=E'
     })

@@ -10,29 +10,12 @@ Page({
     status: "",
     hidePassword: true
   },
-  accountInput: function (e) {
-    this.data.account = e.detail.value;
-    // this.setData({
-    //   account: e.detail.value
-    // })
-  },
-  passwordInput: function (e) {
-    this.data.password = e.detail.value;
-    // this.setData({
-    //   password: e.detail.value
-    // })
-  },
   enter: function (e) {
     this.data.account = e.detail.value.account;
     this.data.password = e.detail.value.password;
     var that = this;
     if (this.data.account.length == 0 || this.data.password.length == 0) {
       app.toast("用户名和密码不能为空");
-    // } else if (this.data.password === this.data.account){
-    //   app.toast("用户名与密码不允许相同 请于强智教务系统修改密码后使用");
-    //   that.setData({
-    //     status: "用户名与密码不允许相同，请于强智教务系统修改密码后使用"
-    //   })
     } else {
       app.ajax({
         load: 3,
@@ -95,6 +78,9 @@ Page({
 
       }
     })
+    wx.removeStorage('userInfo');
+    wx.removeStorage('table');
+    wx.removeStorage('event');
   },
   switchChange(e) {
     this.setData({

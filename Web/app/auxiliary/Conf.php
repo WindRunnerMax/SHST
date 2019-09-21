@@ -68,6 +68,6 @@ class Conf
     }
 
     public static function getWechatAppTips(){
-        return 6;
+        return 9;
     }
 }

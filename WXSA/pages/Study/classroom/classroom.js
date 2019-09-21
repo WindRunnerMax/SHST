@@ -110,11 +110,13 @@ Page({
     return queryDataArr;
   },
   bindPickerChange(e) {
-    var that = this;
-    this.data.index = e.detail.value;
-    this.data.searchData = that.data.queryData[e.detail.value[0]][0];
-    this.data.searchTime = that.data.queryTime[e.detail.value[1]][1]
-    this.data.searchFloor = that.data.queryFloor[e.detail.value[2]][1]
+    try{
+      var that = this;
+      this.data.index = e.detail.value;
+      this.data.searchData = that.data.queryData[e.detail.value[0]][0];
+      this.data.searchTime = that.data.queryTime[e.detail.value[1]][1];
+      this.data.searchFloor = that.data.queryFloor[e.detail.value[2]][1];
+    }catch(err){}
   },
   resetInfo() {
     this.setData({

@@ -203,7 +203,7 @@ page {
 }
 
 .icon {
-  margin: 0 5px;
+  padding: 0 5px;
   align-self: flex-end;
   color: #aaa;
 }
@@ -221,4 +221,11 @@ button {
   font-size: 13px;
   color: #888;
   line-height: unset;
+}
+
+.refresh{
+  font-weight: bold;
+  font-size: 13px;
+  padding-bottom: 1px;
+  padding-right: 8px;
 }

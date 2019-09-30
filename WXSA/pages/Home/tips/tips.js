@@ -80,12 +80,12 @@ Page({
       }
     }
   },
-  getRemoteTable() {
+  getRemoteTable(load = 1) {
     var that = this;
     if (app.globalData.userFlag === 1 && tableLoadFlag) {
       console.log("GET TABLE FROM REMOTE");
       app.ajax({
-        load: 1,
+        load: load,
         url: app.globalData.url + 'funct/sw/signalTable',
         data: {
           week: app.globalData.curWeek,
@@ -110,6 +110,10 @@ Page({
         }
       })
     }
+  }, 
+  getRemoteTableForce(){
+    tableLoadFlag = true;
+    this.getRemoteTable(2);
   },
 
   /**

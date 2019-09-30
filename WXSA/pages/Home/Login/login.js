@@ -78,9 +78,9 @@ Page({
 
       }
     })
-    wx.removeStorage('userInfo');
-    wx.removeStorage('table');
-    wx.removeStorage('event');
+    wx.removeStorage({ key: 'userInfo' })
+    wx.removeStorage({ key: 'table' })
+    wx.removeStorage({ key: 'event' })
   },
   switchChange(e) {
     this.setData({

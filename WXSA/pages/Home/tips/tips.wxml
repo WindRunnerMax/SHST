@@ -35,6 +35,7 @@
     <view>今日课程</view>
   </view>
   <view style='display: flex;'>
+    <view class='iconfont icon-shuaxin icon refresh' bindtap='getRemoteTableForce'></view>
     <navigator url="/pages/User/Announce/announce" open-type="navigate" class='iconfont icon-gonggao icon'></navigator>
     <button open-type='share' class='iconfont icon-fenxiang icon btn'></button>
   </view>

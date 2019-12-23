@@ -1,1 +1,0 @@
-<view><list vue-id="1" title="上课时间" info="{{classData}}" bind:__l="__l"></list><list vue-id="2" title="作息时间" info="{{sleepData}}" bind:__l="__l"></list></view>

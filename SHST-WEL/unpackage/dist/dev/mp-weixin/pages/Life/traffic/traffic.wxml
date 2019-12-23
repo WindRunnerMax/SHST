@@ -1,1 +1,0 @@
-<view><list vue-id="1" title="来校路线" info="{{data}}" bind:__l="__l"></list></view>

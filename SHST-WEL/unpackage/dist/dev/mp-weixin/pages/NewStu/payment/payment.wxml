@@ -1,1 +1,0 @@
-<view><list vue-id="1" title="常用缴费" info="{{data}}" bind:__l="__l"></list></view>

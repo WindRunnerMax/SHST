@@ -1,1 +1,0 @@
-<view><list vue-id="1" title="军训注意事项" info="{{data}}" bind:__l="__l"></list><list vue-id="2" title="军训温馨提示" info="{{data2}}" bind:__l="__l"></list></view>

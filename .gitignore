@@ -1,15 +1,1 @@
-SDUST.sql
-Web/app/config.php
-Web/app/database.php
-Web/app/backstage
-Web/app/auxiliary/Http.php
-WXSA/vector/camptour/config.js
-QQSA/vector/camptour/config.js
-Web/app/funct/controller/Card.php
-Web/app/funct/controller/User.php
-Web/app/qfunct/controller/User.php
-Web/app/pubfun/controller/Token.php
-Web/app/qfunct/controller/Message.php
-Web/app/pubfun/controller/Message.php
-WXSA/vector/camptour/resources/sdust.js
-QQSA/vector/camptour/resources/sdust.js
+Server

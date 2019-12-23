@@ -1,0 +1,1 @@
+<view><view class="status">404</view><view class="status">NOT</view><view class="status">FOUND</view><navigator class="index" style="padding:5px 0;" url="/pages/Home/Index/index" open-type="reLaunch">返回首页</navigator></view>

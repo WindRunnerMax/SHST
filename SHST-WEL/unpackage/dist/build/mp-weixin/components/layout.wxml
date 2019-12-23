@@ -1,0 +1,1 @@
+<view><view hidden="{{!(title)}}" class="line"><view class="left" style="{{'background-color:'+(color)+';'}}"></view><view class="right">{{title}}</view></view><view class="card"><slot></slot></view></view>

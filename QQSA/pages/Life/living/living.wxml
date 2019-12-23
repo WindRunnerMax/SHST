@@ -1,6 +1,0 @@
-<title innerText="宿舍相关"></title>
-<info innerArray="{{data}}"></info>
-<title innerText="上床下桌"></title>
-<image mode="widthFix" style='width:100%;' src='https://windrunner_max.gitee.io/imgpath/SDUST/MMRoom.png' ></image>
-<title innerText="普通上下铺"></title>
-<image mode="widthFix" style='width:100%;' src='https://windrunner_max.gitee.io/imgpath/SDUST/GGRoom.png' ></image>

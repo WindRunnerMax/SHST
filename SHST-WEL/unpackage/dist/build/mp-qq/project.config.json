@@ -1,0 +1,33 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"es6": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"projectname": "%E5%B1%B1%E7%A7%91%E5%B0%8F%E7%AB%99%E8%BF%8E%E6%96%B0%E4%B8%93%E7%89%88",
+	"qqappid": "1110074303",
+	"qqLibVersion": "1.6.3",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": []
+		}
+	}
+}

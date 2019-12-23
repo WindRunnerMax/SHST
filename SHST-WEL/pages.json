@@ -1,0 +1,101 @@
+{
+	"pages": [{
+			"path": "pages/Home/Index/index",
+			"style": {}
+		}
+        ,{
+            "path" : "pages/Home/NotFound/NotFound",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Life/canteen/canteen",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Life/computer/computer",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Life/express/express",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Life/getup/getup",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Life/living/living",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Life/medical/medical",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Life/network/network",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Life/power/power",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Life/shower/shower",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Life/traffic/traffic",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/NewStu/antifraud/antifraud",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/NewStu/miltrain/miltrain",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/NewStu/payment/payment",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Sdust/calendar/calendar",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Sdust/map/map",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Sdust/vacation/vacation",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Study/league/league",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Study/link/link",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Study/major/major",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Study/time/time",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/User/about/about",
+            "style" : {}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "山科小站迎新",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}

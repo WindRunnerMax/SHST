@@ -1,0 +1,51 @@
+
+.selectCon {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	padding: 10px;
+}
+.m2,
+.m1,
+.week {
+	text-align: center;
+	padding: 15px 0;
+}
+.today {
+	border-radius: 15px;
+	color: #fff !important;
+	background: #79B2F9;
+}
+.vacation {
+	color: red;
+}
+.weekGroup {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	font-size: 13px;
+}
+.weekUnit {
+	text-align: center;
+	padding: 5px 0;
+	font-size: 12px;
+	width: 100%;
+}
+.timetablehr {
+	margin: 3px 0;
+}
+.strong {
+	color: rgb(0, 115, 255);
+}
+.line{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.week{
+  color: rgb(12, 114, 240);
+}
+

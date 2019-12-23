@@ -1,0 +1,22 @@
+
+.line {
+	background-color: #FFFFFF;
+	padding: 10px 5px;
+	box-sizing: border-box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	border-bottom: 1px solid #EEEEEE;
+}
+.line .left {
+	width: 2px;
+	margin: 2px 5px;
+}
+.card {
+	font-size: 13px;
+	background-color: #FFFFFF;
+	padding: 11px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+

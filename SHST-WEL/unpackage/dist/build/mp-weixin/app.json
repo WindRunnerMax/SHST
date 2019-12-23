@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/Home/Index/index",
+    "pages/Home/NotFound/NotFound",
+    "pages/Life/canteen/canteen",
+    "pages/Life/computer/computer",
+    "pages/Life/express/express",
+    "pages/Life/getup/getup",
+    "pages/Life/living/living",
+    "pages/Life/medical/medical",
+    "pages/Life/network/network",
+    "pages/Life/power/power",
+    "pages/Life/shower/shower",
+    "pages/Life/traffic/traffic",
+    "pages/NewStu/antifraud/antifraud",
+    "pages/NewStu/miltrain/miltrain",
+    "pages/NewStu/payment/payment",
+    "pages/Sdust/calendar/calendar",
+    "pages/Sdust/map/map",
+    "pages/Sdust/vacation/vacation",
+    "pages/Study/league/league",
+    "pages/Study/link/link",
+    "pages/Study/major/major",
+    "pages/Study/time/time",
+    "pages/User/about/about"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "山科小站迎新",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于嵙地图的定位功能"
+    }
+  },
+  "usingComponents": {
+    "list": "/components/list"
+  },
+  "sitemapLocation": "sitemap.json"
+}

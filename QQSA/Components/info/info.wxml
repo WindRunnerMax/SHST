@@ -1,5 +1,0 @@
-<view wx:for="{{innerArray}}" wx:key="{{index}}">
-  <view class='card'>
-    <text class='supple'>{{item}}</text>
-  </view>
-</view>

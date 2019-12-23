@@ -1,4 +1,0 @@
-<title innerText="上课时间"></title>
-<info innerArray="{{classData}}"></info>
-<title innerText="作息时间"></title>
-<info innerArray="{{sleepData}}"></info>

@@ -1,4 +1,0 @@
-<view class='lineCon'>
-  <view class='rowBlue'></view>
-  <view>{{innerText}}</view>
-</view>

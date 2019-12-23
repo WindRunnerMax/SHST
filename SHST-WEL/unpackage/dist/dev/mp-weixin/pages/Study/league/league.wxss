@@ -1,0 +1,27 @@
+
+.line {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.unit {
+	box-sizing: border-box;
+	width: 30%;
+	padding: 15px 5px;
+	text-align: center;
+	border-bottom: 1px solid #eee;
+	border-right: 1px solid #eee;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.wilimt {
+	width: 10%;
+}
+

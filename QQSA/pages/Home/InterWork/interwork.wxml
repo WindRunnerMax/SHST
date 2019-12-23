@@ -1,9 +1,0 @@
-<title innerText="山科小二服务号"></title>
-<image mode="widthFix"  src='https://windrunner_max.gitee.io/imgpath/SDUST/SHSO.png' ></image>
-<info innerArray="{{['山科小二服务号']}}" style='display:block;margin-bottom:20px;margin-top:0;'></info>
-
-
-<title innerText="山科小站"></title>
-<image mode="widthFix"  src='https://windrunner_max.gitee.io/imgpath/SDUST/SHST.png?' ></image>
-
-<info innerArray="{{['山科小站官方微信公众号']}}"></info>

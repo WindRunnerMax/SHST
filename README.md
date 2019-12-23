@@ -87,6 +87,6 @@ SW/QQSA 目录下为QQ小程序项目[山科小站--迎新专版]，提供校内
 
 ----  
   
-![show](https://github.com/WindrunnerMax/SW/blob/SDUST/Web/public/show1.jpg)
-![show](https://github.com/WindrunnerMax/SW/blob/SDUST/Web/public/show2.jpg)
+<!-- ![show](https://github.com/WindrunnerMax/SW/blob/SDUST/Web/public/show1.jpg)
+![show](https://github.com/WindrunnerMax/SW/blob/SDUST/Web/public/show2.jpg) -->
 

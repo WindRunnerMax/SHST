@@ -13,6 +13,7 @@ module.exports = {
  * 统一处理课表功能
  */
 function tableDispose(info, flag = 0) {
+	const app = getApp();
 	const colorList = app.globalData.colorList;
 	const colorN = app.globalData.colorList.length;
 	var tableArr = [];
@@ -25,8 +26,7 @@ function tableDispose(info, flag = 0) {
 		if (flag === 1 && day !== week) return;
 		var knot = parseInt(parseInt(value.kcsj.substr(1, 2)) / 2);
 		var md5Str = md5.hexMD5(value.kcmc);
-		var colorSignal = app.globalData.colorList[Math.abs((md5Str[0].charCodeAt() - md5Str[3].charCodeAt())) % app.globalData
-			.colorN];
+		var colorSignal = app.globalData.colorList[Math.abs((md5Str[0].charCodeAt() - md5Str[3].charCodeAt())) % app.globalData.colorN];
 		arrInner.push(day);
 		arrInner.push(knot);
 		arrInner.push(value.kcmc.split("（")[0]);
@@ -41,10 +41,11 @@ function tableDispose(info, flag = 0) {
 }
 
 function dataCalc(startDateString, endDateString, content) {
+	const app = getApp();
 	const colorList = app.globalData.colorList;
 	const colorN = app.globalData.colorList.length;
 	var color = colorList[md5.hexMD5(content)[0].charCodeAt() % colorN];
-	var diff = dataDiff(startDateString, endDateString);
+	var diff = util.dateDiff(startDateString, endDateString);
 	if (diff === 0) diff = "今";
 	else if (diff < 0) diff = "超期" + Math.abs(diff);
 	else diff = "距今" + Math.abs(diff);

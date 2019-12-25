@@ -4,11 +4,60 @@
 			"path": "pages/Home/tips/tips",
 			"style": {}
 		}
+        ,{
+            "path" : "pages/Home/auxiliary/webview",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/User/announce/announce",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Home/funct/funct",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Home/user/user",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Study/timeTable/timeTable",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Study/classroom/classroom",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "山科小站",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarBackgroundColor": "#F1F1F1",
 		"backgroundColor": "#F8F8F8"
-	}
+	},
+	"tabBar": {
+    "color": "#aaa",
+    "selectedColor": "#8A8A8A",
+    "backgroundColor": "#F7F7FA",
+    "list": [
+      {
+        "iconPath": "/static/img/index.png",
+        "selectedIconPath": "/static/img/index1.png",
+        "pagePath": "pages/Home/tips/tips",
+        "text": "首页"
+      },
+      {
+        "iconPath": "/static/img/fun.png",
+        "selectedIconPath": "/static/img/fun1.png",
+        "pagePath": "pages/Home/funct/funct",
+        "text": "功能"
+      },
+      {
+        "iconPath": "/static/img/user.png",
+        "selectedIconPath": "/static/img/user1.png",
+        "pagePath": "pages/Home/user/user",
+        "text": "用户"
+      }
+    ]
+  }
 }

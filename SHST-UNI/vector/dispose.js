@@ -223,7 +223,7 @@ function ajax(requestInfo , app = getApp()) {
  */
 function onLunch() {
   var app = this;
-  app.eventBus = eventBus.getEventBus;
+  app.$scope.eventBus = eventBus.getEventBus;
   var defaultData = {
     data: {
       Message: "Yes",
@@ -260,7 +260,7 @@ function onLunch() {
         },
         complete: (data) => {
           if (!data || !data.data || data.statusCode !== 200) data = defaultData;
-          app.eventBus.commit('LoginEvent', data);
+          app.$scope.eventBus.commit('LoginEvent', data);
         }
       }, app)
     }

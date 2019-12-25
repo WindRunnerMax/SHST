@@ -5,7 +5,7 @@
 			<view class="left" v-bind:style="{'background-color': color}"></view>
 			<view class="right">{{title}}</view>
 		</view>
-		<view class='card'>
+		<view class='card' :class="{'minPaddingTop':title}">
 			<slot></slot>
 		</view>
 
@@ -29,7 +29,7 @@
 <style>
 	.line {
 		background-color: #FFFFFF;
-		padding: 10px 5px;
+		padding: 12px 5px 10px 5px;
 		box-sizing: border-box;
 		display: flex;
 		border-bottom: 1px solid #EEEEEE;
@@ -46,5 +46,8 @@
 		padding: 11px;
 		box-sizing: border-box;
 		margin-bottom: 10px;
+	}
+	.minPaddingTop{
+		padding-top: 3px;
 	}
 </style>

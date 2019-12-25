@@ -42,7 +42,6 @@
 			}
 		},
 		created: function()  {
-			console.log(this)
 			var that = this;
 			var ran = parseInt(Math.random() * 100000000000);
 			uni.request({

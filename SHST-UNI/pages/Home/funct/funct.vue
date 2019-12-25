@@ -1,0 +1,156 @@
+<template>
+	<view>
+
+		<layout title="学习" color="#FF6347">
+			<view class="y-CenterCon" style="color: #FF6347;">
+				<view class='icon' data-jumpurl="/pages/Study/timeTable/timeTable" data-checkuser="0" @tap='jump'>
+					<i class='iconfont icon-kebiao'></i>
+					<view>查课表</view>
+				</view>
+				<view class='icon' data-jumpurl="/pages/Study/classroom/classroom" data-checkuser="0" @tap='jump'>
+					<i class='iconfont icon-classroom'></i>
+					<view>查教室</view>
+				</view>
+				<view class='icon' data-jumpurl="/pages/Study/Grade/grade" data-checkuser="0" @tap='jump'>
+					<i class='iconfont icon-grade'></i>
+					<view>查成绩</view>
+				</view>
+				<view class='icon' data-jumpurl="/pages/Study/TableShare/tableShare" data-checkuser="0" @tap='jump'>
+					<i class='iconfont icon-fly'></i>
+					<view>共享课表</view>
+				</view>
+			</view>
+		</layout>
+
+		<layout title="信息" color="#3CB371">
+			<view class="y-CenterCon" style="color: #3CB371;">
+				<view class='icon' data-jumpurl="/pages/Lib/Lib/lib" data-checkuser="1" @tap='jump'>
+					<i class='iconfont icon-lib'></i>
+					<view>图书检索</view>
+				</view>
+				<view class='icon' data-jumpurl="/pages/Lib/Borrow/borrow" data-checkuser="0" @tap='jump'>
+					<i class='iconfont icon-borrow'></i>
+					<view>借阅查询</view>
+				</view>
+				<navigator class='icon' target="miniProgram" app-id="wxa53da62a53aaddea" hover-class="none" version="release">
+					<i class='iconfont icon-lubiao-xf '></i>
+					<view>迎新专版</view>
+				</navigator>
+
+			</view>
+		</layout>
+
+		<layout title="科大" color="#9F8BEC">
+			<view class="y-CenterCon" style="color: #9F8BEC;">
+				<view class='icon' data-jumpurl="/pages/Sdust/Map/map" data-checkuser="1" @tap='jump'>
+					<i class='iconfont icon-map'></i>
+					<view>嵙地图</view>
+				</view>
+				<view class='icon' data-jumpurl="/pages/Sdust/Canlendar/calendar" data-checkuser="1" @tap='jump'>
+					<i class='iconfont icon-calendar'></i>
+					<view>校历</view>
+				</view>
+				<view class='icon' data-jumpurl="/pages/Sdust/Vacation/vacation" data-checkuser="1" @tap='jump'>
+					<i class='iconfont icon-vacation'></i>
+					<view>放假安排</view>
+				</view>
+				<view class='icon' data-jumpurl="/pages/Sdust/Camptour/index" data-checkuser="1" @tap='jump'>
+					<i class='iconfont icon-nav'></i>
+					<view>校园导览</view>
+				</view>
+			</view>
+		</layout>
+
+		<layout title="拓展" color="#6495ED">
+			<view class="y-CenterCon" style="color: #6495ED;">
+				<view class='icon' data-jumpurl="/pages/Ext/Link/link" data-checkuser="1" @tap='jump'>
+					<i class='iconfont icon-link'></i>
+					<view>分享链接</view>
+				</view>
+				<view class='icon' data-jumpurl="/pages/Ext/Event/event" data-checkuser="1" @tap='jump'>
+					<i class='iconfont icon-schedule'></i>
+					<view>待办管理</view>
+				</view>
+				<view class='icon' data-jumpurl="/pages/Ext/ExamArrange/examArrange" data-checkuser="0" @tap='jump'>
+					<i class='iconfont icon-exam'></i>
+					<view>考试安排</view>
+				</view>
+				<view class='icon' data-jumpurl="/pages/Ext/Card/card" data-checkuser="0" @tap='jump'>
+					<i class='iconfont icon-xuehao'></i>
+					<view>校园卡</view>
+				</view>
+			</view>
+		</layout>
+
+		<layout v-if="adShow">
+			<!-- #ifdef MP-WEIXIN -->
+			<ad unit-id="adunit-b82100ae7bddf4ad" binderror="adError"></ad>
+			<!-- #endif -->
+		</layout>
+
+	</view>
+</template>
+
+<script>
+	const app = getApp();
+	export default {
+		data() {
+			return {
+
+			}
+		},
+		methods: {
+			adError(e) {
+				this.setData({
+					adShow: 0
+				})
+			},
+			jump(e) {
+				if (e.currentTarget.dataset.checkuser === "0" && app.globalData.userFlag !== 1) {
+					console.warn(app.globalData.userFlag)
+					if (app.globalData.userFlag === 0) {
+						uni.showModal({
+							title: '提示',
+							content: '该功能需要绑定强智教务系统，是否前去绑定',
+							success: function(choice) {
+								if (choice.confirm) {
+									uni.navigateTo({
+										url: '/pages/Home/login/login?status=E'
+									})
+								}
+							}
+						})
+					} else if (app.globalData.userFlag === 2) {
+						console.log(2)
+						app.toast("数据加载中，请稍候");
+					}
+					return false;
+				}
+				uni.navigateTo({
+					url: e.currentTarget.dataset.jumpurl
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+	.icon {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 5px 0;
+	}
+
+	.icon view {
+		color: #000000;
+	}
+
+	.iconfont {
+		font-size: 27px;
+		color: inherit !important;
+		margin: 10px 0;
+	}
+</style>

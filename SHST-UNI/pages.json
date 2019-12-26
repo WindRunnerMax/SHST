@@ -28,6 +28,54 @@
             "path" : "pages/Study/classroom/classroom",
             "style" : {}
         }
+        ,{
+            "path" : "pages/Study/grade/grade",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Study/tableShare/tableShare",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Lib/borrow/borrow",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Lib/library/search",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Lib/library/libDetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Sdust/calendar/calendar",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Sdust/map/map",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Sdust/vacation/vacation",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Sdust/camptour/details",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Sdust/camptour/index",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Sdust/camptour/polyline",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Sdust/camptour/search",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

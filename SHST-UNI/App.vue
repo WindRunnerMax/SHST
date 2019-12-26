@@ -79,4 +79,7 @@
 	  color: #888;
 	  line-height: unset;
 	}
+	.adapt{
+		box-sizing: border-box;
+	}
 </style>

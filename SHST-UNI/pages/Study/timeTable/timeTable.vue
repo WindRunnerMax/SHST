@@ -78,7 +78,7 @@
 			return {
 				nextT: '>',
 				preT: '<',
-				week: app.globalData.curWeek,
+				week: 1,
 				ad: 1,
 				date: [{
 					d: "00/00",
@@ -108,6 +108,7 @@
 			}
 		},
 		onLoad(e) {
+			this.week = app.globalData.curWeek;
 			this.getCache(app.globalData.curWeek);
 		},
 		methods: {

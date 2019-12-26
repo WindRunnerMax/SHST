@@ -74,7 +74,10 @@
             "scope.userLocation" : {
                 "desc" : "您的位置信息将用于嵙地图定位功能"
             }
-        }
+        },
+		"navigateToMiniProgramAppIdList": [
+		    "wxa53da62a53aaddea"
+		  ]
     },
     "mp-alipay" : {
         "usingComponents" : true
@@ -90,6 +93,14 @@
         "setting" : {
             "es6" : true,
             "minified" : true
-        }
+        },
+		"permission" : {
+		    "scope.userLocation" : {
+		        "desc" : "您的位置信息将用于嵙地图定位功能"
+		    }
+		},
+		"navigateToMiniProgramAppIdList": [
+		    "wxa53da62a53aaddea"
+		  ]
     }
 }

@@ -11,11 +11,11 @@
 					<i class='iconfont icon-classroom'></i>
 					<view>查教室</view>
 				</view>
-				<view class='icon' data-jumpurl="/pages/Study/Grade/grade" data-checkuser="0" @tap='jump'>
+				<view class='icon' data-jumpurl="/pages/Study/grade/grade" data-checkuser="0" @tap='jump'>
 					<i class='iconfont icon-grade'></i>
 					<view>查成绩</view>
 				</view>
-				<view class='icon' data-jumpurl="/pages/Study/TableShare/tableShare" data-checkuser="0" @tap='jump'>
+				<view class='icon' data-jumpurl="/pages/Study/tableShare/tableShare" data-checkuser="0" @tap='jump'>
 					<i class='iconfont icon-fly'></i>
 					<view>共享课表</view>
 				</view>
@@ -24,18 +24,27 @@
 
 		<layout title="信息" color="#3CB371">
 			<view class="y-CenterCon" style="color: #3CB371;">
-				<view class='icon' data-jumpurl="/pages/Lib/Lib/lib" data-checkuser="1" @tap='jump'>
+				<view class='icon' data-jumpurl="/pages/Lib/library/search" data-checkuser="1" @tap='jump'>
 					<i class='iconfont icon-lib'></i>
 					<view>图书检索</view>
 				</view>
-				<view class='icon' data-jumpurl="/pages/Lib/Borrow/borrow" data-checkuser="0" @tap='jump'>
+				<view class='icon' data-jumpurl="/pages/Lib/borrow/borrow" data-checkuser="0" @tap='jump'>
 					<i class='iconfont icon-borrow'></i>
 					<view>借阅查询</view>
 				</view>
+				<!-- #ifdef MP-WEIXIN -->
 				<navigator class='icon' target="miniProgram" app-id="wxa53da62a53aaddea" hover-class="none" version="release">
 					<i class='iconfont icon-lubiao-xf '></i>
 					<view>迎新专版</view>
 				</navigator>
+				<!-- #endif -->
+
+				<!-- #ifdef MP-QQ -->
+				<navigator class='icon' target="miniProgram" app-id="1110074303" hover-class="none" version="release">
+					<i class='iconfont icon-lubiao-xf '></i>
+					<view>迎新专版</view>
+				</navigator>
+				<!-- #endif -->
 
 			</view>
 		</layout>
@@ -126,6 +135,7 @@
 					}
 					return false;
 				}
+				console.log(e)
 				uni.navigateTo({
 					url: e.currentTarget.dataset.jumpurl
 				})

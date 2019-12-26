@@ -39,8 +39,16 @@ const dateDiff = (startDateString, endDateString) => {
   return diff;
 }
 
+const compareTimeInSameDay = (t1, t2) => {
+  let d = new Date()
+  let ft1 = d.setHours(t1.split(":")[0], t1.split(":")[1])
+  let ft2 = d.setHours(t2.split(":")[0], t2.split(":")[1])
+  return ft1 > ft2
+}
+
 module.exports = {
 	formatDate: formatDate,
 	extDate: extDate,
-	dateDiff: dateDiff
+	dateDiff: dateDiff,
+	compareTimeInSameDay,compareTimeInSameDay
 }

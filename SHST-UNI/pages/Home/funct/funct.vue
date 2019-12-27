@@ -51,19 +51,19 @@
 
 		<layout title="科大" color="#9F8BEC">
 			<view class="y-CenterCon" style="color: #9F8BEC;">
-				<view class='icon' data-jumpurl="/pages/Sdust/Map/map" data-checkuser="1" @tap='jump'>
+				<view class='icon' data-jumpurl="/pages/Sdust/map/map" data-checkuser="1" @tap='jump'>
 					<i class='iconfont icon-map'></i>
 					<view>嵙地图</view>
 				</view>
-				<view class='icon' data-jumpurl="/pages/Sdust/Canlendar/calendar" data-checkuser="1" @tap='jump'>
+				<view class='icon' data-jumpurl="/pages/Sdust/calendar/calendar" data-checkuser="1" @tap='jump'>
 					<i class='iconfont icon-calendar'></i>
 					<view>校历</view>
 				</view>
-				<view class='icon' data-jumpurl="/pages/Sdust/Vacation/vacation" data-checkuser="1" @tap='jump'>
+				<view class='icon' data-jumpurl="/pages/Sdust/vacation/vacation" data-checkuser="1" @tap='jump'>
 					<i class='iconfont icon-vacation'></i>
 					<view>放假安排</view>
 				</view>
-				<view class='icon' data-jumpurl="/pages/Sdust/Camptour/index" data-checkuser="1" @tap='jump'>
+				<view class='icon' data-jumpurl="/pages/Sdust/camptour/index" data-checkuser="1" @tap='jump'>
 					<i class='iconfont icon-nav'></i>
 					<view>校园导览</view>
 				</view>
@@ -72,19 +72,19 @@
 
 		<layout title="拓展" color="#6495ED">
 			<view class="y-CenterCon" style="color: #6495ED;">
-				<view class='icon' data-jumpurl="/pages/Ext/Link/link" data-checkuser="1" @tap='jump'>
+				<view class='icon' data-jumpurl="/pages/Ext/link/link" data-checkuser="1" @tap='jump'>
 					<i class='iconfont icon-link'></i>
 					<view>分享链接</view>
 				</view>
-				<view class='icon' data-jumpurl="/pages/Ext/Event/event" data-checkuser="1" @tap='jump'>
+				<view class='icon' data-jumpurl="/pages/Ext/event/event" data-checkuser="1" @tap='jump'>
 					<i class='iconfont icon-schedule'></i>
 					<view>待办管理</view>
 				</view>
-				<view class='icon' data-jumpurl="/pages/Ext/ExamArrange/examArrange" data-checkuser="0" @tap='jump'>
+				<view class='icon' data-jumpurl="/pages/Ext/examArrange/examArrange" data-checkuser="0" @tap='jump'>
 					<i class='iconfont icon-exam'></i>
 					<view>考试安排</view>
 				</view>
-				<view class='icon' data-jumpurl="/pages/Ext/Card/card" data-checkuser="0" @tap='jump'>
+				<view class='icon' data-jumpurl="/pages/Ext/card/card" data-checkuser="0" @tap='jump'>
 					<i class='iconfont icon-xuehao'></i>
 					<view>校园卡</view>
 				</view>
@@ -94,6 +94,9 @@
 		<layout v-if="adShow">
 			<!-- #ifdef MP-WEIXIN -->
 			<ad unit-id="adunit-b82100ae7bddf4ad" binderror="adError"></ad>
+			<!-- #endif -->
+			<!-- #ifdef MP-QQ -->
+			<ad unit-id="001b7e7e765436c6351d8a6d693437d2" binderror="adError"></ad>
 			<!-- #endif -->
 		</layout>
 

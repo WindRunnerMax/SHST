@@ -76,6 +76,64 @@
             "path" : "pages/Sdust/camptour/search",
             "style" : {}
         }
+        ,{
+            "path" : "pages/Ext/link/link",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Ext/event/event",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Ext/event/finEvent",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Ext/examArrange/examArrange",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Ext/card/card",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/User/about/about",
+            "style" : {
+				"navigationBarBackgroundColor": "white"
+			}
+        }
+        ,{
+            "path" : "pages/User/reward/reward",
+            "style" : {
+				"navigationBarBackgroundColor": "white"
+			}
+        }
+        ,{
+            "path" : "pages/User/reward/rewardList",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/User/update/update",
+            "style" : {
+            	"navigationBarBackgroundColor": "white"
+            }
+        }
+        ,{
+            "path" : "pages/Home/auxiliary/notFound",
+            "style" : {
+            	"navigationBarBackgroundColor": "white"
+            }
+        }
+        ,{
+            "path" : "pages/Home/auxiliary/login",
+            "style" : {
+            	"navigationBarBackgroundColor": "white"
+            }
+        }
+        ,{
+            "path" : "pages/Home/auxiliary/test",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

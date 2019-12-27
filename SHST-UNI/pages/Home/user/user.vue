@@ -29,7 +29,7 @@
 			    <view class='titleCon'>QQ群</view>
 			    <view>722942376</view>
 			  </view>
-			  <view class='unitInfo' data-jumpurl="/pages/User/Announce/announce" @tap='jumpUpdate'>
+			  <view class='unitInfo' data-jumpurl="/pages/User/announce/announce" @tap='jumpUpdate'>
 			    <view style='display:flex;'>
 			      <view class='titleCon'>
 			        <view>公告</view>
@@ -38,7 +38,7 @@
 			    </view>
 			    <view>></view>
 			  </view>
-			  <view class='unitInfo' data-jumpurl="/pages/User/Reward/reward" @tap='jump'>
+			  <view class='unitInfo' data-jumpurl="/pages/User/reward/reward" @tap='jump'>
 			    <view style='display:flex;'>
 			      <view class='titleCon'>
 			        <view>赞赏</view>
@@ -46,7 +46,7 @@
 			    </view>
 			    <view>></view>
 			  </view>
-			  <view class='unitInfo' data-jumpurl="/pages/User/About/about" @tap='jump'>
+			  <view class='unitInfo' data-jumpurl="/pages/User/about/about" @tap='jump'>
 			    <view class='titleCon'>
 			      <view>关于</view>
 			    </view>
@@ -142,7 +142,7 @@
 			},
 			logout(e) {
 				uni.navigateTo({
-					url: '/pages/Home/Login/login?status=E'
+					url: '/pages/Home/auxiliary/login?status = E'
 				})
 			}
 		}

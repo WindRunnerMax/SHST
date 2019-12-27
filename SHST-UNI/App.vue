@@ -3,7 +3,7 @@
 	export default {
 		globalData: {
 			tips: "1",
-			openid: "",
+			openid: "oswg346SdNbI76qbUAzXyfkvlymY",
 			userFlag: 2, // 0 未登录 1 已登陆 2 加载中
 			initData: {},
 			version: "3.0.2",
@@ -17,7 +17,7 @@
 		},
 		onPageNotFound: (res) => { //处理404
 			uni.reLaunch({
-				url: 'pages/Home/notFound/notfound'
+				url: 'pages/Home/auxiliary/notFound'
 			})
 		},
 		onLaunch: function() {
@@ -81,5 +81,8 @@
 	}
 	.adapt{
 		box-sizing: border-box;
+	}
+	.tipsCon view{
+		padding: 5px;
 	}
 </style>

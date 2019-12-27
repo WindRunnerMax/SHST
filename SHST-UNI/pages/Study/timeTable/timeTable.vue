@@ -61,8 +61,14 @@
 				</view>
 				<view class="asse-hr timetablehr"></view>
 			</view>
+		</layout>
+		
+		<layout v-if="ad">
 			<!-- #ifdef MP-WEIXIN -->
-			<ad unit-id="adunit-ce81890e6ff0b2a7" class='adAdapt' v-if="0" binderror="adError"></ad>
+			<ad unit-id="adunit-ce81890e6ff0b2a7" class="adapt" binderror="adError"></ad>
+			<!-- #endif -->
+			<!-- #ifdef MP-QQ -->
+			<ad unit-id="98766bd6a7f4cc14e978058a3a365551" class="adapt" binderror="adError"></ad>
 			<!-- #endif -->
 		</layout>
 

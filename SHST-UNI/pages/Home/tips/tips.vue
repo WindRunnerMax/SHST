@@ -11,7 +11,6 @@
 					<view class='iconfont icon-shuaxin icon refresh' @tap='getRemoteTable'></view>
 					<button open-type='share' class='iconfont icon-fenxiang icon btn'></button>
 				</view>
-
 			</headslot>
 			<layout>
 				<view class='articalCon' @tap='articalJump' style="margin-top: -7px;">
@@ -323,7 +322,7 @@
 	.setStatus{
 		color: #555555;
 		border: 1px solid #EEEEEE;
-		padding: 9px;
+		padding: 7px;
 		border-radius:20px ;
 	}
 </style>

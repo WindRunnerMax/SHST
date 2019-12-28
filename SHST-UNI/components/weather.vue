@@ -6,16 +6,16 @@
 				<view style="display: flex;align-items: center;justify-content: center;">
 					<image class='todayImg' mode="widthFix" :src="host+'/public/static/weather/'+todayWeather[1]+'.png'"></image>
 				</view>
-				<view style='text-align:center;margin-top:3px;'>{{todayWeather[0]}}</view>
-				<view style='text-align:center;'>{{todayWeather[2]}}℃ - {{todayWeather[3]}}℃</view>
-				<view style='text-align:center;'>{{todayWeather[4]}}</view>
+				<view style='text-align:center;margin-top:6px;'>{{todayWeather[0]}}</view>
+				<view style='text-align:center;margin-top:3px;'>{{todayWeather[2]}}℃ - {{todayWeather[3]}}℃</view>
+				<view style='text-align:center;margin-top:3px;'>{{todayWeather[4]}}</view>
 			</view>
 			<view class='weaRight'>
 				<view class='weaRightTop'>
 					<image class='dayImg' mode="widthFix" :src="host+'/public/static/weather/'+tomorrowWeather[1]+'.png'"></image>
 					<view class='weatherCon'>
-						<view style='text-align:center;margin-top:3px;'>{{tomorrowWeather[0]}}</view>
-						<view style='text-align:center;'>{{tomorrowWeather[2]}}℃ - {{tomorrowWeather[3]}}℃</view>
+						<view style='text-align:center;margin-top:6px;'>{{tomorrowWeather[0]}}</view>
+						<view style='text-align:center;margin-top:3px;'>{{tomorrowWeather[2]}}℃ - {{tomorrowWeather[3]}}℃</view>
 					</view>
 				</view>
 				<view class='weaRightBot'>

@@ -63,12 +63,12 @@
 			</view>
 		</layout>
 		
-		<layout v-if="ad">
+		<layout v-if="ad">{{ad}}
 			<!-- #ifdef MP-WEIXIN -->
-			<ad unit-id="adunit-ce81890e6ff0b2a7" class="adapt" binderror="adError"></ad>
+			<ad unit-id="adunit-ce81890e6ff0b2a7" class="adapt" @error="adError"></ad>
 			<!-- #endif -->
 			<!-- #ifdef MP-QQ -->
-			<ad unit-id="98766bd6a7f4cc14e978058a3a365551" class="adapt" binderror="adError"></ad>
+			<ad unit-id="98766bd6a7f4cc14e978058a3a365551" class="adapt" @error="adError"></ad>
 			<!-- #endif -->
 		</layout>
 
@@ -137,7 +137,7 @@
 				var that = this;
 				app.ajax({
 					load: 2,
-					url: app.globalData.url + 'funct/sw/signalTable' + urlTemp,
+					url: app.globalData.url + 'sw/table' + urlTemp,
 					data: {
 						week: app.globalData.curWeek,
 						term: app.globalData.curTerm
@@ -152,6 +152,7 @@
 								term: app.globalData.curTerm,
 								classTable: []
 							};
+							tableCache.term = app.globalData.curTerm;
 							tableCache.classTable[e] = res.data.data;
 							uni.setStorage({
 								key: 'table',
@@ -174,7 +175,6 @@
 				this.getCache(week);
 			},
 			adError(e) {
-				console.log(1111)
 				this.ad = 0
 			},
 			refresh(e) {

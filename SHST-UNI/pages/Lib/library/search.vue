@@ -81,7 +81,7 @@
 				var that = this;
 				app.ajax({
 					load: 2,
-					url: app.globalData.url + "funct/lib/signalBookquery" + param,
+					url: app.globalData.url + "lib/query" + param,
 					fun: res => {
 						if (res.data.Message === "Yes") {
 							var bookList = [];

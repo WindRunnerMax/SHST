@@ -44,7 +44,7 @@
 			var that = this;
 			app.ajax({
 				load: 2,
-				url: app.globalData.url + 'funct/sw/ExamArrange',
+				url: app.globalData.url + 'sw/exam',
 				// url: "https://www.touchczy.top/ext/test",
 				fun: function(res) {
 					console.log(res.data)

@@ -62,8 +62,8 @@
 				</view>
 				<view class='asse-hr'></view>
 				<view style='display:flex;align-items: center;'>
-					<view>{{data.succ.my_week}} -</view>
-					<view> {{data.succ.pair_week}}</view>
+					<view>{{data.user}} -</view>
+					<view> {{data.succ.pair}}</view>
 					<view class='asse-btn asse-btn-blue asse-btn-mini' :data-id="data.succ.id" @tap='lifting'>解除关系</view>
 				</view>
 			</view>
@@ -94,7 +94,7 @@
 				var that = this;
 				app.ajax({
 					load: 2,
-					url: app.globalData.url + "funct/share/signalTableshare",
+					url: app.globalData.url + "share/tableshare",
 					data: {
 						week: app.globalData.curWeek,
 						term: app.globalData.curTerm
@@ -122,7 +122,7 @@
 					app.toast("请输入完整信息");
 				}
 				app.ajax({
-					url: app.globalData.url + "funct/share/startreq",
+					url: app.globalData.url + "share/startReq",
 					method: 'POST',
 					data: {
 						account: this.account,
@@ -137,7 +137,7 @@
 			cancelreq() {
 				var that = this;
 				app.ajax({
-					url: app.globalData.url + "funct/share/cancelreq",
+					url: app.globalData.url + "share/cancelReq",
 					fun: res => {
 						app.toast(res.data.message);
 						that.onloadData();
@@ -148,7 +148,7 @@
 				var that = this;
 				app.ajax({
 					load: 2,
-					url: app.globalData.url + "funct/share/agreereq",
+					url: app.globalData.url + "share/agreereq",
 					data: {
 						id: e.currentTarget.dataset.id
 					},
@@ -162,7 +162,7 @@
 				var that = this;
 				app.ajax({
 					load: 2,
-					url: app.globalData.url + "funct/share/lifting",
+					url: app.globalData.url + "share/lifting",
 					data: {
 						id: e.currentTarget.dataset.id
 					},
@@ -176,7 +176,7 @@
 				var that = this;
 				app.ajax({
 					load: 2,
-					url: app.globalData.url + "funct/share/refusereq",
+					url: app.globalData.url + "share/refusereq",
 					data: {
 						id: e.currentTarget.dataset.id
 					},

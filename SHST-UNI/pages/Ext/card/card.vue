@@ -77,7 +77,7 @@
 			var that = this;
 			app.ajax({
 				load: 2,
-				url: app.globalData.url + "funct/card/GetUserInfo",
+				url: app.globalData.url + "card/userInfo",
 				success: res => {
 					if (res.data.Message === "Yes") {
 						cardLoad = false;
@@ -107,7 +107,7 @@
 				}
 				app.ajax({
 					load: 2,
-					url: app.globalData.url + "funct/card/TodayQuery",
+					url: app.globalData.url + "card/today",
 					success: res => {
 						if (res.data.Message === "Yes") {
 							that.diposeCardData(res.data.info);
@@ -127,7 +127,7 @@
 				}
 				app.ajax({
 					load: 2,
-					url: app.globalData.url + "funct/card/HistoryQuery",
+					url: app.globalData.url + "card/history",
 					success: res => {
 						if (res.data.Message === "Yes") {
 							that.diposeCardData(res.data.info);

@@ -33,7 +33,7 @@
 			var that = this;
 			app.ajax({
 				load: 2,
-				url: app.globalData.url + 'funct/ext/rewardlist',
+				url: app.globalData.url + 'ext/rewardlist',
 				fun: res => {
 					if (res.data.info) {
 						res.data.info.reverse();

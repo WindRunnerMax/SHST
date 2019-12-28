@@ -48,7 +48,7 @@
 			var that = this;
 			app.ajax({
 				load: 2,
-				url: app.globalData.url + "funct/lib/signalLibquery",
+				url: app.globalData.url + "lib/borrow",
 				fun: res => {
 					if (res.data.Message === "Yes") {
 						var infoArr = [];

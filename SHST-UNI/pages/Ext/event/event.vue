@@ -91,7 +91,7 @@
 			} else {
 				app.ajax({
 					load: 2,
-					url: app.globalData.url + "funct/todo/getevent",
+					url: app.globalData.url + "todo/getEvent",
 					fun: res => {
 						if (res.data.data) {
 							if (res.data.data.length === 0) {
@@ -131,7 +131,7 @@
 				if (this.clickFlag === 0) return;
 				this.clickFlag = 0;
 				app.ajax({
-					url: app.globalData.url + "funct/todo/addevent",
+					url: app.globalData.url + "todo/addEvent",
 					method: "POST",
 					data: {
 						content: that.addContent,
@@ -147,7 +147,8 @@
 								event_content: that.addContent,
 								todo_time: that.dataDo,
 								diff: diff_color[0],
-								color: diff_color[1]
+								color: diff_color[1],
+								id : res.data.id
 							});
 							that.addContent = ""
 							that.todoList = todoArr
@@ -172,7 +173,7 @@
 							var index = e.currentTarget.dataset.index;
 							var id = e.currentTarget.dataset.id;
 							app.ajax({
-								url: app.globalData.url + "funct/todo/setStatus",
+								url: app.globalData.url + "todo/setStatus",
 								method: "POST",
 								data: {
 									id: id
@@ -199,7 +200,7 @@
 							var index = e.currentTarget.dataset.index;
 							var id = e.currentTarget.dataset.id;
 							app.ajax({
-								url: app.globalData.url + "funct/todo/deleteUnit",
+								url: app.globalData.url + "todo/deleteUnit",
 								method: "POST",
 								data: {
 									id: id

@@ -8,7 +8,7 @@
 		<view>
 			<headslot :title="today">
 				<view class="y-CenterCon">
-					<view class='iconfont icon-shuaxin icon refresh' @tap='getRemoteTable'></view>
+					<view class='iconfont icon-shuaxin icon refresh' @tap='refresh'></view>
 					<button open-type='share' class='iconfont icon-fenxiang icon btn'></button>
 				</view>
 			</headslot>
@@ -39,7 +39,7 @@
 					</view>
 				</view>
 			</view>
-			<view class='unitTable' v-if="tips !== ''" @tap='bindSW'>
+			<view class='unitTable' v-if="tips" @tap='bindSW'>
 				<view class="y-CenterCon" style="margin: 5px 0;">
 					<view class="dot" style='background:#eee;margin: 0 6px 0 3px;'></view>
 					<view>{{tips}}</view>
@@ -50,22 +50,22 @@
 
 		<layout title="待办事项">
 			<view v-for="(item,index) in todoList" :key="index">
-			  <view class='y-CenterCon unitTodo' style="justify-content: space-between;">
-			    <view>
-					<view class="y-CenterCon" style="margin: 5px 0;">
-						<view class="dot" :style="{'background':item.color,'margin':'0 6px 0 3px'}"></view>
-						<view>{{item.event_content}}</view>
+				<view class='y-CenterCon unitTodo' style="justify-content: space-between;">
+					<view>
+						<view class="y-CenterCon" style="margin: 5px 0;">
+							<view class="dot" :style="{'background':item.color,'margin':'0 6px 0 3px'}"></view>
+							<view>{{item.event_content}}</view>
+						</view>
+						<view class="y-CenterCon">
+							<view style="margin: 3px;">{{item.todo_time}}</view>
+							<view style="margin-left: 10px;">{{item.diff}}天</view>
+						</view>
 					</view>
-					<view class="y-CenterCon">
-						<view style="margin: 3px;">{{item.todo_time}}</view>
-						<view style="margin-left: 10px;">{{item.diff}}天</view>
+					<view>
+						<i class='iconfont icon-banner setStatus' @tap='setStatus' :data-id="item.id" :data-index="index">
+						</i>
 					</view>
-			    </view>
-			    <view >
-			      <i class='iconfont icon-banner setStatus' @tap='setStatus' :data-id="item.id" :data-index="index">
-			      </i>
-			    </view>
-			  </view>
+				</view>
 			</view>
 			<view class='unitTable' v-if="tips2 !== ''">
 				<view class="y-CenterCon" style="margin: 5px 0;">
@@ -118,9 +118,9 @@
 			}
 		},
 		methods: {
-			openidEvent: function(data) {
+			openidEvent: function(res) {
 				console.log("Login EventBus Execute");
-				this.loginSatatus(data.data.Message);
+				this.loginSatatus(res.data.Message);
 				this.getArtical();
 				this.getTable();
 				this.getEvent();
@@ -150,7 +150,7 @@
 					console.log("GET TABLE FROM REMOTE");
 					app.ajax({
 						load: load,
-						url: app.globalData.url + 'funct/sw/signalTable',
+						url: app.globalData.url + 'sw/table',
 						data: {
 							week: app.globalData.curWeek,
 							term: app.globalData.curTerm
@@ -163,6 +163,7 @@
 									term: app.globalData.curTerm,
 									classTable: []
 								};
+								tableCache.term = app.globalData.curTerm;
 								tableCache.classTable[app.globalData.curWeek] = res.data.data;
 								uni.setStorage({
 									key: 'table',
@@ -183,7 +184,10 @@
 				this.tipsInfo = info ? "" : "今天没有课，快去自习室学习吧";
 			},
 			refresh(e) {
-				uni.setStorageSync('table', {term: app.globalData.curTerm,classTable: []});
+				uni.setStorageSync('table', {
+					term: app.globalData.curTerm,
+					classTable: []
+				});
 				this.getRemoteTable(2);
 			},
 			/**
@@ -216,19 +220,19 @@
 				if (eventCache !== "") {
 					console.log("GET EVENT FROM CACHE");
 					that.eventDipose(eventCache);
-				}else{
+				} else {
 					this.getRemoteEvent();
 				}
 			},
 			getRemoteEvent: function() {
 				var that = this;
-				if (app.globalData.openid === "") {
-					that.tips2 = "未正常获取用户信息";
+				if (app.globalData.userFlag !== 1) {
+					that.tips2 = "暂无待办事项";
 					return false;
 				}
 				console.log("GET EVENT FROM REMOTE");
 				app.ajax({
-					url: app.globalData.url + "funct/todo/getevent",
+					url: app.globalData.url + "todo/getEvent",
 					fun: res => {
 						if (res.data.data && res.data.data != 3) {
 							that.eventDipose(res.data.data);
@@ -248,7 +252,7 @@
 							var index = e.currentTarget.dataset.index;
 							var id = e.currentTarget.dataset.id;
 							app.ajax({
-								url: app.globalData.url + "funct/todo/setStatus",
+								url: app.globalData.url + "todo/setStatus",
 								method: "POST",
 								data: {
 									id: id
@@ -270,17 +274,25 @@
 				}
 			},
 			articalJump: function() {
-				if (app.globalData.initData && app.globalData.initData.articalUrl) {
-					var url = encodeURIComponent(app.globalData.initData.articalUrl);
+				
+				if (app.globalData.initData && app.globalData.initData.articleUrl) {
+					var url = encodeURIComponent(app.globalData.initData.articleUrl);
+					// #ifdef MP-WEIXIN
 					uni.navigateTo({
 						url: '/pages/Home/auxiliary/webview?url=' + url
 					})
+					// #endif
+					// #ifdef MP-QQ
+					uni.setClipboardData({
+						data: url
+					})
+					// #endif
 				}
 			},
 			bindSW: function() {
 				if (app.globalData.userFlag === 0) {
 					uni.navigateTo({
-						url: '/pages/Home/login/login?status=E'
+						url: '/pages/Home/auxiliary/login'
 					})
 				} else return 0;
 			},
@@ -307,7 +319,8 @@
 		margin-right: 5px;
 	}
 
-	.unitTable,.unitTodo {
+	.unitTable,
+	.unitTodo {
 		border-bottom: 1px solid #EEEEEE;
 		padding: 5px;
 		color: #555555;
@@ -318,11 +331,11 @@
 		padding-bottom: 1px;
 		padding-right: 4px;
 	}
-	
-	.setStatus{
+
+	.setStatus {
 		color: #555555;
 		border: 1px solid #EEEEEE;
 		padding: 7px;
-		border-radius:20px ;
+		border-radius: 20px;
 	}
 </style>

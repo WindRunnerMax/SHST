@@ -32,7 +32,7 @@
 			var that = this;
 			app.ajax({
 					load: 2,
-					url: app.globalData.url + 'funct/ext/announce',
+					url: app.globalData.url + 'ext/announce',
 					fun: res => {
 						if (res.data.info) {
 							res.data.info.reverse();

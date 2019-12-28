@@ -63,7 +63,7 @@
 			} else {
 				app.ajax({
 					load: 2,
-					url: app.globalData.url + "funct/todo/getFinEvent",
+					url: app.globalData.url + "todo/getFinEvent",
 					fun: res => {
 						if (res.data.data) {
 							if (res.data.data.length === 0) {
@@ -96,7 +96,7 @@
 							var index = e.currentTarget.dataset.index;
 							var id = e.currentTarget.dataset.id;
 							app.ajax({
-								url: app.globalData.url + "funct/todo/setNoFinStatus",
+								url: app.globalData.url + "todo/setNoFinStatus",
 								method: "POST",
 								data: {
 									id: id
@@ -123,7 +123,7 @@
 							var index = e.currentTarget.dataset.index;
 							var id = e.currentTarget.dataset.id;
 							app.ajax({
-								url: app.globalData.url + "funct/todo/deleteUnit",
+								url: app.globalData.url + "todo/deleteUnit",
 								method: "POST",
 								data: {
 									id: id

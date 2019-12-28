@@ -7,8 +7,13 @@
 		</view>
 
 		<view class='tipsCon'>
-
+			
+			<!-- #ifdef MP-WEIXIN -->
 			<view>点击二维码后长按识别赞赏码</view>
+			<!-- #endif -->
+			<!-- #ifdef MP-QQ -->
+			<view>点击保存赞赏码微信扫一扫</view>
+			<!-- #endif -->
 			<view>记得写上您的名字哦</view>
 			<view>感谢您的支持!</view>
 

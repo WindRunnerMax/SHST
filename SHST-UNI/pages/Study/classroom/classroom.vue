@@ -96,7 +96,7 @@
 						searchTime: that.searchTime,
 						searchFloor: that.searchFloor,
 					},
-					url: app.globalData.url + 'funct/sw/classroomExt',
+					url: app.globalData.url + 'sw/classroom',
 					fun: res => {
 						if (res.data.MESSAGE !== "Yes") {
 							app.toast("ERROR");

@@ -70,7 +70,12 @@
 				} else {
 					app.ajax({
 						load: 3,
-						url: app.globalData.url + 'funct/user/login',
+						// #ifdef MP-WEIXIN
+						url: app.globalData.url + 'auth/login/1',
+						// #endif
+						// #ifdef MP-QQ
+						url: app.globalData.url + 'auth/login/2',
+						// #endif
 						method: 'POST',
 						data: {
 							"account": that.account,

@@ -76,7 +76,7 @@
 					<i class='iconfont icon-link'></i>
 					<view>分享链接</view>
 				</view>
-				<view class='icon' data-jumpurl="/pages/Ext/event/event" data-checkuser="1" @tap='jump'>
+				<view class='icon' data-jumpurl="/pages/Ext/event/event" data-checkuser="0" @tap='jump'>
 					<i class='iconfont icon-schedule'></i>
 					<view>待办管理</view>
 				</view>
@@ -93,10 +93,10 @@
 
 		<layout v-if="adShow">
 			<!-- #ifdef MP-WEIXIN -->
-			<ad unit-id="adunit-b82100ae7bddf4ad" binderror="adError"></ad>
+			<ad unit-id="adunit-b82100ae7bddf4ad" @error="adError"></ad>
 			<!-- #endif -->
 			<!-- #ifdef MP-QQ -->
-			<ad unit-id="001b7e7e765436c6351d8a6d693437d2" binderror="adError"></ad>
+			<ad unit-id="001b7e7e765436c6351d8a6d693437d2" @error="adError"></ad>
 			<!-- #endif -->
 		</layout>
 

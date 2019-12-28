@@ -35,7 +35,7 @@
 			var that = this;
 			app.ajax({
 				load: 2,
-				url: app.globalData.url + "funct/lib/signalBookdetail",
+				url: app.globalData.url + "lib/detail",
 				data: {
 					id: e.id
 				},
@@ -85,6 +85,7 @@
 	.strong {
 		font-size: 23px;
 		line-height: 30px;
+		margin-top: 10px;
 	}
 
 	.lineH {

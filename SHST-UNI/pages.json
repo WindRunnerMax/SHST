@@ -108,7 +108,7 @@
 				"navigationBarBackgroundColor": "white"
 			}
         }
-        ,{
+        ,{ 
             "path" : "pages/User/reward/rewardList",
             "style" : {}
         }
@@ -129,10 +129,6 @@
             "style" : {
             	"navigationBarBackgroundColor": "white"
             }
-        }
-        ,{
-            "path" : "pages/Home/auxiliary/test",
-            "style" : {}
         }
     ],
 	"globalStyle": {

@@ -2,18 +2,17 @@
 	const dispose = require('vector/dispose.js');
 	export default {
 		globalData: {
-			tips: "1",
-			openid: "oswg346SdNbI76qbUAzXyfkvlymY",
-			userFlag: 2, // 0 未登录 1 已登陆 2 加载中
+			tips: "0",
+			openid: "",
+			userFlag: 0, // 0 未登录 1 已登陆
 			initData: {},
 			version: "3.0.2",
 			curTerm: "2019-2020-1",
 			curTermStart: "2019-08-26",
 			colorList: dispose.colorList,
-			host: 'https://www.liyanzuishuai.top',
-			url: 'https://www.liyanzuishuai.top/sdust/index.php/',
+			url: 'https://www.touchczy.top/',
 			// url: 'http://127.0.0.1/Swisdom/Web/index.php/',
-			header: {'Cookie': 'PHPSESSID=sa6qjdg9nsp4aki52jqld3hfm5;','content-type': 'application/x-www-form-urlencoded'}
+			header: {'Cookie': '','content-type': 'application/x-www-form-urlencoded'}
 		},
 		onPageNotFound: (res) => { //处理404
 			uni.reLaunch({

@@ -46,10 +46,10 @@
 
 			<layout v-if="ad">
 				<!-- #ifdef MP-WEIXIN -->
-				<ad unit-id="adunit-31c347091893cf0c" class="adapt" binderror="adError"></ad>
+				<ad unit-id="adunit-31c347091893cf0c" class="adapt" @error="adError"></ad>
 				<!-- #endif -->
 				<!-- #ifdef MP-QQ -->
-				<ad unit-id="e40bef6dbe8ecaf7104fe126bfc34e56" class="adapt" binderror="adError"></ad>
+				<ad unit-id="e40bef6dbe8ecaf7104fe126bfc34e56" class="adapt" @error="adError"></ad>
 				<!-- #endif -->
 			</layout>
 
@@ -128,7 +128,7 @@
 				var that = this;
 				app.ajax({
 					load: 2,
-					url: app.globalData.url + 'funct/sw/grade' + query,
+					url: app.globalData.url + 'sw/grade' + query,
 					fun: res => {
 						if (res.data.MESSAGE !== "Yes") {
 							app.toast("ERROR");

@@ -69,6 +69,6 @@ SW/SHST-WEL 目录下为UNI-APP项目[山科小站--迎新专版]，提供校内
 
 ----  
   
-![show](https://windrunner_max.gitee.io/imgpath/SDUST/SHST-SHOW-1.jpg)
 ![show](https://windrunner_max.gitee.io/imgpath/SDUST/SHST-SHOW-2.jpg)
+![show](https://windrunner_max.gitee.io/imgpath/SDUST/SHST-SHOW-1.jpg)
 

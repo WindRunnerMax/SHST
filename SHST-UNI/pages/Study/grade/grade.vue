@@ -174,7 +174,7 @@
 							}
 
 						}
-						let defaultValue = {kclbmc: "暂无",kcmc: this.showSelect+"学期暂无成绩",ksxzmc: "暂无成绩",xf: 0,zcj: "100"}
+						let defaultValue = {kclbmc: "暂无",kcmc: that.showSelect+"学期暂无成绩",ksxzmc: "暂无成绩",xf: 0,zcj: "100"}
 						that.grade = !res.data.data[0] ? [defaultValue] : res.data.data
 						that.ad = !res.data.data[0] ? 0 : 1
 						that.show = 1

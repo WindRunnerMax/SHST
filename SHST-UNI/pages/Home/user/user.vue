@@ -32,7 +32,7 @@
 				</view><strong></strong>
 				<!-- #endif -->
 				<!-- #ifdef MP-QQ -->
-				<button open-type="openGroupProfile" class='unitInfo' group-id="722942376" style="color: #000000;">
+				<button open-type="openGroupProfile" class='unitInfo' group-id="722942376" >
 					<view class='titleCon'>QQ群</view>
 					<view>722942376</view>
 				</button>

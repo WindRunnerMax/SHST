@@ -113,9 +113,7 @@
 		},
 		methods: {
 			adError(e) {
-				this.setData({
-					adShow: 0
-				})
+				this.adShow= 0
 			},
 			jump(e) {
 				if (e.currentTarget.dataset.checkuser === "0" && app.globalData.userFlag !== 1) {
@@ -127,7 +125,7 @@
 							success: function(choice) {
 								if (choice.confirm) {
 									uni.navigateTo({
-										url: '/pages/Home/login/login?status=E'
+										url: '/pages/Home/auxiliary/login?status=E'
 									})
 								}
 							}

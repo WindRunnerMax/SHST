@@ -75,7 +75,6 @@
 	  padding: 0;
 	  margin: 0;
 	  font-size: 13px;
-	  color: #888;
 	  line-height: unset;
 	}
 	.adapt{

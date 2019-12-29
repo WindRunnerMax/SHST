@@ -46,7 +46,7 @@
 				<view>></view>
 			</view>
 
-			<button class='unitInfo' open-type='share' style="font-size: 14px;color: #000000;">
+			<button class='unitInfo' open-type='share' style="font-size: 14px;">
 				<view style='display:flex;'>
 					<view>分享山科小站</view>
 				</view>

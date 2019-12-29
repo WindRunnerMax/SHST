@@ -40,14 +40,6 @@
 			}
 		},
 		onLoad: function(options) {
-			uni.setNavigationBarColor({
-				frontColor: '#ffffff',
-				backgroundColor: '#079DF2',
-				animation: {
-					duration: 200,
-					timingFunc: 'easeIn'
-				}
-			})
 			var bid = parseInt(options.bid);
 			var tid = parseInt(options.tid);
 			if (!options.bid || !options.tid) {

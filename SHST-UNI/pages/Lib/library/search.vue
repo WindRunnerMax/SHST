@@ -105,10 +105,10 @@
 								})
 							} catch (e) {}
 							console.log(bookList)
-							that.info = bookList,
-								that.page = res.data.page,
-								that.pageInfo = pageInfo[0],
-								that.show = 1
+							that.info = bookList
+							that.page = res.data.page
+							that.pageInfo = pageInfo[0]
+							that.show = 1
 						} else {
 							app.toast("响应超时");
 						}
@@ -139,7 +139,6 @@
 </script>
 
 <style>
-
 	.asse-input {
 		align-self: center;
 		border: 1px solid #eee;

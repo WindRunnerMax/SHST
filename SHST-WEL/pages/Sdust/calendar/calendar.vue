@@ -13,7 +13,7 @@
 		</view>
 
 
-		<view v-show="show">
+		<view v-if="show">
 			<layout :title="term">
 				<view class='weekGroup'>
 					<view class='weekUnit'>Week</view>

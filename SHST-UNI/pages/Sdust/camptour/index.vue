@@ -61,14 +61,7 @@
 		},
 		onLoad: function() {
 			var that = this;
-			uni.setNavigationBarColor({
-				frontColor: '#ffffff',
-				backgroundColor: '#079DF2',
-				animation: {
-					duration: 200,
-					timingFunc: 'easeIn'
-				}
-			})
+
 			uni.showShareMenu({
 				withShareTicket: true
 			})

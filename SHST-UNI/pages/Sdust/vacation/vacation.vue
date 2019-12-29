@@ -17,10 +17,8 @@
 </template>
 
 <script>
-	import layout from "@/components/layout.vue"
 	var colorList = ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"]
 	export default {
-		components: {layout},
 		data() {
 			return {
 				show: 0,

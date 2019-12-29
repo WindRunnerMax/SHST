@@ -54,14 +54,6 @@
 				})
 				return false;
 			}
-			uni.setNavigationBarColor({
-				frontColor: '#ffffff',
-				backgroundColor: '#079DF2',
-				animation: {
-					duration: 200,
-					timingFunc: 'easeIn'
-				}
-			})
 			var _this = this;
 			uni.getLocation({
 				type: 'gcj02',

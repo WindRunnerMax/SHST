@@ -49,17 +49,6 @@
 				cursor: 0
 			}
 		},
-		onLoad: function(options) {
-			wx.setNavigationBarColor({
-				frontColor: '#ffffff',
-				backgroundColor: '#079DF2',
-				animation: {
-					duration: 200,
-					timingFunc: 'easeIn'
-				}
-			})
-
-		},
 		methods: {
 			bindSearchInput: function(e) {
 				this.buildlData = app.globalData.map

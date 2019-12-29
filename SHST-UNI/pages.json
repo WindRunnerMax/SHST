@@ -62,19 +62,31 @@
         }
         ,{
             "path" : "pages/Sdust/camptour/details",
-            "style" : {}
+            "style" : {
+				"navigationBarBackgroundColor":"#079DF2",
+				"navigationBarTextStyle":"white"
+			}
         }
         ,{
             "path" : "pages/Sdust/camptour/index",
-            "style" : {}
+            "style" : {
+            	"navigationBarBackgroundColor":"#079DF2",
+            	"navigationBarTextStyle":"white"
+            }
         }
         ,{
             "path" : "pages/Sdust/camptour/polyline",
-            "style" : {}
+            "style" : {
+            	"navigationBarBackgroundColor":"#079DF2",
+            	"navigationBarTextStyle":"white"
+            }
         }
         ,{
             "path" : "pages/Sdust/camptour/search",
-            "style" : {}
+            "style" : {
+            	"navigationBarBackgroundColor":"#079DF2",
+            	"navigationBarTextStyle":"white"
+            }
         }
         ,{
             "path" : "pages/Ext/link/link",

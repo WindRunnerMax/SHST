@@ -100,6 +100,7 @@
 				requestLock = false;
 				console.log("LoginService");
 				app.ajax({
+					load: 0,
 					url: "https://www.touchczy.top/auth/app",
 					method: 'POST',
 					data: {

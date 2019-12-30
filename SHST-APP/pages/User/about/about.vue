@@ -1,9 +1,9 @@
 <template>
-	<view>
+	<view> 
 
 		<view class="x-CenterCon">
-			<image class='img' src="https://windrunner_max.gitee.io/imgpath/SDUST/SHST.jpg">
-			</image>
+			<imagecache imageStyle="width: 270px;height: 90px;margin-top: 20px;" src="https://windrunner_max.gitee.io/imgpath/SDUST/SHST.jpg">
+			</imagecache>
 		</view>
 
 
@@ -32,11 +32,11 @@
 				</view>
 			</view>
 
-			<view class='unitInfo'>
+			<view class='unitInfo' data-jumpurl='https://github.com/WindrunnerMax/SW' @tap='jump'>
 				<view style='display:flex;'>
 					<view>项目开源地址</view>
 				</view>
-				<view data-jumpurl='https://github.com/WindrunnerMax/SW' @tap='jump' class='link github'>点我复制链接</view>
+				<view >></view>
 			</view>
 
 			<view class='unitInfo' data-jumpurl="https://github.com/WindrunnerMax/SW/blob/SDUST/ChangeLog.md" @tap='jump'>
@@ -73,7 +73,7 @@
 			},
 			jump: function(e) {
 				uni.navigateTo({
-					url: '/pages/Home/auxiliary/webview?url=' + encodeURIComponent(url) 
+					url: '/pages/Home/auxiliary/webview?url=' + encodeURIComponent(e.currentTarget.dataset.jumpurl) 
 				})
 			}
 		}

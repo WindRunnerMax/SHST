@@ -105,15 +105,17 @@
 
 <script>
 	const app = getApp();
+	const util = require("@/utils/util.js")
 	export default {
 		data() {
 			return {
-
+				adShow: 1,
+				now: util.formatDate()
 			}
 		},
 		methods: {
 			adError(e) {
-				this.adShow= 0
+				this.adShow = 0
 			},
 			jump(e) {
 				if (e.currentTarget.dataset.checkuser === "0" && app.globalData.userFlag !== 1) {

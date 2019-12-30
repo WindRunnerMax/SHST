@@ -57,9 +57,9 @@
 			</view>
 		</layout>
 
-		<layout title="广告">
+		<layout title="广告" v-if="adImg">
 			<view :data-jumpurl="adUrl" @tap='jump' style="margin-top: 8px;">
-				<image mode="widthFix" style="width: 100%;" :src="adImg"></image>
+				<imagecache mode="widthFix" imageStyle="width: 100%;"  :src="adImg"></imagecache>
 			</view>
 		</layout>
 

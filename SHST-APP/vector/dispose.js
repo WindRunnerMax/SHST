@@ -64,7 +64,7 @@ function extend() {
  */
 function startLoading(option) {
 	if (!option.load) return 0;
-	console.log(2)
+	console.log("LOADING")
 	uni.showLoading({
 		title: '请求中',
 		mask: true
@@ -77,6 +77,7 @@ function startLoading(option) {
 function endLoading(option) {
 	if (!option.load) return 0;
 	uni.hideLoading();
+	console.log("END LOADING")
 }
 
 /**

@@ -10,6 +10,7 @@ SW/PHP 目录下为PHP版本的API
 SW/Java 目录下为Java版本的API 
 SW/SHST-UNI 目录下为UNI-APP项目[山科小站]，提供课表查询，空教室查询，成绩查询，图书馆书籍检索，图书馆借阅查询，常用链接分享，校历，地图等功能  
 SW/SHST-WEL 目录下为UNI-APP项目[山科小站--迎新专版]，提供校内的相关信息，迎新专用  
+SW/SHST-APP 目录下为UNI-APP项目[山科小站--APP]，App版本，请求本地化处理 
 ```
 
 ----

@@ -3,9 +3,9 @@
 
 		<layout>
 			<view class='x-CenterCon'>
-				<image style="width: 230px;height: 80px;margin: 20px 0 30px 0;" src="https://windrunner_max.gitee.io/imgpath/SDUST/SDUST.jpg"></image>
+				<imagecache imageStyle="width: 230px;height: 80px;margin: 20px 0 30px 0;" src="https://windrunner_max.gitee.io/imgpath/SDUST/SDUST.jpg"></imagecache>
 			</view>
-
+ 
 			<view class='userInfoCon'>
 				<view class='unitInfo' style=' border-top: 1px solid #eee; '>
 					<view class='titleCon'>

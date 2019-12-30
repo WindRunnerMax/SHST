@@ -48,7 +48,7 @@
 			</view>
 		</layout>
 
-		<layout title="待办事项">
+		<layout title="待办事项" v-if="now > '2019-12-30'">
 			<view v-for="(item,index) in todoList" :key="index">
 				<view class='y-CenterCon unitTodo' style="justify-content: space-between;">
 					<view>
@@ -106,6 +106,7 @@
 				tipsInfo: "数据加载中",
 				tips2: "数据加载中",
 				artical: "数据加载中",
+				now: util.formatDate()
 			}
 		},
 		onLoad: function(options) {

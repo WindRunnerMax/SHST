@@ -92,6 +92,7 @@
             "path" : "pages/Ext/link/link",
             "style" : {}
         }
+		// #ifdef MP-QQ
         ,{
             "path" : "pages/Ext/event/event",
             "style" : {}
@@ -100,6 +101,7 @@
             "path" : "pages/Ext/event/finEvent",
             "style" : {}
         }
+		// #endif
         ,{
             "path" : "pages/Ext/examArrange/examArrange",
             "style" : {}

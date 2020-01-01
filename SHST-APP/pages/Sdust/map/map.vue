@@ -16,40 +16,11 @@
 	export default {
 		data() {
 			return {
-				longitude: 120.12487,
-				latitude: 35.99940,
-				speed: 0,
-				accuracy: 0,
-				info: "定位中",
-				point: "#FFB800",
-				showLongitude: 120.124870,
-				showLatitude: 35.999400
+
 			}
 		},
 		onLoad: function() {
-			var that = this
-			wx.getLocation({
-				type: 'wgs84',
-				// altitude: true, //高精度定位
-				success: function(res) {
-					var latitude = res.latitude
-					var longitude = res.longitude
-					var speed = res.speed
-					var accuracy = res.accuracy
-					that.longitude = longitude
-					that.latitude = latitude
-					that.speed = speed
-					that.accuracy = accuracy
-					that.info = "定位成功"
-					that.point = "#009688"
-					that.showLongitude = longitude.toFixed(6)
-					that.showLatitude = latitude.toFixed(6)
-				},
-				fail: function() {
-					that.info = "定位失败",
-						that.point = "#FF5722"
-				}
-			})
+			
 		},
 		methods: {
 			bindViewTap: function() {},

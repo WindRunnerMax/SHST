@@ -47,8 +47,9 @@
 				<view style="margin:7px 3px 5px 3px;">{{tipsInfo}}</view>
 			</view>
 		</layout>
-
-		<layout title="待办事项" v-if="now > '2019-12-30'">
+		
+		<!-- #ifdef MP-QQ -->
+		<layout title="待办事项">
 			<view v-for="(item,index) in todoList" :key="index">
 				<view class='y-CenterCon unitTodo' style="justify-content: space-between;">
 					<view>
@@ -67,7 +68,7 @@
 					</view>
 				</view>
 			</view>
-			<view class='unitTable' v-if="tips2 !== ''">
+			<view class='unitTable' v-if="tips2">
 				<view class="y-CenterCon" style="margin: 5px 0;">
 					<view class="dot" style='background:#eee;margin: 0 6px 0 3px;'></view>
 					<view>{{tips2}}</view>
@@ -75,6 +76,8 @@
 				<view style="margin:7px 3px 5px 3px;">快去添加一个想做的事吧</view>
 			</view>
 		</layout>
+		<!-- #endif -->
+
 
 		<layout title="每日一句">
 			<sentence></sentence>
@@ -105,18 +108,12 @@
 				tips: "数据加载中",
 				tipsInfo: "数据加载中",
 				tips2: "数据加载中",
-				artical: "数据加载中",
-				now: util.formatDate()
+				artical: "数据加载中"
 			}
 		},
 		onLoad: function(options) {
 			app.eventBus.on('LoginEvent', this.openidEvent);
-			if (app.globalData.openid !== "") {
-				this.loginSatatus(app.globalData.loginStatus);
-				this.getArtical();
-				this.getTable();
-				this.getEvent();
-			}
+			if (app.globalData.openid !== "") this.openidEvent({data:{Message:app.globalData.loginStatus}});
 		},
 		methods: {
 			openidEvent: function(res) {
@@ -124,7 +121,9 @@
 				this.loginSatatus(res.data.Message);
 				this.getArtical();
 				this.getTable();
+				// #ifdef MP-QQ
 				this.getEvent();
+				// #endif
 			},
 			loginSatatus: function(status) {
 				if (status === "Yes") {
@@ -180,6 +179,7 @@
 				}
 			},
 			tipsDispose: function(info) {
+				if(!app.globalData.userFlag) return false;
 				this.table = info ? info : [];
 				this.tips = info ? "" : "No Class Today";
 				this.tipsInfo = info ? "" : "今天没有课，快去自习室学习吧";
@@ -191,6 +191,8 @@
 				});
 				this.getRemoteTable(2);
 			},
+			
+			// #ifdef MP-QQ
 			/**
 			 * 待办处理
 			 */
@@ -269,13 +271,15 @@
 					}
 				})
 			},
+			// #endif
+
 			getArtical: function() {
 				if (app.globalData.initData && app.globalData.initData.articalName) {
 					this.artical = app.globalData.initData.articalName
 				}
 			},
 			articalJump: function() {
-				
+
 				if (app.globalData.initData && app.globalData.initData.articleUrl) {
 					var url = encodeURIComponent(app.globalData.initData.articleUrl);
 					// #ifdef MP-WEIXIN

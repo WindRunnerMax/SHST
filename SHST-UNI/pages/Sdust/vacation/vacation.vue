@@ -17,20 +17,19 @@
 </template>
 
 <script>
-	var colorList = ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"]
+	const app = getApp()
 	export default {
 		data() {
 			return {
 				show: 0,
 				data: [],
-				colorList: colorList
+				colorList: app.globalData.colorList
 			}
 		},
 		onLoad() {
 			var that = this
-			uni.request({
-				url:"https://www.touchczy.top/ext/vacation",
-				header: {'content-type': 'application/x-www-form-urlencoded'},
+			app.ajax({
+				url:app.globalData.url + "ext/vacation",
 				success: (res) => {
 					that.data = res.data.info
 					that.show = 1

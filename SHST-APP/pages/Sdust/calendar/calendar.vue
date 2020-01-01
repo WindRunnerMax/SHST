@@ -62,12 +62,14 @@
 					'content-type': 'application/x-www-form-urlencoded'
 				},
 				success: (res) => {
+					res.data.info = res.data.info.reverse();
 					that.data = res.data.info
 					var range = [];
 					res.data.info.forEach((value) => {
 						range.push(value.term);
 					})
 					that.range = range;
+					that.bindPickerChange({detail:{value:0}})
 				}
 			})
 		},

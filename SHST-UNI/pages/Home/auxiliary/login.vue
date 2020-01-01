@@ -42,7 +42,7 @@
 			uni.getStorage({
 				key: 'user',
 				success: res => {
-					if (res.data.account !== "" && res.data.password !== "") {
+					if (res.data.account && res.data.password) {
 						this.account = res.data.account
 						this.password = decodeURIComponent(res.data.password)
 						app.globalData.openid = res.data.openid

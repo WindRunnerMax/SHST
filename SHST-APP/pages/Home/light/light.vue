@@ -47,6 +47,7 @@
 							innerList = [];
 						}
 						innerList.push(value);
+						return value;
 					});
 					extList.push(innerList);
 					that.lightList = extList;

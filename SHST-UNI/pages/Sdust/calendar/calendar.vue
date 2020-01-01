@@ -40,6 +40,7 @@
 </template>
 
 <script>
+	const app = getApp();
 	export default {
 		data() {
 			return {
@@ -52,18 +53,17 @@
 		},
 		onLoad() {
 			var that = this
-			uni.request({
-				url: "https://www.touchczy.top/ext/calendar",
-				header: {
-					'content-type': 'application/x-www-form-urlencoded'
-				},
+			app.ajax({
+				url: app.globalData.url + 'ext/calendar',
 				success: (res) => {
+					res.data.info = res.data.info.reverse();
 					that.data = res.data.info
 					var range = [];
 					res.data.info.forEach((value) => {
 						range.push(value.term);
 					})
 					that.range = range;
+					that.bindPickerChange({detail:{value:0}})
 				}
 			})
 		},

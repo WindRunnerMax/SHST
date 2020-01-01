@@ -1,7 +1,7 @@
 <template>
 	<view>
 
-		<layout title="添加事项">
+		<layout title="添加事项" v-if="dataDo > '2019-12-31'">
 			<view>
 				<input class='asse-input' placeholder='描述' @input="addInput" :value='addContent'></input>
 				<view style="display: flex;justify-content: space-between; border-bottom: 1px solid #eee;padding:5px 0;">

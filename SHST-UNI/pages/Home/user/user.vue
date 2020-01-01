@@ -97,32 +97,33 @@
 			}
 			uni.getStorage({
 				key: 'userInfo',
-				success: res => {
-					console.log("GET USERINFO FROM CACHE");
-					that.academy = res.data.academy
-					that.name = res.data.name
-					that.account = res.data.account
-				},
-				fail: res => {
-					console.log("GET USERINFO FROM REMOTE");
-					app.ajax({
-						load: 1,
-						url: app.globalData.url + 'sw/userInfo',
-						fun: res => {
-							if (res.data.info) {
-								uni.setStorage({
-									key: 'userInfo',
-									data: res.data.info
-								})
-								that.academy = res.data.info.academy
-								that.name = res.data.info.name
-								that.account = res.data.info.account
-							} else {
-								app.toast("服务器错误");
+				complete:function(res){
+					if(res.data && res.data.account){
+						console.log("GET USERINFO FROM CACHE");
+						that.academy = res.data.academy
+						that.name = res.data.name
+						that.account = res.data.account
+					}else{
+						console.log("GET USERINFO FROM REMOTE");
+						app.ajax({
+							load: 1,
+							url: app.globalData.url + 'sw/userInfo',
+							fun: res => {
+								if (res.data.info) {
+									uni.setStorage({
+										key: 'userInfo',
+										data: res.data.info
+									})
+									that.academy = res.data.info.academy
+									that.name = res.data.info.name
+									that.account = res.data.info.account
+								} else {
+									app.toast("服务器错误");
+								}
+						
 							}
-
-						}
-					})
+						})
+					}
 				}
 			})
 		},

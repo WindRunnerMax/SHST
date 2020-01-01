@@ -76,10 +76,12 @@
 					<i class='iconfont icon-link'></i>
 					<view>分享链接</view>
 				</view>
+				<!-- #ifdef MP-QQ -->
 				<view class='icon' data-jumpurl="/pages/Ext/event/event" data-checkuser="0" @tap='jump'>
 					<i class='iconfont icon-schedule'></i>
 					<view>待办管理</view>
 				</view>
+				<!-- #endif -->
 				<view class='icon' data-jumpurl="/pages/Ext/examArrange/examArrange" data-checkuser="0" @tap='jump'>
 					<i class='iconfont icon-exam'></i>
 					<view>考试安排</view>
@@ -88,6 +90,12 @@
 					<i class='iconfont icon-xuehao'></i>
 					<view>校园卡</view>
 				</view>
+				<!-- #ifdef MP-WEIXIN -->
+				<button open-type='feedback' class='icon' style="color: inherit;" hover-class="none">
+					<i class='iconfont icon-fankui'></i>
+					<view>意见反馈</view>
+				</button>
+				<!-- #endif -->
 			</view>
 		</layout>
 

@@ -63,7 +63,7 @@
 			</view>
 		</layout>
 		
-		<layout v-if="ad">{{ad}}
+		<layout v-if="ad">
 			<!-- #ifdef MP-WEIXIN -->
 			<ad unit-id="adunit-ce81890e6ff0b2a7" class="adapt" @error="adError"></ad>
 			<!-- #endif -->

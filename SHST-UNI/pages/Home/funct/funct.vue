@@ -101,10 +101,10 @@
 
 		<layout v-if="adShow">
 			<!-- #ifdef MP-WEIXIN -->
-			<ad unit-id="adunit-b82100ae7bddf4ad" @error="adError"></ad>
+			<ad unit-id="adunit-b82100ae7bddf4ad" @error="adError" class="adapt"></ad>
 			<!-- #endif -->
 			<!-- #ifdef MP-QQ -->
-			<ad unit-id="001b7e7e765436c6351d8a6d693437d2" @error="adError"></ad>
+			<ad unit-id="001b7e7e765436c6351d8a6d693437d2" @error="adError" class="adapt"></ad>
 			<!-- #endif -->
 		</layout>
 

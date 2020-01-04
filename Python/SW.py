@@ -10,8 +10,12 @@ import datetime
 
 # 强智教务管理系统
 ########################################
-account = ""
-password = ""
+#account = ""
+#password = ""
+"""
+避免账号和密码明文保存
+
+"""
 url = "http://jwgl.sdust.edu.cn/app.do" 
 ########################################
 
@@ -142,7 +146,44 @@ class SW(object):
 
 
 if __name__ == '__main__':
+    account = int(input("请输入学号:"))
+    password = input("请输入密码:")
     Q = SW(account,password,url)
+    
+    #功能选择
+    print("#######################")
+    print("请输入功能对应序号:")
+    print("1.获取学生信息")
+    print("2.获取学年信息")
+    print("3.当前周次课表")
+    print("4.指定周次课表")
+    print("5.空教室查询")
+    print("6.成绩查询")
+    print("7.获取考试信息")
+    print("#######################")
+    
+    while True:
+        FunctionNumber = int(input())
+        if FunctionNumber == 1:
+            Q.getStudentInfo()
+        elif FunctionNumber == 2:
+            Q.getCurrentTime()
+        elif FunctionNumber == 3:
+            Q.getKbcxAzc()
+        elif FunctionNumber == 4:
+            WeekNumber = int(input("请输入周次:"))
+            Q.getKbcxAzc(WeekNumber)
+        elif FunctionNumber == 5:
+            print("请准确输入对应编号:")
+            print("'allday'：全天 'am'：上午 'pm'：下午 'night'：晚上 '0102':1.2节空教室 '0304':3.4节空教室")
+            TimeNumber = input("")
+            Q.getKxJscx(TimeNumber)
+        elif FunctionNumber == 6:
+            YearNumber = input("请输入学年(样例:2018-2019-1):")
+            Q.getCjcx(YearNumber)
+        elif FunctionNumber == 7:
+            Q.getKscx()
+    
     # Q.getStudentInfo() #获取学生信息
     # Q.getCurrentTime() #获取学年信息
     # Q.getKbcxAzc() #当前周次课表

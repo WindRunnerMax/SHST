@@ -16,7 +16,7 @@ SW/SHST-APP 目录下为UNI-APP项目[山科小站--APP]，App版本，请求本
 ----
 # API 
 
-### 1. Python
+## 1. Python
 
 **配置文件 SW/Python/SW.py**
 * account 账号
@@ -33,7 +33,8 @@ SW/SHST-APP 目录下为UNI-APP项目[山科小站--APP]，App版本，请求本
 * Q.getKscx() #获取考试信息
 
   
-### 2. PHP  
+## 2. PHP
+
 **配置文件 SW/PHP/Main.php**
 * accountSW 账号
 * passwordSW 密码
@@ -50,12 +51,14 @@ SW/SHST-APP 目录下为UNI-APP项目[山科小站--APP]，App版本，请求本
 * 注意导入工程时更改包名
 * 源码末尾取消注释即可获取相应方法返回的值
 
-----
+----  
+  
+  
 # 山科小站 SHST-UNI 
 
 ![show](https://windrunner_max.gitee.io/imgpath/SDUST/SHST-WX.jpg)
 
-### 1. 配置相关 
+## 1. 配置相关 
 
 **配置文件 SW/SHST-UNI/App.vue**
 * userFlag 用户登录状态
@@ -70,7 +73,7 @@ SW/SHST-APP 目录下为UNI-APP项目[山科小站--APP]，App版本，请求本
 * toast() 弹窗提示
 * ajax() 网络请求封装
 
-### 2. 目录结构  
+## 2. 目录结构  
 [关于UNIAPP重构以及类的封装文档](https://blog.csdn.net/qq_40413670/article/details/103796680)
 ```javascript
 SHST-UNI                              // 山科小站总目录
@@ -109,7 +112,7 @@ SHST-UNI                              // 山科小站总目录
     └── uni.scss                      // 内置的常用样式变量
 ```
 
-### 3. 小程序  
+## 3. 小程序  
 ![show](https://windrunner_max.gitee.io/imgpath/SDUST/SHST-SHOW-2.jpg)
 ![show](https://windrunner_max.gitee.io/imgpath/SDUST/SHST-SHOW-1.jpg)
 ----  

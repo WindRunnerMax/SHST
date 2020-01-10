@@ -54,7 +54,7 @@ SW/SHST-APP 目录下为UNI-APP项目[山科小站--APP]，App版本，请求本
 ----  
   
   
-# 山科小站 SHST-UNI 
+# 山科小站
 
 ![show](https://windrunner_max.gitee.io/imgpath/SDUST/SHST-WX.jpg)
 
@@ -74,7 +74,9 @@ SW/SHST-APP 目录下为UNI-APP项目[山科小站--APP]，App版本，请求本
 * ajax() 网络请求封装
 
 ## 2. 目录结构  
+
 [关于UNIAPP重构以及类的封装文档](https://blog.csdn.net/qq_40413670/article/details/103796680)
+
 ```javascript
 SHST-UNI                              // 山科小站总目录
     ├── components                    // 组件封装

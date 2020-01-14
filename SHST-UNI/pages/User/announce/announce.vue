@@ -7,7 +7,9 @@
 			<rich-text :nodes="item.announce" style="line-height: 23px;"></rich-text>
 		</layout>
 
+		<!-- #ifdef MP-WEIXIN -->
 		<official-account style='display: block;'></official-account>
+		<!-- #endif -->
 
 	</view>
 </template>
@@ -31,23 +33,23 @@
 			})
 			var that = this;
 			app.ajax({
-					load: 2,
-					url: app.globalData.url + 'ext/announce',
-					fun: res => {
-						if (res.data.info) {
-							res.data.info.reverse();
-							that.data = res.data.info
+				load: 2,
+				url: app.globalData.url + 'ext/announce',
+				fun: res => {
+					if (res.data.info) {
+						res.data.info.reverse();
+						that.data = res.data.info
+					}
 				}
-			}
-		})
-	},
-	methods: {
-		copy(e) {
-			uni.setClipboardData({
-				data: e.currentTarget.dataset.copy
 			})
+		},
+		methods: {
+			copy(e) {
+				uni.setClipboardData({
+					data: e.currentTarget.dataset.copy
+				})
+			}
 		}
-	}
 	}
 </script>
 

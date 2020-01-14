@@ -12,14 +12,14 @@
 			</view>
 			<view class='weaRight'>
 				<view class='weaRightTop'>
-					<image class='dayImg' mode="widthFix" :src="host+'/public/static/weather/'+tomorrowWeather[1]+'.png'"></image>
+					<image class='dayImg' mode="aspectFit" :src="host+'/public/static/weather/'+tomorrowWeather[1]+'.png'"></image>
 					<view class='weatherCon'>
 						<view style='text-align:center;margin-top:6px;'>{{tomorrowWeather[0]}}</view>
 						<view style='text-align:center;margin-top:3px;'>{{tomorrowWeather[2]}}℃ - {{tomorrowWeather[3]}}℃</view>
 					</view>
 				</view>
 				<view class='weaRightBot'>
-					<image class='dayImg' mode="widthFix" :src="host+'/public/static/weather/'+tdatomoWeather[1]+'.png'"></image>
+					<image class='dayImg' mode="aspectFit" :src="host+'/public/static/weather/'+tdatomoWeather[1]+'.png'"></image>
 					<view class='weatherCon'>
 						<view style='text-align:center;margin-top:3px;'>{{tdatomoWeather[0]}}</view>
 						<view style='text-align:center;'>{{tdatomoWeather[2]}}℃ - {{tdatomoWeather[3]}}℃</view>
@@ -85,13 +85,13 @@
 	}
 
 	.todayImg {
-		width: 40px;
-		height: 40px;
+		width: 40px !important;
+		height: 40px !important;
 	}
 
 	.dayImg {
-		width: 30px;
-		height: 30px;
+		width: 30px !important;
+		height: 30px !important;
 		margin: 0 0 0 15px;
 		align-self: center;
 	}

@@ -239,7 +239,13 @@ function ajax(requestInfo, app = getApp()) {
 function onLunch() {
 	var app = this;
 	app.$scope.eventBus = eventBus.getEventBus;
+	// #ifndef MP-ALIPAY
 	uni.login({
+	// #endif
+	// #ifdef MP-ALIPAY
+	my.getAuthCode({
+	    scopes: 'auth_base',
+	// #endif
 		success: res => {
 			ajax({
 				load: 3,
@@ -249,10 +255,18 @@ function onLunch() {
 				// #ifdef MP-QQ
 				url: app.globalData.url + 'auth/QQ',
 				// #endif
+				// #ifdef MP-ALIPAY
+				url: app.globalData.url + 'auth/alipay',
+				// #endif
 				method: 'POST',
 				autoCookie: false,
 				data: {
+					// #ifndef MP-ALIPAY
 					"code": res.code
+					// #endif
+					// #ifdef MP-ALIPAY
+					"code": res.authCode
+					// #endif
 				},
 				success: (res) => {
 					setCookie(res, app);
@@ -288,6 +302,9 @@ function onLunch() {
 					}
 				}
 			}, app)
+		},
+		complete: function(res){
+			console.log(res);
 		}
 	})
 }

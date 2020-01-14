@@ -76,7 +76,7 @@
 					<i class='iconfont icon-link'></i>
 					<view>分享链接</view>
 				</view>
-				<!-- #ifdef MP-QQ -->
+				 <!-- #ifndef MP-WEIXIN -->
 				<view class='icon' data-jumpurl="/pages/Ext/event/event" data-checkuser="0" @tap='jump'>
 					<i class='iconfont icon-schedule'></i>
 					<view>待办管理</view>
@@ -127,7 +127,6 @@
 			},
 			jump(e) {
 				if (e.currentTarget.dataset.checkuser === "0" && app.globalData.userFlag !== 1) {
-					console.warn(app.globalData.userFlag)
 					if (app.globalData.userFlag === 0) {
 						uni.showModal({
 							title: '提示',

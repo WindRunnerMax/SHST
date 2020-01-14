@@ -13,6 +13,7 @@
 				</view>
 			</headslot>
 			<layout>
+				<!-- #ifndef MP-ALIPAY -->
 				<view class='articalCon' @tap='articalJump' style="margin-top: -7px;">
 					<i class='iconfont icon-gonggao icon'></i>
 					<rich-text class='link'>{{artical}}</rich-text>
@@ -21,6 +22,17 @@
 					<i class='iconfont icon-gonggao icon'></i>
 					<rich-text class='link'>更多公告...</rich-text>
 				</navigator>
+				<!-- #endif -->
+				<!-- #ifdef MP-ALIPAY -->
+				<view class='articalCon' @tap='articalJump' style="margin-top: -7px;">
+					<i class='iconfont icon-gonggao icon'></i>
+					<text class='link'>{{artical}}</text>
+				</view>
+				<navigator url="/pages/User/announce/announce" open-type="navigate" class='articalCon' hover-class="none">
+					<i class='iconfont icon-gonggao icon'></i>
+					<text class='link'>更多公告...</text>
+				</navigator>
+				<!-- #endif -->
 			</layout>
 		</view>
 
@@ -47,8 +59,8 @@
 				<view style="margin:7px 3px 5px 3px;">{{tipsInfo}}</view>
 			</view>
 		</layout>
-		
-		<!-- #ifdef MP-QQ -->
+
+		<!-- #ifndef MP-WEIXIN -->
 		<layout title="待办事项">
 			<view v-for="(item,index) in todoList" :key="index">
 				<view class='y-CenterCon unitTodo' style="justify-content: space-between;">
@@ -113,7 +125,11 @@
 		},
 		onLoad: function(options) {
 			app.eventBus.on('LoginEvent', this.openidEvent);
-			if (app.globalData.openid !== "") this.openidEvent({data:{Message:app.globalData.loginStatus}});
+			if (app.globalData.openid !== "") this.openidEvent({
+				data: {
+					Message: app.globalData.loginStatus
+				}
+			});
 		},
 		methods: {
 			openidEvent: function(res) {
@@ -121,7 +137,7 @@
 				this.loginSatatus(res.data.Message);
 				this.getArtical();
 				this.getTable();
-				// #ifdef MP-QQ
+				// #ifndef MP-WEIXIN
 				this.getEvent();
 				// #endif
 			},
@@ -179,7 +195,7 @@
 				}
 			},
 			tipsDispose: function(info) {
-				if(!app.globalData.userFlag) return false;
+				if (!app.globalData.userFlag) return false;
 				this.table = info ? info : [];
 				this.tips = info ? "" : "No Class Today";
 				this.tipsInfo = info ? "" : "今天没有课，快去自习室学习吧";
@@ -191,8 +207,8 @@
 				});
 				this.getRemoteTable(2);
 			},
-			
-			// #ifdef MP-QQ
+
+			// #ifndef MP-WEIXIN
 			/**
 			 * 待办处理
 			 */

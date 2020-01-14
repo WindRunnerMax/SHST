@@ -92,7 +92,7 @@
             "path" : "pages/Ext/link/link",
             "style" : {}
         }
-		// #ifdef MP-QQ
+		// #ifndef MP-ALIPAY
         ,{
             "path" : "pages/Ext/event/event",
             "style" : {}

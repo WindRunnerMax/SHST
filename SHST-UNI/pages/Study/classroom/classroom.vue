@@ -82,7 +82,7 @@
 			},
 			loadClassroom(e) {
 				var that = this;
-				wx.setNavigationBarTitle({
+				uni.setNavigationBarTitle({
 					title: '加载中...'
 				})
 				setTimeout(() => that.loadClassroomSetTime(e), 300);

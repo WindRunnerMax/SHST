@@ -42,7 +42,7 @@
 			uni.getStorage({
 				key: 'user',
 				success: res => {
-					if (res.data.account && res.data.password) {
+					if (res.data && res.data.account && res.data.password) {
 						this.account = res.data.account
 						this.password = decodeURIComponent(res.data.password)
 						app.globalData.openid = res.data.openid
@@ -75,6 +75,9 @@
 						// #endif
 						// #ifdef MP-QQ
 						url: app.globalData.url + 'auth/login/2',
+						// #endif
+						// #ifdef MP-ALIPAY
+						url: app.globalData.url + 'auth/login/3',
 						// #endif
 						method: 'POST',
 						data: {

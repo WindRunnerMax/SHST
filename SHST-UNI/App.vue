@@ -10,8 +10,8 @@
 			curTerm: "2019-2020-1",
 			curTermStart: "2019-08-26",
 			colorList: dispose.colorList,
-			url: 'https://www.touchczy.top/',
-			// url: 'http://127.0.0.1/Swisdom/Web/index.php/',
+			// url: 'https://www.touchczy.top/',
+			url: 'http://dev.touchczy.top/',
 			header: {'Cookie': '','content-type': 'application/x-www-form-urlencoded'}
 		},
 		onPageNotFound: (res) => { //处理404
@@ -76,6 +76,7 @@
 	  margin: 0;
 	  font-size: 13px;
 	  line-height: unset;
+	  height: auto;
 	}
 	.adapt{
 		box-sizing: border-box;

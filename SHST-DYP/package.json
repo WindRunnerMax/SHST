@@ -1,8 +1,8 @@
 {
-  "name": "asd",
+  "name": "shst",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "",
+  "author": "Czy <651525974@qq.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -10,8 +10,6 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.19.1",
-    "element-ui": "^2.13.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
@@ -20,7 +18,6 @@
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-loader": "^7.1.1",
-    "babel-plugin-component": "^1.1.1",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-plugin-transform-vue-jsx": "^3.5.0",
@@ -49,7 +46,7 @@
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",
-    "webpack-bundle-analyzer": "^3.6.0",
+    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0"
   },

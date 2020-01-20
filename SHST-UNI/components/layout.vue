@@ -2,8 +2,13 @@
 	<view>
 
 		<view class="line" v-show="title">
-			<view class="left" v-bind:style="{'background-color': color}"></view>
-			<view class="right">{{title}}</view>
+			<view class="leftCon">
+				<view class="verline" v-bind:style="{'background-color': color}"></view>
+				<view>{{title}}</view>
+			</view>
+			<view >
+				<slot name="headslot"></slot>
+			</view>
 		</view>
 		<view class='card' :class="{'minPaddingTop':title}">
 			<slot></slot>
@@ -33,9 +38,11 @@
 		box-sizing: border-box;
 		display: flex;
 		border-bottom: 1px solid #EEEEEE;
+		justify-content: space-between;
+		align-items: center;
 	}
 
-	.line .left {
+	.verline {
 		width: 2px;
 		margin: 2px 5px;
 	}
@@ -49,5 +56,8 @@
 	}
 	.minPaddingTop{
 		padding-top: 3px;
+	}
+	.leftCon{
+		display: flex;
 	}
 </style>

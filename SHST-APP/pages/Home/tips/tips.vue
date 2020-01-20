@@ -5,23 +5,22 @@
 			<weather></weather>
 		</layout>
 
-		<view>
-			<headslot :title="today">
+		
+		<layout :title="today">
+			<view slot="headslot">
 				<view class="y-CenterCon">
 					<view class='iconfont icon-shuaxin icon refresh' @tap='refresh'></view>
 				</view>
-			</headslot>
-			<layout>
-				<view class='articalCon' @tap='articalJump' style="margin-top: -7px;">
-					<i class='iconfont icon-gonggao icon'></i>
-					<rich-text class='link'>{{artical}}</rich-text>
-				</view>
-				<navigator url="/pages/User/announce/announce" open-type="navigate" class='articalCon' hover-class="none">
-					<i class='iconfont icon-gonggao icon'></i>
-					<rich-text class='link'>更多公告...</rich-text>
-				</navigator>
-			</layout>
-		</view>
+			</view>
+			<view class='articalCon' @tap='articalJump'>
+				<i class='iconfont icon-gonggao icon'></i>
+				<rich-text class='link'>{{artical}}</rich-text>
+			</view>
+			<navigator url="/pages/User/announce/announce" open-type="navigate" class='articalCon' hover-class="none">
+				<i class='iconfont icon-gonggao icon'></i>
+				<rich-text class='link'>更多公告...</rich-text>
+			</navigator>
+		</layout>
 
 
 		<layout title="今日课程">

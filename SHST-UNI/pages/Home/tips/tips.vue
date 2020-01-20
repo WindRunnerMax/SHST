@@ -5,36 +5,35 @@
 			<weather></weather>
 		</layout>
 
-		<view>
-			<headslot :title="today">
+
+		<layout :title="today">
+			<view slot="headslot">
 				<view class="y-CenterCon">
 					<view class='iconfont icon-shuaxin icon refresh' @tap='refresh'></view>
 					<button open-type='share' class='iconfont icon-fenxiang icon btn'></button>
 				</view>
-			</headslot>
-			<layout>
-				<!-- #ifndef MP-ALIPAY -->
-				<view class='articalCon' @tap='articalJump' style="margin-top: -7px;">
-					<i class='iconfont icon-gonggao icon'></i>
-					<rich-text class='link'>{{artical}}</rich-text>
-				</view>
-				<navigator url="/pages/User/announce/announce" open-type="navigate" class='articalCon' hover-class="none">
-					<i class='iconfont icon-gonggao icon'></i>
-					<rich-text class='link'>更多公告...</rich-text>
-				</navigator>
-				<!-- #endif -->
-				<!-- #ifdef MP-ALIPAY -->
-				<view class='articalCon' @tap='articalJump' style="margin-top: -7px;">
-					<i class='iconfont icon-gonggao icon'></i>
-					<text class='link'>{{artical}}</text>
-				</view>
-				<navigator url="/pages/User/announce/announce" open-type="navigate" class='articalCon' hover-class="none">
-					<i class='iconfont icon-gonggao icon'></i>
-					<text class='link'>更多公告...</text>
-				</navigator>
-				<!-- #endif -->
-			</layout>
-		</view>
+			</view>
+			<!-- #ifndef MP-ALIPAY -->
+			<view class='articalCon' @tap='articalJump'>
+				<i class='iconfont icon-gonggao icon'></i>
+				<rich-text class='link'>{{artical}}</rich-text>
+			</view>
+			<navigator url="/pages/User/announce/announce" open-type="navigate" class='articalCon' hover-class="none">
+				<i class='iconfont icon-gonggao icon'></i>
+				<rich-text class='link'>更多公告...</rich-text>
+			</navigator>
+			<!-- #endif -->
+			<!-- #ifdef MP-ALIPAY -->
+			<view class='articalCon' @tap='articalJump'>
+				<i class='iconfont icon-gonggao icon'></i>
+				<text class='link'>{{artical}}</text>
+			</view>
+			<navigator url="/pages/User/announce/announce" open-type="navigate" class='articalCon' hover-class="none">
+				<i class='iconfont icon-gonggao icon'></i>
+				<text class='link'>更多公告...</text>
+			</navigator>
+			<!-- #endif -->
+		</layout>
 
 
 		<layout title="今日课程">
@@ -101,7 +100,6 @@
 <script>
 	import weather from "@/components/weather.vue"
 	import sentence from "@/components/sentence.vue"
-	import headslot from "@/components/headslot.vue"
 	const app = getApp()
 	const util = require("@/utils/util.js")
 	const pubFct = require("@/vector/pubFct.js")
@@ -109,8 +107,7 @@
 	export default {
 		components: {
 			weather,
-			sentence,
-			headslot
+			sentence
 		},
 		data() {
 			return {

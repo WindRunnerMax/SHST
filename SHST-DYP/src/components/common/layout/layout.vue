@@ -1,11 +1,16 @@
-<template>
+<template name="layout">
 	<div>
 
 		<div class="line" v-show="title">
-			<div class="left" v-bind:style="{'background-color': color}"></div>
-			<div class="right">{{title}}</div>
+			<div class="leftCon">
+				<div class="verline" v-bind:style="{'background-color': color}"></div>
+				<div>{{title}}</div>
+			</div>
+			<div >
+				<slot name="headslot"></slot>
+			</div>
 		</div>
-		<div class='card'>
+		<div class='card' :class="{'minPaddingTop':title}">
 			<slot></slot>
 		</div>
 
@@ -33,9 +38,11 @@
 		box-sizing: border-box;
 		display: flex;
 		border-bottom: 1px solid #EEEEEE;
+		justify-content: space-between;
+		align-items: center;
 	}
 
-	.line .left {
+	.verline {
 		width: 2px;
 		margin: 2px 5px;
 	}
@@ -47,5 +54,10 @@
 		box-sizing: border-box;
 		margin-bottom: 10px;
 	}
-
+	.minPaddingTop{
+		padding-top: 3px;
+	}
+	.leftCon{
+		display: flex;
+	}
 </style>

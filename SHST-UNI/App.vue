@@ -12,7 +12,7 @@
 			colorList: dispose.colorList,
 			// url: 'https://www.touchczy.top/',
 			url: 'http://dev.touchczy.top/',
-			header: {'Cookie': '','content-type': 'application/x-www-form-urlencoded'}
+			header: {'content-type': 'application/x-www-form-urlencoded'}
 		},
 		onPageNotFound: (res) => { //处理404
 			uni.reLaunch({
@@ -38,36 +38,11 @@
 </script>
 
 <style>
-	@import '/vector/asse.wxss';
+	@import '/vector/asse.mini.wxss';
 	@import "/vector/icon/iconfont.wxss";
-	page{
-		font-family: Arial, Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, sans-serif;
-		padding: 10px;
-		box-sizing: border-box;
-		font-size: 15px;
-		background-color: #F8F8F8;
-	}
-	.link{
-	  color: #4C98F7;
-	  text-decoration: underline;
-	}
-	.x-CenterCon{
-		display: flex;
-		justify-content: center;
-	}
-	.dot{
-		width: 8px;
-		height: 8px;
-		border-radius: 8px;
-	}
-	.y-CenterCon{
-		display: flex;
-		align-items: center;
-	}
 	button:after {
 	  border: none;
 	}
-	
 	button {
 	  background: #fff;
 	  border: none;

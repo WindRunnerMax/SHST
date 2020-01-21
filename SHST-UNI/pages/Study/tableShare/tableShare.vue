@@ -4,9 +4,9 @@
 		<layout title="共享课表">
 			<view class='top' v-if="data.status === 1">
 				<view class="x-CenterCon" style="flex-direction: column;">
-					<input class='asse-input' @input="accountInput" placeholder='对方学号' :value="account"></input>
-					<input class='asse-input' @input="nameInput" style='margin-top:5px;' placeholder='对方姓名' :value="name"></input>
-					<view class='asse-btn asse-btn-blue' @tap='req'>发起请求</view>
+					<input class='a-input' @input="accountInput" placeholder='对方学号' :value="account"></input>
+					<input class='a-input' @input="nameInput" style='margin-top:5px;' placeholder='对方姓名' :value="name"></input>
+					<view class='a-btn a-btn-blue' @tap='req'>发起请求</view>
 				</view>
 			</view>
 
@@ -14,18 +14,18 @@
 				<view style='display:flex;align-items: center;'>
 					<view>{{data.pair_user[0]}}</view>
 					<view style='margin-left:5px;'>{{data.pair_user[1]}}</view>
-					<view class='asse-btn asse-btn-blue asse-btn-mini' @tap='cancelreq'>撤销请求</view>
+					<view class='a-btn a-btn-blue a-btn-mini' @tap='cancelreq'>撤销请求</view>
 				</view>
 			</view>
 
-			<view class='asse-hr' v-if="data.status !== 0"></view>
+			<view class='a-hr' v-if="data.status !== 0"></view>
 
 			<view class='top' v-if="data.status !== 0">
 				<view v-for="(item,index) in data.data" style='display:flex;align-items: center;' :key="index">
 					<view>{{item.account}}</view>
 					<view style='margin-left:5px;'>{{item.name}}</view>
-					<view class='asse-btn asse-btn-blue asse-btn-mini' :data-id="item.id" @tap='agree'>同意</view>
-					<view class='asse-btn asse-btn-blue asse-btn-mini' :data-id="item.id" @tap='refuse'>拒绝</view>
+					<view class='a-btn a-btn-blue a-btn-mini' :data-id="item.id" @tap='agree'>同意</view>
+					<view class='a-btn a-btn-blue a-btn-mini' :data-id="item.id" @tap='refuse'>拒绝</view>
 				</view>
 			</view>
 
@@ -58,13 +58,13 @@
 							</view>
 						</view>
 					</view>
-					<view class="asse-hr timetablehr"></view>
+					<view class="a-hr timetablehr"></view>
 				</view>
-				<view class='asse-hr'></view>
+				<view class='a-hr'></view>
 				<view style='display:flex;align-items: center;'>
 					<view>{{data.user}} -</view>
 					<view> {{data.succ.pair}}</view>
-					<view class='asse-btn asse-btn-blue asse-btn-mini' :data-id="data.succ.id" @tap='lifting'>解除关系</view>
+					<view class='a-btn a-btn-blue a-btn-mini' :data-id="data.succ.id" @tap='lifting'>解除关系</view>
 				</view>
 			</view>
 		</layout>
@@ -198,14 +198,14 @@
 		justify-content: center;
 	}
 
-	.asse-input {
+	.a-input {
 		align-self: center;
 		border: 1px solid #eee;
 		width: 200px;
 		border-radius: 3px;
 	}
 
-	.asse-hr {
+	.a-hr {
 		margin-bottom: 3px;
 	}
 
@@ -217,7 +217,7 @@
 	.info {
 		margin-left: 7px;
 	}
-	.asse-hr {
+	.a-hr {
 		margin-bottom: 3px;
 	}
 
@@ -238,7 +238,7 @@
 		margin-top: 3px;
 	}
 
-	.asse-hr {
+	.a-hr {
 		background-color: #eee !important;
 		height: 1px;
 		border: none;

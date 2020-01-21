@@ -9,15 +9,15 @@
 			<view class='inputCon'>
 				<view class='inputView'>
 					<i class='iconfont icon-account'></i>
-					<input class='asse-input' name="account" style='width:100%;' placeholder='账号' :value='account'></input>
+					<input class='a-input' name="account" style='width:100%;' placeholder='账号' :value='account'></input>
 				</view>
 				<view class='inputView'>
 					<i class='iconfont icon-password'></i>
-					<input class='asse-input' name="password" style='width:100%;' placeholder='密码' :password='hidePassword' :value='password'></input>
+					<input class='a-input' name="password" style='width:100%;' placeholder='密码' :password='hidePassword' :value='password'></input>
 					<switch @change="switchChange"></switch>
 				</view>
 			</view>
-			<button class='asse-btn asse-btn-blue loginBtn' form-type="submit">Log In</button>
+			<button class='a-btn a-btn-blue loginBtn' form-type="submit">Log In</button>
 		</form>
 		<view class='tips'>
 			<view>请输入强智系统账号密码</view>

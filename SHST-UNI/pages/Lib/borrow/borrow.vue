@@ -13,7 +13,7 @@
 					<rich-text :nodes="item[6]" class="info"></rich-text>
 					<rich-text :nodes="item[7]" class="info"></rich-text>
 				</view>
-				<view class="asse-hr"></view>
+				<view class="a-hr"></view>
 			</view>
 		</layout>
 
@@ -60,6 +60,17 @@
 							})
 							infoArr.push(infoArrInner);
 						})
+						// #ifdef MP-ALIPAY
+						infoArr = infoArr.map((value) => {
+							value = value.map((value2) => { 
+								value2 = value2.replace(/<p >/,"");
+								value2 = value2.replace(/<p  class="remind">/,"");
+								value2 = value2.replace(/<\/p>/,"");
+								return [{type:"text",text:value2}];
+							});
+							return value;
+						})
+						// #endif
 						console.log(infoArr);
 						that.data = infoArr
 					} else {

@@ -13,26 +13,15 @@
 					<button open-type='share' class='iconfont icon-fenxiang icon btn'></button>
 				</view>
 			</view>
-			<!-- #ifndef MP-ALIPAY -->
 			<view class='articalCon' @tap='articalJump'>
 				<i class='iconfont icon-gonggao icon'></i>
-				<rich-text class='link'>{{artical}}</rich-text>
-			</view>
-			<navigator url="/pages/User/announce/announce" open-type="navigate" class='articalCon' hover-class="none">
-				<i class='iconfont icon-gonggao icon'></i>
-				<rich-text class='link'>更多公告...</rich-text>
-			</navigator>
-			<!-- #endif -->
-			<!-- #ifdef MP-ALIPAY -->
-			<view class='articalCon' @tap='articalJump'>
-				<i class='iconfont icon-gonggao icon'></i>
-				<text class='link'>{{artical}}</text>
+				<rich-text class='link' :nodes="artical"></rich-text>
 			</view>
 			<navigator url="/pages/User/announce/announce" open-type="navigate" class='articalCon' hover-class="none">
 				<i class='iconfont icon-gonggao icon'></i>
 				<text class='link'>更多公告...</text>
 			</navigator>
-			<!-- #endif -->
+
 		</layout>
 
 
@@ -117,7 +106,7 @@
 				tips: "数据加载中",
 				tipsInfo: "数据加载中",
 				tips2: "数据加载中",
-				artical: "数据加载中"
+				artical: [{type:"text",text:"数据加载中"}]
 			}
 		},
 		onLoad: function(options) {
@@ -288,7 +277,7 @@
 
 			getArtical: function() {
 				if (app.globalData.initData && app.globalData.initData.articalName) {
-					this.artical = app.globalData.initData.articalName
+					this.artical = [{type:"text",text:app.globalData.initData.articalName}]
 				}
 			},
 			articalJump: function() {
@@ -300,7 +289,7 @@
 						url: '/pages/Home/auxiliary/webview?url=' + url
 					})
 					// #endif
-					// #ifdef MP-QQ
+					// #ifndef MP-WEIXIN
 					uni.setClipboardData({
 						data: url
 					})

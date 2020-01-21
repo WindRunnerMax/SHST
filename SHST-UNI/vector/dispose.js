@@ -152,9 +152,14 @@ function userDot(notify, app = getApp()) {
  * SetCookie
  */
 function setCookie(res, app = getApp()) {
-	if (app.globalData.header.Cookie === "") {
+	if (!app.globalData.header.Cookie) {
 		if (res && res.header && res.header['Set-Cookie']) {
+			// #ifdef MP-ALIPAY
+			var cookies = res.header['Set-Cookie'][0].split(";")[0] + ";";
+			// #endif
+			// #ifndef MP-ALIPAY
 			var cookies = res.header['Set-Cookie'].split(";")[0] + ";";
+			// #endif
 			console.log("SetCookie:" + cookies);
 			app.globalData.header.Cookie = cookies;
 			uni.setStorage({
@@ -180,7 +185,7 @@ function toast(e, time = 2000, icon = 'none') {
 }
 
 /**
- * XHR请求
+ * HTTP请求
  */
 function ajax(requestInfo, app = getApp()) {
 	var option = {
@@ -206,7 +211,7 @@ function ajax(requestInfo, app = getApp()) {
 		data: option.data,
 		method: option.method,
 		header: app.globalData.header,
-		success: (res) => {
+		success: function(res) {
 			if (option.autoCookie) setCookie(res);
 			try {
 				option.fun(res);
@@ -218,7 +223,7 @@ function ajax(requestInfo, app = getApp()) {
 				console.warn(e);
 			}
 		},
-		fail: (res) => {
+		fail: function(res){
 			option.fail(res);
 		},
 		complete: function(res) {
@@ -239,13 +244,8 @@ function ajax(requestInfo, app = getApp()) {
 function onLunch() {
 	var app = this;
 	app.$scope.eventBus = eventBus.getEventBus;
-	// #ifndef MP-ALIPAY
 	uni.login({
-	// #endif
-	// #ifdef MP-ALIPAY
-	my.getAuthCode({
 	    scopes: 'auth_base',
-	// #endif
 		success: res => {
 			ajax({
 				load: 3,
@@ -302,9 +302,6 @@ function onLunch() {
 					}
 				}
 			}, app)
-		},
-		complete: function(res){
-			console.log(res);
 		}
 	})
 }

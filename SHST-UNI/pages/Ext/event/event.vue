@@ -3,7 +3,7 @@
 
 		<layout title="添加事项" v-if="dataDo > '2019-12-31'">
 			<view>
-				<input class='asse-input' placeholder='描述' @input="addInput" :value='addContent'></input>
+				<input class='a-input' placeholder='描述' @input="addInput" :value='addContent'></input>
 				<view style="display: flex;justify-content: space-between; border-bottom: 1px solid #eee;padding:5px 0;">
 					<picker style="display: flex;align-items: center;" mode="date" :value="dataDo" :end="dataEnd" @change="dateChange">
 						<view class="y-CenterCon">
@@ -11,7 +11,7 @@
 							<view class="link">{{dataDo}}</view>
 						</view>
 					</picker>
-					<view class='asse-btn asse-btn-mini asse-btn-blue btn' @tap='add'>确定</view>
+					<view class='a-btn a-btn-mini a-btn-blue btn' @tap='add'>确定</view>
 				</view>
 			</view>
 		</layout>
@@ -227,7 +227,7 @@
 </script>
 
 <style>
-	.asse-input {
+	.a-input {
 		border-bottom: 1px solid #eee;
 		padding: 5px 0;
 	}

@@ -3,7 +3,7 @@
 		
 		<view style="margin: 6px 0 8px 3px;">{{sentence}}</view>
 		<view style="margin: 3px 0 8px 3px;">{{content}}</view>
-		<image :src="url" mode="aspectFill"></image>
+		<image class="sent-image" :src="url" mode="aspectFill"></image>
 
 	</view>
 </template>
@@ -33,7 +33,7 @@
 	}
 </script>
 <style>
-	image {
+	.sent-image {
 		width: 100%;
 	}
 </style>

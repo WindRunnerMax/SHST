@@ -61,7 +61,7 @@
 					<view>></view>
 				</view>
 
-				<view class="asse-btn asse-btn-orange" style="width: 100%;margin: 18px 0 0px 0;box-sizing: border-box;" @tap='logout'>注销</view>
+				<view class="a-btn a-btn-orange" style="width: 100%;margin: 18px 0 0px 0;box-sizing: border-box;" @tap='logout'>注销</view>
 
 			</view>
 		</layout>

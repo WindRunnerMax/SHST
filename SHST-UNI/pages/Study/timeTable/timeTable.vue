@@ -5,18 +5,18 @@
 			<view class='tableTop'>
 				<view class='week'>第{{week}}周</view>
 				<view style='display:flex;'>
-					<view class='asse-btn asse-btn-white asse-btn-mini refresh' :data-week='week' @tap='refresh'>
+					<view class='a-btn a-btn-white a-btn-mini refresh' :data-week='week' @tap='refresh'>
 						<view class='operate iconfont icon-shuaxin1'></view>
 					</view>
-					<view class='asse-btn asse-btn-white asse-btn-mini pre' style='font-size: 14px;' :data-week='week' @tap='pre'>
+					<view class='a-btn a-btn-white a-btn-mini pre' style='font-size: 14px;' :data-week='week' @tap='pre'>
 						<view class='operate'>{{preT}}</view>
 					</view>
-					<view class='asse-btn asse-btn-white asse-btn-mini next' style='font-size: 14px;' :data-week='week' @tap='next'>
+					<view class='a-btn a-btn-white a-btn-mini next' style='font-size: 14px;' :data-week='week' @tap='next'>
 						<view class='operate'>{{nextT}}</view>
 					</view>
 				</view>
 			</view>
-			<view class="asse-hr timetablehr"></view>
+			<view class="a-hr timetablehr"></view>
 			<view class='line'>
 				<view class='weekUnit'>
 					<view>Mon</view>
@@ -47,7 +47,7 @@
 					<view :class="date[6].s">{{date[6].d}}</view>
 				</view>
 			</view>
-			<view class="asse-hr timetablehr"></view>
+			<view class="a-hr timetablehr"></view>
 			<view v-for="(item,index) in [0,1,2,3,4]" :key="index">
 				<view class='line'>
 					<view v-for="(inner,innerIndex) in [0,1,2,3,4,5,6]" :key="innerIndex" style="width: 100%;">
@@ -59,7 +59,7 @@
 						<view v-else class='timetableHide'></view>
 					</view>
 				</view>
-				<view class="asse-hr timetablehr"></view>
+				<view class="a-hr timetablehr"></view>
 			</view>
 		</layout>
 		

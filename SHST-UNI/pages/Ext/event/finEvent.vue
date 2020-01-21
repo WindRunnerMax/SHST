@@ -145,7 +145,7 @@
 </script>
 
 <style>
-	.asse-input {
+	.a-input {
 		border-bottom: 1px solid #eee;
 		padding: 5px 0;
 	}

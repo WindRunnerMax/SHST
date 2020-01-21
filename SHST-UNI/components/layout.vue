@@ -1,16 +1,16 @@
 <template name="layout">
 	<view>
 
-		<view class="line" v-show="title">
-			<view class="leftCon">
-				<view class="verline" v-bind:style="{'background-color': color}"></view>
+		<view class="lay-line" v-show="title">
+			<view class="lay-leftCon">
+				<view class="lay-verline" v-bind:style="{'background-color': color}"></view>
 				<view>{{title}}</view>
 			</view>
 			<view >
 				<slot name="headslot"></slot>
 			</view>
 		</view>
-		<view class='card' :class="{'minPaddingTop':title}">
+		<view class='lay-card' :class="{'lay-minPaddingTop':title}">
 			<slot></slot>
 		</view>
 
@@ -32,7 +32,7 @@
 	}
 </script>
 <style>
-	.line {
+	.lay-line {
 		background-color: #FFFFFF;
 		padding: 12px 5px 10px 5px;
 		box-sizing: border-box;
@@ -42,22 +42,22 @@
 		align-items: center;
 	}
 
-	.verline {
+	.lay-verline {
 		width: 2px;
 		margin: 2px 5px;
 	}
 
-	.card {
+	.lay-card {
 		font-size: 13px;
 		background-color: #FFFFFF;
 		padding: 11px;
 		box-sizing: border-box;
 		margin-bottom: 10px;
 	}
-	.minPaddingTop{
+	.lay-minPaddingTop{
 		padding-top: 3px;
 	}
-	.leftCon{
+	.lay-leftCon{
 		display: flex;
 	}
 </style>

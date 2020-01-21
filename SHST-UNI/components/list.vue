@@ -1,12 +1,12 @@
 <template name="list">
 	<view>
 		
-		<view class="line">
-			<view class="left" v-bind:style="{'background-color': color}"></view>
-			<view class="right">{{title}}</view>
+		<view class="list-line">
+			<view class="list-left" v-bind:style="{'background-color': color}"></view>
+			<view class="list-right">{{title}}</view>
 		</view>
 		<view v-for="(item,index) in info" :key='index'>
-			<view class='card'>
+			<view class='list-card'>
 				<text >{{item}}</text>
 			</view>
 		</view>
@@ -33,18 +33,18 @@
 	}
 </script>
 <style>
-	.line{
+	.list-line{
 		background-color: #FFFFFF;
 		padding:10px 5px;
 		box-sizing: border-box;
 		display: flex;
 		margin-bottom: 10px;
 	}
-	.line .left{
+	.list-line .list-left{
 		width: 2px;
 		margin: 2px 5px;
 	}
-	.card{
+	.list-card{
 		font-size: 13px;
 		background-color: #FFFFFF;
 		padding: 15px;

@@ -3,8 +3,8 @@
 
 		<layout title="图书检索">
 			<view style='display:flex;justify-content: center;margin: 10px 0 6px 0;'>
-				<input class='asse-input' @input="bookInput" :value="book"></input>
-				<view class='asse-btn asse-btn-blue' @tap='query'>检索</view>
+				<input class='a-input' @input="bookInput" :value="book"></input>
+				<view class='a-btn a-btn-blue' @tap='query'>检索</view>
 			</view>
 		</layout>
 
@@ -27,8 +27,8 @@
 		<layout v-if="show">
 			<view class='operat'>
 				<view style='display:flex;'>
-					<view @tap='pre' class='asse-btn asse-btn-blue'>上一页</view>
-					<view @tap='next' class='asse-btn asse-btn-blue'>下一页</view>
+					<view @tap='pre' class='a-btn a-btn-blue'>上一页</view>
+					<view @tap='next' class='a-btn a-btn-blue'>下一页</view>
 				</view>
 				<view>{{pageInfo}}</view>
 			</view>
@@ -139,7 +139,7 @@
 </script>
 
 <style>
-	.asse-input {
+	.a-input {
 		align-self: center;
 		border: 1px solid #eee;
 		margin: 0;

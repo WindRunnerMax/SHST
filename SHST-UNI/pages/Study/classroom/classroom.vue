@@ -15,7 +15,7 @@
 					</picker-view-column>
 				</picker-view>
 				<view class='buttonCon'>
-					<view class='asse-btn search' @tap='loadClassroom'>搜索</view>
+					<view class='a-btn search' @tap='loadClassroom'>搜索</view>
 				</view>
 			</view>
 		</layout>

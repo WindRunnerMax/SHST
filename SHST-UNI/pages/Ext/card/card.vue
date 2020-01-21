@@ -23,8 +23,8 @@
 		</layout>
 		<layout>
 			<view class="x-CenterCon">
-				<view class='asse-btn asse-btn-blue asse-btn-small' @tap='todayQuery'>当日流水查询</view>
-				<view class='asse-btn asse-btn-blue asse-btn-small btn' @tap='historyQuery'>历史流水查询</view>
+				<view class='a-btn a-btn-blue a-btn-small' @tap='todayQuery'>当日流水查询</view>
+				<view class='a-btn a-btn-blue a-btn-small btn' @tap='historyQuery'>历史流水查询</view>
 			</view>
 		</layout>
 		<layout v-if="show">

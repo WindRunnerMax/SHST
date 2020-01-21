@@ -4,7 +4,7 @@
 		<view class='weather'>
 			<view class='weaLeft'>
 				<view style="display: flex;align-items: center;justify-content: center;">
-					<image class='todayImg' mode="widthFix" :src="host+'/public/static/weather/'+todayWeather[1]+'.png'"></image>
+					<image class='todayImg' mode="aspectFit" :src="host+'/public/static/weather/'+todayWeather[1]+'.png'"></image>
 				</view>
 				<view style='text-align:center;margin-top:6px;'>{{todayWeather[0]}}</view>
 				<view style='text-align:center;margin-top:3px;'>{{todayWeather[2]}}℃ - {{todayWeather[3]}}℃</view>

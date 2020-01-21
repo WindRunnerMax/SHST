@@ -92,7 +92,7 @@
             "path" : "pages/Ext/link/link",
             "style" : {}
         }
-		// #ifndef MP-ALIPAY
+		// #ifndef MP-WEIXIN
         ,{
             "path" : "pages/Ext/event/event",
             "style" : {}
@@ -149,6 +149,9 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "山科小站",
 		"navigationBarBackgroundColor": "#F1F1F1",
+		// #ifdef MP-ALIPAY
+		"navigationBarBackgroundColor": "#FFFFFF",
+		// #endif
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {

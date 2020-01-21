@@ -1,10 +1,10 @@
 <template name="headslot">
 	<view>
 
-		<view class="line">
-			<view class="left">
-				<view class="row" v-bind:style="{'background-color': color}"></view>
-				<view class="title">{{title}}</view>
+		<view class="head-line">
+			<view class="head-left">
+				<view class="head-row" v-bind:style="{'background-color': color}"></view>
+				<view class="head-title">{{title}}</view>
 			</view>
 			<view style="margin-top: 3px;">
 				<slot></slot>
@@ -29,7 +29,7 @@
 	}
 </script>
 <style>
-	.line {
+	.head-line {
 		background-color: #FFFFFF;
 		padding: 10px 5px;
 		box-sizing: border-box;
@@ -37,15 +37,15 @@
 		border-bottom: 1px solid #EEEEEE;
 		justify-content: space-between;
 	}
-	.row {
+	.head-row {
 		width: 2px;
 		margin: 2px 5px;
 	}
-	.left{
+	.head-left{
 		display: flex;
 		justify-content: center;
 	}
-	.title{
+	.head-title{
 		display: flex;
 		justify-content: center;
 		align-items: center;

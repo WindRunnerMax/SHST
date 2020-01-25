@@ -106,16 +106,15 @@
 				tips: "数据加载中",
 				tipsInfo: "数据加载中",
 				tips2: "数据加载中",
-				artical: [{type:"text",text:"数据加载中"}]
+				artical: "数据加载中"
 			}
 		},
 		onLoad: function(options) {
+			// #ifdef MP-ALIPAY
+			if(this.artical === "数据加载中") this.artical = [{type:"text",text:"数据加载中"}]
+			// #endif
 			app.eventBus.on('LoginEvent', this.openidEvent);
-			if (app.globalData.openid !== "") this.openidEvent({
-				data: {
-					Message: app.globalData.loginStatus
-				}
-			});
+			if (app.globalData.openid !== "") this.openidEvent({data: {Message: app.globalData.loginStatus}});
 		},
 		methods: {
 			openidEvent: function(res) {
@@ -277,7 +276,12 @@
 
 			getArtical: function() {
 				if (app.globalData.initData && app.globalData.initData.articalName) {
+					// #ifdef MP-ALIPAY
 					this.artical = [{type:"text",text:app.globalData.initData.articalName}]
+					// #endif
+					// #ifndef MP-ALIPAY
+					this.artical = app.globalData.initData.articalName
+					// #endif
 				}
 			},
 			articalJump: function() {

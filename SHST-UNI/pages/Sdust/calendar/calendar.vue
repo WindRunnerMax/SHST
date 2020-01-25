@@ -5,7 +5,7 @@
 			<layout title="校历查询">
 				<view class="selectCon">
 					<view>请选择学期</view>
-					<picker @change="bindPickerChange" :value="index" :range="range" class="link">
+					<picker @change="bindPickerChange" :value="index" :range="range" class="a-link">
 						<view class="uni-input">{{range[index]}}</view>
 					</picker>
 				</view>

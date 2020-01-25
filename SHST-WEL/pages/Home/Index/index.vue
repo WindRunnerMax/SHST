@@ -15,7 +15,7 @@
 					<block v-for="(item,index) in list" :key='index'>
 						<view class="kind-list__item">
 							<view @click="kindToggle" :data-id="item.id">
-								<input hidden='true' :value='item.id' name='id'></input>
+								<view hidden='true' :value='item.id' name='id'></view>
 								<view class="weui-flex kind-list__item-hd listBtn" v-bind:class="{'kind-list__item-hd_show': item.open}">
 									<view class="weui-flex__item">{{item.name}}</view>
 									<image class="kind-list__img" :src="'/static/img/icon_nav_'+item.id+'.png'"></image>
@@ -92,7 +92,13 @@
 			}
 		},
 		methods: {
-			onShareAppMessage: function() {},
+			onShareAppMessage: function() {
+				return {
+				      title: '山科小站',
+				      desc: '山科小站迎新专版',
+				      path: 'pages/Home/Index/index',
+				    };
+			},
 			toAbout() {
 				wx.navigateTo({
 					url: "/pages/User/about/about"
@@ -234,6 +240,7 @@
 		background: #F8F8F8;
 		color: #888888;
 		line-height: unset;
+		height: auto;
 	}
 
 	.about {

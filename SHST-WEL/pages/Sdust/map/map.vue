@@ -3,7 +3,7 @@
 
 		<layout title="嵙地图(点击查看大图)">
 			<view style='position: relative;'>
-				<image src="http://wx4.sinaimg.cn/large/007U8ryUly1g5h4dl25bvj318g0u0b29.jpg" data-viewImgUrl="http://wx4.sinaimg.cn/large/007U8ryUly1g5h4dl25bvj318g0u0b29.jpg"
+				<image src="https://windrunner_max.gitee.io/imgpath/SDUST/VVDT5q.jpg" data-viewimgurl="https://windrunner_max.gitee.io/imgpath/SDUST/VVDT5q.jpg"
 				 @tap='viewImg' class='sdustMap' mode="widthFix"></image>
 				<view class='ImgFrom'>山东科技大学新闻媒体部制</view>
 			</view>
@@ -66,8 +66,9 @@
 		methods: {
 			bindViewTap: function() {},
 			viewImg(e) {
+				console.log(e.currentTarget.dataset.viewimgurl);
 				var current = e.currentTarget.dataset.viewimgurl;
-				wx.previewImage({
+				uni.previewImage({
 					current: current,
 					urls: [current]
 				})
@@ -113,6 +114,7 @@
 	}
 	
 	map{
-		height: 230px;
+		height: 230px !important;
+		width: 100% !important;
 	}
 </style>

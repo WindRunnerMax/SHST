@@ -5,7 +5,7 @@
 			<layout title="校历查询">
 				<view class="selectCon">
 					<view>请选择学期</view>
-					<picker @change="bindPickerChange" :value="index" :range="range" class="link">
+					<picker @change="bindPickerChange" :value="index" :range="range" class="a-link">
 						<view class="uni-input">{{range[index]}}</view>
 					</picker>
 				</view>
@@ -62,12 +62,14 @@
 					'content-type': 'application/x-www-form-urlencoded'
 				},
 				success: (res) => {
+					res.data.info = res.data.info.reverse();
 					that.data = res.data.info
 					var range = [];
 					res.data.info.forEach((value) => {
 						range.push(value.term);
 					})
 					that.range = range;
+					that.bindPickerChange({detail:{value:0}})
 				}
 			})
 		},
@@ -138,7 +140,7 @@
 	.selectCon {
 		display: flex;
 		justify-content: space-between;
-		padding: 10px;
+		padding: 10px 0 5px 0;
 	}
 
 
@@ -185,5 +187,9 @@
 	
 	.week{
 	  color: rgb(12, 114, 240);
+	}
+	.uni-input {
+		color: #4C98F7;
+		text-decoration: underline;
 	}
 </style>

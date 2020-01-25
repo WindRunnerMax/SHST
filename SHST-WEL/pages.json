@@ -96,6 +96,9 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "山科小站迎新",
 		"navigationBarBackgroundColor": "#F8F8F8",
+		// #ifdef MP-ALIPAY
+		"navigationBarBackgroundColor": "#FFFFFF",
+		// #endif
 		"backgroundColor": "#F8F8F8"
 	}
 }

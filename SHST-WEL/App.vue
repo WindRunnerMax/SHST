@@ -20,6 +20,7 @@
 </script>
 
 <style>
+	@import '/vector/asse.mini.wxss';
 	@import '/vector/style/weui.wxss';
 	page{
 		font-family: Arial, Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, sans-serif;

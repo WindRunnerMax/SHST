@@ -1,0 +1,134 @@
+<template>
+	<view>
+
+		<view class="page" ref="box">
+			<layout title="学习" color="#FF6347">
+				<view class="y-CenterCon" style="color: #FF6347;">
+					<view class='icon' data-jumpurl="/pages/Study/timeTable/timeTable" data-checkuser="0" @tap='jump'>
+						<text class='iconfont' style="color: #FF6347;">&#xe601;</text>
+						<text class="text">查课表</text>
+					</view>
+					<view class='icon' data-jumpurl="/pages/Study/classroom/classroom" data-checkuser="0" @tap='jump'>
+						<text class='iconfont' style="color: #FF6347;">&#xe627;</text>
+						<text class="text">查教室</text>
+					</view>
+					<view class='icon' data-jumpurl="/pages/Study/grade/grade" data-checkuser="0" @tap='jump'>
+						<text class='iconfont' style="color: #FF6347;">&#xe61c;</text>
+						<text class="text">查成绩</text>
+					</view>
+					<view class='icon' data-jumpurl="/pages/Ext/examArrange/examArrange" data-checkuser="0" @tap='jump'>
+						<text class='iconfont' style="color: #FF6347;">&#xe7cc;</text>
+						<text class="text">考试安排</text>
+					</view>
+
+				</view>
+			</layout>
+
+			<layout title="信息" color="#3CB371">
+				<view class="y-CenterCon" style="color: #3CB371;">
+					<view class='icon w3' data-jumpurl="/pages/Lib/library/search" data-checkuser="1" @tap='jump'>
+						<text class='iconfont' style="color: #3CB371;">&#xe61d;</text>
+						<text class="text">图书检索</text>
+					</view>
+					<view class='icon w3' data-jumpurl="/pages/Lib/borrow/borrow" data-checkuser="0" @tap='jump'>
+						<text class='iconfont' style="color: #3CB371;">&#xe617;</text>
+						<text class="text">借阅查询</text>
+					</view>
+					<view class='icon w3' data-jumpurl="/pages/Ext/link/link" data-checkuser="1" @tap='jump'>
+						<text class='iconfont' style="color: #3CB371;">&#xe61a;</text>
+						<text class="text">分享链接</text>
+					</view>
+				</view>
+			</layout>
+
+			<layout title="科大" color="#9F8BEC">
+				<view class="y-CenterCon" style="color: #9F8BEC;">
+					<view class='icon w3' data-jumpurl="/pages/Sdust/map/map" data-checkuser="1" @tap='jump'>
+						<text class='iconfont' style="color: #9F8BEC;">&#xe61f;</text>
+						<text class="text">嵙地图</text>
+					</view>
+					<view class='icon w3' data-jumpurl="/pages/Sdust/calendar/calendar" data-checkuser="1" @tap='jump'>
+						<text class='iconfont' style="color: #9F8BEC;">&#xe623;</text>
+						<text class="text">校历</text>
+					</view>
+					<view class='icon w3' data-jumpurl="/pages/Sdust/vacation/vacation" data-checkuser="1" @tap='jump'>
+						<text class='iconfont' style="color: #9F8BEC;">&#xe620;</text>
+						<text class="text">放假安排</text> 
+					</view>
+				</view>
+			</layout>
+ 
+			<layout title="广告" v-if="adImg">
+				<view :data-jumpurl="adUrl" @tap='jump' style="margin-top: 8px;">
+					<image  :src="adImg"></image>
+				</view>
+			</layout> 
+		</view>
+		 
+		<view style="background-color: #F8F8F8;" :style="pageFill"></view>
+
+	</view>
+</template> 
+
+<script>
+	const app = getApp();
+	const dom = weex.requireModule('dom');
+	import layout from "@/components/layout.nvue"
+	export default {
+		components: {
+			layout
+		},
+		data() {
+			return {
+				adImg: "",
+				adUrl: "",
+				pageFill: {
+					width: "750rpx",
+					height: "0rpx"
+				}
+			}
+		},
+		onReady: function() {
+			// this.resize();
+			dom.addRule('fontFace', {
+				'fontFamily': 'iconfont',
+				'src': "url('" + app.globalData.fontUrl + "')"
+			})
+			this.adImg = app.globalData.initData.appAdImg;
+			this.adUrl = '/pages/Home/auxiliary/webview?url=' + encodeURIComponent(app.globalData.initData.appAdUrl);
+		},
+		methods: {
+			resize: function() {
+				const that = this;
+				const result = dom.getComponentRect(this.$refs.box, option => {
+					that.pageFill.height = (uni.getSystemInfoSync().windowHeight - option.size.height) + 'px';
+					console.log(uni.getSystemInfoSync().windowHeight,option.size.height);
+				})
+			}, 
+			jump(e) {
+				uni.navigateTo({
+					url: e.currentTarget.dataset.jumpurl
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+	.icon {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 5px 0;
+		width: 169rpx;
+	}
+
+	.w3 {
+		width: 228rpx;
+	}
+
+	.iconfont {
+		font-size: 27px;
+		margin: 10px 0;
+	}
+</style>

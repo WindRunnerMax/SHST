@@ -1,0 +1,215 @@
+{
+	"pages": [{
+			"path": "pages/Home/auxiliary/login",
+			"style": {
+				"navigationBarBackgroundColor": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Home/tips/tips",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Home/auxiliary/webview",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/User/announce/announce",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Home/funct/funct",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Home/user/user",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Study/timeTable/timeTable",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Study/classroom/classroom",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Study/grade/grade",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Lib/borrow/borrow",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Lib/library/search",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Lib/library/libDetail",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Sdust/calendar/calendar",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Sdust/map/map",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Sdust/vacation/vacation",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Ext/link/link",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Ext/examArrange/examArrange",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/User/about/about",
+			"style": {
+				"navigationBarBackgroundColor": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/User/reward/reward",
+			"style": {
+				"navigationBarBackgroundColor": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/User/reward/rewardList",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/Home/auxiliary/notFound",
+			"style": {
+				"navigationBarBackgroundColor": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}
+
+		, {
+			"path": "pages/Home/light/light",
+			"style": {
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "山科小站",
+		"navigationBarBackgroundColor": "#F1F1F1",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#aaa",
+		"selectedColor": "#8A8A8A",
+		"backgroundColor": "#F7F7FA",
+		"list": [{
+				"iconPath": "/static/img/index.png",
+				"selectedIconPath": "/static/img/index1.png",
+				"pagePath": "pages/Home/tips/tips",
+				"text": "首页"
+			},
+			{
+				"iconPath": "/static/img/fun.png",
+				"selectedIconPath": "/static/img/fun1.png",
+				"pagePath": "pages/Home/funct/funct",
+				"text": "功能"
+			},
+			{
+				"iconPath": "/static/img/light.png",
+				"selectedIconPath": "/static/img/light1.png",
+				"pagePath": "pages/Home/light/light",
+				"text": "轻应用"
+			},
+			{
+				"iconPath": "/static/img/user.png",
+				"selectedIconPath": "/static/img/user1.png",
+				"pagePath": "pages/Home/user/user",
+				"text": "用户"
+			}
+		]
+	},
+	"condition" : { //模式配置，仅开发期间生效
+		"current": 1, //当前激活的模式(list 的索引项)
+		"list": [
+			{
+				"name": "1", //模式名称
+				"path": "pages/Home/funct/funct", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到
+			},
+			{
+				"name": "2", //模式名称
+				"path": "pages/Home/light/light", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到
+			}
+		]
+	}
+}

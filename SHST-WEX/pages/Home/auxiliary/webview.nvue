@@ -1,0 +1,35 @@
+<template>
+
+	<web :src="url" style="width: 750rpx;" :style="height" :webview-styles="webviewStyles"></web>
+ 
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				url: "",
+				height: {height:"0"},
+				webviewStyles: {
+					progress: {
+						color: '#4C98F7'
+					}
+				}
+			}
+		},
+		onReady:function(){
+			var that = this;
+			that.height.height = uni.getSystemInfoSync().windowHeight + 'px';
+		},
+		onLoad: function(options) {
+			this.url = decodeURIComponent(options.url);
+		},
+		methods: {
+
+		}
+	}
+</script>
+
+<style>
+
+</style>

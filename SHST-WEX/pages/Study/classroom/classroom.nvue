@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="page" :class="{signalPage: signalPage}" ref="box">
 
 		<layout title="空教室">
 			<view class='top'>
@@ -35,6 +35,7 @@
 <script>
 	const app = getApp()
 	const util = require("@/utils/util.js")
+	const dom = weex.requireModule('dom');
 	export default {
 		data() {
 			return {
@@ -47,10 +48,15 @@
 				index: [0, 0, 0],
 				queryData: [],
 				queryTime: [],
-				queryFloor: []
+				queryFloor: [],
+				signalPage: false
 			}
 		},
+		onReady: function() {
+			this.resize();
+		},
 		onLoad: function(options) {
+			util.extDate(); //拓展Date原型
 			var queryData = this.getTimeArr();
 			var queryTime = [
 				['12节', '0102', '12节(8:00-9:50)'],
@@ -118,6 +124,9 @@
 						that.show = 1
 						that.qShow = that.queryTime[that.index[1]][2]
 						that.searchData = that.searchData
+						that.$nextTick(() => {
+							that.resize()
+						})
 					}
 				})
 			},
@@ -141,15 +150,27 @@
 				return queryDataArr;
 			},
 			bindPickerChange(e) {
+				var arr = [0, 0, 0];
+				arr = arr.map((value, index) => {
+					if (e.detail.value[index]) return e.detail.value[index];
+					else return 0;
+				})
 				var that = this;
-				this.index = e.detail.value;
-				this.searchData = that.queryData[e.detail.value[0]][0];
-				this.searchTime = that.queryTime[e.detail.value[1]][1];
-				this.searchFloor = that.queryFloor[e.detail.value[2]][1];
+				this.index = arr;
+				this.searchData = that.queryData[arr[0]][0];
+				this.searchTime = that.queryTime[arr[1]][1];
+				this.searchFloor = that.queryFloor[arr[2]][1];
 			},
 			resetInfo() {
 				this.searchData = util.formatDate()
 				this.searchTime = '0102'
+			},
+			resize: function() {
+				const that = this;
+				const result = dom.getComponentRect(this.$refs.box, option => {
+					if (uni.getSystemInfoSync().windowHeight > option.size.height) that.signalPage = true;
+					else that.signalPage = false;
+				})
 			}
 		}
 	}

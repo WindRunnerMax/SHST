@@ -10,7 +10,7 @@
 			curTermStart: "2019-08-26",
 			colorList: dispose.colorList,
 			url: 'http://jwgl.sdust.edu.cn/app.do',
-			fontUrl: "https://at.alicdn.com/t/font_1582902_mwrjy69s3lm.ttf",
+			fontUrl: "https://at.alicdn.com/t/font_1582902_a1btjrevzq.ttf",
 			header: {'refer': 'https://com.WindrunnerMax.SHST','content-type': 'application/x-www-form-urlencoded','token':''}
 		},
 		onPageNotFound: (res) => { //处理404
@@ -34,7 +34,7 @@
 	}
 </script>
 
-<style src="@/vector/icon/iconfont.wxss"></style>
+
 <style>
 	.page{
 		font-family: Arial, Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, sans-serif;
@@ -42,6 +42,11 @@
 		font-size: 15px;
 		background-color: #F8F8F8;
 	}
+	
+	.signalPage{
+		flex: 1;
+	}
+	
 	.iconfont{
 		font-family: iconfont;
 	}
@@ -53,6 +58,7 @@
 		width: 8px;
 		height: 8px;
 		border-radius: 8px;
+		margin: 0 5px;
 	}
 	.y-CenterCon{
 		align-items: center;

@@ -171,7 +171,7 @@ function ajax(requestInfo, app = getApp()) {
 		success: () => {},
 		fail: function() {
 			this.completeLoad = () => {
-				toast("服务器错误");
+				toast("网络错误");
 			}
 		},
 		complete: () => {},

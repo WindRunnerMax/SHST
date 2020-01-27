@@ -1,28 +1,26 @@
 <template>
-	<view>
-		<view class="page" ref="box">
-			<layout title="最近使用" v-if="recentUse.length">
-				<view class="y-CenterCon" style="margin: 6px 0;">
-					<view v-for="(innerItem) in recentUse" :key="innerItem.title" :data-obj="innerItem" class='icon' @tap='jump'>
-						<image class="img" :src="'https://windrunner_max.gitee.io/imgpath/LightApp/'+innerItem.img"></image>
-						<text class="text" style="margin-top: 6px;">{{innerItem.title}}</text>
+	<view class="page" :class="{signalPage: signalPage}" ref="box">
+		<layout title="最近使用" v-if="recentUse.length">
+			<view class="y-CenterCon" style="margin-top: 20px;">
+				<view v-for="(innerItem) in recentUse" :key="innerItem.title" :data-obj="innerItem" class='icon' @tap='jump'>
+					<image class="img" :src="'https://windrunner_max.gitee.io/imgpath/LightApp/'+innerItem.img"></image>
+					<text class="text" style="margin-top: 6px;">{{innerItem.title}}</text>
+				</view>
+			</view>
+		</layout>
+
+		<layout title="应用列表">
+			<view v-for="(item,index) in lightList" :key="index">
+				<view class="y-CenterCon" style="margin-top: 20px;">
+					<view v-for="(innerItem,innderIndex) in item" :key="innderIndex" :data-obj="innerItem" class='icon' @tap='jump'>
+						<image class="img" v-if="innerItem.img" :src="'https://windrunner_max.gitee.io/imgpath/LightApp/'+innerItem.img"></image>
+						<text class="text" v-if="innerItem.title">{{innerItem.title}}</text>
+						<view class="occupy" v-if="!innerItem.img"></view>
 					</view>
 				</view>
-			</layout>
+			</view>
+		</layout>
 
-			<layout title="应用列表">
-				<view v-for="(item,index) in lightList" :key="index">
-					<view class="y-CenterCon" style="margin-top: 20px;">
-						<view v-for="(innerItem,innderIndex) in item" :key="innderIndex" :data-obj="innerItem" class='icon' @tap='jump'>
-							<image class="img" resize="contain " :src="'https://windrunner_max.gitee.io/imgpath/LightApp/'+innerItem.img"></image>
-							<text class="text">{{innerItem.title}}</text>
-						</view>
-					</view>
-				</view>
-			</layout>
-
-		</view>
-		<view style="background-color: #F8F8F8;" :style="pageFill"></view>
 	</view>
 </template>
 
@@ -38,10 +36,7 @@
 			return {
 				lightList: [],
 				recentUse: [],
-				pageFill: {
-					width: "750rpx",
-					height: "0rpx"
-				}
+				signalPage: false
 			}
 		},
 		onReady: function() {
@@ -60,6 +55,10 @@
 						innerList.push(value);
 						return value;
 					});
+					let n = 4 - innerList.length;
+					for (var i = 0; i < n; i++) {
+						innerList.push({});
+					}
 					extList.push(innerList);
 					that.lightList = extList;
 					that.$nextTick(() => { that.resize() })
@@ -91,8 +90,8 @@
 			resize: function() {
 				const that = this;
 				const result = dom.getComponentRect(this.$refs.box, option => {
-					that.pageFill.height = (uni.getSystemInfoSync().windowHeight - option.size.height) + 'px';
-					console.log(uni.getSystemInfoSync().windowHeight, option.size.height);
+					if(uni.getSystemInfoSync().windowHeight > option.size.height) that.signalPage = true;
+					else that.signalPage = false;
 				})
 			},
 		}
@@ -101,7 +100,6 @@
 
 <style>
 	.icon {
-		width: 175rpx;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -120,5 +118,17 @@
 
 	.name {
 		margin-top: 6px;
+	}
+
+	.y-CenterCon {
+		justify-content: space-around;
+	}
+
+	.occupy {
+		width: 57px;
+		height: 55px;
+		justify-content: center;
+		flex-direction: row;
+		align-items: center;
 	}
 </style>

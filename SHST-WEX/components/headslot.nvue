@@ -32,23 +32,22 @@
 	.line {
 		background-color: #FFFFFF;
 		padding: 10px 5px;
-		box-sizing: border-box;
-		display: flex;
-		border-bottom: 1px solid #EEEEEE;
 		justify-content: space-between;
+		flex-direction: row;
+		border-style: solid;
+		border-bottom-width: 1px;
+		border-color: #EEEEEE;
 	}
 	.row {
 		width: 2px;
 		margin: 2px 5px;
 	}
 	.left{
-		display: flex;
 		justify-content: center;
+		flex-direction: row;
 	}
 	.title{
-		display: flex;
 		justify-content: center;
 		align-items: center;
-		white-space: nowrap;
 	}
 </style>

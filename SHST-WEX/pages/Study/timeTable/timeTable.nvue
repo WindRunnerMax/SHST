@@ -1,65 +1,65 @@
 <template>
-	<view>
+	<view class="page">
 
 		<layout title="查课表">
 			<view class='tableTop'>
-				<view class='week'>第{{week}}周</view>
-				<view style='display:flex;'>
-					<view class='asse-btn asse-btn-white asse-btn-mini refresh' :data-week='week' @tap='refresh'>
-						<view class='operate iconfont icon-shuaxin1'></view>
+				<text class='week'>第{{week}}周</text>
+				<view style='flex-direction: row;'>
+					<view class='btn' :data-week='week' @tap='refresh'>
+						<text class='operate iconfont'>&#xe619;</text>
 					</view>
-					<view class='asse-btn asse-btn-white asse-btn-mini pre' style='font-size: 14px;' :data-week='week' @tap='pre'>
-						<view class='operate'>{{preT}}</view>
+					<view class='btn' style='font-size: 14px;' :data-week='week' @tap='pre'>
+						<text class='operate'>{{preT}}</text>
 					</view>
-					<view class='asse-btn asse-btn-white asse-btn-mini next' style='font-size: 14px;' :data-week='week' @tap='next'>
-						<view class='operate'>{{nextT}}</view>
+					<view class='btn' style='font-size: 14px;' :data-week='week' @tap='next'>
+						<text class='operate'>{{nextT}}</text>
 					</view>
 				</view>
 			</view>
 			<view class="asse-hr timetablehr"></view>
 			<view class='line'>
-				<view class='weekUnit'>
-					<view>Mon</view>
-					<view :class="date[0].s">{{date[0].d}}</view>
+				<view class='weekUnit' :class="date[0].s">
+					<text class='weekUnitText'>Mon</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[0].d}}</text>
 				</view>
 				<view class='weekUnit'>
-					<view>Tue</view>
-					<view :class="date[1].s">{{date[1].d}}</view>
+					<text class='weekUnitText' :class="date[1].s">Tue</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[1].d}}</text>
 				</view>
 				<view class='weekUnit'>
-					<view>Wed</view>
-					<view :class="date[2].s">{{date[2].d}}</view>
+					<text class='weekUnitText' :class="date[2].s">Wed</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[2].d}}</text>
 				</view>
 				<view class='weekUnit'>
-					<view>Thur</view>
-					<view :class="date[3].s">{{date[3].d}}</view>
+					<text class='weekUnitText' :class="date[3].s">Thur</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[3].d}}</text>
 				</view>
-				<view class='weekUnit'>
-					<view>Fri</view>
-					<view :class="date[4].s">{{date[4].d}}</view>
+				<view class='weekUnit' :class="date[4].s">
+					<text class='weekUnitText'>Fri</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[4].d}}</text>
 				</view>
-				<view class='weekUnit'>
-					<view>Sat</view>
-					<view :class="date[5].s">{{date[5].d}}</view>
+				<view class='weekUnit' :class="date[5].s">
+					<text class='weekUnitText'>Sat</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[5].d}}</text>
 				</view>
-				<view class='weekUnit'>
-					<view>Sun</view>
-					<view :class="date[6].s">{{date[6].d}}</view>
+				<view class='weekUnit' :class="date[6].s">
+					<text class='weekUnitText'>Sun</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[6].d}}</text>
 				</view>
 			</view>
-			<view class="asse-hr timetablehr"></view>
+			<view class="timetablehr"></view>
 			<view v-for="(item,index) in [0,1,2,3,4]" :key="index">
 				<view class='line'>
 					<view v-for="(inner,innerIndex) in [0,1,2,3,4,5,6]" :key="innerIndex" style="width: 100%;">
-						<view v-if="table[inner] && table[inner][item]" class='timetableHide' :style="{'background':table[inner][item][5]}">
-							<view>{{table[inner][item][2]}}</view>
-							<view>{{table[inner][item][4]}}</view>
-							<view>{{table[inner][item][3]}}</view>
+						<view v-if="table[inner] && table[inner][item]" class='timetableHide' :style="{'background-color':table[inner][item][5]}">
+							<text class="text">{{table[inner][item][2]}}</text>
+							<text class="text">{{table[inner][item][4]}}</text>
+							<text class="text">{{table[inner][item][3]}}</text>
 						</view>
 						<view v-else class='timetableHide'></view>
 					</view>
 				</view>
-				<view class="asse-hr timetablehr"></view>
+				<view class="timetablehr"></view>
 			</view>
 		</layout>
 
@@ -68,9 +68,13 @@
 
 <script>
 	const app = getApp()
-	// const util = require("@/utils/util.js")
+	const util = require("@/utils/util.js")
 	const pubFct = require("@/vector/pubFct.js")
+	import layout from "@/components/layout.nvue"
 	export default {
+		components: {
+			layout
+		},
 		data() {
 			return {
 				nextT: '>',
@@ -105,6 +109,7 @@
 			}
 		},
 		onLoad(e) {
+			util.extDate(); //拓展Date原型
 			this.week = app.globalData.curWeek;
 			this.getRemoteTable(app.globalData.curWeek);
 		},
@@ -116,7 +121,7 @@
 					url: app.globalData.url,
 					data: {
 						"method": "getKbcxAzc",
-						"xnxqid": app.globalData.curTerm, 
+						"xnxqid": app.globalData.curTerm,
 						"zc": e,
 						"xh": app.globalData.account
 					},
@@ -168,79 +173,83 @@
 
 <style>
 	.tableTop {
-		display: flex;
+		flex-direction: row;
 		padding: 5px;
 		justify-content: space-between;
-		height: 30px;
+		align-items: center;
+		height: 50px;
 	}
 
 	.week {
-		align-self: center;
 		margin-left: 10px;
+		font-size: 15px;
 	}
 
-	.pre,
-	.next,
-	.refresh {
-		height: 100%;
-		margin-left: 10px;
-		align-self: center;
-		display: flex;
+	.btn{
+		border-style: solid;
+		border-color: #EEEEEE;
+		border-width: 1px;
+		margin-left: 15px;
+		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		width: 30px;
+		width: 40px;
+		height: 30px;
+		font-size: 15px;
+	}
+	
+	.iconfont{
+		font-size: 18px;
+	}
+	.operate{
+		color: #767676;
 	}
 
 
 	.line {
-		display: flex;
+		flex-direction: row;
 	}
 
 	.timetableHide {
 		min-height: 130px;
-		margin: 0 1.5px;
-		text-align: center;
-		word-break: break-all;
+		margin: 0 1px;
 		color: #fff;
 		padding: 1px;
-		background: #fff;
 		font-size: 13px;
+		width: 94rpx;
 	}
 
 	.timetablehr {
 		margin: 3px 0;
 		background-color: #eee !important;
 		height: 1px;
-		border: none;
 	}
 
 	.weekUnit {
-		text-align: center;
-		padding: 5px 0 1px 0;
-		font-size: 10px;
-		width: 100%;
+		width: 94rpx;
+		padding: 5px 1px;
+		margin: 0 1px;
+		justify-content: center;
+		align-items: center;
 	}
 
-	.weekUnit view {
+	.weekUnitText {
 		padding: 3px 0;
-	}
-
-	.adAdapt {
-		box-sizing: border-box;
-		padding: 5px;
-	}
-
-	.operate {
-		align-self: center;
+		font-size: 10px;
 	}
 
 	.none {
-		border: none;
 		font-size: 8px;
 	}
 
 	.todayLine {
 		font-size: 8px;
-		border-bottom: 3px solid #eee;
+		border-style: solid;
+		border-color: #EEEEEE;
+		border-bottom-width: 3px;
+	}
+	
+	.text{
+		color: #FFFFFF;
 	}
 </style>

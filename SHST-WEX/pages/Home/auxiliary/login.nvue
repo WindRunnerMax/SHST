@@ -43,7 +43,7 @@
 			var domModule = weex.requireModule("dom");
 			domModule.addRule('fontFace', {
 				'fontFamily': 'iconfont',
-				'src': "url('"+app.globalData.fontUrl+"')"
+				'src': "url('" + app.globalData.fontUrl + "')"
 			})
 		},
 		onLoad: function(e) {
@@ -56,7 +56,7 @@
 						that.password = decodeURIComponent(res.data.password);
 					}
 
-				} 
+				}
 			})
 			if (!e.status) this.initAppData();
 		},
@@ -90,7 +90,7 @@
 									"password": password
 								}
 							})
-							uni.reLaunch({
+							uni.switchTab({
 								url: '/pages/Home/tips/tips'
 							})
 						} else {
@@ -126,7 +126,9 @@
 					url: "https://www.touchczy.top/auth/initApp" + (user.account ? "/" + user.account : ""),
 					autoCookie: false,
 					success: (res) => {
+						app.globalData.curTermStart = res.data.initData.termStart;
 						app.globalData.curTerm = res.data.initData.curTerm;
+						app.globalData.term = res.data.initData.curTerm;
 						app.globalData.curWeek = res.data.initData.curWeek;
 						app.globalData.initData = res.data.initData;
 						that.checkAppUpdate(res.data.initData.version);
@@ -184,8 +186,7 @@
 </script>
 
 <style>
-
-	.icon{
+	.icon {
 		justify-content: center;
 		align-items: center;
 		margin-right: 5px;
@@ -213,15 +214,15 @@
 		align-items: center;
 		padding: 5px;
 	}
-	
-	.btn{
+
+	.btn {
 		background-color: #1E9FFF;
 		margin-top: 23px;
 		border-width: 0;
-		padding: 11px 0 ;
+		padding: 11px 0;
 	}
 
-	.input{
+	.input {
 		color: #6b6b6b;
 		font-size: 15px;
 	}
@@ -232,5 +233,4 @@
 		color: #79B2F9;
 		justify-content: space-between;
 	}
-
 </style>

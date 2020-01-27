@@ -1,7 +1,6 @@
 <template>
-	<view>
+	<view class="page">
 
-		<view class="page" ref="box">
 			<layout title="学习" color="#FF6347">
 				<view class="y-CenterCon" style="color: #FF6347;">
 					<view class='icon' data-jumpurl="/pages/Study/timeTable/timeTable" data-checkuser="0" @tap='jump'>
@@ -26,15 +25,15 @@
 
 			<layout title="信息" color="#3CB371">
 				<view class="y-CenterCon" style="color: #3CB371;">
-					<view class='icon w3' data-jumpurl="/pages/Lib/library/search" data-checkuser="1" @tap='jump'>
+					<view class='icon' data-jumpurl="/pages/Lib/library/search" data-checkuser="1" @tap='jump'>
 						<text class='iconfont' style="color: #3CB371;">&#xe61d;</text>
 						<text class="text">图书检索</text>
 					</view>
-					<view class='icon w3' data-jumpurl="/pages/Lib/borrow/borrow" data-checkuser="0" @tap='jump'>
+					<view class='icon' data-jumpurl="/pages/Lib/borrow/borrow" data-checkuser="0" @tap='jump'>
 						<text class='iconfont' style="color: #3CB371;">&#xe617;</text>
 						<text class="text">借阅查询</text>
 					</view>
-					<view class='icon w3' data-jumpurl="/pages/Ext/link/link" data-checkuser="1" @tap='jump'>
+					<view class='icon' data-jumpurl="/pages/Ext/link/link" data-checkuser="1" @tap='jump'>
 						<text class='iconfont' style="color: #3CB371;">&#xe61a;</text>
 						<text class="text">分享链接</text>
 					</view>
@@ -43,15 +42,15 @@
 
 			<layout title="科大" color="#9F8BEC">
 				<view class="y-CenterCon" style="color: #9F8BEC;">
-					<view class='icon w3' data-jumpurl="/pages/Sdust/map/map" data-checkuser="1" @tap='jump'>
+					<view class='icon' data-jumpurl="/pages/Sdust/map/map" data-checkuser="1" @tap='jump'>
 						<text class='iconfont' style="color: #9F8BEC;">&#xe61f;</text>
 						<text class="text">嵙地图</text>
 					</view>
-					<view class='icon w3' data-jumpurl="/pages/Sdust/calendar/calendar" data-checkuser="1" @tap='jump'>
+					<view class='icon' data-jumpurl="/pages/Sdust/calendar/calendar" data-checkuser="1" @tap='jump'>
 						<text class='iconfont' style="color: #9F8BEC;">&#xe623;</text>
 						<text class="text">校历</text>
 					</view>
-					<view class='icon w3' data-jumpurl="/pages/Sdust/vacation/vacation" data-checkuser="1" @tap='jump'>
+					<view class='icon' data-jumpurl="/pages/Sdust/vacation/vacation" data-checkuser="1" @tap='jump'>
 						<text class='iconfont' style="color: #9F8BEC;">&#xe620;</text>
 						<text class="text">放假安排</text> 
 					</view>
@@ -63,16 +62,12 @@
 					<image  :src="adImg"></image>
 				</view>
 			</layout> 
-		</view>
-		 
-		<view style="background-color: #F8F8F8;" :style="pageFill"></view>
 
 	</view>
 </template> 
 
 <script>
 	const app = getApp();
-	const dom = weex.requireModule('dom');
 	import layout from "@/components/layout.nvue"
 	export default {
 		components: {
@@ -81,15 +76,11 @@
 		data() {
 			return {
 				adImg: "",
-				adUrl: "",
-				pageFill: {
-					width: "750rpx",
-					height: "0rpx"
-				}
+				adUrl: ""
 			}
 		},
 		onReady: function() {
-			// this.resize();
+			const dom = weex.requireModule('dom');
 			dom.addRule('fontFace', {
 				'fontFamily': 'iconfont',
 				'src': "url('" + app.globalData.fontUrl + "')"
@@ -98,13 +89,6 @@
 			this.adUrl = '/pages/Home/auxiliary/webview?url=' + encodeURIComponent(app.globalData.initData.appAdUrl);
 		},
 		methods: {
-			resize: function() {
-				const that = this;
-				const result = dom.getComponentRect(this.$refs.box, option => {
-					that.pageFill.height = (uni.getSystemInfoSync().windowHeight - option.size.height) + 'px';
-					console.log(uni.getSystemInfoSync().windowHeight,option.size.height);
-				})
-			}, 
 			jump(e) {
 				uni.navigateTo({
 					url: e.currentTarget.dataset.jumpurl
@@ -120,15 +104,16 @@
 		justify-content: center;
 		align-items: center;
 		padding: 5px 0;
-		width: 169rpx;
 	}
 
-	.w3 {
-		width: 228rpx;
-	}
+
 
 	.iconfont {
 		font-size: 27px;
 		margin: 10px 0;
+	}
+	
+	.y-CenterCon{
+		justify-content: space-around;
 	}
 </style>

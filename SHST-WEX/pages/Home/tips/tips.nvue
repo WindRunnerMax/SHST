@@ -26,14 +26,14 @@
 		<layout title="今日课程">
 			<view v-for="(item,index) in table" :key="index">
 				<view class='unitTable border' v-show="item">
-					<view class="y-CenterCon" style="margin: 5px 0;">
-						<view class="dot" :style="{'background':item[5],'margin':'0 6px 0 3px'}"></view>
-						<text class="text">第{{2*(item[1] + 1) - 1}}{{2*(item[1] + 1)}}节</text>
-						<text class="text mleft5">{{item[3]}}</text>
+					<view class="y-CenterCon" style="margin-top: 8px;">
+						<view class="dot" :style="{'background-color':item[5],'margin':'0 6px 0 3px'}"></view>
+						<text class="text cr">第{{2*(item[1] + 1) - 1}}{{2*(item[1] + 1)}}节</text>
+						<text class="text cr mleft5">{{item[3]}}</text>
 					</view>
-					<view class="y-CenterCon">
-						<text class="text" style="margin: 3px;">{{item[2]}}</text>
-						<text class="text mleft5">{{item[4]}}</text>
+					<view class="y-CenterCon" style="margin-top: 5px;">
+						<text class="text cr" style="margin: 3px;">{{item[2]}}</text>
+						<text class="text cr mleft5">{{item[4]}}</text>
 					</view>
 				</view>
 			</view>
@@ -180,5 +180,8 @@
 	}
 	.l6{
 		margin-left: 6px;
+	}
+	.cr{
+		color: #555555;
 	}
 </style>

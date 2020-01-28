@@ -1,61 +1,63 @@
 <template>
-	<view>
-
-		<layout title="查成绩">
-			<view class="selectCon">
-				<view>请选择学期</view>
-				<picker @change="bindPickerChange" :value="index" :range="yearArr" class="link" range-key="show">
-					<view>{{yearArr[index].show}}</view>
-				</picker>
-			</view>
-		</layout>
-
-		<view v-if="show">
-			<headslot :title="showSelect">
-				<view class="y-CenterCon" style="flex-wrap: wrap; font-size: 13px;">
-					<view class='y-CenterCon overUnit'>
-						<view class="dot" style="background:#6495ED;"></view>
-						<view>学分:{{point}}</view>
-					</view>
-					<view class='y-CenterCon overUnit'>
-						<view class="dot" style="background:#ACA4D5;"></view>
-						<view>绩点:{{pointN}}</view>
-					</view>
-					<view class='y-CenterCon overUnit'>
-						<view class="dot" style="background:#EAA78C;"></view>
-						<view>加权:{{pointW}}</view>
-					</view>
+	<view class="page" :class="{signalPage: signalPage}">
+		<view ref="box">
+			
+			<layout title="查成绩">
+				<view class="selectCon">
+					<text class="text">请选择学期</text>
+					<picker @change="bindPickerChange" :value="index" :range="yearArr" class="link" range-key="show">
+						<text class="text link">{{yearArr[index].show}}</text>
+					</picker>
 				</view>
-			</headslot>
-			<view style="margin-top: 10px;"></view>
-			<view v-for="(item,index) in grade" :key="index">
-				<layout>
-					<view class="unit adapt">
-						<view class='infoLeft'>
-							<view class='cName'>{{item.kcmc}}</view>
-							<view style='color:#aaa;'>{{item.kclbmc}}</view>
-							<view style='color:#aaa;'>{{item.ksxzmc}}</view>
+			</layout>
+
+			<view v-if="show">
+				<headslot :title="showSelect">
+					<view class="y-CenterCon" style="flex-wrap: wrap; font-size: 13px;">
+						<view class='y-CenterCon overUnit'>
+							<view class="dot" style="background-color:#6495ED;"></view>
+							<text class="text">学分:{{point}}</text>
 						</view>
-						<view class='infoRight'>
-							<view class='cgrade'>{{item.zcj}}</view>
-							<view style='color:#aaa;margin-top: 3px;'>{{item.xf}}学分</view>
+						<view class='y-CenterCon overUnit'>
+							<view class="dot" style="background-color:#ACA4D5;"></view>
+							<text class="text">绩点:{{pointN}}</text>
+						</view>
+						<view class='y-CenterCon overUnit'>
+							<view class="dot" style="background-color:#EAA78C;"></view>
+							<text class="text">加权:{{pointW}}</text>
 						</view>
 					</view>
-				</layout>
+				</headslot>
+				<view style="margin-top: 10px;"></view>
+				<view v-for="(item,index) in grade" :key="index">
+					<layout>
+						<view class="unit adapt">
+							<view class='infoLeft'>
+								<text class='cName'>{{item.kcmc}}</text>
+								<text class="text cnv" style='color:#aaa;'>{{item.kclbmc}}</text>
+								<text class="text cnv" style='color:#aaa;'>{{item.ksxzmc}}</text>
+							</view>
+							<view class='infoRight'>
+								<text class='cgrade'>{{item.zcj}}</text>
+								<text class="text cnv" style='color:#aaa;margin-top: 3px;'>{{item.xf}}学分</text>
+							</view>
+						</view>
+					</layout>
+				</view>
 			</view>
-
+			
 		</view>
-
-
 	</view>
 </template>
 
 <script>
 	const app = getApp()
+	const dom = weex.requireModule('dom');
+	import layout from "@/components/layout.nvue"
 	import headslot from "@/components/headslot.nvue"
 	export default {
 		components: {
-			headslot
+			layout,headslot
 		},
 		data() {
 			return {
@@ -70,8 +72,12 @@
 				show: 0,
 				grade: 0,
 				ad: 1,
-				showSelect: ""
+				showSelect: "",
+				signalPage: false
 			}
+		},
+		onReady:function(){
+			app.resize(dom,this);
 		},
 		onLoad: function(options) {
 			// 处理学期
@@ -98,7 +104,7 @@
 			}
 			this.yearArr = yearArr
 			this.initGrade();
-		},                                                                                                                                                
+		},
 		methods: {
 			bindPickerChange(e) {
 				var that = this;
@@ -119,11 +125,11 @@
 					load: 2,
 					url: app.globalData.url,
 					data: {
-						"method" : "getCjcx",
-						"xh" : app.globalData.account,
-						"xnxqid" : query 
+						"method": "getCjcx",
+						"xh": app.globalData.account,
+						"xnxqid": query
 					},
-					fun:function(res){
+					fun: function(res) {
 						if (res.data[0]) {
 							try {
 								var info = res.data;
@@ -174,6 +180,7 @@
 						that.grade = !res.data[0] ? [defaultValue] : res.data
 						that.ad = !res.data[0] ? 0 : 1
 						that.show = 1
+						app.nextTick(dom,that);
 					}
 				})
 			}
@@ -183,7 +190,7 @@
 
 <style>
 	.selectCon {
-		display: flex;
+		flex-direction: row;
 		justify-content: space-between;
 		padding: 15px 0 7px 0;
 	}
@@ -200,7 +207,7 @@
 
 	.unit {
 		padding: 3px 0;
-		display: flex;
+		flex-direction: row;
 		justify-content: space-between;
 	}
 
@@ -209,14 +216,14 @@
 	}
 
 	.infoRight {
-		display: flex;
+		flex-direction: row;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 	}
 
 	.infoLeft {
-		display: flex;
+		flex-direction: row;
 		flex-direction: column;
 		line-height: 21px;
 	}
@@ -224,5 +231,9 @@
 	.cgrade {
 		font-size: 20px;
 		color: #569FD1;
+	}
+	
+	.cnv{
+		margin-top: 7px;
 	}
 </style>

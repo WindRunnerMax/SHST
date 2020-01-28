@@ -1,33 +1,42 @@
 <template>
-	<view>
+	<view class="page" :class="{signalPage: signalPage}">
+		<view ref="box">
 
-		<headslot title="赞赏列表"></headslot>
-		<view style="margin-top: 10px;"></view>
+			<headslot title="赞赏列表"></headslot>
+			<view style="margin-top: 10px;"></view>
 
-		<layout v-for="(item,index) in data" :key="index">
-			<view class='infoCon'>
-				<view class='left'>
-					<view class='name'>{{item.name}}</view>
-					<view class='time'>{{item.reward_time}}</view>
+			<layout v-for="(item,index) in data" :key="index">
+				<view class='infoCon'>
+					<view class='left'>
+						<text class='name'>{{item.name}}</text>
+						<text class='time'>{{item.reward_time}}</text>
+					</view>
+					<text class='amount' style="color: #4C98F7;">{{item.amount}}</text>
 				</view>
-				<view class='amount' style="color: #4C98F7;">{{item.amount}}</view>
-			</view>
-		</layout>
+			</layout>
 
+		</view>
 	</view>
 </template>
 
 <script>
 	const app = getApp()
+	const dom = weex.requireModule('dom');
+	import layout from "@/components/layout.nvue"
 	import headslot from "@/components/headslot.nvue"
 	export default {
 		components: {
-			headslot
+			headslot,
+			layout
 		},
 		data() {
 			return {
-				data: []
+				data: [],
+				signalPage: false
 			}
+		},
+		onReady: function() {
+			app.resize(dom,this);
 		},
 		onLoad: function(options) {
 			var that = this;
@@ -38,6 +47,7 @@
 					if (res.data.info) {
 						res.data.info.reverse();
 						that.data = res.data.info
+						app.nextTick(dom,that);
 					}
 				}
 			})
@@ -52,7 +62,7 @@
 	.infoCon {
 		font-size: 13px;
 		line-height: 23px;
-		display: flex;
+		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
 	}

@@ -1,19 +1,23 @@
 <template>
-	<view>
+	<view class="page" :class="{signalPage: signalPage}">
+		<view ref="box">
 
-		<layout title="常用链接">
-			<view v-for="(item,index) in data" :key="index">
-				<view class="line">
-					<view>{{item.name}}：</view>
-					<view class="link" @tap="copy" :data-copy="item.url">{{item.url}}</view>
+			<layout title="常用链接">
+				<view v-for="(item,index) in data" :key="index">
+					<view class="line border">
+						<text class="text">{{item.name}}：</text>
+						<text class=" text link" @tap="copy" :data-copy="item.url">{{item.url}}</text>
+					</view>
 				</view>
-			</view>
-		</layout>
+			</layout>
 
+		</view>
 	</view>
 </template>
 
 <script>
+	const app = getApp()
+	const dom = weex.requireModule('dom');
 	import layout from "@/components/layout.nvue"
 	export default {
 		components: {
@@ -24,6 +28,9 @@
 				data: []
 			}
 		},
+		onReady: function() {
+			app.resize(dom,this);
+		},
 		onLoad() {
 			var that = this
 			uni.request({
@@ -33,6 +40,7 @@
 				},
 				success: (res) => {
 					that.data = res.data.url
+					app.nextTick(dom,that);
 				}
 			})
 		},
@@ -49,9 +57,9 @@
 
 <style>
 	.line {
-		display: flex;
+		flex-direction: row;
 		padding: 20px 5px;
-		border-bottom: 1px solid #EEEEEE;
+		border-bottom-width: 1px;
 		flex-wrap: wrap;
 	}
 </style>

@@ -1,45 +1,50 @@
 <template>
-	<view>
+	<view class="page" :class="{signalPage: signalPage}">
+		<view ref="box">
 
-		<view>
-			<layout title="校历查询">
-				<view class="selectCon">
-					<view>请选择学期</view>
-					<picker @change="bindPickerChange" :value="index" :range="range" class="link">
-						<view class="uni-input">{{range[index]}}</view>
-					</picker>
-				</view>
-			</layout>
-		</view>
+			<view>
+				<layout title="校历查询">
+					<view class="selectCon">
+						<text class="text">请选择学期</text>
+						<picker @change="bindPickerChange" :value="index" :range="range" class="link">
+							<text class="text link">{{range[index]}}</text>
+						</picker>
+					</view>
+				</layout>
+			</view>
 
 
-		<view v-show="show">
-			<layout :title="term">
-				<view class='weekGroup'>
-					<view class='weekUnit'>Week</view>
-					<view class='weekUnit'>Mon</view>
-					<view class='weekUnit'>Tue</view>
-					<view class='weekUnit'>Wed</view>
-					<view class='weekUnit'>Thur</view>
-					<view class='weekUnit'>Fri</view>
-					<view class='weekUnit'>Sat</view>
-					<view class='weekUnit'>Sun</view>
-				</view>
-				<view class="timetablehr"></view>
-				<view v-for="(item,index) in calendarObj" :key="index" class='con'>
-					<view class='line'>
-						<view v-for="(inner,innerIndex) in item" :key="innerIndex" style='width:100%;'>
-							<view :class='inner.className'>{{inner.day}}</view>
+			<view v-show="show">
+				<layout :title="term">
+					<view class='weekGroup'>
+						<text class='weekUnit'>Week</text>
+						<text class='weekUnit'>Mon</text>
+						<text class='weekUnit'>Tue</text>
+						<text class='weekUnit'>Wed</text>
+						<text class='weekUnit'>Thur</text>
+						<text class='weekUnit'>Fri</text>
+						<text class='weekUnit'>Sat</text>
+						<text class='weekUnit'>Sun</text>
+					</view>
+					<view class="timetablehr"></view>
+					<view v-for="(item,index) in calendarObj" :key="index" class='con'>
+						<view class='line'>
+							<view v-for="(inner,innerIndex) in item" :key="innerIndex" >
+								<text class="text dunit" :class='inner.className'>{{inner.day}}</text>
+							</view>
 						</view>
 					</view>
-				</view>
-			</layout>
+				</layout>
+			</view>
+			
 		</view>
-
 	</view>
 </template>
 
 <script>
+	const app = getApp()
+	const util = require("@/utils/util.js")
+	const dom = weex.requireModule('dom');
 	import layout from "@/components/layout.nvue"
 	export default {
 		components: {
@@ -51,10 +56,15 @@
 				index: 0,
 				show: 0,
 				term: "",
-				calendarObj: []
+				calendarObj: [],
+				signalPage: false
 			}
 		},
+		onReady: function() {
+			app.resize(dom, this);
+		},
 		onLoad() {
+			util.extDate(); //拓展Date原型
 			var that = this
 			uni.request({
 				url: "https://www.touchczy.top/ext/calendar",
@@ -69,7 +79,11 @@
 						range.push(value.term);
 					})
 					that.range = range;
-					that.bindPickerChange({detail:{value:0}})
+					that.bindPickerChange({
+						detail: {
+							value: 0
+						}
+					})
 				}
 			})
 		},
@@ -130,7 +144,7 @@
 				}
 				this.calendarObj = calendarObj
 				this.show = 1
-				console.log(calendarObj);
+				app.nextTick(dom,this);
 			}
 		}
 	}
@@ -138,7 +152,7 @@
 
 <style>
 	.selectCon {
-		display: flex;
+		flex-direction: row;
 		justify-content: space-between;
 		padding: 15px 10px 5px 10px;
 	}
@@ -154,7 +168,7 @@
 	.today {
 		border-radius: 15px;
 		color: #fff !important;
-		background: #79B2F9;
+		background-color: #79B2F9;
 	}
 
 	.vacation {
@@ -162,15 +176,15 @@
 	}
 
 	.weekGroup {
-		display: flex;
-		font-size: 13px;
+		flex-direction: row;
+		margin-top: 7px;
 	}
 
 	.weekUnit {
 		text-align: center;
 		padding: 5px 0;
 		font-size: 12px;
-		width: 100%;
+		width: 86rpx;
 	}
 
 	.timetablehr {
@@ -180,12 +194,16 @@
 	.strong {
 		color: rgb(0, 115, 255);
 	}
-	
-	.line{
-		display: flex;
+
+	.line {
+		flex-direction: row;
+	}
+
+	.week {
+		color: rgb(12, 114, 240);
 	}
 	
-	.week{
-	  color: rgb(12, 114, 240);
+	.dunit{
+		width: 86rpx;
 	}
 </style>

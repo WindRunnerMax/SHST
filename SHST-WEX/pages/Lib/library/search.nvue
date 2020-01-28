@@ -1,63 +1,78 @@
 <template>
-	<view>
+	<view class="page" :class="{signalPage: signalPage}">
+		<view ref="box">
 
-		<layout title="图书检索">
-			<view style='display:flex;justify-content: center;margin: 10px 0 6px 0;'>
-				<input class='asse-input' @input="bookInput" :value="book"></input>
-				<view class='asse-btn asse-btn-blue' @tap='query'>检索</view>
-			</view>
-		</layout>
-
-		<view v-for="(item,index) in info" :key="index">
-			<layout>
-				<view style='display:flex;justify-content: space-between;' @tap='jump' :data-id="item.id">
-					<view class='leftInfo'>
-						<view>{{item.infoList[0]}}</view>
-						<view>{{item.infoList[1]}}</view>
-						<view>{{item.infoList[2]}}</view>
-						<view>{{item.infoList[3]}}</view>
-					</view>
-					<view class='rightJump'>
-						<view> > </view>
+			<layout title="图书检索">
+				<view style='flex-direction: row;justify-content: center;align-items: center;margin: 10px'>
+					<input class='asse-input border' @input="bookInput" :value="book"></input>
+					<view class='btn' @tap='query'>
+						<text class="text" style="color: #FFFFFF;">检索</text>
 					</view>
 				</view>
 			</layout>
-		</view>
 
-		<layout v-if="show">
-			<view class='operat'>
-				<view style='display:flex;'>
-					<view @tap='pre' class='asse-btn asse-btn-blue'>上一页</view>
-					<view @tap='next' class='asse-btn asse-btn-blue'>下一页</view>
+			<view v-for="(item,index) in info" :key="index">
+				<layout>
+					<view style='flex-direction: row;justify-content: space-between;' @tap='jump' :data-id="item.id">
+						<view class='leftInfo'>
+							<text class="text lv" style="font-size: 20px;">{{item.infoList[0]}}</text>
+							<text class="text lv">{{item.infoList[1]}}</text>
+							<text class="text lv">{{item.infoList[2]}}</text>
+							<text class="text lv">{{item.infoList[3]}}</text>
+						</view>
+						<view class='rightJump border'>
+							<text> > </text>
+						</view>
+					</view>
+				</layout>
+			</view>
+
+			<layout v-if="show">
+				<view class='operat'>
+					<view style='flex-direction: row;align-items: center;'>
+						<view @tap='pre' class='btn' >
+							<text class="text" style="color: #FFFFFF;">上一页</text>
+						</view>
+						<view @tap='next' class='btn' style="margin-left: 10px;">
+							<text class="text" style="color: #FFFFFF;">下一页</text>
+						</view>
+					</view>
+					<text class="text">{{pageInfo}}</text>
 				</view>
-				<view>{{pageInfo}}</view>
-			</view>
-		</layout>
+			</layout>
 
-		<layout title="Tips:" v-if="!show">
-			<view class="card">
-				<view>1.图书馆的服务器挺容易崩溃的，如果出现PARSE ERROR，那一般是学校图书馆崩溃了</view>
-				<view>2.学校图书馆外网访问好像会定时关闭，正常使用时间大约是在 7:00-22:00</view>
-			</view>
+			<layout title="Tips:" v-if="!show">
+				<view>
+					<text class="tips">1.图书馆的服务器挺容易崩溃的，如果出现PARSE ERROR，那一般是学校图书馆崩溃了</text>
+					<text class="tips">2.学校图书馆外网访问好像会定时关闭，正常使用时间大约是在 7:00-22:00</text>
+				</view>
+			</layout>
 
-		</layout>
-
-
+		</view>
 	</view>
 </template>
 
 <script>
 	const app = getApp();
 	const util = require("@/utils/util.js")
+	const dom = weex.requireModule('dom');
+	import layout from "@/components/layout.nvue"
 	export default {
+		components: {
+			layout
+		},
 		data() {
 			return {
 				book: "",
 				page: 1,
 				show: 0,
 				pageInfo: "",
-				info: []
+				info: [],
+				signalPage: false
 			}
+		},
+		onReady:function(){
+			app.resize(dom,this)
 		},
 		onLoad: function(options) {
 			var curData = new Date();
@@ -69,7 +84,7 @@
 				return;
 			}
 		},
-		methods: { 
+		methods: {
 			bookInput(e) {
 				this.book = e.detail.value
 			},
@@ -112,7 +127,7 @@
 						that.page = typeof(e) === "number" ? e : 1
 						that.pageInfo = pageInfo[0]
 						that.show = 1
-
+						app.nextTick(dom,that);
 					}
 				})
 			},
@@ -140,18 +155,21 @@
 
 <style>
 	.asse-input {
-		align-self: center;
-		border: 1px solid #eee;
+		border-width: 1px;
 		margin: 0;
-		display: block;
-		height: 26px;
+		height: 35px;
 		width: 150px;
 		margin-right: 10px;
+		padding: 5px;
+		font-size: 15px;
+	}
+	
+	.btn {
+		background-color: #1E9FFF;
+		border-width: 0;
+		padding: 11px 20px;
 	}
 
-	.leftInfo:first-line {
-		font-size: 18px;
-	}
 
 	.info {
 		margin-top: 3px;
@@ -159,20 +177,26 @@
 
 	.rightJump {
 		width: 50px;
-		display: flex;
+		flex-direction: row;
 		align-items: center;
 		justify-content: center;
 		font-size: 20px;
-		border-left: 1px solid #eee;
+		border-left-width: 1px;
 	}
 
 	.operat {
-		display: flex;
+		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
 	}
 
-	.card {
+	.tips{
+		font-size: 15px;
 		line-height: 27px;
+	}
+	
+	.lv{
+		line-height: 23px;
+		font-size: 15px;
 	}
 </style>

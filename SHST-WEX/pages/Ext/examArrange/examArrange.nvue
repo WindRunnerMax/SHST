@@ -1,44 +1,52 @@
 <template>
-	<view>
-
+	<view class="page" :class="{signalPage: signalPage}">
+		<view ref="box">
+			
 		<headslot title="考试安排"></headslot>
 
 		<view style="margin-top: 10px;"></view>
 
 		<layout v-if="tips">
 			<view class="y-CenterCon">
-				<view class="dot" style="background: #EEEEEE;margin-right: 6px;"></view>
-				<view>{{tips}}</view>
+				<view class="dot" style="background-color: #EEEEEE;margin-right: 6px;"></view>
+				<text class="text">{{tips}}</text>
 			</view>
 		</layout>
 		<layout v-for="(item,index) in exam" :key="index">
 			<view class="unit">
-				<view class="infoCon">
-					<view class='cName'>{{item.kcmc}}</view>
-					<view style='color:#aaa;'>{{item.startTime}}-{{item.endTimeSplit}}</view>
+				<view class="infoCon unitv">
+					<text class='cName'>{{item.kcmc}}</text>
+					<text class="text cnv" style='color:#aaa;'>{{item.startTime}}-{{item.endTimeSplit}}</text>
 				</view>
-				<view class="infoCon">
-					<view class='cgrade'>{{item.jsmc}}</view>
-					<view style='color:#aaa;'>{{item.vksjc}}</view>
+				<view class="infoCon unitv">
+					<text class='cgrade'>{{item.jsmc}}</text>
+					<text class="text cnv" style='color:#aaa;'>{{item.vksjc}}</text>
 				</view>
 			</view>
 		</layout>
-
+		
+		</view>
 	</view>
 </template>
 
 <script> 
 	const app = getApp()
+	const dom = weex.requireModule('dom');
+	import layout from "@/components/layout.nvue"
 	import headslot from "@/components/headslot.nvue"
 	export default {
 		components: {
-			headslot
+			headslot,layout
 		},
 		data() {
 			return {
 				tips: "",
-				exam: []
+				exam: [],
+				signalPage: false
 			}
+		},
+		onReady:function(){
+			app.resize(dom,this);
 		},
 		onLoad: function(options) {
 			var that = this;
@@ -61,8 +69,9 @@
 						return value;
 					})
 					console.log(res.data)
-					that.exam = res.data.length !== 0 ? res.data.data : []
-					that.tips = res.data.length !== 0 ? "" : "暂无考试信息"
+					that.exam = res.data.length !== 0 ? res.data.data : [];
+					that.tips = res.data.length !== 0 ? "" : "暂无考试信息";
+					app.nextTick(dom,that);
 				}
 			});
 		},
@@ -74,11 +83,11 @@
 
 <style>
 	.unit {
-		display: flex;
+		flex-direction: row;
 		justify-content: space-between;
 	}
 
-	.unit view {
+	.unitv{
 		margin: 5px;
 	}
 
@@ -94,9 +103,12 @@
 
 
 	.infoCon {
-		display: flex;
+		flex-direction: row;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+	}
+	.cnv{
+		margin-top: 7px;
 	}
 </style>

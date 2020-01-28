@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="page">
 		
 		<view class='status'>404</view>
 		<view class='status'>NOT</view>
@@ -23,8 +23,8 @@
 </script>
 
 <style>
-	page{
-		background: #FFFFFF;
+	.page{
+		background-color: #FFFFFF;
 	}
 	.status{
 	  text-align: center;

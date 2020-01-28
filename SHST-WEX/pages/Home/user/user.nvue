@@ -29,7 +29,7 @@
 					<text class="text">{{academy}}</text>
 				</view>
 
-				<view class='unitInfo' data-jumpurl='/pages/Home/auxiliary/webview?url=https%3A%2F%2Fjq.qq.com%2F%3F_wv%3D1027%26k%3D5UPExxX' @tap='jump'>
+				<view class='unitInfo' data-copy='722942376' @tap='copy'>
 					<text class='titleCon text'>QQ群</text>
 					<text class="text">722942376</text>
 				</view>
@@ -85,8 +85,9 @@
 				signalPage: false
 			}
 		},
-		onReady: function() {
-			this.resize();
+		onReady: function() { 
+			const dom = weex.requireModule('dom');
+			app.resize(dom,this);
 		},
 		onLoad: function() {
 			var that = this;

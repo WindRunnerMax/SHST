@@ -3,9 +3,12 @@ const md5 = require('@/utils/md5.js');
 const eventBus = require('@/utils/eventBus.js');
 module.exports = {
 	ajax: ajax,
+	delay: delay,
 	toast: toast,
+	resize: resize,
 	extend: extend,
 	onLunch: onLunch,
+	nextTick: nextTick,
 	checkUpdate: checkUpdate,
 }
 
@@ -158,7 +161,33 @@ function toast(e, time = 2000, icon = 'none') {
 }
 
 /**
- * XHR请求
+ * 延时执行
+ */
+function delay(e,args){
+	setTimeout((args) => e.apply(this),100);
+}
+
+/**
+ * Resize
+ */
+function resize(dom,that) {
+	const result = dom.getComponentRect(that.$refs.box, option => {
+		if (uni.getSystemInfoSync().windowHeight > option.size.height) that.signalPage = true;
+		else that.signalPage = false;
+		console.log(that.signalPage ? "SIGNAL PAGE" : "FULL PAGE")
+	})
+}
+
+/**
+ * NextTick
+ */
+function nextTick(dom,that){
+	that.$nextTick(() => { resize(dom,that) })
+}
+
+
+/**
+ * HTTP请求
  */
 function ajax(requestInfo, app = getApp()) {
 	var option = {

@@ -39,7 +39,7 @@
 			</view>
 			<view class='unitTable border' v-if="tips">
 				<view class="y-CenterCon" style="margin: 5px 0;">
-					<view class="dot" style='background-color:#eee;margin: 0 6px 0 3px;'></view>
+					<view class="dot" style='background-color:#eee;margin: 0 3px;'></view>
 					<text class="text l6">{{tips}}</text>
 				</view>
 				<text class="text tipsInfo">{{tipsInfo}}</text>
@@ -179,7 +179,7 @@
 		margin-left: 5px;
 	}
 	.l6{
-		margin-left: 6px;
+		margin-left: 3px;
 	}
 	.cr{
 		color: #555555;

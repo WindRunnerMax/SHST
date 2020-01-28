@@ -1,49 +1,49 @@
 <template>
-	<view> 
+	<view class="page" :class="{signalPage: signalPage}" ref="box">
 
 		<view class="x-CenterCon">
-			<imagecache imageStyle="width: 270px;height: 90px;margin-top: 20px;" src="https://windrunner_max.gitee.io/imgpath/SDUST/SHST.jpg">
-			</imagecache>
+			<image style="width: 270px;height: 90px;margin-top: 20px;" src="https://windrunner_max.gitee.io/imgpath/SDUST/SHST.jpg">
+			</image>
 		</view>
 
 
 		<view class='userInfoCon'>
-			<view class='unitInfo' style='border-top: 1px solid #eee;'>
+			<view class='unitInfo border' style='border-top-width: 1px'>
 
-				<view style='display:flex;'>
-					<view>版本号</view>
+				<view style='flex-direction: row;'>
+					<text class="text">版本号</text>
 				</view>
-				<view>{{version}}</view>
+				<text class="text">{{version}}</text>
 			</view>
 
-			<view class='unitInfo'>
-				<view style='display:flex;'>
-					<view>反馈QQ群</view>
+			<view class='unitInfo border'>
+				<view style='flex-direction: row;'>
+					<text class="text">反馈QQ群</text>
 				</view>
-				<view class='link' data-copy='722942376' @tap='copy'>722942376</view>
+				<text class='link text' data-copy='722942376' @tap='copy'>722942376</text>
 			</view>
 
-			<view class='unitInfo'>
-				<view style='display:flex;'>
-					<view>联系开发者</view>
+			<view class='unitInfo border'>
+				<view style='flex-direction: row;'>
+					<text class="text">联系开发者</text>
 				</view>
-				<view class='link' data-copy='651525974' @tap='copy' style='display: flex;'>
-					<view>651525974</view>
+				<view class='link' data-copy='651525974' @tap='copy' style='flex-direction: row;'>
+					<text class="text link">651525974</text>
 				</view>
 			</view>
 
-			<view class='unitInfo' data-jumpurl='https://github.com/WindrunnerMax/SW' @tap='jump'>
-				<view style='display:flex;'>
-					<view>项目开源地址</view>
+			<view class='unitInfo border' data-jumpurl='https://github.com/WindrunnerMax/SW' @tap='jump'>
+				<view style='flex-direction: row;'>
+					<text class="text">项目开源地址</text>
 				</view>
-				<view >></view>
+				<text class="text">></text>
 			</view>
 
-			<view class='unitInfo' data-jumpurl="https://github.com/WindrunnerMax/SW/blob/SDUST/ChangeLog.md" @tap='jump'>
-				<view style='display:flex;'>
-					<view>项目更新日志</view>
+			<view class='unitInfo border' data-jumpurl="https://github.com/WindrunnerMax/SW/blob/SDUST/ChangeLog.md" @tap='jump'>
+				<view style='flex-direction: row;'>
+					<text class="text">项目更新日志</text>
 				</view>
-				<view>></view>
+				<text class="text">></text>
 			</view>
 
 		</view>
@@ -51,7 +51,7 @@
 
 
 		<view class="footer">
-			<view class="text">Copyright © 2019 WindrunnerMax</view>
+			<text class="ftext">Copyright © 2019 WindrunnerMax</text>
 		</view>
 
 	</view>
@@ -64,6 +64,10 @@
 			return {
 				version: app.globalData.version
 			}
+		},
+		onReady: function() {
+			const dom = weex.requireModule('dom');
+			app.resize(dom,this);
 		},
 		methods: {
 			copy: function(e) {
@@ -81,9 +85,9 @@
 </script>
 
 <style>
-	page {
+	.page {
 		padding: 0;
-		background: #FFFFFF;
+		background-color: #FFFFFF;
 		font-size: 14px;
 	}
 
@@ -99,35 +103,34 @@
 	}
 
 	.unitInfo {
-		height: 30px;
-		line-height: 30px;
-		border-bottom: 1px solid #eee;
-		display: flex;
+		height: 50px;
+		line-height: 50px;
+		border-bottom-width: 1px ;
+		flex-direction: row;
 		justify-content: space-between;
 		padding: 10px 15px;
+		align-items: center;
 	}
 
 	.github {
-		overflow: hidden;
-		max-width: 30%;
 		text-overflow: ellipsis;
 	}
 
 	.footer {
-		display: flex;
+		flex-direction: row;
 		margin-top: 30px;
 		justify-content: center;
 	}
 
-	.footer .text {
+	.ftext {
 		color: #aaa;
+		font-size: 15px;
 	}
 
 	.Avatar {
 		height: 20px;
 		width: 20px;
 		border-radius: 20px;
-		align-self: center;
 		margin-right: 3px;
 	}
 </style>

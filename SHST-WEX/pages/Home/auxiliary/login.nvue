@@ -130,6 +130,7 @@
 						app.globalData.curTerm = res.data.initData.curTerm;
 						app.globalData.term = res.data.initData.curTerm;
 						app.globalData.curWeek = res.data.initData.curWeek;
+						app.globalData.tips = res.data.initData.tips;
 						app.globalData.initData = res.data.initData;
 						that.checkAppUpdate(res.data.initData.version);
 						if (user.account) {

@@ -4,7 +4,7 @@
 		<view class="line">
 			<view class="left">
 				<view class="row" v-bind:style="{'background-color': color}"></view>
-				<view class="title">{{title}}</view>
+				<text class="title" style="font-size: 15px;">{{title}}</text>
 			</view>
 			<view style="margin-top: 3px;">
 				<slot></slot>

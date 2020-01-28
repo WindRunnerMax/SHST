@@ -2,6 +2,7 @@
 	const dispose = require('@/vector/dispose.js');
 	export default {
 		globalData: {
+			tips: 10,
 			account: "",
 			curWeek: "1",
 			initData: {},
@@ -27,8 +28,11 @@
 			this.globalData.curWeek = pubFct.getCurWeek(this.globalData.curTermStart); 
 			this.extend = dispose.extend;
 			this.extend({
+			  ajax: dispose.ajax,
+			  delay: dispose.delay,
 			  toast: dispose.toast,
-			  ajax: dispose.ajax
+			  resize: dispose.resize,
+			  nextTick: dispose.nextTick
 			});
 		}
 	}

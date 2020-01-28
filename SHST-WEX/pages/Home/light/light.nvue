@@ -61,7 +61,7 @@
 					}
 					extList.push(innerList);
 					that.lightList = extList;
-					that.$nextTick(() => { that.resize() })
+					app.nextTick(dom,that);
 				}
 			})
 			uni.getStorage({
@@ -86,14 +86,7 @@
 						data: this.recentUse
 					})
 				}
-			},
-			resize: function() {
-				const that = this;
-				const result = dom.getComponentRect(this.$refs.box, option => {
-					if(uni.getSystemInfoSync().windowHeight > option.size.height) that.signalPage = true;
-					else that.signalPage = false;
-				})
-			},
+			}
 		}
 	}
 </script>

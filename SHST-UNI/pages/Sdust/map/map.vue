@@ -3,7 +3,7 @@
 
 		<layout title="嵙地图">
 			<view style='position: relative;'>
-				<image src="http://wx4.sinaimg.cn/large/007U8ryUly1g5h4dl25bvj318g0u0b29.jpg" data-viewImgUrl="http://wx4.sinaimg.cn/large/007U8ryUly1g5h4dl25bvj318g0u0b29.jpg"
+				<image src="http://wx4.sinaimg.cn/large/007U8ryUly1g5h4dl25bvj318g0u0b29.jpg" data-viewimgurl="http://wx4.sinaimg.cn/large/007U8ryUly1g5h4dl25bvj318g0u0b29.jpg"
 				 @tap='viewImg' class='sdustMap' mode="widthFix"></image>
 				<view class='ImgFrom'>山东科技大学新闻媒体部制</view>
 			</view>
@@ -65,7 +65,7 @@
 			bindViewTap: function() {},
 			viewImg(e) {
 				var current = e.currentTarget.dataset.viewimgurl;
-				wx.previewImage({
+				uni.previewImage({
 					current: current,
 					urls: [current]
 				})

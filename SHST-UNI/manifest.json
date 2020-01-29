@@ -53,7 +53,8 @@
         "navigateToMiniProgramAppIdList" : [ "wxa53da62a53aaddea" ]
     },
     "mp-alipay" : {
-        "usingComponents" : true
+        "usingComponents" : true,
+        "appid" : "2021001107642868"
     },
     "mp-baidu" : {
         "usingComponents" : true

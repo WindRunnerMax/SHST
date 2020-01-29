@@ -50,6 +50,10 @@
 				load: 2,
 				url: app.globalData.url + "lib/borrow",
 				fun: res => {
+					if(res.data.match(/当前无借阅记录/)){
+						app.toast("暂无借阅记录");
+						return true;
+					}
 					if (res.data.Message === "Yes") {
 						var infoArr = [];
 						res.data.info.match(/<li>[\s\S]*?<\/li>/g).forEach(value => {

@@ -271,6 +271,7 @@ function onLunch() {
 				success: (res) => {
 					setCookie(res, app);
 					app.globalData.curTerm = res.data.initData.curTerm
+					app.globalData.curTermStart = res.data.initData.termStart
 					app.globalData.curWeek = res.data.initData.curWeek
 					app.globalData.loginStatus = res.data.Message;
 					app.globalData.initData = res.data.initData;

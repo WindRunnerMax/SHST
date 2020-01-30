@@ -18,31 +18,31 @@
 			</view>
 			<view class="asse-hr timetablehr"></view>
 			<view class='line'>
-				<view class='weekUnit' :class="date[0].s">
+				<view class='weekUnit fill' :class="date[0].s">
 					<text class='weekUnitText'>Mon</text>
 					<text class='weekUnitText' style="font-size: 8px;">{{date[0].d}}</text>
 				</view>
-				<view class='weekUnit'>
-					<text class='weekUnitText' :class="date[1].s">Tue</text>
+				<view class='weekUnit fill' :class="date[1].s">
+					<text class='weekUnitText' >Tue</text>
 					<text class='weekUnitText' style="font-size: 8px;">{{date[1].d}}</text>
 				</view>
-				<view class='weekUnit'>
-					<text class='weekUnitText' :class="date[2].s">Wed</text>
+				<view class='weekUnit fill' :class="date[2].s">
+					<text class='weekUnitText' >Wed</text>
 					<text class='weekUnitText' style="font-size: 8px;">{{date[2].d}}</text>
 				</view>
-				<view class='weekUnit'>
-					<text class='weekUnitText' :class="date[3].s">Thur</text>
+				<view class='weekUnit fill' :class="date[3].s">
+					<text class='weekUnitText' >Thur</text>
 					<text class='weekUnitText' style="font-size: 8px;">{{date[3].d}}</text>
 				</view>
-				<view class='weekUnit' :class="date[4].s">
+				<view class='weekUnit fill' :class="date[4].s">
 					<text class='weekUnitText'>Fri</text>
 					<text class='weekUnitText' style="font-size: 8px;">{{date[4].d}}</text>
 				</view>
-				<view class='weekUnit' :class="date[5].s">
+				<view class='weekUnit fill' :class="date[5].s">
 					<text class='weekUnitText'>Sat</text>
 					<text class='weekUnitText' style="font-size: 8px;">{{date[5].d}}</text>
 				</view>
-				<view class='weekUnit' :class="date[6].s">
+				<view class='weekUnit fill' :class="date[6].s">
 					<text class='weekUnitText'>Sun</text>
 					<text class='weekUnitText' style="font-size: 8px;">{{date[6].d}}</text>
 				</view>
@@ -50,7 +50,7 @@
 			<view class="timetablehr"></view>
 			<view v-for="(item,index) in [0,1,2,3,4]" :key="index">
 				<view class='line'>
-					<view v-for="(inner,innerIndex) in [0,1,2,3,4,5,6]" :key="innerIndex" style="width: 100%;">
+					<view v-for="(inner,innerIndex) in [0,1,2,3,4,5,6]" :key="innerIndex" class="fill">
 						<view v-if="table[inner] && table[inner][item]" class='timetableHide' :style="{'background-color':table[inner][item][5]}">
 							<text class="text">{{table[inner][item][2]}}</text>
 							<text class="text">{{table[inner][item][4]}}</text>
@@ -216,7 +216,6 @@
 		color: #fff;
 		padding: 1px;
 		font-size: 13px;
-		width: 94rpx;
 	}
 
 	.timetablehr {
@@ -226,7 +225,6 @@
 	}
 
 	.weekUnit {
-		width: 94rpx;
 		padding: 5px 1px;
 		margin: 0 1px;
 		justify-content: center;

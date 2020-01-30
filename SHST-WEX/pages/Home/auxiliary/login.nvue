@@ -50,12 +50,11 @@
 			let that = this;
 			uni.getStorage({
 				key: 'user',
-				success: function(res) {
-					if (res.data.account !== "" && res.data.password !== "") {
-						that.account = res.data.account;
-						that.password = decodeURIComponent(res.data.password);
+				success: res => {
+					if (res.data && res.data.account && res.data.password) {
+						that.account = res.data.account
+						that.password = decodeURIComponent(res.data.password)
 					}
-
 				}
 			})
 			if (!e.status) this.initAppData();

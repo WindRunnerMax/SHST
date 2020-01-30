@@ -29,8 +29,8 @@
 					<view class="timetablehr"></view>
 					<view v-for="(item,index) in calendarObj" :key="index" class='con'>
 						<view class='line'>
-							<view v-for="(inner,innerIndex) in item" :key="innerIndex" >
-								<text class="text dunit" :class='inner.className'>{{inner.day}}</text>
+							<view class="fill" v-for="(inner,innerIndex) in item" :key="innerIndex" >
+									<text class="text" :class='inner.className'>{{inner.day}}</text>
 							</view>
 						</view>
 					</view>
@@ -184,7 +184,7 @@
 		text-align: center;
 		padding: 5px 0;
 		font-size: 12px;
-		width: 86rpx;
+		flex: 1;
 	}
 
 	.timetablehr {
@@ -203,7 +203,4 @@
 		color: rgb(12, 114, 240);
 	}
 	
-	.dunit{
-		width: 86rpx;
-	}
 </style>

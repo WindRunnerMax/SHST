@@ -12,10 +12,9 @@
 		<layout title="应用列表">
 			<view v-for="(item,index) in lightList" :key="index">
 				<view class="y-CenterCon" style="margin-top: 20px;">
-					<view v-for="(innerItem,innderIndex) in item" :key="innderIndex" :data-obj="innerItem" class='icon' @tap='jump'>
+					<view v-for="(innerItem,innderIndex) in item" :key="innderIndex" :data-obj="innerItem" class='icon fill' @tap='jump'>
 						<image class="img" v-if="innerItem.img" :src="'https://windrunner_max.gitee.io/imgpath/LightApp/'+innerItem.img"></image>
 						<text class="text" v-if="innerItem.title">{{innerItem.title}}</text>
-						<view class="occupy" v-if="!innerItem.img"></view>
 					</view>
 				</view>
 			</view>
@@ -117,11 +116,4 @@
 		justify-content: space-around;
 	}
 
-	.occupy {
-		width: 57px;
-		height: 55px;
-		justify-content: center;
-		flex-direction: row;
-		align-items: center;
-	}
 </style>

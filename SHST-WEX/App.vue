@@ -68,8 +68,9 @@
 		align-items: center;
 		flex-direction: row;
 	}
+	
 	.fill{
-		width: 750rpx;
+		flex: 1;
 	}
 	
 	.text{

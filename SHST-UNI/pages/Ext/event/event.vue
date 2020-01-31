@@ -20,11 +20,11 @@
 			<headslot title="待办事项">
 				<view class="y-CenterCon" style="font-size: 13px;">
 					<view class="y-CenterCon" style="margin: 0 3px;">
-						<view class="dot" style="background: #6495ED;"></view>
+						<view class="a-dot" style="background: #6495ED;"></view>
 						<view>待办:{{count}}</view>
 					</view>
 					<view class="y-CenterCon" style="margin: 0 3px;">
-						<view class="dot" style="background: #ACA4D5;"></view>
+						<view class="a-dot" style="background: #ACA4D5;"></view>
 						<view class="link" @tap="jump">已完成</view>
 					</view>
 				</view>
@@ -34,7 +34,7 @@
 				<view class='y-CenterCon unitTodo' style="justify-content: space-between;">
 					<view>
 						<view class="y-CenterCon" style="margin: 5px 0;">
-							<view class="dot" :style="{'background':item.color,'margin':'0 6px 0 3px'}"></view>
+							<view class="a-dot" :style="{'background':item.color,'margin':'0 6px 0 3px'}"></view>
 							<view>{{item.event_content}}</view>
 						</view>
 						<view class="y-CenterCon">
@@ -50,7 +50,7 @@
 			</layout>
 			<layout v-if="tips">
 				<view class="y-CenterCon">
-					<view class="dot" style="background: #EEEEEE;margin-right: 6px;"></view>
+					<view class="a-dot" style="background: #EEEEEE;margin-right: 6px;"></view>
 					<view>{{tips}}</view>
 				</view>
 			</layout>

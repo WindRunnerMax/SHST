@@ -15,11 +15,11 @@
 			</view>
 			<view class='articalCon' @tap='articalJump'>
 				<i class='iconfont icon-gonggao icon'></i>
-				<rich-text class='link' :nodes="artical"></rich-text>
+				<rich-text class='a-link' :nodes="artical"></rich-text>
 			</view>
 			<navigator url="/pages/User/announce/announce" open-type="navigate" class='articalCon' hover-class="none">
 				<i class='iconfont icon-gonggao icon'></i>
-				<text class='link'>更多公告...</text>
+				<text class='a-link'>更多公告...</text>
 			</navigator>
 
 		</layout>
@@ -29,7 +29,7 @@
 			<view v-for="(item,index) in table" :key="index">
 				<view class='unitTable' v-show="item">
 					<view class="y-CenterCon" style="margin: 5px 0;">
-						<view class="dot" :style="{'background':item[5],'margin':'0 6px 0 3px'}"></view>
+						<view class="a-dot" :style="{'background':item[5],'margin':'0 6px 0 3px'}"></view>
 						<view>第{{2*(item[1] + 1) - 1}}{{2*(item[1] + 1)}}节</view>
 						<view style="margin-left: 5px;">{{item[3]}}</view>
 					</view>
@@ -41,7 +41,7 @@
 			</view>
 			<view class='unitTable' v-if="tips" @tap='bindSW'>
 				<view class="y-CenterCon" style="margin: 5px 0;">
-					<view class="dot" style='background:#eee;margin: 0 6px 0 3px;'></view>
+					<view class="a-dot" style='background:#eee;margin: 0 6px 0 3px;'></view>
 					<view>{{tips}}</view>
 				</view>
 				<view style="margin:7px 3px 5px 3px;">{{tipsInfo}}</view>
@@ -54,7 +54,7 @@
 				<view class='y-CenterCon unitTodo' style="justify-content: space-between;">
 					<view>
 						<view class="y-CenterCon" style="margin: 5px 0;">
-							<view class="dot" :style="{'background':item.color,'margin':'0 6px 0 3px'}"></view>
+							<view class="a-dot" :style="{'background':item.color,'margin':'0 6px 0 3px'}"></view>
 							<view>{{item.event_content}}</view>
 						</view>
 						<view class="y-CenterCon">
@@ -70,7 +70,7 @@
 			</view>
 			<view class='unitTable' v-if="tips2">
 				<view class="y-CenterCon" style="margin: 5px 0;">
-					<view class="dot" style='background:#eee;margin: 0 6px 0 3px;'></view>
+					<view class="a-dot" style='background:#eee;margin: 0 6px 0 3px;'></view>
 					<view>{{tips2}}</view>
 				</view>
 				<view style="margin:7px 3px 5px 3px;">快去添加一个想做的事吧</view>
@@ -111,10 +111,17 @@
 		},
 		onLoad: function(options) {
 			// #ifdef MP-ALIPAY
-			if(this.artical === "数据加载中") this.artical = [{type:"text",text:"数据加载中"}]
+			if (this.artical === "数据加载中") this.artical = [{
+				type: "text",
+				text: "数据加载中"
+			}]
 			// #endif
 			app.eventBus.on('LoginEvent', this.openidEvent);
-			if (app.globalData.openid !== "") this.openidEvent({data: {Message: app.globalData.loginStatus}});
+			if (app.globalData.openid !== "") this.openidEvent({
+				data: {
+					Message: app.globalData.loginStatus
+				}
+			});
 		},
 		methods: {
 			openidEvent: function(res) {
@@ -277,7 +284,10 @@
 			getArtical: function() {
 				if (app.globalData.initData && app.globalData.initData.articalName) {
 					// #ifdef MP-ALIPAY
-					this.artical = [{type:"text",text:app.globalData.initData.articalName}]
+					this.artical = [{
+						type: "text",
+						text: app.globalData.initData.articalName
+					}]
 					// #endif
 					// #ifndef MP-ALIPAY
 					this.artical = app.globalData.initData.articalName

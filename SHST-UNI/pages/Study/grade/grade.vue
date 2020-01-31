@@ -14,15 +14,15 @@
 			<headslot :title="showSelect">
 				<view class="y-CenterCon" style="flex-wrap: wrap; font-size: 13px;">
 					<view class='y-CenterCon overUnit'>
-						<view class="dot" style="background:#6495ED;"></view>
+						<view class="a-dot" style="background:#6495ED;"></view>
 						<view>学分:{{point}}</view>
 					</view>
 					<view class='y-CenterCon overUnit'>
-						<view class="dot" style="background:#ACA4D5;"></view>
+						<view class="a-dot" style="background:#ACA4D5;"></view>
 						<view>绩点:{{pointN}}</view>
 					</view>
 					<view class='y-CenterCon overUnit'>
-						<view class="dot" style="background:#EAA78C;"></view>
+						<view class="a-dot" style="background:#EAA78C;"></view>
 						<view>加权:{{pointW}}</view>
 					</view>
 				</view>
@@ -199,7 +199,7 @@
 		margin: 0 3px;
 	}
 
-	.dot {
+	.a-dot {
 		margin: 0 3px;
 	}
 

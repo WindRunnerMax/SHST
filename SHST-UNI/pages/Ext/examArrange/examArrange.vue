@@ -7,7 +7,7 @@
 		
 		<layout v-if="tips">
 			<view class="y-CenterCon">
-				<view class="dot" style="background: #EEEEEE;margin-right: 6px;"></view>
+				<view class="a-dot" style="background: #EEEEEE;margin-right: 6px;"></view>
 				<view>{{tips}}</view>
 			</view>
 		</layout>

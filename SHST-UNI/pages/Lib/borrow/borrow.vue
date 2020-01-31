@@ -50,7 +50,7 @@
 				load: 2,
 				url: app.globalData.url + "lib/borrow",
 				fun: res => {
-					if(res.data.match(/当前无借阅记录/)){
+					if(res.data.info.match(/当前无借阅记录/)){
 						app.toast("暂无借阅记录");
 						return true;
 					}

@@ -143,12 +143,12 @@
 		display: flex;
 		width: 100%;
 		border-bottom: 1px solid #eee;
-		margin-top: 15px;
+		margin-top: 5px;
 		align-items: center;
 	}
 
 	.svgLog {
-		margin: 0 4px 0 8px;
+		margin: 0 0 0 8px;
 		width: 20px;
 		height: 20px;
 		align-self: center;
@@ -177,5 +177,10 @@
 		color: #aaa;
 		margin: 0 4px 0 8px;
 		align-self: center;
+	}
+	
+	.a-input{
+		border: none;
+		margin: 7px 0;
 	}
 </style>

@@ -11,7 +11,7 @@
 
 		<layout title="在线地图">
 			<view class='tips'>
-				<view v-bind:style='{background:point}' class='point'></view>
+				<view v-bind:style='{background:point}' class='a-dot'></view>
 				<view class='info'>{{info}}</view>
 				<view class='loc'>{{showLongitude}}</view>
 				<view class='loc'>{{showLatitude}}</view>
@@ -102,12 +102,6 @@
 	.tips view{
 	  margin-left: 5px;
 	  align-self: center;
-	}
-	
-	.point{
-	  width: 8px;
-	  height: 8px;
-	  border-radius: 8px;
 	}
 	
 	map{

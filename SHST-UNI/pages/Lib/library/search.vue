@@ -144,7 +144,7 @@
 		border: 1px solid #eee;
 		margin: 0;
 		display: block;
-		height: 26px;
+		height: 23px;
 		width: 150px;
 		margin-right: 10px;
 	}

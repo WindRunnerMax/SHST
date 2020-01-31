@@ -5,7 +5,7 @@
 		<view v-for="(item,index) in data" :key="index">
 			<layout>
 				<view class="fline">
-					<view class="dot" v-bind:style="{background: colorList[index]}"></view>
+					<view class="a-dot" v-bind:style="{background: colorList[index]}"></view>
 					<view>{{item.name}}</view>
 					<view>{{item.v_time}}</view>
 				</view>

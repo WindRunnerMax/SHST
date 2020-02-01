@@ -9,11 +9,11 @@
 			<view class='inputCon'>
 				<view class='inputView'>
 					<text class='iconfont icon'>&#xe626;</text>
-					<input class="fill input" name="account" type="number" placeholder='账号' :value='account'></input>
+					<input class="input fill" name="account" type="number" placeholder='账号' :value='account'></input>
 				</view>
 				<view class='inputView'>
 					<text class='iconfont icon'>&#xe61b;</text>
-					<input class="input" style="width: 570rpx;" name="password" placeholder='密码' :password='hidePassword' :value='password'></input>
+					<input class="input fill" name="password" placeholder='密码' :password='hidePassword' :value='password'></input>
 					<switch @change="switchChange"></switch>
 				</view>
 			</view>
@@ -154,7 +154,7 @@
 			checkAppUpdate: function(e) {
 				if (!e) return false;
 				if (app.globalData.version === e) return false;
-				var url = "https://windrunner_max.gitee.io/imgpath/SDUST/App/SHST-" + e + ".wgt";
+				var url = "http://windrunner_max.gitee.io/imgpath/SDUST/App/SHST-" + e + ".wgt";
 				uni.downloadFile({
 					url: url,
 					success: (downloadResult) => {
@@ -189,10 +189,9 @@
 	.icon {
 		justify-content: center;
 		align-items: center;
-		margin-right: 5px;
 		color: #AAAAAA;
 		font-size: 20px;
-		width: 20px;
+		width: 23px;
 	}
 
 	.page {
@@ -201,12 +200,12 @@
 
 	.inputCon {
 		margin-top: 23px;
-		width: 750rpx;
+		flex: 1;
 	}
 
 	.inputView {
 		flex-direction: row;
-		width: 750px;
+		flex: 1; 
 		border-style: solid;
 		border-bottom-width: 1px;
 		border-color: #EEEEEE;
@@ -214,7 +213,7 @@
 		align-items: center;
 		padding: 5px;
 	}
-
+ 
 	.btn {
 		background-color: #1E9FFF;
 		margin-top: 23px;

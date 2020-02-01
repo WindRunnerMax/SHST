@@ -22,7 +22,7 @@
 							<view class="dot" style="background-color:#ACA4D5;"></view>
 							<text class="text">绩点:{{pointN}}</text>
 						</view>
-						<view class='y-CenterCon overUnit'>
+						<view class='y-CenterCon overUnit' style="margin-right: 5px;">
 							<view class="dot" style="background-color:#EAA78C;"></view>
 							<text class="text">加权:{{pointW}}</text>
 						</view>
@@ -71,7 +71,6 @@
 				pointW: 0,
 				show: 0,
 				grade: 0,
-				ad: 1,
 				showSelect: "",
 				signalPage: false
 			}
@@ -178,7 +177,6 @@
 							zcj: "100"
 						}
 						that.grade = !res.data[0] ? [defaultValue] : res.data
-						that.ad = !res.data[0] ? 0 : 1
 						that.show = 1
 						app.nextTick(dom,that);
 					}

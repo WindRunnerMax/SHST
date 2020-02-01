@@ -3,7 +3,7 @@
 		<layout title="最近使用" v-if="recentUse.length">
 			<view class="y-CenterCon" style="margin-top: 20px;">
 				<view v-for="(innerItem) in recentUse" :key="innerItem.title" :data-obj="innerItem" class='icon' @tap='jump'>
-					<image class="img" :src="'https://windrunner_max.gitee.io/imgpath/LightApp/'+innerItem.img"></image>
+					<image class="img" :src="'http://windrunner_max.gitee.io/imgpath/LightApp/'+innerItem.img"></image>
 					<text class="text" style="margin-top: 6px;">{{innerItem.title}}</text>
 				</view>
 			</view>
@@ -13,7 +13,7 @@
 			<view v-for="(item,index) in lightList" :key="index">
 				<view class="y-CenterCon" style="margin-top: 20px;">
 					<view v-for="(innerItem,innderIndex) in item" :key="innderIndex" :data-obj="innerItem" class='icon fill' @tap='jump'>
-						<image class="img" v-if="innerItem.img" :src="'https://windrunner_max.gitee.io/imgpath/LightApp/'+innerItem.img"></image>
+						<image class="img" v-if="innerItem.img" :src="'http://windrunner_max.gitee.io/imgpath/LightApp/'+innerItem.img"></image>
 						<text class="text" v-if="innerItem.title">{{innerItem.title}}</text>
 					</view>
 				</view>
@@ -42,10 +42,10 @@
 			var that = this;
 			app.ajax({
 				load: 1,
-				url: "https://windrunner_max.gitee.io/imgpath/LightApp/config.json",
+				url: "http://windrunner_max.gitee.io/imgpath/LightApp/config.json",
 				success: function(res) {
 					var extList = [];
-					var innerList = [];
+					var innerList = []; 
 					res.data.map(function(value, index) {
 						if (index && index % 4 === 0) {
 							extList.push(innerList);

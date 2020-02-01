@@ -3,7 +3,7 @@
 
 		<layout>
 			<view class='x-CenterCon'>
-				<image style="width: 230px;height: 80px;margin-top: 20px;margin-bottom: 30px;" src="https://windrunner_max.gitee.io/imgpath/SDUST/SDUST.jpg"></image>
+				<image style="width: 230px;height: 80px;margin-top: 20px;margin-bottom: 30px;" src="http://windrunner_max.gitee.io/imgpath/SDUST/SDUST.jpg"></image>
 			</view>
  
 			<view class='userInfoCon'>
@@ -29,9 +29,9 @@
 					<text class="text">{{academy}}</text>
 				</view>
 
-				<view class='unitInfo' data-copy='722942376' @tap='copy'>
+				<view class='unitInfo' data-copy='522567369' @tap='copy'>
 					<text class='titleCon text'>QQ群</text>
-					<text class="text">722942376</text>
+					<text class="text">522567369</text>
 				</view>
 				<view class='unitInfo' data-jumpurl="/pages/User/announce/announce" @tap='jumpUpdate'>
 					<view style='flex-direction: row;align-items: center;'>

@@ -24,7 +24,6 @@ SW/Java 目录下为Java版本的API
 * Q.getCjcx("2018-2019-1") #成绩查询 #无参数查询全部成绩
 * Q.getKscx() #获取考试信息
 
-----
   
 ## PHP
 
@@ -33,7 +32,6 @@ SW/Java 目录下为Java版本的API
 * passwordSW 密码
 * urlSW {$强智系统URL}/app.do
 * 源码末尾取消注释即可获取相应方法返回的值
-----
   
 ## Java
 

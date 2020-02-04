@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.czy.sw.Http;
-
+ 
 /**
 * @author Czy
 * @time Jul 6, 2019
@@ -29,8 +29,8 @@ public class MainSw {
 	 * 其实学期与当前周次是可以自行计算的，还可以减少对强智服务器的请求，详情可以看一下SW/Web/app/auxiliary/Conf.php类
 	 */
 	////////////////////////////////////////////////////////
-	private String curWeek = "18";
-	private String curTerm = "2018-2019-2";
+	private String curWeek = "1";
+	private String curTerm = "2019-2020-2";
 	////////////////////////////////////////////////////////
 	
 	private Map<String, String> headers = new HashMap<String, String>();

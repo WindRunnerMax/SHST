@@ -26,18 +26,18 @@ class SW(object):
         self.session = self.login()
     
     HEADERS = {
-    'User-Agent':'Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
-    'Referer': 'http://www.baidu.com',
-    'accept-encoding': 'gzip, deflate, br',
-    'accept-language': 'zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
-    'cache-control': 'max-age=0'
+    "User-Agent":"Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )",
+    "Referer": "http://www.baidu.com",
+    "accept-encoding": "gzip, deflate, br",
+    "accept-language": "zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2",
+    "cache-control": "max-age=0"
     }
 
     def login(self):
         params={
-        "method" : "authUser",
-        "xh" : self.account,
-        "pwd" : self.password
+            "method" : "authUser",
+            "xh" : self.account,
+            "pwd" : self.password
         }
         session = requests.Session()
         req = session.get(self.url, params=params,timeout = 5,headers = self.HEADERS)
@@ -58,8 +58,8 @@ class SW(object):
 
     def getStudentInfo(self):
         params = {
-        "method" : "getUserInfo",
-        "xh" : self.account
+            "method" : "getUserInfo",
+            "xh" : self.account
         }
         req = self.GetHandle(params)
         print(req.text)
@@ -67,8 +67,8 @@ class SW(object):
     
     def getCurrentTime(self):
         params = {
-        "method" : "getCurrentTime",
-        "currDate" : datetime.datetime.now().strftime('%Y-%m-%d')
+            "method" : "getCurrentTime",
+            "currDate" : datetime.datetime.now().strftime('%Y-%m-%d')
         }
         req = self.GetHandle(params)
         print(req.text)
@@ -77,10 +77,10 @@ class SW(object):
     def getKbcxAzc(self,zc = -1):
         s = json.loads(self.getCurrentTime())
         params={
-        "method" : "getKbcxAzc",
-        "xnxqid" : s['xnxqh'],
-        "zc" : s['zc'] if zc == -1 else zc,
-        "xh" : self.account
+            "method" : "getKbcxAzc",
+            "xnxqid" : s['xnxqh'],
+            "zc" : s['zc'] if zc == -1 else zc,
+            "xh" : self.account
         }
         req = self.GetHandle(params)
         print(req.text)
@@ -88,18 +88,18 @@ class SW(object):
 
     def getKxJscx(self,idleTime = "allday"):
         params={
-        "method" : "getKxJscx",
-        "time" : datetime.datetime.now().strftime('%Y-%m-%d'),
-        "idleTime" : idleTime
+            "method" : "getKxJscx",
+            "time" : datetime.datetime.now().strftime('%Y-%m-%d'),
+            "idleTime" : idleTime
         }
         req = self.GetHandle(params)
         print(req.text)
 
     def getCjcx(self,sy = ""):
         params={
-        "method" : "getCjcx",
-        "xh" : self.account,
-        "xnxqid" : sy
+            "method" : "getCjcx",
+            "xh" : self.account,
+            "xnxqid" : sy
         }
         req = self.GetHandle(params)
         print("全部成绩" if sy == "" else sy)
@@ -114,8 +114,8 @@ class SW(object):
 
     def getKscx(self):
         params={
-        "method" : "getKscx",
-        "xh" : self.account,
+            "method" : "getKscx",
+            "xh" : self.account,
         }
         req = self.GetHandle(params)
         print(req.text)

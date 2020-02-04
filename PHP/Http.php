@@ -1,10 +1,10 @@
 <?php
 namespace auxiliary;
-
+ 
 class Http
 {
 
-    public static function httpRequest($url, $data=array(), $method='GET',$headers = array()){
+    public static function httpRequest($url, $data=[], $method='GET',$headers = []){
         $headers = self::headerDispose($headers);
         $curl = self::getCurl($url,$data,$method,$headers);
         try {
@@ -18,20 +18,19 @@ class Http
         } 
     }
 
-      private static function arrstr($arr){
-          $ret = "";
-          reset($arr);
-          while (list($k, $v) = each($arr)){
-              $tmp = "$k"."="."$v";
-              $ret = $ret."&".$tmp;
-          }
-          return $ret;
+      private static function arrstr($url,$arr){
+        $ret = "";
+        foreach ($arr as $key => $value) {
+            $ret = $ret."&".$key."=".$value;
+        }
+        if ($ret !== "") $url = $url . "?" . $ret;
+        return $url;
       }
 
       private static function getCurl($url, $data, $method,$headers){
         $curl = curl_init();  // 启动一个CURL会话
         if (count($headers) >= 1) curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        if($method=='GET') $url = $url."?".self::arrstr($data);
+        if($method=='GET') $url = $url."?".self::arrstr($url, $data);
         curl_setopt($curl, CURLOPT_URL, $url);  // 要访问的地址
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);  // 对认证证书来源的检查
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);  // 从证书中检查SSL加密算法是否存在
@@ -50,11 +49,16 @@ class Http
 
 
       private static function headerDispose($headers){
-        if (count($headers) === 0) array_push($header,"User-Agent: Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )");
-        $ipArr = [mt_rand(1, 255),mt_rand(1, 255),mt_rand(1, 255),mt_rand(1, 255)];
-        array_push($headers,"X-FORWARDED-FOR:".$ipArr[0].".".$ipArr[1].".".$ipArr[2].".".$ipArr[3]);
-        array_push($headers,"CLIENT-IP:".$ipArr[0].".".$ipArr[1].".".$ipArr[2].".".$ipArr[3]);
-        return $headers;
+        $headerDisposeCurl = [];
+        if (!isset($headers['X-FORWARDED-FOR'])) {
+            $ipArr = [mt_rand(1, 255), mt_rand(1, 255), mt_rand(1, 255), mt_rand(1, 255)];
+            $headers["X-FORWARDED-FOR"] = $ipArr[0] . "." . $ipArr[1] . "." . $ipArr[2] . "." . $ipArr[3];
+            $headers["CLIENT-IP"] = $headers["X-FORWARDED-FOR"];
+        }
+        foreach ($headers as $key => $value) {
+            array_push($headerDisposeCurl, $key . ':' . $value);
+        }
+        return $headerDisposeCurl;
       }
 
 }

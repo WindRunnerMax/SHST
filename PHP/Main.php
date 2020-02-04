@@ -13,14 +13,14 @@ class Main
 {
     private $token = "";
 
-    private $headers = array(
-        "Expect: ",
-        'User-Agent:Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )',
-        'Referer:http://www.baidu.com',
-        'accept-encoding:deflate, br',
-        'accept-language:zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2',
-        'cache-control:max-age=0'
-    );
+    private $headers = [
+        "Expect" => "",
+        "User-Agent" => "Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )",
+        "Referer" => "http://www.baidu.com",
+        "accept-encoding" => "deflate, br",
+        "accept-language" => "zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2",
+        "cache-control" => "max-age=0"
+    ];
 
     private $url = "";
 
@@ -37,7 +37,7 @@ class Main
         if($info){
             echo $info['msg']."\n";
             if($info["flag"] !== "1") exit(0);
-            else array_push($this->headers,"token:".$info['token']);
+            else $this -> headers["token"] = $info['token'];
         }else exit(0);
     }
 

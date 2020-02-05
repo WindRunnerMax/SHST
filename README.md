@@ -78,7 +78,7 @@ SW/SHST-WEX 目录下为NVUE/WEEX项目[山科小站--APP]，采用原生渲染�
 
 [关于UNIAPP重构以及类的封装文档](https://blog.csdn.net/qq_40413670/article/details/103796680)
 
-```javascript
+```
 SHST-UNI                              // 山科小站总目录
     ├── components                    // 组件封装
     │   ├── headslot.vue              // 带solt的标题布局

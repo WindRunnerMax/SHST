@@ -13,10 +13,12 @@ function resolve (dir) {
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
+	// 入口文件,可以有多个入口,也可只有一个
     app: './src/main.js'
   },
   output: {
     path: config.build.assetsRoot,
+	// 输出文件名
     filename: '[name].js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath

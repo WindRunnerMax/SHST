@@ -2,7 +2,7 @@
 	<view >
 
 		<view class="x-CenterCon">
-			<image class='rewardImg' src='/static/img/Reward.jpg' data-viewimgurl="http://cdn.liyanzuishuai.top/Reward.jpg-original"
+			<image class='rewardImg' src='http://windrunner_max.gitee.io/imgpath/SDUST/Reward.jpg' data-viewimgurl="http://windrunner_max.gitee.io/imgpath/SDUST/Reward.jpg"
 			 @tap='viewImg'></image>
 		</view>
 
@@ -14,7 +14,7 @@
 
 			<navigator url="rewardList" open-type="navigate" hover-class="none" style="margin-bottom: ;">
 				<text class="link rewardList">赞赏记录</text>
-			</navigator>
+			</navigator> 
 		</view>
 
 	</view>

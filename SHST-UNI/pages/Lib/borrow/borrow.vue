@@ -19,9 +19,11 @@
 
 
 		<layout title="Tips:">
-			<view>1.图书馆逾期是不扣钱的 </view>
-			<view>2.如果您借了书但出现PARSE ERROR，有可能您修改了图书馆默认密码，或者是图书馆服务器暂时瘫痪</view>
-			<view>3.学校图书馆外网访问会定时关闭，正常使用时间大约是在 7:00-22:00</view>
+			<view style="line-height: 27px;">
+				<view>1.图书馆逾期是不扣钱的 </view>
+				<view>2.如果您借了书但出现PARSE ERROR，有可能您修改了图书馆默认密码，或者是图书馆服务器暂时瘫痪</view>
+				<view>3.学校图书馆外网访问会定时关闭，正常使用时间大约是在 7:00-22:00</view>
+			</view>
 		</layout>
 
 	</view>

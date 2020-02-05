@@ -17,7 +17,7 @@
 			<view>记得写上您的名字哦</view>
 			<view>感谢您的支持!</view>
 
-			<navigator url="rewardList" open-type="navigate" class='rewardList link' hover-class="none">赞赏记录</navigator>
+			<navigator url="rewardList" open-type="navigate" class='rewardList a-link' hover-class="none">赞赏记录</navigator>
 		</view>
 
 	</view>

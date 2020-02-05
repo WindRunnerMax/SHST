@@ -2,7 +2,7 @@
 	<view class="page">
 
 		<view class='fill x-CenterCon'>
-			<image style="width: 230px;height: 80px;margin-top: 30rpx;margin-bottom: 30rpx;" src="/static/img/SDUST.jpg"></image>
+			<image style="width: 230px;height: 80px;margin-top: 30rpx;margin-bottom: 30rpx;" src="http://windrunner_max.gitee.io/imgpath/SDUST/SDUST.jpg"></image>
 		</view>
 
 		<form @submit="enter" report-submit="false">

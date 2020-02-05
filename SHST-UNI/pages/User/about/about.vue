@@ -20,14 +20,14 @@
 				<view style='display:flex;'>
 					<view>反馈QQ群</view>
 				</view>
-				<view class='link' data-copy='722942376' @tap='copy'>722942376</view>
+				<view class="a-link" data-copy='722942376' @tap='copy'>722942376</view>
 			</view>
 
 			<view class='unitInfo'>
 				<view style='display:flex;'>
 					<view>联系开发者</view>
 				</view>
-				<view class='link' data-copy='651525974' @tap='copy' style='display: flex;'>
+				<view class="a-link" data-copy='651525974' @tap='copy' style='display: flex;'>
 					<view>651525974</view>
 				</view>
 			</view>
@@ -36,7 +36,7 @@
 				<view style='display:flex;'>
 					<view>项目开源地址</view>
 				</view>
-				<view data-copy='https://github.com/WindrunnerMax/SW' @tap='copy' class='link github'>点我复制链接</view>
+				<view data-copy='https://github.com/WindrunnerMax/SW' @tap='copy' class='a-link github'>点我复制链接</view>
 			</view>
 
 			<view class='unitInfo' data-jumpurl="/pages/User/update/update" @tap='jump'>

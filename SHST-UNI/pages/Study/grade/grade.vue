@@ -4,7 +4,7 @@
 		<layout title="查成绩">
 			<view class="selectCon">
 				<view>请选择学期</view>
-				<picker @change="bindPickerChange" :value="index" :range="yearArr" class="link" range-key="show">
+				<picker @change="bindPickerChange" :value="index" :range="yearArr" class="a-link" range-key="show">
 					<view>{{yearArr[index].show}}</view>
 				</picker>
 			</view>

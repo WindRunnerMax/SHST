@@ -8,7 +8,7 @@
 					<picker style="display: flex;align-items: center;" mode="date" :value="dataDo" :end="dataEnd" @change="dateChange">
 						<view class="y-CenterCon">
 							<view>执行时间：</view>
-							<view class="link">{{dataDo}}</view>
+							<view class="a-link">{{dataDo}}</view>
 						</view>
 					</picker>
 					<view class='a-btn a-btn-mini a-btn-blue btn' @tap='add'>确定</view>
@@ -25,7 +25,7 @@
 					</view>
 					<view class="y-CenterCon" style="margin: 0 3px;">
 						<view class="a-dot" style="background: #ACA4D5;"></view>
-						<view class="link" @tap="jump">已完成</view>
+						<view class="a-link" @tap="jump">已完成</view>
 					</view>
 				</view>
 			</headslot>

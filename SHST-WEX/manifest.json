@@ -11,7 +11,7 @@
         "usingComponents" : true,
         "nvueCompiler" : "uni-app",
         "splashscreen" : {
-            "alwaysShowBeforeRender" : false,
+            "alwaysShowBeforeRender" : true,
             "waiting" : true,
             "autoclose" : true,
             "delay" : 0
@@ -30,10 +30,7 @@
                 "idfa" : false
             },
             /* SDK配置 */
-            "sdkConfigs" : {
-                "maps" : {},
-                "push" : {}
-            },
+            "sdkConfigs" : {},
             "icons" : {
                 "android" : {
                     "hdpi" : "unpackage/res/icons/72x72.png",

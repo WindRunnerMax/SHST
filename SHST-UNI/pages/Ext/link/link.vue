@@ -5,7 +5,7 @@
 			<view v-for="(item,index) in data" :key="index">
 				<view class="line">
 					<view>{{item.name}}：</view>
-					<view class="link" @tap="copy" :data-copy="item.url">{{item.url}}</view>
+					<view class="a-link" @tap="copy" :data-copy="item.url">{{item.url}}</view>
 				</view>
 			</view>
 		</layout>

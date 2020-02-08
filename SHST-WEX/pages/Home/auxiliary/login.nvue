@@ -2,7 +2,7 @@
 	<view class="page">
 
 		<view class='fill x-CenterCon'>
-			<image style="width: 230px;height: 80px;margin-top: 30rpx;margin-bottom: 30rpx;" src="http://windrunner_max.gitee.io/imgpath/SDUST/SDUST.jpg"></image>
+			<image style="width: 230px;height: 80px;margin-top: 30rpx;margin-bottom: 30rpx;" src="http://windrunner_max.gitee.io/imgpath/SHST/Static/SDUST.jpg"></image>
 		</view>
 
 		<form @submit="enter" report-submit="false">
@@ -40,11 +40,8 @@
 			}
 		},
 		created: function() {
-			var domModule = weex.requireModule("dom");
-			domModule.addRule('fontFace', {
-				'fontFamily': 'iconfont',
-				'src': "url('" + app.globalData.fontUrl + "')"
-			})
+			var dom = weex.requireModule("dom");
+			app.addIconfont(dom);
 		},
 		onLoad: function(e) {
 			let that = this;
@@ -154,7 +151,7 @@
 			checkAppUpdate: function(e) {
 				if (!e) return false;
 				if (app.globalData.version === e) return false;
-				var url = "http://windrunner_max.gitee.io/imgpath/SDUST/App/SHST-" + e + ".wgt";
+				var url = `http://windrunner_max.gitee.io/imgpath/SHST/App/SHST-${e}.wgt`;
 				uni.downloadFile({
 					url: url,
 					success: (downloadResult) => {
@@ -191,7 +188,7 @@
 		align-items: center;
 		color: #AAAAAA;
 		font-size: 20px;
-		width: 23px;
+		width: 26px;
 	}
 
 	.page {

@@ -1,6 +1,5 @@
 <template>
-	<view class="page" :class="{signalPage: signalPage}">
-		<view ref="box">
+	<scrollpage>
 
 			<layout title="图书检索">
 				<view style='flex-direction: row;justify-content: center;align-items: center;margin: 10px'>
@@ -13,15 +12,15 @@
 
 			<view v-for="(item,index) in info" :key="index">
 				<layout>
-					<view style='flex-direction: row;justify-content: space-between;' @tap='jump' :data-id="item.id">
-						<view class='leftInfo'>
-							<text class="text lv" style="font-size: 20px;">{{item.infoList[0]}}</text>
+					<view style='flex-direction: row;' @tap='jump' :data-id="item.id">
+						<view class='fill'>
+							<text class="text lv" style="font-size: 18px;">{{item.infoList[0]}}</text>
 							<text class="text lv">{{item.infoList[1]}}</text>
 							<text class="text lv">{{item.infoList[2]}}</text>
 							<text class="text lv">{{item.infoList[3]}}</text>
 						</view>
 						<view class='rightJump border'>
-							<text> > </text>
+							<text class="iconfont" style="color: #AAAAAA;">&#xe743;</text>
 						</view>
 					</view>
 				</layout>
@@ -48,18 +47,18 @@
 				</view>
 			</layout>
 
-		</view>
-	</view>
+	</scrollpage>
 </template>
 
 <script>
 	const app = getApp();
 	const util = require("@/utils/util.js")
-	const dom = weex.requireModule('dom');
 	import layout from "@/components/layout.nvue"
+	import scrollpage from "@/components/scrollpage.nvue"
 	export default {
 		components: {
-			layout
+			layout,
+			scrollpage
 		},
 		data() {
 			return {
@@ -67,12 +66,8 @@
 				page: 1,
 				show: 0,
 				pageInfo: "",
-				info: [],
-				signalPage: false
+				info: []
 			}
-		},
-		onReady:function(){
-			app.resize(dom,this)
 		},
 		onLoad: function(options) {
 			var curData = new Date();
@@ -127,7 +122,6 @@
 						that.page = typeof(e) === "number" ? e : 1
 						that.pageInfo = pageInfo[0]
 						that.show = 1
-						app.nextTick(dom,that);
 					}
 				})
 			},
@@ -196,7 +190,7 @@
 	}
 	
 	.lv{
-		line-height: 23px;
+		line-height: 26px;
 		font-size: 15px;
 	}
 </style>

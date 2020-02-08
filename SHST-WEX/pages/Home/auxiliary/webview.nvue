@@ -25,10 +25,7 @@
 		},
 		onLoad: function(options) {
 			const dom = weex.requireModule('dom');
-			dom.addRule('fontFace', {
-				'fontFamily': 'iconfont',
-				'src': "url('" + app.globalData.fontUrl + "')"
-			})
+			// app.addIconfont(dom);
 			this.url = decodeURIComponent(options.url);
 		},
 		methods: {

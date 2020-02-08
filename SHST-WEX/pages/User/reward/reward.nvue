@@ -2,7 +2,7 @@
 	<view >
 
 		<view class="x-CenterCon">
-			<image class='rewardImg' src='http://windrunner_max.gitee.io/imgpath/SDUST/Reward.jpg' data-viewimgurl="http://windrunner_max.gitee.io/imgpath/SDUST/Reward.jpg"
+			<image class='rewardImg' src='http://windrunner_max.gitee.io/imgpath/SHST/Static/Reward.jpg' data-viewimgurl="http://windrunner_max.gitee.io/imgpath/SHST/Static/Reward.jpg"
 			 @tap='viewImg'></image>
 		</view>
 

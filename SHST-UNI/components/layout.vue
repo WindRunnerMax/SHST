@@ -7,7 +7,7 @@
 				<view>{{title}}</view>
 			</view>
 			<view >
-				<slot name="headslot"></slot>
+				<slot name="headslot"></slot> 
 			</view>
 		</view>
 		<view class='lay-card' :class="{'lay-minPaddingTop':title}">

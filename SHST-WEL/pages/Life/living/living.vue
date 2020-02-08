@@ -2,9 +2,9 @@
 	<view>
 		<list title="宿舍相关" :info="data"></list>
 		<list title="上床下桌" ></list>
-		<image mode="widthFix" style='width:100%;' src='https://windrunner_max.gitee.io/imgpath/SDUST/MMRoom.png' ></image>
+		<image mode="widthFix" style='width:100%;' src='https://windrunner_max.gitee.io/imgpath/SHST/Static/MMRoom.png' ></image>
 		<list title="普通上下铺"></list>
-		<image mode="widthFix" style='width:100%;' src='https://windrunner_max.gitee.io/imgpath/SDUST/GGRoom.png' ></image>
+		<image mode="widthFix" style='width:100%;' src='https://windrunner_max.gitee.io/imgpath/SHST/Static/GGRoom.png' ></image>
 	</view>
 </template>
 

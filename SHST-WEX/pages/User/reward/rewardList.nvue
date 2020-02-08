@@ -1,42 +1,37 @@
 <template>
-	<view class="page" :class="{signalPage: signalPage}">
-		<view ref="box">
+	<scrollpage>
 
-			<headslot title="赞赏列表"></headslot>
-			<view style="margin-top: 10px;"></view>
+		<headslot title="赞赏列表"></headslot>
+		<view style="margin-top: 10px;"></view>
 
-			<layout v-for="(item,index) in data" :key="index">
-				<view class='infoCon'>
-					<view class='left'>
-						<text class='name'>{{item.name}}</text>
-						<text class='time'>{{item.reward_time}}</text>
-					</view>
-					<text class='amount' style="color: #4C98F7;">{{item.amount}}</text>
+		<layout v-for="(item,index) in data" :key="index">
+			<view class='infoCon'>
+				<view class='left'>
+					<text class='name'>{{item.name}}</text>
+					<text class='time'>{{item.reward_time}}</text>
 				</view>
-			</layout>
+				<text class='amount' style="color: #4C98F7;">{{item.amount}}</text>
+			</view>
+		</layout>
 
-		</view>
-	</view>
+	</scrollpage>
 </template>
 
 <script>
 	const app = getApp()
-	const dom = weex.requireModule('dom');
 	import layout from "@/components/layout.nvue"
 	import headslot from "@/components/headslot.nvue"
+	import scrollpage from "@/components/scrollpage.nvue"
 	export default {
 		components: {
 			headslot,
-			layout
+			layout,
+			scrollpage
 		},
 		data() {
 			return {
-				data: [],
-				signalPage: false
+				data: []
 			}
-		},
-		onReady: function() {
-			app.resize(dom,this);
 		},
 		onLoad: function(options) {
 			var that = this;
@@ -47,7 +42,6 @@
 					if (res.data.info) {
 						res.data.info.reverse();
 						that.data = res.data.info
-						app.nextTick(dom,that);
 					}
 				}
 			})
@@ -68,13 +62,13 @@
 	}
 
 	.name {
-		font-size: 16px;
+		font-size: 15px;
 	}
 
 	.time {
 		font-size: 12px;
 		color: #aaa;
-		margin-top: 5px;
+		margin-top: 8px;
 	}
 
 	.amount {

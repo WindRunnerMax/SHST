@@ -3,13 +3,10 @@ const md5 = require('@/utils/md5.js');
 const eventBus = require('@/utils/eventBus.js');
 module.exports = {
 	ajax: ajax,
-	delay: delay,
 	toast: toast,
-	resize: resize,
 	extend: extend,
 	onLunch: onLunch,
-	nextTick: nextTick,
-	checkUpdate: checkUpdate,
+	addIconfont: addIconfont
 }
 
 /**
@@ -83,51 +80,7 @@ function endLoading(option) {
 	console.log("END LOADING")
 }
 
-/**
- * 小程序更新
- */
-function checkUpdate() {
-	if (!uni.getUpdateManager) return false;
-	uni.getUpdateManager().onCheckForUpdate((res) => {
-		console.log("Update:" + res.hasUpdate);
-		if (res.hasUpdate) { //如果有新版本
-			uni.getUpdateManager().onUpdateReady(() => { //当新版本下载完成
-				uni.showModal({
-					title: '更新提示',
-					content: '新版本已经准备好，单击确定重启应用',
-					success: (res) => {
-						if (res.confirm) uni.getUpdateManager().applyUpdate(); //applyUpdate 应用新版本并重启
-					}
-				})
-			})
-			uni.getUpdateManager().onUpdateFailed(() => { //当新版本下载失败
-				uni.showModal({
-					title: '提示',
-					content: '检查到有新版本，但下载失败，请检查网络设置',
-					showCancel: false
-				})
-			})
-		}
-	})
-}
 
-/**
- * User显示Dot
- */
-function userDot(notify, app = getApp()) {
-	app.globalData.tips = notify;
-	if (!uni.showTabBarRedDot) return false;
-	uni.getStorage({
-		key: 'point',
-		complete: (res) => {
-			if (res.data !== app.globalData.tips) {
-				uni.showTabBarRedDot({
-					index: 2
-				})
-			}
-		}
-	})
-}
 
 /**
  * SetCookie
@@ -185,6 +138,15 @@ function nextTick(dom,that){
 	that.$nextTick(() => { resize(dom,that) })
 }
 
+/**
+ * 添加字体
+ */
+function addIconfont(dom){
+	dom.addRule('fontFace', {
+		'fontFamily': 'iconfont',
+		'src': "url('https://at.alicdn.com/t/font_1582902_a1btjrevzq.ttf')"
+	})
+}
 
 /**
  * HTTP请求

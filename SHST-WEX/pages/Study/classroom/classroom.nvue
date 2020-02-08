@@ -1,55 +1,54 @@
 <template>
-	<view class="page" :class="{signalPage: signalPage}" >
-		<view ref="box">
-			
-			<layout title="空教室">
-				<view class='top'>
-					<picker-view indicator-style="height: 40px;" style="width: 500rpx; height: 100px;" @change="bindPickerChange">
-						<picker-view-column>
-							<view v-for="(item,index) in queryData" :key="index" style="align-items: center;">
-								<text class="text" style="line-height: 40px;">{{item[1]}}</text>
-							</view>
-						</picker-view-column>
-						<picker-view-column>
-							<view v-for="(item,index) in queryTime" :key="index" style="align-items: center;">
-								<text class="text" style="line-height: 40px;">{{item[0]}}</text>
-							</view>
-						</picker-view-column>
-						<picker-view-column>
-							<view v-for="(item,index) in queryFloor" :key="index" style="align-items: center;">
-								<text class="text" style="line-height: 40px;">{{item[0]}}</text>
-							</view>
-						</picker-view-column>
-					</picker-view>
-					<view class='btn' @tap='loadClassroom'>
-						<text style="font-size: 15px;color: #FFFFFF;">搜索</text>
-					</view>
-				</view>
-			</layout>
+	<scrollpage>
 
-			<layout v-if="show" :title="qShow+'['+searchData+']'">
-				<view class='floorName'>
-					<text class="text">{{room[0].jxl}}</text>
+		<layout title="空教室">
+			<view class='top'>
+				<picker-view indicator-style="height: 40px;" style="width: 500rpx; height: 100px;" @change="bindPickerChange">
+					<picker-view-column>
+						<view v-for="(item,index) in queryData" :key="index" style="align-items: center;">
+							<text class="text" style="line-height: 40px;">{{item[1]}}</text>
+						</view>
+					</picker-view-column>
+					<picker-view-column>
+						<view v-for="(item,index) in queryTime" :key="index" style="align-items: center;">
+							<text class="text" style="line-height: 40px;">{{item[0]}}</text>
+						</view>
+					</picker-view-column>
+					<picker-view-column>
+						<view v-for="(item,index) in queryFloor" :key="index" style="align-items: center;">
+							<text class="text" style="line-height: 40px;">{{item[0]}}</text>
+						</view>
+					</picker-view-column>
+				</picker-view>
+				<view class='btn' @tap='loadClassroom'>
+					<text style="font-size: 15px;color: #FFFFFF;">搜索</text>
 				</view>
-				<view class="roomCon">
-					<view v-for="(inner,innerIndex) in room[0].jsList" :key="innerIndex">
-						<text class='unit text'>{{inner.jsmc}}</text>
-					</view>
+			</view>
+		</layout>
+
+		<layout v-if="show" :title="qShow+'['+searchData+']'">
+			<view class='floorName'>
+				<text class="text">{{room[0].jxl}}</text>
+			</view>
+			<view class="roomCon">
+				<view v-for="(inner,innerIndex) in room[0].jsList" :key="innerIndex">
+					<text class='unit text'>{{inner.jsmc}}</text>
 				</view>
-			</layout>
-			
-		</view>
-	</view>
+			</view>
+		</layout>
+
+	</scrollpage>
 </template>
 
 <script>
 	const app = getApp()
 	const util = require("@/utils/util.js")
-	const dom = weex.requireModule('dom');
 	import layout from "@/components/layout.nvue"
+	import scrollpage from "@/components/scrollpage.nvue"
 	export default {
 		components: {
-			layout
+			layout,
+			scrollpage
 		},
 		data() {
 			return {
@@ -62,12 +61,8 @@
 				index: [0, 0, 0],
 				queryData: [],
 				queryTime: [],
-				queryFloor: [],
-				signalPage: false
+				queryFloor: []
 			}
-		},
-		onReady: function() {
-			app.resize(dom,this);
 		},
 		onLoad: function(options) {
 			util.extDate(); //拓展Date原型
@@ -137,7 +132,6 @@
 						that.show = 1
 						that.qShow = that.queryTime[that.index[1]][2]
 						that.searchData = that.searchData
-						that.$nextTick(() => { app.resize(dom,that) })
 					}
 				})
 			},
@@ -217,5 +211,4 @@
 		border-width: 0;
 		padding: 11px 20px;
 	}
-
 </style>

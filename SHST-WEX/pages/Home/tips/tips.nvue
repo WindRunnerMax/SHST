@@ -38,7 +38,7 @@
 				</view>
 			</view>
 			<view class='unitTable border' v-if="tips">
-				<view class="y-CenterCon" style="margin: 5px 0;">
+				<view class="y-CenterCon" style="margin-top: 5px;">
 					<view class="dot" style='background-color:#eee;margin: 0 3px;'></view>
 					<text class="text l6">{{tips}}</text>
 				</view>
@@ -80,11 +80,8 @@
 			}
 		},
 		created: function() {
-			var domModule = weex.requireModule("dom");
-			domModule.addRule('fontFace', {
-				'fontFamily': 'iconfont',
-				'src': "url('"+app.globalData.fontUrl+"')"
-			})
+			var dom = weex.requireModule("dom");
+			// app.addIconfont(dom);
 		},
 		onLoad: function(options) {
 			this.getArtical();

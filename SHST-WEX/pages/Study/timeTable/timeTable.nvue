@@ -68,6 +68,7 @@
 
 <script>
 	const app = getApp()
+	const dom = weex.requireModule('dom')
 	const util = require("@/utils/util.js")
 	const pubFct = require("@/vector/pubFct.js")
 	import layout from "@/components/layout.nvue"
@@ -110,6 +111,7 @@
 		},
 		onLoad(e) {
 			util.extDate(); //拓展Date原型
+			// app.addIconfont(dom);
 			this.week = app.globalData.curWeek;
 			this.getRemoteTable(app.globalData.curWeek);
 		},

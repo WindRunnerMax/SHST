@@ -1,8 +1,8 @@
 <template>
-	<view class="page" :class="{signalPage: signalPage}" ref="box">
+	<view class="page">
 
 		<view class="x-CenterCon">
-			<image style="width: 270px;height: 90px;margin-top: 20px;" src="http://windrunner_max.gitee.io/imgpath/SDUST/SHST.jpg">
+			<image style="width: 270px;height: 90px;margin-top: 20px;" src="http://windrunner_max.gitee.io/imgpath/SHST/Static/SHST.jpg">
 			</image>
 		</view>
 
@@ -65,10 +65,6 @@
 				version: app.globalData.version
 			}
 		},
-		onReady: function() {
-			const dom = weex.requireModule('dom');
-			app.resize(dom,this);
-		},
 		methods: {
 			copy: function(e) {
 				uni.setClipboardData({
@@ -77,7 +73,7 @@
 			},
 			jump: function(e) {
 				uni.navigateTo({
-					url: '/pages/Home/auxiliary/webview?url=' + encodeURIComponent(e.currentTarget.dataset.jumpurl) 
+					url: '/pages/Home/auxiliary/webview?url=' + encodeURIComponent(e.currentTarget.dataset.jumpurl)
 				})
 			}
 		}
@@ -105,7 +101,7 @@
 	.unitInfo {
 		height: 50px;
 		line-height: 50px;
-		border-bottom-width: 1px ;
+		border-bottom-width: 1px;
 		flex-direction: row;
 		justify-content: space-between;
 		padding: 10px 15px;

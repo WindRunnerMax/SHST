@@ -1,7 +1,6 @@
 <template>
-	<view class="page" :class="{signalPage: signalPage}">
-		<view ref="box">
-			
+	<scrollpage>
+
 		<headslot title="考试安排"></headslot>
 
 		<view style="margin-top: 10px;"></view>
@@ -24,29 +23,26 @@
 				</view>
 			</view>
 		</layout>
-		
-		</view>
-	</view>
+
+	</scrollpage>
 </template>
 
-<script> 
+<script>
 	const app = getApp()
-	const dom = weex.requireModule('dom');
 	import layout from "@/components/layout.nvue"
 	import headslot from "@/components/headslot.nvue"
+	import scrollpage from "@/components/scrollpage.nvue"
 	export default {
 		components: {
-			headslot,layout
+			headslot,
+			layout,
+			scrollpage
 		},
 		data() {
 			return {
 				tips: "",
-				exam: [],
-				signalPage: false
+				exam: []
 			}
-		},
-		onReady:function(){
-			app.resize(dom,this);
 		},
 		onLoad: function(options) {
 			var that = this;
@@ -71,7 +67,6 @@
 					console.log(res.data)
 					that.exam = res.data.length !== 0 ? res.data.data : [];
 					that.tips = res.data.length !== 0 ? "" : "暂无考试信息";
-					app.nextTick(dom,that);
 				}
 			});
 		},
@@ -87,7 +82,7 @@
 		justify-content: space-between;
 	}
 
-	.unitv{
+	.unitv {
 		margin: 5px;
 	}
 
@@ -108,7 +103,8 @@
 		align-items: center;
 		justify-content: center;
 	}
-	.cnv{
+
+	.cnv {
 		margin-top: 7px;
 	}
 </style>

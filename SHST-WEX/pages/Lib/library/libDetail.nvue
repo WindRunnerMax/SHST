@@ -1,48 +1,42 @@
 <template>
-	<view class="page" :class="{signalPage: signalPage}">
-		<view ref="box">
+	<scrollpage>
 
-			<layout title="图书信息">
-				<view class="lineH">
-					<text class="text strong">{{data.name}}</text>
-					<text class="text">{{data.bookInfoArray[0]}}</text>
-					<text class="text">{{data.bookInfoArray[1]}}</text>
-					<text class="text">{{data.bookInfoArray[2]}}</text>
+		<layout title="图书信息">
+			<view class="lineH">
+				<text class="text strong">{{data.name}}</text>
+				<text class="text">{{data.bookInfoArray[0]}}</text>
+				<text class="text">{{data.bookInfoArray[1]}}</text>
+				<text class="text">{{data.bookInfoArray[2]}}</text>
+			</view>
+
+		</layout>
+
+		<layout title="馆藏信息">
+			<view class="lineH">
+				<view v-for="(item,index) in data.bookStroageArray" :key="index">
+					<text class="text" v-if="index % 4 === 0 && index !== 0" style='width:100%;height:20px;'></text>
+					<text class="text">{{item}}</text>
 				</view>
+			</view>
+		</layout>
 
-			</layout>
-
-			<layout title="馆藏信息">
-				<view class="lineH">
-					<view v-for="(item,index) in data.bookStroageArray" :key="index">
-						<text class="text" v-if="index % 4 === 0 && index !== 0" style='width:100%;height:20px;'></text>
-						<text class="text">{{item}}</text>
-					</view>
-				</view>
-			</layout>
-
-		</view>
-	</view>
+	</scrollpage>
 </template>
 
 <script>
 	const app = getApp();
-	const dom = weex.requireModule('dom');
 	import layout from "@/components/layout.nvue"
+	import scrollpage from "@/components/scrollpage.nvue"
 	export default {
 		components: {
-			layout
+			layout,scrollpage
 		},
 		data() {
 			return {
 				data: {
 					bookInfoArray: []
-				},
-				signalPage: false
+				}
 			}
-		},		
-		onReady:function(){
-			app.resize(dom,this);
 		},
 		onLoad: function(e) {
 			var that = this;
@@ -81,7 +75,6 @@
 					bookInfo.bookInfoArray = bookInfoArray;
 					bookInfo.bookStroageArray = bookStroageArray;
 					that.data = bookInfo
-					app.nextTick(dom,that);
 				}
 			})
 		},
@@ -101,8 +94,8 @@
 	.lineH {
 		line-height: 27px;
 	}
-	
-	.text{
+
+	.text {
 		line-height: 25px;
 	}
 </style>

@@ -1,6 +1,5 @@
 <template>
-	<view class="page" :class="{signalPage: signalPage}">
-		<view ref="box">
+	<scrollpage>
 
 			<list title="节假日安排"></list>
 			<view v-for="(item,index) in data" :key="index">
@@ -13,32 +12,25 @@
 					<text class="sline text">{{item.info}}</text>
 				</layout>
 			</view>
-			
-		</view>
-	</view>
+
+	</scrollpage>
 </template>
 
 <script>
 	const app = getApp()
-	const dom = weex.requireModule('dom');
 	import layout from "@/components/layout.nvue"
-	var colorList = ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC", "#ACA4D5",
-		"#6495ED", "#7BCDA5", "#76B4EF"
-	]
+	import scrollpage from "@/components/scrollpage.nvue"
+	var colorList = app.globalData.colorList
 	export default {
 		components: {
-			layout
+			layout,scrollpage
 		},
 		data() {
 			return {
 				show: 0,
 				data: [],
-				colorList: colorList,
-				signalPage: false
+				colorList: colorList
 			}
-		},
-		onReady: function() {
-			app.resize(dom,this);
 		},
 		onLoad() {
 			var that = this
@@ -50,7 +42,6 @@
 				success: (res) => {
 					that.data = res.data.info
 					that.show = 1
-					app.nextTick(dom,that);
 				}
 			})
 		},

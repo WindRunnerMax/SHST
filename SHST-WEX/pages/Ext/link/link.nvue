@@ -1,35 +1,31 @@
 <template>
-	<view class="page" :class="{signalPage: signalPage}">
-		<view ref="box">
+	<scrollpage>
 
-			<layout title="常用链接">
-				<view v-for="(item,index) in data" :key="index">
-					<view class="line border">
-						<text class="text">{{item.name}}：</text>
-						<text class=" text link" @tap="copy" :data-copy="item.url">{{item.url}}</text>
-					</view>
+		<layout title="常用链接">
+			<view v-for="(item,index) in data" :key="index">
+				<view class="line border">
+					<text class="text">{{item.name}}：</text>
+					<text class=" text link" @tap="copy" :data-copy="item.url">{{item.url}}</text>
 				</view>
-			</layout>
+			</view>
+		</layout>
 
-		</view>
-	</view>
+	</scrollpage>
 </template>
 
 <script>
 	const app = getApp()
-	const dom = weex.requireModule('dom');
 	import layout from "@/components/layout.nvue"
+	import scrollpage from "@/components/scrollpage.nvue"
 	export default {
 		components: {
-			layout
+			layout,
+			scrollpage
 		},
 		data() {
 			return {
 				data: []
 			}
-		},
-		onReady: function() {
-			app.resize(dom,this);
 		},
 		onLoad() {
 			var that = this
@@ -40,7 +36,6 @@
 				},
 				success: (res) => {
 					that.data = res.data.url
-					app.nextTick(dom,that);
 				}
 			})
 		},

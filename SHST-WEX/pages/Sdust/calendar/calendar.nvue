@@ -1,6 +1,5 @@
 <template>
-	<view class="page" :class="{signalPage: signalPage}">
-		<view ref="box">
+	<scrollpage>
 
 			<view>
 				<layout title="校历查询">
@@ -14,7 +13,7 @@
 			</view>
 
 
-			<view v-show="show">
+			<view v-if="show">
 				<layout :title="term">
 					<view class='weekGroup'>
 						<text class='weekUnit'>Week</text>
@@ -37,18 +36,18 @@
 				</layout>
 			</view>
 			
-		</view>
-	</view>
+	</scrollpage>
 </template>
 
 <script>
 	const app = getApp()
 	const util = require("@/utils/util.js")
-	const dom = weex.requireModule('dom');
 	import layout from "@/components/layout.nvue"
+	import scrollpage from "@/components/scrollpage.nvue"
 	export default {
 		components: {
-			layout
+			layout,
+			scrollpage
 		},
 		data() {
 			return {
@@ -56,12 +55,8 @@
 				index: 0,
 				show: 0,
 				term: "",
-				calendarObj: [],
-				signalPage: false
+				calendarObj: []
 			}
-		},
-		onReady: function() {
-			app.resize(dom, this);
 		},
 		onLoad() {
 			util.extDate(); //拓展Date原型
@@ -144,7 +139,6 @@
 				}
 				this.calendarObj = calendarObj
 				this.show = 1
-				app.nextTick(dom,this);
 			}
 		}
 	}

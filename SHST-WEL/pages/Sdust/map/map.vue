@@ -3,7 +3,7 @@
 
 		<layout title="嵙地图(点击查看大图)">
 			<view style='position: relative;'>
-				<image src="https://windrunner_max.gitee.io/imgpath/SDUST/VVDT5q.jpg" data-viewimgurl="https://windrunner_max.gitee.io/imgpath/SDUST/VVDT5q.jpg"
+				<image src="https://windrunner_max.gitee.io/imgpath/SHST/Static/map.jpg" data-viewimgurl="https://windrunner_max.gitee.io/imgpath/SHST/Static/map.jpg"
 				 @tap='viewImg' class='sdustMap' mode="widthFix"></image>
 				<view class='ImgFrom'>山东科技大学新闻媒体部制</view>
 			</view>

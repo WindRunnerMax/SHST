@@ -1,0 +1,30 @@
+<template name="scrollpage">
+	<view class="scrollPage">
+		<scroll-view scroll-y="true">
+			<view class="scrollRootView">
+				<slot></slot>
+			</view>
+		</scroll-view>
+	</view>
+</template>
+
+<script>
+	export default {
+		name: "scrollpage",
+		data() {
+			return {};
+		}
+	}
+</script>
+
+<style>
+	.scrollPage{
+		font-family: Arial, Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, sans-serif;
+		font-size: 15px;
+		background-color: #F8F8F8;
+		flex: 1;
+	}
+	.scrollRootView{
+		padding: 10px;
+	}
+</style>

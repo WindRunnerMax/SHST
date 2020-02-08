@@ -1,6 +1,5 @@
 <template>
-	<view class="page" :class="{signalPage: signalPage}">
-		<view ref="box">
+	<scrollpage>
 
 		<layout title="借阅查询">
 			<view v-for="(item,index) in data" :key="index">
@@ -25,28 +24,27 @@
 			<text class="tips">3.学校图书馆外网访问会定时关闭，正常使用时间大约是在 7:00-22:00</text>
 		</layout>
 
-		</view>
-	</view>
+	</scrollpage>
 </template>
 
 <script>
 	const app = getApp();
 	const util = require("@/utils/util.js")
 	const md5 = require("@/utils/md5.js")
-	const dom = weex.requireModule('dom');
 	import layout from "@/components/layout.nvue"
+	import scrollpage from "@/components/scrollpage.nvue"
 	export default {
 		components: {
-			layout
+			layout,
+			scrollpage
 		},
 		data() {
 			return {
-				data: [],
-				signalPage: false
+				data: []
 			}
 		},
-		onReady:function(){
-			app.resize(dom,this)
+		onReady: function() {
+			app.resize(dom, this)
 		},
 		onLoad: function() {
 			var curData = new Date();
@@ -66,7 +64,7 @@
 					"rdPasswd": md5.hexMD5(app.globalData.account.substr(2))
 				},
 				fun: function(res) {
-					if(res.data.match(/当前无借阅记录/)){
+					if (res.data.match(/当前无借阅记录/)) {
 						this.completeLoad = () => app.toast("暂无借阅记录");
 						return true;
 					}
@@ -80,17 +78,16 @@
 						infoArr.push(infoArrInner);
 					})
 					infoArr = infoArr.map((value) => {
-						value = value.map((value2) => { 
-							value2 = value2.replace(/<p >/,"");
-							value2 = value2.replace(/<p  class="remind">/,"");
-							value2 = value2.replace(/<\/p>/,"");
+						value = value.map((value2) => {
+							value2 = value2.replace(/<p >/, "");
+							value2 = value2.replace(/<p  class="remind">/, "");
+							value2 = value2.replace(/<\/p>/, "");
 							return value2;
 						});
 						return value;
 					})
 					console.log(infoArr);
 					that.data = infoArr
-					app.resize(dom,that)
 				}
 			})
 		},
@@ -101,23 +98,23 @@
 </script>
 
 <style>
-
 	.strong {
 		font-size: 21px;
 		line-height: 27px;
 	}
-	
+
 	.hr {
 		margin: 3px 0;
 		background-color: #eee !important;
 		height: 1px;
 	}
-	
-	.info{
+
+	.info {
 		font-size: 15px;
 		margin-top: 7px;
 	}
-	.tips{
+
+	.tips {
 		font-size: 15px;
 		line-height: 25px;
 	}

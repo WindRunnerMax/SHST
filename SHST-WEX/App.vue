@@ -11,13 +11,7 @@
 			curTermStart: "2019-08-26",
 			colorList: dispose.colorList,
 			url: 'http://jwgl.sdust.edu.cn/app.do',
-			fontUrl: "https://at.alicdn.com/t/font_1582902_a1btjrevzq.ttf",
 			header: {'refer': 'https://com.WindrunnerMax.SHST','content-type': 'application/x-www-form-urlencoded','token':''}
-		},
-		onPageNotFound: (res) => { //处理404
-			uni.reLaunch({
-				url: 'pages/Home/auxiliary/notFound'
-			})
 		},
 		onLaunch: function() {
 			console.log("APP INIT");
@@ -29,10 +23,8 @@
 			this.extend = dispose.extend;
 			this.extend({
 			  ajax: dispose.ajax,
-			  delay: dispose.delay,
 			  toast: dispose.toast,
-			  resize: dispose.resize,
-			  nextTick: dispose.nextTick
+			  addIconfont: dispose.addIconfont
 			});
 		}
 	}
@@ -42,18 +34,15 @@
 <style>
 	.page{
 		font-family: Arial, Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, sans-serif;
-		padding: 10px;
 		font-size: 15px;
+		padding: 10px;
 		background-color: #F8F8F8;
-	}
-	
-	.signalPage{
-		flex: 1;
 	}
 	
 	.iconfont{
 		font-family: iconfont;
 	}
+	
 	.x-CenterCon{
 		justify-content: center;
 		flex-direction: row;
@@ -64,6 +53,7 @@
 		border-radius: 8px;
 		margin: 0 5px;
 	}
+	
 	.y-CenterCon{
 		align-items: center;
 		flex-direction: row;
@@ -75,6 +65,7 @@
 	
 	.text{
 		font-size: 13px;
+		color: #111111;
 	}
 	
 	.link{

@@ -54,6 +54,10 @@
 						<text class='iconfont' style="color: #9F8BEC;">&#xe620;</text>
 						<text class="text">放假安排</text> 
 					</view>
+					<view class='icon' data-jumpurl="/pages/Sdust/notice/notice" data-checkuser="1" @tap='jump'>
+						<text class='iconfont' style="color: #9F8BEC;">&#xe60f;</text>
+						<text class="text">科大公告</text> 
+					</view>
 				</view>
 			</layout>
  
@@ -80,11 +84,7 @@
 			}
 		},
 		onReady: function() {
-			const dom = weex.requireModule('dom');
-			dom.addRule('fontFace', {
-				'fontFamily': 'iconfont',
-				'src': "url('" + app.globalData.fontUrl + "')"
-			})
+			app.addIconfont(weex.requireModule('dom'));
 			this.adImg = app.globalData.initData.appAdImg;
 			this.adUrl = '/pages/Home/auxiliary/webview?url=' + encodeURIComponent(app.globalData.initData.appAdUrl);
 		},

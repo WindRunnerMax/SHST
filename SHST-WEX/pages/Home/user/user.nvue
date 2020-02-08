@@ -1,9 +1,9 @@
 <template>
-	<view class="page" :class="{signalPage: signalPage}" ref="box">
+	<scrollpage>
 
 		<layout>
 			<view class='x-CenterCon'>
-				<image style="width: 230px;height: 80px;margin-top: 20px;margin-bottom: 30px;" src="http://windrunner_max.gitee.io/imgpath/SDUST/SDUST.jpg"></image>
+				<image style="width: 230px;height: 80px;margin-top: 20px;margin-bottom: 30px;" src="http://windrunner_max.gitee.io/imgpath/SHST/Static/SDUST.jpg"></image>
 			</view>
  
 			<view class='userInfoCon'>
@@ -66,28 +66,25 @@
 			</view>
 		</layout>
 
-	</view>
+	</scrollpage>
 </template>
 
 <script>
 	const app = getApp();
 	import layout from "@/components/layout.nvue"
+	import scrollpage from "@/components/scrollpage.nvue"
 	export default {
 		components: {
-			layout
+			layout,
+			scrollpage
 		},
 		data() {
 			return {
 				academy: " ",
 				name: " ",
 				account: " ",
-				point: "none",
-				signalPage: false
+				point: "none"
 			}
-		},
-		onReady: function() { 
-			const dom = weex.requireModule('dom');
-			app.resize(dom,this);
 		},
 		onLoad: function() {
 			var that = this;

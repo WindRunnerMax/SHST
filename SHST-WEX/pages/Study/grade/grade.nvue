@@ -1,6 +1,5 @@
 <template>
-	<view class="page" :class="{signalPage: signalPage}">
-		<view ref="box">
+	<scrollpage>
 			
 			<layout title="查成绩">
 				<view class="selectCon">
@@ -46,18 +45,17 @@
 				</view>
 			</view>
 			
-		</view>
-	</view>
+	</scrollpage>
 </template>
 
 <script>
 	const app = getApp()
-	const dom = weex.requireModule('dom');
 	import layout from "@/components/layout.nvue"
 	import headslot from "@/components/headslot.nvue"
+	import scrollpage from "@/components/scrollpage.nvue"
 	export default {
 		components: {
-			layout,headslot
+			layout,headslot,scrollpage
 		},
 		data() {
 			return {
@@ -71,12 +69,8 @@
 				pointW: 0,
 				show: 0,
 				grade: 0,
-				showSelect: "",
-				signalPage: false
+				showSelect: ""
 			}
-		},
-		onReady:function(){
-			app.resize(dom,this);
 		},
 		onLoad: function(options) {
 			// 处理学期
@@ -178,7 +172,6 @@
 						}
 						that.grade = !res.data[0] ? [defaultValue] : res.data
 						that.show = 1
-						app.nextTick(dom,that);
 					}
 				})
 			}

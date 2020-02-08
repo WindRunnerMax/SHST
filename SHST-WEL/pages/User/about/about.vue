@@ -3,7 +3,7 @@
 
 		<layout>
 			<view class="centerCon" style="margin-top: 20px;">
-				<image class='img' src="https://windrunner_max.gitee.io/imgpath/SDUST/SHST.jpg">
+				<image class='img' src="https://windrunner_max.gitee.io/imgpath/SHST/Static/SHST.jpg">
 				</image>
 			</view>
 

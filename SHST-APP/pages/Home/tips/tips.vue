@@ -24,7 +24,7 @@
 		</view>
 
 
-		<layout title="今日课程">
+		<layout :title="hours > 21 ? '明日课程' : '今日课程'">
 			<view v-for="(item,index) in table" :key="index">
 				<view class='unitTable' v-show="item">
 					<view class="y-CenterCon" style="margin: 5px 0;">
@@ -71,6 +71,7 @@
 		data() {
 			return {
 				today: util.formatDate("yyyy-MM-dd K"),
+				hours: util.formatDate("h"),
 				table: [],
 				todoList: [],
 				tips: "数据加载中",
@@ -100,7 +101,7 @@
 					},
 					fun: function(res) {
 						try {
-							var showTableArr = pubFct.tableDispose(res.data, 1);
+							var showTableArr = pubFct.tableDispose(res.data, app.hours > 21 ? 1 : 2);
 							that.tipsDispose(showTableArr);
 						} catch (e) {
 							app.toast("ERROR");
@@ -112,8 +113,8 @@
 			},
 			tipsDispose: function(info) {
 				this.table = info ? info : [];
-				this.tips = info ? "" : "No Class Today";
-				this.tipsInfo = info ? "" : "今天没有课，快去自习室学习吧";
+				this.tips = info ? "" : ( this.hours > 21 ? "NO Class Tomorrow" : "No Class Today");
+				this.tipsInfo = info ? "" : ( this.hours > 21 ? "明天没课呢，晚上可以好好休息一下了" : "今天没有课，快去自习室学习吧");
 			},
 			refresh: function(info) {
 				this.getRemoteTable(2);

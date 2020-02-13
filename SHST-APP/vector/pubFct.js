@@ -18,6 +18,7 @@ function tableDispose(info, flag = 0) {
 	const colorN = app.globalData.colorList.length;
 	var tableArr = [];
 	var week = new Date().getDay() - 1;
+	if (flag === 2) week++,flag--;
 	if (week === -1) week = 6;
 	info.forEach(value => {
 		if (!value) return;

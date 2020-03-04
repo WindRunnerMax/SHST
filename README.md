@@ -57,7 +57,7 @@ SW/SHST-WEX 目录下为NVUE/WEEX项目[山科小站--APP]，采用原生渲染�
   
 # 山科小站
 
-![show](https://windrunner_max.gitee.io/imgpath/SDUST/SHST-WX.jpg)
+![show](https://windrunner_max.gitee.io/imgpath/SHST/Static/SHST-WX.jpg)
 
 ## 1. 配置相关 
 
@@ -116,6 +116,6 @@ SHST-UNI                              // 山科小站总目录
 ```
 
 ## 3. 小程序  
-![show](https://windrunner_max.gitee.io/imgpath/SDUST/SHST-SHOW-2.jpg)
-![show](https://windrunner_max.gitee.io/imgpath/SDUST/SHST-SHOW-1.jpg)
+![show](https://windrunner_max.gitee.io/imgpath/SHST/Static/SHST-SHOW-2.jpg)
+![show](https://windrunner_max.gitee.io/imgpath/SHST/Static/SHST-SHOW-1.jpg)
 ----  

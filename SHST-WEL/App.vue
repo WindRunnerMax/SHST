@@ -1,35 +1,82 @@
 <script>
-	"use strict";
+	const dispose = require('@/vector/dispose.js');
 	export default {
 		globalData: {
-			version: "2.0.0"
+			tips: 10,
+			account: "",
+			curWeek: "1",
+			initData: {},
+			version: "3.2.1",
+			curTerm: "2019-2020-1",
+			curTermStart: "2019-08-26",
+			colorList: dispose.colorList,
+			url: 'http://219.218.128.228/app.do',
+			header: {'refer': 'https://com.WindrunnerMax.SHST','content-type': 'application/x-www-form-urlencoded','token':''}
 		},
-		onPageNotFound(res) { 
-			wx.reLaunch({
-				url: 'pages/Home/NotFound/notfound'
-			})
-		},
-		onLaunch: () => {
-			Date.prototype.addDate = function(years = 0, months = 0, days = 0) {
-			  if (days !== 0) this.setDate(this.getDate() + days);
-			  if (months !== 0) this.setMonth(this.getMonth() + months);
-			  if (years !== 0) this.setFullYear(this.getFullYear() + years);
-			}
+		onLaunch: function() {
+			console.log("APP INIT");
+			const util = require('@/utils/util.js');
+			const pubFct = require('@/vector/pubFct.js');
+			util.extDate(); //拓展Date原型
+			this.globalData.colorN = this.globalData.colorList.length;
+			this.globalData.curWeek = pubFct.getCurWeek(this.globalData.curTermStart); 
+			this.extend = dispose.extend;
+			this.extend({
+			  ajax: dispose.ajax,
+			  toast: dispose.toast,
+			  addIconfont: dispose.addIconfont
+			});
 		}
 	}
 </script>
 
+
 <style>
-	@import '/vector/asse.mini.wxss';
-	@import '/vector/style/weui.wxss';
-	page{
+	.page{
 		font-family: Arial, Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, sans-serif;
-		padding: 10px;
-		box-sizing: border-box;
 		font-size: 15px;
+		padding: 10px;
 		background-color: #F8F8F8;
 	}
-	.link{
-		color: #4C98F7;
+	
+	.iconfont{
+		font-family: iconfont;
 	}
+	
+	.x-CenterCon{
+		justify-content: center;
+		flex-direction: row;
+	}
+	.dot{
+		width: 8px;
+		height: 8px;
+		border-radius: 8px;
+		margin: 0 5px;
+	}
+	
+	.y-CenterCon{
+		align-items: center;
+		flex-direction: row;
+	}
+	
+	.fill{
+		flex: 1;
+	}
+	
+	.text{
+		font-size: 13px;
+		color: #111111;
+	}
+	
+	.link{
+	  font-size: 13px;
+	  color: #4C98F7;
+	  text-decoration: underline;
+	}
+	
+	.border{
+		border-style: solid;
+		border-color: #EEEEEE;
+	}
+
 </style>

@@ -1,0 +1,184 @@
+<template>
+	<scrollpage>
+
+		<layout>
+			<view class='x-CenterCon'>
+				<image style="width: 230px;height: 80px;margin-top: 20px;margin-bottom: 30px;" src="http://windrunner_max.gitee.io/imgpath/SHST/Static/SDUST.jpg"></image>
+			</view>
+ 
+			<view class='userInfoCon'>
+				
+				<view class='unitInfo' style=' border-top-width: 1px; '>
+					<view class='titleCon'>
+						<text class="text">学号</text>
+					</view>
+					<text class="text">{{account}}</text>
+				</view>
+				
+				<view class='unitInfo'>
+					<view class='titleCon'>
+						<text class="text">姓名</text>
+					</view>
+					<text class="text">{{name}}</text>
+				</view>
+				
+				<view class='unitInfo'>
+					<view class='titleCon'>
+						<text class="text">学院</text>
+					</view>
+					<text class="text">{{academy}}</text>
+				</view>
+
+				<view class='unitInfo' data-copy='522567369' @tap='copy'>
+					<text class='titleCon text'>QQ群</text>
+					<text class="text">522567369</text>
+				</view>
+				<view class='unitInfo' data-jumpurl="/pages/User/announce/announce" @tap='jumpUpdate'>
+					<view style='flex-direction: row;align-items: center;'>
+						<view class='titleCon'>
+							<text class="text">公告</text>
+						</view>
+						<view style="background-color:green;" v-if="point === 'flex'" class='point'></view>
+					</view>
+					<text class="text">></text>
+				</view>
+				 
+				<view class='unitInfo' data-jumpurl="/pages/User/reward/reward" @tap='jump'>
+					<view >
+						<view class='titleCon'>
+							<text class="text">赞赏</text>
+						</view>
+					</view>
+					<text class="text">></text>
+				</view>
+				
+				<view class='unitInfo' data-jumpurl="/pages/User/about/about" @tap='jump'>
+					<view class='titleCon'>
+						<text class="text">关于</text>
+					</view>
+					<text class="text">></text>
+				</view>
+
+				<view class="btn" @tap='logout'>
+					<text style="color: #FFFFFF;font-size: 15px;">注销</text>
+				</view>
+
+			</view>
+		</layout>
+
+	</scrollpage>
+</template>
+
+<script>
+	const app = getApp();
+	import layout from "@/components/layout.nvue"
+	import scrollpage from "@/components/scrollpage.nvue"
+	export default {
+		components: {
+			layout,
+			scrollpage
+		},
+		data() {
+			return {
+				academy: " ",
+				name: " ",
+				account: " ",
+				point: "none"
+			}
+		},
+		onLoad: function() {
+			var that = this;
+			uni.getStorage({
+				key: 'point',
+				complete: (res) => {
+					if (res.data !== app.globalData.tips) that.point = "flex";
+				}
+			})
+			console.log("GET USERINFO FROM REMOTE");
+			app.ajax({
+				load: 1,
+				url: app.globalData.url,
+				data: {
+					"method": "getUserInfo",
+					"xh": app.globalData.account
+				},
+				fun: function(res) {
+					that.academy = res.data.yxmc
+					that.name = res.data.xm
+					that.account = app.globalData.account
+				}
+			})
+		},
+		methods: {
+			copy(e) {
+				uni.setClipboardData({
+					data: e.currentTarget.dataset.copy
+				})
+			},
+			jump(e) {
+				uni.navigateTo({
+					url: e.currentTarget.dataset.jumpurl
+				})
+			},
+			jumpUpdate(e) {
+				this.point = "none";
+				if (uni.hideTabBarRedDot) {
+					uni.hideTabBarRedDot({
+						index: 2
+					})
+				}
+				uni.navigateTo({
+					url: e.currentTarget.dataset.jumpurl
+				})
+			},
+			logout(e) {
+				uni.navigateTo({
+					url: '/pages/Home/auxiliary/login?status=E'
+				})
+			},
+			resize: function() {
+				const that = this;
+				const dom = weex.requireModule('dom');
+				const result = dom.getComponentRect(this.$refs.box, option => {
+					if(uni.getSystemInfoSync().windowHeight > option.size.height) that.signalPage = true;
+					else that.signalPage = false;
+				})
+			},
+		}
+	}
+</script>
+
+<style>
+	.userInfoCon {
+		padding: 10px;
+	}
+
+	.unitInfo {
+		height: 50px;
+		line-height: 50px;
+		justify-content: space-between;
+		border-style: solid;
+		border-color: #EEEEEE;
+		border-bottom-width: 1px;
+		flex-direction: row;
+		align-items: center;
+		padding: 10px 15px;
+	}
+
+	.point {
+		width: 8px;
+		height: 8px;
+		border-radius: 8px;
+		margin-left: 8px;
+	}
+	
+	.btn{
+		background-color: #FF5722;
+		margin-top: 23px;
+		border-width: 0;
+		padding: 11px 0 ;
+		justify-content: center;
+		align-items: center;
+		color: #FFFFFF;
+	}
+</style>

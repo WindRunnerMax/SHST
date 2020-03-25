@@ -1,0 +1,60 @@
+<template>
+	<scrollpage>
+
+		<layout title="常用链接">
+			<view v-for="(item,index) in data" :key="index">
+				<view class="line border">
+					<text class="text">{{item.name}}：</text>
+					<text class=" text link" @tap="copy" :data-copy="item.url">{{item.url}}</text>
+				</view>
+			</view>
+		</layout>
+
+	</scrollpage>
+</template>
+
+<script>
+	const app = getApp()
+	import layout from "@/components/layout.nvue"
+	import scrollpage from "@/components/scrollpage.nvue"
+	export default {
+		components: {
+			layout,
+			scrollpage
+		},
+		data() {
+			return {
+				data: []
+			}
+		},
+		onLoad() {
+			var that = this
+			uni.request({
+				url: "https://www.touchczy.top/ext/urlshare",
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					that.data = res.data.url
+				}
+			})
+		},
+		methods: {
+			copy(e) {
+				var url = encodeURIComponent(e.currentTarget.dataset.copy);
+				uni.navigateTo({
+					url: '/pages/Home/auxiliary/webview?url=' + url
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+	.line {
+		flex-direction: row;
+		padding: 20px 5px;
+		border-bottom-width: 1px;
+		flex-wrap: wrap;
+	}
+</style>

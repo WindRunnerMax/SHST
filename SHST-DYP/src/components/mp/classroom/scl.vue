@@ -22,7 +22,7 @@
     </layout>
 
     <layout v-if="show" :title="room.jxl" >
-      <div class="x-CenterCon">
+      <div class="x-CenterCon" style="flex-wrap: wrap;">
         <div class="unitClassroom" v-for="(item,index) in room.jsList" :key="index">{{item.jsmc}}</div>
       </div>
     </layout>

@@ -74,7 +74,7 @@
 			<view class="y-CenterCon" style="color: #6495ED;">
 				<view class='icon' data-jumpurl="/pages/Ext/link/link" data-checkuser="1" @tap='jump'>
 					<i class='iconfont icon-link'></i>
-					<view>分享链接</view>
+					<view>分享链接</view> 
 				</view>
 				 <!-- #ifndef MP-WEIXIN -->
 				<view class='icon' data-jumpurl="/pages/Ext/event/event" data-checkuser="0" @tap='jump'>
@@ -83,7 +83,7 @@
 				</view>
 				<!-- #endif -->
 				<view class='icon' data-jumpurl="/pages/Ext/examArrange/examArrange" data-checkuser="0" @tap='jump'>
-					<i class='iconfont icon-exam'></i>
+					<i class='iconfont icon-biji-copy'></i>
 					<view>考试安排</view>
 				</view>
 				<view class='icon' data-jumpurl="/pages/Ext/card/card" data-checkuser="0" @tap='jump'>
@@ -91,10 +91,10 @@
 					<view>校园卡</view>
 				</view>
 				<!-- #ifdef MP-WEIXIN -->
-				<button open-type='feedback' class='icon' style="color: inherit;" hover-class="none">
-					<i class='iconfont icon-fankui'></i>
-					<view>意见反馈</view>
-				</button>
+				<navigator class='icon' target="miniProgram" app-id="wx219195cad731454f" hover-class="none" version="release">
+					<i class='iconfont icon-ku'></i>
+					<view>资料分享</view>
+				</navigator>
 				<!-- #endif -->
 			</view>
 		</layout>

@@ -3,148 +3,121 @@
 		{
 			"path": "pages/Home/tips/tips",
 			"style": {}
+		}, {
+			"path": "pages/Home/auxiliary/webview",
+			"style": {}
+		}, {
+			"path": "pages/User/announce/announce",
+			"style": {}
+		}, {
+			"path": "pages/Home/funct/funct",
+			"style": {}
+		}, {
+			"path": "pages/Home/user/user",
+			"style": {}
+		}, {
+			"path": "pages/Study/timeTable/timeTable",
+			"style": {}
+		}, {
+			"path": "pages/Study/classroom/classroom",
+			"style": {}
+		}, {
+			"path": "pages/Study/grade/grade",
+			"style": {}
+		}, {
+			"path": "pages/Study/tableShare/tableShare",
+			"style": {}
+		}, {
+			"path": "pages/Lib/borrow/borrow",
+			"style": {}
+		}, {
+			"path": "pages/Lib/library/search",
+			"style": {}
+		}, {
+			"path": "pages/Lib/library/libDetail",
+			"style": {}
+		}, {
+			"path": "pages/Sdust/calendar/calendar",
+			"style": {}
+		}, {
+			"path": "pages/Sdust/map/map",
+			"style": {}
+		}, {
+			"path": "pages/Sdust/vacation/vacation",
+			"style": {}
+		}, {
+			"path": "pages/Sdust/camptour/details",
+			"style": {
+				"navigationBarBackgroundColor": "#079DF2",
+				"navigationBarTextStyle": "white"
+			}
+		}, {
+			"path": "pages/Sdust/camptour/index",
+			"style": {
+				"navigationBarBackgroundColor": "#079DF2",
+				"navigationBarTextStyle": "white"
+			}
+		}, {
+			"path": "pages/Sdust/camptour/polyline",
+			"style": {
+				"navigationBarBackgroundColor": "#079DF2",
+				"navigationBarTextStyle": "white"
+			}
+		}, {
+			"path": "pages/Sdust/camptour/search",
+			"style": {
+				"navigationBarBackgroundColor": "#079DF2",
+				"navigationBarTextStyle": "white"
+			}
+		}, {
+			"path": "pages/Ext/link/link",
+			"style": {}
 		}
-        ,{
-            "path" : "pages/Home/auxiliary/webview",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/User/announce/announce",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Home/funct/funct",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Home/user/user",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Study/timeTable/timeTable",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Study/classroom/classroom",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Study/grade/grade",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Study/tableShare/tableShare",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Lib/borrow/borrow",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Lib/library/search",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Lib/library/libDetail",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Sdust/calendar/calendar",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Sdust/map/map",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Sdust/vacation/vacation",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Sdust/camptour/details",
-            "style" : {
-				"navigationBarBackgroundColor":"#079DF2",
-				"navigationBarTextStyle":"white"
-			}
-        }
-        ,{
-            "path" : "pages/Sdust/camptour/index",
-            "style" : {
-            	"navigationBarBackgroundColor":"#079DF2",
-            	"navigationBarTextStyle":"white"
-            }
-        }
-        ,{
-            "path" : "pages/Sdust/camptour/polyline",
-            "style" : {
-            	"navigationBarBackgroundColor":"#079DF2",
-            	"navigationBarTextStyle":"white"
-            }
-        }
-        ,{
-            "path" : "pages/Sdust/camptour/search",
-            "style" : {
-            	"navigationBarBackgroundColor":"#079DF2",
-            	"navigationBarTextStyle":"white"
-            }
-        }
-        ,{
-            "path" : "pages/Ext/link/link",
-            "style" : {}
-        }
 		// #ifndef MP-WEIXIN
-        ,{
-            "path" : "pages/Ext/event/event",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Ext/event/finEvent",
-            "style" : {}
-        }
+		, {
+			"path": "pages/Ext/event/event",
+			"style": {}
+		}, {
+			"path": "pages/Ext/event/finEvent",
+			"style": {}
+		}
 		// #endif
-        ,{
-            "path" : "pages/Ext/examArrange/examArrange",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/Ext/card/card",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/User/about/about",
-            "style" : {
+		, {
+			"path": "pages/Ext/examArrange/examArrange",
+			"style": {}
+		}, {
+			"path": "pages/Ext/card/card",
+			"style": {}
+		}, {
+			"path": "pages/User/about/about",
+			"style": {
 				"navigationBarBackgroundColor": "white"
 			}
-        }
-        ,{
-            "path" : "pages/User/reward/reward",
-            "style" : {
+		}, {
+			"path": "pages/User/reward/reward",
+			"style": {
 				"navigationBarBackgroundColor": "white"
 			}
-        }
-        ,{ 
-            "path" : "pages/User/reward/rewardList",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/User/update/update",
-            "style" : {
-            	"navigationBarBackgroundColor": "white"
-            }
-        }
-        ,{
-            "path" : "pages/Home/auxiliary/notFound",
-            "style" : {
-            	"navigationBarBackgroundColor": "white"
-            }
-        }
-        ,{
-            "path" : "pages/Home/auxiliary/login",
-            "style" : {
-            	"navigationBarBackgroundColor": "white"
-            }
-        }
-    ],
+		}, {
+			"path": "pages/User/reward/rewardList",
+			"style": {}
+		}, {
+			"path": "pages/User/update/update",
+			"style": {
+				"navigationBarBackgroundColor": "white"
+			}
+		}, {
+			"path": "pages/Home/auxiliary/notFound",
+			"style": {
+				"navigationBarBackgroundColor": "white"
+			}
+		}, {
+			"path": "pages/Home/auxiliary/login",
+			"style": {
+				"navigationBarBackgroundColor": "white"
+			}
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "山科小站",
@@ -155,28 +128,27 @@
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
-    "color": "#aaa",
-    "selectedColor": "#8A8A8A",
-    "backgroundColor": "#F7F7FA",
-    "list": [
-      {
-        "iconPath": "/static/img/index.png",
-        "selectedIconPath": "/static/img/index1.png",
-        "pagePath": "pages/Home/tips/tips",
-        "text": "首页"
-      },
-      {
-        "iconPath": "/static/img/fun.png",
-        "selectedIconPath": "/static/img/fun1.png",
-        "pagePath": "pages/Home/funct/funct",
-        "text": "功能"
-      },
-      {
-        "iconPath": "/static/img/user.png",
-        "selectedIconPath": "/static/img/user1.png",
-        "pagePath": "pages/Home/user/user",
-        "text": "用户"
-      }
-    ]
-  }
+		"color": "#aaa",
+		"selectedColor": "#8A8A8A",
+		"backgroundColor": "#F7F7FA",
+		"list": [{
+				"iconPath": "/static/img/index.png",
+				"selectedIconPath": "/static/img/index1.png",
+				"pagePath": "pages/Home/tips/tips",
+				"text": "首页"
+			},
+			{
+				"iconPath": "/static/img/fun.png",
+				"selectedIconPath": "/static/img/fun1.png",
+				"pagePath": "pages/Home/funct/funct",
+				"text": "功能"
+			},
+			{
+				"iconPath": "/static/img/user.png",
+				"selectedIconPath": "/static/img/user1.png",
+				"pagePath": "pages/Home/user/user",
+				"text": "用户"
+			}
+		]
+	}
 }

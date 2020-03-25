@@ -1,0 +1,63 @@
+<template>
+	<view class="page" style="flex: 1;">
+
+		<layout title="嵙地图">
+			<view style='position: relative;' class="fill">
+				<image src="http://wx4.sinaimg.cn/large/007U8ryUly1g5h4dl25bvj318g0u0b29.jpg" data-viewimgurl="http://wx4.sinaimg.cn/large/007U8ryUly1g5h4dl25bvj318g0u0b29.jpg"
+				 @tap='viewImg' class='sdustMap' mode="widthFix"></image>
+				<text class='ImgFrom'>山东科技大学新闻媒体部制</text>
+			</view>
+		</layout>
+
+	</view>
+</template>
+
+<script>
+	const dom = weex.requireModule('dom');
+	import layout from "@/components/layout.nvue"
+	export default {
+		components: {
+			layout
+		},
+		data() {
+			return {
+
+			}
+		},
+		onLoad: function() {
+			
+		},
+		methods: {
+			bindViewTap: function() {},
+			viewImg(e) {
+				var current = e.currentTarget.dataset.viewimgurl;
+				wx.previewImage({
+					current: current,
+					urls: [current]
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+	.ImgFrom {
+		text-align: right;
+		font-size: 12px;
+		color: rgb(122, 122, 122);
+		position: absolute;
+		bottom: 7px;
+		right: 5px;
+	}
+
+	.sdustMap {
+		border-radius: 3px;
+	}
+	
+	.point{
+	  width: 8px;
+	  height: 8px;
+	  border-radius: 8px;
+	}
+	
+</style>

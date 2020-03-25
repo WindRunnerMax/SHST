@@ -14,23 +14,18 @@
 </template>
 
 <script>
-	import layout from "@/components/layout.vue"
+	const app = getApp();
 	export default {
-		components: {
-			layout
-		},
 		data() {
 			return {
 				data: []
 			}
 		},
 		onLoad() {
-			var that = this
-			uni.request({
-				url: "https://www.touchczy.top/ext/urlshare",
-				header: {
-					'content-type': 'application/x-www-form-urlencoded'
-				},
+			var that = this;
+			app.ajax({
+				load: 2,
+				url: app.globalData.url + 'ext/urlshare',
 				success: (res) => {
 					that.data = res.data.url
 				}

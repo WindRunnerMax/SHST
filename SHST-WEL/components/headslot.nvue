@@ -1,0 +1,53 @@
+<template name="headslot">
+	<view>
+
+		<view class="line">
+			<view class="left">
+				<view class="row" v-bind:style="{'background-color': color}"></view>
+				<text class="title" style="font-size: 15px;">{{title}}</text>
+			</view>
+			<view style="margin-top: 3px;">
+				<slot></slot>
+			</view>
+		</view>
+
+	</view>
+</template>
+<script>
+	export default {
+		name: "headslot",
+		props: {
+			title: {
+				type: String
+			},
+			color: {
+				type: String,
+				default: "#79B2F9"
+			},
+		},
+		methods: {}
+	}
+</script>
+<style>
+	.line {
+		background-color: #FFFFFF;
+		padding: 10px 5px;
+		justify-content: space-between;
+		flex-direction: row;
+		border-style: solid;
+		border-bottom-width: 1px;
+		border-color: #EEEEEE;
+	}
+	.row {
+		width: 2px;
+		margin: 2px 5px;
+	}
+	.left{
+		justify-content: center;
+		flex-direction: row;
+	}
+	.title{
+		justify-content: center;
+		align-items: center;
+	}
+</style>

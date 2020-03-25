@@ -9,10 +9,10 @@
 						<view class='operate iconfont icon-shuaxin1'></view>
 					</view>
 					<view class='a-btn a-btn-white a-btn-mini pre' style='font-size: 14px;' :data-week='week' @tap='pre'>
-						<view class='operate'>{{preT}}</view>
+						<view class='operate iconfont icon-arrow-lift'></view>
 					</view>
 					<view class='a-btn a-btn-white a-btn-mini next' style='font-size: 14px;' :data-week='week' @tap='next'>
-						<view class='operate'>{{nextT}}</view>
+						<view class='operate iconfont icon-arrow-right'></view>
 					</view>
 				</view>
 			</view>
@@ -82,8 +82,6 @@
 	export default {
 		data() {
 			return {
-				nextT: '>',
-				preT: '<',
 				week: 1,
 				ad: 1,
 				date: [{
@@ -239,12 +237,17 @@
 	.timetableHide {
 		min-height: 130px;
 		margin: 0 1.5px;
-		text-align: center;
+		/* text-align: center; */
 		word-break: break-all;
 		color: #fff;
-		padding: 1px;
+		padding: 3px;
 		background: #fff;
-		font-size: 13px;
+		font-size: 12px;
+		border-radius: 2px;
+	}
+	
+	.timetableHide > view{
+		margin-bottom: 3px;
 	}
 
 	.timetablehr {

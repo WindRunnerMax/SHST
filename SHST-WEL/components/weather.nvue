@@ -1,0 +1,123 @@
+<template name="weather">
+	<view>
+
+		<view class='weather border'>
+			<view class='weaLeft border'>
+				<view style="align-items: center;justify-content: center;">
+					<image class='todayImg' resize="contain" :src="host+'/public/static/weather/'+todayWeather[1]+'.png'"></image>
+				</view>
+				<text class="text" style='text-align:center;margin-top:6px;'>{{todayWeather[0]}}</text>
+				<text class="text" style='text-align:center;margin-top:3px;'>{{todayWeather[2]}}℃ - {{todayWeather[3]}}℃</text>
+				<text class="text" style='text-align:center;margin-top:3px;'>{{todayWeather[4]}}</text>
+			</view>
+			<view class='weaRight'>
+				<view class='weaRightTop border right-border'>
+					<image class='dayImg' resize="contain" :src="host+'/public/static/weather/'+tomorrowWeather[1]+'.png'"></image>
+					<view class='weatherCon'>
+						<text class="text" style='text-align:center;margin-top:6px;'>{{tomorrowWeather[0]}}</text>
+						<text class="text" style='text-align:center;margin-top:3px;'>{{tomorrowWeather[2]}}℃ - {{tomorrowWeather[3]}}℃</text>
+					</view>
+				</view>
+				<view class='weaRightBot'>
+					<image class='dayImg' resize="contain" :src="host+'/public/static/weather/'+tdatomoWeather[1]+'.png'"></image>
+					<view class='weatherCon'>
+						<text class="text" style='text-align:center;margin-top:3px;'>{{tdatomoWeather[0]}}</text>
+						<text class="text" style='text-align:center;'>{{tdatomoWeather[2]}}℃ - {{tdatomoWeather[3]}}℃</text>
+					</view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+</template>
+<script>
+	export default {
+		name: "weather",
+		props: {},
+		methods: {},
+		data() {
+			return {
+				todayWeather: ["", "CLEAR_DAY", 0, 0, "数据获取中"],
+				tomorrowWeather: ["", "CLEAR_DAY", 0, 0],
+				tdatomoWeather: ["", "CLEAR_DAY", 0, 0],
+				host: "https://www.touchczy.top"
+			}
+		},
+		created: function() {
+			var that = this;
+			var ran = parseInt(Math.random() * 100000000000);
+			uni.request({
+				url: "https://api.caiyunapp.com/v2/Y2FpeXVuIGFuZHJpb2QgYXBp/120.127164,36.000129/weather?lang=zh_CN&device_id=" +
+					ran,
+				success: function(res) {
+					if (res.data.status === "ok") {
+						var weatherData = res.data.result.daily;
+						that.todayWeather = [weatherData.skycon[0].date, weatherData.skycon[0].value, weatherData.temperature[0].min,
+							weatherData.temperature[0].max, res.data.result.hourly.description
+						]
+						that.tomorrowWeather = [weatherData.skycon[1].date, weatherData.skycon[1].value, weatherData.temperature[1].min,
+							weatherData.temperature[1].max
+						]
+						that.tdatomoWeather = [weatherData.skycon[2].date, weatherData.skycon[2].value, weatherData.temperature[2].min,
+							weatherData.temperature[2].max
+						]
+					}
+				}
+			})
+		}
+	}
+</script>
+<style>
+	.weather {
+		border-width: 1px;
+		font-size: 13px;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+	}
+
+	.weaLeft {
+		padding: 10px;
+		border-right-width: 1px;
+		flex: 1;
+	}
+
+	.todayImg {
+		width: 40px;
+		height: 40px;
+	}
+
+	.dayImg {
+		width: 30px;
+		height: 30px;
+		margin: 0 15px 0 0;
+	}
+
+	.weaRight {
+		justify-content: center;
+		flex: 1;
+	}
+	
+	.weaRightBot,
+	.weaRightTop {
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		padding: 10px ;
+		flex: 1;
+	}
+
+	.right-border{
+		border-bottom-width: 1px;
+	}
+	
+	.weatherCon{
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+	
+	.text{
+		font-size: 13px;
+	}
+</style>

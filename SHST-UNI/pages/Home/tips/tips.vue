@@ -305,7 +305,7 @@
 					// #endif
 					// #ifndef MP-WEIXIN
 					uni.setClipboardData({
-						data: url
+						data: app.globalData.initData.articleUrl
 					})
 					// #endif
 				}

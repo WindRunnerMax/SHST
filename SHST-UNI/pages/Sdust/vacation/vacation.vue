@@ -29,6 +29,7 @@
 		onLoad() {
 			var that = this
 			app.ajax({
+				load: 2,
 				url:app.globalData.url + "ext/vacation",
 				success: (res) => {
 					that.data = res.data.info

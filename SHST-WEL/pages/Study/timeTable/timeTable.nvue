@@ -1,0 +1,257 @@
+<template>
+	<view class="page">
+
+		<layout title="查课表">
+			<view class='tableTop'>
+				<text class='week'>第{{week}}周</text>
+				<view style='flex-direction: row;'>
+					<view class='btn' :data-week='week' @tap='refresh'>
+						<text class='operate iconfont'>&#xe619;</text>
+					</view>
+					<view class='btn' style='font-size: 14px;' :data-week='week' @tap='pre'>
+						<text class='operate iconfont'>&#xe744;</text>
+					</view>
+					<view class='btn' style='font-size: 14px;' :data-week='week' @tap='next'>
+						<text class='operate iconfont'>&#xe743;</text>
+					</view>
+				</view>
+			</view>
+			<view class="asse-hr timetablehr"></view>
+			<view class='line'>
+				<view class='weekUnit fill' :class="date[0].s">
+					<text class='weekUnitText'>Mon</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[0].d}}</text>
+				</view>
+				<view class='weekUnit fill' :class="date[1].s">
+					<text class='weekUnitText' >Tue</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[1].d}}</text>
+				</view>
+				<view class='weekUnit fill' :class="date[2].s">
+					<text class='weekUnitText' >Wed</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[2].d}}</text>
+				</view>
+				<view class='weekUnit fill' :class="date[3].s">
+					<text class='weekUnitText' >Thur</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[3].d}}</text>
+				</view>
+				<view class='weekUnit fill' :class="date[4].s">
+					<text class='weekUnitText'>Fri</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[4].d}}</text>
+				</view>
+				<view class='weekUnit fill' :class="date[5].s">
+					<text class='weekUnitText'>Sat</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[5].d}}</text>
+				</view>
+				<view class='weekUnit fill' :class="date[6].s">
+					<text class='weekUnitText'>Sun</text>
+					<text class='weekUnitText' style="font-size: 8px;">{{date[6].d}}</text>
+				</view>
+			</view>
+			<view class="timetablehr"></view>
+			<view v-for="(item,index) in [0,1,2,3,4]" :key="index">
+				<view class='line'>
+					<view v-for="(inner,innerIndex) in [0,1,2,3,4,5,6]" :key="innerIndex" class="fill">
+						<view v-if="table[inner] && table[inner][item]" class='timetableHide' :style="{'background-color':table[inner][item][5]}">
+							<text class="text t1">{{table[inner][item][2]}}</text>
+							<text class="text t1">{{table[inner][item][4]}}</text>
+							<text class="text">{{table[inner][item][3]}}</text>
+						</view>
+						<view v-else class='timetableHide'></view>
+					</view>
+				</view>
+				<view class="timetablehr"></view>
+			</view>
+		</layout>
+
+	</view>
+</template>
+
+<script>
+	const app = getApp()
+	const dom = weex.requireModule('dom')
+	const util = require("@/utils/util.js")
+	const pubFct = require("@/vector/pubFct.js")
+	import layout from "@/components/layout.nvue"
+	export default {
+		components: {
+			layout
+		},
+		data() {
+			return {
+				week: 1,
+				ad: 1,
+				date: [{
+					d: "00/00",
+					s: "none"
+				}, {
+					d: "00/00",
+					s: "none"
+				}, {
+					d: "00/00",
+					s: "none"
+				}, {
+					d: "00/00",
+					s: "none"
+				}, {
+					d: "00/00",
+					s: "none"
+				}, {
+					d: "00/00",
+					s: "none"
+				}, {
+					d: "00/00",
+					s: "none"
+				}],
+				table: [
+					[]
+				]
+			}
+		},
+		onLoad(e) {
+			util.extDate(); //拓展Date原型
+			this.week = app.globalData.curWeek;
+			this.getRemoteTable(app.globalData.curWeek);
+		},
+		methods: {
+			getRemoteTable: function(e) {
+				var that = this;
+				app.ajax({
+					load: 2,
+					url: app.globalData.url,
+					data: {
+						"method": "getKbcxAzc",
+						"xnxqid": app.globalData.curTerm,
+						"zc": e,
+						"xh": app.globalData.account
+					},
+					fun: function(res) {
+						console.log("GET TABLE FROM REMOTE WEEK " + e);
+						var showTableArr = pubFct.tableDispose(res.data);
+						that.table = showTableArr
+						that.week = e
+						that.getDate();
+					}
+				})
+			},
+			pre(e) {
+				if (e.target.dataset.week <= 1) return;
+				var week = parseInt(e.currentTarget.dataset.week) - 1;
+				this.getRemoteTable(week);
+			},
+			next(e) {
+				var week = parseInt(e.currentTarget.dataset.week) + 1;
+				this.getRemoteTable(week);
+			},
+			refresh(e) {
+				var week = parseInt(e.currentTarget.dataset.week);
+				this.getRemoteTable(week);
+			},
+			getDate(e) {
+				var week = this.week;
+				var curWeekDate = new Date(app.globalData.curTermStart);
+				curWeekDate.addDate(0, 0, week * 7 - 8);
+				console.log(week, curWeekDate);
+				var dataObject = [];
+				for (let i = 0; i < 7; ++i) {
+					curWeekDate.addDate(0, 0, 1);
+					var month = curWeekDate.getMonth() + 1;
+					var day = curWeekDate.getDate();
+					if (month < 10) month = "0" + month;
+					if (day < 10) day = "0" + day;
+					let today = new Date();
+					dataObject.push({
+						d: month + "/" + day,
+						s: curWeekDate.getDay() === today.getDay() ? "todayLine" : "none"
+					});
+				}
+				this.date = dataObject
+			}
+		}
+	}
+</script>
+
+<style>
+	.tableTop {
+		flex-direction: row;
+		padding: 5px;
+		justify-content: space-between;
+		align-items: center;
+		height: 50px;
+	}
+
+	.week {
+		margin-left: 10px;
+		font-size: 15px;
+	}
+
+	.btn{
+		border-style: solid;
+		border-color: #EEEEEE;
+		border-width: 1px;
+		margin-left: 15px;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 40px;
+		height: 30px;
+		font-size: 15px;
+	}
+	
+	.iconfont{
+		font-size: 18px;
+	}
+	
+	.operate{
+		color: #767676;
+	}
+
+	.line {
+		flex-direction: row;
+	}
+
+	.timetableHide {
+		min-height: 135px;
+		margin: 0 1px;
+		color: #fff;
+		padding: 3px;
+		font-size: 12px;
+		border-radius: 3px;
+	}
+	
+	.t1{
+		margin-bottom: 3px;
+	}
+
+	.timetablehr {
+		margin: 3px 0;
+		background-color: #eee !important;
+		height: 1px;
+	}
+
+	.weekUnit {
+		padding: 5px 1px;
+		margin: 0 1px;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.weekUnitText {
+		padding: 3px 0;
+		font-size: 10px;
+	}
+
+	.none {
+		font-size: 8px;
+	}
+
+	.todayLine {
+		font-size: 8px;
+		border-style: solid;
+		border-color: #EEEEEE;
+		border-bottom-width: 3px;
+	}
+	
+	.text{
+		color: #FFFFFF;
+	}
+</style>

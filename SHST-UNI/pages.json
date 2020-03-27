@@ -102,11 +102,6 @@
 			"path": "pages/User/reward/rewardList",
 			"style": {}
 		}, {
-			"path": "pages/User/update/update",
-			"style": {
-				"navigationBarBackgroundColor": "white"
-			}
-		}, {
 			"path": "pages/Home/auxiliary/notFound",
 			"style": {
 				"navigationBarBackgroundColor": "white"

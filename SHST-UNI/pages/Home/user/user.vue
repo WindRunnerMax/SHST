@@ -24,12 +24,14 @@
 						<view>学院</view>
 					</view>
 					<view>{{academy}}</view>
-				</view>
+				</view> 
 				<!-- #ifdef MP-WEIXIN -->
-				<view class='unitInfo' data-copy='722942376' @tap='copy'>
-					<view class='titleCon'>QQ群</view>
-					<view>722942376</view>
-				</view><strong></strong>
+				<view class='a-hide' :class="{'a-show':today > '2020-03-26'}">
+					<view class='unitInfo' data-copy='722942376' @tap='copy'>
+						<view class='titleCon'>QQ群</view>
+						<view>722942376</view>
+					</view>
+				</view>
 				<!-- #endif -->
 				<!-- #ifdef MP-QQ -->
 				<button open-type="openGroupProfile" class='unitInfo' group-id="722942376" >
@@ -71,13 +73,15 @@
 
 <script>
 	const app = getApp()
+	const util = require("@/utils/util.js")
 	export default {
 		data() {
 			return {
 				academy: " ",
 				name: " ",
 				account: " ",
-				point: "none"
+				point: "none",
+				today: util.formatDate()
 			}
 		},
 		onLoad: function() {

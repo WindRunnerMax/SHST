@@ -15,12 +15,13 @@
 				</view>
 				<view>{{version}}</view>
 			</view>
-
-			<view class='unitInfo'>
-				<view style='display:flex;'>
-					<view>反馈QQ群</view>
+			<view class='a-hide' :class="{'a-show':today > '2020-03-26'}">
+				<view class='unitInfo'>
+					<view style='display:flex;'>
+						<view>反馈QQ群</view>
+					</view>
+					<view class="a-link" data-copy='722942376' @tap='copy'>722942376</view>
 				</view>
-				<view class="a-link" data-copy='722942376' @tap='copy'>722942376</view>
 			</view>
 
 			<view class='unitInfo'>
@@ -36,14 +37,14 @@
 				<view style='display:flex;'>
 					<view>项目开源地址</view>
 				</view>
-				<view data-copy='https://github.com/WindrunnerMax/SW' @tap='copy' class='a-link github'>点我复制链接</view>
+				<view data-copy='https://github.com/WindrunnerMax/SW' @tap='copy' class='a-link'>点我复制链接</view>
 			</view>
 
-			<view class='unitInfo' data-jumpurl="/pages/User/update/update" @tap='jump'>
+			<view class='unitInfo'>
 				<view style='display:flex;'>
 					<view>项目更新日志</view>
 				</view>
-				<view>></view>
+				<view data-copy='https://github.com/WindrunnerMax/SW/blob/SDUST/ChangeLog.md' @tap='copy' class='a-link'>点我复制链接</view>
 			</view>
 
 			<button class='unitInfo' open-type='share' style="font-size: 14px;">
@@ -66,10 +67,12 @@
 
 <script>
 	const app = getApp()
+	const util = require("@/utils/util.js")
 	export default {
 		data() {
 			return {
-				version: app.globalData.version
+				version: app.globalData.version,
+				today: util.formatDate()
 			}
 		},
 		onShareAppMessage: () => {
@@ -84,11 +87,6 @@
 			copy: function(e) {
 				uni.setClipboardData({
 					data: e.currentTarget.dataset.copy
-				})
-			},
-			jump: function(e) {
-				uni.navigateTo({
-					url: e.currentTarget.dataset.jumpurl
 				})
 			}
 		}
@@ -122,12 +120,6 @@
 		padding: 10px 15px;
 	}
 
-	.github {
-		overflow: hidden;
-		max-width: 30%;
-		text-overflow: ellipsis;
-	}
-
 	.footer {
 		display: flex;
 		margin-top: 30px;
@@ -145,4 +137,5 @@
 		align-self: center;
 		margin-right: 3px;
 	}
+	
 </style>

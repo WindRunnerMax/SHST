@@ -18,7 +18,7 @@ class Http
         } 
     }
 
-      private static function arrstr($url,$arr){
+      private static function arrToStr($url,$arr){
         $ret = "";
         foreach ($arr as $key => $value) {
             $ret = $ret."&".$key."=".$value;
@@ -30,7 +30,7 @@ class Http
       private static function getCurl($url, $data, $method,$headers){
         $curl = curl_init();  // 启动一个CURL会话
         if (count($headers) >= 1) curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        if($method=='GET') $url = $url."?".self::arrstr($url, $data);
+        if($method=='GET') $url = $url."?".self::arrToStr($url, $data);
         curl_setopt($curl, CURLOPT_URL, $url);  // 要访问的地址
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);  // 对认证证书来源的检查
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);  // 从证书中检查SSL加密算法是否存在

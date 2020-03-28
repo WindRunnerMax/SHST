@@ -41,33 +41,33 @@ class Main
         }else exit(0);
     }
 
-    private function GetHandle($params){
+    private function getHandle($params){
         return json_decode(Http::httpRequest($this->url,$params,"GET",$this->headers),true);
     }
 
-    public function GetStudentInfo($value=''){
+    public function getStudentInfo($value=''){
         # code...
         $params = array(
             "method" => "getUserInfo",
             "xh" => $this->account
         );
-        $req = $this->GetHandle($params);
+        $req = $this->getHandle($params);
         print_r($req);
         return ($req);
     }
 
-    public function GetCurrentTime(){
+    public function getCurrentTime(){
         $params = array(
             "method" => "getCurrentTime",
             "currDate" => date("Y-m-d",time())
         );
-        $req = $this->GetHandle($params);
+        $req = $this->getHandle($params);
         print_r($req);
         return ($req);
     }
 
-    public function GetTable($zc=-1){
-        $s = $this->GetCurrentTime();
+    public function getTable($zc=-1){
+        $s = $this->getCurrentTime();
         $zc = $zc === -1 ? $s['zc'] : $zc;
         $params=array(
             "method" => "getKbcxAzc",
@@ -75,49 +75,49 @@ class Main
             "zc" => $zc ,
             "xh" => $this->account
         );
-        $req = $this->GetHandle($params);
+        $req = $this->getHandle($params);
         print_r($req);
         return ($req);
     }
 
-    public function GetGrade($sy=""){
+    public function getGrade($sy=""){
         $params = array(
             "method" => "getCjcx",
             "xh" => $this->account,
             "xnxqid" => $sy
         );
-        $req = $this->GetHandle($params);
+        $req = $this->getHandle($params);
         print_r($req);
         return ($req);
     }
 
-    public function GetClassroom($idleTime=""){
+    public function getClassroom($idleTime=""){
         $params = array(
             "method" => "getKxJscx",
             "time" => date("Y-m-d",time()),
             "idleTime" => $idleTime
         );
-        $req = $this->GetHandle($params);
+        $req = $this->getHandle($params);
         print_r($req);
         return ($req);
     }
 
-    public function GetExam($idleTime=""){
+    public function getExam($idleTime=""){
         $params = array(
             "method" => "getKscx",
             "xh" => $this->account
         );
-        $req = $this->GetHandle($params);
+        $req = $this->getHandle($params);
         print_r($req);
         return ($req);
     }
 }
 
 $Q = new Main($accountSW,$passwordSW,$urlSW);
-// $Q -> GetStudentInfo(); #获取学生信息
-// $Q -> GetCurrentTime(); #获取学年信息
-// $Q -> GetTable(); #当前周次课表
-// $Q -> GetTable(3); #指定周次课表
-// $Q -> GetGrade("2018-2019-2"); #成绩查询 #无参数查询全部成绩
-// $Q -> GetClassroom("0102"); #空教室查询 "allday"：全天 "am"：上午 "pm"：下午 "night"：晚上 "0102":1.2节空教室 "0304":3.4节空教室
-// $Q -> GetExam(); #获取考试信息
+// $Q -> getStudentInfo(); #获取学生信息
+// $Q -> getCurrentTime(); #获取学年信息
+// $Q -> getTable(); #当前周次课表
+// $Q -> getTable(3); #指定周次课表
+// $Q -> getGrade("2018-2019-2"); #成绩查询 #无参数查询全部成绩
+// $Q -> getClassroom("0102"); #空教室查询 "allday"：全天 "am"：上午 "pm"：下午 "night"：晚上 "0102":1.2节空教室 "0304":3.4节空教室
+// $Q -> getExam(); #获取考试信息

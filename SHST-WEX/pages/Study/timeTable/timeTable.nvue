@@ -9,10 +9,10 @@
 						<text class='operate iconfont'>&#xe619;</text>
 					</view>
 					<view class='btn' style='font-size: 14px;' :data-week='week' @tap='pre'>
-						<text class='operate'>{{preT}}</text>
+						<text class='operate iconfont'>&#xe744;</text>
 					</view>
 					<view class='btn' style='font-size: 14px;' :data-week='week' @tap='next'>
-						<text class='operate'>{{nextT}}</text>
+						<text class='operate iconfont'>&#xe743;</text>
 					</view>
 				</view>
 			</view>
@@ -52,8 +52,8 @@
 				<view class='line'>
 					<view v-for="(inner,innerIndex) in [0,1,2,3,4,5,6]" :key="innerIndex" class="fill">
 						<view v-if="table[inner] && table[inner][item]" class='timetableHide' :style="{'background-color':table[inner][item][5]}">
-							<text class="text">{{table[inner][item][2]}}</text>
-							<text class="text">{{table[inner][item][4]}}</text>
+							<text class="text t1">{{table[inner][item][2]}}</text>
+							<text class="text t1">{{table[inner][item][4]}}</text>
 							<text class="text">{{table[inner][item][3]}}</text>
 						</view>
 						<view v-else class='timetableHide'></view>
@@ -78,8 +78,6 @@
 		},
 		data() {
 			return {
-				nextT: '>',
-				preT: '<',
 				week: 1,
 				ad: 1,
 				date: [{
@@ -111,7 +109,6 @@
 		},
 		onLoad(e) {
 			util.extDate(); //拓展Date原型
-			// app.addIconfont(dom);
 			this.week = app.globalData.curWeek;
 			this.getRemoteTable(app.globalData.curWeek);
 		},
@@ -203,21 +200,26 @@
 	.iconfont{
 		font-size: 18px;
 	}
+	
 	.operate{
 		color: #767676;
 	}
-
 
 	.line {
 		flex-direction: row;
 	}
 
 	.timetableHide {
-		min-height: 130px;
+		min-height: 135px;
 		margin: 0 1px;
 		color: #fff;
-		padding: 1px;
-		font-size: 13px;
+		padding: 3px;
+		font-size: 12px;
+		border-radius: 3px;
+	}
+	
+	.t1{
+		margin-bottom: 3px;
 	}
 
 	.timetablehr {

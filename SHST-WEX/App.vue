@@ -6,11 +6,11 @@
 			account: "",
 			curWeek: "1",
 			initData: {},
-			version: "3.1.0",
+			version: "3.2.1",
 			curTerm: "2019-2020-1",
 			curTermStart: "2019-08-26",
 			colorList: dispose.colorList,
-			url: 'http://jwgl.sdust.edu.cn/app.do',
+			url: 'http://219.218.128.228/app.do',
 			header: {'refer': 'https://com.WindrunnerMax.SHST','content-type': 'application/x-www-form-urlencoded','token':''}
 		},
 		onLaunch: function() {

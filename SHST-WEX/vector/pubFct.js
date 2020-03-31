@@ -26,7 +26,8 @@ function tableDispose(info, flag = 0) {
 		if (flag === 1 && day !== week) return;
 		var knot = parseInt(parseInt(value.kcsj.substr(1, 2)) / 2);
 		var md5Str = md5.hexMD5(value.kcmc);
-		var colorSignal = app.globalData.colorList[Math.abs((md5Str[0].charCodeAt() - md5Str[3].charCodeAt())) % app.globalData.colorN];
+		var md5PickNum = function(){ let r=0; for(let i=0;i<7;++i) r += md5Str[i].charCodeAt(); return r;}();
+		var colorSignal = app.globalData.colorList[ md5PickNum % app.globalData.colorN];
 		arrInner.push(day);
 		arrInner.push(knot);
 		arrInner.push(value.kcmc.split("（")[0]);

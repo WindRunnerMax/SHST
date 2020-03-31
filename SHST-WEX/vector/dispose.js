@@ -12,9 +12,10 @@ module.exports = {
 /**
  * 颜色方案
  */
-module.exports.colorList = ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC",
-	"#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF"
-];
+// module.exports.colorList = ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC",
+//     "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF","#E1C38F","#F6C46A","#B19ED1","#F09B98","#87CECB","#D1A495","#89D196"
+// ];
+module.exports.colorList = ["#FE9E9F","#FFCA62","#93BAFF","#FFA477","#D999F9","#75E1A5"];
 
 /**
  * 拓展对象

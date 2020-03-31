@@ -20,7 +20,7 @@
 				<view style='flex-direction: row;'>
 					<text class="text">反馈QQ群</text>
 				</view>
-				<text class='link text' data-copy='522567369' @tap='copy'>522567369</text>
+				<text class='text link' data-copy='522567369' @tap='copy'>522567369</text>
 			</view>
 
 			<view class='unitInfo border'>

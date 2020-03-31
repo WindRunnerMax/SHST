@@ -128,7 +128,6 @@
 						app.globalData.curWeek = res.data.initData.curWeek;
 						app.globalData.tips = res.data.initData.tips;
 						app.globalData.initData = res.data.initData;
-						that.checkAppUpdate(res.data.initData.version);
 						if (user.account) {
 							app.globalData.user = user.account;
 							that.login(user.account, user.password, false);
@@ -147,37 +146,7 @@
 						}
 					}
 				})
-			},
-			checkAppUpdate: function(e) {
-				if (!e) return false;
-				if (app.globalData.version === e) return false;
-				var url = `http://windrunner_max.gitee.io/imgpath/SHST/App/SHST-${e}.wgt`;
-				uni.downloadFile({
-					url: url,
-					success: (downloadResult) => {
-						if (downloadResult.statusCode === 200) {
-							uni.showModal({
-								title: '更新提示',
-								content: '增量包已下载完成，点击确定将重启以更新',
-								showCancel: false,
-								success: (res) => {
-									if (res.confirm) {
-										plus.runtime.install(downloadResult.tempFilePath, {
-											force: true
-										}, function() {
-											console.log('install success...');
-											plus.runtime.restart();
-										}, function(e) {
-											console.log(e)
-											console.error('install fail...');
-										});
-									}
-								}
-							});
-						}
-					}
-				})
-			},
+			}
 		}
 	}
 </script>

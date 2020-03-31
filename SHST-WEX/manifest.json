@@ -2,8 +2,8 @@
     "name" : "山科小站",
     "appid" : "__UNI__08D8F46",
     "description" : "山科小站",
-    "versionName" : "3.2.0",
-    "versionCode" : 320,
+    "versionName" : "3.2.1",
+    "versionCode" : 321,
     "transformPx" : false,
     "networkTimeout" : 2000,
     /* 5+App特有相关 */
@@ -30,7 +30,9 @@
                 "idfa" : false
             },
             /* SDK配置 */
-            "sdkConfigs" : {},
+            "sdkConfigs" : {
+                "ad" : {}
+            },
             "icons" : {
                 "android" : {
                     "hdpi" : "unpackage/res/icons/72x72.png",
@@ -64,9 +66,9 @@
                 }
             }
         },
-        "renderer" : "native",
         "compilerVersion" : 3,
-        "nvueLaunchMode" : "fast"
+        "nvueLaunchMode" : "fast",
+        "renderer" : "native"
     },
     /* 快应用特有相关 */
     "quickapp" : {},

@@ -52,75 +52,75 @@ class SW(object):
 
     
 
-    def GetHandle(self,params):
+    def get_handle(self,params):
         req = self.session.get(self.url ,params = params ,timeout = 5 ,headers=self.HEADERS)
         return req
 
-    def getStudentInfo(self):
+    def get_student_info(self):
         params = {
             "method" : "getUserInfo",
             "xh" : self.account
         }
-        req = self.GetHandle(params)
+        req = self.get_handle(params)
         print(req.text)
         pass
     
-    def getCurrentTime(self):
+    def get_current_time(self):
         params = {
             "method" : "getCurrentTime",
             "currDate" : datetime.datetime.now().strftime('%Y-%m-%d')
         }
-        req = self.GetHandle(params)
+        req = self.get_handle(params)
         print(req.text)
         return req.text
 
-    def getKbcxAzc(self,zc = -1):
-        s = json.loads(self.getCurrentTime())
+    def get_class_info(self,zc = -1):
+        s = json.loads(self.get_current_time())
         params={
             "method" : "getKbcxAzc",
             "xnxqid" : s['xnxqh'],
             "zc" : s['zc'] if zc == -1 else zc,
             "xh" : self.account
         }
-        req = self.GetHandle(params)
+        req = self.get_handle(params)
         print(req.text)
         pass
 
-    def getKxJscx(self,idleTime = "allday"):
+    def get_classroom_info(self,idleTime = "allday"):
         params={
             "method" : "getKxJscx",
             "time" : datetime.datetime.now().strftime('%Y-%m-%d'),
             "idleTime" : idleTime
         }
-        req = self.GetHandle(params)
+        req = self.get_handle(params)
         print(req.text)
 
-    def getCjcx(self,sy = ""):
+    def get_grade_info(self,sy = ""):
         params={
             "method" : "getCjcx",
             "xh" : self.account,
             "xnxqid" : sy
         }
-        req = self.GetHandle(params)
+        req = self.get_handle(params)
         print("全部成绩" if sy == "" else sy)
         if req.text != "null" :
             s = json.loads(req.text)
             # print(s)
             for x in s:
                 print("%s   %d   %s" % (str(x['zcj']),x['xf'],x['kcmc']))
-            print("绩点：" + str(self.getGP(s)))
+            print("绩点：" + str(self.get_gp(s)))
         else :
             print("空")
 
-    def getKscx(self):
+    def get_exam_info(self):
         params={
             "method" : "getKscx",
             "xh" : self.account,
         }
-        req = self.GetHandle(params)
+        req = self.get_handle(params)
         print(req.text)
 
-    def getGP(self,data):
+    def get_gp(self,data):
         GP = 0.0
         credit = 0.0
         for x in data:
@@ -143,12 +143,12 @@ class SW(object):
 
 if __name__ == '__main__':
     Q = SW(account,password,url)
-    # Q.getStudentInfo() #获取学生信息
-    # Q.getCurrentTime() #获取学年信息
-    # Q.getKbcxAzc() #当前周次课表
-    # Q.getKbcxAzc(3) #指定周次课表
-    # Q.getKxJscx("0102") #空教室查询 "allday"：全天 "am"：上午 "pm"：下午 "night"：晚上 "0102":1.2节空教室 "0304":3.4节空教室
-    # Q.getCjcx("2018-2019-1") #成绩查询 #无参数查询全部成绩
-    # Q.getKscx() #获取考试信息
+    # Q.get_student_info() #获取学生信息
+    # Q.get_current_time() #获取学年信息
+    # Q.get_class_info() #当前周次课表
+    # Q.get_class_info(3) #指定周次课表
+    # Q.get_classroom_info("0102") #空教室查询 "allday"：全天 "am"：上午 "pm"：下午 "night"：晚上 "0102":1.2节空教室 "0304":3.4节空教室
+    # Q.get_grade_info("2018-2019-1") #成绩查询 #无参数查询全部成绩
+    # Q.get_exam_info() #获取考试信息
 
 

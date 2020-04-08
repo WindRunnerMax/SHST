@@ -2,11 +2,12 @@
 const md5 = require('@/utils/md5.js');
 const eventBus = require('@/utils/eventBus.js');
 module.exports = {
-	ajax: ajax,
-	toast: toast,
-	extend: extend,
-	onLunch: onLunch,
-	checkUpdate: checkUpdate,
+	ajax,
+	toast,
+	extend,
+	request,
+	onLaunch,
+	checkUpdate
 }
 
 /**
@@ -15,7 +16,7 @@ module.exports = {
 // module.exports.colorList = ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC",
 //     "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF","#E1C38F","#F6C46A","#B19ED1","#F09B98","#87CECB","#D1A495","#89D196"
 // ];
-module.exports.colorList = ["#FE9E9F","#93BAFF","#D999F9","#75E1A5","#FFCA62","#FFA477"];
+module.exports.colorList = ["#FE9E9F", "#93BAFF", "#D999F9", "#75E1A5", "#FFCA62", "#FFA477"];
 
 /**
  * 拓展对象
@@ -195,13 +196,10 @@ function ajax(requestInfo, app = getApp()) {
 		url: "",
 		method: "GET",
 		data: {},
-		fun: () => {},
 		success: () => {},
-		fail: function() {
-			this.completeLoad = () => {
-				toast("服务器错误");
-			}
-		},
+		resolve: () => {},
+		fail: function() { this.completeLoad = () => { toast("External Error");}},
+		reject: () => {},
 		complete: () => {},
 		completeLoad: () => {}
 	};
@@ -214,17 +212,21 @@ function ajax(requestInfo, app = getApp()) {
 		header: app.globalData.header,
 		success: function(res) {
 			if (option.autoCookie) setCookie(res);
-			try {
-				option.fun(res);
-				option.success(res);
-			} catch (e) {
-				option.completeLoad = () => {
-					toast("PARSE ERROR");
+			if(res.statusCode === 200){
+				try {
+					option.success(res);
+					option.resolve(res);
+				} catch (e) {
+					option.completeLoad = () => { toast("External Error");}
+					console.log(e);
 				}
-				console.warn(e);
+			}else{
+				option.fail(res);
+				option.reject(res);
 			}
+			
 		},
-		fail: function(res){
+		fail: function(res) {
 			option.fail(res);
 		},
 		complete: function(res) {
@@ -232,7 +234,7 @@ function ajax(requestInfo, app = getApp()) {
 			try {
 				option.complete(res);
 			} catch (e) {
-				console.warn(e);
+				console.log(e);
 			}
 			option.completeLoad(res);
 		}
@@ -240,72 +242,84 @@ function ajax(requestInfo, app = getApp()) {
 }
 
 /**
+ * request promise封装
+ */
+function request(option) {
+	return new Promise((resolve,reject) => {
+		option.resolve = resolve;
+		option.reject = reject;
+		ajax(option);
+	})
+}
+
+
+/**
  * APP启动事件
  */
-function onLunch() {
+function onLaunch() {
 	var app = this;
 	app.$scope.eventBus = eventBus.getEventBus;
 	var userInfo = uni.getStorageSync("user") || {};
 	uni.login({
-	    scopes: 'auth_base',
-		success: res => {
-			ajax({
-				load: 3,
-				// #ifdef MP-WEIXIN
-				url: app.globalData.url + 'auth/wx',
-				// #endif
-				// #ifdef MP-QQ
-				url: app.globalData.url + 'auth/QQ',
+		scopes: 'auth_base'
+	}).then((data) => {
+		var [err,res] = data;
+		if(err) return Promise.reject(err);
+		return request({
+			load: 3,
+			// #ifdef MP-WEIXIN
+			url: app.globalData.url + 'auth/wx',
+			// #endif
+			// #ifdef MP-QQ
+			url: app.globalData.url + 'auth/QQ',
+			// #endif
+			// #ifdef MP-ALIPAY
+			url: app.globalData.url + 'auth/alipay',
+			// #endif
+			method: 'POST',
+			autoCookie: false,
+			data: {
+				// #ifndef MP-ALIPAY
+				"code": res.code,
 				// #endif
 				// #ifdef MP-ALIPAY
-				url: app.globalData.url + 'auth/alipay',
+				"code": res.authCode,
 				// #endif
-				method: 'POST',
-				autoCookie: false,
-				data: {
-					// #ifndef MP-ALIPAY
-					"code": res.code,
-					// #endif
-					// #ifdef MP-ALIPAY
-					"code": res.authCode,
-					// #endif
-					user: JSON.stringify(userInfo)
-				},
-				success: (res) => {
-					setCookie(res, app);
-					app.globalData.curTerm = res.data.initData.curTerm
-					app.globalData.curTermStart = res.data.initData.termStart
-					app.globalData.curWeek = res.data.initData.curWeek
-					app.globalData.loginStatus = res.data.Message;
-					app.globalData.initData = res.data.initData;
-					if (res.data.Message === "Ex") app.globalData.userFlag = 1;
-					else app.globalData.userFlag = 0;
-					console.log("Status:" + (app.globalData.userFlag === 1 ? "User Login" : "New User"));
-					if (res.data.openid) {
-						userDot(res.data.initData.tips, app);
-						console.log("SetOpenid:" + res.data.openid);
-						app.globalData.openid = res.data.openid;
-						uni.setStorageSync('openid', res.data.openid);
-					} else {
-						console.log("Get Openid From Cache");
-						app.globalData.openid = uni.getStorageSync("openid") || "";
-					}
-				},
-				complete: (res) => {
-					if (res.statusCode !== 200 || !res.data.initData || !res.data.initData.curTerm) {
-						uni.showModal({
-							title: '警告',
-							content: '数据初始化失败,点击确定重新初始化数据',
-							showCancel: false,
-							success: (res) => {
-								if (res.confirm) onLunch.apply(app);
-							}
-						})
-					} else {
-						app.$scope.eventBus.commit('LoginEvent', res);
-					}
-				}
-			}, app)
+				user: JSON.stringify(userInfo)
+			}
+		})
+	}).then((res) => {
+		setCookie(res, app);
+		app.globalData.curTerm = res.data.initData.curTerm
+		app.globalData.curTermStart = res.data.initData.termStart
+		app.globalData.curWeek = res.data.initData.curWeek
+		app.globalData.loginStatus = res.data.Message;
+		app.globalData.initData = res.data.initData;
+		if (res.data.Message === "Ex") app.globalData.userFlag = 1;
+		else app.globalData.userFlag = 0;
+		console.log("Status:" + (app.globalData.userFlag === 1 ? "User Login" : "New User"));
+		if (res.data.openid) {
+			userDot(res.data.initData.tips, app);
+			console.log("SetOpenid:" + res.data.openid);
+			app.globalData.openid = res.data.openid;
+			uni.setStorageSync('openid', res.data.openid);
+		} else {
+			console.log("Get Openid From Cache");
+			app.globalData.openid = uni.getStorageSync("openid") || "";
 		}
+		return Promise.resolve(res);
+	}).then((res) => {
+		if (res.statusCode !== 200 || !res.data.initData || !res.data.initData.curTerm)  return Promise.reject("DATA INIT FAIL");
+		else app.$scope.eventBus.commit('LoginEvent', res);
+	}).catch((err) => {
+		console.warn(err);
+		uni.showModal({
+			title: '警告',
+			content: '数据初始化失败,点击确定重新初始化数据',
+			showCancel: false,
+			success: (res) => {
+				if (res.confirm) onLaunch.apply(app);
+			}
+		})
 	})
 }

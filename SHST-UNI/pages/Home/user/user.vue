@@ -24,7 +24,7 @@
 						<view>学院</view>
 					</view>
 					<view>{{academy}}</view>
-				</view> 
+				</view>
 				<!-- #ifdef MP-WEIXIN -->
 				<view class='a-hide' :class="{'a-show':today > '2020-03-26'}">
 					<view class='unitInfo' data-copy='722942376' @tap='copy'>
@@ -34,7 +34,7 @@
 				</view>
 				<!-- #endif -->
 				<!-- #ifdef MP-QQ -->
-				<button open-type="openGroupProfile" class='unitInfo' group-id="722942376" >
+				<button open-type="openGroupProfile" class='unitInfo' group-id="722942376">
 					<view class='titleCon'>QQ群</view>
 					<view>722942376</view>
 				</button>
@@ -84,52 +84,46 @@
 				today: util.formatDate()
 			}
 		},
-		onLoad: function() {
-			var that = this;
+		onLoad: async function() {
 			uni.getStorage({
 				key: 'point',
 				complete: (res) => {
-					if (res.data !== app.globalData.tips) that.point = "block";
+					if (res.data !== app.globalData.tips) this.point = "block";
 				}
 			})
 			if (app.globalData.userFlag === 0) {
 				var tipsInfo = "游客";
-				that.academy = tipsInfo
-				that.name = tipsInfo
-				that.account = tipsInfo
-				return;
+				this.academy = tipsInfo
+				this.name = tipsInfo
+				this.account = tipsInfo
+				return false;
 			}
-			uni.getStorage({
+			var [err, res] = await uni.getStorage({
 				key: 'userInfo',
-				complete:function(res){
-					if(res.data && res.data.account){
-						console.log("GET USERINFO FROM CACHE");
-						that.academy = res.data.academy
-						that.name = res.data.name
-						that.account = res.data.account
-					}else{
-						console.log("GET USERINFO FROM REMOTE");
-						app.ajax({
-							load: 1,
-							url: app.globalData.url + 'sw/userInfo',
-							fun: res => {
-								if (res.data.info) {
-									uni.setStorage({
-										key: 'userInfo',
-										data: res.data.info
-									})
-									that.academy = res.data.info.academy
-									that.name = res.data.info.name
-									that.account = res.data.info.account
-								} else {
-									app.toast("服务器错误");
-								}
-						
-							}
-						})
-					}
-				}
 			})
+			if (!err && res.data && res.data.account) {
+				console.log("GET USERINFO FROM CACHE");
+				this.academy = res.data.academy
+				this.name = res.data.name
+				this.account = res.data.account
+			} else {
+				console.log("GET USERINFO FROM REMOTE");
+				var res = await app.request({
+					load: 1,
+					url: app.globalData.url + 'sw/userInfo',
+				})
+				if (res.data.info) {
+					uni.setStorage({
+						key: 'userInfo',
+						data: res.data.info
+					})
+					this.academy = res.data.info.academy
+					this.name = res.data.info.name
+					this.account = res.data.info.account
+				} else {
+					app.toast("服务器错误");
+				}
+			}
 		},
 		methods: {
 			copy(e) {

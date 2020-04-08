@@ -73,73 +73,65 @@
 				show: 0
 			}
 		},
-		onLoad: function(options) {
-			var that = this;
-			app.ajax({
+		onLoad: async function(options) {
+			var res = await app.request({
 				load: 2,
 				url: app.globalData.url + "card/userInfo",
-				success: res => {
-					if (res.data.Message === "Yes") {
-						cardLoad = false;
-						var info = res.data.info;
-						var pregInfo = info.match(/<div align="left">[\S]*<\/div>/g);
-						var balanceInfo = info.match(/<td class="neiwen">[\S]*<\/td>/g);
-						var balance = balanceInfo[0].split("（")[0];
-						var balanceTemp = balanceInfo[0].split("）")[1].split("(")[0];
-						that.name = pregInfo[0]
-						that.account = pregInfo[3]
-						that.banlance = balance,
-							that.balanceTemp = balanceTemp
-					} else if (res.data.Message === "No") {
-						app.toast(res.data.info);
-					} else {
-						app.toast("未知错误");
-					}
-				}
 			})
+			if (res.data.Message === "Yes") {
+				cardLoad = false;
+				var info = res.data.info;
+				var pregInfo = info.match(/<div align="left">[\S]*<\/div>/g);
+				var balanceInfo = info.match(/<td class="neiwen">[\S]*<\/td>/g);
+				var balance = balanceInfo[0].split("（")[0];
+				var balanceTemp = balanceInfo[0].split("）")[1].split("(")[0];
+				this.name = pregInfo[0]
+				this.account = pregInfo[3]
+				this.banlance = balance
+				this.balanceTemp = balanceTemp
+			} else if (res.data.Message === "No") {
+				app.toast(res.data.info);
+			} else {
+				app.toast("未知错误");
+			}
+
 		},
 		methods: {
-			todayQuery() {
-				var that = this;
+			todayQuery: async function() {
 				if (cardLoad) {
 					app.toast("请稍后");
-					return;
+					return false;
 				}
-				app.ajax({
+				var res = await app.request({
 					load: 2,
 					url: app.globalData.url + "card/today",
-					success: res => {
-						if (res.data.Message === "Yes") {
-							that.diposeCardData(res.data.info);
-						} else if (res.data.Message === "No") {
-							app.toast(res.data.info);
-						} else {
-							app.toast("未知错误");
-						}
-					}
 				})
+				if (res.data.Message === "Yes") {
+					this.diposeCardData(res.data.info);
+				} else if (res.data.Message === "No") {
+					app.toast(res.data.info);
+				} else {
+					app.toast("未知错误");
+				}
 			},
-			historyQuery() {
-				var that = this;
+			historyQuery: async function() {
 				if (cardLoad) {
 					app.toast("请稍后");
-					return;
+					return false;
 				}
-				app.ajax({
+				var res = await app.request({
 					load: 2,
-					url: app.globalData.url + "card/history",
-					success: res => {
-						if (res.data.Message === "Yes") {
-							that.diposeCardData(res.data.info);
-						} else if (res.data.Message === "No") {
-							app.toast(res.data.info);
-						} else {
-							app.toast("未知错误");
-						}
-					}
+					url: app.globalData.url + "card/history"
 				})
+				if (res.data.Message === "Yes") {
+					this.diposeCardData(res.data.info);
+				} else if (res.data.Message === "No") {
+					app.toast(res.data.info);
+				} else {
+					app.toast("未知错误");
+				}
 			},
-			diposeCardData(data) {
+			diposeCardData: function(data) {
 				var line = [];
 				var lineData = data.match(/<tr class="listbg[2]?">[\s\S]*?<\/tr>/g);
 				if (!lineData) {

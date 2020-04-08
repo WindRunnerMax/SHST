@@ -21,7 +21,7 @@
 		},
 		onLaunch: function() {
 			console.log("APP INIT");
-			dispose.onLunch.apply(this); //启动加载事件
+			dispose.onLaunch.apply(this); //启动加载事件
 			const util = require('utils/util.js');
 			const pubFct = require('vector/pubFct.js');
 			util.extDate(); //拓展Date原型
@@ -30,9 +30,13 @@
 			this.globalData.curWeek = pubFct.getCurWeek(this.globalData.curTermStart);
 			this.$scope.extend = dispose.extend;
 			this.$scope.extend({
+			  ajax: dispose.ajax,
 			  toast: dispose.toast,
-			  ajax: dispose.ajax
+			  request: dispose.request
 			});
+		},
+		onError: (err) => {
+			dispose.toast("Internal Error");
 		}
 	}
 </script>

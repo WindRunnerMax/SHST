@@ -90,101 +90,83 @@
 			this.onloadData();
 		},
 		methods: {
-			onloadData: function(){
-				var that = this;
-				app.ajax({
+			onloadData: async function(){
+				var res = await app.request({
 					load: 2,
 					url: app.globalData.url + "share/tableshare",
 					data: {
 						week: app.globalData.curWeek,
 						term: app.globalData.curTerm
 					},
-					fun: res => {
-						if (res.data.info.succ) {
-							res.data.info.succ.timetable1 = pubFct.tableDispose(res.data.info.succ.timetable1);
-							res.data.info.succ.timetable2 = pubFct.tableDispose(res.data.info.succ.timetable2);
-						}
-						console.log(res.data.info);
-						that.data = res.data.info
-					}
 				})
+				if (res.data.info.succ) {
+					res.data.info.succ.timetable1 = pubFct.tableDispose(res.data.info.succ.timetable1);
+					res.data.info.succ.timetable2 = pubFct.tableDispose(res.data.info.succ.timetable2);
+				}
+				console.log(res.data.info);
+				this.data = res.data.info
 			},
-			accountInput(e) {
+			accountInput: function(e) {
 				this.account = e.detail.value
 			},
-			nameInput(e) {
+			nameInput: function(e) {
 				this.name = e.detail.value
 			},
-			req() {
-				var that = this;
-				console.log(this)
-				if (this.account === "" | this.name === "") {
+			req: async function() {
+				if (this.account === "" || this.name === "") {
 					app.toast("请输入完整信息");
+					return false;
 				}
-				app.ajax({
+				var res = await app.request({
 					url: app.globalData.url + "share/startReq",
 					method: 'POST',
 					data: {
 						account: this.account,
 						user: this.name
 					},
-					fun: res => {
-						app.toast(res.data.message);
-						that.onloadData();
-					}
 				})
+				app.toast(res.data.message);
+				this.onloadData();
 			},
-			cancelreq() {
-				var that = this;
-				app.ajax({
+			cancelreq: async function() {
+				var res = await app.request({
 					url: app.globalData.url + "share/cancelReq",
-					fun: res => {
-						app.toast(res.data.message);
-						that.onloadData();
-					}
 				})
+				app.toast(res.data.message);
+				this.onloadData();
 			},
-			agree(e) {
-				var that = this;
-				app.ajax({
+			agree: async function(e) {
+				var res = await app.request({
 					load: 2,
 					url: app.globalData.url + "share/agreereq",
 					data: {
 						id: e.currentTarget.dataset.id
 					},
-					fun: res => {
-						app.toast(res.data.message);
-						that.onloadData();
-					}
 				})
+				app.toast(res.data.message);
+				this.onloadData();
 			},
-			lifting(e) {
-				var that = this;
-				app.ajax({
+			lifting: async function(e) {
+				var res = await app.request({
 					load: 2,
 					url: app.globalData.url + "share/lifting",
 					data: {
 						id: e.currentTarget.dataset.id
 					},
-					fun: res => {
-						app.toast("成功");
-						that.onloadData();
-					}
 				})
+				app.toast("成功");
+				this.onloadData();
 			},
-			refuse(e) {
-				var that = this;
-				app.ajax({
+			refuse: async function(e) {
+				var res = await app.request({
 					load: 2,
 					url: app.globalData.url + "share/refusereq",
 					data: {
 						id: e.currentTarget.dataset.id
 					},
-					fun: res => {
-						app.toast(res.data.message);
-						that.onloadData();
-					}
 				})
+				app.toast(res.data.message);
+				this.onloadData();
 			}
 		}
 	}

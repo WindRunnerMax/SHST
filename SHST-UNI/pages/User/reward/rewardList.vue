@@ -29,18 +29,15 @@
 				data: []
 			}
 		},
-		onLoad: function(options) {
-			var that = this;
-			app.ajax({
+		onLoad: async function(options) {
+			var res = await app.request({
 				load: 2,
 				url: app.globalData.url + 'ext/rewardlist',
-				fun: res => {
-					if (res.data.info) {
-						res.data.info.reverse();
-						that.data = res.data.info
-					}
-				}
 			})
+			if (res.data.info) {
+				res.data.info.reverse();
+				this.data = res.data.info
+			}
 		},
 		methods: {
 

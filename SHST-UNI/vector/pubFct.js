@@ -14,8 +14,6 @@ module.exports = {
  */
 function tableDispose(info, flag = 0) {
 	const app = getApp();
-	const colorList = app.globalData.colorList;
-	const colorN = app.globalData.colorList.length;
 	var tableArr = [];
 	var week = new Date().getDay() - 1;
 	if (week === -1) week = 6;

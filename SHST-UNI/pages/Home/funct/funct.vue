@@ -74,9 +74,9 @@
 			<view class="y-CenterCon" style="color: #6495ED;">
 				<view class='icon' data-jumpurl="/pages/Ext/link/link" data-checkuser="1" @tap='jump'>
 					<i class='iconfont icon-link'></i>
-					<view>分享链接</view> 
+					<view>分享链接</view>
 				</view>
-				 <!-- #ifndef MP-WEIXIN -->
+				<!-- #ifndef MP-WEIXIN -->
 				<view class='icon' data-jumpurl="/pages/Ext/event/event" data-checkuser="0" @tap='jump'>
 					<i class='iconfont icon-schedule'></i>
 					<view>待办管理</view>
@@ -122,23 +122,18 @@
 			}
 		},
 		methods: {
-			adError(e) {
-				this.adShow = 0
-			},
-			jump(e) {
+			jump: async function(e) {
 				if (e.currentTarget.dataset.checkuser === "0" && app.globalData.userFlag !== 1) {
 					if (app.globalData.userFlag === 0) {
-						uni.showModal({
+						var [err, choice] = await uni.showModal({
 							title: '提示',
 							content: '该功能需要绑定强智教务系统，是否前去绑定',
-							success: function(choice) {
-								if (choice.confirm) {
-									uni.navigateTo({
-										url: '/pages/Home/auxiliary/login?status=E'
-									})
-								}
-							}
 						})
+						if (choice.confirm) {
+							uni.navigateTo({
+								url: '/pages/Home/auxiliary/login?status=E'
+							})
+						}
 					} else if (app.globalData.userFlag === 2) {
 						console.log(2)
 						app.toast("数据加载中，请稍候");
@@ -149,6 +144,9 @@
 				uni.navigateTo({
 					url: e.currentTarget.dataset.jumpurl
 				})
+			},
+			adError: function(e) {
+				this.adShow = 0
 			}
 		}
 	}

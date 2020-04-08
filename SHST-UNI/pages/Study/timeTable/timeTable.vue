@@ -111,7 +111,7 @@
 				]
 			}
 		},
-		onLoad(e) {
+		onLoad:function(e) {
 			this.week = app.globalData.curWeek;
 			this.getCache(app.globalData.curWeek);
 		},
@@ -128,59 +128,55 @@
 					this.getRemoteTable(e);
 				}
 			},
-			getRemoteTable: function(e) {
-				var that = this;
+			getRemoteTable: async function(e) {
 				var urlTemp = "";
 				if (typeof(e) === "number") urlTemp += ("/" + e);
-				var that = this;
-				app.ajax({
+				var res = await app.request({
 					load: 2,
 					url: app.globalData.url + 'sw/table' + urlTemp,
 					data: {
 						week: app.globalData.curWeek,
 						term: app.globalData.curTerm
 					},
-					fun: function(res) {
-						if (res.data.Message === "Yes") {
-							console.log("GET TABLE FROM REMOTE WEEK " + e);
-							var showTableArr = pubFct.tableDispose(res.data.data);
-							that.table = showTableArr
-							that.week = res.data.week
-							var tableCache = uni.getStorageSync('table') || {
-								term: app.globalData.curTerm,
-								classTable: []
-							};
-							tableCache.term = app.globalData.curTerm;
-							tableCache.classTable[e] = res.data.data;
-							uni.setStorage({
-								key: 'table',
-								data: tableCache
-							})
-							that.getDate();
-						} else {
-							app.toast("数据拉取失败");
-						}
-					}
 				})
+				if (res.data.Message === "Yes") {
+					console.log("GET TABLE FROM REMOTE WEEK " + e);
+					var showTableArr = pubFct.tableDispose(res.data.data);
+					this.table = showTableArr
+					this.week = res.data.week
+					var tableCache = uni.getStorageSync('table') || {
+						term: app.globalData.curTerm,
+						classTable: []
+					};
+					tableCache.term = app.globalData.curTerm;
+					tableCache.classTable[e] = res.data.data;
+					uni.setStorage({
+						key: 'table',
+						data: tableCache
+					})
+					this.getDate();
+				} else {
+					app.toast("数据拉取失败");
+				}
 			},
-			pre(e) {
+			pre: function(e) {
 				if (e.target.dataset.week <= 1) return;
 				var week = parseInt(e.currentTarget.dataset.week) - 1;
 				this.getCache(week);
 			},
-			next(e) {
+			next: function(e) {
 				var week = parseInt(e.currentTarget.dataset.week) + 1;
 				this.getCache(week);
 			},
-			adError(e) {
+			adError: function(e) {
 				this.ad = 0
 			},
-			refresh(e) {
+			refresh: function(e) {
 				uni.setStorageSync('table', {term: app.globalData.curTerm,classTable: []});
 				var week = parseInt(e.currentTarget.dataset.week);
 				this.getRemoteTable(week);
 			},
-			getDate(e) {
+			getDate: function(e) {
 				var week = this.week;
 				var curWeekDate = new Date(app.globalData.curTermStart);
 				curWeekDate.addDate(0, 0, week * 7 - 8);

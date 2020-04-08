@@ -66,55 +66,56 @@
 			var curTime = curData.getHours() + ":" + curData.getMinutes();
 			if (util.compareTimeInSameDay(startTime, curTime) || util.compareTimeInSameDay(curTime, endTime)) {
 				app.toast("当前时间图书馆服务已关闭");
-				return;
+				return false;
 			}
 		},
 		methods: {
-			bookInput(e) {
+			bookInput: function(e) {
 				this.book = e.detail.value
 			},
-			query(e) {
+			query: async function(e) {
 				var param = "?q=" + this.book;
 				if (typeof(e) === "number") {
 					param += "&page=" + e;
 				}
-				var that = this;
-				app.ajax({
+				var res = await app.request({
 					load: 2,
 					url: app.globalData.url + "lib/query" + param,
-					fun: res => {
-						if (res.data.Message === "Yes") {
-							var bookList = [];
-							var repx = /<li onclick.*?>[\s\S]*?<\/li>/g;
-							var pageInfo = res.data.info.match(/第[\S]*页/);
-							try {
-								res.data.info.match(repx).forEach(function(value, index, array) {
-									var listObject = {};
-									var infoBookFour = [];
-									repx = /<em>.*<\/em>/g;
-									value.match(repx).map(function(valueBook, indexBook, arrayBook) {
-										valueBook = valueBook.replace("<em>", "");
-										valueBook = valueBook.replace("</em>", "");
-										infoBookFour.push(valueBook);
-										return value;
-									})
-									listObject.infoList = infoBookFour;
-									repx = /javascript:bookDetail(.)*;/g;
-									listObject.id = value.match(repx)[0].match(/[0-9]+/)[0];
-									bookList.push(listObject);
-								})
-							} catch (e) {}
-							console.log(bookList)
-							that.info = bookList
-							that.page = res.data.page
-							that.pageInfo = pageInfo[0]
-							that.show = 1
-						} else {
-							app.toast("响应超时");
-						}
-
-					}
 				})
+				try {
+					if (res.data.Message === "Yes") {
+						var bookList = [];
+						var repx = /<li onclick.*?>[\s\S]*?<\/li>/g;
+						var pageInfo = res.data.info.match(/第[\S]*页/);
+						res.data.info.match(repx).forEach(function(value, index, array) {
+							var listObject = {};
+							var infoBookFour = [];
+							repx = /<em>.*<\/em>/g;
+							value.match(repx).map(function(valueBook, indexBook, arrayBook) {
+								valueBook = valueBook.replace("<em>", "");
+								valueBook = valueBook.replace("</em>", "");
+								infoBookFour.push(valueBook);
+								return value;
+							})
+							listObject.infoList = infoBookFour;
+							repx = /javascript:bookDetail(.)*;/g;
+							listObject.id = value.match(repx)[0].match(/[0-9]+/)[0];
+							bookList.push(listObject);
+						})
+						console.log(bookList)
+						this.info = bookList
+						this.page = res.data.page
+						this.pageInfo = pageInfo[0]
+						this.show = 1
+					} else {
+						app.toast("External Error");
+					}
+				} catch (e) {
+					console.log(e);
+					app.toast("Internal Error");
+				}
+
+
 			},
 			pre() {
 				var curPage = parseInt(this.page);

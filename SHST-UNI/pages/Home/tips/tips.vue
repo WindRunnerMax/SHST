@@ -152,38 +152,35 @@
 					this.getRemoteTable();
 				}
 			},
-			getRemoteTable: function(load = 1) {
-				var that = this;
+			getRemoteTable: async function(load = 1) {
 				if (app.globalData.userFlag === 1) {
 					console.log("GET TABLE FROM REMOTE");
-					app.ajax({
+					var res = await app.request({
 						load: load,
 						url: app.globalData.url + 'sw/table',
 						data: {
 							week: app.globalData.curWeek,
 							term: app.globalData.curTerm
-						},
-						fun: function(res) {
-							if (res.data.Message === "Yes") {
-								var showTableArr = pubFct.tableDispose(res.data.data, 1);
-								that.tipsDispose(showTableArr);
-								var tableCache = uni.getStorageSync('table') || {
-									term: app.globalData.curTerm,
-									classTable: []
-								};
-								tableCache.term = app.globalData.curTerm;
-								tableCache.classTable[app.globalData.curWeek] = res.data.data;
-								uni.setStorage({
-									key: 'table',
-									data: tableCache
-								})
-							} else {
-								app.toast("ERROR");
-								that.tips = "加载失败";
-								that.tipsInfo = "加载失败了，重新登录试一下";
-							}
 						}
 					})
+					if (res.data.Message === "Yes") {
+						var showTableArr = pubFct.tableDispose(res.data.data, 1);
+						this.tipsDispose(showTableArr);
+						var tableCache = uni.getStorageSync('table') || {
+							term: app.globalData.curTerm,
+							classTable: []
+						};
+						tableCache.term = app.globalData.curTerm;
+						tableCache.classTable[app.globalData.curWeek] = res.data.data;
+						uni.setStorage({
+							key: 'table',
+							data: tableCache
+						})
+					} else {
+						app.toast("ERROR");
+						this.tips = "加载失败";
+						this.tipsInfo = "加载失败了，重新登录试一下";
+					}
 				}
 			},
 			tipsDispose: function(info) {
@@ -192,7 +189,7 @@
 				this.tips = info ? "" : "No Class Today";
 				this.tipsInfo = info ? "" : "今天没有课，快去自习室学习吧";
 			},
-			refresh(e) {
+			refresh: function(e) {
 				uni.setStorageSync('table', {
 					term: app.globalData.curTerm,
 					classTable: []
@@ -205,13 +202,12 @@
 			 * 待办处理
 			 */
 			eventDipose: function(data) {
-				var that = this;
 				uni.setStorageSync('event', data);
 				if (data.length === 0) {
-					that.tips2 = "暂无待办事项";
+					this.tips2 = "暂无待办事项";
 					return;
 				} else {
-					that.tips2 = "";
+					this.tips2 = "";
 				}
 				var curData = util.formatDate();
 				data.map(function(value) {
@@ -223,64 +219,52 @@
 				data.sort((a, b) => {
 					return a.todo_time > b.todo_time ? 1 : -1;
 				});
-				that.todoList = data;
+				this.todoList = data;
 			},
 			getEvent: function() {
-				var that = this;
 				var eventCache = uni.getStorageSync('event') || "";
 				if (eventCache !== "") {
 					console.log("GET EVENT FROM CACHE");
-					that.eventDipose(eventCache);
+					this.eventDipose(eventCache);
 				} else {
 					this.getRemoteEvent();
 				}
 			},
-			getRemoteEvent: function() {
-				var that = this;
+			getRemoteEvent: async function() {
 				if (app.globalData.userFlag !== 1) {
-					that.tips2 = "暂无待办事项";
+					this.tips2 = "暂无待办事项";
 					return false;
 				}
 				console.log("GET EVENT FROM REMOTE");
-				app.ajax({
+				var res = app.request({
 					url: app.globalData.url + "todo/getEvent",
-					fun: res => {
-						if (res.data.data && res.data.data != 3) {
-							that.eventDipose(res.data.data);
-						} else {
-							that.tips2 = "加载失败"
-						}
-					}
 				})
+				if (res.data.data && res.data.data != 3) this.eventDipose(res.data.data);
+				else this.tips2 = "加载失败"
 			},
-			setStatus: function(e) {
-				var that = this;
-				uni.showModal({
+			setStatus: async function(e) {
+				var [err,choice] = uni.showModal({
 					title: '提示',
 					content: '确定标记为已完成吗',
-					success: function(choice) {
-						if (choice.confirm) {
-							var index = e.currentTarget.dataset.index;
-							var id = e.currentTarget.dataset.id;
-							app.ajax({
-								url: app.globalData.url + "todo/setStatus",
-								method: "POST",
-								data: {
-									id: id
-								},
-								fun: res => {
-									app.toast("标记成功");
-									that.todoList.splice(index, 1);
-									uni.setStorageSync('event', that.todoList);
-									that.tips2 = that.todoList.length === 0 ? "暂没有待办事项" : "";
-								}
-							})
-						}
-					}
 				})
+				if (choice.confirm) {
+					var index = e.currentTarget.dataset.index;
+					var id = e.currentTarget.dataset.id;
+					var res = await app.request({
+						url: app.globalData.url + "todo/setStatus",
+						method: "POST",
+						data: {
+							id: id
+						}
+					})
+					app.toast("标记成功");
+					this.todoList.splice(index, 1);
+					uni.setStorageSync('event', this.todoList);
+					this.tips2 = this.todoList.length === 0 ? "暂没有待办事项" : "";
+				}
 			},
-			// #endif
 
+			// #endif
 			getArtical: function() {
 				if (app.globalData.initData && app.globalData.initData.articalName) {
 					// #ifdef MP-ALIPAY
@@ -295,7 +279,6 @@
 				}
 			},
 			articalJump: function() {
-
 				if (app.globalData.initData && app.globalData.initData.articleUrl) {
 					var url = encodeURIComponent(app.globalData.initData.articleUrl);
 					// #ifdef MP-WEIXIN

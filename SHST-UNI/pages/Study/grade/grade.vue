@@ -109,8 +109,7 @@
 			this.initGrade();
 		},
 		methods: {
-			bindPickerChange(e) {
-				var that = this;
+			bindPickerChange:function(e) {
 				console.log(this.yearArr[e.detail.value].value);
 				var stuYear = this.yearArr[e.detail.value].value;
 				var query = (stuYear === "" ? "" : "/" + stuYear);
@@ -118,70 +117,66 @@
 				this.index = e.detail.value
 				this.getGradeRemote(query);
 			},
-			initGrade() {
-				var that = this;
+			initGrade:function() {
 				var stuYear = this.showSelect = app.globalData.curTerm;
 				var query = (stuYear === "" ? "" : "/" + stuYear);
 				this.getGradeRemote(query);
 			},
-			getGradeRemote(query) {
-				var that = this;
-				app.ajax({
+			getGradeRemote: async function(query) {
+				var res = await app.request({
 					load: 2,
 					url: app.globalData.url + 'sw/grade' + query,
-					fun: res => {
-						if (res.data.MESSAGE !== "Yes") {
-							app.toast("ERROR");
-							return;
-						}
-						if (res.data.data[0]) {
-							try {
-								var info = res.data.data;
-								var point = 0;
-								var pointN = 0;
-								var pointW = 0;
-								var n = 0;
-								info.forEach(function(value) {
-									if (value.kclbmc !== "公选") {
-										n++;
-										point += value.xf;
-										if (value.zcj === "优") {
-											pointN += 4.5;
-											pointW += (4.5 * value.xf);
-										} else if (value.zcj === "良") {
-											pointN += 3.5;
-											pointW += (3.5 * value.xf);
-										} else if (value.zcj === "中") {
-											pointN += 2.5;
-											pointW += (2.5 * value.xf);
-										} else if (value.zcj === "及格") {
-											pointN += 1.5;
-											pointW += (1.5 * value.xf);
-										} else if (value.zcj === "不及格") {} else {
-											var s = parseInt(value.zcj);
-											if (s >= 60) {
-												pointN += ((s - 50) / 10);
-												pointW += (((s - 50) / 10) * value.xf);
-											}
-										}
-									}
-								})
-								that.point = point
-								that.pointN = (pointN / n).toFixed(2)
-								that.pointW = (pointW / point).toFixed(2)
-							} catch (err) {
-								console.log(err);
-							}
-
-						}
-						let defaultValue = {kclbmc: "暂无",kcmc: that.showSelect+"学期暂无成绩",ksxzmc: "暂无成绩",xf: 0,zcj: "100"}
-						that.grade = !res.data.data[0] ? [defaultValue] : res.data.data
-						that.ad = !res.data.data[0] ? 0 : 1
-						that.show = 1
-					}
 				})
+				if (res.data.MESSAGE !== "Yes") {
+					app.toast("External Error");
+					return false;
+				}
+				if (res.data.data[0]) {
+					try {
+						var info = res.data.data;
+						var point = 0;
+						var pointN = 0;
+						var pointW = 0;
+						var n = 0;
+						info.forEach(function(value) {
+							if (value.kclbmc !== "公选") {
+								n++;
+								point += value.xf;
+								if (value.zcj === "优") {
+									pointN += 4.5;
+									pointW += (4.5 * value.xf);
+								} else if (value.zcj === "良") {
+									pointN += 3.5;
+									pointW += (3.5 * value.xf);
+								} else if (value.zcj === "中") {
+									pointN += 2.5;
+									pointW += (2.5 * value.xf);
+								} else if (value.zcj === "及格") {
+									pointN += 1.5;
+									pointW += (1.5 * value.xf);
+								} else if (value.zcj === "不及格") {} else {
+									var s = parseInt(value.zcj);
+									if (s >= 60) {
+										pointN += ((s - 50) / 10);
+										pointW += (((s - 50) / 10) * value.xf);
+									}
+								}
+							}
+						})
+						this.point = point
+						this.pointN = (pointN / n).toFixed(2)
+						this.pointW = (pointW / point).toFixed(2)
+					} catch (err) {
+						console.log(err);
+					}
+
+				}
+				let defaultValue = {kclbmc: "暂无",kcmc: this.showSelect+"学期暂无成绩",ksxzmc: "暂无成绩",xf: 0,zcj: "100"}
+				this.grade = !res.data.data[0] ? [defaultValue] : res.data.data
+				this.ad = !res.data.data[0] ? 0 : 1
+				this.show = 1
 			},
-			adError(e) {
+			adError: function(e) {
 				this.ad = 0
 			}
 		}

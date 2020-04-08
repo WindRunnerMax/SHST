@@ -38,53 +38,60 @@
 				data: []
 			}
 		},
-		onLoad: function() {
+		onLoad: async function() {
 			var curData = new Date();
 			var startTime = "7:00";
 			var endTime = "22:30";
 			var curTime = curData.getHours() + ":" + curData.getMinutes();
 			if (util.compareTimeInSameDay(startTime, curTime) || util.compareTimeInSameDay(curTime, endTime)) {
 				app.toast("当前时间图书馆服务已关闭");
-				return;
+				return false;
 			}
-			var that = this;
-			app.ajax({
+			var res = await app.request({
 				load: 2,
 				url: app.globalData.url + "lib/borrow",
-				fun: res => {
-					if(res.data.info.match(/当前无借阅记录/)){
-						app.toast("暂无借阅记录");
-						return true;
-					}
-					if (res.data.Message === "Yes") {
-						var infoArr = [];
-						res.data.info.match(/<li>[\s\S]*?<\/li>/g).forEach(value => {
-							var infoArrInner = [];
-							infoArrInner.push(value.match(/<h3>.*?<\/h3>/)[0].replace(/[<h3>]|[<\/h3>]/g, ""));
-							value.match(/<p.*?>[\s\S]*?<\/p>/g).forEach(value2 => {
-								infoArrInner.push(value2);
-							})
-							infoArr.push(infoArrInner);
-						})
-						// #ifdef MP-ALIPAY
-						infoArr = infoArr.map((value) => {
-							value = value.map((value2) => { 
-								value2 = value2.replace(/<p >/,"");
-								value2 = value2.replace(/<p  class="remind">/,"");
-								value2 = value2.replace(/<\/p>/,"");
-								return [{type:"text",text:value2}];
-							});
-							return value;
-						})
-						// #endif
-						console.log(infoArr);
-						that.data = infoArr
-					} else {
-						app.toast("响应超时");
-					}
-
-				}
 			})
+			try {
+				if (res.data.info.match(/当前无借阅记录/)) {
+					app.toast("暂无借阅记录");
+					return true;
+				}
+				if (res.data.Message === "Yes") {
+					var infoArr = [];
+					var tagList = res.data.info.match(/<li>[\s\S]*?<\/li>/g)
+					if(!tagList) {app.toast("图书馆服务器似乎出现了一些问题"); return false;}
+					tagList.forEach(value => {
+						var infoArrInner = [];
+						infoArrInner.push(value.match(/<h3>.*?<\/h3>/)[0].replace(/[<h3>]|[<\/h3>]/g, ""));
+						value.match(/<p.*?>[\s\S]*?<\/p>/g).forEach(value2 => {
+							infoArrInner.push(value2);
+						})
+						infoArr.push(infoArrInner);
+					})
+					// #ifdef MP-ALIPAY
+					infoArr = infoArr.map((value) => {
+						value = value.map((value2) => {
+							value2 = value2.replace(/<p >/, "");
+							value2 = value2.replace(/<p  class="remind">/, "");
+							value2 = value2.replace(/<\/p>/, "");
+							return [{
+								type: "text",
+								text: value2
+							}];
+						});
+						return value;
+					})
+					// #endif
+					console.log(infoArr);
+					this.data = infoArr
+				} else {
+					app.toast("External Error");
+				}
+			} catch (e) {
+				console.log(e);
+				app.toast("Internal Error");
+			}
+
 		},
 		methods: {
 
@@ -93,13 +100,13 @@
 </script>
 
 <style>
-.card {
-  padding: 10px;
-  line-height: 27px;
-}
+	.card {
+		padding: 10px;
+		line-height: 27px;
+	}
 
-.strong {
-  font-size: 20px;
-  line-height: 27px;
-}
+	.strong {
+		font-size: 20px;
+		line-height: 27px;
+	}
 </style>

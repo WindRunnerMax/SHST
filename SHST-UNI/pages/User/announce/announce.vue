@@ -26,22 +26,19 @@
 				data: []
 			}
 		},
-		onLoad: function(options) {
-			wx.setStorage({
+		onLoad: async function(options) {
+			uni.setStorage({
 				key: 'point',
 				data: app.globalData.tips
 			})
-			var that = this;
-			app.ajax({
+			var res = await app.request({
 				load: 2,
 				url: app.globalData.url + 'ext/announce',
-				fun: res => {
-					if (res.data.info) {
-						res.data.info.reverse();
-						that.data = res.data.info
-					}
-				}
 			})
+			if (res.data.info) {
+				res.data.info.reverse();
+				this.data = res.data.info
+			}
 		},
 		methods: {
 			copy(e) {

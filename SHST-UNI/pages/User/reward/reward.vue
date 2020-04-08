@@ -31,7 +31,7 @@
 			}
 		},
 		methods: {
-			viewImg(e) {
+			viewImg:function(e) {
 				var current = e.currentTarget.dataset.viewimgurl;
 				uni.previewImage({
 					current: current,

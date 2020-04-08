@@ -53,94 +53,79 @@
 				count: 0
 			}
 		},
-		onLoad: function(options) {
+		onLoad: async function(options) {
 			var endTime = new Date();
 			endTime.addDate(1);
 			this.dataEnd = util.formatDate("yyyy-MM-dd", endTime);
-			var that = this;
 			if (app.globalData.openid === "") {
 				this.tips = "未正常获取用户信息";
 			} else {
-				app.ajax({
+				var res = await app.request({
 					load: 2,
 					url: app.globalData.url + "todo/getFinEvent",
-					fun: res => {
-						if (res.data.data) {
-							if (res.data.data.length === 0) {
-								this.tips = "暂无已完成事项"
-								return;
-							}
-							var curData = util.formatDate();
-							res.data.data.map(function(value) {
-								var diff_color = pubFct.todoDateDiff(curData, value.todo_time, value.event_content);
-								value.diff = diff_color[0];
-								value.color = diff_color[1];
-								return value;
-							})
-							console.log(res.data.data);
-							that.todoList = res.data.data
-							that.count = res.data.data.length
-						}
-					}
 				})
+				if (res.data.data) {
+					if (res.data.data.length === 0) {
+						this.tips = "暂无已完成事项"
+						return;
+					}
+					var curData = util.formatDate();
+					res.data.data.map(function(value) {
+						var diff_color = pubFct.todoDateDiff(curData, value.todo_time, value.event_content);
+						value.diff = diff_color[0];
+						value.color = diff_color[1];
+						return value;
+					})
+					console.log(res.data.data);
+					this.todoList = res.data.data
+					this.count = res.data.data.length
+				}
 			}
 		},
 		methods: {
-			setStatus: function(e) {
-				var that = this;
-				wx.showModal({
+			setStatus: async function(e) {
+				var [err, choice] = await uni.showModal({
 					title: '提示',
 					content: '确定标记为未完成吗',
-					success: function(choice) {
-						if (choice.confirm) {
-							var index = e.currentTarget.dataset.index;
-							var id = e.currentTarget.dataset.id;
-							app.ajax({
-								url: app.globalData.url + "todo/setNoFinStatus",
-								method: "POST",
-								data: {
-									id: id
-								},
-								fun: res => {
-									app.toast("标记成功");
-									that.todoList.splice(index, 1);
-									that.todoList = that.todoList
-									that.tips = that.todoList.length === 0 ? "暂无已完成事项" : ""
-									that.count = that.count - 1
-								}
-							})
-						}
-					}
 				})
+				var index = e.currentTarget.dataset.index;
+				var id = e.currentTarget.dataset.id;
+				var res = await app.request({
+					url: app.globalData.url + "todo/setNoFinStatus",
+					method: "POST",
+					data: {
+						id: id
+					},
+				})
+				app.toast("标记成功");
+				this.todoList.splice(index, 1);
+				this.todoList = this.todoList
+				this.tips = this.todoList.length === 0 ? "暂无已完成事项" : ""
+				this.count = this.count - 1
 			},
-			deleteUnit: function(e) {
-				var that = this;
-				wx.showModal({
+			deleteUnit: async function(e) {
+				var [err, choice] = await uni.showModal({
 					title: '提示',
-					content: '确定删除吗',
-					success: function(choice) {
-						if (choice.confirm) {
-							var index = e.currentTarget.dataset.index;
-							var id = e.currentTarget.dataset.id;
-							app.ajax({
-								url: app.globalData.url + "todo/deleteUnit",
-								method: "POST",
-								data: {
-									id: id
-								},
-								fun: res => {
-									app.toast("删除成功");
-									that.todoList.splice(index, 1);
-									that.todoList = that.todoList
-									that.tips = that.todoList.length === 0 ? "暂无已完成事项" : ""
-									that.count = that.count - 1
-								}
-							})
-						}
-					}
+					content: '确定标记为未完成吗',
 				})
+				if (choice.confirm) {
+					var index = e.currentTarget.dataset.index;
+					var id = e.currentTarget.dataset.id;
+					var res = await app.request({
+						url: app.globalData.url + "todo/deleteUnit",
+						method: "POST",
+						data: {
+							id: id
+						},
+					})
+					app.toast("删除成功");
+					this.todoList.splice(index, 1);
+					this.todoList = this.todoList
+					this.tips = this.todoList.length === 0 ? "暂无已完成事项" : ""
+					this.count = this.count - 1
+				}
 			}
-		}
+		},
 	}
 </script>
 

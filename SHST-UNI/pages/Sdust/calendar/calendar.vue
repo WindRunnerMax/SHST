@@ -103,22 +103,19 @@
 				today: util.formatDate(undefined, date)
 			}
 		},
-		onLoad() {
-			var that = this
-			app.ajax({
+		onLoad: async function() {
+			var res = await app.request({
 				load: 2,
 				url: app.globalData.url + 'ext/calendar',
-				success: (res) => {
-					res.data.info = res.data.info.reverse();
-					that.data = res.data.info
-					var range = [];
-					res.data.info.forEach((value) => {
-						range.push(value.term);
-					})
-					that.range = range;
-					that.bindPickerChange({detail: {value: 0}})
-				}
 			})
+			res.data.info = res.data.info.reverse();
+			this.data = res.data.info
+			var range = [];
+			res.data.info.forEach((value) => {
+				range.push(value.term);
+			})
+			this.range = range;
+			this.bindPickerChange({detail: {value: 0}})
 		},
 		methods: {
 			bindPickerChange: function(e) {
@@ -297,7 +294,10 @@
 	.arrow-right {
 		font-size: 20px;
 	}
-
+	
+	.a-dot {
+		margin-right: 5px; 
+	}
 
 	.a-dot+view {
 		margin-right: 5px;

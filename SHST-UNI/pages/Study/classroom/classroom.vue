@@ -75,55 +75,49 @@
 			this.queryFloor = queryFloor
 		},
 		methods: {
-			flagChange(e) {
+			flagChange:function(e) {
 				var flagIndex = parseInt(e.currentTarget.dataset.index);
 				this.data.flag[flagIndex] = this.data.flag[flagIndex] === 'none' ? "flex" : "none";
 				this.flag = this.data.flag
 			},
-			loadClassroom(e) {
-				var that = this;
+			loadClassroom:function (e) {
 				uni.setNavigationBarTitle({
 					title: '加载中...'
 				})
-				setTimeout(() => that.loadClassroomSetTime(e), 300);
+				setTimeout(() => this.loadClassroomSetTime(e), 300);
 			},
-			loadClassroomSetTime(e) {
-				var that = this;
-				app.ajax({
+			loadClassroomSetTime: async function (e) {
+				var res = await app.request({
 					load: 2,
 					data: {
-						searchData: that.searchData,
-						searchTime: that.searchTime,
-						searchFloor: that.searchFloor,
+						searchData: this.searchData,
+						searchTime: this.searchTime,
+						searchFloor: this.searchFloor,
 					},
 					url: app.globalData.url + 'sw/classroom',
-					fun: res => {
-						if (res.data.MESSAGE !== "Yes") {
-							app.toast("ERROR");
-							return;
-						}
-						if (res.data.data.flag) {
-							app.toast("未生成教学周历");
-							return;
-						}
-						var data = res.data.data;
-						if (!data[0]) data = [{
-							"jxl": "青岛校区-" + that.searchFloor + "号楼",
-							jsList: [{
-								jsmc: "无空教室"
-							}]
-						}];
-						data[0].jsList.sort((a, b) => {
-							return a.jsmc > b.jsmc ? 1 : -1;
-						});
-						that.room = data
-						that.show = 1
-						that.qShow = that.queryTime[that.index[1]][2]
-						that.searchData = that.searchData
-					}
 				})
+				if (res.data.MESSAGE !== "Yes") {
+					app.toast("External Error");
+					return false;
+				}
+				if (res.data.data.flag) {
+					app.toast("未生成教学周历");
+					return false;
+				}
+				var data = res.data.data;
+				if (!data[0]) data = [{
+					"jxl": "青岛校区-" + this.searchFloor + "号楼",
+					jsList: [{jsmc: "无空教室"}]
+				}];
+				data[0].jsList.sort((a, b) => {
+					return a.jsmc > b.jsmc ? 1 : -1;
+				});
+				this.room = data
+				this.show = 1
+				this.qShow = this.queryTime[this.index[1]][2]
+				this.searchData = this.searchData
 			},
-			getTimeArr() {
+			getTimeArr:function() {
 				var weekShow = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
 				var date = new Date();
 				var year = date.getFullYear();
@@ -142,14 +136,13 @@
 				console.log(queryDataArr);
 				return queryDataArr;
 			},
-			bindPickerChange(e) {
-				var that = this;
+			bindPickerChange:function(e) {
 				this.index = e.detail.value;
-				this.searchData = that.queryData[e.detail.value[0]][0];
-				this.searchTime = that.queryTime[e.detail.value[1]][1];
-				this.searchFloor = that.queryFloor[e.detail.value[2]][1];
+				this.searchData = this.queryData[e.detail.value[0]][0];
+				this.searchTime = this.queryTime[e.detail.value[1]][1];
+				this.searchFloor = this.queryFloor[e.detail.value[2]][1];
 			},
-			resetInfo() {
+			resetInfo:function() {
 				this.searchData = util.formatDate()
 				this.searchTime = '0102'
 			}

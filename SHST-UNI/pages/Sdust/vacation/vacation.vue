@@ -26,16 +26,13 @@
 				colorList: app.globalData.colorList
 			}
 		},
-		onLoad() {
-			var that = this
-			app.ajax({
+		onLoad: async function() {
+			var res = await app.request({
 				load: 2,
 				url:app.globalData.url + "ext/vacation",
-				success: (res) => {
-					that.data = res.data.info
-					that.show = 1
-				}
 			})
+			this.data = res.data.info
+			this.show = 1
 		},
 		methods: {
 			

@@ -61,14 +61,13 @@
 			})
 		},
 		methods: {
-			enter: function(e) {
+			enter: async function(e) {
 				this.account = e.detail.value.account;
 				this.password = e.detail.value.password;
-				var that = this;
 				if (this.account.length == 0 || this.password.length == 0) {
 					app.toast("用户名和密码不能为空");
 				} else {
-					app.ajax({
+					var res = await app.request({
 						load: 3,
 						// #ifdef MP-WEIXIN
 						url: app.globalData.url + 'auth/login/1',
@@ -81,40 +80,34 @@
 						// #endif
 						method: 'POST',
 						data: {
-							"account": that.account,
-							"password": encodeURIComponent(that.password),
+							"account": this.account,
+							"password": encodeURIComponent(this.password),
 							"openid": app.globalData.openid
 						},
-						fun: function(res) {
-							console.log(res.data)
-							if (res.data.Message == "No") {
-								that.status = res.data.info
-								this.completeLoad = (res) => {
-									app.toast(res.data.info);
-								}
-							} else if (res.data.Message == "Yes") {
-								uni.setStorage({
-									key: 'user',
-									data: {
-										"account": that.account,
-										"password": that.password,
-										"openid": app.globalData.openid
-									},
-									success: function() {
-										app.globalData.userFlag = 1;
-										uni.reLaunch({
-											url: '/pages/Home/tips/tips'
-										})
-									}
+					})
+					console.log(res.data)
+					if (res.data.Message == "No") {
+						this.status = res.data.info
+						app.toast(res.data.info);
+					} else if (res.data.Message == "Yes") {
+						uni.setStorage({
+							key: 'user',
+							data: {
+								"account": this.account,
+								"password": this.password,
+								"openid": app.globalData.openid
+							},
+							success: function() {
+								app.globalData.userFlag = 1;
+								uni.reLaunch({
+									url: '/pages/Home/tips/tips'
 								})
-							} else {
-								that.status = "ERROR"
-								this.completeLoad = (res) => {
-									app.toast("请求错误");
-								}
 							}
-						}
-					});
+						})
+					} else {
+						this.status = "ERROR"
+						app.toast("请求错误");
+					}
 				}
 			},
 			switchChange(e) {
@@ -178,8 +171,8 @@
 		margin: 0 4px 0 8px;
 		align-self: center;
 	}
-	
-	.a-input{
+
+	.a-input {
 		border: none;
 		margin: 7px 0;
 	}

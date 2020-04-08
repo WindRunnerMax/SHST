@@ -21,15 +21,12 @@
 				data: []
 			}
 		},
-		onLoad() {
-			var that = this;
-			app.ajax({
+		onLoad: async function() {
+			var res = await app.request({
 				load: 2,
 				url: app.globalData.url + 'ext/urlshare',
-				success: (res) => {
-					that.data = res.data.url
-				}
 			})
+			this.data = res.data.url
 		},
 		methods: {
 			copy(e) {

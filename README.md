@@ -41,12 +41,12 @@ Q.get_exam_info()                         # 获取考试信息
 ```php
 // PHP/Main.php
 
-# 配置信息
+// 配置信息
 $accountSW = "";                            // 账号
 $passwordSW = "";                           // 密码
 $urlSW = "http://jwgl.sdust.edu.cn/app.do"; // ${学校教务系统}/app.do
 
-# 代码末尾注释的方法 取消注释测试执行
+// 代码末尾注释的方法 取消注释测试执行
 $Q -> getStudentInfo();                     // 获取学生信息
 $Q -> getCurrentTime();                     // 获取学年信息
 $Q -> getTable();                           // 当前周次课表
@@ -57,15 +57,15 @@ $Q -> getExam();                            // 获取考试信息
 ```
 
 ### Java
-```php
+```java
 // Java/MainSw.java
 
-# 配置信息
+// 配置信息
 private String account = "";                            // 账号
 private String password = "";                           // 密码
 private String url = "http://jwgl.sdust.edu.cn/app.do"; // ${学校教务系统}/app.do
 
-# 代码末尾注释的方法 取消注释测试执行
+// 代码末尾注释的方法 取消注释测试执行
 Q.getStudentInfo().exec();                              // 获取学生信息
 Q.getCurrentTime().exec();                              // 获取学年信息
 Q.getTable().exec();                                    // 当前周次课表

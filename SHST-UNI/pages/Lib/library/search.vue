@@ -18,7 +18,7 @@
 						<view>{{item.infoList[3]}}</view>
 					</view>
 					<view class='rightJump'>
-						<view> > </view>
+						<view class='iconfont icon-arrow-right'></view>
 					</view>
 				</view>
 			</layout>
@@ -48,7 +48,7 @@
 
 <script>
 	const app = getApp();
-	const util = require("@/utils/util.js")
+	import {regMatch} from "@/utils/util.js";
 	export default {
 		data() {
 			return {
@@ -61,10 +61,10 @@
 		},
 		onLoad: function(options) {
 			var curData = new Date();
-			var startTime = "7:00";
+			var startTime = "07:00";
 			var endTime = "22:30";
 			var curTime = curData.getHours() + ":" + curData.getMinutes();
-			if (util.compareTimeInSameDay(startTime, curTime) || util.compareTimeInSameDay(curTime, endTime)) {
+			if (startTime > curTime || curTime > endTime) {
 				app.toast("当前时间图书馆服务已关闭");
 				return false;
 			}
@@ -85,21 +85,14 @@
 				try {
 					if (res.data.Message === "Yes") {
 						var bookList = [];
-						var repx = /<li onclick.*?>[\s\S]*?<\/li>/g;
-						var pageInfo = res.data.info.match(/第[\S]*页/);
-						res.data.info.match(repx).forEach(function(value, index, array) {
+						var repx = /<li (onclick.*?>[\s\S]*?)<\/li>/g;
+						var pageInfo = res.data.info.match(/[0-9][\S]*页/);
+						regMatch(repx,res.data.info).forEach((value, index, array) => {
 							var listObject = {};
-							var infoBookFour = [];
-							repx = /<em>.*<\/em>/g;
-							value.match(repx).map(function(valueBook, indexBook, arrayBook) {
-								valueBook = valueBook.replace("<em>", "");
-								valueBook = valueBook.replace("</em>", "");
-								infoBookFour.push(valueBook);
-								return value;
-							})
-							listObject.infoList = infoBookFour;
-							repx = /javascript:bookDetail(.)*;/g;
-							listObject.id = value.match(repx)[0].match(/[0-9]+/)[0];
+							repx = /<em>(.*?)<\/em>/g;
+							listObject.infoList = regMatch(repx,value);
+							repx = /javascript:bookDetail\('\/opac\/m\/book\/(.*)'\)/g;
+							listObject.id = regMatch(repx,value)[0];
 							bookList.push(listObject);
 						})
 						console.log(bookList)
@@ -149,7 +142,10 @@
 		width: 150px;
 		margin-right: 10px;
 	}
-
+	
+	.leftInfo{
+		line-height: 26px;
+	}
 	.leftInfo:first-line {
 		font-size: 18px;
 	}

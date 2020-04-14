@@ -110,18 +110,8 @@
 			}
 		},
 		onLoad: function(options) {
-			// #ifdef MP-ALIPAY
-			if (this.artical === "数据加载中") this.artical = [{
-				type: "text",
-				text: "数据加载中"
-			}]
-			// #endif
 			app.eventBus.on('LoginEvent', this.openidEvent);
-			if (app.globalData.openid !== "") this.openidEvent({
-				data: {
-					Message: app.globalData.loginStatus
-				}
-			});
+			if (app.globalData.openid !== "") this.openidEvent({data: {Message: app.globalData.loginStatus}});
 		},
 		methods: {
 			openidEvent: function(res) {
@@ -236,7 +226,7 @@
 					return false;
 				}
 				console.log("GET EVENT FROM REMOTE");
-				var res = app.request({
+				var res = await app.request({
 					url: app.globalData.url + "todo/getEvent",
 				})
 				if (res.data.data && res.data.data != 3) this.eventDipose(res.data.data);

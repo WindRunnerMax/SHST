@@ -6,12 +6,12 @@
 			openid: "",
 			userFlag: 0, // 0 未登录 1 已登陆
 			initData: {},
-			version: "3.2.1",
+			version: "3.3.0",
 			curTerm: "2019-2020-1",
 			curTermStart: "2019-08-26",
 			colorList: dispose.colorList,
-			url: 'https://www.touchczy.top/',
-			// url: 'http://dev.touchczy.top/',
+			// url: 'https://www.touchczy.top/',
+			url: 'http://dev.touchczy.top/',
 			header: {'content-type': 'application/x-www-form-urlencoded'}
 		},
 		onPageNotFound: (res) => { //处理404

@@ -21,6 +21,7 @@
 		</form>
 		<view class='tips'>
 			<view>请输入强智系统账号密码</view>
+			<view style="color: #3CB371;" @click="exLogin">测试账号登陆</view>
 		</view>
 		<view style='margin:10px 0 0 3px;font-size:13px;color:red;'>{{status}}</view>
 
@@ -45,7 +46,6 @@
 					if (res.data && res.data.account && res.data.password) {
 						this.account = res.data.account
 						this.password = decodeURIComponent(res.data.password)
-						app.globalData.openid = res.data.openid
 					}
 
 				}
@@ -59,6 +59,8 @@
 			uni.removeStorage({
 				key: 'event'
 			})
+			app.globalData.url = "https://www.touchczy.top/";
+			app.globalData.userFlag = 0;
 		},
 		methods: {
 			enter: async function(e) {
@@ -95,7 +97,6 @@
 							data: {
 								"account": this.account,
 								"password": this.password,
-								"openid": app.globalData.openid
 							},
 							success: function() {
 								app.globalData.userFlag = 1;
@@ -110,7 +111,7 @@
 					}
 				}
 			},
-			switchChange(e) {
+			switchChange: function(e) {
 				this.hidePassword = !e.detail.value
 			},
 			getUserInfo: function(e) {
@@ -119,6 +120,13 @@
 				this.userInfo = e.detail.userInfo
 				this.hasUserInfo = true
 			},
+			exLogin: function(e){
+				app.globalData.url = "https://www.touchczy.top/example/";
+				app.globalData.userFlag = 1;
+				uni.reLaunch({
+					url: '/pages/Home/tips/tips'
+				})
+			}
 		}
 	}
 </script>

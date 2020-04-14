@@ -213,11 +213,13 @@
 
 <style>
 	.a-input {
+		margin: 0;
+		margin-top: 10px;
+		padding: 0 5px;
 		border-bottom: 1px solid #eee;
-		padding: 5px 0;
 	}
 
-	.dot {
+	.a-dot {
 		margin: 0 3px;
 	}
 

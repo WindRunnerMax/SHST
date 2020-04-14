@@ -29,6 +29,9 @@ const extDate = () => {
 	}
 }
 
+/**
+ * 日期相差天数
+ */
 const dateDiff = (startDateString, endDateString) => {
   var separator = "-"; //日期分隔符
   var startDates = startDateString.split(separator);
@@ -39,16 +42,16 @@ const dateDiff = (startDateString, endDateString) => {
   return diff;
 }
 
-const compareTimeInSameDay = (t1, t2) => {
-  let d = new Date()
-  let ft1 = d.setHours(t1.split(":")[0], t1.split(":")[1])
-  let ft2 = d.setHours(t2.split(":")[0], t2.split(":")[1])
-  return ft1 > ft2
+/**
+ * 正则匹配
+ */
+const regMatch = (regex, s) => {
+  var result = [];
+  var temp = null;
+  regex = new RegExp(regex,"g");
+  while(temp=regex.exec(s)) result.push(temp[1] ? temp[1] : temp[0]);
+  return result;
 }
 
-module.exports = {
-	formatDate: formatDate,
-	extDate: extDate,
-	dateDiff: dateDiff,
-	compareTimeInSameDay,compareTimeInSameDay
-}
+export { formatDate,extDate,dateDiff,regMatch }
+module.exports = { formatDate,extDate,dateDiff,regMatch }

@@ -25,6 +25,7 @@
 
 <script>
 	const app = getApp()
+	import {regMatch} from "@/utils/util.js";
 	export default {
 		data() {
 			return {
@@ -44,29 +45,11 @@
 			try{
 				if (res.data.Message === "Yes") {
 					var bookInfo = {};
-					var repx = /<table.*?>[\s\S]*?<\/table>/;
-					var bookInfoString = res.data.info.match(repx);
-					repx = /<h2>.*?<\/h2>/;
-					bookInfo.name = bookInfoString[0].match(repx)[0].replace("<h2>", "").replace("</h2>", "");
-					repx = /<tr><td>.*<\/td><\/tr>/g;
+					bookInfo.name = regMatch(/<h2>(.*?)<\/h2>/g,res.data.info)[0];
 					var bookInfoArray = [];
-					bookInfoString[0].match(repx).map((value, index) => {
-						bookInfoArray.push(value.replace("<tr><td>", "").replace("</td></tr>", ""));
-						return value;
-					})
-					var bookStroageArray = [];
-					repx = /<li>[\s\S]*?<\/li>/g;
-					bookInfoString = res.data.info.match(repx);
-					repx = /<p.*>.*<\/p>/g;
-					bookInfoString.forEach(value => {
-						var stroageMatch = value.match(repx);
-						if (stroageMatch) {
-							stroageMatch.map((value, index) => {
-								bookStroageArray.push(value.replace(/<p.*?>/, "").replace("</p>", ""));
-								return value;
-							})
-						}
-					})
+					regMatch(/<tr><td>([\S]*?)<\/?td><\/tr>/g,res.data.info).forEach(value => bookInfoArray.push(value));
+					var liBookInfo = regMatch(/<ul data-role="listview">[\s\S]*?<\/ul>/g,res.data.info)[0];
+					var bookStroageArray = regMatch(/<p.*?>(.*?)<\/p>/g,liBookInfo);
 					bookInfo.bookInfoArray = bookInfoArray;
 					bookInfo.bookStroageArray = bookStroageArray;
 					this.data = bookInfo

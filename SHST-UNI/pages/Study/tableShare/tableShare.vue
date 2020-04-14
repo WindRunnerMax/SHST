@@ -69,7 +69,7 @@
 			</view>
 		</layout>
 
-		<layout title="Tips" v-if="data.status === 1">
+		<layout title="Tips" v-if="data.status === 1" style="line-height: 27px;">
 			<view>1.向对方发起请求(对方必须是正常登陆过软件或者小程序才可以)，对方通过后，你们将能够在此看到自己与对方的课表</view>
 		</layout>
 	</view>

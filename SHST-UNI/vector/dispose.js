@@ -13,10 +13,11 @@ module.exports = {
 /**
  * 颜色方案
  */
+
 // module.exports.colorList = ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7", "#ABA0CA", "#9F8BEC",
 //     "#ACA4D5", "#6495ED", "#7BCDA5", "#76B4EF","#E1C38F","#F6C46A","#B19ED1","#F09B98","#87CECB","#D1A495","#89D196"
 // ];
-module.exports.colorList = ["#FE9E9F", "#93BAFF", "#D999F9", "#75E1A5", "#FFCA62", "#FFA477"];
+module.exports.colorList = ["#FE9E9F", "#93BAFF", "#D999F9", "#81C784", "#FFCA62", "#FFA477"];
 
 /**
  * 拓展对象
@@ -273,18 +274,10 @@ function onLaunch() {
 			// #ifdef MP-QQ
 			url: app.globalData.url + 'auth/QQ',
 			// #endif
-			// #ifdef MP-ALIPAY
-			url: app.globalData.url + 'auth/alipay',
-			// #endif
 			method: 'POST',
 			autoCookie: false,
 			data: {
-				// #ifndef MP-ALIPAY
 				"code": res.code,
-				// #endif
-				// #ifdef MP-ALIPAY
-				"code": res.authCode,
-				// #endif
 				user: JSON.stringify(userInfo)
 			}
 		})
@@ -312,7 +305,7 @@ function onLaunch() {
 		if (res.statusCode !== 200 || !res.data.initData || !res.data.initData.curTerm)  return Promise.reject("DATA INIT FAIL");
 		else app.$scope.eventBus.commit('LoginEvent', res);
 	}).catch((err) => {
-		console.warn(err);
+		console.log(err);
 		uni.showModal({
 			title: '警告',
 			content: '数据初始化失败,点击确定重新初始化数据',

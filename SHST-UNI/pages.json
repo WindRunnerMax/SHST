@@ -49,25 +49,25 @@
 			"path": "pages/Sdust/camptour/details",
 			"style": {
 				"navigationBarBackgroundColor": "#079DF2",
-				"navigationBarTextStyle": "white"
+				"navigationBarTextStyle": "#fff"
 			}
 		}, {
 			"path": "pages/Sdust/camptour/index",
 			"style": {
 				"navigationBarBackgroundColor": "#079DF2",
-				"navigationBarTextStyle": "white"
+				"navigationBarTextStyle": "#fff"
 			}
 		}, {
 			"path": "pages/Sdust/camptour/polyline",
 			"style": {
 				"navigationBarBackgroundColor": "#079DF2",
-				"navigationBarTextStyle": "white"
+				"navigationBarTextStyle": "#fff"
 			}
 		}, {
 			"path": "pages/Sdust/camptour/search",
 			"style": {
 				"navigationBarBackgroundColor": "#079DF2",
-				"navigationBarTextStyle": "white"
+				"navigationBarTextStyle": "#fff"
 			}
 		}, {
 			"path": "pages/Ext/link/link",
@@ -91,12 +91,12 @@
 		}, {
 			"path": "pages/User/about/about",
 			"style": {
-				"navigationBarBackgroundColor": "white"
+				"navigationBarBackgroundColor": "#fff"
 			}
 		}, {
 			"path": "pages/User/reward/reward",
 			"style": {
-				"navigationBarBackgroundColor": "white"
+				"navigationBarBackgroundColor": "#fff"
 			}
 		}, {
 			"path": "pages/User/reward/rewardList",
@@ -104,12 +104,12 @@
 		}, {
 			"path": "pages/Home/auxiliary/notFound",
 			"style": {
-				"navigationBarBackgroundColor": "white"
+				"navigationBarBackgroundColor": "#fff"
 			}
 		}, {
 			"path": "pages/Home/auxiliary/login",
 			"style": {
-				"navigationBarBackgroundColor": "white"
+				"navigationBarBackgroundColor": "#fff"
 			}
 		}
 	],

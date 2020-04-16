@@ -1,6 +1,5 @@
 "use strict";
-const md5 = require('@/utils/md5.js');
-const eventBus = require('@/utils/eventBus.js');
+
 module.exports = {
 	ajax,
 	toast,
@@ -258,9 +257,16 @@ function request(option) {
  * APP启动事件
  */
 function onLaunch() {
+	const util = require('@/utils/util.js');
+	const pubFct = require('@/vector/pubFct.js');
+	const eventBus = require('@/utils/eventBus.js');
 	var app = this;
+	checkUpdate(); //小程序更新
+	util.extDate(); //拓展Date原型
 	app.$scope.eventBus = eventBus.getEventBus;
 	var userInfo = uni.getStorageSync("user") || {};
+	app.globalData.colorN = app.globalData.colorList.length;
+	app.globalData.curWeek = pubFct.getCurWeek(app.globalData.curTermStart);
 	uni.login({
 		scopes: 'auth_base'
 	}).then((data) => {
@@ -283,11 +289,18 @@ function onLaunch() {
 		})
 	}).then((res) => {
 		setCookie(res, app);
-		app.globalData.curTerm = res.data.initData.curTerm
-		app.globalData.curTermStart = res.data.initData.termStart
-		app.globalData.curWeek = res.data.initData.curWeek
+		app.globalData.curTerm = res.data.initData.curTerm;
+		app.globalData.curTermStart = res.data.initData.termStart;
+		app.globalData.curWeek = res.data.initData.curWeek;
 		app.globalData.loginStatus = res.data.Message;
 		app.globalData.initData = res.data.initData;
+		if(app.globalData.initData.custom){
+			let custom = app.globalData.initData.custom;
+			if(custom.color_list) {
+				app.globalData.colorList = JSON.parse(custom.color_list);
+				app.globalData.colorN = app.globalData.colorList.length;
+			}
+		}
 		if (res.data.Message === "Ex") app.globalData.userFlag = 1;
 		else app.globalData.userFlag = 0;
 		console.log("Status:" + (app.globalData.userFlag === 1 ? "User Login" : "New User"));

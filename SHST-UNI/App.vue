@@ -10,8 +10,8 @@
 			curTerm: "2019-2020-1",
 			curTermStart: "2019-08-26",
 			colorList: dispose.colorList,
-			// url: 'https://www.touchczy.top/',
-			url: 'http://dev.touchczy.top/',
+			url: 'https://www.touchczy.top/',
+			// url: 'http://dev.touchczy.top/',
 			header: {'content-type': 'application/x-www-form-urlencoded'}
 		},
 		onPageNotFound: (res) => { //处理404
@@ -22,12 +22,6 @@
 		onLaunch: function() {
 			console.log("APP INIT");
 			dispose.onLaunch.apply(this); //启动加载事件
-			const util = require('utils/util.js');
-			const pubFct = require('vector/pubFct.js');
-			util.extDate(); //拓展Date原型
-			dispose.checkUpdate(); //小程序更新
-			this.globalData.colorN = this.globalData.colorList.length;
-			this.globalData.curWeek = pubFct.getCurWeek(this.globalData.curTermStart);
 			this.$scope.extend = dispose.extend;
 			this.$scope.extend({
 			  ajax: dispose.ajax,

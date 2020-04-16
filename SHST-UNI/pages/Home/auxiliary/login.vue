@@ -77,9 +77,6 @@
 						// #ifdef MP-QQ
 						url: app.globalData.url + 'auth/login/2',
 						// #endif
-						// #ifdef MP-ALIPAY
-						url: app.globalData.url + 'auth/login/3',
-						// #endif
 						method: 'POST',
 						data: {
 							"account": this.account,

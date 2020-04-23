@@ -86,6 +86,7 @@ Q.getExamInfo().exec();                                 // 获取考试信息
 3. 虽然数据接口由智校园App得来，但这并不意味着只有学校支持智校园才能使用数据接口，强智教务系统的接口一般是默认开放的，当然系统管理员可以手动关闭，而智校园的使用是需要强智公司授权的，也就是说虽然学校不能用智校园，但是完全有可能开放接口
 4. 目前发现有的教务系统不能直接查询全部成绩，这个接口的使用请自行验证，按学期查询成绩的接口使用目前并未发现问题
 5. 如果接口无法使用，可以尝试直接识别验证码爬取教务系统，验证码识别请看 https://github.com/WindrunnerMax/SWVerifyCode 此仓库，提供了使用 Python、PHP、Java、JavaScript 识别验证码的示例
+6. 对于请求的URL，是直接使用protocol://hostname[:port]/app.do，并不是学生客户端的URL再拼接app.do，具体可以访问http://app.qzdatasoft.com:9876/qzkjapp/phone/provinceData查阅，此外有些使用ASPX的强智系统的开放接口为${学校教务系统}/app/app.ashx
 ***/
 ```
 

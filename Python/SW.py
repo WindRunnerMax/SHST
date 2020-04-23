@@ -26,11 +26,11 @@ class SW(object):
         self.session = self.login()
     
     HEADERS = {
-    "User-Agent":"Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )",
-    "Referer": "http://www.baidu.com",
-    "accept-encoding": "gzip, deflate, br",
-    "accept-language": "zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2",
-    "cache-control": "max-age=0"
+        "User-Agent":"Mozilla/5.0 (Linux; U; Mobile; Android 6.0.1;C107-9 Build/FRF91 )",
+        "Referer": "http://www.baidu.com",
+        "accept-encoding": "gzip, deflate, br",
+        "accept-language": "zh-CN,zh-TW;q=0.8,zh;q=0.6,en;q=0.4,ja;q=0.2",
+        "cache-control": "max-age=0"
     }
 
     def login(self):
@@ -42,12 +42,9 @@ class SW(object):
         session = requests.Session()
         req = session.get(self.url, params=params,timeout = 5,headers = self.HEADERS)
         s = json.loads(req.text)
-        print(s['msg'])
-        if s['flag'] != "1" :
-            exit(0)
+        print(s)
+        if s['flag'] != "1" : exit(0)
         self.HEADERS['token'] = s['token']
-        # print(s['token'])
-        # print(self.HEADERS)
         return session
 
     
@@ -63,7 +60,6 @@ class SW(object):
         }
         req = self.get_handle(params)
         print(req.text)
-        pass
     
     def get_current_time(self):
         params = {
@@ -84,7 +80,6 @@ class SW(object):
         }
         req = self.get_handle(params)
         print(req.text)
-        pass
 
     def get_classroom_info(self,idleTime = "allday"):
         params={
@@ -103,9 +98,9 @@ class SW(object):
         }
         req = self.get_handle(params)
         print("全部成绩" if sy == "" else sy)
-        if req.text != "null" :
+        s = json.loads(req.text)
+        if s[0] != None :
             s = json.loads(req.text)
-            # print(s)
             for x in s:
                 print("%s   %d   %s" % (str(x['zcj']),x['xf'],x['kcmc']))
             print("绩点：" + str(self.get_gp(s)))

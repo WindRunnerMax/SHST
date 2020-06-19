@@ -119,7 +119,7 @@ request()      // 网络请求封装 Promise
 
 ### 目录结构  
 
-[关于UNIAPP重构以及类的封装文档](https://blog.csdn.net/qq_40413670/article/details/103796680)
+[关于UNIAPP重构以及类的封装文档](https://blog.touchczy.top/#/MiniProgram/%E5%B1%B1%E7%A7%91%E5%B0%8F%E7%AB%99%E5%B0%8F%E7%A8%8B%E5%BA%8F)
 
 ```
 SHST-UNI                              // 山科小站总目录

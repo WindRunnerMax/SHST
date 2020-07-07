@@ -6,7 +6,7 @@
  * Distributed under the BSD License
  * See http://pajhome.org.uk/crypt/md5 for more info.
  */
-module.exports = {
+export default {
   hexMD5: hex_md5, //需要输出的加密算法，我这边只写了我需要得两种
   b64Md5: b64_md5,
 } 

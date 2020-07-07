@@ -2,7 +2,7 @@
  * yyyy年 MM月 dd日 hh1~12小时制(1-12) HH24小时制(0-23) mm分 ss秒 S毫秒 K周
  */
 const formatDate = (fmt = "yyyy-MM-dd", date = new Date()) => {
-    var week = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+    var week = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
     var o = {
         "M+": date.getMonth() + 1, //月份
         "d+": date.getDate(), //日
@@ -15,7 +15,8 @@ const formatDate = (fmt = "yyyy-MM-dd", date = new Date()) => {
     };
     if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
     for (var k in o) {
-        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        if (new RegExp("(" + k + ")").test(fmt)) 
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (( "00" + o[k]).substr(("" + o[k]).length)));
     }
     return fmt;
 }
@@ -29,22 +30,18 @@ const extDate = () => {
     }
 }
 
+/**
+ * 日期相差天数
+ */
 const dateDiff = (startDateString, endDateString) => {
-  var separator = "-"; //日期分隔符
-  var startDates = startDateString.split(separator);
-  var endDates = endDateString.split(separator);
-  var startDate = new Date(startDates[0], startDates[1] - 1, startDates[2]);
-  var endDate = new Date(endDates[0], endDates[1] - 1, endDates[2]);
-  var diff = parseInt((endDate - startDate) / 1000 / 60 / 60 / 24); //把相差的毫秒数转换为天数
-  return diff;
+    var separator = "-"; //日期分隔符
+    var startDates = startDateString.split(separator);
+    var endDates = endDateString.split(separator);
+    var startDate = new Date(startDates[0], startDates[1] - 1, startDates[2]);
+    var endDate = new Date(endDates[0], endDates[1] - 1, endDates[2]);
+    var diff = parseInt((endDate - startDate) / 1000 / 60 / 60 / 24); //把相差的毫秒数转换为天数
+    return diff;
 }
 
-const compareTimeInSameDay = (t1, t2) => {
-  let d = new Date()
-  let ft1 = d.setHours(t1.split(":")[0], t1.split(":")[1])
-  let ft2 = d.setHours(t2.split(":")[0], t2.split(":")[1])
-  return ft1 > ft2
-}
-
-export { formatDate,extDate,dateDiff,compareTimeInSameDay }
-export default { formatDate,extDate,dateDiff,compareTimeInSameDay }
+export { formatDate, extDate, dateDiff }
+export default { formatDate, extDate, dateDiff }

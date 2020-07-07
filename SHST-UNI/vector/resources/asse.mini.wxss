@@ -8,15 +8,8 @@ page {
     box-sizing: border-box;
     font-size: 15px;
     background-color: #F8F8F8;
-    --color-blue: #4C98F7;
-    --color-green: #009688;
-    --color-yellow: #FFB800;
-    --color-orange: #FF5722;
 }
 
-/**
- * 动画
- */
 @keyframes shallow {
     from {
         opacity: 1;
@@ -26,11 +19,6 @@ page {
         opacity: 0.9;
     }
 }
-
-/**
- * Button
- * Color Size
- */
 
 .a-btn {
     display: inline-block;
@@ -43,7 +31,7 @@ page {
     text-rendering: auto;
     font-size: 12px;
     cursor: pointer;
-    background: var(--color-green);
+    background: #009688;
     color: #fff;
     transition: all .3s;
 }
@@ -54,7 +42,7 @@ page {
 }
 
 .a-btn-blue {
-    background: var(--color-blue);
+    background: #1E9FFF;
 }
 
 .a-btn-white {
@@ -66,12 +54,12 @@ page {
     border: 1px solid #eee;
 }
 
-.a-btn-yellow {
-    background: var(--color-yellow);
+.a-btn-yello {
+    background: #FFB800;
 }
 
 .a-btn-orange {
-    background: var(--color-orange);
+    background: #FF5722;
 }
 
 .a-btn-disable {
@@ -99,6 +87,7 @@ page {
     height: 22px;
     line-height: 22px;
     padding: 0 5px;
+    font-size: 12px;
     border-radius: 2px;
     font-size: 10px;
 }
@@ -110,10 +99,6 @@ page {
     border-radius: 36px;
     padding: 0;
 }
-
-/**
- * 组件
- */
 
 .a-hr {
     display: block;
@@ -137,11 +122,7 @@ page {
     color: #aaa;
 }
 
-/**
- * 面板
- */
-
-@media screen and (max-width:600px) { /* <=600 */
+@media screen and (max-width:600px) {
     .a-panel {
         margin: 5px;
         padding: 3px;
@@ -156,10 +137,9 @@ page {
         margin: 5px;
         padding: 3px;
     }
-
 }
 
-@media screen and (min-width:600px){  /* >=600 */
+@media screen and (min-width:600px) {
     .a-panel {
         margin: 5px auto;
         padding: 3px;
@@ -183,10 +163,6 @@ page {
     }
 }
 
-
-/**
- * 表格
- */
 .a-table {
     margin-top: 5px;
     border-top: 1px solid #E6E6E6;
@@ -218,13 +194,36 @@ page {
     border-left: 1px solid #E6E6E6;
 }
 
-.a-table tbody :hover {
+.a-table tbody:hover {
     background-color: #f2f2f2;
 }
 
-/**
- * 位置
- */
+.a-show {
+    transition: all .3s;
+    display: block !important;
+}
+
+.a-hide{
+    display: none;
+}
+
+.a-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: #1E9FFF;
+}
+ 
+.a-link {
+    color: #4C98F7;
+    text-decoration: underline;
+}
+
+.a-verline {
+    width: 2px;
+    margin: 2px 5px;
+    background-color: #4C98F7;
+}
 
 .x-CenterCon {
     display: flex;
@@ -236,50 +235,6 @@ page {
     align-items: center;
 }
 
-
-/**
- * 样式
- */
-
-.a-show {
-    transition: all .3s;
-    display: block;
-}
-
-.a-hide {
-    transition: all .3s !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.a-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 8px;
-    background-color: var(--color-blue);
-}
-
-.a-link {
-    color: var(--color-blue);
-    text-decoration: underline;
-}
-
-.a-verline {
-    width: 2px;
-    margin: 2px 5px;
-    background-color: var(--color-blue);
-}
-
-.a-full{
-    flex: 1;
-}
-
-
-/**
- * 卡片
- */
 .a-card .a-card-title {
     background-color: #FFFFFF;
     padding: 12px 5px 10px 11px;
@@ -296,20 +251,18 @@ page {
     margin-bottom: 15px;
 }
 
-/**
- * 表单
- */
 .a-select {
     height: 22px;
     padding: 0 5px;
+    font-size: 12px;
     border-radius: 2px;
     font-size: 10px;
     position: relative;
     top: -1px;
 }
 
-.a-label{
-    margin: 0 ;
+.a-label {
+    margin: 0;
     display: flex;
     align-items: center;
     font-size: 8px;
@@ -317,23 +270,23 @@ page {
     justify-content: flex-end;
 }
 
-.a-input{
+.a-input {
     border: 1px solid #eee;
     margin: 10px;
     display: block;
-    padding: 5px;
+    padding: 3px 5px;
 }
 
-.a-input-con{
+.a-input-con {
     display: flex;
     margin: 5px;
 }
 
-.a-input-con .a-input{
+.a-input-con .a-input {
     margin: 0;
 }
 
-.a-input-con .a-label{
+.a-input-con .a-label {
     border: 1px solid #EEEEEE;
     border-right: none;
     padding: 7px 0;
@@ -341,19 +294,19 @@ page {
     justify-content: center;
 }
 
-.a-input-con-line{
+.a-input-con-line {
     margin: 5px;
     padding: 5px 10px;
     border-bottom: 1px solid #EEEEEE;
     display: flex;
 }
 
-.a-input-con-line .a-label{
+.a-input-con-line .a-label {
     min-width: 50px;
     justify-content: center;
 }
 
-.a-input-con-line .a-input{
+.a-input-con-line .a-input {
     margin: 0 0 0 10px;
     border: none;
     padding: 0;

@@ -16,52 +16,52 @@ import custom from "@/views/shst/custom"
 Vue.use(VueRouter)
 
 const routes = [
-	{
-		path: "/",
-		component: index,
-	}, {
-		path: '/mp',
-		component: mp,
-		children: [
-			{
-				path: 'cl/:t/:k/:s',
-				name: "scl",
-				component: scl,
-			},
-			{
-				path: 'lcl',
-				name: "lcl",
-				component: lcl,
-			},
-			{
-				path: 'pu/:u',
-				name: "qrcode",
-				component: qrcode,
-			}
-		]
-	}, {
-		path: "/shst",
-		component: shst,
-		children:[
-			{
-				path: "login/:t/:u/:s",
-				name: "login",
-				component: login
-			},
-			{
-				path: "custom/:t/:u/:s",
-				name: "custom",
-				component: custom
-			},
-		]
-	},{
-		path: '*',
-		component: () => import('@/views/system/notFound')
-	}
+    {
+        path: "/",
+        component: index,
+    }, {
+        path: '/mp',
+        component: mp,
+        children: [
+            {
+                path: 'cl/:t/:k/:s',
+                name: "scl",
+                component: scl,
+            },
+            {
+                path: 'lcl',
+                name: "lcl",
+                component: lcl,
+            },
+            {
+                path: 'pu/:u',
+                name: "qrcode",
+                component: qrcode,
+            }
+        ]
+    }, {
+        path: "/shst",
+        component: shst,
+        children:[
+            {
+                path: "login/:t/:u/:s",
+                name: "login",
+                component: login
+            },
+            {
+                path: "custom/:t/:u/:s",
+                name: "custom",
+                component: custom
+            },
+        ]
+    },{
+        path: '*',
+        component: () => import('@/views/system/notFound')
+    }
 ]
 
 const router = new VueRouter({
-	routes
+    routes
 })
 
 export default router

@@ -93,7 +93,7 @@ Q.getExamInfo().exec();                                 // 获取考试信息
   
 ## 山科小站
 
-![show](https://windrunner_max.gitee.io/imgpath/SHST/Static/SHST-WX.jpg)
+![show](https://github.com/WindrunnerMax/SHST/blob/dev/SHST-UNI/static/SHST-WX.jpg?raw=true)
 
 ### 配置相关 
 
@@ -129,6 +129,18 @@ SHST-UNI                              // 山科小站总目录
     │   ├── list.vue                  // 展示用list布局
     │   ├── sentence.vue              // 每日一句封装
     │   └── weather.vue               // 天气封装
+    ├── modules                       // 模块化封装
+    │   ├── cookies.js                // Cookies操作
+    │   ├── copy.js                   // 深浅拷贝
+    │   ├── datetime.js               // 时间日期操作
+    │   ├── event-bus.js              // 事件总线
+    │   ├── global-data.js            // 全局变量
+    │   ├── loading.js                // 加载提示
+    │   ├── operate-limit.js          // 防抖与节流
+    │   ├── regex.js                  // 正则匹配
+    │   ├── request.js                // 网络请求
+    │   ├── toast.js                  // 消息提示
+    │   └── update.js                 // 自动更新 
     ├── pages                         // 页面
     │   ├── Ext                       // 拓展组
     │   ├── Home                      // Tabbar、辅助组
@@ -142,14 +154,13 @@ SHST-UNI                              // 山科小站总目录
     ├── unpackage                     // 打包文件
     ├── utils                         // 辅助功能
     │   ├── amap-wx.js                // 高德地图SDK
-    │   ├── eventBus.js               // 事件消息总线封装
-    │   ├── md5.js                    // MD5引入
-    │   └── util.js                   // 封装时间等操作
-    ├── vector                        // 拓展封装
-    │   ├── camptour                  // 校园导览配置文件
-    │   ├── icon                      // 矢量图标库
-    │   ├── asse.wxss                 // CSS封装
-    │   ├── dispose.js                // JS封装
+    │   └── md5.js                    // MD5引入
+    ├── vector                        // 部署封装
+    │   ├── resources                 // 资源文件
+    │   │   ├── camptour              // 校园导览配置文件
+    │   │   ├── asse.mini.wxss        // 公共样式库
+    │   │   └── iconfont.wxss         // 字体图标
+    │   ├── dispose.js                // 部署小程序
     │   └── pubFct.js                 // 公有方法
     ├── App.vue                       // App全局样式以及监听
     ├── main.js                       // 挂载App，Vue初始化入口文件
@@ -159,6 +170,5 @@ SHST-UNI                              // 山科小站总目录
 ```
 
 ### 小程序  
-![show](https://windrunner_max.gitee.io/imgpath/SHST/Static/SHST-SHOW-2.jpg)
-![show](https://windrunner_max.gitee.io/imgpath/SHST/Static/SHST-SHOW-1.jpg)
-----  
+![show](https://github.com/WindrunnerMax/SHST/blob/dev/SHST-UNI/static/show.jpg?raw=true)
+

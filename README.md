@@ -93,7 +93,7 @@ Q.getExamInfo().exec();                                 // 获取考试信息
   
 ## 山科小站
 
-![show](https://github.com/WindrunnerMax/SHST/blob/dev/SHST-UNI/static/SHST-WX.jpg?raw=true)
+![show](https://cdn.jsdelivr.net/gh/WindrunnerMax/SHST@dev/SHST-UNI/static/SHST-WX.jpg)
 
 ### 配置相关 
 
@@ -170,5 +170,5 @@ SHST-UNI                              // 山科小站总目录
 ```
 
 ### 小程序  
-![show](https://github.com/WindrunnerMax/SHST/blob/dev/SHST-UNI/static/show.jpg?raw=true)
+![show](https://cdn.jsdelivr.net/gh/WindrunnerMax/SHST@dev/SHST-UNI/static/show.jpg)
 

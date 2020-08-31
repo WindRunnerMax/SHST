@@ -1,0 +1,146 @@
+{
+    "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+        {
+            "path": "pages/home/tips/tips",
+            "style": {}
+        }, {
+            "path": "pages/home/auxiliary/webview",
+            "style": {}
+        }, {
+            "path": "pages/user/announce/announce",
+            "style": {}
+        }, {
+            "path": "pages/home/funct/funct",
+            "style": {}
+        }, {
+            "path": "pages/home/user/user",
+            "style": {}
+        }, {
+            "path": "pages/study/time-table/time-table",
+            "style": {}
+        }, {
+            "path": "pages/study/classroom/classroom",
+            "style": {}
+        }, {
+            "path": "pages/study/grade/grade",
+            "style": {}
+        }, {
+            "path": "pages/study/table-share/table-share",
+            "style": {}
+        }, {
+            "path": "pages/library/borrow/borrow",
+            "style": {}
+        }, {
+            "path": "pages/library/library/search",
+            "style": {}
+        }, {
+            "path": "pages/library/library/detail",
+            "style": {}
+        }, {
+            "path": "pages/sdust/calendar/calendar",
+            "style": {}
+        }, {
+            "path": "pages/sdust/map/map",
+            "style": {}
+        }, {
+            "path": "pages/sdust/vacation/vacation",
+            "style": {}
+        }, {
+            "path": "pages/sdust/camptour/details",
+            "style": {
+                "navigationBarBackgroundColor": "#079DF2",
+                "navigationBarTextStyle": "#fff"
+            }
+        }, {
+            "path": "pages/sdust/camptour/index",
+            "style": {
+                "navigationBarBackgroundColor": "#079DF2",
+                "navigationBarTextStyle": "#fff"
+            }
+        }, {
+            "path": "pages/sdust/camptour/polyline",
+            "style": {
+                "navigationBarBackgroundColor": "#079DF2",
+                "navigationBarTextStyle": "#fff"
+            }
+        }, {
+            "path": "pages/sdust/camptour/search",
+            "style": {
+                "navigationBarBackgroundColor": "#079DF2",
+                "navigationBarTextStyle": "#fff"
+            }
+        }, {
+            "path": "pages/ext/link/link",
+            "style": {}
+        }
+        // #ifndef MP-WEIXIN
+        , {
+            "path": "pages/ext/event/event",
+            "style": {}
+        }, {
+            "path": "pages/ext/event/finEvent",
+            "style": {}
+        }
+        // #endif
+        , {
+            "path": "pages/ext/exam/exam",
+            "style": {}
+        }, {
+            "path": "pages/ext/card/card",
+            "style": {}
+        }, {
+            "path": "pages/user/about/about",
+            "style": {
+                "navigationBarBackgroundColor": "#fff"
+            }
+        }, {
+            "path": "pages/user/reward/reward",
+            "style": {
+                "navigationBarBackgroundColor": "#fff"
+            }
+        }, {
+            "path": "pages/user/reward/reward-list",
+            "style": {}
+        }, {
+            "path": "pages/home/auxiliary/not-found",
+            "style": {
+                "navigationBarBackgroundColor": "#fff"
+            }
+        }, {
+            "path": "pages/home/auxiliary/login",
+            "style": {
+                "navigationBarBackgroundColor": "#fff"
+            }
+        }
+    ],
+    "globalStyle": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "山科小站",
+        "navigationBarBackgroundColor": "#F1F1F1",
+        "backgroundColor": "#F8F8F8"
+    },
+    "tabBar": {
+        "color": "#aaa",
+        "selectedColor": "#8A8A8A",
+        "backgroundColor": "#F7F7FA",
+        "list": [{
+                "iconPath": "/static/img/index.png",
+                "selectedIconPath": "/static/img/index-active.png",
+                "pagePath": "pages/home/tips/tips",
+                "text": "首页"
+            },
+            {
+                "iconPath": "/static/img/fun.png",
+                "selectedIconPath": "/static/img/fun-active.png",
+                "pagePath": "pages/home/funct/funct",
+                "text": "功能"
+            },
+            {
+                "iconPath": "/static/img/user.png",
+                "selectedIconPath": "/static/img/user-active.png",
+                "pagePath": "pages/home/user/user",
+                "text": "用户"
+            }
+        ]
+    }
+}

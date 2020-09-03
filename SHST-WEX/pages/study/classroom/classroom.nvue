@@ -1,0 +1,204 @@
+<template>
+	<scrollpage>
+
+		<layout title="空教室">
+			<view class="top">
+				<picker-view indicator-style="height: 40px;" style="width: 500rpx; height: 100px;" @change="bindPickerChange">
+					<picker-view-column>
+						<view v-for="(item,index) in queryData" :key="index" style="align-items: center;">
+							<text class="text" style="line-height: 40px;">{{item[1]}}</text>
+						</view>
+					</picker-view-column>
+					<picker-view-column>
+						<view v-for="(item,index) in queryTime" :key="index" style="align-items: center;">
+							<text class="text" style="line-height: 40px;">{{item[0]}}</text>
+						</view>
+					</picker-view-column>
+					<picker-view-column>
+						<view v-for="(item,index) in queryFloor" :key="index" style="align-items: center;">
+							<text class="text" style="line-height: 40px;">{{item[0]}}</text>
+						</view>
+					</picker-view-column>
+				</picker-view>
+				<view class="btn" @click="loadClassroom">
+					<text style="font-size: 15px;color: #FFFFFF;">搜索</text>
+				</view>
+			</view>
+		</layout>
+
+		<layout v-if="show" :title="qShow+'['+searchData+']'">
+			<view class="floor-name">
+				<text class="text">{{room[0].jxl}}</text>
+			</view>
+			<view class="room-con">
+				<view v-for="(inner,innerIndex) in room[0].jsList" :key="innerIndex">
+					<text class="unit text">{{inner.jsmc}}</text>
+				</view>
+			</view>
+		</layout>
+
+	</scrollpage>
+</template>
+
+<script>
+	import util from "@/modules/datetime.js";
+	import layout from "@/components/layout.nvue";
+	import scrollpage from "@/components/scrollpage.nvue";
+	export default {
+		components: {
+			layout,
+			scrollpage
+		},
+		data: function(){
+			return {
+				show: false,
+				room: [],
+				qShow: "",
+				searchData: util.formatDate(),
+				searchTime: "0102",
+				searchFloor: 1,
+				index: [0, 0, 0],
+				queryData: [],
+				queryTime: [],
+				queryFloor: []
+			}
+		},
+		created: function() {
+			util.extDate(); //拓展Date原型
+			var queryData = this.getTimeArr();
+			var queryTime = [
+				["12节", "0102", "12节(8:00-9:50)"],
+				["34节", "0304", "34节(10:10-12:00)"],
+				["56节", "0506", "56节(14:00-15:50)"],
+				["78节", "0708", "78节(16:00-17:50)"],
+				["9X节", "0910", "9X节(19:00-20:50)"],
+				["上午", "am", "上午(8:00-12:00)"],
+				["下午", "pm", "下午(14:00-17:50)"],
+				["全天", "allday", "全天(8:00-20:50)"]
+			];
+			var queryFloor = [
+				["J1", "1"],
+				["J3", "3"],
+				["J5", "5"],
+				["J7", "7"],
+				["J14", "14"],
+				["S1", "S1"]
+			];
+			this.queryData = queryData;
+			this.queryTime = queryTime;
+			this.queryFloor = queryFloor;
+		},
+		methods: {
+			flagChange: function(e) {
+				var flagIndex = parseInt(e.currentTarget.dataset.index);
+				this.data.flag[flagIndex] = this.data.flag[flagIndex] === "none" ? "flex" : "none";
+				this.flag = this.data.flag;
+			},
+			loadClassroom: function(e) {
+				this.loadClassroomSetTime(e);
+			},
+			loadClassroomSetTime:async function(e) {
+				var res = await uni.$app.request({
+					load: 2,
+					url: uni.$app.data.url,
+					data: {
+						"method": "getKxJscx",
+						"time": this.searchData,
+						"idleTime": this.searchTime,
+						"xqid": 1,
+						"jxlid": this.searchFloor,
+					},
+                })
+                if (res.data.flag) {
+                    uni.$app.toast("未生成教学周历");
+                    return void 0;
+                }
+                var data = res.data;
+                if (!data[0]) data = [{
+                    "jxl": "青岛校区-" + this.searchFloor + "号楼",
+                    jsList: [{
+                        jsmc: "无空教室"
+                    }]
+                }];
+                data[0].jsList.sort((a, b) => a.jsmc > b.jsmc ? 1 : -1);
+                this.room = data;
+                this.show = true;
+                this.qShow = this.queryTime[this.index[1]][2];
+                this.searchData = this.searchData;
+			},
+			getTimeArr: function() {
+				var weekShow = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+				var date = new Date();
+				var year = date.getFullYear();
+				var queryDataArr = [];
+				var week = new Date().getDay();
+				console.log(week);
+				for (var i = 0; i < 7; ++i) {
+					let monthTemp = date.getMonth() + 1;;
+					let dayTemp = date.getDate();
+					let weekTemp = week + i;
+					if (monthTemp < 10) monthTemp = "0" + monthTemp;
+					if (dayTemp < 10) dayTemp = "0" + dayTemp;
+					queryDataArr.push([year + "-" + monthTemp + "-" + dayTemp, weekShow[weekTemp % 7]]);
+					date.addDate(0, 0, 1);
+				}
+				console.log(queryDataArr);
+				return queryDataArr;
+			},
+			bindPickerChange: function(e) {
+				var arr = [0, 0, 0];
+				arr = arr.map((value, index) => {
+					if (e.detail.value[index]) return e.detail.value[index];
+					else return 0;
+				})
+				this.index = arr;
+				this.searchData = this.queryData[arr[0]][0];
+				this.searchTime = this.queryTime[arr[1]][1];
+				this.searchFloor = this.queryFloor[arr[2]][1];
+			},
+			resetInfo: function() {
+				this.searchData = util.formatDate();
+				this.searchTime = "0102";
+			}
+		}
+	}
+</script>
+
+<style>
+	.top {
+		margin: 20px 0;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.unit {
+		padding: 10px 7px;
+		font-size: 13px;
+		background-color: #eee;
+		margin: 3px;
+	}
+
+	.floor-name {
+		padding: 10px 0;
+		justify-content: center;
+		flex-direction: row;
+		margin: 0 0 8px 0;
+		border-style: solid;
+		border-color: #EEEEEE;
+		border-bottom-width: 1px;
+	}
+
+	.room-con {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.btn {
+		background-color: #1E9FFF;
+		border-width: 0;
+		padding: 11px 20px;
+	}
+</style>

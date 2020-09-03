@@ -1,0 +1,170 @@
+<template>
+	<scrollpage>
+
+		<layout>
+			<view class="x-center">
+				<image class="img" src="http://windrunner_max.gitee.io/imgpath/SHST/Static/SDUST.jpg"></image>
+			</view>
+
+			<view class="userinfo-con">
+
+				<view class="unit-info" style="border-top-width: 1px;">
+					<view>
+						<text class="text">学号</text>
+					</view>
+					<text class="text">{{account}}</text>
+				</view>
+
+				<view class="unit-info">
+					<view>
+						<text class="text">姓名</text>
+					</view>
+					<text class="text">{{name}}</text>
+				</view>
+
+				<view class="unit-info">
+					<view>
+						<text class="text">学院</text>
+					</view>
+					<text class="text">{{academy}}</text>
+				</view>
+
+				<view class="unit-info" @click="copy('522567369')">
+					<text class=" text">QQ群</text>
+					<text class="text">522567369</text>
+				</view>
+				<view class="unit-info" @click="jumpUpdate('/pages/user/announce/announce')">
+					<view style="flex-direction: row;align-items: center;">
+						<view>
+							<text class="text">公告</text>
+						</view>
+						<view style="background-color:green;" v-if="point === 'flex'" class="point"></view>
+					</view>
+					<text class="text">></text>
+				</view>
+
+				<view class="unit-info" @click="jump('/pages/user/reward/reward')">
+					<view >
+						<view>
+							<text class="text">赞赏</text>
+						</view>
+					</view>
+					<text class="text">></text>
+				</view>
+
+				<view class="unit-info" @click="jump('/pages/user/about/about')">
+					<view>
+						<text class="text">关于</text>
+					</view>
+					<text class="text">></text>
+				</view>
+
+				<view class="btn" @click="logout">
+					<text style="color: #FFFFFF;font-size: 15px;">注销</text>
+				</view>
+
+			</view>
+		</layout>
+
+	</scrollpage>
+</template>
+
+<script>
+	import layout from "@/components/layout.nvue";
+	import scrollpage from "@/components/scrollpage.nvue";
+	export default {
+		components: {
+			layout,
+			scrollpage
+		},
+		data: function() {
+			return {
+				academy: " ",
+				name: " ",
+				account: " ",
+				point: "none"
+			}
+		},
+		created: async function() {
+			uni.getStorage({
+				key: "point",
+				complete: (res) => {
+					if (res.data !== uni.$app.data.tips) this.point = "flex";
+				}
+			})
+			console.log("GET USERINFO FROM REMOTE");
+			var res = await uni.$app.request({
+				load: 1,
+				url: uni.$app.data.url,
+				data: {
+					"method": "getUserInfo",
+					"xh": uni.$app.data.account
+				},
+            })
+            this.academy = res.data.yxmc;
+            this.name = res.data.xm;
+            this.account = uni.$app.data.account;
+		},
+		methods: {
+			copy: function(copy) {
+				uni.setClipboardData({data: copy})
+			},
+			jump: function(jumpurl) {
+				uni.navigateTo({url: jumpurl})
+			},
+			jumpUpdate: function(jumpurl) {
+				this.point = "none";
+				if (uni.hideTabBarRedDot) {
+					uni.hideTabBarRedDot({index: 2});
+				}
+				uni.navigateTo({url: jumpurl})
+			},
+			logout: function(e) {
+				uni.navigateTo({url: "/pages/home/auxiliary/login?status=E"})
+			}
+		}
+	}
+</script>
+
+<style>
+
+    .img{
+        width: 230px;
+        height: 80px;
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+	.userinfo-con {
+		padding: 10px;
+	}
+
+	.unit-info {
+		height: 50px;
+		line-height: 50px;
+		justify-content: space-between;
+		border-style: solid;
+		border-color: #EEEEEE;
+		border-bottom-width: 1px;
+		flex-direction: row;
+		align-items: center;
+		padding: 10px 15px;
+	}
+
+	.point {
+		width: 8px;
+		height: 8px;
+		border-radius: 8px;
+		margin-left: 8px;
+	}
+
+	.btn{
+		background-color: #FF5722;
+		margin-top: 23px;
+		border-width: 0;
+		padding: 11px 0 ;
+		justify-content: center;
+		align-items: center;
+		color: #FFFFFF;
+	}
+</style>

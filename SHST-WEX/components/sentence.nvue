@@ -1,0 +1,43 @@
+<template>
+	<view>
+
+		<text class="unit">{{sentence}}</text>
+		<text class="unit">{{content}}</text>
+		<image :src="url" class="img"></image>
+
+	</view>
+</template>
+<script>
+	export default {
+		name: "sentence",
+		props: {},
+		methods: {},
+		data() {
+			return {
+				url: "",
+				sentence: "",
+				content: ""
+			}
+		},
+		created: function() {
+			var that = this;
+			uni.request({
+				url: "https://open.iciba.com/dsapi/",
+				success: function(res) {
+					that.url = res.data.picture2;
+					that.sentence = res.data.note;
+					that.content = res.data.content;
+				}
+			})
+		}
+	}
+</script>
+<style scoped>
+	.unit{
+        font-size: 13px;
+		margin: 6px 0 8px 3px;
+	}
+    .img{
+        margin-top: 10px;
+    }
+</style>

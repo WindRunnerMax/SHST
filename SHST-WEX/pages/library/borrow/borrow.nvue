@@ -1,0 +1,102 @@
+<template>
+	<scrollpage>
+
+		<layout title="借阅查询">
+			<view v-for="(item,index) in data" :key="index">
+				<view class="card">
+					<text class="info strong">{{item[0]}}</text>
+					<text class="info">{{item[1]}}</text>
+					<text class="info">{{item[2]}}</text>
+					<text class="info">{{item[3]}}</text>
+					<text class="info">{{item[4]}}</text>
+					<text class="info">{{item[5]}}</text>
+					<text class="info">{{item[6]}}</text>
+					<text class="info" style="margin-bottom: 7px;">{{item[7]}}</text>
+				</view>
+				<view class="hr"></view>
+			</view>
+		</layout>
+
+
+		<layout title="Tips:">
+			<text class="tips">1.图书馆逾期是不扣钱的 </text>
+			<text class="tips">2.如果您借了书但出现PARSE ERROR，有可能您修改了图书馆默认密码，或者是图书馆服务器暂时瘫痪</text>
+			<text class="tips">3.学校图书馆外网访问会定时关闭，正常使用时间大约是在 7:00-22:00</text>
+		</layout>
+
+	</scrollpage>
+</template>
+
+<script>
+	import util from "@/modules/datetime.js";
+	import md5 from "@/utils/md5.js";
+    import {regMatch} from "@/modules/regex";
+	import layout from "@/components/layout.nvue";
+	import scrollpage from "@/components/scrollpage.nvue";
+	export default {
+		components: {
+			layout,
+			scrollpage
+		},
+		data: function() {
+			return {
+				data: []
+			}
+		},
+		created: async function() {
+			var startTime = "07:00";
+			var endTime = "22:30";
+			var curTime = util.formatDate("hh:mm");
+			if (startTime > curTime || curTime > endTime) uni.$app.toast("当前时间图书馆服务已关闭");
+			var res = await uni.$app.request({
+				load: 2,
+				url: "http://interlib.sdust.edu.cn/opac/m/reader/doLogin?returnUrl=/m/loan/renewList",
+				data: {
+					"rdid": uni.$app.data.account.substr(2),
+					"rdPasswd": md5.hexMD5(`Sdust@${uni.$app.data.account.substr(2)}`)
+				},
+            })
+            if (res.data.match(/当前无借阅记录/)) {
+                uni.$app.toast("暂无借阅记录");
+                return true;
+            }
+            var infoArr = [];
+            var tagList =regMatch(/<li>[\s\S]*?<\/li>/g, res.data);
+            if(!tagList) {uni.$app.toast("图书馆服务器似乎出现了一些问题"); return false;}
+            tagList.forEach(value => {
+                var infoArrInner = [];
+                infoArrInner.push(regMatch(/&nbsp;(.*?)<\/h3>/g,value)[0]);
+                regMatch(/<p.*?>(.*?)<\/p>/,value).forEach(value2 => infoArrInner.push(value2));
+                infoArr.push(infoArrInner);
+            })
+            console.log(infoArr);
+            this.data = infoArr;
+		},
+		methods: {
+
+		}
+	}
+</script>
+
+<style>
+	.strong {
+		font-size: 21px;
+		line-height: 27px;
+	}
+
+	.hr {
+		margin: 3px 0;
+		background-color: #eee !important;
+		height: 1px;
+	}
+
+	.info {
+		font-size: 15px;
+		margin-top: 7px;
+	}
+
+	.tips {
+		font-size: 15px;
+		line-height: 25px;
+	}
+</style>

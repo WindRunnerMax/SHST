@@ -1,0 +1,178 @@
+<template>
+	<view class="page">
+
+		<layout>
+			<weather></weather>
+		</layout>
+
+
+		<layout :title="today">
+			<view slot="headslot">
+				<view class="y-center">
+					<text class="iconfont icon refresh" @click="refresh">&#xe650;</text>
+				</view>
+			</view>
+			<view class="artical-con border" @click="articalJump">
+				<text class="iconfont icon">&#xe628;</text>
+				<text class="link" :nodes="artical">{{artical}}</text>
+			</view>
+			<navigator url="/pages/user/announce/announce" open-type="navigate" class="artical-con border" hover-class="none">
+				<text class="iconfont icon">&#xe628;</text>
+				<text class="link">更多公告...</text>
+			</navigator>
+		</layout>
+
+
+		<layout title="今日课程">
+			<view v-for="(item,index) in table" :key="index">
+                <view v-if="item">
+                    <view class="unit-table border"   v-for="(classObj,classIndex) in item.table" :key="classIndex">
+                        <view class="y-center a-lmt" >
+                            <view class="dot" :style="{'background-color':classObj.background}"></view>
+                            <text class="text cr">第{{2*(classObj.knot + 1) - 1}}{{2*(classObj.knot + 1)}}节</text>
+                            <text class="text cr mleft5">{{classObj.teacher}}</text>
+                        </view>
+                        <view class="y-center a-lmt">
+                            <text class="text cr a-mt a-mb a-ml a-mr">{{classObj.className}}</text>
+                            <text class="text cr mleft5">{{classObj.classroom}}</text>
+                        </view>
+                    </view>
+                </view>
+			</view>
+			<view class="unit-table border" v-if="tips">
+				<view class="y-center">
+					<view class="dot" style="background-color:#eee;"></view>
+					<text class="text l6">{{tips}}</text>
+				</view>
+				<text class="text tips-info">{{tipsInfo}}</text>
+			</view>
+		</layout>
+
+		<layout title="每日一句">
+			<sentence></sentence>
+		</layout>
+
+	</view>
+</template>
+
+<script>
+	import weather from "@/components/weather.nvue";
+	import sentence from "@/components/sentence.nvue";
+	import headslot from "@/components/headslot.nvue";
+	import layout from "@/components/layout.nvue";
+	import util from "@/modules/datetime.js";
+	import pubFct from "@/vector/pubFct.js";
+
+	export default {
+		components: {
+			weather,
+			sentence,
+			headslot,
+			layout
+		},
+		data: function() {
+			return {
+				today: util.formatDate("yyyy-MM-dd K"),
+				table: [],
+				todoList: [],
+				tips: "数据加载中",
+				tipsInfo: "数据加载中",
+				artical: "数据加载中",
+			}
+		},
+		onLoad: function(options) {
+			this.getArtical();
+			this.getRemoteTable();
+		},
+		methods: {
+			/**
+			 * 课表处理
+			 */
+			getRemoteTable: async function(load = 1) {
+				console.log("GET TABLE FROM REMOTE");
+				var res = await uni.$app.request({
+					load: load,
+					url: uni.$app.data.url,
+					data: {
+						"method": "getKbcxAzc",
+						"xnxqid": uni.$app.data.curTerm,
+						"zc": uni.$app.data.curWeek,
+						"xh": uni.$app.data.account
+					},
+                })
+                try {
+                    var showTableArr = pubFct.tableDispose(res.data, 1);
+                    this.tipsDispose(showTableArr);
+                } catch (e) {
+                    uni.$app.toast("ERROR");
+                    this.tips = "加载失败";
+                    this.tipsInfo = "加载失败了，重新登录试一下";
+                }
+			},
+			tipsDispose: function(info) {
+				this.table = info ? info : [];
+				this.tips = info ? "" : "No Class Today";
+				this.tipsInfo = info ? "" : "今天没有课，快去自习室学习吧";
+			},
+			refresh: function(info) {
+				this.getRemoteTable(2);
+			},
+			getArtical: function() {
+				if (uni.$app.data.initData && uni.$app.data.initData.articalName) {
+					this.artical = uni.$app.data.initData.articalName
+				}
+			},
+			articalJump: function() {
+				if (uni.$app.data.initData && uni.$app.data.initData.articleUrl) {
+					var url = encodeURIComponent(uni.$app.data.initData.articleUrl);
+					uni.navigateTo({
+						url: "/pages/home/auxiliary/webview?url=" + url
+					})
+				}
+			}
+		}
+	}
+</script>
+
+<style>
+	.artical-con {
+		flex-direction: row;
+		align-items: center;
+		padding: 10px 0 10px 0;
+		border-bottom-width: 1px;
+		text-overflow: ellipsis;
+	}
+
+	.icon {
+		padding: 0 5px;
+		color: #aaa;
+		margin-right: 5px;
+	}
+
+	.unit-table,
+	.unitTodo {
+		border-bottom-width: 1px;
+		padding: 5px;
+		color: #555555;
+	}
+
+	.refresh {
+		font-size: 15px;
+		padding-bottom: 1px;
+		padding-right: 4px;
+	}
+
+	.tips-info{
+		margin:7px 3px 5px 3px;
+	}
+
+	.mleft5{
+		margin-left: 5px;
+	}
+	.l6{
+		margin-left: 3px;
+	}
+	.cr{
+		color: #555555;
+	}
+</style>

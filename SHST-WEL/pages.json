@@ -1,94 +1,94 @@
 {
 	"pages": [{
-			"path": "pages/Home/Index/index",
+			"path": "pages/home/index/index",
 			"style": {}
 		}
         ,{
-            "path" : "pages/Home/NotFound/NotFound",
+            "path" : "pages/home/not-found/not-found",
             "style" : {}
         }
         ,{
-            "path" : "pages/Life/canteen/canteen",
+            "path" : "pages/life/canteen/canteen",
             "style" : {}
         }
         ,{
-            "path" : "pages/Life/computer/computer",
+            "path" : "pages/life/computer/computer",
             "style" : {}
         }
         ,{
-            "path" : "pages/Life/express/express",
+            "path" : "pages/life/express/express",
             "style" : {}
         }
         ,{
-            "path" : "pages/Life/getup/getup",
+            "path" : "pages/life/getup/getup",
             "style" : {}
         }
         ,{
-            "path" : "pages/Life/living/living",
+            "path" : "pages/life/living/living",
             "style" : {}
         }
         ,{
-            "path" : "pages/Life/medical/medical",
+            "path" : "pages/life/medical/medical",
             "style" : {}
         }
         ,{
-            "path" : "pages/Life/network/network",
+            "path" : "pages/life/network/network",
             "style" : {}
         }
         ,{
-            "path" : "pages/Life/power/power",
+            "path" : "pages/life/power/power",
             "style" : {}
         }
         ,{
-            "path" : "pages/Life/shower/shower",
+            "path" : "pages/life/shower/shower",
             "style" : {}
         }
         ,{
-            "path" : "pages/Life/traffic/traffic",
+            "path" : "pages/life/traffic/traffic",
             "style" : {}
         }
         ,{
-            "path" : "pages/NewStu/antifraud/antifraud",
+            "path" : "pages/new-stu/antifraud/antifraud",
             "style" : {}
         }
         ,{
-            "path" : "pages/NewStu/miltrain/miltrain",
+            "path" : "pages/new-stu/miltrain/miltrain",
             "style" : {}
         }
         ,{
-            "path" : "pages/NewStu/payment/payment",
+            "path" : "pages/new-stu/payment/payment",
             "style" : {}
         }
         ,{
-            "path" : "pages/Sdust/calendar/calendar",
+            "path" : "pages/sdust/calendar/calendar",
             "style" : {}
         }
         ,{
-            "path" : "pages/Sdust/map/map",
+            "path" : "pages/sdust/map/map",
             "style" : {}
         }
         ,{
-            "path" : "pages/Sdust/vacation/vacation",
+            "path" : "pages/sdust/vacation/vacation",
             "style" : {}
         }
         ,{
-            "path" : "pages/Study/league/league",
+            "path" : "pages/study/league/league",
             "style" : {}
         }
         ,{
-            "path" : "pages/Study/link/link",
+            "path" : "pages/study/link/link",
             "style" : {}
         }
         ,{
-            "path" : "pages/Study/major/major",
+            "path" : "pages/study/major/major",
             "style" : {}
         }
         ,{
-            "path" : "pages/Study/time/time",
+            "path" : "pages/study/time/time",
             "style" : {}
         }
         ,{
-            "path" : "pages/User/about/about",
+            "path" : "pages/user/about/about",
             "style" : {}
         }
     ],

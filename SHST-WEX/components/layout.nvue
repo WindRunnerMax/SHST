@@ -1,8 +1,8 @@
-<template name="layout">
+<template>
 	<view>
 
 		<view class="lay-line" v-if="title">
-			<view class="lay-leftCon">
+			<view class="lay-left-con">
 				<view class="lay-verline" v-bind:style="{'background-color': color}"></view>
 				<text style="font-size: 15px;">{{title}}</text>
 			</view>
@@ -10,7 +10,7 @@
 				<slot name="headslot"></slot>
 			</view>
 		</view>
-		<view class='lay-card' :class="{'lay-minPaddingTop':title}">
+		<view class='lay-card' :class="{'lay-min-top':title}">
 			<slot></slot>
 		</view>
 
@@ -54,10 +54,10 @@
 		padding: 11px;
 		margin-bottom: 10px;
 	}
-	.lay-minPaddingTop{
+	.lay-min-top{
 		padding-top: 3px;
 	}
-	.lay-leftCon{
+	.lay-left-con{
 		flex-direction: row;
 	}
 </style>

@@ -10,8 +10,7 @@ SHST/PHP 目录下为PHP版本的API
 SHST/Java 目录下为Java版本的API 
 SHST/SHST-UNI 目录下为小程序项目[山科小站--小程序]，山东科技大学校园服务平台，已上线微信小程序与QQ小程序 
 SHST/SHST-WEL 目录下为小程序项目[山科小站--迎新专版]，提供校内的相关信息，迎新专用，已上线微信小程序与QQ小程序   
-SHST/SHST-APP 目录下为UNI-APP项目[山科小站--APP]，山科小站App版本，请求本地化处理，作为初始App版本提供UNIAPP的App开发示例 
-SHST/SHST-WEX 目录下为NVUE/WEEX项目[山科小站--APP]，采用原生渲染，性能优于APP(Vue)版本，作为UNIAPP纯NVUE/WEEX项目开发，已上架酷安应用市场
+SHST/SHST-WEX 目录下为NVUE/WEEX项目[山科小站--APP]，采用原生渲染，作为UNIAPP纯NVUE/WEEX项目开发，已上架酷安应用市场
 ```
 
 
@@ -93,7 +92,7 @@ Q.getExamInfo().exec();                                 // 获取考试信息
   
 ## 山科小站
 
-![show](https://windrunner_max.gitee.io/imgpath/SHST/Static/SHST-WX.jpg)
+![show](https://cdn.jsdelivr.net/gh/WindrunnerMax/SHST@dev/SHST-UNI/static/SHST-WX.jpg)
 
 ### 配置相关 
 
@@ -119,7 +118,7 @@ request()      // 网络请求封装 Promise
 
 ### 目录结构  
 
-[关于UNIAPP重构以及类的封装文档](https://blog.csdn.net/qq_40413670/article/details/103796680)
+[关于UNIAPP重构以及类的封装文档](https://blog.touchczy.top/#/MiniProgram/%E5%B1%B1%E7%A7%91%E5%B0%8F%E7%AB%99%E5%B0%8F%E7%A8%8B%E5%BA%8F)
 
 ```
 SHST-UNI                              // 山科小站总目录
@@ -129,6 +128,18 @@ SHST-UNI                              // 山科小站总目录
     │   ├── list.vue                  // 展示用list布局
     │   ├── sentence.vue              // 每日一句封装
     │   └── weather.vue               // 天气封装
+    ├── modules                       // 模块化封装
+    │   ├── cookies.js                // Cookies操作
+    │   ├── copy.js                   // 深浅拷贝
+    │   ├── datetime.js               // 时间日期操作
+    │   ├── event-bus.js              // 事件总线
+    │   ├── global-data.js            // 全局变量
+    │   ├── loading.js                // 加载提示
+    │   ├── operate-limit.js          // 防抖与节流
+    │   ├── regex.js                  // 正则匹配
+    │   ├── request.js                // 网络请求
+    │   ├── toast.js                  // 消息提示
+    │   └── update.js                 // 自动更新 
     ├── pages                         // 页面
     │   ├── Ext                       // 拓展组
     │   ├── Home                      // Tabbar、辅助组
@@ -142,14 +153,13 @@ SHST-UNI                              // 山科小站总目录
     ├── unpackage                     // 打包文件
     ├── utils                         // 辅助功能
     │   ├── amap-wx.js                // 高德地图SDK
-    │   ├── eventBus.js               // 事件消息总线封装
-    │   ├── md5.js                    // MD5引入
-    │   └── util.js                   // 封装时间等操作
-    ├── vector                        // 拓展封装
-    │   ├── camptour                  // 校园导览配置文件
-    │   ├── icon                      // 矢量图标库
-    │   ├── asse.wxss                 // CSS封装
-    │   ├── dispose.js                // JS封装
+    │   └── md5.js                    // MD5引入
+    ├── vector                        // 部署封装
+    │   ├── resources                 // 资源文件
+    │   │   ├── camptour              // 校园导览配置文件
+    │   │   ├── asse.mini.wxss        // 公共样式库
+    │   │   └── iconfont.wxss         // 字体图标
+    │   ├── dispose.js                // 部署小程序
     │   └── pubFct.js                 // 公有方法
     ├── App.vue                       // App全局样式以及监听
     ├── main.js                       // 挂载App，Vue初始化入口文件
@@ -159,6 +169,5 @@ SHST-UNI                              // 山科小站总目录
 ```
 
 ### 小程序  
-![show](https://windrunner_max.gitee.io/imgpath/SHST/Static/SHST-SHOW-2.jpg)
-![show](https://windrunner_max.gitee.io/imgpath/SHST/Static/SHST-SHOW-1.jpg)
-----  
+![show](https://cdn.jsdelivr.net/gh/WindrunnerMax/SHST@dev/SHST-UNI/static/show.jpg)
+

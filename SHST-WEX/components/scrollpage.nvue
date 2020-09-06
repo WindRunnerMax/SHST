@@ -1,7 +1,7 @@
-<template name="scrollpage">
-	<view class="scrollPage">
+<template>
+	<view class="scroll-page">
 		<scroll-view scroll-y="true">
-			<view class="scrollRootView">
+			<view class="scroll-root-view">
 				<slot></slot>
 			</view>
 		</scroll-view>
@@ -18,13 +18,12 @@
 </script>
 
 <style>
-	.scrollPage{
-		font-family: Arial, Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, sans-serif;
+	.scroll-page{
 		font-size: 15px;
 		background-color: #F8F8F8;
 		flex: 1;
 	}
-	.scrollRootView{
+	.scroll-root-view{
 		padding: 10px;
 	}
 </style>

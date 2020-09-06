@@ -40,7 +40,7 @@
 				todayWeather: ["", "CLEAR_DAY", 0, 0, "数据获取中"],
 				tomorrowWeather: ["", "CLEAR_DAY", 0, 0],
 				tdatomoWeather: ["", "CLEAR_DAY", 0, 0],
-				host: "https://www.touchczy.top"
+				host: "https://shst.touchczy.top"
 			}
 		},
 		created: function() {

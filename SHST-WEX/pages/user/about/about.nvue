@@ -1,0 +1,124 @@
+<template>
+	<view class="page">
+
+		<view class="x-center">
+			<image class="img"  src="http://windrunner_max.gitee.io/imgpath/SHST/Static/SHST.jpg"></image>
+		</view>
+
+
+		<view class="user-info-con">
+			<view class="unit-info border" style="border-top-width: 1px">
+
+				<view style="flex-direction: row;">
+					<text class="text">版本号</text>
+				</view>
+				<text class="text">{{version}}</text>
+			</view>
+
+			<view class="unit-info border">
+				<view style="flex-direction: row;">
+					<text class="text">反馈QQ群</text>
+				</view>
+				<text class="text link" @click="copy('522567369')">522567369</text>
+			</view>
+
+			<view class="unit-info border">
+				<view style="flex-direction: row;">
+					<text class="text">联系开发者</text>
+				</view>
+				<view class="link" @click="copy('651525974')" style="flex-direction: row;">
+					<text class="text link">651525974</text>
+				</view>
+			</view>
+
+			<view class="unit-info border" @click="jump('https://github.com/WindrunnerMax/SW')">
+				<view style="flex-direction: row;">
+					<text class="text">项目开源地址</text>
+				</view>
+				<text class="text">></text>
+			</view>
+
+			<view class="unit-info border" @click="jump('https://github.com/WindrunnerMax/SW/blob/SDUST/ChangeLog.md')">
+				<view style="flex-direction: row;">
+					<text class="text">项目更新日志</text>
+				</view>
+				<text class="text">></text>
+			</view>
+
+		</view>
+
+		<view class="footer">
+			<text class="ftext">Copyright © 2020 WindrunnerMax</text>
+		</view>
+
+	</view>
+</template>
+
+<script>
+	export default {
+		data: function() {
+			return {
+				version: uni.$app.data.version
+			}
+		},
+		methods: {
+			copy: function(copy) {
+				uni.setClipboardData({data: copy})
+			},
+			jump: function(jumpurl) {
+				uni.navigateTo({url: "/pages/home/auxiliary/webview?url=" + encodeURIComponent(jumpurl)})
+			}
+		}
+	}
+</script>
+
+<style>
+	.page {
+		padding: 0;
+		background-color: #FFFFFF;
+		font-size: 14px;
+	}
+
+	.img {
+		width: 270px;
+		height: 90px;
+		margin-top: 20px;
+	}
+
+	.user-info-con {
+		margin-top: 27px;
+		padding: 10px;
+	}
+
+	.unit-info {
+		height: 50px;
+		line-height: 50px;
+		border-bottom-width: 1px;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 10px 15px;
+		align-items: center;
+	}
+
+	.github {
+		text-overflow: ellipsis;
+	}
+
+	.footer {
+		flex-direction: row;
+		margin: 30px 0;
+		justify-content: center;
+	}
+
+	.ftext {
+		color: #aaa;
+		font-size: 15px;
+	}
+
+	.Avatar {
+		height: 20px;
+		width: 20px;
+		border-radius: 20px;
+		margin-right: 3px;
+	}
+</style>

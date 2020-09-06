@@ -5,9 +5,7 @@
 			version: "2.0.0"
 		},
 		onPageNotFound(res) { 
-			wx.reLaunch({
-				url: 'pages/Home/NotFound/notfound'
-			})
+			wx.reLaunch({url: "pages/home/not-found/not-found"})
 		},
 		onLaunch: () => {
 			Date.prototype.addDate = function(years = 0, months = 0, days = 0) {
@@ -20,10 +18,10 @@
 </script>
 
 <style>
-	@import '/vector/asse.mini.wxss';
-	@import '/vector/style/weui.wxss';
+	@import "/vector/asse.mini.wxss";
+	@import "/vector/style/weui.wxss";
 	page{
-		font-family: Arial, Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, sans-serif;
+		font-family: Arial, Helvetica, "STHeiti STXihei", "Microsoft YaHei", Tohoma, sans-serif;
 		padding: 10px;
 		box-sizing: border-box;
 		font-size: 15px;

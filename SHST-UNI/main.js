@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import App from './App'
+import Vue from "vue"
+import App from "./App"
 
 Vue.config.productionTip = false
 
-App.mpType = 'app'
+App.mpType = "app"
 
 const app = new Vue({
     ...App
@@ -11,6 +11,6 @@ const app = new Vue({
 app.$mount()
 
 import list from "@/components/list.vue"
-Vue.component('list',list)
+Vue.component("list",list)
 import layout from "@/components/layout.vue"
-Vue.component('layout',layout)
+Vue.component("layout",layout)

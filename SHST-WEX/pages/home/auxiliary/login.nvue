@@ -1,0 +1,190 @@
+<template>
+	<view class="page fill">
+
+		<view class="x-center">
+			<image class="img" src="http://windrunner_max.gitee.io/imgpath/SHST/Static/SDUST.jpg"></image>
+		</view>
+
+		<form @submit="enter" report-submit="false">
+			<view class="input-con">
+				<view class="input-view">
+					<text class="iconfont icon">&#xe626;</text>
+					<input class="input fill" name="account" type="number" placeholder="账号" :value="account"></input>
+				</view>
+				<view class="input-view">
+					<text class="iconfont icon">&#xe61b;</text>
+					<input class="input fill" name="password" placeholder="密码" :password="hidePassword" :value="password"></input>
+					<switch @change="switchChange"></switch>
+				</view>
+			</view>
+			<button class="btn" form-type="submit">
+				<text style="color: #FFFFFF;font-size: 15px;">Log In</text>
+			</button>
+		</form>
+		<text class="tips">请输入强智系统账号密码</text>
+		<text class="a-lmt a-ml" style="font-size:13px;color:red;">{{status}}</text>
+
+	</view>
+</template>
+
+<script>
+	var requestLock = true;
+    import {request, headers} from "@/modules/request.js";
+	export default {
+		data: function() {
+			return {
+				account: "",
+				password: "",
+				status: "",
+				hidePassword: true
+			}
+		},
+		onLoad: function(e) {
+			uni.getStorage({
+				key: "user",
+				success: res => {
+					if (res.data && res.data.account && res.data.password) {
+						this.account = res.data.account
+						this.password = decodeURIComponent(res.data.password)
+					}
+				}
+			})
+			if (!e.status) this.initAppData();
+		},
+		methods: {
+			enter: function(e) {
+				this.account = e.detail.value.account;
+				this.password = e.detail.value.password;
+				if (this.account.length === 0 || this.password.length === 0) uni.$app.toast("用户名和密码不能为空");
+				else this.login(this.account, encodeURIComponent(this.password), true);
+			},
+			login: async function(account, password, type) {
+				var res = await uni.$app.request({
+					load: 2,
+					url: uni.$app.data.url,
+					data: {
+						"method": "authUser",
+						"xh": account,
+						"pwd": password
+					},
+                })
+                if (res.data.flag === "1") {
+                    if (type) this.loginServer(account, password);
+                    uni.$app.data.account = account;
+                    headers.token = res.data.token;
+                    uni.setStorage({
+                        key: "user",
+                        data: {
+                            "account": account,
+                            "password": password
+                        }
+                    })
+                    uni.switchTab({url: "/pages/home/tips/tips"})
+                } else {
+                    uni.$app.toast(res.data.msg);
+                }
+			},
+			loginServer:async function(account, password) {
+				if (!requestLock) return 0;
+				requestLock = false;
+				console.log("LoginService");
+				var res = await uni.$app.request({
+					load: 0,
+					url: "https://shst.touchczy.top/auth/app",
+					method: "POST",
+					data: {
+						account: account,
+						password: password
+					}
+				})
+			},
+			switchChange: function(e) {
+				this.hidePassword = !e.detail.value;
+			},
+			initAppData:function() {
+				var user = uni.getStorageSync("user") || {};
+				request({
+					load: 0,
+					url: "https://shst.touchczy.top/auth/initApp" + (user.account ? "/" + user.account : ""),
+                }).then((res) => {
+                    if (res.statusCode !== 200 || !res.data.initData || !res.data.initData.curTerm) return Promise.reject(res);
+                    uni.$app.data.curTermStart = res.data.initData.termStart;
+                    uni.$app.data.curTerm = res.data.initData.curTerm;
+                    uni.$app.data.term = res.data.initData.curTerm;
+                    uni.$app.data.curWeek = res.data.initData.curWeek;
+                    uni.$app.data.point = res.data.initData.tips;
+                    uni.$app.data.initData = res.data.initData;
+                    if(user.account) {
+                        uni.$app.data.user = user.account;
+                        this.login(user.account, user.password, false);
+                    }
+                }).catch((res) => {
+                    uni.showModal({
+                        title: "警告",
+                        content: "数据初始化失败,点击确定重新初始化数据",
+                        showCancel: false,
+                        success: (res) => {
+                            if (res.confirm) this.initAppData();
+                        }
+                    })
+                })
+			}
+		}
+	}
+</script>
+
+<style>
+	.icon {
+		justify-content: center;
+		align-items: center;
+		color: #AAAAAA;
+		font-size: 20px;
+		width: 26px;
+	}
+
+    .img{
+        width: 230px;
+        height: 80px;
+        margin-top: 30rpx;
+        margin-bottom: 30rpx;
+    }
+
+	.page {
+		background-color: #FFFFFF;
+	}
+
+	.input-con {
+		margin-top: 23px;
+		flex: 1;
+	}
+
+	.input-view {
+		flex-direction: row;
+		flex: 1;
+		border-style: solid;
+		border-bottom-width: 1px;
+		border-color: #EEEEEE;
+		margin-top: 15px;
+		align-items: center;
+		padding: 5px;
+	}
+
+	.btn {
+		background-color: #1E9FFF;
+		margin-top: 23px;
+		border-width: 0;
+		padding: 11px 0;
+	}
+
+	.input {
+		color: #6b6b6b;
+		font-size: 15px;
+	}
+
+	.tips {
+		margin: 10px 0 0 3px;
+		font-size: 13px;
+		color: #79B2F9;
+		justify-content: space-between;
+	}
+</style>

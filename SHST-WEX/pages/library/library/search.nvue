@@ -1,0 +1,180 @@
+<template>
+	<scrollpage>
+
+			<layout title="图书检索">
+				<view class="x-center y-center a-lmt">
+					<input class="asse-input border" @input="bookInput" :value="book"></input>
+					<view class="btn" @click="query">
+						<text class="text" style="color: #FFFFFF;">检索</text>
+					</view>
+				</view>
+			</layout>
+
+			<view v-for="(item,index) in info" :key="index">
+				<layout>
+					<view style="flex-direction: row;" @click="jump(item.id)">
+						<view class="fill">
+							<text class="text lv" style="font-size: 18px;">{{item.infoList[0]}}</text>
+							<text class="text lv">{{item.infoList[1]}}</text>
+							<text class="text lv">{{item.infoList[2]}}</text>
+							<text class="text lv">{{item.infoList[3]}}</text>
+						</view>
+						<view class="right-jump border">
+							<text class="iconfont" style="color: #AAAAAA;">&#xe743;</text>
+						</view>
+					</view>
+				</layout>
+			</view>
+
+			<layout v-if="show">
+				<view class="operat">
+					<view style="flex-direction: row;align-items: center;">
+						<view @click="pre" class="btn" >
+							<text class="text" style="color: #FFFFFF;">上一页</text>
+						</view>
+						<view @click="next" class="btn a-lml">
+							<text class="text" style="color: #FFFFFF;">下一页</text>
+						</view>
+					</view>
+					<text class="text">{{pageInfo}}</text>
+				</view>
+			</layout>
+
+			<layout title="Tips:" v-if="!show">
+				<view>
+					<text class="tips">1.图书馆的服务器挺容易崩溃的，如果出现PARSE ERROR，那一般是学校图书馆崩溃了</text>
+					<text class="tips">2.学校图书馆外网访问好像会定时关闭，正常使用时间大约是在 7:00-22:00</text>
+				</view>
+			</layout>
+
+	</scrollpage>
+</template>
+
+<script>
+	import util from "@/modules/datetime.js";
+    import {regMatch} from "@/modules/regex";
+	import layout from "@/components/layout.nvue";
+	import scrollpage from "@/components/scrollpage.nvue";
+	export default {
+		components: {
+			layout,
+			scrollpage
+		},
+		data: function() {
+			return {
+				book: "",
+				page: 1,
+				show: false,
+				pageInfo: "",
+				info: []
+			}
+		},
+		created: function(options) {
+			var startTime = "07:00";
+			var endTime = "22:30";
+			var curTime = util.formatDate("hh:mm");
+			if (startTime > curTime || curTime > endTime) uni.$app.toast("当前时间图书馆服务已关闭");
+		},
+		methods: {
+			bookInput: function(e) {
+				this.book = e.detail.value;
+			},
+			query: async function(e) {
+				var param = "?q=" + this.book;
+				if (typeof(e) === "number") {
+					param += "&page=" + e;
+				}
+				var res = await uni.$app.request({
+					load: 2,
+					url: "http://interlib.sdust.edu.cn/opac/m/search" + param,
+					data: {
+						"searchType": "standard",
+						"isFacet": "true",
+						"view": "standard",
+						"rows": "10",
+						"displayCoverImg": "",
+                    }
+                })
+                var bookList = [];
+                var repx = /<li (onclick.*?>[\s\S]*?)<\/li>/g;
+                var pageInfo = res.data.match(/[0-9][\S]*页/);
+                regMatch(repx,res.data).forEach((value, index, array) => {
+                    var listObject = {};
+                    repx = /<em>(.*?)<\/em>/g;
+                    listObject.infoList = regMatch(repx,value);
+                    repx = /javascript:bookDetail\(['"]\/opac\/m\/book\/(.*)['"]\)/g;
+                    listObject.id = regMatch(repx,value)[0];
+                    bookList.push(listObject);
+                })
+                this.info = bookList;
+                this.page = typeof(e) === "number" ? e : 1;
+                this.pageInfo = pageInfo[0];
+                this.show = true;
+			},
+			pre: function() {
+				var curPage = parseInt(this.page);
+				if (curPage <= 0) return;
+				this.query(curPage - 1);
+			},
+			next: function() {
+				var curPage = parseInt(this.page);
+				this.query(curPage + 1);
+			},
+			jump: function(id) {
+				if (!id) {
+					uni.$app.toast("出错了");
+					return void 0;
+				}
+				uni.navigateTo({url: "./lib-detail?id=" + id});
+			}
+		}
+	}
+</script>
+
+<style>
+	.asse-input {
+		border-width: 1px;
+		margin: 0;
+		height: 35px;
+		width: 150px;
+		margin-right: 10px;
+		padding: 5px;
+		font-size: 15px;
+	}
+
+	.btn {
+		background-color: #1E9FFF;
+		border-width: 0;
+		padding: 11px 20px;
+	}
+
+
+	.info {
+		margin-top: 3px;
+	}
+
+	.right-jump {
+		width: 50px;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		font-size: 20px;
+		border-left-width: 1px;
+	}
+
+	.operat {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.tips{
+		font-size: 15px;
+		line-height: 27px;
+	}
+
+	.lv{
+		line-height: 26px;
+		font-size: 15px;
+	}
+</style>

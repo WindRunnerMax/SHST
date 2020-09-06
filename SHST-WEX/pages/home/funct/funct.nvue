@@ -1,0 +1,113 @@
+<template>
+	<view class="page">
+
+			<layout title="学习" color="#FF6347">
+				<view class="y-center" style="color: #FF6347;">
+					<view class="icon" @click="jump('/pages/study/time-table/time-table')">
+						<text class="iconfont" style="color: #FF6347;">&#xe601;</text>
+						<text class="text">查课表</text>
+					</view>
+					<view class="icon" @click="jump('/pages/study/classroom/classroom')">
+						<text class="iconfont" style="color: #FF6347;">&#xe627;</text>
+						<text class="text">查教室</text>
+					</view>
+					<view class="icon" @click="jump('/pages/study/grade/grade')">
+						<text class="iconfont" style="color: #FF6347;">&#xe61c;</text>
+						<text class="text">查成绩</text>
+					</view>
+					<view class="icon" @click="jump('/pages/ext/exam/exam')">
+						<text class="iconfont" style="color: #FF6347;">&#xe7cc;</text>
+						<text class="text">考试安排</text>
+					</view>
+
+				</view>
+			</layout>
+
+			<layout title="信息" color="#3CB371">
+				<view class="y-center" style="color: #3CB371;">
+					<view class="icon" @click="jump('/pages/library/library/search')">
+						<text class="iconfont" style="color: #3CB371;">&#xe61d;</text>
+						<text class="text">图书检索</text>
+					</view>
+					<view class="icon" @click="jump('/pages/library/borrow/borrow')">
+						<text class="iconfont" style="color: #3CB371;">&#xe617;</text>
+						<text class="text">借阅查询</text>
+					</view>
+					<view class="icon" @click="jump('/pages/ext/link/link')">
+						<text class="iconfont" style="color: #3CB371;">&#xe61a;</text>
+						<text class="text">分享链接</text>
+					</view>
+				</view>
+			</layout>
+
+			<layout title="科大" color="#9F8BEC">
+				<view class="y-center" style="color: #9F8BEC;">
+					<view class="icon" @click="jump('/pages/sdust/map/map')">
+						<text class="iconfont" style="color: #9F8BEC;">&#xe61f;</text>
+						<text class="text">嵙地图</text>
+					</view>
+					<view class="icon" @click="jump('/pages/sdust/calendar/calendar')">
+						<text class="iconfont" style="color: #9F8BEC;">&#xe623;</text>
+						<text class="text">校历</text>
+					</view>
+					<view class="icon" @click="jump('/pages/sdust/vacation/vacation')">
+						<text class="iconfont" style="color: #9F8BEC;">&#xe620;</text>
+						<text class="text">放假安排</text>
+					</view>
+					<view class="icon" @click="jump('/pages/sdust/notice/notice')">
+						<text class="iconfont" style="color: #9F8BEC;">&#xe60f;</text>
+						<text class="text">科大公告</text>
+					</view>
+				</view>
+			</layout>
+
+			<layout title="广告" v-if="adImg">
+				<view @click="jump(adUrl)" style="margin-top: 8px;">
+					<image :src="adImg"></image>
+				</view>
+			</layout>
+
+	</view>
+</template>
+
+<script>
+	import layout from "@/components/layout.nvue"
+	export default {
+		components: {
+			layout
+		},
+		data: function() {
+			return {
+				adImg: "",
+				adUrl: ""
+			}
+		},
+		created: function() {
+			this.adImg = uni.$app.data.initData.appAdImg;
+			this.adUrl = "/pages/home/auxiliary/webview?url=" + encodeURIComponent(uni.$app.data.initData.appAdUrl);
+		},
+		methods: {
+			jump: function(url) {
+				uni.navigateTo({url: url});
+			}
+		}
+	}
+</script>
+
+<style>
+	.icon {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 5px 0;
+	}
+
+	.iconfont {
+		font-size: 27px;
+		margin: 10px 0;
+	}
+
+	.y-center{
+		justify-content: space-around;
+	}
+</style>

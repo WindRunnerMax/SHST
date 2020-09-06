@@ -1,0 +1,62 @@
+<template>
+	<view class="webpage">
+		<web class="webpage" :src="url" :webview-styles="webviewStyles" ref='web'></web>
+		<view class="operate">
+			<text class="iconfont" @click="goBack">&#xe744;</text>
+			<text class="iconfont" @click="goForward">&#xe743;</text>
+			<text class="iconfont" @click="reload">&#xe619;</text>
+		</view>
+	</view>
+</template>
+
+<script>
+	const webview = weex.requireModule('webview')
+	export default {
+		data: function() {
+			return {
+				url: "",
+				webviewStyles: {
+					progress: {
+						color: '#4C98F7'
+					}
+				}
+			}
+		},
+		onLoad: function(options) {
+			this.url = decodeURIComponent(options.url);
+		},
+		methods: {
+			goBack:function() {
+				webview.goBack(this.$refs.web)
+			},
+			goForward:function() {
+				webview.goForward(this.$refs.web)
+			},
+			reload:function() {
+				webview.reload(this.$refs.web)
+			},
+		}
+	}
+</script>
+
+<style>
+	.webpage {
+		flex: 1;
+	}
+
+	.iconfont {
+		color: #707070;
+		width: 90rpx;
+
+	}
+
+	.operate {
+		padding: 10px 0;
+		justify-content: space-around;
+		border-style: solid;
+		border-color: #EEEEEE;
+		border-top-width: 1px;
+		flex-direction: row;
+		align-items: center;
+	}
+</style>

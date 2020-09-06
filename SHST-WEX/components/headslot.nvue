@@ -1,4 +1,4 @@
-<template name="headslot">
+<template>
 	<view>
 
 		<view class="line">

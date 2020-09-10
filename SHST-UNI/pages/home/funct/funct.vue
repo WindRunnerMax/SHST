@@ -99,7 +99,7 @@
             </view>
         </layout>
 
-        <layout v-if="adShow">
+        <layout v-if="adShow" :topSpace="true">
             <!-- #ifdef MP-WEIXIN -->
             <ad unit-id="adunit-b82100ae7bddf4ad" @error="adError" class="adapt"></ad>
             <!-- #endif -->
@@ -112,12 +112,12 @@
 </template>
 
 <script>
-    import util from "@/modules/datetime";
+    import {formatDate} from "@/modules/datetime";
     export default {
         data: function() {
             return {
                 adShow: 1,
-                now: util.formatDate()
+                now: formatDate()
             }
         },
         methods: {

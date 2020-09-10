@@ -1,7 +1,7 @@
 <template>
     <view>
 
-        <layout>
+        <layout :topSpace="true">
             <weather></weather>
         </layout>
 
@@ -25,23 +25,23 @@
         </layout>
 
 
-        <layout title="今日课程">
+        <layout title="今日课程" >
             <view v-for="(item,index) in table" :key="index">
-                <view class="unit-table" v-show="item">
-                    <view class="y-center a-mr">
-                        <view class="a-dot a-ml a-mr" :style="{'background':item[5]}"></view>
-                        <view>第{{2*(item[1] + 1) - 1}}{{2*(item[1] + 1)}}节</view>
-                        <view class="a-mr">{{item[3]}}</view>
+                <view class="unit-table" v-if="item" v-for="(classObj,classIndex) in item.table" :key="classIndex">
+                    <view class="y-center a-mr a-mt">
+                        <view class="a-dot" :style="{'background':classObj.background}"></view>
+                        <view class="a-lmr">第{{2*(classObj.knot + 1) - 1}}{{2*(classObj.knot + 1)}}节</view>
+                        <view>{{classObj.teacher}}</view>
                     </view>
-                    <view class="y-center">
-                        <view class="a-mb a-ml a-mt a-mr">{{item[2]}}</view>
-                        <view class="a-mr">{{item[4]}}</view>
+                    <view class="y-center a-lmt a-mb">
+                        <view class="a-ml a-lmr">{{classObj.className}}</view>
+                        <view>{{classObj.classroom}}</view>
                     </view>
                 </view>
             </view>
             <view class="unit-table" v-if="tips" @click="bindSW">
-                <view class="y-center a-mr">
-                    <view class="a-dot  a-ml a-mr" style="background:#eee;"></view>
+                <view class="y-center a-mt a-mr">
+                    <view class="a-dot" style="background:#eee;"></view>
                     <view>{{tips}}</view>
                 </view>
                 <view class="a-lmt a-mb a-ml a-mr">{{tipsInfo}}</view>
@@ -53,13 +53,13 @@
             <view v-for="(item,index) in todoList" :key="item.id">
                 <view class="y-center unit-todo a-flex-space-between">
                     <view>
-                        <view class="y-center a-mr">
-                            <view class="a-dot a-ml a-mr" :style="{'background':item.color}"></view>
+                        <view class="y-center a-mt">
+                            <view class="a-dot" :style="{'background':item.color}"></view>
                             <view>{{item.event_content}}</view>
                         </view>
-                        <view class="y-center">
-                            <view class="a-mb a-ml a-mt a-mr">{{item.todo_time}}</view>
-                            <view class="a-lml">{{item.diff}}天</view>
+                        <view class="y-center a-lmt">
+                            <view class="a-mb a-mt a-lmr">{{item.todo_time}}</view>
+                            <view>{{item.diff}}天</view>
                         </view>
                     </view>
                     <view>
@@ -69,7 +69,7 @@
             </view>
             <view class="unit-table" v-if="tips2">
                 <view class="y-center a-mt a-mb">
-                    <view class="a-dot  a-ml a-mr" style="background:#eee;"></view>
+                    <view class="a-dot" style="background:#eee;"></view>
                     <view>{{tips2}}</view>
                 </view>
                 <view class="a-lmt a-mb a-ml a-mr">快去添加一个想做的事吧</view>
@@ -78,7 +78,7 @@
         <!-- #endif -->
 
 
-        <layout title="每日一句">
+        <layout title="每日一句" >
             <sentence></sentence>
         </layout>
 
@@ -126,8 +126,8 @@
              */
             getTable: function() {
                 var tableCache = uni.getStorageSync("table") || {};
-                if (tableCache.term === uni.$app.data.curTerm 
-                    && tableCache.classTable 
+                if (tableCache.term === uni.$app.data.curTerm
+                    && tableCache.classTable
                     && tableCache.classTable[uni.$app.data.curWeek]) {
                     console.log("GET TABLE FROM CACHE");
                     var showTableArr = pubFct.tableDispose(tableCache.classTable[uni.$app.data.curWeek], 1);
@@ -215,7 +215,7 @@
                 }
             },
             setStatus: async function(id, index) {
-                var [err,choice] = uni.showModal({
+                var [err,choice] = await uni.showModal({
                     title: "提示",
                     content: "确定标记为已完成吗",
                 })
@@ -250,7 +250,7 @@
                 if (uni.$app.data.initData && uni.$app.data.initData.articleUrl) {
                     var url = encodeURIComponent(uni.$app.data.initData.articleUrl);
                     // #ifdef MP-WEIXIN
-                    uni.navigateTo({url: "/pages/Home/auxiliary/webview?url=" + url})
+                    uni.navigateTo({url: "/pages/home/auxiliary/webview?url=" + url})
                     // #endif
                     // #ifndef MP-WEIXIN
                     uni.setClipboardData({data: uni.$app.data.initData.articleUrl})
@@ -258,7 +258,7 @@
                 }
             },
             bindSW: function() {
-                if (uni.$app.data.userFlag === 0) uni.navigateTo({url: "/pages/Home/auxiliary/login"})
+                if (uni.$app.data.userFlag === 0) uni.navigateTo({url: "/pages/home/auxiliary/login"})
             },
             onShareAppMessage: function() {}
         }
@@ -280,7 +280,7 @@
         margin-right: 5px;
     }
 
-    .unit-todo {
+    .unit-todo,.unit-table {
         border-bottom: 1px solid #EEEEEE;
         padding: 5px;
         color: #555555;

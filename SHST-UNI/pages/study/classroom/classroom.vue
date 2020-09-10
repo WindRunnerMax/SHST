@@ -91,13 +91,13 @@
                     },
                     url: uni.$app.data.url + "/sw/classroom",
                 })
-                if (res.data.data.flag) {
-                    uni.$app.toast("该日期不在教学周期内");
-                    return void 0;
-                }
                 var data = res.data.data;
                 if(!data) {
                     uni.$app.toast("加载失败，请重试");
+                    return void 0;
+                }
+                if (res.data.data.flag) {
+                    uni.$app.toast("该日期不在教学周期内");
                     return void 0;
                 }
                 if (!data[0]) data = [{

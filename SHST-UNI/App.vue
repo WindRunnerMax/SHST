@@ -2,10 +2,10 @@
     import dispose from "@/vector/dispose";
     export default {
         globalData: {
-            url: "https://shst.touchczy.top/",
-            // url: "http://dev.touchczy.top/",
+            url: "https://shst.touchczy.top",
+            // url: "http://dev.touchczy.top",
         },
-        onPagenotFound: (res) => { //处理404
+        onPageNotFound: (res) => { //处理404
             uni.reLaunch({
                 url: "pages/home/auxiliary/not-found"
             })

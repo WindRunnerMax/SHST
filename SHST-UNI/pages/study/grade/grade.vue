@@ -115,7 +115,7 @@
                 var res = await uni.$app.request({
                     load: 2,
                     throttle: true,
-                    url: uni.$app.data.url + "sw/grade" + query,
+                    url: uni.$app.data.url + "/sw/grade" + query,
                 })
                 if(!res.data.data) {
                     uni.$app.toast("加载失败，请重试");

@@ -42,10 +42,10 @@ function onLaunch() {
         return $app.$scope.request({
             load: 3,
             // #ifdef MP-WEIXIN
-            url: $app.data.url + "auth/wx",
+            url: $app.data.url + "/auth/wx",
             // #endif
             // #ifdef MP-QQ
-            url: $app.data.url + "auth/QQ",
+            url: $app.data.url + "/auth/QQ",
             // #endif
             method: "POST",
             data: {

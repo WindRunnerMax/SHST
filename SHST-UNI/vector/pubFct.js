@@ -1,5 +1,6 @@
 "use strict";
 import util from "@/modules/datetime";
+import md5 from "@/utils/md5.js";
 
 /**
  * 统一处理课表功能
@@ -10,21 +11,22 @@ function tableDispose(info, oneDay = false) {
     var week = new Date().getDay() - 1;
     if (week === -1) week = 6;
     info.forEach(value => {
-        if (!value) return;
-        var arrInner = [];
+        if (!value) return void 0;
+        var classObj = {};
         var day = ~~(value.kcsj[0]) - 1;
-        if (oneDay && day !== week) return;
+        if (oneDay && day !== week) return void 0;
         var knot = ~~(~~(value.kcsj.substr(1, 2)) / 2);
         var uniqueNum = Array.prototype.reduce.call(value.kcmc, (pre, cur) => pre+cur.charCodeAt(), 0);
         var colorSignal = app.data.colorList[ uniqueNum % app.data.colorN];
-        arrInner.push(day);
-        arrInner.push(knot);
-        arrInner.push(value.kcmc.split("（")[0]);
-        arrInner.push(value.jsxm);
-        arrInner.push(value.jsmc);
-        arrInner.push(colorSignal);
-        if (!tableArr[day]) tableArr[day] = [];
-        tableArr[day][knot] = arrInner;
+        classObj.day = day;
+        classObj.knot = knot;
+        classObj.className = value.kcmc.split("（")[0];
+        classObj.teacher = value.jsxm;
+        classObj.classroom = value.jsmc;
+        classObj.background = colorSignal;
+        if(!tableArr[day]) tableArr[day] = [];
+        if(!tableArr[day][knot]) tableArr[day][knot] = {background: colorSignal, table: []};
+        tableArr[day][knot].table.push(classObj);
     })
     if (oneDay) return tableArr[week];
     else return tableArr;

@@ -26,7 +26,7 @@
                     <view>{{academy}}</view>
                 </view>
                 <!-- #ifdef MP-WEIXIN -->
-                <view class="a-hide" :class="{'a-show':today > '2020-03-26'}">
+                <view class="a-hide" :class="{'a-show':today > '2020-09-01'}">
                     <view class="unit-info" @click="copy('722942376')">
                         <view>QQ群</view>
                         <view>722942376</view>
@@ -93,9 +93,9 @@
                 })
                 if (uni.$app.data.userFlag === 0) {
                     var tipsInfo = "游客";
-                    this.academy = tipsInfo
-                    this.name = tipsInfo
-                    this.account = tipsInfo
+                    this.academy = tipsInfo;
+                    this.name = tipsInfo;
+                    this.account = tipsInfo;
                     return void 0;
                 }
                 var [err, res] = await uni.getStorage({key: "userInfo"});

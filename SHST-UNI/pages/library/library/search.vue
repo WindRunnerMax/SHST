@@ -79,7 +79,7 @@
                 var res = await uni.$app.request({
                     load: 2,
                     throttle: true,
-                    url: uni.$app.data.url + "lib/query" + param,
+                    url: uni.$app.data.url + "/lib/query" + param,
                 })
                 var bookList = [];
                 var repx = /<li (onclick.*?>[\s\S]*?)<\/li>/g;

@@ -78,7 +78,7 @@
             "path": "pages/ext/event/event",
             "style": {}
         }, {
-            "path": "pages/ext/event/finEvent",
+            "path": "pages/ext/event/fin-event",
             "style": {}
         }
         // #endif

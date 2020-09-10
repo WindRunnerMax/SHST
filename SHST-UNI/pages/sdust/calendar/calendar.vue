@@ -23,7 +23,7 @@
                     </view>
                     <view class="y-center">
                         <view class="opt y-center x-center" style="background-color: #1E9FFF;" @click="jumpDate(today)">今</view>
-                        <view class="opt y-center x-center" style="background-color: #FF6347;" @click="jumpDate(term-start)">开</view>
+                        <view class="opt y-center x-center" style="background-color: #FF6347;" @click="jumpDate(termStart)">开</view>
                         <view class="opt y-center x-center" style="background-color: #3CB371;" @click="jumpDate(vacationStartDate)">假</view>
                     </view>
                 </view>
@@ -107,7 +107,7 @@
                 var res = await uni.$app.request({
                     load: 2,
                     throttle: true,
-                    url: uni.$app.data.url + 'ext/calendar',
+                    url: uni.$app.data.url + '/ext/calendar',
                 })
                 res.data.info = res.data.info.reverse();
                 this.data = res.data.info
@@ -294,10 +294,6 @@
     .arrow-left,
     .arrow-right {
         font-size: 20px;
-    }
-    
-    .a-dot {
-        margin-right: 5px; 
     }
 
     .a-dot+view {

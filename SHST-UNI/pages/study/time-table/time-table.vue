@@ -4,7 +4,7 @@
         <layout title="查课表">
             <view class="table-top">
                 <view class="week">第{{week}}周</view>
-                <view style="display:flex;">
+                <view class="a-flex">
                     <view class="a-btn a-btn-white a-btn-mini refresh" @click="refresh(week)">
                         <view class="operate iconfont icon-shuaxin1"></view>
                     </view>
@@ -27,10 +27,14 @@
             <view v-for="item in 5" :key="item">
                 <view class="a-flex">
                     <view v-for="inner in 7" :key="inner" class="a-full">
-                        <view v-if="table[inner] && table[inner][item]" class="timetable-hide" :style="{'background':table[inner][item][5]}">
-                            <view>{{table[inner][item][2]}}</view>
-                            <view>{{table[inner][item][4]}}</view>
-                            <view>{{table[inner][item][3]}}</view>
+                        <view v-if="table[inner] && table[inner][item]" class="timetable-hide"
+                            :style="{'background':table[inner][item].background}">
+                            <view v-for="(classObj,classIndex) in table[inner][item].table" :key="classIndex">
+                                <view>{{classObj.className}}</view>
+                                <view>{{classObj.classroom}}</view>
+                                <view>{{classObj.teacher}}</view>
+                                <view v-if="classIndex !== table[inner][item].table.length-1">---</view>
+                            </view>
                         </view>
                         <view v-else class="timetable-hide"></view>
                     </view>
@@ -38,17 +42,17 @@
                 <view class="a-hr timetablehr"></view>
             </view>
         </layout>
-        
-        <view class="a-hide" :class="{'a-show':today > '2020-03-26'}">
+
+<!--        <view class="a-hide" :class="{'a-show':today > '2020-03-26'}">
             <layout>
                 <view class="y-center">
-                    <view class="a-dot a-mr"></view>
+                    <view class="a-dot"></view>
                     <navigator url="/pages/home/auxiliary/webview?url=https%3A%2F%2Fmp.weixin.qq.com%2Fs%2F9L3kFI0jdHajnPm83jRbwA"
                         open-type="navigate" class="a-link" hover-class="none">自定义课表配色</navigator>
                 </view>
             </layout>
-        </view>
-        
+        </view> -->
+
         <layout v-if="ad">
             <!-- #ifdef MP-WEIXIN -->
             <ad unit-id="adunit-ce81890e6ff0b2a7" class="adapt" @error="adError"></ad>
@@ -115,7 +119,7 @@
                     classTable: []
                 };
                 tableCache.term = uni.$app.data.curTerm;
-                tableCache.classTable[e] = res.data.data;
+                tableCache.classTable[week] = res.data.data;
                 uni.setStorage({
                     key: "table",
                     data: tableCache
@@ -197,7 +201,7 @@
         font-size: 12px;
         border-radius: 2px;
     }
-    
+
     .timetable-hide > view{
         margin-bottom: 3px;
     }
@@ -208,19 +212,19 @@
         height: 1px;
         border: none;
     }
-    
+
     .week-unit {
         text-align: center;
         padding: 5px 0 1px 0;
         font-size: 10px;
         width: 100%;
     }
-    
+
     .week-unit>view {
         padding: 3px 0;
         font-size: 8px;
     }
-    
+
     .today {
         border-bottom: 3px solid #eee;
     }

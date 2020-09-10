@@ -11,7 +11,7 @@ page {
 	--color-blue: #4C98F7;
 	--color-green: #009688;
 	--color-yellow: #FFB800;
-	--color-orange: #FF5722;
+	--color-orange: #FF5722; 
 }
 
 /**
@@ -227,22 +227,17 @@ page {
  */
 
 .a-show {
-	transition: all .3s;
-	display: block;
+	display: block !important;
 }
 
 .a-hide {
-	transition: all .3s !important;
-	height: 0 !important;
-	overflow: hidden !important;
-	margin: 0 !important;
-	padding: 0 !important;
+	display: none;
 }
 
 .a-dot {
 	width: 8px;
 	height: 8px;
-    margin: 0 3px;
+    margin: 0 5px;
 	border-radius: 8px;
 	background-color: var(--color-blue);
 }

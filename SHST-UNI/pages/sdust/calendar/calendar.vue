@@ -89,8 +89,9 @@
             return {
                 range: ["请稍后"],
                 index: 0,
-                show: 0,
+                data: [],
                 term: "",
+                show: false,
                 termStart: "",
                 weekCount: 0,
                 calendarData: [],
@@ -110,7 +111,7 @@
                     url: uni.$app.data.url + '/ext/calendar',
                 })
                 res.data.info = res.data.info.reverse();
-                this.data = res.data.info
+                this.data = res.data.info;
                 var range = [];
                 res.data.info.forEach((value) => {
                     range.push(value.term);
@@ -190,7 +191,7 @@
                     showArr.push(innerArr);
                 }
                 this.calendarData = showArr;
-                this.show = 1;
+                this.show = true;
             },
             calcVacation: function() {
                 var d = new Date(this.termStart);

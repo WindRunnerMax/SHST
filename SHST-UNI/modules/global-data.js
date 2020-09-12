@@ -11,7 +11,7 @@ var data = {
     point : "",
     userFlag: 0, // 0 未登录 1 已登陆
     initData: {},
-    version: "3.3.1",
+    version: "3.3.3",
     curTerm: "2019-2020-1",
     curTermStart: "2019-08-26",
     colorList : ["#FE9E9F", "#93BAFF", "#D999F9", "#81C784", "#FFCA62", "#FFA477"]

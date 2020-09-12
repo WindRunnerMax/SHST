@@ -101,7 +101,9 @@
 
         <layout v-if="adShow" :topSpace="true">
             <!-- #ifdef MP-WEIXIN -->
-            <ad unit-id="adunit-b82100ae7bddf4ad" @error="adError" class="adapt"></ad>
+            <ad v-if="!adSelect" unit-id="adunit-b82100ae7bddf4ad" @error="adError" class="adapt"></ad>
+            <ad v-else-if="adSelect === 1" unit-id="adunit-d4a5485ea69b2794" @error="adError" ad-type="video" class="adapt"></ad>
+            <ad v-else unit-id="adunit-a0ca2792308b3673" @error="adError" ad-type="grid" grid-count="8" class="adapt"></ad>
             <!-- #endif -->
             <!-- #ifdef MP-QQ -->
             <ad unit-id="001b7e7e765436c6351d8a6d693437d2" @error="adError" class="adapt"></ad>
@@ -116,8 +118,9 @@
     export default {
         data: function() {
             return {
-                adShow: 1,
-                now: formatDate()
+                adShow: true,
+                now: formatDate(),
+                adSelect: uni.$app.data.initData.adSelect
             }
         },
         methods: {
@@ -135,7 +138,7 @@
                 uni.navigateTo({url: path});
             },
             adError: function() {
-                this.adShow = 0;
+                this.adShow = false;
             }
         }
     }

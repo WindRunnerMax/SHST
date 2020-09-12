@@ -2,7 +2,7 @@ import {startLoading, endLoading} from "./loading";
 import {getCookies} from "./cookies";
 import {extend} from "./copy";
 import {toast} from "./toast";
-import operateLimit from "./operate-limit.js";
+import operateLimit from "./operate-limit";
 
 var throttle = operateLimit.throttleGenerater();
 var debounce = operateLimit.debounceGenerater();

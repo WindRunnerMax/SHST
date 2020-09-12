@@ -96,7 +96,7 @@
                 name: ""
             }
         },
-        created: function(options) {
+        created: function() {
             uni.$app.onload(() => this.onloadData());
         },
         methods: {
@@ -110,8 +110,13 @@
                     },
                 })
                 if (res.data.info.succ) {
-                    res.data.info.succ.timeTable1 = tableDispose(res.data.info.succ.timetable1);
-                    res.data.info.succ.timeTable2 = tableDispose(res.data.info.succ.timetable2);
+                    var succData = res.data.info.succ;
+                    if(!succData.timetable1 && !succData.timetable2){
+                        uni.$app.toast("加载失败，请重试");
+                        return void 0;
+                    }
+                    res.data.info.succ.timeTable1 = tableDispose(succData.timetable1);
+                    res.data.info.succ.timeTable2 = tableDispose(succData.timetable2);
                 }
                 console.log(res.data.info);
                 this.data = res.data.info;

@@ -110,7 +110,7 @@
                 this.qShow = this.queryTime[this.index[1]][2];
                 this.searchData = this.searchData;
             },
-            getTimeArr:function() {
+            getTimeArr: function() {
                 var weekShow = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
                 var date = new Date();
                 var year = date.getFullYear();
@@ -129,15 +129,11 @@
                 console.log(queryDataArr);
                 return queryDataArr;
             },
-            bindPickerChange:function(e) {
+            bindPickerChange: function(e) {
                 this.index = e.detail.value;
                 this.searchData = this.queryData[e.detail.value[0]][0];
                 this.searchTime = this.queryTime[e.detail.value[1]][1];
                 this.searchFloor = this.queryFloor[e.detail.value[2]][1];
-            },
-            resetInfo:function() {
-                this.searchData = util.formatDate()
-                this.searchTime = "0102"
             }
         }
     }

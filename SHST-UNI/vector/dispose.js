@@ -7,6 +7,7 @@ import {PubSub} from "@/modules/event-bus";
 import {extDate} from "@/modules/datetime";
 import {checkUpdate} from  "@/modules/update";
 import {getCurWeek} from  "@/vector/pubFct";
+import {throttleGenerater} from "@/modules/operate-limit";
 
 function disposeApp($app){
     extDate(); //拓展Date原型
@@ -14,12 +15,13 @@ function disposeApp($app){
     uni.$app = $app.$scope;
     $app.$scope.toast = toast;
     $app.$scope.extend = extend;
-    $app.$scope.eventBus = new PubSub();
     $app.data = $app.globalData;
     $app.$scope.data = $app.data;
+    $app.$scope.eventBus = new PubSub();
     $app.$scope.extend($app.data, data);
     $app.$scope.extend($app.$scope, request);
     $app.data.colorN = $app.data.colorList.length;
+    $app.$scope.throttle = new throttleGenerater();
     $app.data.curWeek = getCurWeek($app.data.curTermStart);
     $app.$scope.onload = (funct, ...args) => {
         if($app.data.openid) funct(...args);
@@ -87,6 +89,7 @@ function onLaunch() {
             success: (res) => onLaunch.apply($app)
         })
     })
+    uni.request({url: "https://blog.touchczy.top/"}); // 保持CF缓存
 }
 
 

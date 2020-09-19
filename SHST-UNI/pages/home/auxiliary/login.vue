@@ -52,7 +52,7 @@
                 uni.removeStorage({key: "userInfo"})
                 uni.removeStorage({key: "table"})
                 uni.removeStorage({key: "event"})
-                uni.$app.data.url = uni.$app.data.url.replace("example/", "");
+                uni.$app.data.url = uni.$app.data.url.replace("/example/", "");
                 uni.$app.data.userFlag = 0;
             })
         },
@@ -105,7 +105,7 @@
                 this.hidePassword = !e.detail.value;
             },
             exLogin: function(e){
-                uni.$app.data.url = uni.$app.data.url + "example/";
+                uni.$app.data.url = uni.$app.data.url + "/example/";
                 uni.$app.data.userFlag = 1;
                 uni.reLaunch({url: "/pages/home/tips/tips"})
             }

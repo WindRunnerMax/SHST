@@ -28,7 +28,7 @@
 </template>
 
 <script>
-    import headslot from "@/components/headslot.vue";
+    import headslot from "@/components/headslot/headslot.vue";
     export default {
         components: {
             headslot

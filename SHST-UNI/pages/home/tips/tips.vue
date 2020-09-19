@@ -86,8 +86,8 @@
 </template>
 
 <script>
-    import weather from "@/components/weather.vue";
-    import sentence from "@/components/sentence.vue";
+    import weather from "@/components/weather/weather.vue";
+    import sentence from "@/components/sentence/sentence.vue";
     import util from "@/modules/datetime";
     import pubFct from"@/vector/pubFct.js";
     export default {

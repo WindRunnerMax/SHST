@@ -101,13 +101,32 @@
 
         <layout v-if="adShow" :topSpace="true">
             <!-- #ifdef MP-WEIXIN -->
-            <ad v-if="!adSelect" unit-id="adunit-b82100ae7bddf4ad" @error="adError" class="adapt"></ad>
-            <ad v-else-if="adSelect === 1" unit-id="adunit-d4a5485ea69b2794" @error="adError" ad-type="video" class="adapt"></ad>
-            <ad v-else unit-id="adunit-a0ca2792308b3673" @error="adError" ad-type="grid" grid-count="8" class="adapt"></ad>
+            <advertise :adSelect="3" @error="adShow = false"></advertise>
             <!-- #endif -->
             <!-- #ifdef MP-QQ -->
-            <ad unit-id="001b7e7e765436c6351d8a6d693437d2" @error="adError" class="adapt"></ad>
+            <advertise :adSelect="0" @error="adShow = false"></advertise>
             <!-- #endif -->
+        </layout>
+
+        <layout title="数据" color="#FF6347" :inherit-color="true">
+            <view class="y-center">
+                <view class="icon" @click="jump('/pages/study/classroom/search-classes', 1)">
+                    <i class="iconfont icon-kebiao1"></i>
+                    <view>教室课表</view>
+                </view>
+                <view class="icon"  @click="jump('/pages/study/table-share/join-classes', 1)">
+                    <i class="iconfont icon-tubiao-"></i>
+                    <view>蹭课查询</view>
+                </view>
+                <view class="icon" @click="jump('/pages/user/reward/reward', 0)">
+                    <i class="iconfont icon-zanshang"></i>
+                    <view>赞赏</view>
+                </view>
+                <button open-type="feedback" class="icon" style="color: inherit;" hover-class="none">
+                    <i class="iconfont icon-gonggao1"></i>
+                    <view>意见反馈</view>
+                </button>
+            </view>
         </layout>
 
     </view>
@@ -115,12 +134,15 @@
 
 <script>
     import {formatDate} from "@/modules/datetime";
+    import advertise from "@/components/advertise/advertise.vue";
     export default {
+        components:{
+            advertise
+        },
         data: function() {
             return {
                 adShow: true,
-                now: formatDate(),
-                adSelect: uni.$app.data.initData.adSelect
+                now: formatDate()
             }
         },
         methods: {
@@ -136,9 +158,6 @@
                     return void 0;
                 }
                 uni.navigateTo({url: path});
-            },
-            adError: function() {
-                this.adShow = false;
             }
         }
     }

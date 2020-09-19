@@ -3,7 +3,6 @@
 
         <headslot title="赞赏列表"></headslot>
         <view class="a-lmt"></view>
-
         <layout v-for="(item,index) in data" :key="index">
             <view class="info-con">
                 <view class="left">
@@ -13,34 +12,43 @@
                 <view class="amount" style="color: #4C98F7;">{{item.amount}}</view>
             </view>
         </layout>
-
+        <layout>
+            <loading :loading="loading" @click="loadReward(page+1)"></loading>
+        </layout>
     </view>
 </template>
 
 <script>
-    import headslot from "@/components/headslot.vue";
+    import headslot from "@/components/headslot/headslot.vue";
+    import loading from "@/components/loading/loading.vue";
     export default {
         components: {
-            headslot
+            headslot, loading
         },
         data: function() {
             return {
-                data: []
+                page: 1,
+                data: [],
+                loading: "loadmore"
             }
         },
-        created: async function(options) {
-            var res = await uni.$app.request({
-                load: 2,
-                throttle: true,
-                url: uni.$app.data.url + "/ext/rewardlist",
-            })
-            if (res.data.info) {
-                res.data.info.reverse();
-                this.data = res.data.info;
-            }
+        created: function(options) {
+            uni.$app.onload(() => this.loadReward(1));
         },
         methods: {
-
+            loadReward: function(page){
+                uni.$app.throttle(500, async () => {
+                    this.loading = "loading";
+                    var res = await uni.$app.request({
+                        load: 2,
+                        url: uni.$app.data.url + `/ext/rewardlist/${page}`,
+                    })
+                    this.data = this.data.concat(res.data.info);
+                    this.page = this.page + 1;
+                    if(res.data.info.length < 10) this.loading = "nomore";
+                    else this.loading = "loadmore";
+                })
+            }
         }
     }
 </script>

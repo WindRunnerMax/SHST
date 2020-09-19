@@ -112,6 +112,14 @@
                 "navigationBarBackgroundColor": "#fff"
             }
         }
+        ,{
+            "path" : "pages/study/classroom/search-classes",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/study/table-share/join-classes",
+            "style" : {}
+        }
     ],
     "globalStyle": {
         "navigationBarTextStyle": "black",

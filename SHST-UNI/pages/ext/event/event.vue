@@ -60,7 +60,7 @@
 </template>
 
 <script>
-    import headslot from "@/components/headslot.vue";
+    import headslot from "@/components/headslot/headslot.vue";
     import {todoDateDiff} from "@/vector/pubFct.js";
     import {formatDate} from "@/modules/datetime.js";
     export default {

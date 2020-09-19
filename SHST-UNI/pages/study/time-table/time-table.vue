@@ -55,10 +55,10 @@
 
         <layout v-if="ad">
             <!-- #ifdef MP-WEIXIN -->
-            <ad unit-id="adunit-ce81890e6ff0b2a7" class="adapt" @error="adError"></ad>
+            <advertise :adSelect="4" @error="ad = false"></advertise>
             <!-- #endif -->
             <!-- #ifdef MP-QQ -->
-            <ad unit-id="98766bd6a7f4cc14e978058a3a365551" class="adapt" @error="adError"></ad>
+            <advertise :adSelect="1" @error="ad = false"></advertise>
             <!-- #endif -->
         </layout>
 
@@ -68,7 +68,11 @@
 <script>
     import {tableDispose} from "@/vector/pubFct.js";
     import { formatDate, extDate } from "@/modules/datetime.js";
+    import advertise from "@/components/advertise/advertise.vue";
     export default {
+        components:{
+            advertise
+        },
         data: function() {
             return {
                 week: 1,
@@ -127,18 +131,19 @@
                 this.getDate();
             },
             pre: function(week) {
-                if (week <= 1) return;
-                --week;
-                this.week = week;
-                this.getCache(week);
+                uni.$app.throttle(500, () => {
+                    if (week <= 1) return;
+                    --week;
+                    this.week = week;
+                    this.getCache(week);
+                })
             },
             next: function(week) {
-                ++week;
-                this.week = week;
-                this.getCache(week);
-            },
-            adError: function(e) {
-                this.ad = false;
+                uni.$app.throttle(500, () => {
+                    ++week;
+                    this.week = week;
+                    this.getCache(week);
+                })
             },
             refresh: function(week) {
                 uni.setStorageSync("table", {term: uni.$app.data.curTerm,classTable: []});

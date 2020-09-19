@@ -108,14 +108,12 @@
                 var res = await uni.$app.request({
                     load: 2,
                     throttle: true,
-                    url: uni.$app.data.url + '/ext/calendar',
+                    url: uni.$app.data.url + "/ext/calendar",
                 })
                 res.data.info = res.data.info.reverse();
                 this.data = res.data.info;
                 var range = [];
-                res.data.info.forEach((value) => {
-                    range.push(value.term);
-                })
+                res.data.info.forEach((value) => range.push(value.term));
                 this.range = range;
                 this.bindPickerChange({detail: {value: 0}})
             })

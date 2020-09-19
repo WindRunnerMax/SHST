@@ -33,23 +33,29 @@
                 <view v-for="item in 5" :key="item">
                     <view class="a-flex">
                         <view v-for="inner in 7" :key="inner" class="division a-ml">
-                            <view class="table-unit-con" v-if="(data.succ.timeTable1[inner] 
+                            <view class="table-unit-con" v-if="(data.succ.timeTable1[inner]
                                 && data.succ.timeTable1[inner][item]) || (data.succ.timeTable2[inner] && data.succ.timeTable2[inner][item])">
 
-                                <view v-if="(data.succ.timeTable2[inner] && data.succ.timeTable2[inner][item])" 
+                                <view v-if="(data.succ.timeTable2[inner] && data.succ.timeTable2[inner][item])"
                                     class="timetable-hide-bot" style="background:rgb(100, 149, 237);">
-                                    <view>{{data.succ.timeTable2[inner][item][2]}}</view>
-                                    <view>{{data.succ.timeTable2[inner][item][4]}}</view>
+                                    <view v-for="(classObj,classIndex) in data.succ.timeTable2[inner][item].table" :key="classIndex">
+                                        <view>{{classObj.className}}</view>
+                                        <view>{{classObj.classroom}}</view>
+                                        <view v-if="classIndex !== data.succ.timeTable2[inner][item].table.length-1">---</view>
+                                    </view>
                                 </view>
                                 <view v-else>
                                     <view class="timetable-hide-bot"></view>
                                 </view>
 
 
-                                <view v-if="(data.succ.timeTable1[inner] && data.succ.timeTable1[inner][item])" 
+                                <view v-if="(data.succ.timeTable1[inner] && data.succ.timeTable1[inner][item])"
                                     class="timetable-hide-top" style="background:rgb(234, 167, 140);}}">
-                                    <view>{{data.succ.timeTable1[inner][item][2]}}</view>
-                                    <view>{{data.succ.timeTable1[inner][item][4]}}</view>
+                                    <view v-for="(classObj,classIndex) in data.succ.timeTable1[inner][item].table" :key="classIndex">
+                                        <view>{{classObj.className}}</view>
+                                        <view>{{classObj.classroom}}</view>
+                                        <view v-if="classIndex !== data.succ.timeTable1[inner][item].table.length-1">---</view>
+                                    </view>
                                 </view>
                                 <view v-else>
                                     <view class="timetable-hide-top"></view>
@@ -90,14 +96,13 @@
                 name: ""
             }
         },
-        created: function(options) {
+        created: function() {
             uni.$app.onload(() => this.onloadData());
         },
         methods: {
             onloadData: async function(){
                 var res = await uni.$app.request({
                     load: 2,
-                    throttle: true,
                     url: uni.$app.data.url + "/share/tableShare",
                     data: {
                         week: uni.$app.data.curWeek,
@@ -105,8 +110,13 @@
                     },
                 })
                 if (res.data.info.succ) {
-                    res.data.info.succ.timeTable1 = tableDispose(res.data.info.succ.timetable1);
-                    res.data.info.succ.timeTable2 = tableDispose(res.data.info.succ.timetable2);
+                    var succData = res.data.info.succ;
+                    if(!succData.timetable1 && !succData.timetable2){
+                        uni.$app.toast("加载失败，请重试");
+                        return void 0;
+                    }
+                    res.data.info.succ.timeTable1 = tableDispose(succData.timetable1);
+                    res.data.info.succ.timeTable2 = tableDispose(succData.timetable2);
                 }
                 console.log(res.data.info);
                 this.data = res.data.info;
@@ -132,7 +142,7 @@
                     },
                 })
                 uni.$app.toast(res.data.msg);
-                this.onloadData();
+                console.log(this.onloadData());
             },
             cancelreq: async function() {
                 var res = await uni.$app.request({
@@ -233,7 +243,7 @@
         background: #eee;
         font-size: 13px;
     }
-    
+
     .division{
         width:calc(100% / 7);
         background:#eee;

@@ -227,22 +227,17 @@ page {
  */
 
 .a-show {
-	transition: all .3s;
-	display: block;
+	display: block !important;
 }
 
 .a-hide {
-	transition: all .3s !important;
-	height: 0 !important;
-	overflow: hidden !important;
-	margin: 0 !important;
-	padding: 0 !important;
+	display: none;
 }
 
 .a-dot {
 	width: 8px;
 	height: 8px;
-    margin: 0 3px;
+    margin: 0 5px;
 	border-radius: 8px;
 	background-color: var(--color-blue);
 }
@@ -296,6 +291,18 @@ page {
 }
 
 /**
+ * 布局
+ */
+.x-full{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.y-full{
+    height: 100%;
+}
+
+/**
  * 卡片
  */
 .a-card .a-card-title {
@@ -330,12 +337,14 @@ page {
 	margin: 0 ;
 	display: flex;
 	align-items: center;
+    align-self: center;
 	font-size: 8px;
 	min-width: 60px;
 	justify-content: flex-end;
 }
 
 .a-input{
+    flex: 1;
 	border: 1px solid #eee;
 	margin: 10px;
 	display: block;

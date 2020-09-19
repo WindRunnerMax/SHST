@@ -79,11 +79,11 @@
                 var res = await uni.$app.request({
                     load: 2,
                     throttle: true,
-                    url: uni.$app.data.url + "lib/query" + param,
+                    url: uni.$app.data.url + "/lib/query" + param,
                 })
                 var bookList = [];
                 var repx = /<li (onclick.*?>[\s\S]*?)<\/li>/g;
-                var pageInfo = res.data.info.match(/[0-9][\S]*页/);
+                var pageInfo = regMatch(/[0-9][\S]*页/g, res.data.info);
                 regMatch(repx,res.data.info).forEach((value, index, array) => {
                     var listObject = {};
                     repx = /<em>(.*?)<\/em>/g;
@@ -100,12 +100,14 @@
             },
             pre: function() {
                 var curPage = parseInt(this.page);
-                if (curPage <= 0) return;
+                if (curPage <= 1) return void 0;
                 this.query(curPage - 1);
+                this.$nextTick(() => uni.pageScrollTo({scrollTop: 0, duration: 0}));
             },
             next: function() {
                 var curPage = parseInt(this.page);
                 this.query(curPage + 1);
+                this.$nextTick(() => uni.pageScrollTo({scrollTop: 0, duration: 0}));
             },
             jump: function(id) {
                 uni.navigateTo({url: "detail?id=" + id})
@@ -124,7 +126,7 @@
         width: 150px;
         margin-right: 10px;
     }
-    
+
     .left-info{
         line-height: 26px;
     }

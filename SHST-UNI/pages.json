@@ -78,7 +78,7 @@
             "path": "pages/ext/event/event",
             "style": {}
         }, {
-            "path": "pages/ext/event/finEvent",
+            "path": "pages/ext/event/fin-event",
             "style": {}
         }
         // #endif
@@ -111,6 +111,14 @@
             "style": {
                 "navigationBarBackgroundColor": "#fff"
             }
+        }
+        ,{
+            "path" : "pages/study/classroom/search-classes",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/study/table-share/join-classes",
+            "style" : {}
         }
     ],
     "globalStyle": {

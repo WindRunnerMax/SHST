@@ -7,6 +7,7 @@ import {PubSub} from "@/modules/event-bus";
 import {extDate} from "@/modules/datetime";
 import {checkUpdate} from  "@/modules/update";
 import {getCurWeek} from  "@/vector/pubFct";
+import {throttleGenerater} from "@/modules/operate-limit";
 
 function disposeApp($app){
     extDate(); //拓展Date原型
@@ -14,12 +15,13 @@ function disposeApp($app){
     uni.$app = $app.$scope;
     $app.$scope.toast = toast;
     $app.$scope.extend = extend;
-    $app.$scope.eventBus = new PubSub();
     $app.data = $app.globalData;
     $app.$scope.data = $app.data;
+    $app.$scope.eventBus = new PubSub();
     $app.$scope.extend($app.data, data);
     $app.$scope.extend($app.$scope, request);
     $app.data.colorN = $app.data.colorList.length;
+    $app.$scope.throttle = new throttleGenerater();
     $app.data.curWeek = getCurWeek($app.data.curTermStart);
     $app.$scope.onload = (funct, ...args) => {
         if($app.data.openid) funct(...args);
@@ -42,10 +44,10 @@ function onLaunch() {
         return $app.$scope.request({
             load: 3,
             // #ifdef MP-WEIXIN
-            url: $app.data.url + "auth/wx",
+            url: $app.data.url + "/auth/wx",
             // #endif
             // #ifdef MP-QQ
-            url: $app.data.url + "auth/QQ",
+            url: $app.data.url + "/auth/QQ",
             // #endif
             method: "POST",
             data: {
@@ -54,10 +56,13 @@ function onLaunch() {
             }
         })
     }).then((res) => {
+        /* 初始化全局信息 */
         $app.data.curTerm = res.data.initData.curTerm;
         $app.data.curTermStart = res.data.initData.termStart;
         $app.data.curWeek = res.data.initData.curWeek;
         $app.data.initData = res.data.initData;
+
+        /* 自定义配色 */
         if($app.data.initData.custom){
             let custom = $app.data.initData.custom;
             if(custom.color_list) {
@@ -65,15 +70,21 @@ function onLaunch() {
                 $app.data.colorN = $app.data.colorList.length;
             }
         }
-        /* res.data.status   1 已注册用户  2 未注册用户*/
+
+        /* 用户使用信息  1 已注册用户  2 未注册用户*/
         $app.data.userFlag = res.data.status === 1 ? 1 : 0;
         console.log("Status:" + ($app.data.userFlag === 1 ? "user Login" : "New user"));
+
+        /* dot */
         var notify = res.data.initData.tips;
-        $app.data.tips = point;
+        $app.data.point = notify;
         var point = uni.getStorageSync("point") || "";
         if (point !== notify) uni.showTabBarRedDot({ index: 2 });
+
+        /* openid */
         console.log("SetOpenid:" + res.data.openid);
         $app.data.openid = res.data.openid;
+
         return Promise.resolve(res);
     }).then((res) => {
         if (!res.data.initData || !res.data.initData.curTerm) return Promise.reject("DATA INIT FAIL");
@@ -87,6 +98,7 @@ function onLaunch() {
             success: (res) => onLaunch.apply($app)
         })
     })
+    uni.request({url: "https://blog.touchczy.top/"}); // 保持CF缓存
 }
 
 

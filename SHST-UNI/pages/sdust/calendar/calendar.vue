@@ -23,7 +23,7 @@
                     </view>
                     <view class="y-center">
                         <view class="opt y-center x-center" style="background-color: #1E9FFF;" @click="jumpDate(today)">今</view>
-                        <view class="opt y-center x-center" style="background-color: #FF6347;" @click="jumpDate(term-start)">开</view>
+                        <view class="opt y-center x-center" style="background-color: #FF6347;" @click="jumpDate(termStart)">开</view>
                         <view class="opt y-center x-center" style="background-color: #3CB371;" @click="jumpDate(vacationStartDate)">假</view>
                     </view>
                 </view>
@@ -89,8 +89,9 @@
             return {
                 range: ["请稍后"],
                 index: 0,
-                show: 0,
+                data: [],
                 term: "",
+                show: false,
                 termStart: "",
                 weekCount: 0,
                 calendarData: [],
@@ -107,14 +108,12 @@
                 var res = await uni.$app.request({
                     load: 2,
                     throttle: true,
-                    url: uni.$app.data.url + 'ext/calendar',
+                    url: uni.$app.data.url + "/ext/calendar",
                 })
                 res.data.info = res.data.info.reverse();
-                this.data = res.data.info
+                this.data = res.data.info;
                 var range = [];
-                res.data.info.forEach((value) => {
-                    range.push(value.term);
-                })
+                res.data.info.forEach((value) => range.push(value.term));
                 this.range = range;
                 this.bindPickerChange({detail: {value: 0}})
             })
@@ -190,7 +189,7 @@
                     showArr.push(innerArr);
                 }
                 this.calendarData = showArr;
-                this.show = 1;
+                this.show = true;
             },
             calcVacation: function() {
                 var d = new Date(this.termStart);
@@ -294,10 +293,6 @@
     .arrow-left,
     .arrow-right {
         font-size: 20px;
-    }
-    
-    .a-dot {
-        margin-right: 5px; 
     }
 
     .a-dot+view {

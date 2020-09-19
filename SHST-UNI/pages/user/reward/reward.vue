@@ -31,11 +31,10 @@
             }
         },
         methods: {
-            viewImg:function(e) {
-                var current = e.currentTarget.dataset.viewimgurl;
+            viewImg:function(url) {
                 uni.previewImage({
-                    current: current,
-                    urls: [current]
+                    current: url,
+                    urls: [url]
                 })
             }
         }

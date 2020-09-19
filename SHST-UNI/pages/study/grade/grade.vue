@@ -46,10 +46,10 @@
 
             <layout v-if="ad">
                 <!-- #ifdef MP-WEIXIN -->
-                <ad unit-id="adunit-31c347091893cf0c" class="adapt" @error="adError"></ad>
+                <advertise :adSelect="3" :compatible="5" @error="ad = false"></advertise>
                 <!-- #endif -->
                 <!-- #ifdef MP-QQ -->
-                <ad unit-id="e40bef6dbe8ecaf7104fe126bfc34e56" class="adapt" @error="adError"></ad>
+                <advertise :adSelect="2" @error="ad = false"></advertise>
                 <!-- #endif -->
             </layout>
 
@@ -60,10 +60,11 @@
 </template>
 
 <script>
-    import headslot from "@/components/headslot.vue";
+    import headslot from "@/components/headslot/headslot.vue";
+    import advertise from "@/components/advertise/advertise.vue";
     export default {
         components: {
-            headslot
+            headslot, advertise
         },
         data: function() {
             return {
@@ -75,7 +76,8 @@
                 show: false,
                 grade: 0,
                 ad: true,
-                showSelect: ""
+                showSelect: "",
+                adSelect: uni.$app.data.initData.adSelect
             }
         },
         created: function() {
@@ -115,7 +117,7 @@
                 var res = await uni.$app.request({
                     load: 2,
                     throttle: true,
-                    url: uni.$app.data.url + "sw/grade" + query,
+                    url: uni.$app.data.url + "/sw/grade" + query,
                 })
                 if(!res.data.data) {
                     uni.$app.toast("加载失败，请重试");
@@ -160,9 +162,6 @@
                 this.grade = !res.data.data[0] ? [defaultValue] : res.data.data;
                 this.ad = !res.data.data[0] ? false : true;
                 this.show = true;
-            },
-            adError: function(e) {
-                this.ad = false;
             }
         }
     }
@@ -178,7 +177,7 @@
     .over-unit {
         margin: 0 3px;
     }
-    
+
     .unit {
         padding: 3px 0 ;
         display: flex;

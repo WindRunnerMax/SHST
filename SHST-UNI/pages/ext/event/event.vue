@@ -34,7 +34,7 @@
                 <view class="y-center unit-todo a-flex-space-between">
                     <view>
                         <view class="y-center a-mt a-mb">
-                            <view class="a-dot a-mr a-ml" :style="{'background':item.color}"></view>
+                            <view class="a-dot" :style="{'background':item.color}"></view>
                             <view>{{item.event_content}}</view>
                         </view>
                         <view class="y-center">
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-    import headslot from "@/components/headslot.vue";
+    import headslot from "@/components/headslot/headslot.vue";
     import {todoDateDiff} from "@/vector/pubFct.js";
     import {formatDate} from "@/modules/datetime.js";
     export default {
@@ -70,10 +70,9 @@
         data: function() {
             return {
                 addContent: "",
-                dataDo: formatDate(), //默认起始时间  
-                dataEnd: formatDate(), //默认结束时间 
+                dataDo: formatDate(), //默认起始时间
+                dataEnd: formatDate(), //默认结束时间
                 todoList: [],
-                clickFlag: 1,
                 tips: "",
                 count: 0
             }
@@ -114,15 +113,12 @@
             },
             dateChange: function(e) {
                 this.dataDo = e.detail.value
-
             },
             add: async function() {
                 if (this.addContent === "") {
                     uni.$app.toast("事件内容不能为空");
                     return void 0;
                 }
-                if (this.clickFlag === 0) return void 0;
-                this.clickFlag = 0;
                 try{
                     var res = await uni.$app.request({
                         url: uni.$app.data.url + "/todo/addEvent",
@@ -142,15 +138,14 @@
                         color: diff_color[1],
                         id : res.data.id
                     });
-                    this.addContent = ""
-                    this.todoList = todoArr
-                    this.tips = ""
-                    this.count = this.count + 1
+                    this.addContent = "";
+                    this.todoList = todoArr;
+                    this.tips = "";
+                    this.count = this.count + 1;
                     uni.$app.toast("添加成功");
                 }catch(e){
                     uni.$app.toast("Internal Error");
                 }
-                this.clickFlag = 1;
             },
             setStatus: async function(id, index) {
                 var [err,choice] = await uni.showModal({
@@ -161,15 +156,13 @@
                     var res = await uni.$app.request({
                         url: uni.$app.data.url + "/todo/setStatus",
                         method: "POST",
-                        data: {
-                            id: id
-                        },
+                        data: {id},
                     })
                     uni.$app.toast("标记成功");
                     this.todoList.splice(index, 1);
-                    this.todoList = this.todoList
-                    this.tips = this.todoList.length === 0 ? "暂没有待办事项" : ""
-                    this.count = this.count - 1
+                    this.todoList = this.todoList;
+                    this.tips = this.todoList.length === 0 ? "暂没有待办事项" : "";
+                    this.count = this.count - 1;
                 }
             },
             deleteUnit: async function(id, index) {
@@ -181,19 +174,17 @@
                     var res = await uni.$app.request({
                         url: uni.$app.data.url + "/todo/deleteUnit",
                         method: "POST",
-                        data: {
-                            id: id
-                        },
+                        data: {id},
                     })
                     uni.$app.toast("删除成功");
                     this.todoList.splice(index, 1);
-                    this.todoList = this.todoList
+                    this.todoList = this.todoList;
                     this.tips = this.todoList.length === 0 ? "暂没有待办事项" : ""
-                    this.count = this.count - 1
+                    this.count = this.count - 1;
                 }
             },
             jump: function() {
-                uni.navigateTo({url: "finEvent"})
+                uni.navigateTo({url: "./fin-event"})
             }
         }
     }
@@ -208,10 +199,6 @@
         margin: 0;
         padding: 0 5px;
         border-bottom: 1px solid #eee;
-    }
-
-    .a-dot {
-        margin: 0 3px;
     }
 
     .unit-todo {

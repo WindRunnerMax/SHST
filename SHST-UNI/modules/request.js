@@ -23,7 +23,7 @@ function ajax(requestInfo) {
         headers: headers,
         success: () => {},
         resolve: () => {},
-        fail: function() { this.completeLoad = () => { toast("External Error");}},
+        fail: function() { this.completeLoad = () => toast("External Error"); },
         reject: () => {},
         complete: () => {},
         completeLoad: () => {}
@@ -31,6 +31,7 @@ function ajax(requestInfo) {
     extend(option, requestInfo);
     var run = function(){
         startLoading(option);
+        console.log("Request for", option.url);
         uni.request({
             url: option.url,
             data: option.data,
@@ -51,7 +52,7 @@ function ajax(requestInfo) {
                         option.success(res);
                         option.resolve(res);
                     } catch (e) {
-                        option.completeLoad = () => { toast("External Error");}
+                        option.completeLoad = () => toast("External Error");
                         console.log(e);
                     }
                 }else{

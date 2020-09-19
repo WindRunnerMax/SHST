@@ -56,10 +56,13 @@ function onLaunch() {
             }
         })
     }).then((res) => {
+        /* 初始化全局信息 */
         $app.data.curTerm = res.data.initData.curTerm;
         $app.data.curTermStart = res.data.initData.termStart;
         $app.data.curWeek = res.data.initData.curWeek;
         $app.data.initData = res.data.initData;
+
+        /* 自定义配色 */
         if($app.data.initData.custom){
             let custom = $app.data.initData.custom;
             if(custom.color_list) {
@@ -67,15 +70,21 @@ function onLaunch() {
                 $app.data.colorN = $app.data.colorList.length;
             }
         }
-        /* res.data.status   1 已注册用户  2 未注册用户*/
+
+        /* 用户使用信息  1 已注册用户  2 未注册用户*/
         $app.data.userFlag = res.data.status === 1 ? 1 : 0;
         console.log("Status:" + ($app.data.userFlag === 1 ? "user Login" : "New user"));
+
+        /* dot */
         var notify = res.data.initData.tips;
-        $app.data.tips = point;
+        $app.data.point = notify;
         var point = uni.getStorageSync("point") || "";
         if (point !== notify) uni.showTabBarRedDot({ index: 2 });
+
+        /* openid */
         console.log("SetOpenid:" + res.data.openid);
         $app.data.openid = res.data.openid;
+
         return Promise.resolve(res);
     }).then((res) => {
         if (!res.data.initData || !res.data.initData.curTerm) return Promise.reject("DATA INIT FAIL");

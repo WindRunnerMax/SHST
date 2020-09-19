@@ -10,7 +10,5 @@ const app = new Vue({
 })
 app.$mount()
 
-import list from "@/components/list.vue"
-Vue.component("list",list)
-import layout from "@/components/layout.vue"
-Vue.component("layout",layout)
+import layout from "@/components/layout/layout.vue";
+Vue.component("layout",layout);

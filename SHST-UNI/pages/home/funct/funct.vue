@@ -99,12 +99,12 @@
             </view>
         </layout>
 
-        <layout v-if="adShow" :topSpace="true">
+        <layout v-show="adShow" :topSpace="true">
             <!-- #ifdef MP-WEIXIN -->
-            <advertise :adSelect="3" @error="adShow = false"></advertise>
+            <advertise :ad-select="adSelect" @error="adShow = false"></advertise>
             <!-- #endif -->
             <!-- #ifdef MP-QQ -->
-            <advertise :adSelect="0" @error="adShow = false"></advertise>
+            <advertise :ad-select="0" @error="adShow = false"></advertise>
             <!-- #endif -->
         </layout>
 
@@ -142,7 +142,8 @@
         data: function() {
             return {
                 adShow: true,
-                now: formatDate()
+                now: formatDate(),
+                adSelect: uni.$app.data.initData.adSelect
             }
         },
         methods: {

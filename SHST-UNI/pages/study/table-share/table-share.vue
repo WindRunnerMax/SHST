@@ -4,7 +4,7 @@
         <layout title="共享课表">
             <view class="top" v-if="data.status === 1">
                 <view class="x-center" style="flex-direction: column;">
-                    <input class="a-input" @input="accountInput" placeholder="对方学号" :value="account"></input>
+                    <input class="a-input" @input="accountInput" placeholder="对方学号" :value="account" type="number"></input>
                     <input class="a-input a-mt" @input="nameInput" placeholder="对方姓名" :value="name"></input>
                     <view class="a-btn a-btn-blue" @click="req">发起请求</view>
                 </view>
@@ -111,7 +111,7 @@
                 })
                 if (res.data.info.succ) {
                     var succData = res.data.info.succ;
-                    if(!succData.timetable1 && !succData.timetable2){
+                    if(!succData.timetable1 || !succData.timetable2){
                         uni.$app.toast("加载失败，请重试");
                         return void 0;
                     }

@@ -84,7 +84,8 @@ function onLaunch() {
         /* openid */
         console.log("SetOpenid:" + res.data.openid);
         $app.data.openid = res.data.openid;
-
+        
+        /* resolve */
         return Promise.resolve(res);
     }).then((res) => {
         if (!res.data.initData || !res.data.initData.curTerm) return Promise.reject("DATA INIT FAIL");

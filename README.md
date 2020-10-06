@@ -1,8 +1,8 @@
 # SHST
 
-[![tips2](https://img.shields.io/badge/-API-%234C98F7.svg?style=for-the-badge&logo=monogram&logoColor=White)](https://github.com/WindrunnerMax/SW/tree/master) 
-[![tips1](https://img.shields.io/badge/-更新日志-%234C98F7.svg?style=for-the-badge&logo=azure-pipelines&logoColor=White)](https://github.com/WindrunnerMax/SHST/blob/SDUST/ChangeLog.md) 
-[![tips3](https://img.shields.io/badge/-山科小站-%234C98F7.svg?style=for-the-badge&logo=marketo&logoColor=White)](https://windrunner_max.gitee.io/imgpath/SHST/Static/SHST-WX.jpg) 
+[![tips2](https://img.shields.io/badge/-API-%234C98F7.svg?style=for-the-badge&logo=monogram&logoColor=white)](https://github.com/WindrunnerMax/SW/tree/master) 
+[![tips1](https://img.shields.io/badge/-更新日志-%234C98F7.svg?style=for-the-badge&logo=azure-pipelines&logoColor=white)](https://github.com/WindrunnerMax/SHST/blob/SDUST/ChangeLog.md) 
+[![tips3](https://img.shields.io/badge/-山科小站-%234C98F7.svg?style=for-the-badge&logo=marketo&logoColor=white)](https://windrunner_max.gitee.io/imgpath/SHST/Static/SHST-WX.jpg) 
 
 ```
 SHST/Python 目录下为Python版本的API

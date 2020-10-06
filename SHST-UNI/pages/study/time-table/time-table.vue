@@ -53,12 +53,12 @@
             </layout>
         </view> -->
 
-        <layout v-if="ad">
+        <layout v-show="ad">
             <!-- #ifdef MP-WEIXIN -->
-            <advertise :adSelect="4" @error="ad = false"></advertise>
+            <advertise :ad-select="4" @error="ad = false"></advertise>
             <!-- #endif -->
             <!-- #ifdef MP-QQ -->
-            <advertise :adSelect="1" @error="ad = false"></advertise>
+            <advertise :ad-select="1" @error="ad = false"></advertise>
             <!-- #endif -->
         </layout>
 

@@ -9,9 +9,9 @@
             <view class="input-con">
                 <view class="input-view y-center x-full">
                     <i class="iconfont icon-account"></i>
-                    <input class="a-input x-full" name="account" placeholder="账号" :value="account"></input>
+                    <input class="a-input x-full" name="account" placeholder="账号" :value="account" type="number"></input>
                 </view>
-                <view class="input-view y-center x-full">
+                <view class="input-view y-center x-full a-lmt">
                     <i class="iconfont icon-password"></i>
                     <input class="a-input x-full" name="password" placeholder="密码" :password="hidePassword" :value="password"></input>
                     <switch @change="switchChange"></switch>
@@ -44,8 +44,8 @@
                     key: "user",
                     success: res => {
                         if (res.data && res.data.account && res.data.password) {
-                            this.account = res.data.account
-                            this.password = decodeURIComponent(res.data.password)
+                            this.account = res.data.account;
+                            this.password = res.data.password;
                         }
                     }
                 })

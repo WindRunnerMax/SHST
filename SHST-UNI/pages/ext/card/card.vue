@@ -11,7 +11,7 @@
                     <view>卡号</view>
                     <rich-text :nodes="account"></rich-text>
                 </view>
-                <view class="info a-flex-space-between"> 
+                <view class="info a-flex-space-between">
                     <view>卡余额</view>
                     <rich-text :nodes="banlance"></rich-text>
                 </view>
@@ -78,8 +78,12 @@
                     load: 2,
                     url: uni.$app.data.url + "/card/userInfo",
                 })
-                cardLoad = false;
                 var info = res.data.info;
+                if(!info) {
+                    uni.$app.toast("加载失败，请稍后重试");
+                    return void 0;
+                }
+                cardLoad = false;
                 var pregInfo = info.match(/<div align="left">[\S]*<\/div>/g);
                 var balanceInfo = info.match(/<td class="neiwen">[\S]*<\/td>/g);
                 var balance = balanceInfo[0].split("（")[0];
@@ -149,7 +153,7 @@
     .info {
         padding: 5px 0;
     }
-    
+
     .table{
         border-left:1px solid #eee;
         border-top:1px solid #eee;

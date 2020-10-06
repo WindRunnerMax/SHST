@@ -6,7 +6,7 @@
                 class="reward-img" src="/static/img/Reward.jpg"></image>
         </view>
 
-        <view class="tips-reward">
+        <view class="tips-reward tips-con">
             
             <!-- #ifdef MP-WEIXIN -->
             <view>点击二维码后长按识别赞赏码</view>

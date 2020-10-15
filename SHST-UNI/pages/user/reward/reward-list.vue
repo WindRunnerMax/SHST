@@ -9,7 +9,7 @@
                     <view class="name">{{item.name}}</view>
                     <view class="time">{{item.reward_time}}</view>
                 </view>
-                <view class="amount" style="color: #4C98F7;">{{item.amount}}</view>
+                <view class="amount">{{item.amount}}</view>
             </view>
         </layout>
         <layout>
@@ -53,7 +53,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .info-con {
         font-size: 13px;
         line-height: 23px;
@@ -73,6 +73,7 @@
     }
 
     .amount {
+        color: $a-blue;
         font-size: 17px;
         margin-right: 5px;
     }

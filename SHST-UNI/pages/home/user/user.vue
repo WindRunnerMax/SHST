@@ -7,24 +7,22 @@
             </view>
 
             <view class="user-info-con">
+                
                 <view class="unit-info top">
-                    <view>
-                        <view>学号</view>
-                    </view>
+                    <view>学号</view>
                     <view>{{account}}</view>
                 </view>
+                
                 <view class="unit-info">
-                    <view>
-                        <view>姓名</view>
-                    </view>
+                    <view>姓名</view>
                     <view>{{name}}</view>
                 </view>
+                
                 <view class="unit-info">
-                    <view>
-                        <view>学院</view>
-                    </view>
+                    <view>学院</view>
                     <view>{{academy}}</view>
                 </view>
+                
                 <!-- #ifdef MP-WEIXIN -->
                 <view class="a-hide" :class="{'a-show':today > '2020-09-01'}">
                     <view class="unit-info" @click="copy('722942376')">
@@ -39,27 +37,32 @@
                     <view>722942376</view>
                 </button>
                 <!-- #endif -->
+                
                 <view class="unit-info" @click="jumpUpdate('/pages/user/announce/announce')">
                     <view class="a-flex">
-                        <view>
-                            <view>公告</view>
-                        </view>
+                        <view>公告</view>
                         <view :style="{'background':'green', 'display':point}" class="point"></view>
                     </view>
                     <view class="iconfont icon-arrow-right"></view>
                 </view>
+                
+                <!-- #ifdef MP-WEIXIN -->
                 <view class="unit-info"  @click="jump('/pages/user/reward/reward')">
+                    <view class="a-flex">赞赏</view>
+                    <view class="iconfont icon-arrow-right"></view>
+                </view>
+                <!-- #endif -->
+                <!-- #ifdef MP-QQ -->
+                <view class="unit-info"  @click="jump('/pages/user/reward/reward-list')">
                     <view class="a-flex">
-                        <view>
-                            <view>赞赏</view>
-                        </view>
+                        <view>赞赏</view>
                     </view>
                     <view class="iconfont icon-arrow-right"></view>
                 </view>
+                <!-- #endif -->
+                
                 <view class="unit-info" @click="jump('/pages/user/about/about')">
-                    <view>
-                        <view>关于</view>
-                    </view>
+                    <view>关于</view>
                     <view class="iconfont icon-arrow-right"></view>
                 </view>
 

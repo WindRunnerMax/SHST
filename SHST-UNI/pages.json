@@ -72,17 +72,23 @@
         }, {
             "path": "pages/ext/link/link",
             "style": {}
-        }
+        },
         // #ifndef MP-WEIXIN
-        , {
+        {
             "path": "pages/ext/event/event",
             "style": {}
         }, {
             "path": "pages/ext/event/fin-event",
             "style": {}
-        }
+        },
         // #endif
-        , {
+        {
+            "path" : "pages/sdust/notice/notice",
+            "style" : {}
+        }, {
+            "path" : "pages/sdust/notice/detail",
+            "style" : {}
+        }, {
             "path": "pages/ext/exam/exam",
             "style": {}
         }, {
@@ -90,27 +96,19 @@
             "style": {}
         }, {
             "path": "pages/user/about/about",
-            "style": {
-                "navigationBarBackgroundColor": "#fff"
-            }
+            "style": {"navigationBarBackgroundColor": "#fff"}
         }, {
             "path": "pages/user/reward/reward",
-            "style": {
-                "navigationBarBackgroundColor": "#fff"
-            }
+            "style": {"navigationBarBackgroundColor": "#fff"}
         }, {
             "path": "pages/user/reward/reward-list",
             "style": {}
         }, {
             "path": "pages/home/auxiliary/not-found",
-            "style": {
-                "navigationBarBackgroundColor": "#fff"
-            }
+            "style": {"navigationBarBackgroundColor": "#fff"}
         }, {
             "path": "pages/home/auxiliary/login",
-            "style": {
-                "navigationBarBackgroundColor": "#fff"
-            }
+            "style": {"navigationBarBackgroundColor": "#fff"}
         }
         ,{
             "path" : "pages/study/classroom/search-classes",
@@ -120,6 +118,7 @@
             "path" : "pages/study/table-share/join-classes",
             "style" : {}
         }
+
     ],
     "globalStyle": {
         "navigationBarTextStyle": "black",

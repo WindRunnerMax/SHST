@@ -118,12 +118,16 @@
                     <i class="iconfont icon-tubiao-"></i>
                     <view>蹭课查询</view>
                 </view>
-                <view class="icon" @click="jump('/pages/user/reward/reward', 0)">
+                <!-- <view class="icon" @click="jump('/pages/user/reward/reward', 0)">
                     <i class="iconfont icon-zanshang"></i>
                     <view>赞赏</view>
+                </view> -->
+                <view class="icon" @click="jump('/pages/sdust/notice/notice', 0)">
+                    <i class="iconfont icon-gonggao1"></i>
+                    <view>校内公告</view>
                 </view>
                 <button open-type="feedback" class="icon" style="color: inherit;" hover-class="none">
-                    <i class="iconfont icon-gonggao1"></i>
+                    <i class="iconfont icon-fankui"></i>
                     <view>意见反馈</view>
                 </button>
             </view>

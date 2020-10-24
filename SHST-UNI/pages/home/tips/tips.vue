@@ -2,7 +2,26 @@
     <view>
 
         <layout :topSpace="true">
-            <weather></weather>
+            <view class="swiper-con">
+                <swiper :indicator-dots="true" :interval="5000" :duration="1000" autoplay circular>
+                    <swiper-item class="x-center y-center" v-for="(item,index) in swiper"
+                        :key="item.img" @click="articleJump(item.url)">
+                        <image class="x-full" mode="aspectFill" :src="item.img"></image>
+                    </swiper-item>
+                    <swiper-item class="x-center y-center" v-if="adShow">
+                        <!-- #ifdef MP-WEIXIN -->
+                        <advertise class="x-full" :ad-select="1" @error="adShow = false"></advertise>
+                        <!-- #endif -->
+                        <!-- #ifdef MP-QQ -->
+                        <advertise class="x-full" :ad-select="3" @error="adShow = false"></advertise>
+                        <!-- #endif -->
+                    </swiper-item>
+                </swiper>
+            </view>
+        </layout>
+
+        <layout :topSpace="true" title="天气">
+            <weather />
         </layout>
 
 
@@ -13,17 +32,15 @@
                     <button open-type="share" class="iconfont icon-fenxiang icon btn"></button>
                 </view>
             </view>
-            <view class="artical-con text-ellipsis" @click="articalJump">
+            <view class="article-con text-ellipsis" @click="articleJump(articleUrl)">
                 <i class="iconfont icon-gonggao icon"></i>
-                <rich-text class="a-link" :nodes="artical"></rich-text>
+                <rich-text class="a-link" :nodes="article"></rich-text>
             </view>
-            <navigator url="/pages/user/announce/announce" open-type="navigate" class="artical-con text-ellipsis" hover-class="none">
+            <navigator url="/pages/user/announce/announce" open-type="navigate" class="article-con text-ellipsis" hover-class="none">
                 <i class="iconfont icon-gonggao icon"></i>
                 <text class="a-link">更多公告...</text>
             </navigator>
-
         </layout>
-
 
         <layout title="今日课程" >
             <view v-for="(item,index) in table" :key="index">
@@ -79,37 +96,41 @@
 
 
         <layout title="每日一句" >
-            <sentence></sentence>
+            <sentence />
         </layout>
 
     </view>
 </template>
 
 <script>
-    import weather from "@/components/weather/weather.vue";
-    import sentence from "@/components/sentence/sentence.vue";
     import util from "@/modules/datetime";
     import pubFct from"@/vector/pubFct.js";
+    import weather from "@/components/weather/weather.vue";
+    import sentence from "@/components/sentence/sentence.vue";
+    import advertise from "@/components/advertise/advertise.vue";
     export default {
-        components: {
-            weather,
-            sentence
-        },
+        components: { weather, sentence, advertise },
         data: function() {
             return {
-                today: util.formatDate("yyyy-MM-dd K"),
                 table: [],
+                swiper: [],
                 todoList: [],
+                adShow: false,
+                articleUrl: "",
                 tips: "数据加载中",
                 tipsInfo: "数据加载中",
                 tips2: "数据加载中",
-                artical: "数据加载中"
+                article: "数据加载中",
+                today: util.formatDate("yyyy-MM-dd K"),
             }
         },
         created: function() {
             uni.$app.onload(() => {
                 console.log("Login EventBus Execute");
-                this.getArtical();
+                this.swiper = uni.$app.data.initData.ads;
+                this.article = uni.$app.data.initData.articalName;
+                this.articleUrl = uni.$app.data.initData.articleUrl;
+                this.adShow = true;
                 this.getTable();
                 // #ifndef MP-WEIXIN
                 this.getEvent();
@@ -231,31 +252,15 @@
                     this.tips2 = this.todoList.length === 0 ? "暂没有待办事项" : "";
                 }
             },
-
             // #endif
-            getArtical: function() {
-                if (uni.$app.data.initData && uni.$app.data.initData.articalName) {
-                    // #ifdef MP-ALIPAY
-                    this.artical = [{
-                        type: "text",
-                        text: uni.$app.data.initData.articalName
-                    }]
-                    // #endif
-                    // #ifndef MP-ALIPAY
-                    this.artical = uni.$app.data.initData.articalName
-                    // #endif
-                }
-            },
-            articalJump: function() {
-                if (uni.$app.data.initData && uni.$app.data.initData.articleUrl) {
-                    var url = encodeURIComponent(uni.$app.data.initData.articleUrl);
-                    // #ifdef MP-WEIXIN
-                    uni.navigateTo({url: "/pages/home/auxiliary/webview?url=" + url})
-                    // #endif
-                    // #ifndef MP-WEIXIN
-                    uni.setClipboardData({data: uni.$app.data.initData.articleUrl})
-                    // #endif
-                }
+            articleJump: function(articleUrl) {
+                // #ifdef MP-WEIXIN
+                var url = encodeURIComponent(articleUrl);
+                uni.navigateTo({url: "/pages/home/auxiliary/webview?url=" + url})
+                // #endif
+                // #ifndef MP-WEIXIN
+                uni.setClipboardData({data: articleUrl})
+                // #endif
             },
             bindSW: function() {
                 if (uni.$app.data.userFlag === 0) uni.navigateTo({url: "/pages/home/auxiliary/login"})
@@ -266,7 +271,7 @@
 </script>
 
 <style scoped>
-    .artical-con {
+    .article-con {
         display: flex;
         align-items: center;
         padding: 10px 0;
@@ -297,5 +302,15 @@
         border: 1px solid #EEEEEE;
         padding: 7px;
         border-radius: 20px;
+    }
+
+    .swiper-con {
+        height: 170px;
+        border-radius: 3px;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    .swiper-con > swiper{
+        height: inherit;
     }
 </style>

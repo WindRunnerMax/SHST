@@ -32,6 +32,9 @@
             "sdkConfigs" : {
                 "maps" : {}
             }
+        },
+        "uniStatistics" : {
+            "enable" : true
         }
     },
     /* 快应用特有相关 */
@@ -50,17 +53,29 @@
                 "desc" : "您的位置信息将用于嵙地图定位功能"
             }
         },
-        "navigateToMiniProgramAppIdList" : [ "wxa53da62a53aaddea", "wx219195cad731454f" ]
+        "navigateToMiniProgramAppIdList" : [ "wxa53da62a53aaddea", "wx219195cad731454f" ],
+        "uniStatistics" : {
+            "enable" : true
+        }
     },
     "mp-alipay" : {
         "usingComponents" : true,
-        "appid" : "2021001107642868"
+        "appid" : "2021001107642868",
+        "uniStatistics" : {
+            "enable" : true
+        }
     },
     "mp-baidu" : {
-        "usingComponents" : true
+        "usingComponents" : true,
+        "uniStatistics" : {
+            "enable" : true
+        }
     },
     "mp-toutiao" : {
-        "usingComponents" : true
+        "usingComponents" : true,
+        "uniStatistics" : {
+            "enable" : true
+        }
     },
     "mp-qq" : {
         "appid" : "1109636712",
@@ -74,6 +89,17 @@
             }
         },
         "navigateToMiniProgramAppIdList" : [ "1110074303" ],
-        "groupIdList" : [ "722942376" ]
+        "groupIdList" : [ "722942376" ],
+        "uniStatistics" : {
+            "enable" : true
+        }
+    },
+    "uniStatistics" : {
+        "enable" : true
+    },
+    "h5" : {
+        "uniStatistics" : {
+            "enable" : true
+        }
     }
 }

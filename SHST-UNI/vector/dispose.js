@@ -51,16 +51,20 @@ function onLaunch() {
             // #endif
             method: "POST",
             data: {
-                "code": res.code,
+                code: res.code,
                 user: JSON.stringify(userInfo)
             }
         })
     }).then((res) => {
+        /* 判断是否正常初始化 */
+        const response = res.data;
+        if (!response || !response.initData || !response.initData.curTerm) return Promise.reject("DATA INIT FAIL");
+
         /* 初始化全局信息 */
-        $app.data.curTerm = res.data.initData.curTerm;
-        $app.data.curTermStart = res.data.initData.termStart;
-        $app.data.curWeek = res.data.initData.curWeek;
-        $app.data.initData = res.data.initData;
+        $app.data.curTerm = response.initData.curTerm;
+        $app.data.curTermStart = response.initData.termStart;
+        $app.data.curWeek = response.initData.curWeek;
+        $app.data.initData = response.initData;
 
         /* 自定义配色 */
         if($app.data.initData.custom){
@@ -72,24 +76,48 @@ function onLaunch() {
         }
 
         /* 用户使用信息  1 已注册用户  2 未注册用户*/
-        $app.data.userFlag = res.data.status === 1 ? 1 : 0;
+        $app.data.userFlag = response.status === 1 ? 1 : 0;
         console.log("Status:" + ($app.data.userFlag === 1 ? "user Login" : "New user"));
 
         /* dot */
-        var notify = res.data.initData.tips;
+        var notify = response.initData.tips;
         $app.data.point = notify;
         var point = uni.getStorageSync("point") || "";
         if (point !== notify) uni.showTabBarRedDot({ index: 2 });
 
         /* openid */
-        console.log("SetOpenid:" + res.data.openid);
-        $app.data.openid = res.data.openid;
-        
+        console.log("SetOpenid:" + response.openid);
+        $app.data.openid = response.openid;
+
+        /* 处理弹出式公告 */
+        var popup = uni.getStorageSync("popup") || "";
+        if(popup !== response.initData.popup.serial) {
+            uni.showModal({
+                title: "公告",
+                confirmText: "下次查看",
+                cancelText: "立即查看",
+                content: response.initData.popup.popup,
+                cancelColor: "#666",
+                confirmColor: "#666",
+                success: (res) => {
+                    if(!res.confirm) {
+                        uni.setStorage({key: "popup", data: response.initData.popup.serial})
+                        // #ifdef MP-WEIXIN
+                        let url = encodeURIComponent(response.initData.popup.path);
+                        uni.navigateTo({url: "/pages/home/auxiliary/webview?url=" + url})
+                        // #endif
+                        // #ifndef MP-WEIXIN
+                        uni.setClipboardData({data: response.initData.popup.path})
+                        // #endif
+                    }
+                }
+            })
+        }
+
         /* resolve */
         return Promise.resolve(res);
     }).then((res) => {
-        if (!res.data.initData || !res.data.initData.curTerm) return Promise.reject("DATA INIT FAIL");
-        else $app.$scope.eventBus.commit("LoginEvent", res);
+        $app.$scope.eventBus.commit("LoginEvent", res);
     }).catch((err) => {
         console.log(err);
         uni.showModal({

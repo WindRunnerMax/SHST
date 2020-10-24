@@ -28,7 +28,11 @@
                     throttle: true,
                 })
                 this.title = res.data.info.title;
-                this.info = res.data.info.content.replace(/font-size: \d\dpx;/g, "font-size: 13px;");
+                this.info = res.data.info.content
+                    .replace(/font-size: \d+px;/g, "font-size: 13px;")
+                    .replace(/width="\d+"/g, "")
+                    .replace(/height="\d+"/g, "")
+                    .replace(/<img/g, "<img width=\"100%\"");
             })
         },
         filters: {},

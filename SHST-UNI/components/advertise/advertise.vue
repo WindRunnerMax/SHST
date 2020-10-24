@@ -4,7 +4,6 @@
         <!-- Funct -->
         <ad 
             v-if="computedAdSelect === 0" 
-            :ad-intervals="30"
             unit-id="adunit-b82100ae7bddf4ad" 
             @error="adError" 
             class="adapt">
@@ -12,7 +11,6 @@
         <!-- Native-Card-Video -->
         <ad-custom 
             v-if="computedAdSelect === 1" 
-            :ad-intervals="30"
             @error="adSelect = 2" 
             class="adapt" 
             unit-id="adunit-b9b2fd0e829c7388">
@@ -20,7 +18,6 @@
         <!-- Native-Banner -->
         <ad-custom 
             v-if="computedAdSelect === 2" 
-            :ad-intervals="30"
             @error="adSelect = 0" 
             class="adapt" 
             unit-id="adunit-8fcb99da029141d0" >
@@ -28,7 +25,6 @@
         <!-- Native-Banner-Video -->
         <ad-custom 
             v-if="computedAdSelect === 3" 
-            :ad-intervals="30"
             @error="adSelect = 2" 
             class="adapt" 
             unit-id="adunit-281c97c91ba73fd7">
@@ -36,7 +32,6 @@
         <!-- Table -->
         <ad 
             v-if="computedAdSelect === 4" 
-            :ad-intervals="30"
             unit-id="adunit-ce81890e6ff0b2a7"  
             @error="adError" 
             class="adapt">
@@ -44,14 +39,12 @@
         <!-- Grade -->
         <ad 
             v-if="computedAdSelect === 5" 
-            :ad-intervals="30"
             unit-id="adunit-31c347091893cf0c"  
             @error="adError" 
             class="adapt">
          </ad>
         <!-- Video -->
         <ad v-if="computedAdSelect === 6" 
-            :ad-intervals="30"
             unit-id="adunit-d4a5485ea69b2794" 
             ad-type="video" 
             @error="adError" 
@@ -60,7 +53,6 @@
         <!-- Games -->
         <ad 
             v-if="computedAdSelect === 7" 
-            :ad-intervals="30"
             unit-id="adunit-a0ca2792308b3673" 
             ad-type="grid" 
             grid-count="8" 

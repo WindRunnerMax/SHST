@@ -110,6 +110,10 @@
                     throttle: true,
                     url: uni.$app.data.url + "/ext/calendar",
                 })
+                if(!res.data.info || !res.data.info[0]) {
+                    uni.$app.toast("加载失败，请重试");
+                    return void 0;
+                }
                 res.data.info = res.data.info.reverse();
                 this.data = res.data.info;
                 var range = [];

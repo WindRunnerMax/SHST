@@ -1,34 +1,19 @@
 <template>
-    <view>
 
-        <view class="weather">
-            <view class="weather-left">
-                <view class="flex-center">
-                    <image class="today-img" mode="aspectFit" :src="host+'/public/static/weather/'+todayWeather[1]+'.png'"></image>
-                </view>
-                <view class="first-line">{{todayWeather[0]}}</view>
-                <view class="second-line">{{todayWeather[2]}}℃ - {{todayWeather[3]}}℃</view>
-                <view class="second-line">{{todayWeather[4]}}</view>
-            </view>
-            <view class="weather-right">
-                <view class="weather-right-top">
-                    <image class="day-img" mode="aspectFit" :src="host+'/public/static/weather/'+tomorrowWeather[1]+'.png'"></image>
-                    <view class="weather-con">
-                        <view class="first-line">{{tomorrowWeather[0]}}</view>
-                        <view class="second-line">{{tomorrowWeather[2]}}℃ - {{tomorrowWeather[3]}}℃</view>
-                    </view>
-                </view>
-                <view class="weather-right-bot">
-                    <image class="day-img" mode="aspectFit" :src="host+'/public/static/weather/'+tdatomoWeather[1]+'.png'"></image>
-                    <view class="weather-con">
-                        <view class="second-line">{{tdatomoWeather[0]}}</view>
-                        <view style="text-align:center;">{{tdatomoWeather[2]}}℃ - {{tdatomoWeather[3]}}℃</view>
-                    </view>
-                </view>
+    <view class="weather">
+        <view class="y-center text-ellipsis retract">
+            <image class="img" mode="aspectFit" :src="host+'/public/static/weather/'+today.skycon+'.png'"></image>
+            <view class="lml text">{{today.min}}℃ - {{today.max}}℃</view>
+            <view class="lml text-ellipsis text" @click="showDes(today.des)">{{today.des}}</view>
+        </view>
+        <view class="hr"></view>
+        <view class="y-center img-list-con retract lbl">
+            <view v-for="item in 7" :key="item">
+                <image class="img" mode="aspectFit" :src="host+'/public/static/weather/'+skycon[(item+1) % 5].value+'.png'"></image>
             </view>
         </view>
-
     </view>
+
 </template>
 <script>
     export default {
@@ -37,9 +22,8 @@
         methods: {},
         data: function() {
             return {
-                todayWeather: ["", "CLEAR_DAY", 0, 0, "数据获取中"],
-                tomorrowWeather: ["", "CLEAR_DAY", 0, 0],
-                tdatomoWeather: ["", "CLEAR_DAY", 0, 0],
+                today: {skycon: "CLEAR_DAY", min: 0, max: 0, des: "数据获取中"},
+                skycon: [{value: "CLEAR_DAY"},{value: "CLEAR_DAY"},{value: "CLEAR_DAY"},{value: "CLEAR_DAY"},{value: "CLEAR_DAY"},],
                 host: "https://shst.touchczy.top"
             }
         },
@@ -50,84 +34,61 @@
                     ran,
                 success: (res) => {
                     if (res.data.status === "ok") {
-                        var weatherData = res.data.result.daily;
-                        this.todayWeather = [weatherData.skycon[0].date, weatherData.skycon[0].value, weatherData.temperature[0].min,
-                            weatherData.temperature[0].max, res.data.result.hourly.description
-                        ]
-                        this.tomorrowWeather = [weatherData.skycon[1].date, weatherData.skycon[1].value, weatherData.temperature[1].min,
-                            weatherData.temperature[1].max
-                        ]
-                        this.tdatomoWeather = [weatherData.skycon[2].date, weatherData.skycon[2].value, weatherData.temperature[2].min,
-                            weatherData.temperature[2].max
-                        ]
+                        var weather = res.data.result.daily;
+                        this.today = {skycon: weather.skycon[0].value, min: weather.temperature[0].min,
+                            max: weather.temperature[0].max, des: res.data.result.hourly.description
+                        };
+                        this.skycon = weather.skycon;
                     }
                 }
             })
+        },
+        methods: {
+            showDes: function(info){
+                uni.showToast({title: info, icon: "none"});
+            }
         }
     }
 </script>
-<style>
-    .weather {
+<style scoped>
+    .weather{
+        border-bottom: 1px solid #eee;
+        box-sizing: border-box;
+    }
+    .retract{
+        padding: 0 5px;
+    }
+    .text{
+        color: #555;
+    }
+    .y-center{
         display: flex;
-        border: 1px solid #eee;
-        transition: all 0.8s;
-        font-size: 13px;
-        border-radius: 3px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-
-    .weather-left {
-        width: 50% ;
-        padding: 10px;
-        border-right: 1px solid #eee;
-    }
-
-    .today-img {
-        width: 40px !important;
-        height: 40px !important;
-    }
-    
-    .flex-center{
-        display: flex;
-        justify-content: center;
         align-items: center;
     }
-
-    .day-img {
-        width: 30px !important;
-        height: 30px !important;
-        margin: 0 0 0 15px;
-        align-self: center;
+    .img{
+        width: 21px !important;
+        height: 21px !important;
     }
-
-    .weather-right {
-        width: 50%;
-    }
-
-    .weather-right-bot,
-    .weather-right-top {
+    .img-list-con{
         display: flex;
-        height: 50%;
-        text-align: center;
+        justify-content: space-between;
     }
-
-    .weather-right-bot {
-        border-top: 1px solid #eee;
+    .text-ellipsis{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
-
-    .weather-con {
-        align-self: center;
-        margin: 0 auto;
+    .lml{
+       margin-left: 10px;
     }
-    
-    .first-line{
-        margin-top:6px;
-        text-align:center;
+    .lbl{
+        margin-bottom: 7px;
     }
-    
-    .second-line{
-        margin-top:6px;
-        text-align:center;
+    .hr {
+    	display: block;
+    	height: 1px;
+    	background: #EEEEEE;
+    	border: none;
+    	margin: 10px 0;
     }
 </style>

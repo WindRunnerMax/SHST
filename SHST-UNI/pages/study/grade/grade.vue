@@ -76,8 +76,7 @@
                 show: false,
                 grade: 0,
                 ad: true,
-                showSelect: "",
-                adSelect: uni.$app.data.initData.adSelect
+                showSelect: ""
             }
         },
         created: function() {

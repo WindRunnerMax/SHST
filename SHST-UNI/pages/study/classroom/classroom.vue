@@ -3,15 +3,15 @@
 
         <layout title="空教室">
             <view class="top">
-                <picker-view indicator-style="height: 40px;" style="width: 77%; height: 100px;" @change="bindPickerChange">
+                <picker-view class="picker-con" indicator-style="height: 40px;" @change="bindPickerChange">
                     <picker-view-column>
-                        <view v-for="(item,index) in queryData" :key="index" style="line-height: 40px">{{item[1]}}</view>
+                        <view v-for="(item,index) in queryData" :key="index" class="picker-item">{{item[1]}}</view>
                     </picker-view-column>
                     <picker-view-column>
-                        <view v-for="(item,index) in queryTime" :key="index" style="line-height: 40px">{{item[0]}}</view>
+                        <view v-for="(item,index) in queryTime" :key="index" class="picker-item">{{item[0]}}</view>
                     </picker-view-column>
                     <picker-view-column>
-                        <view v-for="(item,index) in queryFloor" :key="index" style="line-height: 40px">{{item[0]}}</view>
+                        <view v-for="(item,index) in queryFloor" :key="index" class="picker-item">{{item[0]}}</view>
                     </picker-view-column>
                 </picker-view>
                 <view class="button-con">
@@ -43,6 +43,7 @@
                 searchData: util.formatDate(),
                 searchTime: "0102",
                 searchFloor: 1,
+                searchCampus: 1,
                 index: [0, 0, 0],
                 queryData: [],
                 queryTime: [],
@@ -63,12 +64,15 @@
                     ["全天", "allday", "全天(8:00-20:50)"]
                 ];
                 var queryFloor = [
-                    ["J1", "1"],
-                    ["J3", "3"],
-                    ["J5", "5"],
-                    ["J7", "7"],
-                    ["J14", "14"],
-                    ["S1", "S1"]
+                    ["J1", "1", 1],
+                    ["J3", "3", 1],
+                    ["J5", "5", 1],
+                    ["J7", "7", 1],
+                    ["J14", "14", 1],
+                    ["S1", "S1", 1],
+                    ["济1", "0301", 3],
+                    ["济2", "0302", 3],
+                    ["济3", "0303", 3],
                 ];
                 this.queryData = queryData;
                 this.queryTime = queryTime;
@@ -84,12 +88,13 @@
                 var res = await uni.$app.request({
                     load: 2,
                     throttle: true,
+                    url: uni.$app.data.url + "/sw/classroom",
                     data: {
                         searchData: this.searchData,
                         searchTime: this.searchTime,
                         searchFloor: this.searchFloor,
+                        searchCampus: this.searchCampus,
                     },
-                    url: uni.$app.data.url + "/sw/classroom",
                 })
                 var data = res.data.data;
                 if(!data) {
@@ -101,7 +106,7 @@
                     return void 0;
                 }
                 if (!data[0]) data = [{
-                    "jxl": "青岛校区-" + this.searchFloor + "号楼",
+                    "jxl": this.searchFloor + "号楼",
                     jsList: [{jsmc: "无空教室"}]
                 }];
                 data[0].jsList.sort((a, b) => a.jsmc > b.jsmc ? 1 : -1);
@@ -126,14 +131,15 @@
                     queryDataArr.push([year + "-" + monthTemp + "-" + dayTemp, weekShow[weekTemp % 7]]);
                     date.addDate(0, 0, 1);
                 }
-                console.log(queryDataArr);
                 return queryDataArr;
             },
             bindPickerChange: function(e) {
                 this.index = e.detail.value;
-                this.searchData = this.queryData[e.detail.value[0]][0];
-                this.searchTime = this.queryTime[e.detail.value[1]][1];
-                this.searchFloor = this.queryFloor[e.detail.value[2]][1];
+                var [dataIndex, timeIndex, floorIndex] = e.detail.value;
+                this.searchData = this.queryData[dataIndex][0];
+                this.searchTime = this.queryTime[timeIndex][1];
+                this.searchFloor = this.queryFloor[floorIndex][1];
+                this.searchCampus = this.queryFloor[floorIndex][2];
             }
         }
     }
@@ -147,6 +153,15 @@
         justify-content: space-between;
     }
 
+    .picker-con{
+        width: 77%;
+        height: 100px;
+    }
+
+    .picker-item{
+        line-height: 40px;
+     }
+
     .unit {
         display: flex;
         padding: 10px 7px;
@@ -154,7 +169,7 @@
         background: #eee;
         margin: 3px;
     }
-    
+
     .floor-name{
         border-bottom: 1px solid #eee;
         padding: 10px 0 ;
@@ -168,7 +183,6 @@
         align-content: center;
         align-items: center;
         justify-content: center;
-        justify-items: center;
     }
 
     .button-con {
@@ -191,4 +205,5 @@
         word-break: break-all;
         transition: all 0.3s;
     }
+
 </style>

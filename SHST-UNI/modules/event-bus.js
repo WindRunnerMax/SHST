@@ -19,6 +19,7 @@ PubSub.prototype = {
 
     commit: function(key, ...args) { // 触发
         if (!this.handlers[key]) return false;
+        console.log(key, "Execute");
         this.handlers[key].forEach(handler => handler.apply(this, args));
         return true;
     },

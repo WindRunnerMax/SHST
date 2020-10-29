@@ -55,16 +55,6 @@
             </view>
         </layout>
 
-
-        <layout v-show="adShow">
-            <!-- #ifdef MP-WEIXIN -->
-            <advertise :ad-select="3" :compatible="0" @error="adShow = false"></advertise>
-            <!-- #endif -->
-            <!-- #ifdef MP-QQ -->
-            <advertise :ad-select="3" @error="adShow = false"></advertise>
-            <!-- #endif -->
-        </layout>
-
     </view>
 </template>
 
@@ -82,7 +72,6 @@
                 className: "",
                 teacherName: "",
                 classes: [],
-                adShow: false,
                 show: false,
                 loading: "loadmore"
             }

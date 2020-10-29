@@ -15,18 +15,22 @@ function tableDispose(info, oneDay = false) {
         var classObj = {};
         var day = ~~(value.kcsj[0]) - 1;
         if (oneDay && day !== week) return void 0;
-        var knot = ~~(~~(value.kcsj.substr(1, 2)) / 2);
+        var knotArr = value.kcsj.slice(1).replace(/(\d{4})/g, "$1,").split(",");
         var uniqueNum = Array.prototype.reduce.call(value.kcmc, (pre, cur) => pre+cur.charCodeAt(), 0);
-        var colorSignal = app.data.colorList[ uniqueNum % app.data.colorN];
+        var colorSignal = app.data.colorList[uniqueNum % app.data.colorN];
         classObj.day = day;
-        classObj.knot = knot;
         classObj.className = value.kcmc.split("（")[0];
         classObj.teacher = value.jsxm;
         classObj.classroom = value.jsmc;
         classObj.background = colorSignal;
-        if(!tableArr[day]) tableArr[day] = [];
-        if(!tableArr[day][knot]) tableArr[day][knot] = {background: colorSignal, table: []};
-        tableArr[day][knot].table.push(classObj);
+        knotArr.forEach(v => {
+            if(!v) return void 0;
+            let knot = ~~(~~(v.slice(1, 2)) / 2);
+            classObj.knot = knot;
+            if(!tableArr[day]) tableArr[day] = [];
+            if(!tableArr[day][knot]) tableArr[day][knot] = {background: colorSignal, table: []};
+            tableArr[day][knot].table.push(classObj);
+        })
     })
     if (oneDay) return tableArr[week];
     else return tableArr;

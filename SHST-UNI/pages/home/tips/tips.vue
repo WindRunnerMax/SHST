@@ -20,18 +20,18 @@
             </view>
         </layout>
 
-        <layout :topSpace="true" title="天气">
-            <weather />
-        </layout>
-
-
-        <layout :title="today">
+        <layout :topSpace="true" :title="today">
             <view slot="headslot">
                 <view class="y-center">
                     <view class="iconfont icon-shuaxin icon refresh" @click="refresh"></view>
                     <button open-type="share" class="iconfont icon-fenxiang icon btn"></button>
                 </view>
             </view>
+            <weather />
+        </layout>
+
+
+        <layout title="系统公告">
             <view class="article-con text-ellipsis" @click="articleJump(articleUrl)">
                 <i class="iconfont icon-gonggao icon"></i>
                 <rich-text class="a-link" :nodes="article"></rich-text>
@@ -126,7 +126,6 @@
         },
         created: function() {
             uni.$app.onload(() => {
-                console.log("Login EventBus Execute");
                 this.swiper = uni.$app.data.initData.ads;
                 this.article = uni.$app.data.initData.articalName;
                 this.articleUrl = uni.$app.data.initData.articleUrl;

@@ -54,15 +54,6 @@
             </view>
         </layout>
 
-        <layout v-show="show && adShow">
-            <!-- #ifdef MP-WEIXIN -->
-            <advertise :ad-select="3" :compatible="0" @error="adShow = false"></advertise>
-            <!-- #endif -->
-            <!-- #ifdef MP-QQ -->
-            <advertise :ad-select="3" @error="adShow = false"></advertise>
-            <!-- #endif -->
-        </layout>
-
     </view>
 </template>
 
@@ -80,7 +71,6 @@
                 show: false,
                 floorIndex: 0,
                 classroomIndex: 0,
-                adShow: true
             }
         },
         beforeCreate: function() {},

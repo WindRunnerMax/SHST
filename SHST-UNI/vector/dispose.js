@@ -29,12 +29,8 @@ function disposeApp($app){
     }
 }
 
-/**
- * APP启动事件
- */
-function onLaunch() {
+function initAppData(){
     var $app = this;
-    disposeApp(this);
     var userInfo = uni.getStorageSync("user") || {};
     uni.login({
         scopes: "auth_base"
@@ -80,9 +76,9 @@ function onLaunch() {
         console.log("Status:" + ($app.data.userFlag === 1 ? "user Login" : "New user"));
 
         /* dot */
-        var notify = response.initData.tips;
+        const notify = response.initData.tips;
         $app.data.point = notify;
-        var point = uni.getStorageSync("point") || "";
+        const point = uni.getStorageSync("point") || "";
         if (point !== notify) uni.showTabBarRedDot({ index: 2 });
 
         /* openid */
@@ -90,24 +86,25 @@ function onLaunch() {
         $app.data.openid = response.openid;
 
         /* 处理弹出式公告 */
-        var popup = uni.getStorageSync("popup") || "";
-        if(popup !== response.initData.popup.serial) {
+        const popup = response.initData.popup;
+        const popupCache = uni.getStorageSync("popup") || "";
+        if(popupCache !== popup.serial) {
             uni.showModal({
                 title: "公告",
-                confirmText: "下次查看",
-                cancelText: "立即查看",
-                content: response.initData.popup.popup,
-                cancelColor: "#666",
-                confirmColor: "#666",
+                confirmText: popup.path ? "立即查看" : "确认",
+                cancelText: "下次查看",
+                content: popup.popup,
                 success: (res) => {
-                    if(!res.confirm) {
-                        uni.setStorage({key: "popup", data: response.initData.popup.serial})
+                    if(res.confirm) {
+                        uni.setStorage({key: "popup", data: popup.serial});
                         // #ifdef MP-WEIXIN
-                        let url = encodeURIComponent(response.initData.popup.path);
-                        uni.navigateTo({url: "/pages/home/auxiliary/webview?url=" + url})
+                        if(popup.path) {
+                            let url = encodeURIComponent(popup.path);
+                            uni.navigateTo({url: "/pages/home/auxiliary/webview?url=" + url});
+                        }
                         // #endif
                         // #ifndef MP-WEIXIN
-                        uni.setClipboardData({data: response.initData.popup.path})
+                        if(popup.path) uni.setClipboardData({data: popup.path});
                         // #endif
                     }
                 }
@@ -124,10 +121,18 @@ function onLaunch() {
             title: "警告",
             content: "数据初始化失败,点击确定重新初始化数据",
             showCancel: false,
-            success: (res) => onLaunch.apply($app)
+            success: (res) => initAppData.apply($app)
         })
     })
     uni.request({url: "https://blog.touchczy.top/"}); // 保持CF缓存
+}
+
+/**
+ * APP启动事件
+ */
+function onLaunch() {
+    disposeApp(this);
+    initAppData.apply(this);
 }
 
 

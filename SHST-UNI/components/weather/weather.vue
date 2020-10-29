@@ -1,10 +1,12 @@
 <template>
 
     <view class="weather">
-        <view class="y-center text-ellipsis retract">
+        <view class="y-center retract">
             <image class="img" mode="aspectFit" :src="host+'/public/static/weather/'+today.skycon+'.png'"></image>
             <view class="lml text">{{today.min}}℃ - {{today.max}}℃</view>
-            <view class="lml text-ellipsis text" @click="showDes(today.des)">{{today.des}}</view>
+            <view class="text-ellipsis a-flex-full">
+                <view class="lml text-ellipsis text" @click="showDes(today.des)">{{today.des}}</view>
+            </view>
         </view>
         <view class="hr"></view>
         <view class="y-center img-list-con retract lbl">
@@ -56,7 +58,7 @@
         box-sizing: border-box;
     }
     .retract{
-        padding: 0 5px;
+        padding: 0 10px;
     }
     .text{
         color: #555;

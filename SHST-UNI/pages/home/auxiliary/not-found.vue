@@ -1,4 +1,4 @@
-<template>
+<template functional>
     <view>
         
         <view class="status">404</view>
@@ -10,16 +10,7 @@
 </template>
 
 <script>
-    export default {
-        data: function() {
-            return {
-                
-            }
-        },
-        methods: {
-            
-        }
-    }
+    export default {}
 </script>
 
 <style>

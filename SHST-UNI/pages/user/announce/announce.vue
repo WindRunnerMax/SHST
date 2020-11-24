@@ -6,11 +6,6 @@
         <layout v-for="(item,index) in data" :key="index">
             <rich-text :nodes="item.announce" class="announce"></rich-text>
         </layout>
-
-        <!-- #ifdef MP-WEIXIN -->
-        <official-account></official-account>
-        <!-- #endif -->
-
     </view>
 </template>
 
@@ -20,11 +15,9 @@
         components: {
             headslot
         },
-        data: function() {
-            return {
-                data: []
-            }
-        },
+        data: () => ({
+            data: []
+        }),
         created: async function(options) {
             uni.setStorage({
                 key: "point",

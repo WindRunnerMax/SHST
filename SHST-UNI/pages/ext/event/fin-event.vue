@@ -40,17 +40,15 @@
         components: {
             headslot
         },
-        data() {
-            return {
-                addContent: "",
-                dataDo: formatDate(), //默认起始时间  
-                dataEnd: formatDate(), //默认结束时间 
-                todoList: [],
-                clickFlag: 1,
-                tips: "",
-                count: 0
-            }
-        },
+        data: () => ({
+            addContent: "",
+            dataDo: formatDate(), //默认起始时间  
+            dataEnd: formatDate(), //默认结束时间 
+            todoList: [],
+            clickFlag: 1,
+            tips: "",
+            count: 0
+        }),
         created: function() {
             uni.$app.onload(async ()=>{
                 var endTime = new Date();

@@ -33,11 +33,9 @@
     import {formatDate} from "@/modules/datetime";
     import {regMatch} from "@/modules/regex";
     export default {
-        data: function() {
-            return {
-                data: []
-            }
-        },
+        data: () => ({
+            data: []
+        }),
         onLoad: async function() {
             var startTime = "07:00";
             var endTime = "22:30";

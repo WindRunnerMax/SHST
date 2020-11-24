@@ -24,13 +24,11 @@
 <script>
     export default {
         components: {},
-        data: function() {
-            return {
-                page: 0,
-                notice: [],
-                loading: "loadmore"
-            }
-        },
+        data: () => ({
+            page: 0,
+            notice: [],
+            loading: "loadmore"
+        }),
         beforeCreate: function() {},
         created: function() {
             uni.$app.onload(() => this.loadNext(0));

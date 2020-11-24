@@ -77,15 +77,13 @@
 <script>
     import util from "@/modules/datetime";
     export default {
-        data: function() {
-            return {
-                academy: " ",
-                name: " ",
-                account: " ",
-                point: "none",
-                today: util.formatDate()
-            }
-        },
+        data: () => ({
+            academy: " ",
+            name: " ",
+            account: " ",
+            point: "none",
+            today: util.formatDate()
+        }),
         created: function() {
             uni.$app.onload(async () => {
                 uni.getStorage({

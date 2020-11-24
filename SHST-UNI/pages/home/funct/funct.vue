@@ -1,7 +1,7 @@
 <template>
     <view>
 
-        <layout title="学习" color="#FF6347" :inherit-color="true">
+        <layout title="学习" color="#FF6347" inherit-color>
             <view class="y-center">
                 <view class="icon" @click="jump('/pages/study/time-table/time-table', 1)">
                     <i class="iconfont icon-kebiao"></i>
@@ -22,7 +22,7 @@
             </view>
         </layout>
 
-        <layout title="信息" color="#3CB371;" :inherit-color="true">
+        <layout title="信息" color="#3CB371;" inherit-color>
             <view class="y-center">
                 <view class="icon" @click="jump('/pages/library/library/search', 0)">
                     <i class="iconfont icon-lib"></i>
@@ -49,7 +49,7 @@
             </view>
         </layout>
 
-        <layout title="科大" color="#9F8BEC;" :inherit-color="true">
+        <layout title="科大" color="#9F8BEC;" inherit-color>
             <view class="y-center">
                 <view class="icon" @click="jump('/pages/sdust/map/map', 0)">
                     <i class="iconfont icon-map"></i>
@@ -70,7 +70,7 @@
             </view>
         </layout>
 
-        <layout title="拓展" color="#6495ED" :inherit-color="true">
+        <layout title="拓展" color="#6495ED" inherit-color>
             <view class="y-center">
                 <view class="icon" @click="jump('/pages/ext/link/link', 0)">
                     <i class="iconfont icon-link"></i>
@@ -99,7 +99,7 @@
             </view>
         </layout>
 
-        <layout v-show="adShow" :topSpace="true">
+        <layout v-show="adShow && adSelect !== -1" top-space>
             <!-- #ifdef MP-WEIXIN -->
             <advertise :ad-select="adSelect" @error="adShow = false"></advertise>
             <!-- #endif -->
@@ -108,7 +108,7 @@
             <!-- #endif -->
         </layout>
 
-        <layout title="数据" color="#FF6347" :inherit-color="true">
+        <layout title="数据" color="#FF6347" inherit-color>
             <view class="y-center">
                 <view class="icon" @click="jump('/pages/study/classroom/search-classes', 1)">
                     <i class="iconfont icon-kebiao1"></i>
@@ -127,7 +127,7 @@
                     <view>校内公告</view>
                 </view>
                 <button open-type="feedback" class="icon" style="color: inherit;" hover-class="none">
-                    <i class="iconfont icon-fankui"></i>
+                    <i class="iconfont icon-bianji"></i>
                     <view>意见反馈</view>
                 </button>
             </view>
@@ -143,13 +143,11 @@
         components:{
             advertise
         },
-        data: function() {
-            return {
-                adShow: true,
-                now: formatDate(),
-                adSelect: uni.$app.data.initData.adSelect
-            }
-        },
+        data: () => ({
+            adShow: true,
+            now: formatDate(),
+            adSelect: uni.$app.data.initData.adSelect
+        }),
         methods: {
             jump: async function(path, check) {
                 if (check === 1 && uni.$app.data.userFlag !== 1) {

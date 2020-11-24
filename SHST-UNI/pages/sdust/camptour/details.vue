@@ -28,24 +28,21 @@
 </template>
 
 <script>
-    var app = getApp();
     export default {
-        data: function() {
-            return {
-                tid: 0,
-                bid: 0,
-                building: {
-                    img: [] //加载中图片地址
-                },
-            }
-        },
+        data: () => ({
+            tid: 0,
+            bid: 0,
+            building: {
+                img: [] //加载中图片地址
+            },
+        }),
         onLoad: function(options) {
             var bid = ~~(options.bid);
             var tid = ~~(options.tid);
             if (!options.bid || !options.tid) {
-                var data = app.data.introduce;
+                var data = uni.$app.data.introduce;
             } else {
-                var data = app.data.map[tid].data[bid];
+                var data = uni.$app.data.tmp.map[tid].data[bid];
             }
             this.bid = bid
             this.tid = tid

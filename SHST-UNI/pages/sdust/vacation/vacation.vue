@@ -18,13 +18,11 @@
 
 <script>
     export default {
-        data: function() {
-            return {
-                show: 0,
-                data: [],
-                colorList: uni.$app.data.colorList
-            }
-        },
+        data: () => ({
+            show: 0,
+            data: [],
+            colorList: uni.$app.data.colorList
+        }),
         created: function() {
             uni.$app.onload(async () => {
                 var res = await uni.$app.request({

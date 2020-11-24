@@ -6,7 +6,7 @@
                 <swiper :indicator-dots="true" :interval="5000" :duration="1000" autoplay circular>
                     <swiper-item class="x-center y-center" v-for="(item,index) in swiper"
                         :key="item.img" @click="articleJump(item.url)">
-                        <image class="x-full" mode="aspectFill" :src="item.img"></image>
+                        <image class="x-full" mode="aspectFill" :src="item.img" lazy-load></image>
                     </swiper-item>
                     <swiper-item class="x-center y-center" v-if="adShow">
                         <!-- #ifdef MP-WEIXIN -->
@@ -110,20 +110,18 @@
     import advertise from "@/components/advertise/advertise.vue";
     export default {
         components: { weather, sentence, advertise },
-        data: function() {
-            return {
-                table: [],
-                swiper: [],
-                todoList: [],
-                adShow: false,
-                articleUrl: "",
-                tips: "数据加载中",
-                tipsInfo: "数据加载中",
-                tips2: "数据加载中",
-                article: "数据加载中",
-                today: util.formatDate("yyyy-MM-dd K"),
-            }
-        },
+        data: () => ({
+            table: [],
+            swiper: [],
+            todoList: [],
+            adShow: false,
+            articleUrl: "",
+            tips: "数据加载中",
+            tipsInfo: "数据加载中",
+            tips2: "数据加载中",
+            article: "数据加载中",
+            today: util.formatDate("yyyy-MM-dd K"),
+        }),
         created: function() {
             uni.$app.onload(() => {
                 this.swiper = uni.$app.data.initData.ads;
@@ -139,6 +137,10 @@
                     this.tipsInfo = "绑定强智教务系统就可以使用山科小站咯";
                 }
             })
+            uni.$app.eventBus.on("RefreshTable", this.getRemoteTable);
+        },
+        beforeDestroy: function(){
+            uni.$app.eventBus.off("RefreshTable", this.getRemoteTable);
         },
         methods: {
             /**

@@ -6,11 +6,9 @@
 
 <script>
     export default {
-        data: function() {
-            return {
-                url: ""
-            }
-        },
+        data: () => ({
+            url: ""
+        }),
         onLoad: function(options) {
             this.url = decodeURIComponent(options.url);
         },

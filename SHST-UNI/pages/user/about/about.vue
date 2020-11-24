@@ -64,12 +64,10 @@
 <script>
     import {formatDate} from "@/modules/datetime";
     export default {
-        data: function() {
-            return {
-                version: uni.$app.data.version,
-                today: formatDate()
-            }
-        },
+        data: () => ({
+            version: uni.$app.data.version,
+            today: formatDate()
+        }),
         onShareAppMessage: () => {
             var shareObj = {
                 title: "山科小站",

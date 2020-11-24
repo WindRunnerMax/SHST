@@ -4,13 +4,26 @@
         <view style="width: 100%;">
             <scroll-view scroll-x="true">
                 <view class="top-swich" style="text-align:center;" v-if="!fullscreen">
-                    <label v-for="(item,index) in buildlData" :key="index" :id="index" @click="changePage" class="top-swich-btn width-lim"
-                     :class="{'active':isSelectedBuildType == index}">{{item.name}}</label>
+                    <label v-for="(item,index) in buildlData" 
+                        :key="index" :id="index" 
+                        @click="changePage" 
+                        class="top-swich-btn width-lim" 
+                        :class="{'active':isSelectedBuildType == index}">
+                        {{item.name}}
+                    </label>
                 </view>
             </scroll-view>
-            <map :longitude="longitude" :latitude="latitude" :scale="buildlData[isSelectedBuildType].scale" :markers="buildlData[isSelectedBuildType].data"
-             @markertap="markertap" @regionchange="regionchange" :include-points="buildlData[isSelectedBuildType].data"
-             :show-location="islocation? 'true': 'false'" enable-overlooking="true" enable-3D="true" :style="{width:'auto',height:fullscreen ? 94+'vh' : 48+'vh'}">
+            <map :longitude="longitude" 
+                :latitude="latitude" 
+                :scale="buildlData[isSelectedBuildType].scale" 
+                :markers="buildlData[isSelectedBuildType].data"
+                @markertap="markertap" 
+                @regionchange="regionchange" 
+                :include-points="buildlData[isSelectedBuildType].data"
+                :show-location="islocation? 'true': 'false'"
+                enable-overlooking="true" 
+                enable-3D="true" 
+                :style="{width:'auto',height:fullscreen ? 94+'vh' : 48+'vh'}">
                 <cover-view class="controls" :class="{full:fullscreen}">
                     <cover-view @click="navigateSearch">
                         <cover-image class="img" src="/static/camptour/search.png" />
@@ -22,7 +35,9 @@
             </map>
             <button @click="clickButton">共有{{buildlData[isSelectedBuildType].data.length}}个景观 ◕‿◕</button>
             <scroll-view scroll-y="true" :style="{height:fullscreen ? 0:40+'vh'}" :scroll-top="(isSelectedBuild -1 ) * 70">
-                <view v-for="(item,index) in buildlData[isSelectedBuildType].data" :key="index" class="building-item" :style="{'background-color':isSelectedBuild -1 == index ? '#d5d5d5' : ''}">
+                <view v-for="(item,index) in buildlData[isSelectedBuildType].data" 
+                    :key="index" class="building-item" 
+                    :style="{'background-color':isSelectedBuild -1 == index ? '#d5d5d5' : ''}">
                     <view class="img-view">
                         <navigator class="img" :url="'details?tid='+isSelectedBuildType+'&bid='+index">
                             <image :src="item.img[0]" mode="aspectFill"> </image>
@@ -43,45 +58,43 @@
 </template>
 
 <script>
-    var app = getApp();
     import school from "@/vector/resources/camptour/sdust";
     export default {
-        data() {
-            return {
-                fullscreen: false,
-                latitude: 35.99940,
-                longitude: 120.12487,
-                buildlData: {},
-                windowHeight: "",
-                windowWidth: "",
-                isSelectedBuild: 0,
-                isSelectedBuildType: 0,
-                islocation: true
-            }
-        },
-        onLoad: function() {
-            var that = this;
-
+        data: () => ({
+            fullscreen: false,
+            latitude: 35.99940,
+            longitude: 120.12487,
+            buildlData: {},
+            windowHeight: "",
+            windowWidth: "",
+            isSelectedBuild: 0,
+            isSelectedBuildType: 0,
+            islocation: true
+        }),
+        created: function() {
             uni.showShareMenu({
                 withShareTicket: true
             })
             uni.getSystemInfo({
-                success: function(res) {
+                success: (res) => {
                     //获取当前设备宽度与高度，用于定位控键的位置
-                    that.windowHeight = res.windowHeight
-                    that.windowWidth = res.windowWidth
+                    this.windowHeight = res.windowHeight
+                    this.windowWidth = res.windowWidth
                 }
             })
             this.loadSchoolConf();
-            that.buildlData = app.data.map
+            this.buildlData = uni.$app.data.tmp.map;
             this.location();
+        },
+        destroyed:function(){
+            uni.$app.data.tmp.map = null;
         },
         methods: {
             loadSchoolConf: function() {
-                app.data.map = school.map;
-                for (let i = 0; i < app.data.map.length; i++) {
-                    for (let b = 0; b < app.data.map[i].data.length; b++) {
-                        app.data.map[i].data[b].id = b + 1;
+                uni.$app.data.tmp.map = school.map;
+                for (let i = 0; i < uni.$app.data.tmp.map.length; i++) {
+                    for (let b = 0; b < uni.$app.data.tmp.map[i].data.length; b++) {
+                        uni.$app.data.tmp.map[i].data[b].id = b + 1;
                     }
                 }
             },
@@ -95,16 +108,15 @@
                 })
             },
             location: function(e) {
-                var _this = this
                 uni.getLocation({
-                    type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 uni.openLocation 的坐标  
-                    success: function(res) {
-                        app.data.latitude = res.latitude;
-                        app.data.longitude = res.longitude;
-                        app.data.islocation = true;
+                    type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 uni.openLocation 的坐标
+                    success: (res) => {
+                        uni.$app.data.latitude = res.latitude;
+                        uni.$app.data.longitude = res.longitude;
+                        uni.$app.data.islocation = true;
                         if (e) {
-                            _this.longitude = res.longitude
-                            _this.latitude = res.latitude
+                            this.longitude = res.longitude;
+                            this.latitude = res.latitude;
                         }
                     }
                 })
@@ -122,11 +134,11 @@
 </script>
 
 <style>
-    
+
     page {
         padding: 0;
     }
-    
+
     .building-item {
         height: 50px;
         border-bottom: 1px solid #e0e0e0;

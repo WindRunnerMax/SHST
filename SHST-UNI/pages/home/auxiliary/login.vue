@@ -30,14 +30,12 @@
 
 <script>
     export default {
-        data: function() {
-            return {
+        data: () => ({
                 account: "",
                 password: "",
                 status: "",
                 hidePassword: true
-            }
-        },
+        }),
         created: function() {
             uni.$app.onload(() => {
                 uni.getStorage({

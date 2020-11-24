@@ -3,7 +3,7 @@
     export default {
         globalData: {
             url: "https://shst.touchczy.top",
-            // url: "http://dev.touchczy.top",
+            // url: "http://dev.shst.touchczy.top",
         },
         onPageNotFound: (res) => { //处理404
             uni.reLaunch({

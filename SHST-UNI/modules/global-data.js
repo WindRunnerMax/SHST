@@ -7,11 +7,12 @@ var colorList = ["#EAA78C", "#F9CD82", "#9ADEAD", "#9CB6E9", "#E49D9B", "#97D7D7
 ];
 
 var data = {
+    tmp: {},
     openid: "",
     point : "",
     userFlag: 0, // 0 未登录 1 已登陆
     initData: {},
-    version: "3.4.1",
+    version: "3.5.0",
     curTerm: "2019-2020-1",
     curTermStart: "2019-08-26",
     colorList : ["#FE9E9F", "#93BAFF", "#D999F9", "#81C784", "#FFCA62", "#FFA477"]

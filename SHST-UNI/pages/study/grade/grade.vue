@@ -66,8 +66,7 @@
         components: {
             headslot, advertise
         },
-        data: function() {
-            return {
+        data: () => ({
                 index: 1,
                 yearArr: [{}, {show: "请稍后",value: ""}],
                 point: 0,
@@ -77,8 +76,7 @@
                 grade: 0,
                 ad: true,
                 showSelect: ""
-            }
-        },
+        }),
         created: function() {
             // 处理学期
             uni.$app.onload(() => {

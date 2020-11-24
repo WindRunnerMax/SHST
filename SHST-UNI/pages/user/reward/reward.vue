@@ -24,11 +24,6 @@
 
 <script>
     export default {
-        data: function() {
-            return {
-
-            }
-        },
         methods: {
             viewImg:function(url) {
                 uni.previewImage({

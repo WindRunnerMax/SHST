@@ -7,7 +7,8 @@
             </view>
             <view class="search-form">
                 <form>
-                    <input @input="bindSearchInput" type="text" name="search" placeholder="请输入景点名称关键词" :value="keyword" style="font-size: 30rpx;" />
+                    <input @input="bindSearchInput" type="text" name="search" placeholder="请输入景点名称关键词" 
+                        :value="keyword" style="font-size: 30rpx;" />
                 </form>
             </view>
             <view class="search-icon" @click="reset">
@@ -39,19 +40,16 @@
 </template>
 
 <script>
-    var app = getApp();
     export default {
-        data() {
-            return {
-                keyword: null,
-                buildlData: app.data.map,
-                showData: null,
-                cursor: 0
-            }
-        },
+        data: () => ({
+            keyword: null,
+            buildlData: uni.$app.data.tmp.map,
+            showData: null,
+            cursor: 0
+        }),
         methods: {
             bindSearchInput: function(e) {
-                this.buildlData = app.data.map
+                this.buildlData = uni.$app.data.tmp.map
                 let showData = new Array();
                 let searchdata = this.buildlData;
                 if (e.detail.cursor >= this.cursor) {
@@ -96,16 +94,16 @@
                                 name: "\u839e\u9999\u5e7f\u79d1"
                             })
                         }
-                        this.showData = showData
+                        this.showData = showData;
                     }
                 } else {
                     //删除文字
-                    this.showData = null
+                    this.showData = null;
                 }
                 this.cursor = e.detail.cursor;
             },
             reset: function() {
-                this.keyword = null
+                this.keyword = null;
             }
         }
     }

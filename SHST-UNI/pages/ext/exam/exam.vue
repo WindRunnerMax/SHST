@@ -4,7 +4,7 @@
         <headslot title="考试安排"></headslot>
 
         <view class="gap"></view>
- 
+
         <layout v-if="tips">
             <view class="y-center">
                 <view class="a-dot" style="background: #eee;"></view>
@@ -30,15 +30,11 @@
 <script>
     import headslot from "@/components/headslot/headslot.vue";
     export default {
-        components: {
-            headslot
-        },
-        data: function() {
-            return {
-                tips: "",
-                exam: []
-            }
-        },
+        components: { headslot },
+        data: () => ({
+            tips: "",
+            exam: []
+        }),
         created: function() {
             uni.$app.onload(async ()=>{
                 var res = await uni.$app.request({
@@ -56,7 +52,7 @@
                 this.exam = res.data.data.length !== 0 ? res.data.data : [];
                 this.tips = res.data.data.length !== 0 ? "" : "暂无考试信息";
             })
-            
+
         },
         methods: {
 
@@ -77,7 +73,7 @@
     .c-name {
         font-size: 15px;
     }
-    
+
     .gap{
         height: 10px;
     }

@@ -14,12 +14,10 @@
 <script>
     export default {
         components: {},
-        data: function() {
-            return {
-                title: "",
-                info: ""
-            }
-        },
+        data: () => ({
+            title: "",
+            info: ""
+        }),
         onLoad: function(option){
             uni.$app.onload(async () => {
                 var res = await uni.$app.request({

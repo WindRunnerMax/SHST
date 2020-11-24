@@ -3,16 +3,19 @@
 
         <layout title="查课表">
             <view class="table-top">
-                <view class="week">第{{week}}周</view>
-                <view class="a-flex">
-                    <view class="a-btn a-btn-white a-btn-mini refresh" @click="refresh(week)">
-                        <view class="operate iconfont icon-shuaxin1"></view>
+                <view class="week a-lml">第{{week}}周</view>
+                <view class="y-center">
+                    <navigator class="a-btn a-btn-white a-btn-mini a-lml y-full y-center" url="edit">
+                        <view class="iconfont icon-jia"></view>
+                    </navigator>
+                    <view class="a-btn a-btn-white a-btn-mini a-lml y-full y-center" @click="refresh(week)">
+                        <view class="iconfont icon-shuaxin1"></view>
                     </view>
-                    <view class="a-btn a-btn-white a-btn-mini pre" style="font-size: 14px;" @click="pre(week)">
-                        <view class="operate iconfont icon-arrow-lift"></view>
+                    <view class="a-btn a-btn-white a-btn-mini a-lml y-full y-center" @click="pre(week)">
+                        <view class="iconfont icon-arrow-lift"></view>
                     </view>
-                    <view class="a-btn a-btn-white a-btn-mini next" style="font-size: 14px;" @click="next(week)">
-                        <view class="operate iconfont icon-arrow-right"></view>
+                    <view class="a-btn a-btn-white a-btn-mini a-lml y-full y-center" @click="next(week)">
+                        <view class="iconfont icon-arrow-right"></view>
                     </view>
                 </view>
             </view>
@@ -73,21 +76,23 @@
         components:{
             advertise
         },
-        data: function() {
-            return {
+        data: () => ({
                 week: 1,
                 ad: true,
                 date: [],
                 table: [],
                 today: formatDate()
-            }
-        },
+        }),
         created: function(e) {
             uni.$app.onload(() => {
                 this.week = uni.$app.data.curWeek;
                 this.getDate();
                 this.getCache(uni.$app.data.curWeek);
             })
+            uni.$app.eventBus.on("RefreshTable", this.refresh);
+        },
+        beforeDestroy: function(){
+            uni.$app.eventBus.off("RefreshTable", this.refresh);
         },
         methods: {
             getCache: function(week) {
@@ -180,19 +185,10 @@
 
     .week {
         align-self: center;
-        margin-left: 10px;
     }
-
-    .pre,
-    .next,
-    .refresh {
-        height: 100%;
-        margin-left: 10px;
-        align-self: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 30px;
+    
+    .a-btn{
+        padding: 0 8px;
     }
 
     .timetable-hide {
@@ -225,17 +221,13 @@
         width: 100%;
     }
 
-    .week-unit>view {
+    .week-unit > view {
         padding: 3px 0;
         font-size: 8px;
     }
 
     .today {
         border-bottom: 3px solid #eee;
-    }
-
-    .operate {
-        align-self: center;
     }
 
     .none {

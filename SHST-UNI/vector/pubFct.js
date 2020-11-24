@@ -25,14 +25,14 @@ function tableDispose(info, oneDay = false) {
         classObj.background = colorSignal;
         knotArr.forEach(v => {
             if(!v) return void 0;
-            let knot = ~~(~~(v.slice(1, 2)) / 2);
+            let knot = (v.slice(1, 2)) >> 1;
             classObj.knot = knot;
             if(!tableArr[day]) tableArr[day] = [];
             if(!tableArr[day][knot]) tableArr[day][knot] = {background: colorSignal, table: []};
             tableArr[day][knot].table.push(classObj);
         })
     })
-    if (oneDay) return tableArr[week];
+    if(oneDay) return tableArr[week];
     else return tableArr;
 }
 

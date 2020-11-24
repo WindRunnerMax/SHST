@@ -85,24 +85,22 @@
     const date = new Date();
     import util from "@/modules/datetime";;
     export default {
-        data: function() {
-            return {
-                range: ["请稍后"],
-                index: 0,
-                data: [],
-                term: "",
-                show: false,
-                termStart: "",
-                weekCount: 0,
-                calendarData: [],
-                vacationStart: "",
-                vacationDateDiff: 0,
-                vacationStartDate: "",
-                curMonth: util.formatDate("MM", date),
-                curYear: util.formatDate("yyyy", date),
-                today: util.formatDate(undefined, date)
-            }
-        },
+        data: () => ({
+            range: ["请稍后"],
+            index: 0,
+            data: [],
+            term: "",
+            show: false,
+            termStart: "",
+            weekCount: 0,
+            calendarData: [],
+            vacationStart: "",
+            vacationDateDiff: 0,
+            vacationStartDate: "",
+            curMonth: util.formatDate("MM", date),
+            curYear: util.formatDate("yyyy", date),
+            today: util.formatDate(undefined, date)
+        }),
         created: async function() {
             uni.$app.onload(async () => {
                 var res = await uni.$app.request({
@@ -261,19 +259,19 @@
         color: #ddd !important;
     }
 
-    .today>.u,
-    .term-start>.u,
-    .vacation-start>.u {
+    .today > .u,
+    .term-start > .u,
+    .vacation-start > .u {
         color: #fff !important;
         border-radius: 30px;
         background: #1E9FFF;
     }
 
-    .term-start>.u {
+    .term-start > .u {
         background: #FF6347;
     }
 
-    ..vacation-start>.u {
+    .vacation-start > .u {
         background: #3CB371;
     }
 

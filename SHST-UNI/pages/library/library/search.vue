@@ -50,15 +50,13 @@
     import {formatDate} from "@/modules/datetime";
     import {regMatch} from "@/modules/regex";
     export default {
-        data: function() {
-            return {
+        data: () => ({
                 book: "",
                 page: 1,
                 show: false,
                 pageInfo: "",
                 info: []
-            }
-        },
+        }),
         created: function() {
             uni.$app.onload(() => {
                 var startTime = "07:00";

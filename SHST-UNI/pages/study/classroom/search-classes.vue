@@ -63,16 +63,14 @@
         components:{
             advertise
         },
-        data: function() {
-            return {
-                classroom_all: {},
-                week: null,
-                table: [],
-                show: false,
-                floorIndex: 0,
-                classroomIndex: 0,
-            }
-        },
+        data: () => ({
+            classroom_all: {},
+            week: null,
+            table: [],
+            show: false,
+            floorIndex: 0,
+            classroomIndex: 0,
+        }),
         beforeCreate: function() {},
         created: function() {
             this.classroom_all = {

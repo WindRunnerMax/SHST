@@ -62,16 +62,14 @@
 <script>
     var cardLoad = true;
     export default {
-        data: function() {
-            return {
-                name: "",
-                account: "",
-                banlance: "",
-                balanceTemp: "",
-                data: "",
-                show: false
-            }
-        },
+        data: () => ({
+            name: "",
+            account: "",
+            banlance: "",
+            balanceTemp: "",
+            data: "",
+            show: false
+        }),
         created: function() {
             uni.$app.onload(async () => {
                 var res = await uni.$app.request({

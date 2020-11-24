@@ -89,13 +89,11 @@
 <script>
     import {tableDispose} from "@/vector/pubFct.js";
     export default {
-        data: function() {
-            return {
+        data: () => ({
                 data: [],
                 account: "",
                 name: ""
-            }
-        },
+        }),
         created: function() {
             uni.$app.onload(() => this.onloadData());
         },

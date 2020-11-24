@@ -119,6 +119,11 @@
             "style" : {}
         }
 
+        ,{
+            "path" : "pages/study/time-table/edit",
+            "style" : {}
+            
+        }
     ],
     "globalStyle": {
         "navigationBarTextStyle": "black",

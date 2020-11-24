@@ -25,13 +25,11 @@
         components: {
             headslot, loading
         },
-        data: function() {
-            return {
-                page: 1,
-                data: [],
-                loading: "loadmore"
-            }
-        },
+        data: () => ({
+            page: 1,
+            data: [],
+            loading: "loadmore"
+        }),
         created: function(options) {
             uni.$app.onload(() => this.loadReward(1));
         },

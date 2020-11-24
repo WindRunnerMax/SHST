@@ -35,21 +35,19 @@
 <script>
     import util from "@/modules/datetime";
     export default {
-        data: function() {
-            return {
-                room: [],
-                qShow: "",
-                show: false,
-                searchData: util.formatDate(),
-                searchTime: "0102",
-                searchFloor: 1,
-                searchCampus: 1,
-                index: [0, 0, 0],
-                queryData: [],
-                queryTime: [],
-                queryFloor: []
-            }
-        },
+        data: () => ({
+            room: [],
+            qShow: "",
+            show: false,
+            searchData: util.formatDate(),
+            searchTime: "0102",
+            searchFloor: 1,
+            searchCampus: 1,
+            index: [0, 0, 0],
+            queryData: [],
+            queryTime: [],
+            queryFloor: []
+        }),
         created: function() {
             uni.$app.onload(() => {
                 var queryData = this.getTimeArr();

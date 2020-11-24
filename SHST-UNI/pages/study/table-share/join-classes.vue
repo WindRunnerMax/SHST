@@ -33,9 +33,7 @@
                                 <view class="a-lmt">{{item.date_start}}</view>
                             </view>
                         </view>
-
                     </view>
-
                 </layout>
             </view>
 
@@ -66,16 +64,14 @@
         components:{
             loading, advertise
         },
-        data: function() {
-            return {
+        data: () => ({
                 page: 1,
                 className: "",
                 teacherName: "",
                 classes: [],
                 show: false,
                 loading: "loadmore"
-            }
-        },
+        }),
         beforeCreate: function() {},
         created: function() {},
         filters: {},

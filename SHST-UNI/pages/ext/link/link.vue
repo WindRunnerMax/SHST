@@ -15,11 +15,9 @@
 
 <script>
     export default {
-        data: function() {
-            return {
-                data: []
-            }
-        },
+        data: () => ({
+            data: []
+        }),
         onLoad: async function() {
             var res = await uni.$app.request({
                 load: 2,

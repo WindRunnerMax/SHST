@@ -24,18 +24,16 @@
 
 <script>
     export default {
-        data: function() {
-            return {
-                longitude: 120.12487,
-                latitude: 35.99940,
-                speed: 0,
-                accuracy: 0,
-                info: "定位中",
-                point: "#FFB800",
-                showLongitude: 120.124870,
-                showLatitude: 35.999400
-            }
-        },
+        data: () => ({
+            longitude: 120.12487,
+            latitude: 35.99940,
+            speed: 0,
+            accuracy: 0,
+            info: "定位中",
+            point: "#FFB800",
+            showLongitude: 120.124870,
+            showLatitude: 35.999400
+        }),
         onLoad: function() {
             uni.getLocation({
                 type: "wgs84",

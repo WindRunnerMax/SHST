@@ -27,13 +27,11 @@
     import {formatDate} from "@/modules/datetime";
     import {regMatch} from "@/modules/regex";
     export default {
-        data: function() {
-            return {
-                data: {
-                    bookInfoArray: []
-                }
+        data: () => ({
+            data: {
+                bookInfoArray: []
             }
-        },
+        }),
         onLoad: async function(option) {
             uni.$app.onload(async ()=>{
                 var res = await uni.$app.request({

@@ -22,13 +22,11 @@
         name: "weather",
         props: {},
         methods: {},
-        data: function() {
-            return {
-                today: {skycon: "CLEAR_DAY", min: 0, max: 0, des: "数据获取中"},
-                skycon: [{value: "CLEAR_DAY"},{value: "CLEAR_DAY"},{value: "CLEAR_DAY"},{value: "CLEAR_DAY"},{value: "CLEAR_DAY"},],
-                host: "https://shst.touchczy.top"
-            }
-        },
+        data: () =>({
+            today: {skycon: "CLEAR_DAY", min: 0, max: 0, des: "数据获取中"},
+            skycon: [{value: "CLEAR_DAY"},{value: "CLEAR_DAY"},{value: "CLEAR_DAY"},{value: "CLEAR_DAY"},{value: "CLEAR_DAY"},],
+            host: "https://shst.touchczy.top"
+        }),
         created: function() {
             var ran = ~~(Math.random() * 100000000000);
             uni.request({

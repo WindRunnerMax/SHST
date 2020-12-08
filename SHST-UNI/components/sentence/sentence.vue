@@ -12,13 +12,11 @@
         name: "sentence",
         props: {},
         methods: {},
-        data() {
-            return {
-                url: "",
-                sentence: "",
-                content: ""
-            }
-        },
+        data:() => ({
+            url: "",
+            sentence: "",
+            content: ""
+        }),
         created: function() {
             var that = this;
             uni.request({

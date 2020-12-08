@@ -45,7 +45,7 @@ function ajax(requestInfo) {
                 }
                 if(res.statusCode === 200 && res.data.status){
                     if(res.data.status === -1 && res.data.msg){
-                        toast(res.data.msg);
+                        option.completeLoad = (res) => toast(res.data.msg);
                         return void 0;
                     }
                     try {

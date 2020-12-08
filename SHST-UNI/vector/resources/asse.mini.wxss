@@ -120,7 +120,7 @@ page {
 	height: 1px;
 	background: #EEEEEE;
 	border: none;
-	margin: 10px 5px;
+	margin: 5px 0;
 }
 
 .a-fieldset {
@@ -254,6 +254,10 @@ page {
 	background-color: var(--color-blue);
 }
 
+.a-retract{
+    padding: 0 5px;
+}
+
 /**
  * flex
  */
@@ -271,6 +275,7 @@ page {
 	display: flex;
 	align-items: center;
 }
+
 .a-full{
     width: 100%;
     height: 100%;
@@ -278,6 +283,11 @@ page {
 
 .a-flex-full{
 	flex: 1;
+}
+
+.a-flex-warp{
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .a-flex-space-between{
@@ -370,7 +380,7 @@ page {
 
 .a-input-con-line{
 	margin: 5px;
-	padding: 5px;
+	padding: 5px 10px;
 	border-bottom: 1px solid #EEEEEE;
 	display: flex;
 }

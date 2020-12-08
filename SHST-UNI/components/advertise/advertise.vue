@@ -11,7 +11,7 @@
         <!-- Native-Card-Video -->
         <ad-custom
             v-if="computedAdSelect === 1"
-            @error="internalAdSelector = 2"
+            @error="internalAdSelector = 8"
             class="adapt"
             unit-id="adunit-b9b2fd0e829c7388">
         </ad-custom>
@@ -59,7 +59,15 @@
             @error="adError"
             class="adapt">
         </ad>
+        <!-- Native-Card -->
+        <ad-custom
+            v-if="computedAdSelect === 8"
+            @error="internalAdSelector = 0"
+            class="adapt"
+            unit-id="adunit-bbfcda67d60b25ac">
+        </ad-custom>
         <!-- #endif -->
+
         <!-- #ifdef MP-QQ -->
         <!-- Funct -->
         <ad
@@ -90,6 +98,14 @@
             @error="adError"
             class="adapt">
         </ad>
+        <!-- Feeds -->
+        <ad
+            v-if="internalAdSelector === 4"
+            unit-id="df3806828cb2062f590597248d46fbb1"
+            type="feeds"
+            @error="adError"
+            class="adapt">
+        </ad>
         <!-- #endif -->
 	</view>
 </template>
@@ -107,10 +123,13 @@
                 default: 0
             }
         },
-        data: function(){
+        data: function() {
             return {
                 internalAdSelector: this.adSelect
             }
+        },
+        created: function(){
+            if(this.adSelect === -1) this.$emit("error");
         },
         computed: {
             // #ifdef MP-WEIXIN

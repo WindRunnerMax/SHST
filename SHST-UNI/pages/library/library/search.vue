@@ -3,7 +3,7 @@
 
         <layout title="图书检索">
             <view class="x-center y-center a-lmt a-mb">
-                <input class="a-input" @input="bookInput" :value="book"></input>
+                <input class="a-input" v-model="book"></input>
                 <view class="a-btn a-btn-blue" @click="query">检索</view>
             </view>
         </layout>
@@ -36,7 +36,7 @@
 
         <layout title="Tips:" v-if="!show">
             <view class="tips-con">
-                <view>1.图书馆的服务器挺容易崩溃的，如果出现PARSE ERROR，那一般是学校图书馆崩溃了</view>
+                <view>1.图书馆的服务器挺容易崩溃的，如果出现External Error，那一般是学校图书馆崩溃了</view>
                 <view>2.学校图书馆外网访问好像会定时关闭，正常使用时间大约是在 7:00-22:00</view>
             </view>
 
@@ -66,9 +66,6 @@
             })
         },
         methods: {
-            bookInput: function(e) {
-                this.book = e.detail.value
-            },
             query: async function(e) {
                 var param = "?q=" + this.book;
                 if (typeof(e) === "number") {

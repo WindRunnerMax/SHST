@@ -64,9 +64,7 @@
     import {todoDateDiff} from "@/vector/pubFct.js";
     import {formatDate} from "@/modules/datetime.js";
     export default {
-        components: {
-            headslot
-        },
+        components: { headslot },
         data: () => ({
             addContent: "",
             dataDo: formatDate(), //默认起始时间
@@ -76,19 +74,19 @@
             count: 0
         }),
         created: function() {
-            uni.$app.onload(async ()=>{
+            uni.$app.onload(async () => {
                 var endTime = new Date();
                 endTime.addDate(1);
                 this.dataEnd = formatDate("yyyy-MM-dd", endTime);
                 uni.setStorageSync("event", "");
-                if (uni.$app.data.openid === "") {
+                if(uni.$app.data.openid === "") {
                     this.tips = "未正常获取用户信息"
-                } else {
+                }else{
                     var res = await uni.$app.request({
                         load: 2,
                         url: uni.$app.data.url + "/todo/getEvent",
                     })
-                    if (res.data.data) {
+                    if(res.data.data) {
                         if (res.data.data.length === 0) {
                             this.tips = "暂没有待办事项"
                             return void 0;

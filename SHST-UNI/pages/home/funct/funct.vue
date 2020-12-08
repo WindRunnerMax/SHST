@@ -37,6 +37,10 @@
                     <i class="iconfont icon-lubiao-xf "></i>
                     <view>迎新专版</view>
                 </navigator>
+                <navigator class="icon" target="miniProgram" app-id="wx3e1205c6aa103080" hover-class="none" version="release">
+                    <i class="iconfont icon-shujia "></i>
+                    <view>二手教材</view>
+                </navigator>
                 <!-- #endif -->
 
                 <!-- #ifdef MP-QQ -->
@@ -99,7 +103,7 @@
             </view>
         </layout>
 
-        <layout v-show="adShow && adSelect !== -1" top-space>
+        <layout v-if="adShow && adSelect !== -1" top-space>
             <!-- #ifdef MP-WEIXIN -->
             <advertise :ad-select="adSelect" @error="adShow = false"></advertise>
             <!-- #endif -->

@@ -21,11 +21,12 @@ function disposeApp($app){
     $app.$scope.extend($app.data, data);
     $app.$scope.extend($app.$scope, request);
     $app.data.colorN = $app.data.colorList.length;
+    $app.$scope.reInitApp = initAppData.bind($app);
     $app.$scope.throttle = new throttleGenerater();
     $app.data.curWeek = getCurWeek($app.data.curTermStart);
     $app.$scope.onload = (funct, ...args) => {
         if($app.data.openid) funct(...args);
-        else $app.$scope.eventBus.on("LoginEvent", funct);
+        else $app.$scope.eventBus.once("LoginEvent", funct);
     }
 }
 
@@ -33,7 +34,12 @@ function initAppData(){
     var $app = this;
     var userInfo = uni.getStorageSync("user") || {};
     uni.login({
-        scopes: "auth_base"
+        // #ifdef MP-WEIXIN
+        provider: "weixin",
+        // #endif
+        // #ifdef MP-QQ
+        provider: "qq",
+        // #endif
     }).then((data) => {
         var [err,res] = data;
         if(err) return Promise.reject(err);
@@ -73,7 +79,7 @@ function initAppData(){
 
         /* 用户使用信息  1 已注册用户  2 未注册用户*/
         $app.data.userFlag = response.status === 1 ? 1 : 0;
-        console.log("Status:" + ($app.data.userFlag === 1 ? "user Login" : "New user"));
+        console.log("Status:", $app.data.userFlag === 1 ? "User Login" : "New user");
 
         /* dot */
         const notify = response.initData.tips;
@@ -82,7 +88,7 @@ function initAppData(){
         if (point !== notify) uni.showTabBarRedDot({ index: 2 });
 
         /* openid */
-        console.log("SetOpenid:" + response.openid);
+        console.log("SetOpenid:", response.openid);
         $app.data.openid = response.openid;
 
         /* 处理弹出式公告 */
@@ -134,6 +140,5 @@ function onLaunch() {
     disposeApp(this);
     initAppData.apply(this);
 }
-
 
 export default {onLaunch, toast}

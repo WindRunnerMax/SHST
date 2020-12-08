@@ -5,8 +5,23 @@ var PubSub = function() {
 PubSub.prototype = {
 
     on: function(key, handler) { // 订阅
-        if (!(key in this.handlers)) this.handlers[key] = [];
-        this.handlers[key].push(handler);
+        if(!(key in this.handlers)) this.handlers[key] = [];
+        if(!this.handlers[key].includes(handler)) {
+             this.handlers[key].push(handler);
+             return true;
+        }
+        return false;
+    },
+
+    once: function(key, handler) { // 一次性订阅
+        if(!(key in this.handlers)) this.handlers[key] = [];
+        if(this.handlers[key].includes(handler)) return false;
+        const onceHandler = (args) => {
+            handler.apply(this, args);
+            this.off(key, onceHandler);
+        }
+        this.handlers[key].push(onceHandler);
+        return true;
     },
 
     off: function(key, handler) { // 卸载

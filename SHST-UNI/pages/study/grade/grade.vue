@@ -14,15 +14,15 @@
             <headslot :title="showSelect">
                 <view class="y-center" style="flex-wrap: wrap; font-size: 13px;">
                     <view class="y-center over-unit">
-                        <view class="a-dot" style="background:#6495ED;"></view>
+                        <view class="a-dot" style="background: #6495ED;"></view>
                         <view>学分:{{point}}</view>
                     </view>
                     <view class="y-center over-unit">
-                        <view class="a-dot" style="background:#ACA4D5;"></view>
+                        <view class="a-dot" style="background: #ACA4D5;"></view>
                         <view>绩点:{{pointN}}</view>
                     </view>
                     <view class="y-center over-unit">
-                        <view class="a-dot" style="background:#EAA78C;"></view>
+                        <view class="a-dot" style="background: #EAA78C;"></view>
                         <view>加权:{{pointW}}</view>
                     </view>
                 </view>
@@ -33,23 +33,23 @@
                     <view class="unit adapt">
                         <view class="info-left">
                             <view class="c-name">{{item.kcmc}}</view>
-                            <view style="color:#aaa;">{{item.kclbmc}}</view>
-                            <view style="color:#aaa;">{{item.ksxzmc}}</view>
+                            <view style="color: #aaa;">{{item.kclbmc}}</view>
+                            <view style="color: #aaa;">{{item.ksxzmc}}</view>
                         </view>
                         <view class="info-right">
                             <view class="cgrade">{{item.zcj}}</view>
-                            <view style="color:#aaa;margin-top: 3px;">{{item.xf}}学分</view>
+                            <view class="a-mt" style="color: #aaa;">{{item.xf}}学分</view>
                         </view>
                     </view>
                 </layout>
             </view>
 
-            <layout v-show="ad">
+            <layout v-if="adShow">
                 <!-- #ifdef MP-WEIXIN -->
-                <advertise :ad-select="3" :compatible="5" @error="ad = false"></advertise>
+                <advertise :ad-select="3" :compatible="5" @error="adShow = false"></advertise>
                 <!-- #endif -->
                 <!-- #ifdef MP-QQ -->
-                <advertise :ad-select="2" @error="ad = false"></advertise>
+                <advertise :ad-select="4" @error="adShow = false"></advertise>
                 <!-- #endif -->
             </layout>
 
@@ -74,7 +74,7 @@
                 pointW: 0,
                 show: false,
                 grade: 0,
-                ad: true,
+                adShow: false,
                 showSelect: ""
         }),
         created: function() {
@@ -157,7 +157,7 @@
                 }
                 let defaultValue = {kclbmc: "暂无",kcmc: this.showSelect+"学期暂无成绩",ksxzmc: "暂无成绩",xf: 0,zcj: "100"}
                 this.grade = !res.data.data[0] ? [defaultValue] : res.data.data;
-                this.ad = !res.data.data[0] ? false : true;
+                this.adShow = !res.data.data[0] ? false : true;
                 this.show = true;
             }
         }

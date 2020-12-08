@@ -60,7 +60,6 @@
 </template>
 
 <script>
-    var cardLoad = true;
     export default {
         data: () => ({
             name: "",
@@ -70,6 +69,9 @@
             data: "",
             show: false
         }),
+        beforeCreate:function(){
+            this.cardLoading = true;
+        },
         created: function() {
             uni.$app.onload(async () => {
                 var res = await uni.$app.request({
@@ -81,7 +83,7 @@
                     uni.$app.toast("加载失败，请稍后重试");
                     return void 0;
                 }
-                cardLoad = false;
+                this.cardLoading = false;
                 var pregInfo = info.match(/<div align="left">[\S]*<\/div>/g);
                 var balanceInfo = info.match(/<td class="neiwen">[\S]*<\/td>/g);
                 var balance = balanceInfo[0].split("（")[0];
@@ -94,7 +96,7 @@
         },
         methods: {
             todayQuery: async function() {
-                if (cardLoad) {
+                if (this.cardLoading) {
                     uni.$app.toast("请稍后");
                     return void 0;
                 }
@@ -105,7 +107,7 @@
                 this.diposeCardData(res.data.info);
             },
             historyQuery: async function() {
-                if (cardLoad) {
+                if (this.cardLoading) {
                     uni.$app.toast("请稍后");
                     return void 0;
                 }

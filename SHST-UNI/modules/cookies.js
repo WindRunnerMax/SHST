@@ -10,7 +10,7 @@ function getCookies(res) {
                 if(cookie) cookies += cookie;
             }
         }
-        console.log("SetCookie:" + cookies);
+        console.log("SetCookie:", cookies);
         uni.setStorage({
             key: "cookies",
             data: cookies

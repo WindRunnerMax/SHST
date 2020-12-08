@@ -56,12 +56,12 @@
             </layout>
         </view> -->
 
-        <layout v-show="ad">
+        <layout v-if="adShow">
             <!-- #ifdef MP-WEIXIN -->
-            <advertise :ad-select="4" @error="ad = false"></advertise>
+            <advertise :ad-select="4" @error="adShow = false"></advertise>
             <!-- #endif -->
             <!-- #ifdef MP-QQ -->
-            <advertise :ad-select="1" @error="ad = false"></advertise>
+            <advertise :ad-select="1" @error="adShow = false"></advertise>
             <!-- #endif -->
         </layout>
 
@@ -73,14 +73,12 @@
     import { formatDate, extDate } from "@/modules/datetime.js";
     import advertise from "@/components/advertise/advertise.vue";
     export default {
-        components:{
-            advertise
-        },
+        components:{ advertise },
         data: () => ({
                 week: 1,
-                ad: true,
                 date: [],
                 table: [],
+                adShow: true,
                 today: formatDate()
         }),
         created: function(e) {
@@ -151,7 +149,7 @@
                 })
             },
             refresh: function(week) {
-                uni.setStorageSync("table", {term: uni.$app.data.curTerm,classTable: []});
+                uni.setStorageSync("table", {term: uni.$app.data.curTerm, classTable: []});
                 this.getRemoteTable(Number(week), true);
             },
             getDate: function() {

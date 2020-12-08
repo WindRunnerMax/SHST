@@ -110,18 +110,17 @@
             </view>
         </view>
 
-
-        <layout v-if="tables.length">
-            <view class="a-flex">
-                <view class="a-btn a-btn-blue x-full" @click="submit()">保存</view>
-                <view class="a-btn a-btn-orange x-full a-lml" @click="clearAll()">清空</view>
-            </view>
-        </layout>
-
-        <layout v-else>
+        <layout v-if="!tables.length">
             <view class="y-center">
                 <view class="a-dot" style="background: #eee;"></view>
                 <view>暂无课表数据</view>
+            </view>
+        </layout>
+
+        <layout v-show="operate">
+            <view class="a-flex">
+                <view class="a-btn a-btn-blue x-full" @click="submit()">保存</view>
+                <view class="a-btn a-btn-orange x-full a-lml" @click="clearAll()">清空</view>
             </view>
         </layout>
 
@@ -163,6 +162,7 @@
 
             },
             tables: [],
+            operate: false
         }),
         beforeCreate: function() {
             this.maper = {
@@ -178,7 +178,7 @@
             };
         },
         created: function() {
-            uni.$app.onload(async ()=>{
+            uni.$app.onload(async () => {
                 var res = await uni.$app.request({
                     load: 2,
                     url: uni.$app.data.url + "/sw/getCustomTable",
@@ -189,6 +189,7 @@
                     for(let key in this.maper) tmp[key] = v[this.maper[key]];
                     return tmp;
                 })
+                if(this.tables.length > 0) this.operate = true;
             })
         },
         filters: {},
@@ -212,7 +213,7 @@
                 let tmp = this.unit;
                 propsCopy(unit, tmp, "className", "classroom");
                 unit.term = uni.$app.data.curTerm;
-                unit.teacherName = tmp.teacherName || "佚名";
+                unit.teacherName = tmp.teacherName || "无";
                 unit.weekStart = tmp.week.range[0][tmp.week.index[0]];
                 unit.weekEnd = tmp.week.range[1][tmp.week.index[1]];
                 unit.timeStart = tmp.time.range[0][tmp.time.index[0]];
@@ -224,6 +225,7 @@
                 }
                 if(mode === -1){
                     this.tables.push(unit);
+                    this.operate = true;
                 }else{
                     this.tables[mode] = unit;
                     this.tables = this.tables.slice();
@@ -249,23 +251,25 @@
                     this.tables.splice(index, 1);
                 }
             },
-            submit: async function(){
+            submit: function(){
                 let data = this.tables.map(v => {
                     let tmp = {};
                     for(let key in this.maper) tmp[this.maper[key]] = v[key];
                     return tmp;
                 })
-                var res = await uni.$app.request({
-                    load: 2,
-                    method: "POST",
-                    url: uni.$app.data.url + "/sw/setCustomTable",
-                    data:{
-                        data: JSON.stringify(data)
-                    }
+                uni.$app.throttle(1000, async () => {
+                    var res = await uni.$app.request({
+                        load: 2,
+                        method: "POST",
+                        url: uni.$app.data.url + "/sw/setCustomTable",
+                        data:{
+                            data: JSON.stringify(data)
+                        }
+                    })
+                    uni.$app.toast("保存成功");
+                    this.edit = -2;
+                    uni.$app.eventBus.commit("RefreshTable", uni.$app.data.curWeek);
                 })
-                uni.$app.toast("保存成功");
-                this.edit = -2;
-                uni.$app.eventBus.commit("RefreshTable", uni.$app.data.curWeek);
             },
             clear: function(){
                 this.unit = {

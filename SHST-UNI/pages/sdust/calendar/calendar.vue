@@ -47,15 +47,15 @@
                 <view class="card y-center info">
                     <view style="width: 40%;">
                         <view class="a-dot" style="background: #3CB371;"></view>
-                        <view>学期:{{term}}</view>
+                        <view class="text">学期:{{term}}</view>
                     </view>
                     <view style="width: 24%;">
                         <view class="a-dot" style="background: #9F8BEC;"></view>
-                        <view>周次:{{weekCount}}</view>
+                        <view class="text">周次:{{weekCount}}</view>
                     </view>
                     <view style="width: 36%;">
                         <view class="a-dot" style="background: #FF6347;"></view>
-                        <view>开学:{{termStart}}</view>
+                        <view class="text">开学:{{termStart}}</view>
                     </view>
                 </view>
             </layout>
@@ -64,15 +64,15 @@
                 <view class="y-center info">
                     <view style="width: 40%;">
                         <view class="a-dot" style="background: #3CB371;"></view>
-                        <view>假期:{{vacationStartDate}}</view>
+                        <view class="text">假期:{{vacationStartDate}}</view>
                     </view>
                     <view style="width: 24%;">
                         <view class="a-dot" style="background: #9F8BEC;"></view>
-                        <view>周次:{{vacationStart}}</view>
+                        <view class="text">周次:{{vacationStart}}</view>
                     </view>
                     <view style="width: 36%;">
                         <view class="a-dot" style="background: #FF6347;"></view>
-                        <view>距假期:{{vacationDateDiff}}天</view>
+                        <view class="text">距假期:{{vacationDateDiff}}天</view>
                     </view>
                 </view>
             </layout>
@@ -115,13 +115,17 @@
                 res.data.info = res.data.info.reverse();
                 this.data = res.data.info;
                 var range = [];
-                res.data.info.forEach((value) => range.push(value.term));
+                res.data.info.forEach((value) => value ? range.push(value.term) : "");
                 this.range = range;
                 this.bindPickerChange({detail: {value: 0}})
             })
         },
         methods: {
             bindPickerChange: function(e) {
+                if(this.range.length === 0) {
+                    uni.$app.toast("加载失败，请重试");
+                    return void 0;
+                }
                 this.index = e.detail.value;
                 var curObj = this.data[this.index];
                 this.term = curObj.term;
@@ -304,5 +308,9 @@
     .info view {
         display: flex;
         align-items: center;
+    }
+    
+    .text{
+        color: #333;
     }
 </style>

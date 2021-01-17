@@ -3,7 +3,7 @@ var PubSub = function() {
 }
 
 PubSub.prototype = {
-
+    constructor: PubSub,
     on: function(key, handler) { // 订阅
         if(!(key in this.handlers)) this.handlers[key] = [];
         if(!this.handlers[key].includes(handler)) {
@@ -16,7 +16,7 @@ PubSub.prototype = {
     once: function(key, handler) { // 一次性订阅
         if(!(key in this.handlers)) this.handlers[key] = [];
         if(this.handlers[key].includes(handler)) return false;
-        const onceHandler = (args) => {
+        const onceHandler = (...args) => {
             handler.apply(this, args);
             this.off(key, onceHandler);
         }

@@ -10,10 +10,10 @@
                     </swiper-item>
                     <swiper-item class="x-center y-center" v-if="adShow">
                         <!-- #ifdef MP-WEIXIN -->
-                        <advertise class="x-full" :ad-select="1" @error="adShow = false"></advertise>
+                        <advertise class="x-full" :ad-select="adSelect" @error="adShow = false"></advertise>
                         <!-- #endif -->
                         <!-- #ifdef MP-QQ -->
-                        <advertise class="x-full" :ad-select="3" @error="adShow = false"></advertise>
+                        <advertise class="x-full" :ad-select="adSelect" @error="adShow = false"></advertise>
                         <!-- #endif -->
                     </swiper-item>
                 </swiper>
@@ -113,6 +113,7 @@
         data: () => ({
             table: [],
             swiper: [],
+            adSelect: 0,
             todoList: [],
             adShow: false,
             articleUrl: "",
@@ -127,6 +128,7 @@
                 this.swiper = uni.$app.data.initData.ads;
                 this.article = uni.$app.data.initData.articalName;
                 this.articleUrl = uni.$app.data.initData.articleUrl;
+                this.adSelect = uni.$app.data.initData.adSelect.tips;
                 this.adShow = true;
                 this.getTable();
                 // #ifndef MP-WEIXIN

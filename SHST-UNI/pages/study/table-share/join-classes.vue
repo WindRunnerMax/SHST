@@ -59,11 +59,8 @@
 <script>
     import util from "@/modules/datetime";
     import loading from "@/components/loading/loading.vue";
-    import advertise from "@/components/advertise/advertise.vue";
     export default {
-        components:{
-            loading, advertise
-        },
+        components: { loading },
         data: () => ({
                 page: 1,
                 className: "",
@@ -82,7 +79,7 @@
                 return this.classes.map(v => {
                     v.week = week[v.day_of_week];
                     v.start = startClass[v.turn_index];
-                    v.classWeek = ~~(util.dateDiff(uni.$app.data.curTermStart,
+                    v.classWeek = ~~(util.dayDiff(uni.$app.data.curTermStart,
                         util.formatDate(undefined, new Date(v.date_start))) / 7) + 1;
                     return v;
                 })

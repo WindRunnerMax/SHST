@@ -41,7 +41,7 @@ function todoDateDiff(startDateString, endDateString, content) {
     const colorList = app.data.colorList;
     const colorN = app.data.colorList.length;
     var color = colorList[content.charCodeAt() % colorN];
-    var diff = util.dateDiff(startDateString, endDateString);
+    var diff = util.dayDiff(startDateString, endDateString);
     if (diff === 0) diff = "今";
     else if (diff < 0) diff = "超期" + Math.abs(diff);
     else diff = "距今" + Math.abs(diff);
@@ -52,7 +52,7 @@ function todoDateDiff(startDateString, endDateString, content) {
 function getCurWeek(startTime) {
     console.log(util.formatDate())
     if (util.formatDate() < startTime) return 1;
-    var week = (parseInt(util.dateDiff(startTime, util.formatDate()) / 7) + 1);
+    var week = (parseInt(util.dayDiff(startTime, util.formatDate()) / 7) + 1);
     return week;
 }
 

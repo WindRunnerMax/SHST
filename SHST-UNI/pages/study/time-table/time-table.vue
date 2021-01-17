@@ -58,10 +58,10 @@
 
         <layout v-if="adShow">
             <!-- #ifdef MP-WEIXIN -->
-            <advertise :ad-select="4" @error="adShow = false"></advertise>
+            <advertise :ad-select="adSelect" @error="adShow = false"></advertise>
             <!-- #endif -->
             <!-- #ifdef MP-QQ -->
-            <advertise :ad-select="1" @error="adShow = false"></advertise>
+            <advertise :ad-select="adSelect" @error="adShow = false"></advertise>
             <!-- #endif -->
         </layout>
 
@@ -79,7 +79,8 @@
                 date: [],
                 table: [],
                 adShow: true,
-                today: formatDate()
+                today: formatDate(),
+                adSelect: uni.$app.data.initData.adSelect.table
         }),
         created: function(e) {
             uni.$app.onload(() => {
@@ -184,7 +185,7 @@
     .week {
         align-self: center;
     }
-    
+
     .a-btn{
         padding: 0 8px;
     }

@@ -58,11 +58,7 @@
 </template>
 
 <script>
-    import advertise from "@/components/advertise/advertise.vue";
     export default {
-        components:{
-            advertise
-        },
         data: () => ({
             classroom_all: {},
             week: null,

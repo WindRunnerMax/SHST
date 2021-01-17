@@ -115,33 +115,29 @@
                     uni.$app.toast("事件内容不能为空");
                     return void 0;
                 }
-                try{
-                    var res = await uni.$app.request({
-                        url: uni.$app.data.url + "/todo/addEvent",
-                        method: "POST",
-                        data: {
-                            content: this.addContent,
-                            date: this.dataDo
-                        }
-                    })
-                    var todoArr = this.todoList;
-                    var curData = formatDate();
-                    var diff_color = todoDateDiff(curData, this.dataDo, this.addContent);
-                    todoArr.push({
-                        event_content: this.addContent,
-                        todo_time: this.dataDo,
-                        diff: diff_color[0],
-                        color: diff_color[1],
-                        id : res.data.id
-                    });
-                    this.addContent = "";
-                    this.todoList = todoArr;
-                    this.tips = "";
-                    this.count = this.count + 1;
-                    uni.$app.toast("添加成功");
-                }catch(e){
-                    uni.$app.toast("Internal Error");
-                }
+                var res = await uni.$app.request({
+                    url: uni.$app.data.url + "/todo/addEvent",
+                    method: "POST",
+                    data: {
+                        content: this.addContent,
+                        date: this.dataDo
+                    }
+                })
+                var todoArr = this.todoList;
+                var curData = formatDate();
+                var diff_color = todoDateDiff(curData, this.dataDo, this.addContent);
+                todoArr.push({
+                    event_content: this.addContent,
+                    todo_time: this.dataDo,
+                    diff: diff_color[0],
+                    color: diff_color[1],
+                    id : res.data.id
+                });
+                this.addContent = "";
+                this.todoList = todoArr;
+                this.tips = "";
+                this.count = this.count + 1;
+                uni.$app.toast("添加成功");
             },
             setStatus: async function(id, index) {
                 var [err,choice] = await uni.showModal({

@@ -15,14 +15,26 @@ const formatDate = (fmt = "yyyy-MM-dd", date = new Date()) => {
     };
     if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
     for (var k in o) {
-        if (new RegExp("(" + k + ")").test(fmt)) 
+        if (new RegExp("(" + k + ")").test(fmt))
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (( "00" + o[k]).substr(("" + o[k]).length)));
     }
     return fmt;
 }
 
+/**
+ * 增加时间
+ */
+const addDate = (date, years = 0, months = 0, days = 0) => {
+    if (days !== 0) date.setDate(date.getDate() + days);
+    if (months !== 0) date.setMonth(date.getMonth() + months);
+    if (years !== 0) date.setFullYear(date.getFullYear() + years);
+    return date;
+}
+
+/**
+ * 拓展Date原型 增加时间
+ */
 const extDate = () => {
-    // console.log("拓展Date原型");
     Date.prototype.addDate = function(years = 0, months = 0, days = 0) {
         if (days !== 0) this.setDate(this.getDate() + days);
         if (months !== 0) this.setMonth(this.getMonth() + months);
@@ -33,7 +45,7 @@ const extDate = () => {
 /**
  * 日期相差天数
  */
-const dateDiff = (startDateString, endDateString) => {
+const dayDiff = (startDateString, endDateString) => {
     var separator = "-"; //日期分隔符
     var startDates = startDateString.split(separator);
     var endDates = endDateString.split(separator);
@@ -43,5 +55,19 @@ const dateDiff = (startDateString, endDateString) => {
     return diff;
 }
 
-export { formatDate, extDate, dateDiff }
-export default { formatDate, extDate, dateDiff }
+/**
+ * 精确的时间差
+ */
+const timeDiff = (startDateString, endDateString) => {
+    var oldDate = new Date(startDateString);
+    var newDate = new Date(endDateString);
+    var difftime = (newDate - oldDate) / 1000; // 转为秒
+    var days = parseInt(difftime / 86400);
+    var hours = parseInt(difftime / 3600) - 24 * days;
+    var minutes = parseInt(difftime % 3600/60);
+    var seconds = parseInt(difftime % 60);
+    return {days, hours, minutes, seconds};
+}
+
+export { formatDate, extDate, dayDiff, addDate, timeDiff }
+export default { formatDate, extDate, dayDiff, addDate, timeDiff }

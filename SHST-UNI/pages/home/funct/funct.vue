@@ -95,7 +95,7 @@
                     <view>校园卡</view>
                 </view>
                 <!-- #ifdef MP-WEIXIN -->
-                <navigator class="icon" target="miniProgram" app-id="wx219195cad731454f" hover-class="none" version="release">
+                <navigator class="icon" target="miniProgram" app-id="wx2facb7b57eedf7e6" hover-class="none" version="release">
                     <i class="iconfont icon-ku"></i>
                     <view>资料分享</view>
                 </navigator>
@@ -103,7 +103,7 @@
             </view>
         </layout>
 
-        <layout v-if="adShow && adSelect !== -1" top-space>
+        <layout v-if="adShow" top-space>
             <!-- #ifdef MP-WEIXIN -->
             <advertise :ad-select="adSelect" @error="adShow = false"></advertise>
             <!-- #endif -->
@@ -144,9 +144,7 @@
     import {formatDate} from "@/modules/datetime";
     import advertise from "@/components/advertise/advertise.vue";
     export default {
-        components:{
-            advertise
-        },
+        components:{ advertise },
         data: () => ({
             adShow: true,
             now: formatDate(),

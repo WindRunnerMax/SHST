@@ -94,7 +94,7 @@ function initAppData(){
         /* 处理弹出式公告 */
         const popup = response.initData.popup;
         const popupCache = uni.getStorageSync("popup") || "";
-        if(popupCache !== popup.serial) {
+        if(popupCache !== popup.serial && popup.popup) {
             uni.showModal({
                 title: "公告",
                 confirmText: popup.path ? "立即查看" : "确认",

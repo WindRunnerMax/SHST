@@ -166,7 +166,7 @@
                     for (let k = 0; k < 7; ++k) {
                         let unitDate = util.formatDate("yyyy-MM-dd", start);
                         if (k === 0) {
-                            week = parseInt((util.dateDiff(this.termStart, unitDate) / 7)) + 1;
+                            week = parseInt((util.dayDiff(this.termStart, unitDate) / 7)) + 1;
                             week = week > 0 ? week : 0;
                             innerArr.push({day: week,color: "week ",type: "周次",detach: ""})
                         }
@@ -202,7 +202,7 @@
                 d.addDate(0, 0, (this.vacationStart - 1) * 7);
                 var vacationStartDate = util.formatDate(undefined, d);
                 this.vacationStartDate = vacationStartDate;
-                this.vacationDateDiff = util.dateDiff(this.today, vacationStartDate);
+                this.vacationDateDiff = util.dayDiff(this.today, vacationStartDate);
             }
         }
     }

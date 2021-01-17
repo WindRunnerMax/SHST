@@ -46,10 +46,10 @@
 
             <layout v-if="adShow">
                 <!-- #ifdef MP-WEIXIN -->
-                <advertise :ad-select="3" :compatible="5" @error="adShow = false"></advertise>
+                <advertise :ad-select="adSelect" :compatible="6" @error="adShow = false"></advertise>
                 <!-- #endif -->
                 <!-- #ifdef MP-QQ -->
-                <advertise :ad-select="4" @error="adShow = false"></advertise>
+                <advertise :ad-select="adSelect" @error="adShow = false"></advertise>
                 <!-- #endif -->
             </layout>
 
@@ -73,9 +73,10 @@
                 pointN: 0,
                 pointW: 0,
                 show: false,
-                grade: 0,
+                grade: [],
                 adShow: false,
-                showSelect: ""
+                showSelect: "",
+                adSelect: uni.$app.data.initData.adSelect.grade
         }),
         created: function() {
             // 处理学期
@@ -155,9 +156,9 @@
                     this.pointN = (pointN / n).toFixed(2);
                     this.pointW = (pointW / point).toFixed(2);
                 }
-                let defaultValue = {kclbmc: "暂无",kcmc: this.showSelect+"学期暂无成绩",ksxzmc: "暂无成绩",xf: 0,zcj: "100"}
+                let defaultValue = {kclbmc: "暂无",kcmc: this.showSelect + "学期暂无成绩", ksxzmc: "暂无成绩", xf: 0, zcj: "100"}
                 this.grade = !res.data.data[0] ? [defaultValue] : res.data.data;
-                this.adShow = !res.data.data[0] ? false : true;
+                this.adShow = this.grade.length >= 3 ? true : false;
                 this.show = true;
             }
         }

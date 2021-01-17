@@ -1,6 +1,6 @@
 <template>
     <view>
-        
+
         <view class="tips">{{sentence}}</view>
         <view class="tips">{{content}}</view>
         <image class="sent-image" :src="url" mode="aspectFill"></image>
@@ -8,6 +8,8 @@
     </view>
 </template>
 <script>
+    import storage from "@/modules/storage.js";
+    import {formatDate} from "@/modules/datetime.js";
     export default {
         name: "sentence",
         props: {},
@@ -17,16 +19,31 @@
             sentence: "",
             content: ""
         }),
-        created: function() {
-            var that = this;
-            uni.request({
-                url: "https://open.iciba.com/dsapi/",
-                success: function(res) {
-                    that.url = res.data.picture2;
-                    that.sentence = res.data.note;
-                    that.content = res.data.content;
+        created: async function() {
+            let data = {};
+            if(storage.get("sentence")){
+                data = storage.get("sentence");
+            }else{
+                let [err, res] = await uni.request({
+                    // url: "https://open.iciba.com/dsapi/",
+                    url: "https://sentence.iciba.com/api/sentence/list?limit=1"
+                })
+                if(!err){
+                    data = res.data.data.sentenceViewList[0].dailysentence;
+                    storage.setPromise("sentence-longtime", data);
+                    storage.setPromise("sentence", data, new Date(formatDate() + " 23:59:59"));
+                }else{
+                    data = storage.get("sentence-longtime");
                 }
-            })
+            }
+            try{
+                this.url = data.picture2;
+                this.sentence = data.note;
+                this.content = data.content;
+            }catch(e){
+                console.warn(e);
+            }
+
         }
     }
 </script>

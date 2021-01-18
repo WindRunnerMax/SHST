@@ -18,41 +18,32 @@
             latitude: null,
             longitude: null,
             markers: [],
-            distance: '',
+            distance: "",
             polyline: []
         }),
-        onLoad: function(options) {
-            if (!uni.$app.data.islocation) {
-                uni.showModal({
-                    title: '提示',
-                    content: '本功能需要您的位置信息，请检查是否给予微信以及小程序定位权限，点击确定进入小程序授权页设置',
-                    success: function(res) {
-                        if (res.confirm) {
-                            uni.openSetting({
-                                success: function(data) {
-                                    if (data.authSetting["scope.userLocation"] === true) {
-                                        uni.getLocation({
-                                            type: 'wgs84',
-                                            success: function(res) {
-                                                uni.$app.data.latitude = res.latitude;
-                                                uni.$app.data.longitude = res.longitude;
-                                                uni.$app.data.islocation = true;
-                                            }
-                                        })
-                                    }
-                                }
-                            });
-
-                        }
-                    },
-                    complete: () => {
-                        uni.navigateBack();
-                    }
+        onLoad: async function(options) {
+            if (!uni.$app.data.tmp.islocation) {
+                var [err, res] = await uni.showModal({
+                    title: "提示",
+                    content: "本功能需要您的位置信息，请检查是否给予微信以及小程序定位权限，点击确定进入小程序授权页设置",
                 })
-                return false;
+                if(res.confirm) {
+                    var [err, res] = await uni.openSetting({});
+                    if (res.authSetting["scope.userLocation"] === true){
+                        uni.getLocation({
+                            type: "wgs84",
+                            success: function(res) {
+                                uni.$app.data.tmp.latitude = res.latitude;
+                                uni.$app.data.tmp.longitude = res.longitude;
+                                uni.$app.data.tmp.islocation = true;
+                            }
+                        })
+                    }
+                    uni.navigateBack();
+                }
             }
             uni.getLocation({
-                type: 'gcj02',
+                type: "wgs84",
                 success: (res) => {
                     this.latitude = res.latitude;
                     this.longitude = res.longitude;
@@ -62,24 +53,24 @@
         },
         methods: {
             routing: function(options) {
-                let distance = Math.abs(this.longitude - options.longitude) + Math.abs(this.latitude - options.latitude)
+                let distance = Math.abs(this.longitude - options.longitude) + Math.abs(this.latitude - options.latitude);
                 console.log(distance);
                 var myAmapFun = new amapFile.AMapWX({
                     key: config.key
                 });
                 let routeData = {
-                    origin: options.longitude + ',' + options.latitude,
-                    destination: this.longitude + ',' + this.latitude,
+                    origin: options.longitude + "," + options.latitude,
+                    destination: this.longitude + "," + this.latitude,
                     success: (data) => {
                         var points = [];
                         if (data.paths && data.paths[0] && data.paths[0].steps) {
                             var steps = data.paths[0].steps;
                             for (var i = 0; i < steps.length; i++) {
-                                var poLen = steps[i].polyline.split(';');
+                                var poLen = steps[i].polyline.split(";");
                                 for (var j = 0; j < poLen.length; j++) {
                                     points.push({
-                                        longitude: parseFloat(poLen[j].split(',')[0]),
-                                        latitude: parseFloat(poLen[j].split(',')[1])
+                                        longitude: parseFloat(poLen[j].split(",")[0]),
+                                        latitude: parseFloat(poLen[j].split(",")[1])
                                     })
                                 }
                             }
@@ -103,7 +94,7 @@
                             width: 6
                         }];
                         if (data.paths[0] && data.paths[0].distance) {
-                            this.distance = data.paths[0].distance + '米'
+                            this.distance = data.paths[0].distance + "米";
                         }
                     },
                     fail: function(info) {}

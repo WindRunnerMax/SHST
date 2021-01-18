@@ -2,7 +2,7 @@
     <view>
 
         <view class="x-center">
-            <image class="img" src="https://windrunner_max.gitee.io/imgpath/SHST/Static/SDUST.jpg"></image>
+            <image class="img" src="http://dev.shst.touchczy.top/public/static/img/SDUST.jpg"></image>
         </view>
 
         <form @submit="enter">
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+    import storage from "@/modules/storage.js";
     export default {
         data: () => ({
                 account: "",
@@ -53,18 +54,15 @@
         }),
         created: function() {
             uni.$app.onload(() => {
-                uni.getStorage({
-                    key: "user",
-                    success: res => {
-                        if (res.data && res.data.account && res.data.password) {
-                            this.account = res.data.account;
-                            this.password = res.data.password;
-                        }
+                storage.getPromise("user").then(res => {
+                    if (res && res.account && res.password) {
+                        this.account = res.data.account;
+                        this.password = res.data.password;
                     }
                 })
-                uni.removeStorage({key: "userInfo"})
-                uni.removeStorage({key: "table"})
-                uni.removeStorage({key: "event"})
+                storage.removePromise("user-info");
+                storage.removePromise("table");
+                storage.removePromise("event");
                 uni.$app.data.url = uni.$app.data.url.replace("/example/", "");
                 uni.$app.data.userFlag = 0;
             })
@@ -92,16 +90,12 @@
                     })
                     console.log(res.data);
                     if(res.data.status === 1) {
-                        uni.setStorage({
-                            key: "user",
-                            data: {
-                                account: this.account,
-                                password: this.password,
-                            },
-                            success: function() {
-                                uni.$app.data.userFlag = 1;
-                                uni.reLaunch({url: "/pages/home/tips/tips"});
-                            }
+                        storage.setPromise("user", {
+                            account: this.account,
+                            password: this.password,
+                        }).then(succ => {
+                            uni.$app.data.userFlag = 1;
+                            this.nav("/pages/home/tips/tips", "relunch");
                         })
                     }else if(res.data.status === 2) {
                         this.status = res.data.msg;
@@ -115,7 +109,7 @@
             exLogin: function(){
                 uni.$app.data.url = uni.$app.data.url + "/example/";
                 uni.$app.data.userFlag = 1;
-                uni.reLaunch({url: "/pages/home/tips/tips"});
+                this.nav("/pages/home/tips/tips", "relunch");
             },
             reStartApp: async function(){
                 var [err,choice] = await uni.showModal({
@@ -125,7 +119,7 @@
                 if(choice.confirm) {
                     uni.$app.data.openid = "";
                     uni.$app.reInitApp();
-                    uni.reLaunch({url: "/pages/home/tips/tips"});
+                    this.nav("/pages/home/tips/tips", "relunch");
                 }
             }
         }

@@ -69,8 +69,9 @@
 </template>
 
 <script>
-    import {tableDispose} from "@/vector/pubFct.js";
-    import { formatDate, extDate } from "@/modules/datetime.js";
+    import storage from "@/modules/storage.js";
+    import {tableDispose} from "@/vector/pub-fct.js";
+    import { formatDate, extDate, safeDate } from "@/modules/datetime.js";
     import advertise from "@/components/advertise/advertise.vue";
     export default {
         components:{ advertise },
@@ -95,7 +96,7 @@
         },
         methods: {
             getCache: function(week) {
-                var tableCache = uni.getStorageSync("table") || {};
+                var tableCache = storage.get("table") || {};
                 if (tableCache.term === uni.$app.data.curTerm && tableCache.classTable && tableCache.classTable[week]) {
                     console.log("GET TABLE FROM CACHE");
                     var showTableArr = tableDispose(tableCache.classTable[week]);
@@ -122,16 +123,13 @@
                 var showTableArr = tableDispose(res.data.data);
                 this.table = showTableArr;
                 this.week = res.data.week
-                var tableCache = uni.getStorageSync("table") || {
+                var tableCache = storage.get("table") || {
                     term: uni.$app.data.curTerm,
                     classTable: []
                 };
                 tableCache.term = uni.$app.data.curTerm;
                 tableCache.classTable[week] = res.data.data;
-                uni.setStorage({
-                    key: "table",
-                    data: tableCache
-                })
+                storage.setPromise("table", tableCache);
                 this.getDate();
             },
             pre: function(week) {
@@ -150,13 +148,13 @@
                 })
             },
             refresh: function(week) {
-                uni.setStorageSync("table", {term: uni.$app.data.curTerm, classTable: []});
+                storage.set("table", {term: uni.$app.data.curTerm, classTable: []});
                 this.getRemoteTable(Number(week), true);
             },
             getDate: function() {
                 var week = this.week;
-                var today = new Date();
-                var curWeekDate = new Date(uni.$app.data.curTermStart);
+                var today = safeDate();
+                var curWeekDate = safeDate(uni.$app.data.curTermStart);
                 curWeekDate.addDate(0, 0, week * 7 - 8);
                 var allWeekDay = [];
                 var week = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];

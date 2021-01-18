@@ -10,6 +10,7 @@
 </template>
 
 <script>
+    import storage from "@/modules/storage.js";
     import headslot from "@/components/headslot/headslot.vue";
     export default {
         components: {
@@ -19,10 +20,7 @@
             data: []
         }),
         created: async function(options) {
-            uni.setStorage({
-                key: "point",
-                data: uni.$app.data.point
-            })
+            storage.setPromise("point", uni.$app.data.point);
             var res = await uni.$app.request({
                 load: 2,
                 throttle: true,
@@ -33,11 +31,7 @@
                 this.data = res.data.info;
             }
         },
-        methods: {
-            copy: function(str) {
-                uni.setClipboardData({data: str})
-            }
-        }
+        methods: {}
     }
 </script>
 

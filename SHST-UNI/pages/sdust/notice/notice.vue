@@ -4,7 +4,7 @@
         <headslot title="校内公告"></headslot>
         <view class="a-lmt"></view>
         <layout v-for="(item,index) in notice" :key="item.id">
-            <view class="a-flex-space-between"  @click="jump(item.id)" >
+            <view class="a-flex-space-between"  @click="nav('detail?id='+item.id)" >
                 <view class="a-full x-center intro text-ellipsis">
                     <view class="text-ellipsis">{{item.title}}</view>
                     <view class="time">{{item.create_time}}</view>
@@ -49,9 +49,6 @@
                     else this.loading = "loadmore";
                 })
             },
-            jump: function(id) {
-                uni.navigateTo({url: "detail?id=" + id})
-            }
         }
     }
 </script>

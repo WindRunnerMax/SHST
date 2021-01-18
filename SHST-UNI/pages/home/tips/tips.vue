@@ -104,7 +104,8 @@
 
 <script>
     import util from "@/modules/datetime";
-    import pubFct from"@/vector/pubFct.js";
+    import pubFct from"@/vector/pub-fct.js";
+    import storage from "@/modules/storage.js";
     import weather from "@/components/weather/weather.vue";
     import sentence from "@/components/sentence/sentence.vue";
     import advertise from "@/components/advertise/advertise.vue";
@@ -149,7 +150,7 @@
              * 课表处理
              */
             getTable: function() {
-                var tableCache = uni.getStorageSync("table") || {};
+                var tableCache = storage.get("table") || {};
                 if (tableCache.term === uni.$app.data.curTerm
                     && tableCache.classTable
                     && tableCache.classTable[uni.$app.data.curWeek]) {
@@ -175,13 +176,13 @@
                     if (res.data.status === 1) {
                         var showTableArr = pubFct.tableDispose(res.data.data, 1);
                         this.tipsDispose(showTableArr);
-                        var tableCache = uni.getStorageSync("table") || {
+                        var tableCache = storage.get("table") || {
                             term: uni.$app.data.curTerm,
                             classTable: []
                         };
                         tableCache.term = uni.$app.data.curTerm;
                         tableCache.classTable[uni.$app.data.curWeek] = res.data.data;
-                        uni.setStorage({key: "table", data: tableCache})
+                        storage.setPromise("table", tableCache);
                     } else {
                         uni.$app.toast("ERROR");
                         this.tips = "加载失败";
@@ -196,7 +197,7 @@
                 this.tipsInfo = info ? "" : "今天没有课，快去自习室学习吧";
             },
             refresh: function() {
-                uni.setStorageSync("table", {term: uni.$app.data.curTerm, classTable: []});
+                storage.set("table", {term: uni.$app.data.curTerm, classTable: []});
                 this.getRemoteTable(2, true);
             },
 
@@ -206,7 +207,7 @@
              */
             getEvent: async function() {
                 var eventDipose = (data) => { /* 部署数据 */
-                    uni.setStorageSync("event", data);
+                    storage.set("event", data);
                     if (data.length === 0) {
                         this.tips2 = "暂无待办事项";
                         return void 0;
@@ -221,8 +222,8 @@
                     data.sort((a, b) => a.todo_time > b.todo_time ? 1 : -1);
                     this.todoList = data;
                 }
-                var eventCache = uni.getStorageSync("event") || "";
-                if (eventCache !== "") {
+                var eventCache = storage.get("event");
+                if (eventCache) {
                     console.log("GET EVENT FROM CACHE");
                     eventDipose(eventCache);
                 } else {
@@ -251,18 +252,17 @@
                     })
                     uni.$app.toast("标记成功");
                     this.todoList.splice(index, 1);
-                    uni.setStorageSync("event", this.todoList);
+                    storage.set("event", this.todoList);
                     this.tips2 = this.todoList.length === 0 ? "暂没有待办事项" : "";
                 }
             },
             // #endif
             articleJump: function(articleUrl) {
                 // #ifdef MP-WEIXIN
-                var url = encodeURIComponent(articleUrl);
-                uni.navigateTo({url: "/pages/home/auxiliary/webview?url=" + url})
+                this.nav(url, "webview");
                 // #endif
                 // #ifndef MP-WEIXIN
-                uni.setClipboardData({data: articleUrl})
+                this.copy(articleUrl);
                 // #endif
             },
             bindSW: function() {

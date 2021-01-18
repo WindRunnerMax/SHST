@@ -2,11 +2,13 @@
 import request from "@/modules/request";
 import {toast} from "@/modules/toast";
 import {extend} from  "@/modules/copy";
+import storage from "@/modules/storage.js";
+import {methods} from "@/vector/mixins.js";
 import {data} from "@/modules/global-data";
 import {PubSub} from "@/modules/event-bus";
 import {extDate} from "@/modules/datetime";
 import {checkUpdate} from  "@/modules/update";
-import {getCurWeek} from  "@/vector/pubFct";
+import {getCurWeek} from  "@/vector/pub-fct";
 import {throttleGenerater} from "@/modules/operate-limit";
 
 function disposeApp($app){
@@ -32,7 +34,7 @@ function disposeApp($app){
 
 function initAppData(){
     var $app = this;
-    var userInfo = uni.getStorageSync("user") || {};
+    var userInfo = storage.get("user") || {};
     uni.login({
         // #ifdef MP-WEIXIN
         provider: "weixin",
@@ -84,7 +86,7 @@ function initAppData(){
         /* dot */
         const notify = response.initData.tips;
         $app.data.point = notify;
-        const point = uni.getStorageSync("point") || "";
+        const point = storage.get("point");
         if (point !== notify) uni.showTabBarRedDot({ index: 2 });
 
         /* openid */
@@ -93,7 +95,7 @@ function initAppData(){
 
         /* 处理弹出式公告 */
         const popup = response.initData.popup;
-        const popupCache = uni.getStorageSync("popup") || "";
+        const popupCache = storage.get("popup");
         if(popupCache !== popup.serial && popup.popup) {
             uni.showModal({
                 title: "公告",
@@ -102,15 +104,12 @@ function initAppData(){
                 content: popup.popup,
                 success: (res) => {
                     if(res.confirm) {
-                        uni.setStorage({key: "popup", data: popup.serial});
+                        storage.setPromise("popup", popup.serial);
                         // #ifdef MP-WEIXIN
-                        if(popup.path) {
-                            let url = encodeURIComponent(popup.path);
-                            uni.navigateTo({url: "/pages/home/auxiliary/webview?url=" + url});
-                        }
+                        if(popup.path) methods.nav(popup.path, "webview");
                         // #endif
                         // #ifndef MP-WEIXIN
-                        if(popup.path) uni.setClipboardData({data: popup.path});
+                        if(popup.path) methods.copy(popup.path);
                         // #endif
                     }
                 }

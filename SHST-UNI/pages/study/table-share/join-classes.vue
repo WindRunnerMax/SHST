@@ -80,7 +80,7 @@
                     v.week = week[v.day_of_week];
                     v.start = startClass[v.turn_index];
                     v.classWeek = ~~(util.dayDiff(uni.$app.data.curTermStart,
-                        util.formatDate(undefined, new Date(v.date_start))) / 7) + 1;
+                        util.formatDate(void 0, util.safeDate(v.date_start))) / 7) + 1;
                     return v;
                 })
             }

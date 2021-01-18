@@ -115,10 +115,10 @@
             },
             getTimeArr: function() {
                 var weekShow = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
-                var date = new Date();
+                var date = util.safeDate();
                 var year = date.getFullYear();
                 var queryDataArr = [];
-                var week = new Date().getDay();
+                var week = util.safeDate().getDay();
                 console.log(week);
                 for (var i = 0; i < 7; ++i) {
                     let monthTemp = date.getMonth() + 1;;

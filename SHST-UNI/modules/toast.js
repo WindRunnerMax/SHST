@@ -1,12 +1,13 @@
 /**
  * 弹窗提示
  */
-function toast(e, time = 2000, icon = "none") {
+function toast(msg, time = 2000, icon = "none") {
     uni.showToast({
-        title: e,
+        title: msg,
         icon: icon,
         duration: time
     })
+    return new Promise((resolve, reject) => setTimeout(() => resolve(msg), time));
 }
 
 export { toast }

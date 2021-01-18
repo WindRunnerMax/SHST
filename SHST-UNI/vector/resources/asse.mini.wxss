@@ -312,6 +312,14 @@ page {
     height: 100%;
 }
 
+.inline-block{
+    display: inline-block;
+}
+
+.text-center{
+    text-align: center;
+}
+
 /**
  * 卡片
  */

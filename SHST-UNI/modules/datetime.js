@@ -1,7 +1,15 @@
 /**
+ * 安全地使用Date对象 兼容IOS
+ */
+const safeDate = (...args) => {
+    if(args[0] !== void 0 && typeof(args[0]) === "string") args[0] = args[0].replace(/\-/g,"/");
+    return new Date(...args);
+}
+
+/**
  * yyyy年 MM月 dd日 hh1~12小时制(1-12) HH24小时制(0-23) mm分 ss秒 S毫秒 K周
  */
-const formatDate = (fmt = "yyyy-MM-dd", date = new Date()) => {
+const formatDate = (fmt = "yyyy-MM-dd", date = safeDate()) => {
     var week = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
     var o = {
         "M+": date.getMonth() + 1, //月份
@@ -49,8 +57,8 @@ const dayDiff = (startDateString, endDateString) => {
     var separator = "-"; //日期分隔符
     var startDates = startDateString.split(separator);
     var endDates = endDateString.split(separator);
-    var startDate = new Date(startDates[0], startDates[1] - 1, startDates[2]);
-    var endDate = new Date(endDates[0], endDates[1] - 1, endDates[2]);
+    var startDate = safeDate(startDates[0], startDates[1] - 1, startDates[2]);
+    var endDate = safeDate(endDates[0], endDates[1] - 1, endDates[2]);
     var diff = parseInt((endDate - startDate) / 1000 / 60 / 60 / 24); //把相差的毫秒数转换为天数
     return diff;
 }
@@ -59,8 +67,8 @@ const dayDiff = (startDateString, endDateString) => {
  * 精确的时间差
  */
 const timeDiff = (startDateString, endDateString) => {
-    var oldDate = new Date(startDateString);
-    var newDate = new Date(endDateString);
+    var oldDate = safeDate(startDateString);
+    var newDate = safeDate(endDateString);
     var difftime = (newDate - oldDate) / 1000; // 转为秒
     var days = parseInt(difftime / 86400);
     var hours = parseInt(difftime / 3600) - 24 * days;
@@ -69,5 +77,5 @@ const timeDiff = (startDateString, endDateString) => {
     return {days, hours, minutes, seconds};
 }
 
-export { formatDate, extDate, dayDiff, addDate, timeDiff }
-export default { formatDate, extDate, dayDiff, addDate, timeDiff }
+export { safeDate, formatDate, extDate, dayDiff, addDate, timeDiff }
+export default { safeDate, formatDate, extDate, dayDiff, addDate, timeDiff }

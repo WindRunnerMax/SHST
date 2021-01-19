@@ -10,7 +10,7 @@
 
         <view v-for="(item,index) in info" :key="index">
             <layout>
-                <view class="a-flex-space-between" @click="jump(item.id)" >
+                <view class="a-flex-space-between" @click="nav('detail?id='+item.id)" >
                     <view class="left-info">
                         <view>{{item.infoList[0]}}</view>
                         <view>{{item.infoList[1]}}</view>
@@ -94,19 +94,16 @@
                 this.show = true;
             },
             pre: function() {
-                var curPage = parseInt(this.page);
+                var curPage = Number(this.page);
                 if (curPage <= 1) return void 0;
                 this.query(curPage - 1);
                 this.$nextTick(() => uni.pageScrollTo({scrollTop: 0, duration: 0}));
             },
             next: function() {
-                var curPage = parseInt(this.page);
+                var curPage = Number(this.page);
                 this.query(curPage + 1);
                 this.$nextTick(() => uni.pageScrollTo({scrollTop: 0, duration: 0}));
             },
-            jump: function(id) {
-                uni.navigateTo({url: "detail?id=" + id})
-            }
         }
     }
 </script>

@@ -82,8 +82,8 @@
 </template>
 
 <script>
-    const date = new Date();
-    import util from "@/modules/datetime";;
+    import util from "@/modules/datetime";
+    const date = util.safeDate();
     export default {
         data: () => ({
             range: ["请稍后"],
@@ -99,7 +99,7 @@
             vacationStartDate: "",
             curMonth: util.formatDate("MM", date),
             curYear: util.formatDate("yyyy", date),
-            today: util.formatDate(undefined, date)
+            today: util.formatDate(void 0, date)
         }),
         created: async function() {
             uni.$app.onload(async () => {
@@ -136,13 +136,13 @@
                 this.redayForDate(date);
             },
             jumpDate: function(date) {
-                var d = new Date(date);
+                var d = util.safeDate(date);
                 this.curMonth = util.formatDate("MM", d);
                 this.curYear = util.formatDate("yyyy", d);
                 this.redayForDate(d);
             },
             switchMonth: function(s) {
-                var d = new Date(this.curYear + "-" + this.curMonth + "-01");
+                var d = util.safeDate(this.curYear + "-" + this.curMonth + "-01");
                 if (s === "l") d.addDate(0, -1);
                 else d.addDate(0, 1);
                 this.curMonth = util.formatDate("MM", d);
@@ -151,7 +151,7 @@
             },
             redayForDate: function(date) {
                 var curMonthDay = util.formatDate("yyyy-MM-01", date);
-                var monthStart = new Date(curMonthDay);
+                var monthStart = util.safeDate(curMonthDay);
                 var monthStartWeekDay = monthStart.getDay();
                 monthStartWeekDay = monthStartWeekDay === 0 ? 7 : monthStartWeekDay;
                 var calendarStart = monthStart;
@@ -198,7 +198,7 @@
                 this.show = true;
             },
             calcVacation: function() {
-                var d = new Date(this.termStart);
+                var d = util.safeDate(this.termStart);
                 d.addDate(0, 0, (this.vacationStart - 1) * 7);
                 var vacationStartDate = util.formatDate(undefined, d);
                 this.vacationStartDate = vacationStartDate;

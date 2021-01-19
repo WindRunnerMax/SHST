@@ -9,7 +9,7 @@
 </template>
 <script>
     import storage from "@/modules/storage.js";
-    import {formatDate} from "@/modules/datetime.js";
+    import {formatDate, safeDate} from "@/modules/datetime.js";
     export default {
         name: "sentence",
         props: {},
@@ -31,7 +31,7 @@
                 if(!err){
                     data = res.data.data.sentenceViewList[0].dailysentence;
                     storage.setPromise("sentence-longtime", data);
-                    storage.setPromise("sentence", data, new Date(formatDate() + " 23:59:59"));
+                    storage.setPromise("sentence", data, safeDate(formatDate() + " 23:59:59"));
                 }else{
                     data = storage.get("sentence-longtime");
                 }

@@ -1,29 +1,29 @@
 <template>
     <view>
 
-        <view style="width: 100%;">
+        <view >
             <scroll-view scroll-x="true">
-                <view class="top-swich" style="text-align:center;" v-if="!fullscreen">
-                    <label v-for="(item,index) in buildlData" 
-                        :key="index" :id="index" 
-                        @click="changePage" 
-                        class="top-swich-btn width-lim" 
+                <view class="top-swich text-center" v-if="!fullscreen">
+                    <label v-for="(item,index) in buildlData"
+                        :key="index" :id="index"
+                        @click="changePage"
+                        class="top-swich-btn width-lim"
                         :class="{'active':isSelectedBuildType == index}">
                         {{item.name}}
                     </label>
                 </view>
             </scroll-view>
-            <map :longitude="longitude" 
-                :latitude="latitude" 
-                :scale="buildlData[isSelectedBuildType].scale" 
+            <map :longitude="longitude"
+                :latitude="latitude"
+                :scale="buildlData[isSelectedBuildType].scale"
                 :markers="buildlData[isSelectedBuildType].data"
-                @markertap="markertap" 
-                @regionchange="regionchange" 
+                @markertap="markertap"
+                @regionchange="regionchange"
                 :include-points="buildlData[isSelectedBuildType].data"
-                :show-location="islocation? 'true': 'false'"
-                enable-overlooking="true" 
-                enable-3D="true" 
-                :style="{width:'auto',height:fullscreen ? 94+'vh' : 48+'vh'}">
+                show-location
+                enable-overlooking
+                enable-3D
+                :style="{width:'auto', height:fullscreen ? 94+'vh' : 48+'vh'}">
                 <cover-view class="controls" :class="{full:fullscreen}">
                     <cover-view @click="navigateSearch">
                         <cover-image class="img" src="/static/camptour/search.png" />
@@ -34,9 +34,9 @@
                 </cover-view>
             </map>
             <button @click="clickButton">共有{{buildlData[isSelectedBuildType].data.length}}个景观 ◕‿◕</button>
-            <scroll-view scroll-y="true" :style="{height:fullscreen ? 0:40+'vh'}" :scroll-top="(isSelectedBuild -1 ) * 70">
-                <view v-for="(item,index) in buildlData[isSelectedBuildType].data" 
-                    :key="index" class="building-item" 
+            <scroll-view scroll-y :style="{height:fullscreen ? 0:40+'vh'}" :scroll-top="(isSelectedBuild -1 ) * 70">
+                <view v-for="(item,index) in buildlData[isSelectedBuildType].data"
+                    :key="index" class="building-item"
                     :style="{'background-color':isSelectedBuild -1 == index ? '#d5d5d5' : ''}">
                     <view class="img-view">
                         <navigator class="img" :url="'details?tid='+isSelectedBuildType+'&bid='+index">
@@ -69,17 +69,14 @@
             windowWidth: "",
             isSelectedBuild: 0,
             isSelectedBuildType: 0,
-            islocation: true
         }),
         created: function() {
-            uni.showShareMenu({
-                withShareTicket: true
-            })
+            uni.showShareMenu({  withShareTicket: true });
             uni.getSystemInfo({
                 success: (res) => {
                     //获取当前设备宽度与高度，用于定位控键的位置
-                    this.windowHeight = res.windowHeight
-                    this.windowWidth = res.windowWidth
+                    this.windowHeight = res.windowHeight;
+                    this.windowWidth = res.windowWidth;
                 }
             })
             this.loadSchoolConf();
@@ -100,33 +97,29 @@
             },
             regionchange: function(e) {},
             markertap: function(e) {
-                this.isSelectedBuild= e.markerId
+                this.isSelectedBuild= e.markerId;
             },
             navigateSearch: function() {
-                uni.navigateTo({
-                    url: 'search'
-                })
+                uni.navigateTo({ url: "search" });
             },
             location: function(e) {
                 uni.getLocation({
-                    type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 uni.openLocation 的坐标
+                    type: "wgs84", // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 uni.openLocation 的坐标
                     success: (res) => {
-                        uni.$app.data.latitude = res.latitude;
-                        uni.$app.data.longitude = res.longitude;
-                        uni.$app.data.islocation = true;
-                        if (e) {
-                            this.longitude = res.longitude;
-                            this.latitude = res.latitude;
-                        }
+                        uni.$app.data.tmp.latitude = res.latitude;
+                        uni.$app.data.tmp.longitude = res.longitude;
+                        uni.$app.data.tmp.islocation = true;
+                        this.longitude = res.longitude;
+                        this.latitude = res.latitude;
                     }
                 })
             },
             clickButton: function(e) {
-                this.fullscreen= !this.fullscreen
+                this.fullscreen= !this.fullscreen;
             },
             changePage: function(event) {
-                this.isSelectedBuildType = event.currentTarget.id
-                this.isSelectedBuild = 0
+                this.isSelectedBuildType = event.currentTarget.id;
+                this.isSelectedBuild = 0;
             },
             onShareAppMessage: function() {}
         }

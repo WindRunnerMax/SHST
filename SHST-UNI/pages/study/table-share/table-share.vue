@@ -4,8 +4,8 @@
         <layout title="共享课表">
             <view class="top" v-if="data.status === 1">
                 <view class="x-center" style="flex-direction: column;">
-                    <input class="a-input" @input="accountInput" placeholder="对方学号" :value="account" type="number"></input>
-                    <input class="a-input a-mt" @input="nameInput" placeholder="对方姓名" :value="name"></input>
+                    <input class="a-input" placeholder="对方学号" v-model="account" type="number"></input>
+                    <input class="a-input a-mt"  placeholder="对方姓名" v-model="name"></input>
                     <view class="a-btn a-btn-blue" @click="req">发起请求</view>
                 </view>
             </view>
@@ -87,7 +87,7 @@
 </template>
 
 <script>
-    import {tableDispose} from "@/vector/pubFct.js";
+    import {tableDispose} from "@/vector/pub-fct.js";
     export default {
         data: () => ({
                 data: [],
@@ -118,12 +118,6 @@
                 }
                 console.log(res.data.info);
                 this.data = res.data.info;
-            },
-            accountInput: function(e) {
-                this.account = e.detail.value;
-            },
-            nameInput: function(e) {
-                this.name = e.detail.value;
             },
             req: async function() {
                 if (this.account === "" || this.name === "") {

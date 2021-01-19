@@ -3,9 +3,9 @@
 
         <layout title="添加事项" v-if="dataDo > '2019-12-31'">
             <view>
-                <input class="a-input a-lmt" placeholder="描述" @input="addInput" :value="addContent"></input>
+                <input class="a-input a-lmt" placeholder="描述" v-model="addContent"></input>
                 <view class="top a-flex-space-between">
-                    <picker class="y-center" mode="date" :value="dataDo" :end="dataEnd" @change="dateChange">
+                    <picker class="y-center" mode="date" :value="dataDo" :end="dataEnd" @change="dataDo = $event.detail.value">
                         <view class="y-center">
                             <view>执行时间：</view>
                             <view class="a-link">{{dataDo}}</view>
@@ -25,7 +25,7 @@
                     </view>
                     <view class="y-center a-ml a-mr">
                         <view class="a-dot" style="background: #ACA4D5;"></view>
-                        <view class="a-link" @click="jump">已完成</view>
+                        <view class="a-link" @click="nav('./fin-event')">已完成</view>
                     </view>
                 </view>
             </headslot>
@@ -60,9 +60,10 @@
 </template>
 
 <script>
+    import storage from "@/modules/storage.js";
+    import {todoDateDiff} from "@/vector/pub-fct.js";
     import headslot from "@/components/headslot/headslot.vue";
-    import {todoDateDiff} from "@/vector/pubFct.js";
-    import {formatDate} from "@/modules/datetime.js";
+    import {formatDate, safeDate, addDate} from "@/modules/datetime.js";
     export default {
         components: { headslot },
         data: () => ({
@@ -75,10 +76,8 @@
         }),
         created: function() {
             uni.$app.onload(async () => {
-                var endTime = new Date();
-                endTime.addDate(1);
-                this.dataEnd = formatDate("yyyy-MM-dd", endTime);
-                uni.setStorageSync("event", "");
+                this.dataEnd = formatDate("yyyy-MM-dd", addDate(safeDate(), 1));
+                storage.remove("event");
                 if(uni.$app.data.openid === "") {
                     this.tips = "未正常获取用户信息"
                 }else{
@@ -104,12 +103,6 @@
             })
         },
         methods: {
-            addInput: function(e) {
-                this.addContent = e.detail.value;
-            },
-            dateChange: function(e) {
-                this.dataDo = e.detail.value
-            },
             add: async function() {
                 if (this.addContent === "") {
                     uni.$app.toast("事件内容不能为空");
@@ -175,9 +168,6 @@
                     this.count = this.count - 1;
                 }
             },
-            jump: function() {
-                uni.navigateTo({url: "./fin-event"})
-            }
         }
     }
 </script>

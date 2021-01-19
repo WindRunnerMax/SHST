@@ -1,4 +1,4 @@
-import {formatDate, addDate} from "./datetime.js";
+import {formatDate, addDate, safeDate} from "./datetime.js";
 
 
 const convertKey = (key) => String(key).replace(/-storage$/g, "") + "-storage"; // 避免跟之前没有封装的缓存冲突
@@ -6,7 +6,8 @@ const convertKey = (key) => String(key).replace(/-storage$/g, "") + "-storage"; 
 const convertToOrigin = (str) => {
     try{
         const data = JSON.parse(str);
-        if(data.expire && new Date().getTime() > data.expire) return null;
+        if(Number.isNaN(data.expire)) return null; // 之前IOS的缓存可能会存储NaN
+        if(data.expire && safeDate().getTime() > data.expire) return null;
         return data.origin;
     }catch(e){
         console.log(e);
@@ -44,8 +45,8 @@ const storage = {
     getPromise: function(key){
         key = convertKey(key);
         return uni.getStorage({key}).then(([err, res]) => {
-            if(err || res === "") return null;
-            const origin = convertToOrigin(str);
+            if(err || res.data === "") return null;
+            const origin = convertToOrigin(res.data);
             if(origin === null) this.removePromise(key);
             return origin;
         });
@@ -57,7 +58,7 @@ const storage = {
     setPromise: function(key, data, expire = null){
         key = convertKey(key);
         const str = convertToStr(data, expire);
-        return uni.setStorage({ key, data: str });
+        return uni.setStorage({ key, data: str }).then(([err, res]) => !err);
     },
     remove: function(key){
         key = convertKey(key);
@@ -68,7 +69,7 @@ const storage = {
     },
     removePromise: function(key){
         key = convertKey(key);
-        return uni.removeStorage({ key })
+        return uni.removeStorage({ key }).then(([err, res]) => !err);
     },
     clear: function(){
         return uni.clearStorageSync();
@@ -77,7 +78,7 @@ const storage = {
         return this.clear();
     },
     clearPrmise: function(){
-        return uni.clearStorage();
+        return uni.clearStorage().then(([err, res]) => !err);
     }
 }
 

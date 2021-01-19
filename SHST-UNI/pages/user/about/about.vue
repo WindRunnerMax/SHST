@@ -2,7 +2,7 @@
     <view>
 
         <view class="x-center">
-            <image class="img" src="https://windrunner_max.gitee.io/imgpath/SHST/Static/SHST.jpg">
+            <image class="img" src="http://dev.shst.touchczy.top/public/static/img/SHST.jpg">
             </image>
         </view>
 
@@ -75,11 +75,7 @@
             }
             return shareObj;
         },
-        methods: {
-            copy: function(str) {
-                uni.setClipboardData({data: str})
-            }
-        }
+        methods: {}
     }
 </script>
 

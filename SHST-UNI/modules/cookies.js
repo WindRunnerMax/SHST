@@ -1,3 +1,5 @@
+import stroage from "./storage.js";
+
 /**
  * GetCookie
  */
@@ -11,13 +13,10 @@ function getCookies(res) {
             }
         }
         console.log("SetCookie:", cookies);
-        uni.setStorage({
-            key: "cookies",
-            data: cookies
-        });
+        stroage.setPromise("cookies", cookies);
     } else {
         console.log("Get Cookie From Cache");
-        cookies = uni.getStorageSync("cookies") || "";
+        cookies = stroage.get("cookies") || "";
     }
     return cookies;
 }

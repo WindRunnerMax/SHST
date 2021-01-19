@@ -153,16 +153,16 @@
         methods: {
             jump: async function(path, check) {
                 if (check === 1 && uni.$app.data.userFlag !== 1) {
-                    var [err, choice] = await uni.showModal({
+                    let [err, choice] = await uni.showModal({
                         title: "提示",
                         content: "该功能需要绑定强智教务系统，是否前去绑定",
                     })
                     if (choice.confirm) {
-                        uni.navigateTo({url: "/pages/home/auxiliary/login?status=E"})
+                        this.nav("/pages/home/auxiliary/login?status=E");
                     }
                     return void 0;
                 }
-                uni.navigateTo({url: path});
+                this.nav(path);
             }
         }
     }

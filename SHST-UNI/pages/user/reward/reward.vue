@@ -4,7 +4,7 @@
         <!-- #ifdef MP-WEIXIN -->
         
         <view class="x-center">
-            <image  @click="viewImg('http://windrunner_max.gitee.io/imgpath/SHST/Static/Reward.jpg')"
+            <image  @click="viewImg('http://dev.shst.touchczy.top/public/static/img/Reward.jpg')"
                 class="reward-img" src="/static/img/Reward.jpg"></image>
         </view>
 
@@ -25,11 +25,8 @@
 <script>
     export default {
         methods: {
-            viewImg:function(url) {
-                uni.previewImage({
-                    current: url,
-                    urls: [url]
-                })
+            viewImg: function(url) {
+                this.viewImage(url, [url]);
             }
         }
     }

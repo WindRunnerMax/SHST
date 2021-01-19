@@ -25,11 +25,7 @@
             })
             this.data = res.data.url;
         },
-        methods: {
-            copy: function(url) {
-                uni.setClipboardData({data: url})
-            }
-        }
+        methods: {}
     }
 </script>
 

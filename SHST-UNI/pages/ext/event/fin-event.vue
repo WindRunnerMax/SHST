@@ -33,9 +33,9 @@
 </template>
 
 <script>
+    import {todoDateDiff} from "@/vector/pub-fct.js";
     import headslot from "@/components/headslot/headslot.vue";
-    import {todoDateDiff} from "@/vector/pubFct.js";
-    import {formatDate} from "@/modules/datetime.js";
+    import {formatDate, safeDate, addDate} from "@/modules/datetime.js";
     export default {
         components: {
             headslot
@@ -51,9 +51,9 @@
         }),
         created: function() {
             uni.$app.onload(async ()=>{
-                var endTime = new Date();
+                var endTime = safeDate();
                 endTime.addDate(1);
-                this.dataEnd = formatDate("yyyy-MM-dd", endTime);
+                this.dataEnd = formatDate("yyyy-MM-dd", addDate(safeDate(), 1));
                 if (uni.$app.data.openid === "") {
                     this.tips = "未正常获取用户信息";
                 } else {

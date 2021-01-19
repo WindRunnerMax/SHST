@@ -56,13 +56,10 @@
             uni.$app.onload(() => {
                 storage.getPromise("user").then(res => {
                     if (res && res.account && res.password) {
-                        this.account = res.data.account;
-                        this.password = res.data.password;
+                        this.account = res.account;
+                        this.password = res.password;
                     }
                 })
-                storage.removePromise("user-info");
-                storage.removePromise("table");
-                storage.removePromise("event");
                 uni.$app.data.url = uni.$app.data.url.replace("/example/", "");
                 uni.$app.data.userFlag = 0;
             })
@@ -90,12 +87,14 @@
                     })
                     console.log(res.data);
                     if(res.data.status === 1) {
-                        storage.setPromise("user", {
-                            account: this.account,
-                            password: this.password,
-                        }).then(succ => {
-                            uni.$app.data.userFlag = 1;
-                            this.nav("/pages/home/tips/tips", "relunch");
+                        storage.clearPrmise().then(() => {
+                            storage.setPromise("user", {
+                                account: this.account,
+                                password: this.password,
+                            }).then(succ => {
+                                uni.$app.data.userFlag = 1;
+                                this.nav("/pages/home/tips/tips", "relunch");
+                            })
                         })
                     }else if(res.data.status === 2) {
                         this.status = res.data.msg;

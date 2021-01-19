@@ -257,16 +257,16 @@
                 }
             },
             // #endif
-            articleJump: function(articleUrl) {
+            articleJump: function(url) {
                 // #ifdef MP-WEIXIN
                 this.nav(url, "webview");
                 // #endif
                 // #ifndef MP-WEIXIN
-                this.copy(articleUrl);
+                this.copy(url);
                 // #endif
             },
             bindSW: function() {
-                if (uni.$app.data.userFlag === 0) uni.navigateTo({url: "/pages/home/auxiliary/login"})
+                if (uni.$app.data.userFlag === 0) this.nav("/pages/home/auxiliary/login");
             },
             onShareAppMessage: function() {}
         }

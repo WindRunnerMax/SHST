@@ -6,6 +6,7 @@ const convertKey = (key) => String(key).replace(/-storage$/g, "") + "-storage"; 
 const convertToOrigin = (str) => {
     try{
         const data = JSON.parse(str);
+        if(Number.isNaN(data.expire)) return null; // 之前IOS的缓存可能会存储NaN
         if(data.expire && safeDate().getTime() > data.expire) return null;
         return data.origin;
     }catch(e){

@@ -1,6 +1,6 @@
 "use strict";
 import util from "@/modules/datetime";
-// import md5 from "@/utils/md5.js";
+import md5 from "@/utils/md5.js";
 
 /**
  * 统一处理课表功能

@@ -2,7 +2,7 @@
     <view>
 
         <layout title="共享课表">
-            <view class="top" v-if="data.status === 1">
+            <view class="x-center a-flex-warp" v-if="data.status === 1">
                 <view class="x-center" style="flex-direction: column;">
                     <input class="a-input" placeholder="对方学号" v-model="account" type="number"></input>
                     <input class="a-input a-mt"  placeholder="对方姓名" v-model="name"></input>
@@ -10,7 +10,7 @@
                 </view>
             </view>
 
-            <view class="top" v-if="data.status === 2">
+            <view class="x-center a-flex-warp" v-if="data.status === 2">
                 <view class="y-center">
                     <view>{{data.pair_user[0]}}</view>
                     <view class="a-ml">{{data.pair_user[1]}}</view>
@@ -20,7 +20,7 @@
 
             <view class="a-hr a-mb" v-if="data.status !== 0"></view>
 
-            <view class="top" v-if="data.status !== 0">
+            <view class="x-center a-flex-warp" v-if="data.status !== 0">
                 <view v-for="(item,index) in data.data" class="y-center" :key="index">
                     <view>{{item.account}}</view>
                     <view class="a-ml">{{item.name}}</view>
@@ -183,12 +183,6 @@
 </script>
 
 <style scoped>
-
-    .top {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
 
     .a-input {
         align-self: center;

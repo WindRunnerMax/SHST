@@ -21,8 +21,8 @@ const methods = {
 }
 
 const filterMount = (Vue) => {
-    for(let unit in filters){
-        Vue.filter(unit, filters[key])
+    for(let key in filters){
+        Vue.filter(key, filters[key])
     }
 }
 

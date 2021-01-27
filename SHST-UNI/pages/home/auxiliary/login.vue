@@ -5,7 +5,7 @@
             <image class="img" src="http://dev.shst.touchczy.top/public/static/img/SDUST.jpg"></image>
         </view>
 
-        <form @submit="enter">
+        <view >
             <view class="input-con">
                 <view class="input-view y-center x-full">
                     <i class="iconfont icon-account"></i>
@@ -17,8 +17,10 @@
                     <switch @change="hidePassword = !hidePassword"></switch>
                 </view>
             </view>
-            <button class="a-btn a-btn-blue login-btn x-full" form-type="submit">Log In</button>
-        </form>
+            <view class="a-flex a-lmt">
+                <view class="a-btn a-btn-blue a-btn-large a-lmt a-flex-full" @click="enter()">登录</view>
+            </view>
+        </view>
         <view class="tips a-flex-space-between">
             <view>请输入强智系统账号密码</view>
             <view style="color: #3CB371;" @click="exLogin">测试账号登陆</view>
@@ -65,7 +67,7 @@
             })
         },
         methods: {
-            enter: async function(e) {
+            enter: async function() {
                 if (this.account.length == 0 || this.password.length == 0) {
                     uni.$app.toast("用户名和密码不能为空");
                 } else {
@@ -134,20 +136,12 @@
         height: 80px;
         margin: 20px 0 30px 0;
     }
-    .x-full{
-        width: 100%;
-    }
     .input-con {
         margin-top: 23px;
     }
     .input-view {
         border-bottom: 1px solid #eee;
         margin-top: 5px;
-    }
-    .login-btn {
-        margin-top: 20px;
-        border: none;
-        box-sizing: border-box;
     }
     .tips {
         margin: 10px 0 0 3px;
@@ -173,5 +167,8 @@
         font-size: 13px;
         color: #666;
         line-height: 27px;
+    }
+    switch{
+        zoom: 0.8;
     }
 </style>

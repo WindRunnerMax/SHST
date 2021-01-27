@@ -5,16 +5,16 @@
             <view class="table-top">
                 <view class="week a-lml">第{{week}}周</view>
                 <view class="y-center">
-                    <navigator class="a-btn a-btn-white a-btn-mini a-lml y-full y-center" url="edit">
+                    <navigator class="a-btn a-btn-white a-btn-square a-lml y-center" url="edit">
                         <view class="iconfont icon-jia"></view>
                     </navigator>
-                    <view class="a-btn a-btn-white a-btn-mini a-lml y-full y-center" @click="refresh(week)">
+                    <view class="a-btn a-btn-white a-btn-square a-lml y-center" @click="refresh(week)">
                         <view class="iconfont icon-shuaxin1"></view>
                     </view>
-                    <view class="a-btn a-btn-white a-btn-mini a-lml y-full y-center" @click="pre(week)">
+                    <view class="a-btn a-btn-white a-btn-square a-lml y-center" @click="pre(week)">
                         <view class="iconfont icon-arrow-lift"></view>
                     </view>
-                    <view class="a-btn a-btn-white a-btn-mini a-lml y-full y-center" @click="next(week)">
+                    <view class="a-btn a-btn-white a-btn-square a-lml y-center" @click="next(week)">
                         <view class="iconfont icon-arrow-right"></view>
                     </view>
                 </view>
@@ -182,10 +182,6 @@
 
     .week {
         align-self: center;
-    }
-
-    .a-btn{
-        padding: 0 8px;
     }
 
     .timetable-hide {

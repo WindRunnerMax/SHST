@@ -34,9 +34,7 @@ page {
 
 .a-btn {
 	display: inline-block;
-	height: 36px;
-	line-height: 36px;
-	padding: 0 20px;
+	padding: 7px 15px;
 	margin: 3px;
 	border-radius: 3px;
 	text-align: center;
@@ -58,9 +56,6 @@ page {
 }
 
 .a-btn-white {
-	height: 34px;
-	line-height: 34px;
-	padding: 0 19px;
 	background: #fff;
 	color: #000;
 	border: 1px solid #eee;
@@ -74,6 +69,31 @@ page {
 	background: var(--color-orange);
 }
 
+.a-btn-success-plain {
+    color: #19be6b !important;
+    border: 1px solid #71d5a1 !important;
+    background-color: #dbf1e1 !important;
+}
+
+.a-btn-blue-plain{
+    color: #2979ff !important;
+    border: 1px solid #a0cfff !important;
+    background-color: #ecf5ff !important;
+}
+
+.a-btn-yellow-plain{
+    color: #f90 !important;
+    border: 1px solid #fcbd71 !important;
+    background-color: #fdf6ec !important;
+}
+
+.a-btn-orange-plain {
+    color: #fa3534 !important;
+    border: 1px solid #fab6b6 !important;
+    background-color: #fef0f0 !important;
+}
+
+
 .a-btn-disable {
 	background: #FBFBFB;
 	color: #C9C9C9;
@@ -82,33 +102,26 @@ page {
 }
 
 .a-btn-large {
-	height: 40px;
-	line-height: 40px;
-	padding: 0 23px;
-	font-size: 16px;
+	padding: 9px 20px;
 }
 
 .a-btn-small {
-	height: 30px;
-	line-height: 30px;
-	padding: 0 10px;
+	padding: 5px 10px;
 	font-size: 12px;
 }
 
 .a-btn-mini {
-	height: 22px;
-	line-height: 22px;
-	padding: 0 5px;
+	padding: 3px 5px;
 	border-radius: 2px;
 	font-size: 10px;
 }
 
 .a-btn-cicle {
-	height: 36px;
-	width: 36px;
-	line-height: 36px;
-	border-radius: 36px;
-	padding: 0;
+	border-radius: 50px;
+}
+
+.a-btn-square{
+    padding: 7px 7.5px;
 }
 
 /**
@@ -254,9 +267,6 @@ page {
 	background-color: var(--color-blue);
 }
 
-.a-retract{
-    padding: 0 5px;
-}
 
 /**
  * flex
@@ -312,12 +322,22 @@ page {
     height: 100%;
 }
 
+.text-center{
+    text-align: center;
+}
+
+.text-ellipsis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .inline-block{
     display: inline-block;
 }
 
-.text-center{
-    text-align: center;
+.retract{
+    padding: 0 5px;
 }
 
 /**

@@ -30,7 +30,8 @@
         box-sizing: unset;
         padding: 0;
         margin: 0;
-        font-size: 13px;
+        font-size: inherit;
+        color: inherit;
         line-height: unset;
         height: auto;
     }

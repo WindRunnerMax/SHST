@@ -7,12 +7,14 @@ const methods = {
         uni.setClipboardData({data: str});
     },
     nav: function(url, type = "nav"){
+        const fail = e => console.log(e);
         switch(type){
-            case "nav": return uni.navigateTo({ url });
-            case "tab": return uni.switchTab({ url });
-            case "relunch": return uni.reLaunch({ url });
-            case "back": return uni.navigateBack({});
-            case "webview": return uni.navigateTo({ url: "/pages/home/auxiliary/webview?url="+encodeURIComponent(url) });
+            case "nav": return uni.navigateTo({ url, fail });
+            case "tab": return uni.switchTab({ url, fail });
+            case "relunch": return uni.reLaunch({ url, fail });
+            case "back": return uni.navigateBack({ fail });
+            case "webview": return uni.navigateTo({ url: "/pages/home/auxiliary/webview?url="+encodeURIComponent(url), fail});
+            case "redirect": return uni.redirectTo({ url, fail });
         }
     },
     viewImage: function(url, list){

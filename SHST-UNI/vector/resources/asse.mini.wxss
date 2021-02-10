@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+/* start --- body page --- start */
 body,
 page {
 	margin: 0;
@@ -10,28 +11,26 @@ page {
 	background-color: #F8F8F8;
 	--color-blue: #4C98F7;
 	--color-green: #009688;
+    --color-white: #FFFFFF;
 	--color-yellow: #FFB800;
 	--color-orange: #FF5722;
 }
+/* end --- body page --- end */
 
-/**
- * 动画
- */
+/* start --- 动画 --- start */
 @keyframes shallow {
 	from {
 		opacity: 1;
+        visibility: visible;
 	}
-
 	to {
 		opacity: 0.9;
+        visibility: hidden;
 	}
 }
+/* end --- 动画 --- end */
 
-/**
- * Button
- * Color Size
- */
-
+/* start --- Button --- start */
 .a-btn {
 	display: inline-block;
 	padding: 7px 15px;
@@ -102,7 +101,7 @@ page {
 }
 
 .a-btn-large {
-	padding: 9px 20px;
+	padding: 10px 20px;
 }
 
 .a-btn-small {
@@ -123,11 +122,59 @@ page {
 .a-btn-square{
     padding: 7px 7.5px;
 }
+/* end --- Button --- end */
 
-/**
- * 组件
- */
+/* start --- 颜色 --- start */
+.a-color-blue {
+	color: var(--color-blue);
+}
 
+.a-color-white {
+	color: var(--color-white);
+}
+
+.a-color-green {
+	color: var(--color-green);
+}
+
+.a-color-yellow {
+	color: var(--color-yellow);
+}
+
+.a-color-orange {
+	color: var(--color-orange);
+}
+
+.a-color-grey {
+	color: #606266;
+}
+
+.a-background-blue {
+	background-color: var(--color-blue);
+}
+
+.a-background-white {
+	background-color: var(--color-white);
+}
+
+.a-background-green {
+	background-color: var(--color-green);
+}
+
+.a-background-yellow {
+	background-color: var(--color-yellow);
+}
+
+.a-background-orange {
+	background-color: var(--color-orange);
+}
+
+.a-background-grey {
+	background-color: #EEE;
+}
+/* end --- 颜色 --- end */
+
+/* start --- 组件 --- start */
 .a-hr {
 	display: block;
 	height: 1px;
@@ -149,11 +196,9 @@ page {
 	margin-top: 10px;
 	color: #aaa;
 }
+/* end --- 组件 --- end */
 
-/**
- * 面板
- */
-
+/* start --- 面板 响应式 --- start */
 @media screen and (max-width:600px) { /* <=600 */
 	.a-panel {
 		margin: 5px;
@@ -195,11 +240,9 @@ page {
 		background: #eee;
 	}
 }
+/* end --- 面板 响应式 --- end */
 
-
-/**
- * 表格
- */
+/* start --- 表格 --- start */
 .a-table {
 	margin-top: 5px;
 	border-top: 1px solid #E6E6E6;
@@ -234,11 +277,9 @@ page {
 .a-table tbody :hover {
 	background-color: #f2f2f2;
 }
+/* end --- 表格 --- end */
 
-/**
- * 样式
- */
-
+/* start --- 样式 --- start */
 .a-show {
 	display: block !important;
 }
@@ -266,12 +307,10 @@ page {
 	margin: 2px 5px;
 	background-color: var(--color-blue);
 }
+/* end --- 样式 --- end */
 
 
-/**
- * flex
- */
-
+/* start --- flex --- start */
 .a-flex{
     display: flex;
 }
@@ -300,6 +339,11 @@ page {
     flex-wrap: wrap;
 }
 
+.a-flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
 .a-flex-space-between{
     display: flex;
     justify-content: space-between;
@@ -309,10 +353,9 @@ page {
     display: flex;
     justify-content: space-around;
 }
+/* end --- flex --- end */
 
-/**
- * 布局
- */
+/* start --- 布局 --- start */
 .x-full{
     width: 100%;
     box-sizing: border-box;
@@ -339,10 +382,9 @@ page {
 .retract{
     padding: 0 5px;
 }
+/* end --- 布局 --- end */
 
-/**
- * 卡片
- */
+/* start --- 卡片 --- start */
 .a-card .a-card-title {
 	background-color: #FFFFFF;
 	padding: 12px 5px 10px 11px;
@@ -358,10 +400,9 @@ page {
 	box-sizing: border-box;
 	margin-bottom: 15px;
 }
+/* end --- 卡片 --- end */
 
-/**
- * 表单
- */
+/* start --- 表单 --- start */
 .a-select {
 	height: 22px;
 	padding: 0 5px;
@@ -424,8 +465,9 @@ page {
 	padding: 0;
 	outline: none;
 }
+/* end --- 表单 --- end */
 
-/* 微距 */
+/* start --- 微距 --- start */
 .a-mt{
     margin-top: 3px !important;
 }
@@ -457,8 +499,9 @@ page {
 .a-pl{
     padding-left: 3px !important;
 }
+/* end --- 微距 --- end */
 
-/* 长距 */
+/* start --- 长距 --- start */
 .a-lmt{
     margin-top: 10px !important;
 }
@@ -490,3 +533,4 @@ page {
 .a-lpl{
     padding-left: 10px !important;
 }
+/* end --- 长距 --- end */

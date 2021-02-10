@@ -10,7 +10,7 @@
                     <view class="a-label">教师名:</view>
                     <input class="a-input" v-model="teacherName" placeholder="请输入(可选)" />
                 </view>
-                <view class="a-btn a-btn-blue x-full" @click="confirm()">确定</view>
+                <view class="a-btn a-btn-blue a-btn-large x-full" @click="confirm()">确定</view>
             </view>
         </layout>
 

@@ -3,7 +3,7 @@
 
         <layout title="添加事项" v-if="dataDo > '2019-12-31'">
             <view>
-                <input class="a-input a-lmt" placeholder="描述" v-model="addContent"></input>
+                <input class="input a-lmt" placeholder="描述" v-model="addContent"></input>
                 <view class="top a-flex-space-between">
                     <picker class="y-center" mode="date" :value="dataDo" :end="dataEnd" @change="dataDo = $event.detail.value">
                         <view class="y-center">
@@ -177,7 +177,7 @@
         border-bottom: 1px solid #eee;
         padding:5px 0;
     }
-    .a-input {
+    .input {
         margin: 0;
         padding: 0 5px;
         border-bottom: 1px solid #eee;
@@ -193,10 +193,5 @@
         padding: 7px;
         border-radius: 20px;
         margin: 0 3px;
-    }
-
-    .btn {
-        padding: 0 6px;
-        border-radius: 1px;
     }
 </style>

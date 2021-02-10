@@ -58,7 +58,7 @@
                     <view>关于</view>
                     <view class="iconfont icon-arrow-right"></view>
                 </view>
-                <view class="a-btn a-btn-orange btn-full" @click="logout">注销</view>
+                <view class="a-btn a-btn-orange a-btn-large btn-full" @click="logout">注销</view>
 
             </view>
         </layout>
@@ -159,7 +159,7 @@
 
     .btn-full{
         width: 100%;
-        margin: 18px 0 0px 0;
+        margin: 18px 0 0 0;
         box-sizing: border-box;
     }
 </style>

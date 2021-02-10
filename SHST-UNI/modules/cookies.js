@@ -8,8 +8,8 @@ function getCookies(res) {
     if (res && res.header) {
         for(let item in res.header){
             if(item.toLowerCase() === "set-cookie"){
-                var cookie = res.header[item].match(/PHPSESSID=.*?;/);
-                if(cookie) cookies += cookie;
+                let cookie = res.header[item].match(/.*?=.*?;/);
+                cookies += cookie; // [] + "" = ""
             }
         }
         console.log("SetCookie:", cookies);

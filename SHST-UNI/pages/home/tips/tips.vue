@@ -206,7 +206,7 @@
              * 待办处理
              */
             getEvent: async function() {
-                var eventDipose = (data) => { /* 部署数据 */
+                const eventDipose = data => { /* 部署数据 */
                     storage.set("event", data);
                     if (data.length === 0) {
                         this.tips2 = "暂无待办事项";
@@ -215,10 +215,7 @@
                         this.tips2 = "";
                     }
                     var curData = util.formatDate();
-                    data.map(function(value) {
-                        [value.diff, value.color] = pubFct.todoDateDiff(curData, value.todo_time, value.event_content);
-                        return value;
-                    })
+                    data.forEach(value => [value.diff, value.color] = pubFct.todoDateDiff(curData, value.todo_time, value.event_content));
                     data.sort((a, b) => a.todo_time > b.todo_time ? 1 : -1);
                     this.todoList = data;
                 }
@@ -266,9 +263,10 @@
                 // #endif
             },
             bindSW: function() {
-                if (uni.$app.data.userFlag === 0) this.nav("/pages/home/auxiliary/login");
+                if(uni.$app.data.userFlag === 0) this.nav("/pages/home/auxiliary/login");
             },
-            onShareAppMessage: function() {}
+            onShareAppMessage: () => {},
+            onShareTimeline: () => {}
         }
     }
 </script>

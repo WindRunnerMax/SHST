@@ -1,4 +1,3 @@
-"use strict";
 import util from "@/modules/datetime";
 import md5 from "@/utils/md5.js";
 

@@ -18,9 +18,10 @@
     }
 </script>
 
-<style>
-    @import "@/vector/resources/asse.mini.wxss";
+<style lang="scss">
+    @import "@/vector/resources/asse.scss";
     @import "@/vector/resources/iconfont.wxss";
+    @import "@/vector/resources/asse.mini.wxss";
     button:after {
         border: none;
     }
@@ -37,11 +38,6 @@
     }
     .adapt{
         box-sizing: border-box;
-    }
-    .text-ellipsis{
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
     .tips-con{
         line-height: 27px;

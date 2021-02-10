@@ -184,7 +184,7 @@
 <style scoped>
     .select-con{
         width: 70px;
-        padding: 8px;
+        padding: 7px;
         border: 1px solid #eee;
         border-radius: 3px;
     }

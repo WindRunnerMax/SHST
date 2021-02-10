@@ -1,14 +1,13 @@
-"use strict";
-import request from "@/modules/request";
 import {toast} from "@/modules/toast";
 import {extend} from  "@/modules/copy";
+import request from "@/modules/request";
 import storage from "@/modules/storage.js";
 import {methods} from "@/vector/mixins.js";
 import {data} from "@/modules/global-data";
-import {PubSub} from "@/modules/event-bus";
+import eventBus from "@/modules/event-bus";
 import {extDate} from "@/modules/datetime";
-import {checkUpdate} from  "@/modules/update";
 import {getCurWeek} from  "@/vector/pub-fct";
+import {checkUpdate} from  "@/modules/update";
 import {throttleGenerater} from "@/modules/operate-limit";
 
 function disposeApp($app){
@@ -19,7 +18,7 @@ function disposeApp($app){
     $app.$scope.extend = extend;
     $app.data = $app.globalData;
     $app.$scope.data = $app.data;
-    $app.$scope.eventBus = new PubSub();
+    $app.$scope.eventBus = eventBus;
     $app.$scope.extend($app.data, data);
     $app.$scope.extend($app.$scope, request);
     $app.data.colorN = $app.data.colorList.length;

@@ -144,13 +144,6 @@
 </script>
 
 <style scoped>
-    .top {
-        display: flex;
-        margin: 20px 0;
-        text-align: center;
-        justify-content: space-between;
-    }
-
     .picker-con{
         width: 77%;
         height: 100px;

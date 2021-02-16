@@ -43,8 +43,8 @@
         </layout>
 
         <layout title="今日课程" >
-            <view v-for="(item,index) in table" :key="index">
-                <view class="unit-table" v-if="item" v-for="(classObj,classIndex) in item.table" :key="classIndex">
+            <view v-for="(item, index) in table" :key="index">
+                <view class="unit-table" v-if="item" v-for="(classObj, classIndex) in item.table" :key="classIndex">
                     <view class="y-center a-mr a-mt">
                         <view class="a-dot" :style="{'background':classObj.background}"></view>
                         <view class="a-lmr">第{{2*(classObj.knot + 1) - 1}}{{2*(classObj.knot + 1)}}节</view>

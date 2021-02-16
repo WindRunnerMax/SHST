@@ -5,7 +5,6 @@ import md5 from "@/utils/md5.js";
  * 统一处理课表功能
  */
 function tableDispose(info, oneDay = false) {
-    const app = getApp();
     var tableArr = [];
     var week = util.safeDate().getDay() - 1;
     if (week === -1) week = 6;
@@ -16,7 +15,7 @@ function tableDispose(info, oneDay = false) {
         if (oneDay && day !== week) return void 0;
         var knotArr = value.kcsj.slice(1).replace(/(\d{4})/g, "$1,").split(",");
         var uniqueNum = Array.prototype.reduce.call(value.kcmc, (pre, cur) => pre+cur.charCodeAt(), 0);
-        var colorSignal = app.data.colorList[uniqueNum % app.data.colorN];
+        var colorSignal = uni.$app.data.colorList[uniqueNum % uni.$app.data.colorN];
         classObj.day = day;
         classObj.className = value.kcmc.split("（")[0];
         classObj.teacher = value.jsxm;
@@ -36,9 +35,8 @@ function tableDispose(info, oneDay = false) {
 }
 
 function todoDateDiff(startDateString, endDateString, content) {
-    const app = getApp();
-    const colorList = app.data.colorList;
-    const colorN = app.data.colorList.length;
+    const colorList = uni.$app.data.colorList;
+    const colorN = uni.$app.data.colorList.length;
     var color = colorList[content.charCodeAt() % colorN];
     var diff = util.dayDiff(startDateString, endDateString);
     if (diff === 0) diff = "今";

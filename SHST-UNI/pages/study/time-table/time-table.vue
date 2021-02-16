@@ -29,12 +29,12 @@
             <view class="a-hr timetablehr"></view>
             <view v-for="item in 5" :key="item">
                 <view class="a-flex">
-                    <view v-for="inner in 7" :key="inner" class="a-full">
-                        <view v-if="table[inner] && table[inner][item]" class="timetable-hide"
+                    <view v-for="inner in 7" :key="inner" class="a-flex-full a-flex">
+                        <view v-if="table[inner] && table[inner][item]" class="timetable-hide a-flex-full"
                             :style="{'background':table[inner][item].background}">
                             <view v-for="(classObj,classIndex) in table[inner][item].table" :key="classIndex">
-                                <view>{{classObj.className}}</view>
-                                <view>{{classObj.classroom}}</view>
+                                <view>{{classObj.className | bracketsFilter}}</view>
+                                <view>{{classObj.classroom | charsFilter}}</view>
                                 <view>{{classObj.teacher}}</view>
                                 <view v-if="classIndex !== table[inner][item].table.length-1">---</view>
                             </view>
@@ -93,6 +93,10 @@
         },
         beforeDestroy: function(){
             uni.$app.eventBus.off("RefreshTable", this.refresh);
+        },
+        filters: {
+            charsFilter: str => str.replace(/[室]/g, ""),
+            bracketsFilter: str => str.replace(/（/g, "(").replace(/）/g, ")"),
         },
         methods: {
             getCache: function(week) {

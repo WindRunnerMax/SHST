@@ -91,6 +91,8 @@ function request(option) {
     })
 }
 
+ajax.headers = headers;
+request.headers = headers;
 
 export { ajax, request }
 export default { ajax, request }

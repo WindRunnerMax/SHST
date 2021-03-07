@@ -53,6 +53,23 @@ function getCurWeek(startTime) {
     return week;
 }
 
-export {todoDateDiff, getCurWeek, tableDispose}
+async function registerCheck(funct, cancel = null){
+    if(uni.$app.data.userFlag){
+        funct();
+    }else{
+        const [err,choice] = await uni.showModal({
+            title: "提示",
+            content: "使用该功能需要登录小程序，是否前去登录？",
+        })
+        if(choice.confirm) uni.navigateTo({ url: "/pages/home/auxiliary/login" });
+        else cancel?.();
+    }
+}
 
-export default {todoDateDiff, getCurWeek, tableDispose}
+function share(path = "pages/home/tips/tips", imageUrl = null, title = "山科小站"){
+    return { title, imageUrl, path };
+}
+
+export {todoDateDiff, getCurWeek, tableDispose, registerCheck, share}
+
+export default {todoDateDiff, getCurWeek, tableDispose, registerCheck, share}

@@ -48,6 +48,10 @@
                     <i class="iconfont icon-lubiao-xf "></i>
                     <view>迎新专版</view>
                 </navigator>
+                <navigator class="icon" url="/pages/sdust/news/news" open-type="switchTab" hover-class="none" >
+                    <i class="iconfont icon-shequ "></i>
+                    <view>新鲜事</view>
+                </navigator>
                 <!-- #endif -->
 
             </view>
@@ -109,7 +113,7 @@
                     <view>二手市场</view>
                 </navigator> -->
                 <!-- #endif -->
-                
+
                 <!-- #ifdef MP-WEIXIN -->
                 <navigator class="icon" target="miniProgram" app-id="wx2facb7b57eedf7e6" hover-class="none" version="release">
                     <i class="iconfont icon-ku"></i>

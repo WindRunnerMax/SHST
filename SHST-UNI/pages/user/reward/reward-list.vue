@@ -22,9 +22,7 @@
     import headslot from "@/components/headslot/headslot.vue";
     import loading from "@/components/loading/loading.vue";
     export default {
-        components: {
-            headslot, loading
-        },
+        components: { headslot, loading },
         data: () => ({
             page: 1,
             data: [],

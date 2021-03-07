@@ -3,6 +3,7 @@
  */
 function toast(msg, time = 2000, icon = "none") {
     uni.showToast({
+        mask: true,
         title: msg,
         icon: icon,
         duration: time

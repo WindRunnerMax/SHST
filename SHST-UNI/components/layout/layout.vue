@@ -1,7 +1,7 @@
 <template>
     <view>
 
-        <view class="lay-line" v-show="title">
+        <view class="lay-line" :style="{height: titleHeight ? titleHeight + 'px' : 'auto'}" v-show="title">
             <view class="lay-left-con">
                 <view class="lay-verline" :style="{background: color}"></view>
                 <view class="title">{{title}}</view>
@@ -33,6 +33,10 @@
             inheritColor: {
                 type: Boolean,
                 default: false
+            },
+            titleHeight: {
+                type: [String, Number],
+                default: ""
             }
         },
         computed:{

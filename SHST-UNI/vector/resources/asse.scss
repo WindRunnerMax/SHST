@@ -1,4 +1,4 @@
-/* start --- 颜色 --- start */
+/* section --- 颜色 --- section */
 $a-blue: #4C98F7;
 $a-white: #FFFFFF;
 $a-green: #009688;
@@ -38,11 +38,11 @@ $a-type-info: #909399;
 $a-type-info-disabled: #c8c9cc;
 $a-type-info-dark: #82848a;
 $a-type-info-light: #f4f4f5;
-/* end --- 颜色 --- end */
+/* section --- 颜色 --- section */
 
 
 
-/* start --- 文本行数限制 --- start */
+/* section --- 文本行数限制 --- section */
 .a-line-1 {
     overflow: hidden;
     white-space: nowrap;
@@ -68,21 +68,21 @@ $a-type-info-light: #f4f4f5;
 .a-line-2, .a-line-3, .a-line-4, .a-line-5 {
     overflow: hidden;
 	word-break: break-all;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
     display: -webkit-box; // 弹性伸缩盒
     -webkit-box-orient: vertical; // 设置伸缩盒子元素排列方式
 }
-/* end --- 文本行数限制 --- end */
+/* section --- 文本行数限制 --- section */
 
-/* start --- 文字大小 --- start */
+/* section --- 文字大小 --- section */
 @for $i from 10 to 27 {
 	.a-fontsize-#{$i} {
-		font-size: $i + px;
+		font-size: $i + px !important;
 	}
 }
-/* end --- 文字大小 --- end */
+/* section --- 文字大小 --- section */
 
-/* start --- 内外边距 --- start */
+/* section --- 内外边距 --- section */
 $size-list: 3,5,6,10,15,20;
 @each $item in $size-list{
     @each $short, $long in l left, t top, r right, b bottom {
@@ -95,12 +95,13 @@ $size-list: 3,5,6,10,15,20;
     }
 }
 
-/* end --- 内外边距 --- end */
+/* section --- 内外边距 --- section */
 
-/* start --- 间隙大小 --- start */
-@for $i from 5 to 15 {
+/* section --- 间隙大小 --- section */
+@for $i from 5 to 16 {
 	.a-gap-#{$i} {
 		height: $i + px;
+        width: 100%;
 	}
 }
-/* end --- 间隙大小 --- end */
+/* section --- 间隙大小 --- section */

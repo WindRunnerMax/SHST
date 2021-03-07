@@ -19,7 +19,6 @@
 </script>
 
 <style lang="scss">
-    @import "@/vector/resources/asse.scss";
     @import "@/vector/resources/iconfont.wxss";
     @import "@/vector/resources/asse.mini.wxss";
     button:after {

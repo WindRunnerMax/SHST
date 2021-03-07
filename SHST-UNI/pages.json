@@ -109,17 +109,13 @@
         }, {
             "path": "pages/home/auxiliary/login",
             "style": {"navigationBarBackgroundColor": "#fff"}
-        }
-        ,{
+        },{
             "path" : "pages/study/classroom/search-classes",
             "style" : {}
-        }
-        ,{
+        },{
             "path" : "pages/study/table-share/join-classes",
             "style" : {}
-        }
-
-        ,{
+        },{
             "path" : "pages/study/time-table/edit",
             "style" : {}
             

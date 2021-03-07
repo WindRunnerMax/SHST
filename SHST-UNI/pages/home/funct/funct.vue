@@ -90,8 +90,14 @@
                     <i class="iconfont icon-biji-copy"></i>
                     <view>考试安排</view>
                 </view>
+
+                <view class="icon" @click="jump('/pages/ext/card/card', 1)">
+                    <i class="iconfont icon-xuehao"></i>
+                    <view>校园卡</view>
+                </view>
+
                 <!-- #ifdef MP-WEIXIN -->
-                <navigator
+                <!--                <navigator
                     class="icon"
                     target="miniProgram"
                     app-id="wx3e1205c6aa103080"
@@ -101,12 +107,15 @@
                 >
                     <i class="iconfont icon-jiaoyi1"></i>
                     <view>二手市场</view>
+                </navigator> -->
+                <!-- #endif -->
+                
+                <!-- #ifdef MP-WEIXIN -->
+                <navigator class="icon" target="miniProgram" app-id="wx2facb7b57eedf7e6" hover-class="none" version="release">
+                    <i class="iconfont icon-ku"></i>
+                    <view>资料分享</view>
                 </navigator>
                 <!-- #endif -->
-                <view class="icon" @click="jump('/pages/ext/card/card', 1)">
-                    <i class="iconfont icon-xuehao"></i>
-                    <view>校园卡</view>
-                </view>
 
             </view>
         </layout>
@@ -138,18 +147,11 @@
                     <i class="iconfont icon-gonggao1"></i>
                     <view>校内公告</view>
                 </view>
-                <!-- #ifdef MP-WEIXIN -->
-                <navigator class="icon" target="miniProgram" app-id="wx2facb7b57eedf7e6" hover-class="none" version="release">
-                    <i class="iconfont icon-ku"></i>
-                    <view>资料分享</view>
-                </navigator>
-                <!-- #endif -->
-                <!-- #ifndef MP-WEIXIN -->
+
                 <button open-type="feedback" class="icon" hover-class="none">
                     <i class="iconfont icon-bianji"></i>
                     <view>意见反馈</view>
                 </button>
-                <!-- #endif -->
             </view>
         </layout>
 

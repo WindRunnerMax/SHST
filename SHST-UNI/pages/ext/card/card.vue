@@ -20,13 +20,16 @@
                     <rich-text :nodes="balanceTemp"></rich-text>
                 </view>
             </view>
-        </layout>
-        <layout>
-            <view class="x-center">
-                <view class="a-btn a-btn-blue a-btn-small" @click="todayQuery">当日流水查询</view>
-                <view class="a-btn a-btn-blue a-btn-small a-lml" @click="historyQuery">历史流水查询</view>
+            <view class="a-hr"></view>
+            <view class="a-flex-space-between">
+                <view ></view>
+                <view>
+                    <view class="a-btn a-btn-blue" @click="todayQuery">当日流水</view>
+                    <view class="a-btn a-btn-blue a-lml" @click="historyQuery">历史流水</view>
+                </view>
             </view>
         </layout>
+
         <layout v-if="show">
             <view>
                 <view class="table">
@@ -62,10 +65,10 @@
 <script>
     export default {
         data: () => ({
-            name: "",
-            account: "",
-            banlance: "",
-            balanceTemp: "",
+            name: "加载中",
+            account: "加载中",
+            banlance: "0.00", 
+            balanceTemp: "0.00",
             data: "",
             show: false
         }),

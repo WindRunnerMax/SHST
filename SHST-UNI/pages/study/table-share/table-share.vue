@@ -2,30 +2,30 @@
     <view>
 
         <layout title="共享课表">
-            <view class="top" v-if="data.status === 1">
+            <view class="x-center a-flex-warp" v-if="data.status === 1">
                 <view class="x-center" style="flex-direction: column;">
                     <input class="a-input" placeholder="对方学号" v-model="account" type="number"></input>
                     <input class="a-input a-mt"  placeholder="对方姓名" v-model="name"></input>
-                    <view class="a-btn a-btn-blue" @click="req">发起请求</view>
+                    <view class="a-btn a-btn-blue a-btn-large" @click="req">发起请求</view>
                 </view>
             </view>
 
-            <view class="top" v-if="data.status === 2">
+            <view class="x-center a-flex-warp" v-if="data.status === 2">
                 <view class="y-center">
                     <view>{{data.pair_user[0]}}</view>
                     <view class="a-ml">{{data.pair_user[1]}}</view>
-                    <view class="a-btn a-btn-blue a-btn-mini" @click="cancelreq">撤销请求</view>
+                    <view class="a-btn a-btn-blue a-btn-small" @click="cancelreq">撤销请求</view>
                 </view>
             </view>
 
             <view class="a-hr a-mb" v-if="data.status !== 0"></view>
 
-            <view class="top" v-if="data.status !== 0">
+            <view class="x-center a-flex-warp" v-if="data.status !== 0">
                 <view v-for="(item,index) in data.data" class="y-center" :key="index">
                     <view>{{item.account}}</view>
                     <view class="a-ml">{{item.name}}</view>
-                    <view class="a-btn a-btn-blue a-btn-mini" @click="agree(item.id)">同意</view>
-                    <view class="a-btn a-btn-blue a-btn-mini" @click="refuse(item.id)">拒绝</view>
+                    <view class="a-btn a-btn-blue a-btn-small" @click="agree(item.id)">同意</view>
+                    <view class="a-btn a-btn-blue a-btn-small" @click="refuse(item.id)">拒绝</view>
                 </view>
             </view>
 
@@ -73,7 +73,7 @@
                 <view class="y-center">
                     <view>{{data.user}} -</view>
                     <view> {{data.succ.pair}}</view>
-                    <view class="a-btn a-btn-blue a-btn-mini" @click="lifting(data.succ.id)">解除关系</view>
+                    <view class="a-btn a-btn-blue a-btn-small" @click="lifting(data.succ.id)">解除关系</view>
                 </view>
             </view>
         </layout>
@@ -183,12 +183,6 @@
 </script>
 
 <style scoped>
-
-    .top {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
 
     .a-input {
         align-self: center;

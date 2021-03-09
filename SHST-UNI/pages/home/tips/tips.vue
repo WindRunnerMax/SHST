@@ -43,8 +43,8 @@
         </layout>
 
         <layout title="今日课程" >
-            <view v-for="(item,index) in table" :key="index">
-                <view class="unit-table" v-if="item" v-for="(classObj,classIndex) in item.table" :key="classIndex">
+            <view v-for="(item, index) in table" :key="index">
+                <view class="unit-table" v-if="item" v-for="(classObj, classIndex) in item.table" :key="classIndex">
                     <view class="y-center a-mr a-mt">
                         <view class="a-dot" :style="{'background':classObj.background}"></view>
                         <view class="a-lmr">第{{2*(classObj.knot + 1) - 1}}{{2*(classObj.knot + 1)}}节</view>
@@ -103,9 +103,9 @@
 </template>
 
 <script>
-    import util from "@/modules/datetime";
     import pubFct from"@/vector/pub-fct.js";
     import storage from "@/modules/storage.js";
+    import {formatDate} from "@/modules/datetime";
     import weather from "@/components/weather/weather.vue";
     import sentence from "@/components/sentence/sentence.vue";
     import advertise from "@/components/advertise/advertise.vue";
@@ -122,7 +122,7 @@
             tipsInfo: "数据加载中",
             tips2: "数据加载中",
             article: "数据加载中",
-            today: util.formatDate("yyyy-MM-dd K"),
+            today: formatDate("yyyy-MM-dd K"),
         }),
         created: function() {
             uni.$app.onload(() => {
@@ -206,7 +206,7 @@
              * 待办处理
              */
             getEvent: async function() {
-                var eventDipose = (data) => { /* 部署数据 */
+                const eventDipose = data => { /* 部署数据 */
                     storage.set("event", data);
                     if (data.length === 0) {
                         this.tips2 = "暂无待办事项";
@@ -214,11 +214,10 @@
                     } else {
                         this.tips2 = "";
                     }
-                    var curData = util.formatDate();
-                    data.map(function(value) {
-                        [value.diff, value.color] = pubFct.todoDateDiff(curData, value.todo_time, value.event_content);
-                        return value;
-                    })
+                    var curData = formatDate();
+                    data.forEach(value => {
+                        [value.diff, value.color] = pubFct.todoDateDiff(curData, value.todo_time, value.event_content)
+                    });
                     data.sort((a, b) => a.todo_time > b.todo_time ? 1 : -1);
                     this.todoList = data;
                 }
@@ -262,13 +261,14 @@
                 this.nav(url, "webview");
                 // #endif
                 // #ifndef MP-WEIXIN
-                this.copy(url);
+                if(formatDate() > "2021-03-10") this.copy(url);
                 // #endif
             },
             bindSW: function() {
-                if (uni.$app.data.userFlag === 0) this.nav("/pages/home/auxiliary/login");
+                if(uni.$app.data.userFlag === 0) this.nav("/pages/home/auxiliary/login");
             },
-            onShareAppMessage: function() {}
+            onShareAppMessage: () => {},
+            onShareTimeline: () => {}
         }
     }
 </script>

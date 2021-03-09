@@ -10,7 +10,7 @@
                     <view class="a-label">教师名:</view>
                     <input class="a-input" v-model="teacherName" placeholder="请输入(可选)" />
                 </view>
-                <view class="a-btn a-btn-blue x-full" @click="confirm()">确定</view>
+                <view class="a-btn a-btn-blue a-btn-large x-full" @click="confirm()">确定</view>
             </view>
         </layout>
 
@@ -47,7 +47,7 @@
         <layout>
             <view class="tips-con">
                 <view>提示：</view>
-                <view>1. 该数据为2020-2021-1学期数据，数据仅供参考。</view>
+                <view>1. 该数据不能保持实时更新，所以信息仅供参考。</view>
                 <view>2. 数据为根据课程信息整理，某些课程信息收录不全。</view>
                 <view>3. 当一门课同时有两位老师授课时，不作检索。</view>
             </view>

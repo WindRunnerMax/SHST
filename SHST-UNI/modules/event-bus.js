@@ -41,5 +41,4 @@ PubSub.prototype = {
 
 }
 
-export { PubSub }
-export default { PubSub }
+export default new PubSub();

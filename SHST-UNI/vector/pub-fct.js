@@ -1,4 +1,3 @@
-"use strict";
 import util from "@/modules/datetime";
 import md5 from "@/utils/md5.js";
 
@@ -6,7 +5,6 @@ import md5 from "@/utils/md5.js";
  * 统一处理课表功能
  */
 function tableDispose(info, oneDay = false) {
-    const app = getApp();
     var tableArr = [];
     var week = util.safeDate().getDay() - 1;
     if (week === -1) week = 6;
@@ -17,7 +15,7 @@ function tableDispose(info, oneDay = false) {
         if (oneDay && day !== week) return void 0;
         var knotArr = value.kcsj.slice(1).replace(/(\d{4})/g, "$1,").split(",");
         var uniqueNum = Array.prototype.reduce.call(value.kcmc, (pre, cur) => pre+cur.charCodeAt(), 0);
-        var colorSignal = app.data.colorList[uniqueNum % app.data.colorN];
+        var colorSignal = uni.$app.data.colorList[uniqueNum % uni.$app.data.colorN];
         classObj.day = day;
         classObj.className = value.kcmc.split("（")[0];
         classObj.teacher = value.jsxm;
@@ -37,9 +35,8 @@ function tableDispose(info, oneDay = false) {
 }
 
 function todoDateDiff(startDateString, endDateString, content) {
-    const app = getApp();
-    const colorList = app.data.colorList;
-    const colorN = app.data.colorList.length;
+    const colorList = uni.$app.data.colorList;
+    const colorN = uni.$app.data.colorList.length;
     var color = colorList[content.charCodeAt() % colorN];
     var diff = util.dayDiff(startDateString, endDateString);
     if (diff === 0) diff = "今";
@@ -56,6 +53,23 @@ function getCurWeek(startTime) {
     return week;
 }
 
-export {todoDateDiff, getCurWeek, tableDispose}
+async function registerCheck(funct, cancel = null){
+    if(uni.$app.data.userFlag){
+        funct();
+    }else{
+        const [err,choice] = await uni.showModal({
+            title: "提示",
+            content: "使用该功能需要登录小程序，是否前去登录？",
+        })
+        if(choice.confirm) uni.navigateTo({ url: "/pages/home/auxiliary/login" });
+        else cancel?.();
+    }
+}
 
-export default {todoDateDiff, getCurWeek, tableDispose}
+function share(path = "pages/home/tips/tips", imageUrl = null, title = "山科小站"){
+    return { title, imageUrl, path };
+}
+
+export {todoDateDiff, getCurWeek, tableDispose, registerCheck, share}
+
+export default {todoDateDiff, getCurWeek, tableDispose, registerCheck, share}

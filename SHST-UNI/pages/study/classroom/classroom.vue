@@ -1,8 +1,8 @@
 <template>
     <view>
 
-        <layout title="空教室">
-            <view class="top">
+        <layout title="空教室" top-space>
+            <view class="text-center a-flex-space-between a-lmt">
                 <picker-view class="picker-con" indicator-style="height: 40px;" @change="bindPickerChange">
                     <picker-view-column>
                         <view v-for="(item,index) in queryData" :key="index" class="picker-item">{{item[1]}}</view>
@@ -14,15 +14,15 @@
                         <view v-for="(item,index) in queryFloor" :key="index" class="picker-item">{{item[0]}}</view>
                     </picker-view-column>
                 </picker-view>
-                <view class="button-con">
-                    <view class="a-btn search" @click="loadClassroom">搜索</view>
+                <view class="y-center">
+                    <view class="a-btn a-btn-blue " @click="loadClassroom">搜索</view>
                 </view>
             </view>
         </layout>
 
         <layout v-if="show" :title="qShow+'['+searchData+']'">
             <view class="floor-name">{{room[0].jxl}}</view>
-            <view class="room-con">
+            <view class="x-center y-center a-flex-warp">
                 <view v-for="(inner,innerIndex) in room[0].jsList" :key="innerIndex">
                     <view class="unit">{{inner.jsmc}}</view>
                 </view>
@@ -144,13 +144,6 @@
 </script>
 
 <style scoped>
-    .top {
-        display: flex;
-        margin: 20px 0;
-        text-align: center;
-        justify-content: space-between;
-    }
-
     .picker-con{
         width: 77%;
         height: 100px;
@@ -175,33 +168,5 @@
         margin: 0 0 8px 0;
     }
 
-    .room-con {
-        display: flex;
-        flex-wrap: wrap;
-        align-content: center;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .button-con {
-        margin: 0;
-        width: 20%;
-        max-width: 78px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        box-sizing: content-box;
-    }
-
-    .search {
-        height: auto;
-        line-height: unset;
-        padding: 10px 15px;
-        background: #1e9fff;
-        color: #fff;
-        border-radius: 3px;
-        word-break: break-all;
-        transition: all 0.3s;
-    }
 
 </style>

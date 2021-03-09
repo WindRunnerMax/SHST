@@ -1,7 +1,7 @@
 <template>
     <view>
 
-        <view class="head-line">
+        <view class="head-line" :style="{height: titleHeight ? titleHeight + 'px' : 'auto'}">
             <view class="head-left">
                 <view class="head-row" v-bind:style="{'background-color': color}"></view>
                 <view class="head-title">{{title}}</view>
@@ -24,6 +24,10 @@
                 type: String,
                 default: "#79B2F9"
             },
+            titleHeight: {
+                type: [String, Number],
+                default: ""
+            }
         },
         methods: {}
     }
@@ -34,6 +38,7 @@
         padding: 10px 5px;
         box-sizing: border-box;
         display: flex;
+        align-items: center;
         border-bottom: 1px solid #EEEEEE;
         justify-content: space-between;
     }

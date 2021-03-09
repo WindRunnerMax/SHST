@@ -1,50 +1,35 @@
 {
     "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
         {
-            "path": "pages/home/tips/tips",
-            "style": {}
+            "path": "pages/home/tips/tips"
         }, {
-            "path": "pages/home/auxiliary/webview",
-            "style": {}
+            "path": "pages/home/auxiliary/webview"
         }, {
-            "path": "pages/user/announce/announce",
-            "style": {}
+            "path": "pages/user/announce/announce"
         }, {
-            "path": "pages/home/funct/funct",
-            "style": {}
+            "path": "pages/home/funct/funct"
         }, {
-            "path": "pages/home/user/user",
-            "style": {}
+            "path": "pages/home/user/user"
         }, {
-            "path": "pages/study/time-table/time-table",
-            "style": {}
+            "path": "pages/study/time-table/time-table"
         }, {
-            "path": "pages/study/classroom/classroom",
-            "style": {}
+            "path": "pages/study/classroom/classroom"
         }, {
-            "path": "pages/study/grade/grade",
-            "style": {}
+            "path": "pages/study/grade/grade"
         }, {
-            "path": "pages/study/table-share/table-share",
-            "style": {}
+            "path": "pages/study/table-share/table-share"
         }, {
-            "path": "pages/library/borrow/borrow",
-            "style": {}
+            "path": "pages/library/borrow/borrow"
         }, {
-            "path": "pages/library/library/search",
-            "style": {}
+            "path": "pages/library/library/search"
         }, {
-            "path": "pages/library/library/detail",
-            "style": {}
+            "path": "pages/library/library/detail"
         }, {
-            "path": "pages/sdust/calendar/calendar",
-            "style": {}
+            "path": "pages/sdust/calendar/calendar"
         }, {
-            "path": "pages/sdust/map/map",
-            "style": {}
+            "path": "pages/sdust/map/map"
         }, {
-            "path": "pages/sdust/vacation/vacation",
-            "style": {}
+            "path": "pages/sdust/vacation/vacation"
         }, {
             "path": "pages/sdust/camptour/details",
             "style": {
@@ -70,60 +55,78 @@
                 "navigationBarTextStyle": "#fff"
             }
         }, {
-            "path": "pages/ext/link/link",
-            "style": {}
+            "path": "pages/ext/link/link"
         },
-        // #ifndef MP-WEIXIN
         {
-            "path": "pages/ext/event/event",
-            "style": {}
+            "path" : "pages/sdust/notice/notice"
         }, {
-            "path": "pages/ext/event/fin-event",
-            "style": {}
-        },
-        // #endif
-        {
-            "path" : "pages/sdust/notice/notice",
-            "style" : {}
+            "path" : "pages/sdust/notice/detail"
         }, {
-            "path" : "pages/sdust/notice/detail",
-            "style" : {}
+            "path": "pages/ext/exam/exam"
         }, {
-            "path": "pages/ext/exam/exam",
-            "style": {}
-        }, {
-            "path": "pages/ext/card/card",
-            "style": {}
+            "path": "pages/ext/card/card"
         }, {
             "path": "pages/user/about/about",
-            "style": {"navigationBarBackgroundColor": "#fff"}
+            "style": {
+                "navigationBarBackgroundColor": "#fff"
+            }
         }, {
             "path": "pages/user/reward/reward",
-            "style": {"navigationBarBackgroundColor": "#fff"}
+            "style": {
+                "navigationBarBackgroundColor": "#fff"
+            }
         }, {
             "path": "pages/user/reward/reward-list",
             "style": {}
         }, {
             "path": "pages/home/auxiliary/not-found",
-            "style": {"navigationBarBackgroundColor": "#fff"}
+            "style": {
+                "navigationBarBackgroundColor": "#fff"
+            }
         }, {
             "path": "pages/home/auxiliary/login",
-            "style": {"navigationBarBackgroundColor": "#fff"}
+            "style": {
+                "navigationBarBackgroundColor": "#fff"
+            }
+        },{
+            "path" : "pages/study/classroom/search-classes"
+        },{
+            "path" : "pages/study/table-share/join-classes"
+        },{
+            "path" : "pages/study/time-table/edit"
+        }
+        // #ifdef MP-QQ
+        ,{
+            "path": "pages/ext/event/event",
+            "style": {}
+        }, {
+            "path": "pages/ext/event/fin-event",
+            "style": {}
+        }
+        // #endif
+        // #ifdef MP-BAIDU
+        ,{
+            "path": "pages/sdust/news/news",
+            "style" : {
+                "enablePullDownRefresh": true
+            }
+        },
+        {
+            "path" : "pages/sdust/news/new-post/new-post"
         }
         ,{
-            "path" : "pages/study/classroom/search-classes",
-            "style" : {}
+            "path" : "pages/sdust/news/post-detail/post-detail"
         }
         ,{
-            "path" : "pages/study/table-share/join-classes",
-            "style" : {}
+            "path" : "pages/sdust/news/mine/my-list",
+            "style" : {
+                "enablePullDownRefresh": true
+            }
         }
-
         ,{
-            "path" : "pages/study/time-table/edit",
-            "style" : {}
-            
+            "path" : "pages/sdust/news/mine/my-detail"
         }
+        // #endif
     ],
     "globalStyle": {
         "navigationBarTextStyle": "black",
@@ -147,6 +150,14 @@
                 "pagePath": "pages/home/funct/funct",
                 "text": "功能"
             },
+            // #ifdef MP-BAIDU
+            {
+                "iconPath": "/static/img/news.png",
+                "selectedIconPath": "/static/img/news-active.png",
+                "pagePath": "pages/sdust/news/news",
+                "text": "新鲜事"
+            },
+            // #endif
             {
                 "iconPath": "/static/img/user.png",
                 "selectedIconPath": "/static/img/user-active.png",

@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+/* section --- body page --- section */
 body,
 page {
 	margin: 0;
@@ -10,37 +11,33 @@ page {
 	background-color: #F8F8F8;
 	--color-blue: #4C98F7;
 	--color-green: #009688;
+    --color-white: #FFFFFF;
 	--color-yellow: #FFB800;
 	--color-orange: #FF5722;
 }
+/* section --- body page --- section */
 
-/**
- * 动画
- */
+/* section --- 动画 --- section */
 @keyframes shallow {
 	from {
 		opacity: 1;
+        visibility: visible;
 	}
-
 	to {
 		opacity: 0.9;
+        visibility: hidden;
 	}
 }
+/* section --- 动画 --- section */
 
-/**
- * Button
- * Color Size
- */
-
+/* section --- Button --- section */
 .a-btn {
 	display: inline-block;
-	height: 36px;
-	line-height: 36px;
-	padding: 0 20px;
+	padding: 7px 15px;
 	margin: 3px;
 	border-radius: 3px;
 	text-align: center;
-	text-rendering: auto;
+	text-rsectionering: auto;
 	font-size: 12px;
 	cursor: pointer;
 	background: var(--color-green);
@@ -58,9 +55,6 @@ page {
 }
 
 .a-btn-white {
-	height: 34px;
-	line-height: 34px;
-	padding: 0 19px;
 	background: #fff;
 	color: #000;
 	border: 1px solid #eee;
@@ -74,6 +68,31 @@ page {
 	background: var(--color-orange);
 }
 
+.a-btn-success-plain {
+    color: #19be6b !important;
+    border: 1px solid #71d5a1 !important;
+    background-color: #dbf1e1 !important;
+}
+
+.a-btn-blue-plain{
+    color: #2979ff !important;
+    border: 1px solid #a0cfff !important;
+    background-color: #ecf5ff !important;
+}
+
+.a-btn-yellow-plain{
+    color: #f90 !important;
+    border: 1px solid #fcbd71 !important;
+    background-color: #fdf6ec !important;
+}
+
+.a-btn-orange-plain {
+    color: #fa3534 !important;
+    border: 1px solid #fab6b6 !important;
+    background-color: #fef0f0 !important;
+}
+
+
 .a-btn-disable {
 	background: #FBFBFB;
 	color: #C9C9C9;
@@ -82,39 +101,88 @@ page {
 }
 
 .a-btn-large {
-	height: 40px;
-	line-height: 40px;
-	padding: 0 23px;
-	font-size: 16px;
+	padding: 10px 20px;
 }
 
 .a-btn-small {
-	height: 30px;
-	line-height: 30px;
-	padding: 0 10px;
+	padding: 5px 10px;
 	font-size: 12px;
 }
 
 .a-btn-mini {
-	height: 22px;
-	line-height: 22px;
-	padding: 0 5px;
+	padding: 3px 5px;
 	border-radius: 2px;
 	font-size: 10px;
 }
 
 .a-btn-cicle {
-	height: 36px;
-	width: 36px;
-	line-height: 36px;
-	border-radius: 36px;
-	padding: 0;
+	border-radius: 50px;
 }
 
-/**
- * 组件
- */
+.a-btn-square{
+    padding: 7px 7.5px;
+}
+/* section --- Button --- section */
 
+/* section --- 颜色 --- section */
+.a-color-blue {
+    color: var(--color-blue) !important;
+}
+
+.a-color-white {
+    color: var(--color-white) !important;
+}
+
+.a-color-green {
+    color: var(--color-green) !important;
+}
+
+.a-color-yellow {
+    color: var(--color-yellow) !important;
+}
+
+.a-color-orange {
+    color: var(--color-orange) !important;
+}
+
+.a-color-grey {
+    color: #606266 !important;
+}
+
+.a-background-blue {
+    background-color: var(--color-blue) !important;
+}
+
+.a-background-white {
+    background-color: var(--color-white) !important;
+}
+
+.a-background-green {
+    background-color: var(--color-green) !important;
+}
+
+.a-background-yellow {
+    background-color: var(--color-yellow) !important;
+}
+
+.a-background-orange {
+    background-color: var(--color-orange) !important;
+}
+
+.a-background-grey {
+    background-color: #EEE !important;
+}
+
+.a-background-purple {
+    background-color: #ACA4D5 !important;
+}
+
+.a-background-light-orange {
+    background-color: #EAA78C !important;
+}
+/* section --- 颜色 --- section */
+
+/* section --- 组件 --- section */
 .a-hr {
 	display: block;
 	height: 1px;
@@ -136,11 +204,9 @@ page {
 	margin-top: 10px;
 	color: #aaa;
 }
+/* section --- 组件 --- section */
 
-/**
- * 面板
- */
-
+/* section --- 面板 响应式 --- section */
 @media screen and (max-width:600px) { /* <=600 */
 	.a-panel {
 		margin: 5px;
@@ -182,11 +248,9 @@ page {
 		background: #eee;
 	}
 }
+/* section --- 面板 响应式 --- section */
 
-
-/**
- * 表格
- */
+/* section --- 表格 --- section */
 .a-table {
 	margin-top: 5px;
 	border-top: 1px solid #E6E6E6;
@@ -221,11 +285,9 @@ page {
 .a-table tbody :hover {
 	background-color: #f2f2f2;
 }
+/* section --- 表格 --- section */
 
-/**
- * 样式
- */
-
+/* section --- 样式 --- section */
 .a-show {
 	display: block !important;
 }
@@ -254,14 +316,13 @@ page {
 	background-color: var(--color-blue);
 }
 
-.a-retract{
-    padding: 0 5px;
+.a-overflow-hidden{
+    overflow: hidden;
 }
+/* section --- 样式 --- section */
 
-/**
- * flex
- */
 
+/* section --- flex --- section */
 .a-flex{
     display: flex;
 }
@@ -285,9 +346,18 @@ page {
 	flex: 1;
 }
 
+.a-flex-none{
+    flex: none;
+}
+
 .a-flex-warp{
     display: flex;
     flex-wrap: wrap;
+}
+
+.a-flex-column{
+    display: flex;
+    flex-direction: column;
 }
 
 .a-flex-space-between{
@@ -299,10 +369,9 @@ page {
     display: flex;
     justify-content: space-around;
 }
+/* section --- flex --- section */
 
-/**
- * 布局
- */
+/* section --- 布局 --- section */
 .x-full{
     width: 100%;
     box-sizing: border-box;
@@ -312,17 +381,30 @@ page {
     height: 100%;
 }
 
-.inline-block{
-    display: inline-block;
-}
-
 .text-center{
     text-align: center;
 }
 
-/**
- * 卡片
- */
+.text-ellipsis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.inline-block{
+    display: inline-block;
+}
+
+.retract{
+    padding: 0 5px;
+}
+
+.border-box{
+    box-sizing: border-box;
+}
+/* section --- 布局 --- section */
+
+/* section --- 卡片 --- section */
 .a-card .a-card-title {
 	background-color: #FFFFFF;
 	padding: 12px 5px 10px 11px;
@@ -338,10 +420,9 @@ page {
 	box-sizing: border-box;
 	margin-bottom: 15px;
 }
+/* section --- 卡片 --- section */
 
-/**
- * 表单
- */
+/* section --- 表单 --- section */
 .a-select {
 	height: 22px;
 	padding: 0 5px;
@@ -358,7 +439,7 @@ page {
     align-self: center;
 	font-size: 8px;
 	min-width: 60px;
-	justify-content: flex-end;
+	justify-content: flex-section;
 }
 
 .a-input{
@@ -404,8 +485,9 @@ page {
 	padding: 0;
 	outline: none;
 }
+/* section --- 表单 --- section */
 
-/* 微距 */
+/* section --- 微距 --- section */
 .a-mt{
     margin-top: 3px !important;
 }
@@ -437,8 +519,9 @@ page {
 .a-pl{
     padding-left: 3px !important;
 }
+/* section --- 微距 --- section */
 
-/* 长距 */
+/* section --- 长距 --- section */
 .a-lmt{
     margin-top: 10px !important;
 }
@@ -470,3 +553,4 @@ page {
 .a-lpl{
     padding-left: 10px !important;
 }
+/* section --- 长距 --- section */

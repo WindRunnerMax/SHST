@@ -48,9 +48,9 @@
         <layout>
             <view class="tips-con">
                 <view>提示：</view>
-                <view>1. 该数据为2020-2021-1学期数据，数据仅供参考。</view>
+                <view>1. 该数据不能保持实时更新，所以信息仅供参考。</view>
                 <view>2. 数据为根据课程信息整理，某些教室信息收录不全。</view>
-                <view>3. J5数据收录严重不全，请酌情对待。</view>
+                <view>3. 由于研究生分离管理，J5数据收录严重不全，请酌情对待。</view>
             </view>
         </layout>
 
@@ -184,7 +184,7 @@
 <style scoped>
     .select-con{
         width: 70px;
-        padding: 10px;
+        padding: 7px;
         border: 1px solid #eee;
         border-radius: 3px;
     }

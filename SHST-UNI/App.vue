@@ -1,5 +1,6 @@
 <script>
     import dispose from "@/vector/dispose";
+    import log from "@/modules/realtime-log";
     export default {
         globalData: {},
         onPageNotFound: (res) => { //处理404
@@ -12,8 +13,13 @@
             dispose.onLaunch.apply(this); //启动加载事件
         },
         onError: (err) => {
-            console.log(err);
-            dispose.toast("Internal Error");
+            try{ // 避免无限递归调用
+                log.error(err);
+                console.log(err);
+                dispose.toast("Internal Error");
+            }catch(e){
+                console.log(e);
+            }
         }
     }
 </script>

@@ -48,10 +48,10 @@
                     <i class="iconfont icon-lubiao-xf "></i>
                     <view>迎新专版</view>
                 </navigator>
-                <navigator class="icon" url="/pages/sdust/news/news" open-type="switchTab" hover-class="none" >
+                <!-- <navigator class="icon" url="/pages/sdust/news/news" open-type="switchTab" hover-class="none" >
                     <i class="iconfont icon-shequ "></i>
                     <view>新鲜事</view>
-                </navigator>
+                </navigator> -->
                 <!-- #endif -->
 
             </view>
@@ -84,7 +84,7 @@
                     <i class="iconfont icon-link"></i>
                     <view>分享链接</view>
                 </view>
-                <!-- #ifndef MP-WEIXIN -->
+                <!-- #ifdef MP-QQ -->
                 <view class="icon" @click="jump('/pages/ext/event/event', 0)">
                     <i class="iconfont icon-schedule"></i>
                     <view>待办管理</view>

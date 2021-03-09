@@ -15,7 +15,7 @@
                 </view>
                 <view class="a-hr"></view>
             </view>
-            <view v-if="tips" class="y-center">
+            <view v-if="tips" class="y-center a-lmt">
                 <view class="a-dot a-background-grey"></view>
                 <view class="a-color-grey">{{tips}}</view>
             </view>
@@ -55,7 +55,7 @@
                 url: uni.$app.data.url + "/lib/borrow",
             })
             if (res.data.info.match(/当前无借阅记录/)) {
-                uni.$app.toast("暂无借阅记录");
+                this.tips = "暂无借阅记录";
                 return true;
             }
             var infoArr = [];
@@ -69,7 +69,6 @@
             })
             console.log(infoArr);
             this.books = infoArr;
-            if(!this.books.length) this.tips = "暂无借阅记录";
         },
         methods: {
 

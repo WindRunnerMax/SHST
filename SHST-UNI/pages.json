@@ -94,16 +94,18 @@
             "path" : "pages/study/table-share/join-classes"
         },{
             "path" : "pages/study/time-table/edit"
-        },
+        }
         // #ifdef MP-QQ
-        {
+        ,{
             "path": "pages/ext/event/event",
             "style": {}
         }, {
             "path": "pages/ext/event/fin-event",
             "style": {}
-        },
-        {
+        }
+        // #endif
+        // #ifdef MP-BAIDU
+        ,{
             "path": "pages/sdust/news/news",
             "style" : {
                 "enablePullDownRefresh": true
@@ -148,7 +150,7 @@
                 "pagePath": "pages/home/funct/funct",
                 "text": "功能"
             },
-            // #ifdef MP-QQ
+            // #ifdef MP-BAIDU
             {
                 "iconPath": "/static/img/news.png",
                 "selectedIconPath": "/static/img/news-active.png",

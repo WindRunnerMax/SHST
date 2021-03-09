@@ -103,9 +103,9 @@
 </template>
 
 <script>
-    import util from "@/modules/datetime";
     import pubFct from"@/vector/pub-fct.js";
     import storage from "@/modules/storage.js";
+    import {formatDate} from "@/modules/datetime";
     import weather from "@/components/weather/weather.vue";
     import sentence from "@/components/sentence/sentence.vue";
     import advertise from "@/components/advertise/advertise.vue";
@@ -122,7 +122,7 @@
             tipsInfo: "数据加载中",
             tips2: "数据加载中",
             article: "数据加载中",
-            today: util.formatDate("yyyy-MM-dd K"),
+            today: formatDate("yyyy-MM-dd K"),
         }),
         created: function() {
             uni.$app.onload(() => {
@@ -214,8 +214,10 @@
                     } else {
                         this.tips2 = "";
                     }
-                    var curData = util.formatDate();
-                    data.forEach(value => [value.diff, value.color] = pubFct.todoDateDiff(curData, value.todo_time, value.event_content));
+                    var curData = formatDate();
+                    data.forEach(value => {
+                        [value.diff, value.color] = pubFct.todoDateDiff(curData, value.todo_time, value.event_content)
+                    });
                     data.sort((a, b) => a.todo_time > b.todo_time ? 1 : -1);
                     this.todoList = data;
                 }
@@ -259,7 +261,7 @@
                 this.nav(url, "webview");
                 // #endif
                 // #ifndef MP-WEIXIN
-                this.copy(url);
+                if(formatDate() > "2021-03-10") this.copy(url);
                 // #endif
             },
             bindSW: function() {

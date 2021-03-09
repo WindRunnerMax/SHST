@@ -1,12 +1,12 @@
 <template>
     <view @click="loadmore">
         <view class="load-con">
-            <view class="line"></view>
-            <view v-if="loading==='loading'">
+            <view class="line" v-show="loading !=='loading'"></view>
+            <view v-show="loading ==='loading'">
                 <view class="loader"></view>
             </view>
             <view class="status">{{status}}</view>
-            <view class="line"></view>
+            <view class="line" v-show="loading !=='loading'"></view>
         </view>
 
     </view>
@@ -64,7 +64,7 @@
         height: 12px;
         width: 12px;
         border-radius: 80px;
-        border: 2px solid #aaa;
+        border: 1px solid #aaa;
         transform-origin: 50% 50%;
         animation: loader 1s linear infinite;
     }

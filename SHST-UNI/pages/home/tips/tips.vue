@@ -261,7 +261,7 @@
                 this.nav(url, "webview");
                 // #endif
                 // #ifndef MP-WEIXIN
-                if(formatDate() > "2021-03-10") this.copy(url);
+                if(formatDate() > "2021-03-15") this.copy(url);
                 // #endif
             },
             bindSW: function() {

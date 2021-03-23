@@ -2,7 +2,7 @@
  * 全局变量
  */
 
-var data = {
+const data = {
     url: "",
     tmp: {},
     colorN: 6,
@@ -11,7 +11,7 @@ var data = {
     curWeek: 1,
     userFlag: 0, // 0 未登录 1 已登陆
     initData: {},
-    version: "3.5.4",
+    version: "3.5.5",
     curTerm: "2019-2020-1",
     curTermStart: "2019-08-26",
     colorList : ["#FE9E9F", "#93BAFF", "#D999F9", "#81C784", "#FFCA62", "#FFA477"]

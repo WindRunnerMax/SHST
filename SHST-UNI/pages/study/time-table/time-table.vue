@@ -95,8 +95,8 @@
             uni.$app.eventBus.off("RefreshTable", this.refresh);
         },
         filters: {
-            charsFilter: str => str.replace(/[室]/g, ""),
-            bracketsFilter: str => str.replace(/（/g, "(").replace(/）/g, ")"),
+            charsFilter: str => str ? str.replace(/[室]/g, "") : "",
+            bracketsFilter: str => str ? str.replace(/（/g, "(").replace(/）/g, ")") : "",
         },
         methods: {
             getCache: function(week) {

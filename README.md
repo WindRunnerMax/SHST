@@ -8,9 +8,10 @@
 SHST/Python 目录下为Python版本的API
 SHST/PHP 目录下为PHP版本的API
 SHST/Java 目录下为Java版本的API 
-SHST/SHST-UNI 目录下为小程序项目[山科小站--小程序]，山东科技大学校园服务平台，已上线微信小程序与QQ小程序 
-SHST/SHST-WEL 目录下为小程序项目[山科小站--迎新专版]，提供校内的相关信息，迎新专用，已上线微信小程序与QQ小程序   
-SHST/SHST-WEX 目录下为NVUE/WEEX项目[山科小站--APP]，采用原生渲染，作为UNIAPP纯NVUE/WEEX项目开发，已上架酷安应用市场
+SHST-SDUST/SHST-UNI 目录下为小程序项目[山科小站--小程序]，山东科技大学校园服务平台，已上线微信小程序与QQ小程序 
+SHST-SDUST/SHST-PLUS 目录下为小程序项目[山科小站--plus]，山科小站的扩充版本，纯爬虫解析HTML版本，已上线微信小程序
+SHST-SDUST/SHST-WEL 目录下为小程序项目[山科小站--迎新专版]，提供校内的相关信息，迎新专用，已上线微信小程序与QQ小程序   
+SHST-SDUST/SHST-WEX 目录下为NVUE/WEEX项目[山科小站--APP]，采用原生渲染，作为UNIAPP纯NVUE/WEEX项目开发，已上架酷安应用市场
 ```
 
 
@@ -96,29 +97,32 @@ Q.getExamInfo().exec();                                 // 获取考试信息
 
 ### 配置相关 
 
-```javascript
-// SHST-UNI/App.vue
+```typescript
+// global
 
-url            // 后台请求域名
-tips           // 公告本地标识
-header         // 请求头信息
-openid         // OPENID信息
-version        // 版本号
-curTerm        // 当前学期
-initData       // 初始化数据信息
-userFlag       // 用户登录状态
-colorList      // 颜色方案
-curTermStart   // 开学日期
-ajax()         // 网络请求封装 回调
-toast()        // 弹窗提示
-extend()       // 深拷贝与浅拷贝
-request()      // 网络请求封装 Promise
+declare namespace UniApp {
+    interface Uni {
+        $app: {
+            toast: typeof import("./modules/toast").toast;
+            extend: typeof import("./modules/copy").extend;
+            data: import("./modules/global-data").Data;
+            throttle: typeof import("./modules/operate-limit").throttle;
+            eventBus: typeof import("./modules/event-bus").default;
+            request: typeof import("./modules/request").request;
+            ajax: typeof import("./modules/request").ajax;
+            reInitApp: () => void;
+            onload: <T extends Array<unknown>>(funct: (...args: T) => void, ...args: T) => void;
+        };
+    }
+}
 ```
 
 
 ### 目录结构  
 
 [关于UNIAPP重构以及类的封装文档](https://blog.touchczy.top/#/MiniProgram/%E5%B1%B1%E7%A7%91%E5%B0%8F%E7%AB%99%E5%B0%8F%E7%A8%8B%E5%BA%8F)
+
+[关于UNIAPP迁移TS的相关说明](https://blog.touchczy.top/#/MiniProgram/uniapp%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%BF%81%E7%A7%BB%E5%88%B0TS)
 
 ```
 SHST-UNI                              // 山科小站总目录
@@ -129,17 +133,17 @@ SHST-UNI                              // 山科小站总目录
     │   ├── sentence.vue              // 每日一句封装
     │   └── weather.vue               // 天气封装
     ├── modules                       // 模块化封装
-    │   ├── cookies.js                // Cookies操作
-    │   ├── copy.js                   // 深浅拷贝
-    │   ├── datetime.js               // 时间日期操作
-    │   ├── event-bus.js              // 事件总线
-    │   ├── global-data.js            // 全局变量
-    │   ├── loading.js                // 加载提示
-    │   ├── operate-limit.js          // 防抖与节流
-    │   ├── regex.js                  // 正则匹配
-    │   ├── request.js                // 网络请求
-    │   ├── toast.js                  // 消息提示
-    │   └── update.js                 // 自动更新 
+    │   ├── cookies.ts                // Cookies操作
+    │   ├── copy.ts                   // 深浅拷贝
+    │   ├── datetime.ts               // 时间日期操作
+    │   ├── event-bus.ts              // 事件总线
+    │   ├── global-data.ts            // 全局变量
+    │   ├── loading.ts                // 加载提示
+    │   ├── operate-limit.ts          // 防抖与节流
+    │   ├── regex.ts                  // 正则匹配
+    │   ├── request.ts                // 网络请求
+    │   ├── toast.ts                  // 消息提示
+    │   └── update.ts                 // 自动更新 
     ├── pages                         // 页面
     │   ├── Ext                       // 拓展组
     │   ├── Home                      // Tabbar、辅助组
@@ -159,10 +163,10 @@ SHST-UNI                              // 山科小站总目录
     │   │   ├── camptour              // 校园导览配置文件
     │   │   ├── asse.mini.wxss        // 公共样式库
     │   │   └── iconfont.wxss         // 字体图标
-    │   ├── dispose.js                // 部署小程序
-    │   └── pubFct.js                 // 公有方法
+    │   ├── dispose.ts                // 部署小程序
+    │   └── pubFct.ts                 // 公有方法
     ├── App.vue                       // App全局样式以及监听
-    ├── main.js                       // 挂载App，Vue初始化入口文件
+    ├── main.ts                       // 挂载App，Vue初始化入口文件
     ├── manifest.json                 // 配置Uniapp打包等信息
     ├── pages.json                    // 路由
     └── uni.scss                      // 内置的常用样式变量

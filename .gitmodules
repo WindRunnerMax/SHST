@@ -7,3 +7,6 @@
 [submodule "SHST-WEX"]
 	path = SHST-WEX
 	url = https://github.com/SHST-SDUST/SHST-WEX
+[submodule "SHST-PLUS"]
+	path = SHST-PLUS
+	url = https://github.com/SHST-SDUST/SHST-PLUS

@@ -14,7 +14,7 @@ import java.util.Map.Entry;
 /**
  * @author Czy
  * @time Jul 6, 2019
- * @detail HttpÇëÇóÀà
+ * @detail Httpè¯·æ±‚ç±»
  */
 
 public class Http {
@@ -39,24 +39,24 @@ public class Http {
 
     private static String doGet(String httpurl, Map<String, String> headers) {
         HttpURLConnection connection = null;
-        String result = null;// ·µ»Ø½á¹û×Ö·û´®
+        String result = null;// è¿”å›ç»“æœå­—ç¬¦ä¸²
         try {
-            // ´´½¨Ô¶³ÌurlÁ¬½Ó¶ÔÏó
+            // åˆ›å»ºè¿œç¨‹urlè¿æ¥å¯¹è±¡
             URL url = new URL(httpurl);
-            // Í¨¹ıÔ¶³ÌurlÁ¬½Ó¶ÔÏó´ò¿ªÒ»¸öÁ¬½Ó£¬Ç¿×ª³ÉhttpURLConnectionÀà
+            // é€šè¿‡è¿œç¨‹urlè¿æ¥å¯¹è±¡æ‰“å¼€ä¸€ä¸ªè¿æ¥ï¼Œå¼ºè½¬æˆhttpURLConnectionç±»
             connection = (HttpURLConnection) url.openConnection();
-            // ÉèÖÃÁ¬½Ó·½Ê½£ºget
+            // è®¾ç½®è¿æ¥æ–¹å¼ï¼šget
             connection.setRequestMethod("GET");
-            // ÉèÖÃÁ¬½ÓÖ÷»ú·şÎñÆ÷µÄ³¬Ê±Ê±¼ä£º15000ºÁÃë
+            // è®¾ç½®è¿æ¥ä¸»æœºæœåŠ¡å™¨çš„è¶…æ—¶æ—¶é—´ï¼š15000æ¯«ç§’
             connection.setConnectTimeout(15000);
-            // ÉèÖÃ¶ÁÈ¡Ô¶³Ì·µ»ØµÄÊı¾İÊ±¼ä£º60000ºÁÃë
+            // è®¾ç½®è¯»å–è¿œç¨‹è¿”å›çš„æ•°æ®æ—¶é—´ï¼š60000æ¯«ç§’
             connection.setReadTimeout(60000);
             for (Entry<String, String> header : headers.entrySet()) {
                 connection.setRequestProperty(header.getKey(), header.getValue());
             }
-            // ·¢ËÍÇëÇó
+            // å‘é€è¯·æ±‚
             connection.connect();
-            // Í¨¹ıconnectionÁ¬½Ó£¬»ñÈ¡ÊäÈëÁ÷
+            // é€šè¿‡connectionè¿æ¥ï¼Œè·å–è¾“å…¥æµ
             if (connection.getResponseCode() == 200) result = getResult(connection);
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -119,27 +119,25 @@ public class Http {
     }
 
     private static void closeConn(BufferedReader br,InputStream is,HttpURLConnection connection){
-            if (null != br) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        if (null != br) {
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            if (null != is) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        }
+        if (null != is) {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            if(connection!=null){
-                connection.disconnect();
+        }
+        if(connection!=null){
+            connection.disconnect();
 
-            }
+        }
     }
 
 }
-
-
 

@@ -13,18 +13,18 @@ import java.util.Map;
 public class MainSw {
 
     /**
-     * Ç¿ÖÇ½ÌÎñÏµÍ³
+     * å¼ºæ™ºæ•™åŠ¡ç³»ç»Ÿ
      */
     ////////////////////////////////////////////////////////
     private String account = "";
     private String password = "";
-    private String url = "http://jwgl.sdust.edu.cn/app.do";
+    private String url = "https://jwgl.sdust.edu.cn/app.do";
     ////////////////////////////////////////////////////////
 
     /**
-     * ×¢Òâ£ºÓÉÓÚ´¦ÀíJsonĞèÒªÒıÈëJson°ü£¬ËùÒÔÔİÊ±²»´¦ÀíJsonÊı¾İ£¬¼ÙÉèµ±Ç°Ñ§ÆÚÊÇ2018-2019-2£¬µ±Ç°ÖÜ´ÎÊÇ18ÖÜ
-     * ÒıÈëJson°üºó¿ÉÒÔÖ±½Óµ÷ÓÃgetCurrentTime()·½·¨µÃµ½×Ö·û´®ÔÙ×ª»¯ÎªJson»ñÈ¡Êı¾İ
-     * ÆäÊµÑ§ÆÚÓëµ±Ç°ÖÜ´ÎÊÇ¿ÉÒÔ×ÔĞĞ¼ÆËãµÄ£¬»¹¿ÉÒÔ¼õÉÙ¶ÔÇ¿ÖÇ·şÎñÆ÷µÄÇëÇó
+     * æ³¨æ„ï¼šç”±äºå¤„ç†Jsonéœ€è¦å¼•å…¥JsonåŒ…ï¼Œæ‰€ä»¥æš‚æ—¶ä¸å¤„ç†Jsonæ•°æ®ï¼Œå‡è®¾å½“å‰å­¦æœŸæ˜¯2018-2019-2ï¼Œå½“å‰å‘¨æ¬¡æ˜¯18å‘¨
+     * å¼•å…¥JsonåŒ…åå¯ä»¥ç›´æ¥è°ƒç”¨getCurrentTime()æ–¹æ³•å¾—åˆ°å­—ç¬¦ä¸²å†è½¬åŒ–ä¸ºJsonè·å–æ•°æ®
+     * å…¶å®å­¦æœŸä¸å½“å‰å‘¨æ¬¡æ˜¯å¯ä»¥è‡ªè¡Œè®¡ç®—çš„ï¼Œè¿˜å¯ä»¥å‡å°‘å¯¹å¼ºæ™ºæœåŠ¡å™¨çš„è¯·æ±‚
      */
     ////////////////////////////////////////////////////////
     private String curWeek = "18";
@@ -43,7 +43,7 @@ public class MainSw {
         System.out.println(reqResult);
         String[] reqResultArr  = reqResult.split(",");
         if(reqResultArr[0].charAt(9) == '0') {
-            System.out.println("µÇÂ¼Ê§°Ü");
+            System.out.println("ç™»å½•å¤±è´¥");
             System.exit(0);
         }else {
             this.headers.put("token", reqResultArr[2].substring(9, reqResultArr[2].length()-1));
@@ -111,19 +111,19 @@ public class MainSw {
     }
 
     /**
-     * Èë¿Úº¯Êı
+     * å…¥å£å‡½æ•°
      * @param args
      */
     public static void main(String[] args) {
         MainSw Q = new MainSw();
-        // Q.getStudentInfo().exec(); //»ñÈ¡Ñ§ÉúĞÅÏ¢
-        // Q.getCurrentTime().exec(); //»ñÈ¡Ñ§ÄêĞÅÏ¢
-        // Q.getTable().exec(); //µ±Ç°ÖÜ´Î¿Î±í
-        // Q.getTable().setWeek("3").exec(); //Ö¸¶¨ÖÜ´Î¿Î±í
-        // Q.getGrade().exec(); //²éÑ¯È«²¿³É¼¨
-        // Q.getGrade().setTerm("2018-2019-2").exec(); //Ö¸¶¨Ñ§ÆÚ³É¼¨²éÑ¯
-        // Q.getClassroom("0102").exec(); //¿Õ½ÌÊÒ²éÑ¯ "allday"£ºÈ«Ìì "am"£ºÉÏÎç "pm"£ºÏÂÎç "night"£ºÍíÉÏ "0102":1.2½Ú¿Õ½ÌÊÒ "0304":3.4½Ú¿Õ½ÌÊÒ
-        // Q.getExamInfo().exec(); //»ñÈ¡¿¼ÊÔĞÅÏ¢
+        // Q.getStudentInfo().exec(); //è·å–å­¦ç”Ÿä¿¡æ¯
+        // Q.getCurrentTime().exec(); //è·å–å­¦å¹´ä¿¡æ¯
+        // Q.getTable().exec(); //å½“å‰å‘¨æ¬¡è¯¾è¡¨
+        // Q.getTable().setWeek("3").exec(); //æŒ‡å®šå‘¨æ¬¡è¯¾è¡¨
+        // Q.getGrade().exec(); //æŸ¥è¯¢å…¨éƒ¨æˆç»©
+        // Q.getGrade().setTerm("2018-2019-2").exec(); //æŒ‡å®šå­¦æœŸæˆç»©æŸ¥è¯¢
+        // Q.getClassroom("0102").exec(); //ç©ºæ•™å®¤æŸ¥è¯¢ "allday"ï¼šå…¨å¤© "am"ï¼šä¸Šåˆ "pm"ï¼šä¸‹åˆ "night"ï¼šæ™šä¸Š "0102":1.2èŠ‚ç©ºæ•™å®¤ "0304":3.4èŠ‚ç©ºæ•™å®¤
+        // Q.getExamInfo().exec(); //è·å–è€ƒè¯•ä¿¡æ¯
     }
 
 }

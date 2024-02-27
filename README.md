@@ -8,10 +8,11 @@
 SHST/Python 目录下为Python版本的API
 SHST/PHP 目录下为PHP版本的API
 SHST/Java 目录下为Java版本的API 
-SHST-SDUST/SHST-UNI 目录下为小程序项目[山科小站--小程序]，山东科技大学校园服务平台，已上线微信小程序与QQ小程序 
-SHST-SDUST/SHST-PLUS 目录下为小程序项目[山科小站--plus]，山科小站的扩充版本，纯爬虫解析HTML版本，已上线微信小程序
-SHST-SDUST/SHST-WEL 目录下为小程序项目[山科小站--迎新专版]，提供校内的相关信息，迎新专用，已上线微信小程序与QQ小程序   
-SHST-SDUST/SHST-WEX 目录下为NVUE/WEEX项目[山科小站--APP]，采用原生渲染，作为UNIAPP纯NVUE/WEEX项目开发，已上架酷安应用市场
+SHST/SHST-UNI 目录下为小程序项目[山科小站--小程序]，山东科技大学校园服务平台，已上线微信小程序与QQ小程序 
+SHST/SHST-PLUS 目录下为小程序项目[山科小站--Plus]，山科小站的扩充版本，纯爬虫解析HTML版本，已上线微信小程序
+SHST/SHST-UNI-NEXT 目录下为小程序项目[山科小站--NEXT]，提供山科小站与小站Plus组合最新版本，已上线微信小程序
+SHST/SHST-WEL 目录下为小程序项目[山科小站--迎新专版]，提供校内的相关信息，迎新专用，已上线微信小程序与QQ小程序   
+SHST/SHST-WEX 目录下为NVUE/WEEX项目[山科小站--APP]，采用原生渲染，作为UNIAPP纯NVUE/WEEX项目开发，已上架酷安应用市场
 ```
 
 

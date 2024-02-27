@@ -10,3 +10,6 @@
 [submodule "SHST-PLUS"]
 	path = SHST-PLUS
 	url = https://github.com/SHST-SDUST/SHST-PLUS
+[submodule "SHST-UNI-NEXT"]
+	path = SHST-UNI-NEXT
+	url = https://github.com/SHST-SDUST/SHST-UNI-NEXT

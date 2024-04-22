@@ -1,13 +1,13 @@
 # SHST
 [GitHub](https://github.com/SHST-SDUST/SHST-UNI) ｜ [Online](https://cdn.jsdelivr.net/gh/SHST-SDUST/SHST-UNI/src/vector/resources/exhibition/shst-wx.jpg) ｜ [BLOG](https://juejin.cn/post/7341805821527113747#heading-1)
 
-山科小站，山东科技大学校园服务平台，提供教务系统、图书馆、校园导航等服务，拥有比较丰富的生态:
+山科小站，山东科技大学校园服务平台，提供教务系统、图书馆、校园导航等服务，拥有比较丰富的生态：
 
 <table>
 <thead>
 
 <tr>
-<th>项目地址</th>
+<th style="width: 150px" width="150px" ><div style="width: 150px">项目地址</div></th>
 <th>简介</th>
 </tr>
 
@@ -16,17 +16,17 @@
 
 <tr>
 <td><a href="./Python/">SHST/Python</a></td>
-<td><code>Python</code>版本的<code>API</code></td>
+<td><code>Python</code>版本的<code>API</code>。</td>
 </tr>
 
 <tr>
 <td><a href="./PHP/">SHST/PHP</a></td>
-<td><code>PHP</code>版本的<code>API</code></td>
+<td><code>PHP</code>版本的<code>API</code>。</td>
 </tr>
 
 <tr>
 <td><a href="./Java/">SHST/Java</a></td>
-<td><code>Java</code>版本的<code>API</code></td>
+<td><code>Java</code>版本的<code>API</code>。</td>
 </tr>
 
 <tr>

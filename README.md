@@ -1,13 +1,20 @@
 # SHST
-[GitHub](https://github.com/SHST-SDUST/SHST-UNI) ｜ [Online](https://cdn.jsdelivr.net/gh/SHST-SDUST/SHST-UNI/src/vector/resources/exhibition/shst-wx.jpg) ｜ [BLOG](https://juejin.cn/post/7341805821527113747#heading-1)
 
-山科小站，山东科技大学校园服务平台，提供教务系统、图书馆、校园导航等服务，拥有比较丰富的生态：
+<p>
+<a href="https://github.com/WindrunnerMax/SHST">GitHub</a>
+<span>｜</span>
+<a href="https://cdn.jsdelivr.net/gh/SHST-SDUST/SHST-UNI/src/vector/resources/exhibition/shst-wx.jpg">Online</a>
+<span>｜</span>
+<a href="https://juejin.cn/post/7341805821527113747#heading-1">BLOG</a>
+</p>
+
+山科小站，山东科技大学校园服务平台，提供教务系统、图书馆、校园导航等服务，拥有比较丰富的生态产品：
 
 <table>
 <thead>
 
 <tr>
-<th style="width: 150px" width="150px" ><div style="width: 150px">项目地址</div></th>
+<th width="150px" >项目地址</th>
 <th>简介</th>
 </tr>
 
@@ -40,7 +47,7 @@
 </tr>
 
 <tr>
-<td><a href="https://github.com/SHST-SDUST/SHST-UNI-NEXT">SHST-UNI-NEXT</a></td>
+<td><a href="https://github.com/SHST-SDUST/SHST-UNI-NEXT">SHST-NEXT</a></td>
 <td>山科小站小程序<code>Next</code>版本，提供山科小站与小站<code>Plus</code>组合最新版本，已上线微信小程序。</td>
 </tr>
 
